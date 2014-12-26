@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>aboutDialog</class>
+ <widget class="QDialog" name="aboutDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>601</width>
+    <height>653</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Maximum" vsizetype="MinimumExpanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>About classified ads</string>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>true</bool>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <layout class="QVBoxLayout" name="verticalLayout" stretch="0">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetDefaultConstraint</enum>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <layout class="QHBoxLayout" name="addrLayout">
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QScrollArea" name="aboutBoxScroll">
+         <property name="frameShadow">
+          <enum>QFrame::Plain</enum>
+         </property>
+         <property name="verticalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOn</enum>
+         </property>
+         <property name="horizontalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
+         </property>
+         <property name="widgetResizable">
+          <bool>false</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>566</width>
+            <height>2500</height>
+           </rect>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="autoFillBackground">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="layoutWidget">
+           <property name="geometry">
+            <rect>
+             <x>2</x>
+             <y>-2</y>
+             <width>811</width>
+             <height>2671</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <property name="spacing">
+             <number>2</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="titleLabel">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string> Classified ads is a program for online communications</string>
+              </property>
+              <property name="textFormat">
+               <enum>Qt::RichText</enum>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="turtleButton">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>558</width>
+                <height>443</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>558</width>
+                <height>443</height>
+               </size>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="../ui_resources.qrc">
+                <normaloff>:/ui/ui/turt558.png</normaloff>:/ui/ui/turt558.png</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>558</width>
+                <height>443</height>
+               </size>
+              </property>
+              <property name="flat">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="aboutTextLabel">
+              <property name="minimumSize">
+               <size>
+                <width>550</width>
+                <height>2200</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>550</width>
+                <height>2200</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Classified ads is free software. You may use, copy and modify it if you follow the conditions given in GNU general public license version 3.&lt;/p&gt;&lt;p&gt;Classified ads is copyright © Antti Järvinen 2013. &lt;/p&gt;&lt;p&gt;Main feature of the the program is an &amp;quot;advertisement&amp;quot; - a piece of text belonging to selected classification. There are several pre-programmed classifications and operators are encouraged to invent new classifications for new purposes ; the selection boxes in classification-selection tab are editable. Other operators may then view the ads, publicly comment the ads, the operators and also send private messages to each others. &lt;/p&gt;&lt;p&gt;Another important feature of classified ads is that it is designed to be operated without any centralized server infrastucture - it is you and other operators whose computers store and transmit all the content visible inside classified ads. To get connected you need to know address of at least one existing computer (a &lt;span style=&quot; font-style:italic;&quot;&gt;node&lt;/span&gt;) so if your network connection dialog shows no connections, you may need to contact someone you know is using the software and ask for address of her node to make initial contact with the network. Once connected the software should maintain list of addresses of other nodes. &lt;/p&gt;&lt;p&gt;Due to its server-less design the whole system works best if you leave the program running always when you have your computer powered on ; while processing other operators requests it will hog some computing resources and generate network traffic also when you are not actively using the program youself - others are. &lt;/p&gt;&lt;p&gt;Operators concerned about privacy of the content should be aware of following items:&lt;/p&gt;&lt;p&gt;- Data storage implementation is variant of &lt;span style=&quot; font-style:italic;&quot;&gt;distributed hash table&lt;/span&gt;, practically meaning that content posted by you gets copied some more-or-less random nodes in the network. &lt;/p&gt;&lt;p&gt;- Any data item (ad, comment, binary file, private message etc.) is digitally signed. This makes it more difficult to try to pose as another operator. &lt;/p&gt;&lt;p&gt;- Operators are reliably identified only by the SHA1 hash of their generated encryption keys. SHA1 hash is displayed when viewing details of operator profiles. Other identifying information like nickname or city name are entered by operator himself and can be anything. The operator profile, as it is published to the network, is also signed with the encryption keys of the operator - if you identify an operator by her SHA1 hash, you have a mechanism for identifying if any content inside classified ads is posted by this operator or not. Classified ads internally checks for digital signatures, throwing away content that fails signature check and tries to provide SHA1 hash of the operator who posted the content.&lt;/p&gt;&lt;p&gt;- All classified ads are posted as plain text, no encryption is used. All public profiles are posted as plain text, no encryption is used. If profile is made private, it is encrypted to be readable only by selected other profiles. This applies also to binary files shared by operators private profiles and comments about private profiles after the profile was made private (previously plain-text comments or files don't get magically encrypted afterwards). Private messages are encrypted always to be readable only by recipient and sender. Attachments follow the privary rules of the document, they're attachted to. &lt;/p&gt;&lt;p&gt;- As is the case with all internet-communications, this small fact is true for classified ads too : &lt;span style=&quot; font-style:italic;&quot;&gt;once something gets posted online, there is no way to remove it from network&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;- Data encryption implementation for content is OpenSSL, relying mostly on algorithms RSA-2048 and AES-256. &lt;/p&gt;&lt;p&gt;- While connections between nodes are implemented using SSL, other nodes inside network do get to know what content is being transmitted in neighboring nodes. While there is no central point for easily collecting this information about particular classification or operator, operators still should expect no privacy regarding their doings online, altough some effort has been been put into hiding &lt;span style=&quot; font-style:italic;&quot;&gt;contents&lt;/span&gt; of private messages and private profiles. &lt;/p&gt;&lt;p&gt;Programming was (mostly) done by Antti Järvinen, artwork by Meeri Järvinen.&lt;/p&gt;&lt;p&gt;Happy advertising!&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="textFormat">
+               <enum>Qt::RichText</enum>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="openExternalLinks">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="0">
+    <widget class="QDialogButtonBox" name="closeButtonBox">
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Close</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../ui_resources.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>closeButtonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>aboutDialog</receiver>
+   <slot>deleteLater()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>260</x>
+     <y>138</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>260</x>
+     <y>81</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

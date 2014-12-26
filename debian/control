@@ -1,0 +1,16 @@
+Source: classified-ads
+Section: unknown
+Priority: extra
+Maintainer: Antti Järvinen <classified-ads.questions@katiska.org>
+Build-Depends: debhelper (>= 7.0.50~), libqt4-dev , libssl-dev, libgcrypt-dev | libgcrypt11-dev, libnatpmp-dev, libqjson-dev
+Standards-Version: 3.8.4
+Homepage: <insert the upstream URL, if relevant>
+#Vcs-Git: git://git.debian.org/collab-maint/classified-ads.git
+#Vcs-Browser: http://git.debian.org/?p=collab-maint/classified-ads.git;a=summary
+
+Package: classified-ads
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libqt4-network , openssl, libqt4-sql-sqlite , libnatpmp1, libqjson0
+Description: Program for displaying classified advertisement items
+ This is a server-less version of program that lets you tell the world
+ when you're in need of a new bicycle.

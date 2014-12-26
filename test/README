@@ -1,0 +1,4 @@
+If you want all test cases to pass you need to have 
+$HOME/.classified_ads/sqlite_db in place, a profile in there and that
+profile needs to have password 'salasana' - if not then the password
+changing test cases will fail.

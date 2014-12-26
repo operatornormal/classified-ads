@@ -1,0 +1,39 @@
+ * connection -class
+   - is related to one node
+   - sends protocol packets
+   - receives protocol packets
+   - hands protocol packets to -> protocol_message_parser
+   - may ask from datamodel for more packets to send
+   - normal mode of working is this:
+     1. wait for input from other node, for some time
+     2. if indication of received data is present, try receiving data,
+        handing it over to parser class
+     3. if no indication of received data, ask for datamodel for next 
+        packet to send to this peer ; it may or may not appear
+     4. that's all folks, connection should be simple?
+
+ * datamodel class
+   - has list of all known nodes
+   - has list of all connected nodes
+   - has list of "good" nodes, that it will spam around. ..good methodology
+     for producing this list needed? 
+   - for each node, based on info given (available) produces a queue
+     of protocol items to send. queue contains 
+      1. node greeting
+      2. if last contact is long time ago, a fresh list of nodes
+      3. possible private messages destined to said node
+      4. any object that belongs to nodes in vicinity
+   - when more object appear (are sent from other nodes, or appear
+     by user from UI) they are subsequently put into queue of each node.
+   
+ * protocol_message_parser
+   - gets raw bytestream parts from connections
+   - sees if they look like a valid protocol element, if yes,
+     gives them to datamodel for storage and re-send to next nodes; 
+     in practice the datamodel may put the newly-received objects
+     into send-queues of connected nodes. 
+
+ * Network listener listens to incoming connections
+   - connection -instances notify datamodel directly about the node
+     connected, network listener only needs to listen and traffic
+     does not need to through it, instead see protocol_message_parser

@@ -1,0 +1,17 @@
+# If you want classfied ads to appear in a linux app launcher ("start menu"), install this by doing:
+# sudo desktop-file-install classified_ads.desktop
+
+[Desktop Entry]
+Comment=Classified ads the advertisment posting program
+Exec=classified-ads %u
+GenericName[en_US]=Classified ads
+GenericName[fi_FI]=Luokitellut ilmoitukset
+GenericName=Classified ads
+Icon=/usr/share/app-install/icons/turt-transparent-128x128.png
+Name[en_US]=Classified ads
+Name[fi_FI]=Luokitellut ilmoitukset
+Name=Classified ads
+Categories=Network;
+StartupNotify=false
+Terminal=false
+Type=Application
