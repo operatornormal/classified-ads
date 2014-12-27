@@ -621,6 +621,10 @@ void Model::initPseudoRandom() {
 	{
 	  QLOG_STR("Win32 seed: Random sequence generated. \n");
 	  RAND_seed(&pbData, RANDOM_LEN);
+	  unsigned int *pointer1intothemiddle = reinterpret_cast<unsigned int *>(pbData);
+	  srand(*pointer1intothemiddle) ;
+	  pointer1intothemiddle++ ;
+	  qsrand(*pointer1intothemiddle) ;
 	}
       else
 	{
