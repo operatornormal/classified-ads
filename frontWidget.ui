@@ -990,6 +990,47 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>profileAddressValue</tabstop>
+  <tabstop>profileNickNameEdit</tabstop>
+  <tabstop>greetingTextEdit</tabstop>
+  <tabstop>firstNameEdit</tabstop>
+  <tabstop>familyNameEdit</tabstop>
+  <tabstop>cityCountryEdit</tabstop>
+  <tabstop>btcAddressEdit</tabstop>
+  <tabstop>stateOfTheWorldEdit</tabstop>
+  <tabstop>isPrivateCheckbox</tabstop>
+  <tabstop>profileReadersButton</tabstop>
+  <tabstop>imageButton</tabstop>
+  <tabstop>publisChangesButton</tabstop>
+  <tabstop>revertChangesButton</tabstop>
+  <tabstop>profileCommentsView</tabstop>
+  <tabstop>sharedFilesView</tabstop>
+  <tabstop>addContactBtn</tabstop>
+  <tabstop>removeContactBtn</tabstop>
+  <tabstop>viewProfileBtn</tabstop>
+  <tabstop>sendMessageBtn</tabstop>
+  <tabstop>privateMessageListView</tabstop>
+  <tabstop>privateMessageView</tabstop>
+  <tabstop>privateMsgsButtons</tabstop>
+  <tabstop>caAboutComboBox</tabstop>
+  <tabstop>caRegardingCombobox</tabstop>
+  <tabstop>caWhereComboBox</tabstop>
+  <tabstop>searchAdsButton</tabstop>
+  <tabstop>caMessageView</tabstop>
+  <tabstop>CATabBottomButtonBox</tabstop>
+  <tabstop>profileDetailsBTCValue</tabstop>
+  <tabstop>profileDetailsStateOfTheWorldValue</tabstop>
+  <tabstop>profileDetailsSendMsgButton</tabstop>
+  <tabstop>profileDetailsReadersButton</tabstop>
+  <tabstop>profileDetailsCommentsView</tabstop>
+  <tabstop>profileDetailsSharedFilesView</tabstop>
+  <tabstop>profileDetailsCommentButton</tabstop>
+  <tabstop>profileDetailsAddrValue</tabstop>
+  <tabstop>contactsView</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>caHeadersView</tabstop>
+ </tabstops>
  <resources>
   <include location="ui_resources.qrc"/>
  </resources>
