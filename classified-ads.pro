@@ -83,3 +83,4 @@ desktopfiles.files = ui/classified_ads.desktop
 desktopicons.path = /usr/share/app-install/icons/
 desktopicons.files = ui/turt-transparent-128x128.png
 INSTALLS += target desktopfiles desktopicons
+RC_FILE=classified-ads.rc

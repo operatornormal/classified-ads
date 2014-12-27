@@ -7,7 +7,7 @@
 #
 # define name of installer
 outFile "Classified-ads-Win32.exe"
-
+!define MUI_ICON "turt-transparent-128x128.ico"
 !define VERSION "0.0" 
 Name "Classified ads ${VERSION}" 
 # define installation directory
@@ -65,7 +65,8 @@ file /oname=sqldrivers\qsqlite.dll ..\release\sqldrivers\qsqlite.dll
 file /oname=libeay32.dll C:\Qt\Tools\mingw491_32\opt\bin\libeay32.dll
 file /oname=ssleay32.dll C:\Qt\Tools\mingw491_32\opt\bin\ssleay32.dll
 file /oname=LICENSE ..\LICENSE
-WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Classified-ads" "Remove classified-ads" "$\"$INSTDIR\uninstall.exe$\""
+WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Classified-ads" "DisplayName" "Classified-ads (remove only)"
+WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Classified-ads" "UninstallString" "$INSTDIR\Uninstall.exe"
 sectionEnd
 # uninstaller section start
 section "uninstall"
@@ -117,6 +118,7 @@ RMDIR "$INSTDIR\printsupport"
 RMDIR "$INSTDIR\platforms"
 RMDIR "$INSTDIR\sqldrivers"
 RMDIR "$INSTDIR"
-DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Classified-ads"
+DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\Classified-ads"
+DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Classified-ads"
 # uninstaller section end
 sectionEnd 
