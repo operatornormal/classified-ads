@@ -133,6 +133,14 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>searchEdit</tabstop>
+  <tabstop>listView</tabstop>
+  <tabstop>addSelectedButton</tabstop>
+  <tabstop>currentListOfReadersView</tabstop>
+  <tabstop>removeSelectedItemsButton</tabstop>
+  <tabstop>closeButton</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

@@ -48,6 +48,10 @@
 #include <QMutex>
 #include <QTimerEvent>
 #include <QWaitCondition>
+#ifdef WIN32
+#include <windows.h>
+#include <Wincrypt.h>
+#endif
 
 Model::Model(MController *aController) : iController(aController),
 					 iMutex(NULL) ,
@@ -576,6 +580,62 @@ void Model::initPseudoRandom() {
   } else if (QFile("/dev/random").exists()) { // slow but good
     randomFileName = "/dev/random" ;
   } else {
+#ifdef WIN32
+#define RANDOM_LEN (5*sizeof(quint32))
+    // this code is from MSDN examples
+    HCRYPTPROV   hCryptProv = 0 ;
+    BYTE         pbData[RANDOM_LEN]  = { 0 } ;
+
+    LPCWSTR UserName = L"Zappa, Frank";  // name of the key container
+    if(CryptAcquireContext(
+			   &hCryptProv,               // handle to the CSP
+			   UserName,                  // container name 
+			   NULL,                      // use the default provider
+			   PROV_RSA_FULL,             // provider type
+			   0))                        // flag values
+      {
+	QLOG_STR("Win32 seed: A cryptographic context has been acquired.");
+      }
+    else
+      { 
+	if(CryptAcquireContext(
+			       &hCryptProv, 
+			       UserName, 
+			       NULL, 
+			       PROV_RSA_FULL, 
+			       CRYPT_NEWKEYSET)) 
+	  {
+	    QLOG_STR("Win32 seed: A new key container has been created.\n");
+	  }
+	else
+	  {
+	    QLOG_STR("Win32 seed: Could not create a new key container.\n");
+	  }
+      }
+    if ( hCryptProv ) {
+
+      if(CryptGenRandom(
+			hCryptProv, 
+			RANDOM_LEN, 
+			pbData)) 
+	{
+	  QLOG_STR("Win32 seed: Random sequence generated. \n");
+	  RAND_seed(&pbData, RANDOM_LEN);
+	}
+      else
+	{
+	  printf("Win32 seed: Error during CryptGenRandom.\n");
+	}
+      if (CryptReleaseContext(hCryptProv,0))
+	{
+	  printf("Win32 seed: The handle has been released.\n");
+	}
+      else
+	{
+	  printf("Win32 seed:The handle could not be released.\n");
+	}
+    }
+#else
     // oh dear. emphasis is on word pseudo.
     QUuid u = QUuid::createUuid() ;
     QString eight_letters = u.toString() ;
@@ -590,6 +650,7 @@ void Model::initPseudoRandom() {
     qsrand(rand()) ; // note that in qt different threads may have
     // their own random seeds??
     RAND_seed(&seed, sizeof(seed));
+#endif
   }
   if ( randomFileName.length() > 2 ) {
     QFile randomFile(randomFileName) ;

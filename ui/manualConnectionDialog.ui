@@ -105,6 +105,11 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>portEdit</tabstop>
+  <tabstop>addressEdit</tabstop>
+  <tabstop>connectionDlgButtonBox</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

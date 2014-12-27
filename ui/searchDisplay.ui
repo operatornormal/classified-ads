@@ -129,6 +129,16 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>wordsEdit</tabstop>
+  <tabstop>searchButton</tabstop>
+  <tabstop>networkSearchCheckBox</tabstop>
+  <tabstop>searchCAsCheckBox</tabstop>
+  <tabstop>searchProfilesCheckBox</tabstop>
+  <tabstop>searchCommentsCheckBox</tabstop>
+  <tabstop>resultsView</tabstop>
+  <tabstop>bottomButtonsBox</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>
