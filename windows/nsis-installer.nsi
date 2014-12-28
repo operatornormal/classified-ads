@@ -8,12 +8,15 @@
 # define name of installer
 outFile "Classified-ads-Win32.exe"
 !define MUI_ICON "turt-transparent-128x128.ico"
-!define VERSION "0.0" 
+!define VERSION "0.1" 
+# ask to be admin in order to create start menu shortcuts to all users
+RequestExecutionLevel admin
 Name "Classified ads ${VERSION}" 
 # define installation directory
 installDir $PROGRAMFILES\Classified-ads
 # start default section
 section
+SetShellVarContext all
 # set the installation directory as the destination for the following actions
 setOutPath $INSTDIR
 # create the uninstaller
@@ -70,6 +73,7 @@ WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Classified
 sectionEnd
 # uninstaller section start
 section "uninstall"
+SetShellVarContext all
 # first, delete the uninstaller
 delete "$INSTDIR\uninstall.exe"
 # second, remove the link from the start menu
@@ -111,6 +115,7 @@ delete "$INSTDIR\printsupport\windowsprintersupport.dll"
 delete "$INSTDIR\sqldrivers\qsqlite.dll"
 delete "$INSTDIR\libeay32.dll"
 delete "$INSTDIR\ssleay32.dll"
+delete "$INSTDIR\libqjson.dll"
 RMDIR "$INSTDIR\bearer"
 RMDIR "$INSTDIR\iconengines"
 RMDIR "$INSTDIR\imageformats"

@@ -1026,6 +1026,9 @@ void FrontWidget::updateUiFromSelectedProfile() {
     }
     if ( !( iSelectedProfile->iProfilePicture.isNull()) ) {
       ui.imageButton->setIcon(QIcon(iSelectedProfile->iProfilePicture)) ; 
+    } else {
+      QPixmap p ( ":/ui/ui/Lenin_reading_Pravda.png" ) ; 
+      ui.imageButton->setIcon(QIcon(p)) ;
     }
     setUpSelectedProfileFileListingModel() ; 
     ui.publisChangesButton->setEnabled(false) ; 

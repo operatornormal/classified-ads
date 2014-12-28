@@ -138,7 +138,6 @@ bool CA::fromJSon(const QByteArray &aJSonBytes,
 		  const MController& /*aController*/ ) {
   QJson::Parser parser;
   bool ok;
-  parser.allowSpecialNumbers(true) ; 
   QVariantMap result = parser.parse (aJSonBytes, &ok).toMap();
   if (!ok) {
     QLOG_STR("QJson::Parser failed to parse " + QString::number(aJSonBytes.size()) + " bytes") ; 

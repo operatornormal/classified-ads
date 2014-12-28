@@ -9,7 +9,13 @@ install
  libssl-dev 
  libnatpmp-dev
  libqjson-dev
-and optionally libgcrypt-dev or libgcrypt11-dev as it is need for test suite.
+ dpkg-dev (if going to build with dpkg-buildpackage)
+ libgcrypt11-dev (if going to build with dpkg-buildpackage, it checks for this)
+ libqt4-sql-sqlite (is needed at runtime, not compile time)
+Libgcrypt-dev or libgcrypt11-dev are needed for test suite, some bignum
+tests are done against routines in this library but in normal runtime
+there is no dependency. 
+
 Then just say "qmake-qt4 ; make install" and that should do the trick ; or
 if inside debian-ecosystem "dpkg-buildpackage -r" in this directory should
 produce a installable package for your environment ; this is the correct
