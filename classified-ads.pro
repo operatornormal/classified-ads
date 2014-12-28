@@ -68,13 +68,13 @@ RESOURCES     = ui_resources.qrc
 unix:LIBS = -lssl -lcrypto -lnatpmp -lqjson
 win32:LIBS += "c:\msys\1.0\local\lib\libssl.a" 
 win32:LIBS += "c:\msys\1.0\local\lib\libcrypto.a" 
-win32:LIBS += "..\libnatpmp-20140401\libnatpmp.a" 
+win32:LIBS += "..\miniupnpc\miniupnpc-1.9\miniupnpc.lib" 
 win32:LIBS += "-L" 
 win32:LIBS += "..\qjson-master\build\src"
 win32:LIBS += "-lqjson"
 win32:LIBS += "-lWs2_32" "-lGdi32" "-lIphlpapi"
 win32:INCLUDEPATH += "C:\msys\1.0\local\include"
-win32:INCLUDEPATH += "..\libnatpmp-20140401"
+win32:INCLUDEPATH += "..\miniupnpc\miniupnpc-1.9"
 win32:INCLUDEPATH += "..\qjson-master\include"
 
 target.path = /usr/bin

@@ -32,7 +32,12 @@
 #include <QNetworkInterface>
 #include <QThread>
 #include <QCoreApplication>
+#ifdef WIN32
+#include "miniupnpc.h"
+#include "upnpcommands.h"
+#else
 #include "natpmp.h"
+#endif
 #include <errno.h>
 
 NetworkListener::NetworkListener(MController *aController,
@@ -199,6 +204,100 @@ void NetworkListener::figureOutLocalAddresses() {
     // ok, looks bad. we're behind nat-box. no incoming connections.
     // suxxors.
     LOG_STR("Ipv4 nat. Do something") ;
+#ifdef WIN32
+    {
+
+      int error = 0;
+      struct UPNPDev *upnp_dev = upnpDiscover(
+					      2000    , // time to wait (milliseconds)
+					      NULL , // multicast interface (or null defaults to 239.255.255.250)
+					      NULL , // path to minissdpd socket (or null defaults to /var/run/minissdpd.sock)
+					      0       , // source port to use (or zero defaults to port 1900)
+					      0       , // 0==IPv4, 1==IPv6
+					      &error  ); // error condition
+      if ( error == 0 ) {
+	char lan_address[64];
+	struct UPNPUrls upnp_urls;
+	struct IGDdatas upnp_data;
+	int status = UPNP_GetValidIGD(upnp_dev, &upnp_urls, &upnp_data, lan_address, sizeof(lan_address));
+	// look up possible "status" values, the number "1" indicates a valid IGD was found
+	QLOG_STR("UPNP_GetValidIGD = " + QString::number(status)) ; 
+	if ( status > 0 ) {
+	  // get the external (WAN) IP address
+	  char wan_address[64] = { 0 } ;
+	  int getExternalError = 
+	    UPNP_GetExternalIPAddress(upnp_urls.controlURL, upnp_data.first.servicetype, wan_address);
+	  QLOG_STR("Wan addr: " + QString(wan_address) + " error = " + QString::number(getExternalError)) ; 
+	  if ( getExternalError == 0 ) {
+	    QString externalIpString(wan_address) ;
+	    QHostAddress remoteAddr(externalIpString) ; 
+	    QLOG_STR("Maybe setting wan addr to node: " + remoteAddr.toString() ) ; 
+	    if ( iController->getNode().setIpAddrWithChecks(remoteAddr) )
+	      {
+		char port_number_str[30] = { 0 } ; 
+		sprintf(port_number_str, "%d", iModel->nodeModel().listenPortOfThisNode()) ; 
+		QLOG_STR("Calling UPNP_AddPortMapping with port = " + QString(port_number_str));  
+		error = UPNP_AddPortMapping(
+					    upnp_urls.controlURL,
+					    upnp_data.first.servicetype,
+					    port_number_str     ,  // external (WAN) port requested
+					    port_number_str     ,  // internal (LAN) port to which packets will be redirected
+					    lan_address , // internal (LAN) address to which packets will be redirected
+					    "Classified ads", // text description to indicate why or who is responsible for the port mapping
+					    "TCP"       , // protocol must be either TCP or UDP
+					    NULL     , // remote (peer) host address or nullptr for no restriction
+					    "0"     ); // port map lease duration (in seconds) or zero for "as long as possible"
+
+		// list all port mappings
+		size_t index = 0;
+      
+		for ( int portmappingcounter = 0 ; portmappingcounter < 30 ; portmappingcounter++ )
+		  {
+		    char map_wan_port           [200] = "";
+		    char map_lan_address        [200] = "";
+		    char map_lan_port           [200] = "";
+		    char map_protocol           [200] = "";
+		    char map_description        [200] = "";
+		    char map_mapping_enabled    [200] = "";
+		    char map_remote_host        [200] = "";
+		    char map_lease_duration     [200] = ""; // original time, not remaining time :(
+		    char index_str[200] ; 
+		    sprintf(index_str, "%d", index++) ; 
+		    QLOG_STR("Calling UPNP_GetGenericPortMappingEntry with index = " + QString::number(index)) ; 
+		    error = UPNP_GetGenericPortMappingEntry(
+							    upnp_urls.controlURL            ,
+							    upnp_data.first.servicetype     ,
+							    index_str                       ,
+							    map_wan_port                    ,
+							    map_lan_address                 ,
+							    map_lan_port                    ,
+							    map_protocol                    ,
+							    map_description                 ,
+							    map_mapping_enabled             ,
+							    map_remote_host                 ,
+							    map_lease_duration              );
+		    QLOG_STR("UPNP_GetGenericPortMappingEntry error " + QString::number(error)) ; 
+		    QLOG_STR("map_remote_host = " + QString(map_remote_host)) ; 
+		    QLOG_STR("map_wan_port = " + QString(map_wan_port)) ; 
+		    QLOG_STR("map_protocol = " + QString(map_protocol)) ; 
+		    if ( strncmp(map_wan_port, port_number_str , 5 ) == 0 ) {
+		      iController->getNode().setCanReceiveIncoming(true) ;
+		      QLOG_STR("Our port forwarding found, getting out..") ; 
+		      break ; 
+		    } 
+		    if (error)
+		      {
+			break; // no more port mappings available
+		      }
+		  }
+	      } else {
+	      QLOG_STR("Did not use IP-addr from UPnP, maybe it too was behind nat?") ; 
+	    }
+	  }
+	}
+      }
+    }
+#else
     // kudos to http://miniupnp.free.fr/libnatpmp.html
     int r = -1;
     natpmp_t natpmp;
@@ -318,7 +417,9 @@ void NetworkListener::figureOutLocalAddresses() {
       }
     }
     closenatpmp(&natpmp);
+#endif // else-part of WIN32
   }
+
   // lets greet self to have our own record in db updated
   // as it may later appear in query results..
   iModel->nodeModel().nodeGreetingReceived(iController->getNode(),true) ; 

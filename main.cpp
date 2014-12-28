@@ -16,7 +16,9 @@
     You should have received a copy of the GNU General Public License
     along with Classified Ads.  If not, see <http://www.gnu.org/licenses/>.
 */
-
+#ifdef WIN32
+#include <winsock2.h>
+#endif
 #include "controller.h"
 #include <signal.h>
 #include "log.h"
@@ -73,6 +75,18 @@ void sigUSR2handler(int) {
  */
 int main(int argc, char *argv[]) {
   KNullHash = Hash() ; 
+#ifdef WIN32
+  WSADATA wsaData;
+  int nResult = WSAStartup(MAKEWORD(2,2), &wsaData);
+  if(nResult != NO_ERROR)
+    {
+      QLOG_STR( "WSAStartup() failed.");
+    } 
+  else 
+    {
+    QLOG_STR( "WSAStartup() success");
+    }
+#endif
   app = new QApplication (argc, argv);
   // controller will actually start launching the application
   c = new Controller(*app) ;

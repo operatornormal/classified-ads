@@ -804,23 +804,28 @@ bool ProtocolMessageParser::parseNodeGreetingV1(const QByteArray& aSingleNodeGre
                 return false ;
               }
               iModel.lock() ;
-	      bool wasInitialConnection ( aConnection.iNumberOfPacketsReceived == 1 ) ; 
-              if (!iModel.nodeModel().nodeGreetingReceived(*n, 
-							   wasInitialConnection ) ) {
-                LOG_STR("Update was not suksee") ;
-                retval = false ;
-              } else {
-                LOG_STR2("Update was success, retval = %d", (int)retval) ;
-		if ( aConnection.iNumberOfPacketsReceived == 1 ) {
-		  // node was updated/inserted ; datamodel has
-		  // set possible last mutual connect time of
-		  // that node into inserted node .. because connection
-		  // holds different instance, copy the value there
-		  aConnection.node()->setLastMutualConnectTime(n->lastMutualConnectTime()) ;
-		  LOG_STR2("Setting last mutual of node to %u", (unsigned)(aConnection.node()->lastMutualConnectTime())) ; 
-		}
+	      if ( n->nodeFingerPrint() == iController.getNode().nodeFingerPrint() ) {
+		QLOG_STR("Received my own node ref, not saving..") ; 
                 retval = true ;
-              }
+	      } else {
+		bool wasInitialConnection ( aConnection.iNumberOfPacketsReceived == 1 ) ; 
+		if (!iModel.nodeModel().nodeGreetingReceived(*n, 
+							     wasInitialConnection ) ) {
+		  LOG_STR("Update was not suksee") ;
+		  retval = false ;
+		} else {
+		  LOG_STR2("Update was success, retval = %d", (int)retval) ;
+		  if ( aConnection.iNumberOfPacketsReceived == 1 ) {
+		    // node was updated/inserted ; datamodel has
+		    // set possible last mutual connect time of
+		    // that node into inserted node .. because connection
+		    // holds different instance, copy the value there
+		    aConnection.node()->setLastMutualConnectTime(n->lastMutualConnectTime()) ;
+		    LOG_STR2("Setting last mutual of node to %u", (unsigned)(aConnection.node()->lastMutualConnectTime())) ; 
+		  }
+		  retval = true ;
+		}
+	      }
               iModel.unlock() ;
               delete n ;
             }

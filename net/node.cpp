@@ -217,31 +217,28 @@ bool Node::setIpAddrWithChecks(const QHostAddress& aAddress) {
         } else if ( ipv6String.toLower().startsWith("::") ) {
           // address starting with all-zeroes, must
           // not be globally routing, no?
+        } else if ( ipv6String.toLower().startsWith("2001:0:") ) {
+	  // this is a teredo address and it seems to me that 
+	  // there is more non-functional teredo addresses
+	  // than functional .. and host having teredo needs
+	  // to have ipv4 anyway so we don't lose much here.
+	  QLOG_STR("Not using teredo-ipv6 addr") ; 
         } else {
-	  // also shun teredo-addresses if we have something else
-	  // already set:
-	  if (!Connection::Ipv6AddressesEqual(iIPv6Addr,
-					      KNullIpv6Addr)&&
-	      ipv6String.startsWith("2001:0:")) {
-	    QLOG_STR("Got teredo-address but already had ipv6 -> not using teredo") ; 
-	  } else {
 #ifdef WIN32
-	    // it seems to me that win32 reports permanent address first
-	    // so if we already have one, do not change that:
-	    if ( Connection::Ipv6AddressesEqual(iIPv6Addr,
-						KNullIpv6Addr) == true ) {
-	      setIpv6Addr(aAddress.toIPv6Address() ) ;
-	    } else {
-	      // we already managed to get one addr so lets not change that
-	    }
-#else
-	    // seems to me that there is no consistent behaviour in linux
-	    // so lets just pick up the latest addr..
+	  // it seems to me that win32 reports permanent address first
+	  // so if we already have one, do not change that:
+	  if ( Connection::Ipv6AddressesEqual(iIPv6Addr,
+					      KNullIpv6Addr) == true ) {
 	    setIpv6Addr(aAddress.toIPv6Address() ) ;
-#endif
-	    retval = true ;
-
+	  } else {
+	    // we already managed to get one addr so lets not change that
 	  }
+#else
+	  // seems to me that there is no consistent behaviour in linux
+	  // so lets just pick up the latest addr..
+	  setIpv6Addr(aAddress.toIPv6Address() ) ;
+#endif
+	  retval = true ;
         }
       }
     } else if ( QAbstractSocket::IPv4Protocol == aAddress.protocol() ) {
