@@ -73,6 +73,7 @@ void ProfileCommentItemDelegate::paint(QPainter *painter,
   }
   // textRect is whole item rect
   QRect textRect = style->subElementRect(QStyle::SE_ItemViewItemText, &optionV4);
+  doc.setTextWidth(textRect.width()-10);
   painter->save();
   // paint "title text" on top of the rect
   painter->drawText(QRect(textRect.left(), textRect.top(), textRect.width(), QFontMetrics(painter->font()).height()),
