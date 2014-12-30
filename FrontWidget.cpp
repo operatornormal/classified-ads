@@ -40,6 +40,7 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QScrollBar>
+#include <QMainWindow>
 
 static const QString internalNameOfProfileTab("profileTabNamed") ; 
 static const QString internalNameOfCommentDialog("caCommentDlgNamed") ; 
