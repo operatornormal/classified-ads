@@ -159,6 +159,8 @@ public slots:
   virtual void addCaSenderToContacts() ;/**< called from ca listing tab */
   // slots related to contacts-tab
   virtual void addContactButtonClicked() ; /**< new contact */
+  /** new contact from "view contact" tab */
+  virtual void addContactFromContactViewButtonClicked() ; 
   virtual void removeContactButtonClicked() ; /**< remove contact */
   virtual void viewContactProfileButtonClicked() ; /**< view contact profile */
   virtual void sendMsgToContactButtonClicked() ; /**< send message to contact list profile */

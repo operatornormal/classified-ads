@@ -98,7 +98,7 @@ Controller::Controller(QApplication &app) : iWin(NULL),
   qRegisterMetaType<QHostAddress>("QHostAddress");
   iWin = new QMainWindow(NULL) ;
   // somehow Qt should calculate size from widgets. it gets too small vertical..
-  iWin->setMinimumSize(403,730) ; 
+  iWin->setMinimumSize(450,600) ; 
   createMenus() ;
   iLayout = new QBoxLayout( QBoxLayout::TopToBottom, NULL ) ;
   QWidget *centralWidget = new QWidget() ;

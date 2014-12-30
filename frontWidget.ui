@@ -162,57 +162,182 @@
       </attribute>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <layout class="QGridLayout" name="gridLayoutInsideMyProfile" rowstretch="0,0,1" columnstretch="1,0">
+        <layout class="QGridLayout" name="gridLayoutInsideMyProfile" rowstretch="0,0" columnstretch="1,0">
          <property name="sizeConstraint">
           <enum>QLayout::SetDefaultConstraint</enum>
          </property>
-         <item row="1" column="0">
+         <item row="0" column="0">
           <layout class="QFormLayout" name="profileDataFieldsLayout">
            <property name="fieldGrowthPolicy">
             <enum>QFormLayout::ExpandingFieldsGrow</enum>
            </property>
+           <item row="2" column="0">
+            <widget class="QLabel" name="profileAddressLabel">
+             <property name="text">
+              <string>Profile address</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QTextBrowser" name="profileAddressValue">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>22</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="verticalScrollBarPolicy">
+              <enum>Qt::ScrollBarAlwaysOff</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="profileNickNameLabel">
+             <property name="text">
+              <string>Nickname</string>
+             </property>
+            </widget>
+           </item>
            <item row="3" column="1">
+            <widget class="QLineEdit" name="profileNickNameEdit">
+             <property name="minimumSize">
+              <size>
+               <width>290</width>
+               <height>0</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="greetingTextLabel">
+             <property name="text">
+              <string>Greeting text</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1">
             <widget class="QLineEdit" name="greetingTextEdit">
              <property name="toolTip">
               <string>For the rest of the world. </string>
              </property>
             </widget>
            </item>
-           <item row="5" column="1">
+           <item row="7" column="0">
+            <widget class="QLabel" name="profileNickNameLabel_3">
+             <property name="text">
+              <string>First name</string>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="1">
             <widget class="QLineEdit" name="firstNameEdit">
              <property name="text">
               <string/>
              </property>
             </widget>
            </item>
-           <item row="7" column="1">
-            <widget class="QLineEdit" name="familyNameEdit"/>
+           <item row="9" column="0">
+            <widget class="QLabel" name="profileNickNameLabel_4">
+             <property name="text">
+              <string>Family name</string>
+             </property>
+            </widget>
            </item>
            <item row="9" column="1">
-            <widget class="QLineEdit" name="cityCountryEdit"/>
+            <widget class="QLineEdit" name="familyNameEdit"/>
+           </item>
+           <item row="11" column="0">
+            <widget class="QLabel" name="profileNickNameLabel_5">
+             <property name="text">
+              <string>City/country</string>
+             </property>
+            </widget>
            </item>
            <item row="11" column="1">
+            <widget class="QLineEdit" name="cityCountryEdit"/>
+           </item>
+           <item row="13" column="0">
+            <widget class="QLabel" name="btcAddressLabel">
+             <property name="text">
+              <string>BTC address</string>
+             </property>
+            </widget>
+           </item>
+           <item row="13" column="1">
             <widget class="QLineEdit" name="btcAddressEdit">
              <property name="toolTip">
               <string>If you wish to receive payments via BTC, include your BTC address too.</string>
              </property>
             </widget>
            </item>
-           <item row="13" column="1">
+           <item row="15" column="0">
+            <widget class="QLabel" name="stateOfTheWorldLabel">
+             <property name="text">
+              <string>State of the world</string>
+             </property>
+            </widget>
+           </item>
+           <item row="15" column="1">
             <widget class="QLineEdit" name="stateOfTheWorldEdit">
              <property name="toolTip">
               <string>Longer explanation about state of the world</string>
              </property>
             </widget>
            </item>
-           <item row="17" column="0" colspan="2">
+           <item row="17" column="0">
+            <widget class="QCheckBox" name="isPrivateCheckbox">
+             <property name="text">
+              <string>Profile is private</string>
+             </property>
+            </widget>
+           </item>
+           <item row="17" column="1">
+            <widget class="QPushButton" name="profileReadersButton">
+             <property name="text">
+              <string>Readers of profile</string>
+             </property>
+            </widget>
+           </item>
+           <item row="19" column="0" colspan="2">
             <widget class="QLabel" name="profileAddressLabel_2">
              <property name="text">
               <string>None of the fields is mandatory</string>
              </property>
             </widget>
            </item>
-           <item row="23" column="1">
+           <item row="21" column="0">
+            <widget class="QLabel" name="timeOfLastUpdateLabel">
+             <property name="text">
+              <string>Time of last update</string>
+             </property>
+            </widget>
+           </item>
+           <item row="21" column="1">
+            <widget class="QLabel" name="timeOfLastUpdateValue">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="25" column="0">
+            <widget class="QPushButton" name="publisChangesButton">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>Publish</string>
+             </property>
+            </widget>
+           </item>
+           <item row="25" column="1">
             <widget class="QPushButton" name="revertChangesButton">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
@@ -226,109 +351,23 @@
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QLineEdit" name="profileNickNameEdit">
-             <property name="minimumSize">
-              <size>
-               <width>290</width>
-               <height>0</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="profileNickNameLabel">
-             <property name="text">
-              <string>Nickname</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="0">
-            <widget class="QLabel" name="greetingTextLabel">
-             <property name="text">
-              <string>Greeting text</string>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="0">
-            <widget class="QLabel" name="profileNickNameLabel_3">
-             <property name="text">
-              <string>First name</string>
-             </property>
-            </widget>
-           </item>
-           <item row="7" column="0">
-            <widget class="QLabel" name="profileNickNameLabel_4">
-             <property name="text">
-              <string>Family name</string>
-             </property>
-            </widget>
-           </item>
-           <item row="9" column="0">
-            <widget class="QLabel" name="profileNickNameLabel_5">
-             <property name="text">
-              <string>City/country</string>
-             </property>
-            </widget>
-           </item>
-           <item row="13" column="0">
-            <widget class="QLabel" name="stateOfTheWorldLabel">
-             <property name="text">
-              <string>State of the world</string>
-             </property>
-            </widget>
-           </item>
-           <item row="11" column="0">
-            <widget class="QLabel" name="btcAddressLabel">
-             <property name="text">
-              <string>BTC address</string>
-             </property>
-            </widget>
-           </item>
-           <item row="23" column="0">
-            <widget class="QPushButton" name="publisChangesButton">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
+            <widget class="QLabel" name="label">
+             <property name="font">
+              <font>
+               <pointsize>13</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
              </property>
              <property name="text">
-              <string>Publish</string>
-             </property>
-            </widget>
-           </item>
-           <item row="15" column="0">
-            <widget class="QCheckBox" name="isPrivateCheckbox">
-             <property name="text">
-              <string>Profile is private</string>
-             </property>
-            </widget>
-           </item>
-           <item row="15" column="1">
-            <widget class="QPushButton" name="profileReadersButton">
-             <property name="text">
-              <string>Readers of profile</string>
-             </property>
-            </widget>
-           </item>
-           <item row="19" column="0">
-            <widget class="QLabel" name="timeOfLastUpdateLabel">
-             <property name="text">
-              <string>Time of last update</string>
-             </property>
-            </widget>
-           </item>
-           <item row="19" column="1">
-            <widget class="QLabel" name="timeOfLastUpdateValue">
-             <property name="text">
-              <string/>
+              <string>Details of operator profile:</string>
              </property>
             </widget>
            </item>
           </layout>
          </item>
-         <item row="1" column="1" rowspan="2">
-          <layout class="QVBoxLayout" name="rightSideLayout" stretch="0,0,1">
+         <item row="0" column="1" rowspan="2">
+          <layout class="QVBoxLayout" name="rightSideLayout" stretch="0,0,0">
            <property name="sizeConstraint">
             <enum>QLayout::SetMaximumSize</enum>
            </property>
@@ -380,17 +419,17 @@
              </property>
             </widget>
            </item>
-           <item alignment="Qt::AlignBottom">
+           <item>
             <widget class="QListView" name="sharedFilesView">
              <property name="sizePolicy">
-              <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
+              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
              <property name="minimumSize">
               <size>
-               <width>0</width>
+               <width>25</width>
                <height>25</height>
               </size>
              </property>
@@ -404,7 +443,7 @@
            </item>
           </layout>
          </item>
-         <item row="2" column="0">
+         <item row="1" column="0">
           <layout class="QVBoxLayout" name="latestCommentsLayout" stretch="0,1">
            <property name="sizeConstraint">
             <enum>QLayout::SetMaximumSize</enum>
@@ -439,86 +478,6 @@
              <attribute name="verticalHeaderStretchLastSection">
               <bool>true</bool>
              </attribute>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item row="0" column="0" colspan="2">
-          <layout class="QFormLayout" name="profileAddressLayout">
-           <property name="sizeConstraint">
-            <enum>QLayout::SetFixedSize</enum>
-           </property>
-           <property name="fieldGrowthPolicy">
-            <enum>QFormLayout::ExpandingFieldsGrow</enum>
-           </property>
-           <property name="labelAlignment">
-            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-           </property>
-           <property name="formAlignment">
-            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-           </property>
-           <item row="0" column="0" colspan="2">
-            <widget class="QLabel" name="detailsExplanationLabel">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="font">
-              <font>
-               <pointsize>14</pointsize>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>Details of operator profile.</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="profileAddressLabel">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="text">
-              <string>Profile address:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QTextBrowser" name="profileAddressValue">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>25</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>25</height>
-              </size>
-             </property>
-             <property name="toolTip">
-              <string>This is your real address inside network. This is where messages destined to you are sent.</string>
-             </property>
-             <property name="verticalScrollBarPolicy">
-              <enum>Qt::ScrollBarAlwaysOff</enum>
-             </property>
-             <property name="horizontalScrollBarPolicy">
-              <enum>Qt::ScrollBarAlwaysOff</enum>
-             </property>
             </widget>
            </item>
           </layout>
@@ -880,7 +839,7 @@
            <item>
             <widget class="QListView" name="profileDetailsSharedFilesView">
              <property name="sizePolicy">
-              <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+              <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
@@ -976,8 +935,18 @@
               <height>26</height>
              </size>
             </property>
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
             <property name="verticalScrollBarPolicy">
              <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="addToContactsBtn">
+            <property name="text">
+             <string>Add to contacts</string>
             </property>
            </widget>
           </widget>
@@ -991,7 +960,6 @@
   </layout>
  </widget>
  <tabstops>
-  <tabstop>profileAddressValue</tabstop>
   <tabstop>profileNickNameEdit</tabstop>
   <tabstop>greetingTextEdit</tabstop>
   <tabstop>firstNameEdit</tabstop>
@@ -1005,7 +973,6 @@
   <tabstop>publisChangesButton</tabstop>
   <tabstop>revertChangesButton</tabstop>
   <tabstop>profileCommentsView</tabstop>
-  <tabstop>sharedFilesView</tabstop>
   <tabstop>addContactBtn</tabstop>
   <tabstop>removeContactBtn</tabstop>
   <tabstop>viewProfileBtn</tabstop>

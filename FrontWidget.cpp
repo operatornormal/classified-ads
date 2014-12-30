@@ -1002,6 +1002,12 @@ void FrontWidget::exportSharedFile() {
 void FrontWidget::updateUiFromSelectedProfile() {
   if ( iSelectedProfile ) {
     ui.profileAddressValue->setText(iSelectedProfile->iFingerPrint.toString()) ;
+
+    ui.profileAddressValue->setMinimumWidth(ui.profileAddressValue->fontMetrics().width(iSelectedProfile->iFingerPrint.toString()));
+    iParent.setMinimumWidth ( 
+			     ui.profileAddressValue->fontMetrics().width(iSelectedProfile->iFingerPrint.toString()) +
+			     ui.imageButton->width() + 
+			     ui.profileAddressValue->width() -55 ) ;
     ui.profileNickNameEdit->setText(iSelectedProfile->iNickName) ;
     ui.greetingTextEdit->setText(iSelectedProfile->iGreetingText  ) ;  
     ui.firstNameEdit->setText(iSelectedProfile->iFirstName   ) ; 
@@ -1240,6 +1246,11 @@ void FrontWidget::setupContactsTab() {
           SIGNAL(clicked()),
           this,
 	  SLOT(sendMsgToContactButtonClicked()  )) ;
+
+  connect(ui.addToContactsBtn, // this button is in "view contact" tab
+          SIGNAL(clicked()),
+          this,
+	  SLOT(addContactFromContactViewButtonClicked())) ;
 
   iEditContactAction = new QAction(tr("Edit contact.."),this) ; 
   connect(iEditContactAction, SIGNAL(triggered()),
@@ -1922,6 +1933,26 @@ void FrontWidget::addCaSenderToContacts()
       new EditContactDialog(this, iController,
 			    iCaOnDisplay.iSenderHash ,
 			    iCaOnDisplay.iSenderName,
+			    false,
+			    iContactsModel ) ;
+    connect(contact_dialog,
+	    SIGNAL(  error(MController::CAErrorSituation,
+			   const QString&) ),
+	    iController,
+	    SLOT(handleError(MController::CAErrorSituation,
+			     const QString&)),
+	    Qt::QueuedConnection ) ;
+    contact_dialog->show() ; // the dialog will delete self
+  }
+}
+
+void FrontWidget::addContactFromContactViewButtonClicked() 
+{
+  if ( iViewedProfile ) {
+    EditContactDialog *contact_dialog = 
+      new EditContactDialog(this, iController,
+			    iViewedProfile->iFingerPrint,
+			    iViewedProfile->displayName(),
 			    false,
 			    iContactsModel ) ;
     connect(contact_dialog,
