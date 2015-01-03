@@ -72,8 +72,9 @@ Hash BinaryFileModel::publishBinaryFile(const Profile& aPublishingProfile,
 					const QByteArray& aContents,
 					bool aIsCompressed,
 					bool aNoEncryption,
-					const Hash& aEncryptToProfile) {
+					const QList<Hash>* aBinaryRecipientList) {
   LOG_STR("BinaryFileModel::publishBinaryFile()") ;
+
   Hash retval ;
   bool operation_success ;
   Hash contentFingerPrint ;
@@ -81,15 +82,17 @@ Hash BinaryFileModel::publishBinaryFile(const Profile& aPublishingProfile,
   bool encryption_was_used (false) ; 
 
   QList<Hash> namedRecipientsList ;
-  if ( aEncryptToProfile != KNullHash ) {
-    namedRecipientsList.append(aEncryptToProfile) ; 
+  if ( aBinaryRecipientList != NULL ) {
+    namedRecipientsList.append(*aBinaryRecipientList) ; 
     // encrypt to self too, or sender can not read the attachment
-    namedRecipientsList.append(aPublishingProfile.iFingerPrint) ; 
+    if ( ! namedRecipientsList.contains(aPublishingProfile.iFingerPrint) ) {
+      namedRecipientsList.append(aPublishingProfile.iFingerPrint) ; 
+    }
   }
   if ( ( aNoEncryption == false && aPublishingProfile.iIsPrivate ) ||
-       aEncryptToProfile != KNullHash ) {
+       aBinaryRecipientList != NULL ) {
     encryption_was_used = true ; 
-    if ( iController->model().contentEncryptionModel().encrypt(aEncryptToProfile != KNullHash ? namedRecipientsList :  aPublishingProfile.iProfileReaders,
+    if ( iController->model().contentEncryptionModel().encrypt(aBinaryRecipientList != NULL ? namedRecipientsList :  aPublishingProfile.iProfileReaders,
 							       aContents,
 							       encryptedContent ) ) {
       contentFingerPrint.calculate(encryptedContent) ; 
@@ -118,7 +121,7 @@ Hash BinaryFileModel::publishBinaryFile(const Profile& aPublishingProfile,
   // plaintext metadata either. lets encrypt the metadata too
   if ( encryption_was_used ) {
     QByteArray encryptedMetadata ;
-    if ( iController->model().contentEncryptionModel().encrypt(aEncryptToProfile != KNullHash ? namedRecipientsList :  aPublishingProfile.iProfileReaders,
+    if ( iController->model().contentEncryptionModel().encrypt(aBinaryRecipientList != NULL ? namedRecipientsList :  aPublishingProfile.iProfileReaders,
 							       metadataJSon,
 							       encryptedMetadata ) ) {
       metadataJSon.clear() ; 

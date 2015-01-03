@@ -101,13 +101,21 @@ void NewPrivMessageDialog::okButtonClicked()
     } else {
       msg.iReplyToCa = KNullHash ; 
     }
+    QList<Hash>* attachmentRecipients = new QList<Hash>() ;
+
+    attachmentRecipients->append(iSelectedProfile.iFingerPrint) ; // self
+    attachmentRecipients->append(msg.iRecipient) ; // recipient
+
     foreach (const QString& attachmentFile , iFilesAboutToBeAttached ) {
       Hash attachmentHash = publishBinaryAttachment(attachmentFile,
-						    false) ;
+						    false,
+						    attachmentRecipients ) ;
       if ( attachmentHash != KNullHash ) {
 	msg.iAttachedFiles.append(attachmentHash) ; 
       }
     }
+    delete attachmentRecipients ; 
+    attachmentRecipients = NULL ; 
     iController->model().lock() ;
 
     if ( iRecipientsNode == KNullHash ) {

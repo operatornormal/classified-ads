@@ -36,7 +36,8 @@ DialogBase::DialogBase (QWidget* aParent,
 }
 
 Hash DialogBase::publishBinaryAttachment(const QString& aFileName,
-					 bool aForceNoEncryption) 
+					 bool aForceNoEncryption,
+					 const QList<Hash>* aBinaryRecipientList) 
 {
   Hash retval ( KNullHash ) ; 
   bool isCompressed (false ) ; 
@@ -74,7 +75,8 @@ Hash DialogBase::publishBinaryAttachment(const QString& aFileName,
 								   mimetype,
 								   content,
 								   isCompressed,
-								   aForceNoEncryption)  ;
+								   aForceNoEncryption,
+								   aBinaryRecipientList)  ;
 
 	iController->model().unlock() ; 
       }

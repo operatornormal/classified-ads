@@ -37,9 +37,19 @@ protected: // methods
   DialogBase(QWidget* aParent,
 	     MController* aController,
 	     const Profile& aSelectedProfile) ;
-  /** method for publishing an (attachment) file */
+  /** 
+   * method for publishing an (attachment) file 
+   * @param aFileName is name of the file in filesystem
+   * @param aForceNoEncryption if set to true, always produce
+   *        plain-text binary, with no encryption
+   * @param aBinaryRecipientList if non-NULL, contains list of operator
+   *        key fingerprints that are the operators that will be able to
+   *        read the binary. 
+   * @return fingerprint of the published file or KNullHash
+   */
   Hash publishBinaryAttachment(const QString& aFileName,
-			       bool aForceNoEncryption = false) ; 
+			       bool aForceNoEncryption = false,
+			       const QList<Hash>* aBinaryRecipientList = NULL) ; 
 
 signals:
   void error(MController::CAErrorSituation aError,

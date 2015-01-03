@@ -66,13 +66,13 @@ public:
    *                      out without encryption. Use-case for this is attachment
    *                      of public posting where everybody needs to be able to
    *                      read, also when poster has private profile. 
-   * @param aEncryptToProfile Is fingerprint of profile whose key will
-   *                          be used to encrypt the content. If this key
-   *                          is given, then normal "readers of publishing
+   * @param aBinaryRecipientList Is list of fingerprints of profiles whose keys will
+   *                          be used to encrypt the content. If these keys
+   *                          are given, then normal "readers of publishing
    *                          profile" recipient-key-list method is not used.
    *                          Use-case for this parameter is attachment
-   *                          of a private message; there is single
-   *                          recipient and that's it. 
+   *                          of a private message; there is dual
+   *                          recipient (sender and receiver) and that's it. 
    * @return Fingerprint of the published file or KNullHash if
    *         things went bad.
    */
@@ -83,7 +83,7 @@ public:
 			 const QByteArray& aContents,
 			 bool aIsCompressed,
 			 bool aNoEncryption = false,
-			 const Hash& aEncryptToProfile = KNullHash) ;
+			 const QList<Hash>* aBinaryRecipientList = NULL ) ;
 
   /**
    * Gets a file. Caller is supposed to delete the returned
