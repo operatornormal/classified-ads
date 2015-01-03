@@ -186,7 +186,7 @@ bool ProfileModel::profileDataByFingerPrint(const Hash& aFingerPrint,
       aResultingSignature.clear() ; 
       aResultingProfileData.append ( query.value(0).toByteArray()) ;
       aResultingSignature.append ( query.value(1).toByteArray()) ;
-      if ( !query.isNull(2) && query.value(2).toInt() ) {
+      if ( !query.isNull(2) && query.value(2).toBool() ) {
 	*aIsProfilePrivate = true ; 
       }
       if ( !query.isNull(3) && aTimeOfPublish != NULL ) {
@@ -272,15 +272,20 @@ bool ProfileModel::doHandlepublishedOrSentProfile(const Hash& aFingerPrint,
   // we still have that malicious node that deliberatedly changes
   // content of the profile to be non-encrypted while it was originally
   // made encypted but that will then fail in verification stage
-  //
-  bool parseResult ; 
-  QJson::Parser* jsonParser = new QJson::Parser();
-  QVariantMap dummyResult = jsonParser->parse (aContent, &parseResult).toMap();
-  delete jsonParser ;
-  jsonParser = NULL ; 
+
+  bool parseResult(false) ; 
+  if ( ( aFlags & 1 ) == 0 ) { // try parsing only if non-encrypted
+    // looks like QJson will set parseResult to true also 
+    // when content is actually encrypted so we can check only
+    // for non-encrypted data here. it still needs to parse.
+    QJson::Parser* jsonParser = new QJson::Parser();
+    QVariantMap dummyResult = jsonParser->parse (aContent, &parseResult).toMap();
+    delete jsonParser ;
+    jsonParser = NULL ; 
+  }
   bool flagThisNodeAlreadyHadContent ( false ) ; 
-  if ( ( parseResult &&  ( ( aFlags & 1 ) == 0  )  ) || // it did parse and encryption flag was 0
-       ( !parseResult && ( ( aFlags & 1)   ) ) ) { // it did not parse and encryption flag was on, this too is expected result
+  if ( ( parseResult &&  ( ( aFlags & 1 ) == 0  ) ) || (( aFlags & 1 ) == 1)  )  // it did parse and encryption flag was 0
+        { 
     quint32 timeStampOfPossibleExistingProfile ( 0 ) ; 
     if ( iController->model().contentEncryptionModel().PublicKey(aFingerPrint, 
 								 key,
@@ -381,7 +386,7 @@ bool ProfileModel::doHandlepublishedOrSentProfile(const Hash& aFingerPrint,
       
     }
   } else {
-    LOG_STR("Non-encrypted content did not parse or vice-versa") ; 
+    LOG_STR("Non-encrypted content did not parse") ; 
     retval = false ; 
   }
   if ( aWasPublish ) {
