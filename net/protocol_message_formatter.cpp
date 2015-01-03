@@ -180,8 +180,8 @@ QByteArray ProtocolMessageFormatter::requestForClassifiedAd(const Hash& aHash) {
 }
 
 QByteArray ProtocolMessageFormatter::requestForAdsClassified(const Hash& aHashOfClassification,
-							     const quint32 aStartingTimestamp,
-							     const quint32 aEndingTimestamp) {
+							     const quint32 /* aStartingTimestamp  */,
+							     const quint32 /* aEndingTimestamp */) {
   QByteArray retval ;
   unsigned char ch ( KAdsClassifiedAtHash ) ;
   retval.append((const char *)&ch, 1) ;
@@ -190,18 +190,7 @@ QByteArray ProtocolMessageFormatter::requestForAdsClassified(const Hash& aHashOf
     quint32 hashNumberNetworkByteOrder (htonl(aHashOfClassification.iHash160bits[i])) ;
     retval.append((const char *)(&hashNumberNetworkByteOrder), sizeof(quint32)) ;
   }
-  quint32 startTsNetworkBO ( htonl(aStartingTimestamp ) );  
-  quint32 endTsNetworkBO ( htonl(aEndingTimestamp ) );  
 
-  retval.append((const char *)(&startTsNetworkBO), sizeof(quint32)) ;
-  retval.append((const char *)(&endTsNetworkBO), sizeof(quint32)) ;
-#ifndef WIN32
-  time_t startTime_T ( aStartingTimestamp ) ; 
-  char timebuf[40] ; 
-  LOG_STR2("Sending KAdsClassifiedAtHash start %s", ctime_r(&startTime_T,timebuf)) ;
-  time_t endTime_T ( aEndingTimestamp ) ; 
-  LOG_STR2("Sendgin KAdsClassifiedAtHash end %s", ctime_r(&endTime_T,timebuf)) ;
-#endif
   return retval ;
 }
 
@@ -353,10 +342,12 @@ QByteArray ProtocolMessageFormatter::doContentSendOrPublish(QByteArray& retval,
   }
   retval.append((const char *)&flags, sizeof(unsigned char))  ;
   quint32 timestampNetworkBO ( htonl( aTimeStamp ) ) ; 
-  time_t contentTime_T ( aTimeStamp ) ; 
 #ifndef WIN32
+#ifdef DEBUG
+  time_t contentTime_T ( aTimeStamp ) ; 
   char timeBuf[40] ; 
   LOG_STR2("Content time of publish at send: %s", ctime_r(&contentTime_T,timeBuf)) ;
+#endif
 #endif
   retval.append((const char *)&timestampNetworkBO, sizeof(quint32))  ;
   // and that's all folks
@@ -430,9 +421,11 @@ QByteArray ProtocolMessageFormatter::privMsgPublish(const Hash& aContentHash,
 
   quint32 timestampNetworkBO ( htonl( aTimeStamp ) ) ; 
 #ifndef WIN32
+#ifdef DEBUG
   time_t contentTime_T ( aTimeStamp ) ; 
   char timebuf[40] ;
   LOG_STR2("Private message time of publish at send: %s", ctime_r(&contentTime_T,timebuf)) ;
+#endif
 #endif
   retval.append((const char *)&timestampNetworkBO, sizeof(quint32))  ;
 
@@ -476,10 +469,12 @@ QByteArray ProtocolMessageFormatter::privMsgSend(const Hash& aContentHash,
   retval.append(aSignature) ; 
 
   quint32 timestampNetworkBO ( htonl( aTimeStamp ) ) ; 
-  time_t contentTime_T ( aTimeStamp ) ; 
 #ifndef WIN32
+#ifdef DEBUG  
+  time_t contentTime_T ( aTimeStamp ) ; 
   char timebuf[40] ; 
   LOG_STR2("Private message time of publish at send: %s", ctime_r(&contentTime_T,timebuf)) ;
+#endif
 #endif
   retval.append((const char *)&timestampNetworkBO, sizeof(quint32))  ;
 

@@ -41,9 +41,8 @@ ConnectionListingModel::~ConnectionListingModel() {
   }
 }
 
-void ConnectionListingModel::timerEvent(QTimerEvent *event)
+void ConnectionListingModel::timerEvent(QTimerEvent * /* event */)
 {
-  LOG_STR2( "ConnectionListingModel::timerEvent Timer ID: %d" , event->timerId());
 #if QT_VERSION >= 0x050000
   // qt5
   beginResetModel() ; 

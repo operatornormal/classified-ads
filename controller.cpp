@@ -712,6 +712,16 @@ void Controller::handleError(MController::CAErrorSituation aError,
   LOG_STR2("Error enum value %d", aError) ;
   QLOG_STR(aExplanation) ;
   switch ( aError ) {
+  case OwnCertNotFound:
+    QMessageBox::about(iWin,tr("Cant load node cert or key cert"),
+                       aExplanation);
+    LOG_STR("Cant load node cert or key cert") ;
+    break ; 
+  case FileOperationError:  // type of non-fatal error
+    QMessageBox::about(iWin,tr("File error"),
+                       aExplanation);
+    LOG_STR("File error " + aExplanation ) ;
+    break ; 
   case DataBaseNotMountable:
     QMessageBox::about(iWin,tr("Database error"),
                        aExplanation);
@@ -938,7 +948,13 @@ void Controller::notifyOfContentReceived(const Hash& aHashOfContent,
 					    aTypeOfReceivedContent) ; 
 }
 void Controller::notifyOfContentNotReceived(const Hash& aHashOfContent,
-					    const ProtocolItemType aTypeOfNotReceivdContent ) {
+					    const ProtocolItemType 
+#ifdef DEBUG
+					    aTypeOfNotReceivdContent  // needed only in debug build
+#else
+					    /* aTypeOfNotReceivdContent  */
+#endif
+) {
   LOG_STR2("Controller::notifyOfContentNotReceived type : %d", aTypeOfNotReceivdContent);
   if ( iHashOfObjectBeingWaitedFor == aHashOfContent ) {
     iHashOfObjectBeingWaitedFor= KNullHash ; 

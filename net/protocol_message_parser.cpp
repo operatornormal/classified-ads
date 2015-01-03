@@ -195,7 +195,7 @@ bool ProtocolMessageParser::parseContentPublishedOrSent(const unsigned char aPro
       return false ;
     }
     pos += (sizeof(quint32) * 5) ; // skip hash
-    quint32 contentlen ; 
+    quint32 contentlen(0) ; 
     uintFromPosition(aPublishedContent,
 		     pos, 
 		     &contentlen) ;
@@ -211,7 +211,7 @@ bool ProtocolMessageParser::parseContentPublishedOrSent(const unsigned char aPro
       delete hashObtained  ;
       return false ;
     }
-    quint32 signaturelen ; 
+    quint32 signaturelen (0) ; 
     uintFromPosition(aPublishedContent,
 		     pos, 
 		     &signaturelen) ;
@@ -244,9 +244,11 @@ bool ProtocolMessageParser::parseContentPublishedOrSent(const unsigned char aPro
 		     pos, 
 		     &timestampOfContent) ;
 #ifndef WIN32
+#ifdef DEBUG
     time_t contentTime_T ( timestampOfContent ) ; 
     char timebuf[40] ; 
     LOG_STR2("Content time of publish at receive: %s", ctime_r(&contentTime_T,timebuf)) ;
+#endif
 #endif
     QList<quint32> bangPath ;
 
@@ -449,7 +451,7 @@ bool ProtocolMessageParser::parsePrivMsgPublishedOrSent(const unsigned char aIte
     }
     pos += (sizeof(quint32) * 5) ; // skip hash
     // then read content len and content
-    quint32 contentlen ; 
+    quint32 contentlen (0); 
     uintFromPosition(aPublishedContent,
 		     pos, 
 		     &contentlen) ;
@@ -466,7 +468,7 @@ bool ProtocolMessageParser::parsePrivMsgPublishedOrSent(const unsigned char aIte
       return false ;
     }
     // then read signature len and signature
-    quint32 signaturelen ; 
+    quint32 signaturelen (0); 
     uintFromPosition(aPublishedContent,
 		     pos, 
 		     &signaturelen) ;
@@ -487,9 +489,11 @@ bool ProtocolMessageParser::parsePrivMsgPublishedOrSent(const unsigned char aIte
 		     pos, 
 		     &timestampOfContent) ;
 #ifndef WIN32
+#ifdef DEBUG
     time_t contentTime_T ( timestampOfContent ) ; 
     char timebuf[40] ; 
     LOG_STR2("Priv msg time of publish at receive: %s", ctime_r(&contentTime_T,timebuf)) ;
+#endif
 #endif
     pos += sizeof(quint32) ; // skip over timestamp
     Hash destinationNodeHash ;
@@ -644,7 +648,7 @@ bool ProtocolMessageParser::parseProfileCommentPublishedOrSent(const unsigned ch
     pos += sizeof(quint32)*Hash::KNumberOfIntsInHash ; // skip hash
   }
 
-  quint32 contentlen ; 
+  quint32 contentlen (0); 
   uintFromPosition(aPublishedContent,
 		   pos, 
 		   &contentlen) ;
@@ -655,7 +659,7 @@ bool ProtocolMessageParser::parseProfileCommentPublishedOrSent(const unsigned ch
   }
   const QByteArray content ( aPublishedContent.mid(pos,contentlen) ) ;
   pos += contentlen ; 
-  quint32 signaturelen ; 
+  quint32 signaturelen (0); 
   uintFromPosition(aPublishedContent,
 		   pos, 
 		   &signaturelen) ;
@@ -973,10 +977,12 @@ bool ProtocolMessageParser::parseRequestForObjectsAroundHash(const QByteArray& a
     nodeRequest.iRequestType = UserProfileCommentsForProfile ; 
     nodeRequest.iMaxNumberOfItems = 1000 ; 
     {
-    time_t commentTime_T ( timeStampOfMessages ) ; 
 #ifndef WIN32
+#ifdef DEBUG
+    time_t commentTime_T ( timeStampOfMessages ) ; 
     char timebuf[40] ; 
     LOG_STR2("KProfileCommentAtHash for timestamp: %s", ctime_r(&commentTime_T,timebuf)) ;
+#endif
 #endif
     }
     break ; 
@@ -1085,10 +1091,13 @@ bool ProtocolMessageParser::parseListOfAdsClassifiedAtHash( const QByteArray& aQ
     QPair<Hash,quint32> p ( hashOfArticle, timeStampOfArticle ) ;
     listOfAds.append(p) ;    
 
-    time_t articleTime_T ( timeStampOfArticle ) ; 
+
 #ifndef WIN32
+#ifdef DEBUG
+    time_t articleTime_T ( timeStampOfArticle ) ; 
     char timebuf[40] ; 
     LOG_STR2("List of ads: Article timestamp: %s", ctime_r(&articleTime_T,timebuf)) ;
+#endif
 #endif
     QLOG_STR("List of ads " + hashOfArticle.toString() + " ts " + QString::number(timeStampOfArticle)) ;
   }

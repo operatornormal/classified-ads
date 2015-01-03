@@ -435,8 +435,8 @@ bool ClassifiedAdsModel::doHandleReceivedCA(const Hash& aFingerPrint,
 					    const QByteArray& aSignature,
 					    const QList<quint32>& aBangPath,
 					    const QByteArray& aKeyOfPublisher,
-					    const unsigned char aFlags,
-					    const quint32 aTimeStamp,
+					    const unsigned char /*aFlags*/,
+					    const quint32 /*aTimeStamp*/,
 					    bool aWasPublish,
 					    const Hash& aFromNode ) {
   bool retval ( false ) ; 

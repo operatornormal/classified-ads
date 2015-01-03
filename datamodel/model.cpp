@@ -1211,7 +1211,7 @@ void Model::notifyOfContentReceived(const Hash& aHashOfContent,
 }
 
 void Model::notifyOfContentReceived(const Hash& aHashOfContent,
-				    const Hash& aHashOfClassification,
+				    const Hash& /* aHashOfClassification */,
 				    const ProtocolItemType aTypeOfReceivdContent) {
   this->notifyOfContentReceived(aHashOfContent, aTypeOfReceivdContent) ; 
 }
@@ -1219,7 +1219,13 @@ void Model::notifyOfContentReceived(const Hash& aHashOfContent,
 //
 // this method is hit every 10 minutes - housekeeping here
 //
-void Model::timerEvent(QTimerEvent *event)
+void Model::timerEvent(QTimerEvent* 
+#ifdef DEBUG
+		       event // in debug build logging needs event id 
+#else
+		       /* event */ // in release this is not used for anything
+#endif
+		       )
 {
   LOG_STR2( "timerEvent Timer ID: %d" , event->timerId());
   lock() ;

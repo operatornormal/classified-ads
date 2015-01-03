@@ -48,9 +48,7 @@ public:
   enum CAErrorSituation {
     OwnCertNotFound, /**< Does not have own cert and can't generate */
     DataBaseNotMountable, /**< corrupt database or permission? */
-    PasswordMissing, /**< User has not entered password to access keys */
     BadPassword, /**< Could not open encryption keys with given pwd */
-    SeedNodeConnectionFailed, /**< initial connection to network no success */
     DbTransactionError, /**< something went foul with db */
     ContentEncryptionError, /**< something went foul with content encryption interface */
     FileOperationError /**< Error related to binary files */

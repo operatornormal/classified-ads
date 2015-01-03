@@ -76,7 +76,7 @@ Hash BinaryFileModel::publishBinaryFile(const Profile& aPublishingProfile,
   LOG_STR("BinaryFileModel::publishBinaryFile()") ;
 
   Hash retval ;
-  bool operation_success ;
+  bool operation_success (false) ;
   Hash contentFingerPrint ;
   QByteArray encryptedContent ;
   bool encryption_was_used (false) ; 
@@ -659,10 +659,12 @@ bool BinaryFileModel::doFindBinaryFileForPublishOrSend(const Hash& aFingerPrint,
       fingerPrintOfPublisherKey.iHash160bits[4] = query.value(9).toUInt();
       if ( aTimeOfPublish && !query.isNull(10)) {
 	*aTimeOfPublish = query.value(10).toUInt();
+#ifndef WIN32
+#ifdef DEBUG
 	time_t t ( *aTimeOfPublish ) ; 
 	char timebuf[40] ; 
-#ifndef WIN32
 	LOG_STR2("Binary blob time of publish from db: %s", ctime_r(&t,timebuf)) ;
+#endif
 #endif
       }
       contentIsOk = true; 

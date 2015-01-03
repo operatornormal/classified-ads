@@ -137,8 +137,12 @@ public:
    * too.
    * @param aHashOfClassification hash calculated over 
    *                      "intent-object-location" string
-   * @param aStartingTimestamp possible starting timestamp for the articles
+   * @param aStartingTimestamp possible starting timestamp for the articles.
+   *                           Currently not implemented in protocol, sender
+   *                           will limit the number of ads it sends
    * @param aEndingTimestamp possible ending timestamp for the articles
+   *                         Currently not implemented in protocol, sender
+   *                         will limit the number of ads it sends
    * @return bytearray that is ready to be sent
    *         over socket so that other end will
    *         understand.
