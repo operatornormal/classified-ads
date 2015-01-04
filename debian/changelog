@@ -1,3 +1,16 @@
+classified-ads (0.02-1) unstable; urgency=low
+	
+  * Libnatpmp is not used in windows build
+  * Profile comment document width setting was missing
+  * Made main window slightly smaller vertically.
+  * Now compiles also under Qt5
+  * Fix for grave bug: only message sender (not recipient) can read binary attachments
+  * Error messages for some file operations
+  * Fix for situation where published private profile breaks every node in network
+  * Require c++ compiler for compilation of c++, when building rpm.
+	
+ -- Antti Jarvinen <classified-ads.questions@katiska.org>  Sun, 4 Jan 2015 11:53:47 +0200
+
 classified-ads (0.01-1) unstable; urgency=low
 
   * Release initial

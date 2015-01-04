@@ -1,12 +1,12 @@
 Name:		classified_ads
-Version:	0.01
+Version:	0.02
 Release:	1%{?dist}
 Summary:	Classified ads is a program for posting ads online
 
 Group:		Applications/Internet
 License:	GPLv3
-URL:		https://github.com/operatornormal/classified_ads/releases/tag/0.01
-Source0:	classified_ads-0.01.tar.gz
+URL:		https://github.com/operatornormal/classified_ads/releases/tag/0.02
+Source0:	classified_ads-0.02.tar.gz
 
 BuildRequires:	qt-devel >= 4
 BuildRequires:	openssl-devel, libnatpmp-devel, qjson-devel
@@ -42,5 +42,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/app-install/icons/turt-transparent-128x128.png
 
 %changelog
+* Sun Jan 04 2015 Antti Jarvinen <classified-ads.questions@katiska.org> - 0.02-1
+- Libnatpmp is not used in windows build,
+- Profile comment document width setting was missing
+- Made main window slightly smaller vertically.
+- Now compiles also under Qt5
+- Fix for grave bug: only message sender (not recipient) can read binary attachments
+- Error messages for some file operations
+- Fix for situation where published private profile breaks every node in network
+- Require c++ compiler for compilation of c++, when building rpm.
 * Wed Dec 31 2014 Tuomas Haarala <tuoppi@hieno.net> - 0.01-1
 - initial spec file scribbled together
