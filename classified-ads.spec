@@ -9,7 +9,7 @@ URL:		https://github.com/operatornormal/classified_ads/releases/tag/0.01
 Source0:	classified_ads-0.01.tar.gz
 
 BuildRequires:	qt-devel >= 4
-BuildRequires:	openssl-devel, libnatpmp-devel, qjson-devel
+BuildRequires:	openssl-devel, libnatpmp-devel, qjson-devel, gcc-c++
 Requires:	qt >= 4
 Requires:	bzip2-libs, expat, fontconfig, freetype, openssl-libs
 Requires:	pcre, qjson, libnatpmp, qjson-devel, xz-libs, zlib
