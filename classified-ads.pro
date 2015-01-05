@@ -66,6 +66,8 @@ FORMS = frontWidget.ui ui/profileReadersDialog.ui ui/passwordDialog.ui \
 RESOURCES     = ui_resources.qrc
 
 unix:LIBS = -lssl -lcrypto -lnatpmp -lqjson
+# following line is needed for fedora linux, natpnp needs miniupnpc
+unix:INCLUDEPATH += /usr/include/miniupnpc
 win32:LIBS += "c:\msys\1.0\local\lib\libssl.a" 
 win32:LIBS += "c:\msys\1.0\local\lib\libcrypto.a" 
 win32:LIBS += "..\miniupnpc\miniupnpc-1.9\miniupnpc.lib" 

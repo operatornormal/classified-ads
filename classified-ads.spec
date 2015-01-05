@@ -9,7 +9,7 @@ URL:		https://github.com/operatornormal/classified_ads/releases/tag/0.02
 Source0:	classified_ads-0.02.tar.gz
 
 BuildRequires:	qt-devel >= 4
-BuildRequires:	openssl-devel, libnatpmp-devel, qjson-devel, gcc-c++
+BuildRequires:	openssl-devel, libnatpmp-devel, qjson-devel, gcc-c++, miniupnpc-devel
 Requires:	qt >= 4
 Requires:	bzip2-libs, expat, fontconfig, freetype, openssl-libs
 Requires:	pcre, qjson, libnatpmp, qjson-devel, xz-libs, zlib
@@ -25,6 +25,7 @@ Classified ads is an attempt to re-produce parts of the functionality that went 
 
 %build
 PREFIX="/tmp/foo"
+export CXXFLAGS=-I/usr/include/miniupnpc
 QMAKE_ARGS+="INCLUDEPATH+=${LOCALBASE}/include/miniupnpc/ LIBS+=-L${LOCALBASE}/lib"; qmake-qt4 PREFIX=$RPM_BUILD_ROOT
 make
 
