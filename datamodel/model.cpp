@@ -288,6 +288,24 @@ bool Model::openDB() {
       return false ;
     }
   }
+  if ( isDbOpen ) {
+    // do cleanup to rectify previous bugs:
+    QSqlQuery query;
+    // removes every comment that does not begin with { as all json
+    // is supposed but it still is not marked as private (==encrypted)
+    bool ret = query.exec("delete from profile where profiledata not like x'7b25' and is_private = 'false' and hash1 not in ( select hash1 from privatekeys )") ;
+    if ( ret == false ) {
+      QLOG_STR("Profile cleanup: " + query.lastError().text()) ; 
+    } else {
+      QLOG_STR("Cleaned away faulty profiles " + QString::number(query.numRowsAffected () )) ; 
+    }
+    ret = query.exec("delete from profilecomment where commentdata not like x'7b25' and flags&1 = 0") ;
+    if ( ret == false ) {
+      QLOG_STR("Profile comment cleanup: " + query.lastError().text()) ; 
+    } else {
+      QLOG_STR("Cleaned away faulty comments " + QString::number(query.numRowsAffected () )) ; 
+    }
+  }
   return isDbOpen ;
 }
 
