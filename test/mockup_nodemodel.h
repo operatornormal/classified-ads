@@ -56,7 +56,7 @@ public:
   virtual QList<Node *>* getNodesAfterHash(const Hash& aHash,
 				   int aMaxNodes,
 				   int aMaxInactivityMinutes = -1 )  ;
-  virtual QList<QPair<QHostAddress,int> > getHotAddresses() ;
+  virtual QList<HostConnectQueueItem> getHotAddresses() ;
   virtual bool updateNodeLastConnectTimeInDb(Node& aNode)  ;
   virtual QList<Node *>* getHotNodes(int aMaxNodes)  ; 
 
@@ -116,7 +116,10 @@ public:
   virtual QList<Node*>* getNodesAfterHash(const Hash& h, unsigned int u, int i) ;
   virtual void setDnsName(QString aName) ;
   virtual QString getDnsName()  ;
-
+  /** used to offer node to list of recently failed connections.
+   * this model maintains a list of such nodes and tries to 
+   * not immediately re-connect a recently failed node */
+  virtual void offerNodeToRecentlyFailedList(const Hash& aFailedNodeHash) ; 
 public:
   Node* iLastNodeReceived ; 
 private:

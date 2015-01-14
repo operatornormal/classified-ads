@@ -48,6 +48,7 @@
 #include "profilecommentmodel.h"
 #include "const.h"
 #include "searchmodel.h"
+#include <QTimerEvent>
 
 /**
  * How many nodes to keep
@@ -61,7 +62,8 @@ NodeModel::NodeModel(MController *aController,
     iFingerPrintOfThisNode(NULL) ,
     iThisNodeCert(NULL),
     iThisNodeKey(NULL),
-    iModel(aModel) {
+    iModel(aModel),
+    iTimerId(-1) {
   LOG_STR("NodeModel::NodeModel()") ;
   connect(this,
           SIGNAL(  error(MController::CAErrorSituation,
@@ -71,6 +73,7 @@ NodeModel::NodeModel(MController *aController,
                            const QString&)),
           Qt::QueuedConnection ) ;
   openOrCreateSSLCertificate() ; // this method emit possible errors itself
+  iTimerId = startTimer(20000*2) ; // 2-minute timer
 }
 
 NodeModel::~NodeModel() {
@@ -86,6 +89,9 @@ NodeModel::~NodeModel() {
   while ( !iConnectionWishList.isEmpty() ) {
     Node* wishListItem =  iConnectionWishList.takeAt(0) ; 
     delete wishListItem ; 
+  }
+  if ( iTimerId != -1 ) {
+    killTimer(iTimerId) ; 
   }
 }
 
@@ -550,7 +556,7 @@ Node* NodeModel::nodeByHash(const Hash& aHash) {
   return retval ;
 }
 
-QList<QPair<QHostAddress,int> > NodeModel::getHotAddresses() {
+QList<MNodeModelProtocolInterface::HostConnectQueueItem> NodeModel::getHotAddresses() {
   LOG_STR("NodeModel::getHotAddresses in ") ;
 
   if ( iHotAddresses.size() == 0 ) {
@@ -572,13 +578,19 @@ QList<QPair<QHostAddress,int> > NodeModel::getHotAddresses() {
       foreach ( const QHostAddress& result,
 		info.addresses() ) {
 	if ( result.protocol() == QAbstractSocket::IPv6Protocol && hasIpv6 ) { 
-	  QPair<QHostAddress,int> p (result, seedPort) ;
+	  MNodeModelProtocolInterface::HostConnectQueueItem p ; 
+	  p.iAddress = result ; 
+	  p.iPort = seedPort ; 
+	  p.iNodeHash = KNullHash ; 
 	  iHotAddresses.append(p) ; 
 	  QLOG_STR("Added seednode IPv6 addr " + result.toString()) ;
 	  
 	}
 	if ( result.protocol() == QAbstractSocket::IPv4Protocol ) {
-	  QPair<QHostAddress,int> p (result, seedPort) ;
+	  MNodeModelProtocolInterface::HostConnectQueueItem p ; 
+	  p.iAddress = result ; 
+	  p.iPort = seedPort ; 
+	  p.iNodeHash = KNullHash ; 
 	  iHotAddresses.append(p) ; 
 	  QLOG_STR("Added seednode IPv4 addr " + result.toString()) ;
 	}
@@ -596,7 +608,19 @@ QList<Node *>* NodeModel::getHotNodes(int aMaxNodes) {
 
   QSqlQuery query;
   bool ret ;
-  ret = query.exec("select hash1,hash2,hash3,hash4,hash5,listenport,last_conn_time,does_listen,ipv4addr,ipv6addr1,ipv6addr2,ipv6addr3,ipv6addr4,last_nodelist_time from node order by last_conn_time desc") ;
+
+  QString conditional_recently_failed_condition ; 
+  if ( iRecentlyFailedNodes.size() > 0 ) {
+    conditional_recently_failed_condition = " where hash1 not in ( " ;
+    for ( int i = iRecentlyFailedNodes.size()-1 ; i >= 0 ; i-- ) {
+      conditional_recently_failed_condition += QString::number(iRecentlyFailedNodes[i].first.iHash160bits[0] ) + "," ;
+    }
+    conditional_recently_failed_condition += "-1 )" ; 
+  } else {
+    conditional_recently_failed_condition  = " " ; 
+  }
+  QLOG_STR("Failed nodes  " + conditional_recently_failed_condition) ; 
+  ret = query.exec("select hash1,hash2,hash3,hash4,hash5,listenport,last_conn_time,does_listen,ipv4addr,ipv6addr1,ipv6addr2,ipv6addr3,ipv6addr4,last_nodelist_time from node "+conditional_recently_failed_condition+" order by last_conn_time desc") ;
   while ( ret &&
           query.next() &&
           !query.isNull(0) &&
@@ -667,9 +691,21 @@ QList<Node *>* NodeModel::getNodesAfterHash(const Hash& aHash,
   } else {
     conditional_inactivity_condition = " ";
   }
+  QString conditional_recently_failed_condition ; 
+  if ( iRecentlyFailedNodes.size() > 0 ) {
+    conditional_recently_failed_condition = " and hash1 not in ( " ;
+    for ( int i = iRecentlyFailedNodes.size()-1 ; i >= 0 ; i-- ) {
+      conditional_recently_failed_condition += QString::number(iRecentlyFailedNodes[i].first.iHash160bits[0] ) + "," ;
+    }
+    conditional_recently_failed_condition += " -1)" ; 
+  } else {
+    conditional_recently_failed_condition  = " " ; 
+  }
+  QLOG_STR("Failed nodes  " + conditional_recently_failed_condition) ; 
   ret = query.prepare("select hash1,hash2,hash3,hash4,hash5,listenport,last_conn_time,does_listen,ipv4addr,ipv6addr1,ipv6addr2,ipv6addr3,ipv6addr4,last_nodelist_time,dns_name,tor_name from node where ( ipv4addr is not null or ipv6addr1 is not null ) and hash1 >= :hash_to_seek "+
                       conditional_inactivity_condition +
-                      "order by hash1 limit :maxrows") ;
+                      conditional_recently_failed_condition +
+                      " order by hash1 limit :maxrows") ;
   query.bindValue(":hash_to_seek", aHash.iHash160bits[0]);
   query.bindValue(":maxrows", aMaxNodes);
   if ( aMaxInactivityMinutes > 0 ) {
@@ -731,12 +767,14 @@ QList<Node *>* NodeModel::getNodesAfterHash(const Hash& aHash,
     // hash-space, this 2nd query here is our implementation
     // for the rolling-over.
     if ( aMaxInactivityMinutes > 0 ) {
-      conditional_inactivity_condition = "where last_conn_time > :last_conn_time ";
+      conditional_inactivity_condition = " and last_conn_time > :last_conn_time ";
     } else {
       conditional_inactivity_condition = " ";
     }
-    ret = query2.prepare("select hash1,hash2,hash3,hash4,hash5,listenport,last_conn_time,does_listen,ipv4addr,ipv6addr1,ipv6addr2,ipv6addr3,ipv6addr4,last_nodelist_time,dns_name,tor_name from node "+
+
+    ret = query2.prepare("select hash1,hash2,hash3,hash4,hash5,listenport,last_conn_time,does_listen,ipv4addr,ipv6addr1,ipv6addr2,ipv6addr3,ipv6addr4,last_nodelist_time,dns_name,tor_name from node where 1=1"+
                          conditional_inactivity_condition +
+			 conditional_recently_failed_condition +
                          " order by hash1 limit :maxrows") ;
     query2.bindValue(":maxrows", aMaxNodes - retval->size());
     if ( aMaxInactivityMinutes > 0 ) {
@@ -800,8 +838,19 @@ QList<Node *>* NodeModel::getNodesBeforeHash(const Hash& aHash,
   if ( aMaxNodes > iCurrentDbTableRowCount ) {
     aMaxNodes = iCurrentDbTableRowCount ; // don't try returning more than we have
   }
+  QString conditional_recently_failed_condition ; 
+  if ( iRecentlyFailedNodes.size() > 0 ) {
+    conditional_recently_failed_condition = " and hash1 not in ( " ;
+    for ( int i = iRecentlyFailedNodes.size()-1 ; i >= 0 ; i-- ) {
+      conditional_recently_failed_condition += QString::number(iRecentlyFailedNodes[i].first.iHash160bits[0] ) + "," ;
+    }
+    conditional_recently_failed_condition += " -1)" ; 
+  } else {
+    conditional_recently_failed_condition  = " " ; 
+  }
+  QLOG_STR("Failed nodes  " + conditional_recently_failed_condition) ; 
   // this is fine, will use index as there is index for hash1
-  ret = query.prepare("select hash1,hash2,hash3,hash4,hash5,listenport,last_conn_time,does_listen,ipv4addr,ipv6addr1,ipv6addr2,ipv6addr3,ipv6addr4,last_nodelist_time,dns_name,tor_name from node where hash1 <= :hash_to_seek order by hash1 desc limit :maxrows") ;
+  ret = query.prepare("select hash1,hash2,hash3,hash4,hash5,listenport,last_conn_time,does_listen,ipv4addr,ipv6addr1,ipv6addr2,ipv6addr3,ipv6addr4,last_nodelist_time,dns_name,tor_name from node where hash1 <= :hash_to_seek "+conditional_recently_failed_condition+" order by hash1 desc limit :maxrows") ;
   query.bindValue(":hash_to_seek", aHash.iHash160bits[0]);
   query.bindValue(":maxrows", aMaxNodes);
   if ( ret && query.exec() ) {
@@ -858,7 +907,7 @@ QList<Node *>* NodeModel::getNodesBeforeHash(const Hash& aHash,
     // reached. .. so in case we need to roll-over the
     // hash-space, this 2nd query here is our implementation
     // for the rolling-over.
-    ret = query2.prepare("select hash1,hash2,hash3,hash4,hash5,listenport,last_conn_time,does_listen,ipv4addr,ipv6addr1,ipv6addr2,ipv6addr3,ipv6addr4,last_nodelist_time from node order by hash1 desc limit :maxrows") ;
+    ret = query2.prepare("select hash1,hash2,hash3,hash4,hash5,listenport,last_conn_time,does_listen,ipv4addr,ipv6addr1,ipv6addr2,ipv6addr3,ipv6addr4,last_nodelist_time from node where 1=1 " + conditional_recently_failed_condition + " order by hash1 desc limit :maxrows") ;
     query2.bindValue(":maxrows", aMaxNodes - (unsigned)(retval->size()));
     if ( ret && query2.exec() ) {
       while ( ret &&
@@ -944,6 +993,7 @@ bool NodeModel::nodeGreetingReceived(Node& aNode,
   }
   if ( aWasInitialGreeting ) {
     aNode.setLastConnectTime(QDateTime::currentDateTimeUtc().toTime_t()) ; 
+    removeNodeFromRecentlyFailedList(aNode.nodeFingerPrint()) ; 
   }
   if ( previousEntry ) {
     previousConnectTime= previousEntry->lastConnectTime() ;
@@ -1216,7 +1266,19 @@ void NodeModel::retrieveListOfHotConnections() {
                                     KNullIpv6Addr) ;
   if ( iFingerPrintOfThisNode ) { // must be self initialized
     QLOG_STR("Hot addresses, my hash = " + iFingerPrintOfThisNode->toString()) ;
-    ret = query.exec("select listenport,ipv4addr,ipv6addr1,ipv6addr2,ipv6addr3,ipv6addr4,hash1,hash2,hash3,hash4,hash5 from node order by last_conn_time desc") ;
+
+    QString conditional_recently_failed_condition ; 
+    if ( iRecentlyFailedNodes.size() > 0 ) {
+      conditional_recently_failed_condition = " where hash1 not in ( " ;
+      for ( int i = iRecentlyFailedNodes.size()-1 ; i >= 0 ; i-- ) {
+	conditional_recently_failed_condition += QString::number(iRecentlyFailedNodes[i].first.iHash160bits[0] ) + "," ;
+      }
+      conditional_recently_failed_condition += " -1)" ; 
+    } else {
+      conditional_recently_failed_condition  = " " ; 
+    }
+    QLOG_STR("Failed nodes  " + conditional_recently_failed_condition) ; 
+    ret = query.exec("select listenport,ipv4addr,ipv6addr1,ipv6addr2,ipv6addr3,ipv6addr4,hash1,hash2,hash3,hash4,hash5 from node "+conditional_recently_failed_condition+" order by last_conn_time desc") ;
     while ( ret &&
             query.next() &&
             !query.isNull(0) &&
@@ -1252,14 +1314,20 @@ void NodeModel::retrieveListOfHotConnections() {
                                                  query.value(5).toUInt() ) ;
 
             QHostAddress a(addr) ;
-            QPair<QHostAddress,int> p (a, port) ;
+	    MNodeModelProtocolInterface::HostConnectQueueItem p ; 
+	    p.iAddress = a ; 
+	    p.iPort = port ; 
+	    p.iNodeHash = hashOfRetrievedNode ; 
             if ( !iHotAddresses.contains(p) ) {
               iHotAddresses.append(p) ;
               QLOG_STR("Hot: Added hot addr " + a.toString()) ;
             }
           } else if ( !query.isNull(1) ) {
             QHostAddress a((quint32)(query.value(1).toUInt())) ;
-            QPair<QHostAddress,int> p (a, port) ;
+	    MNodeModelProtocolInterface::HostConnectQueueItem p ; 
+	    p.iAddress = a ; 
+	    p.iPort = port ; 
+	    p.iNodeHash = hashOfRetrievedNode ; 
             if ( !iHotAddresses.contains(p) ) {
               iHotAddresses.append(p) ;
               QLOG_STR("Hot: Added hot addr " + a.toString()) ;
@@ -1597,4 +1665,56 @@ void NodeModel::setDnsName(QString aName) {
     QLOG_STR(query.lastError().text() + " "+ __FILE__ + QString::number(__LINE__)) ;
     emit error(MController::DbTransactionError, query.lastError().text()) ;
   }
+}
+
+void NodeModel::offerNodeToRecentlyFailedList(const Hash& aFailedNodeHash) {
+  bool seen = false ; 
+  for ( int i = iRecentlyFailedNodes.size()-1 ; i >= 0 ; i-- ) {
+    if ( iRecentlyFailedNodes[i].first == aFailedNodeHash ) {
+      seen = true ; 
+      break ; 
+    }
+  }
+  if ( !seen ) {
+    QPair<Hash,unsigned> newItem ( aFailedNodeHash, QDateTime::currentDateTimeUtc().toTime_t() ) ; 
+    iRecentlyFailedNodes.append(newItem) ; 
+  }
+}
+
+
+void NodeModel::removeNodeFromRecentlyFailedList(const Hash& aConnectedHostFingerPrint) {
+  for ( int i = iRecentlyFailedNodes.size()-1 ; i >= 0 ; i-- ) {
+    if ( iRecentlyFailedNodes[i].first == aConnectedHostFingerPrint ) {
+      iRecentlyFailedNodes.removeAt(i) ; 
+      break ; 
+    }
+  }
+}
+//
+// this method is hit every 2 minutes - housekeeping here
+//
+void NodeModel::timerEvent(QTimerEvent*  /* event */ )
+{
+  const unsigned time10MinAgo = QDateTime::currentDateTimeUtc().toTime_t()-(60*10) ; 
+  iController->model().lock() ;
+  // remove all nodes that have been more than 10 minutes on the list
+  for ( int i = iRecentlyFailedNodes.size()-1 ; i >= 0 ; i-- ) {
+    if ( iRecentlyFailedNodes[i].second < time10MinAgo ) {
+      iRecentlyFailedNodes.removeAt(i) ; 
+    }
+  }
+  iController->model().unlock() ;
+}
+
+bool MNodeModelProtocolInterface::HostConnectQueueItem::operator==(const MNodeModelProtocolInterface::HostConnectQueueItem& aItemToCompare) const {
+  if ( iAddress == aItemToCompare.iAddress &&
+       iPort == aItemToCompare.iPort ) {
+    return true ; // match
+  } else {
+    if ( iNodeHash != KNullHash &&
+	 iNodeHash == aItemToCompare.iNodeHash ) {
+      return true ; 
+    }
+  }
+  return false ; 
 }

@@ -82,7 +82,7 @@ public:
    * internally to fish out some addresses that might be
    * worth connecting.
    */
-  virtual QList<QPair<QHostAddress,int> > getHotAddresses() ;
+  virtual QList<HostConnectQueueItem> getHotAddresses() ;
   /**
    * method for getting node-connection prospects with idea
    * that we make node-greetings out of those and send to
@@ -246,6 +246,10 @@ public:
   virtual void setDnsName(QString aName) ;
   /** called from settings dialog and own node construction */
   virtual QString getDnsName() ;
+  /** used to offer node to list of recently failed connections.
+   * this model maintains a list of such nodes and tries to 
+   * not immediately re-connect a recently failed node */
+  virtual void offerNodeToRecentlyFailedList(const Hash& aFailedNodeHash) ; 
 protected:
   bool insertNodeToDb(Node& aNode) ;
   /**
@@ -255,6 +259,10 @@ protected:
    */
   bool updateNodeInDb(Node& aNode) ;
   void retrieveListOfHotConnections() ;
+  /**
+   * for periodical stuff inside datamodel
+   */
+  void timerEvent(QTimerEvent *event);
 private:
   bool openOrCreateSSLCertificate() ; /**< opens the node cert that is for network traffic */
   bool saveSslCertToDb(const QByteArray& aCert) ;
@@ -267,6 +275,7 @@ private:
                                quint32 aLessSignificant,
                                quint32 aMoreSignificant,
                                quint32 aMostSignificant ) const ;
+  void removeNodeFromRecentlyFailedList(const Hash& aConnectedHostFingerPrint); 
 signals:
   void error(MController::CAErrorSituation aError,
              const QString& aExplanation) ;
@@ -275,9 +284,16 @@ private:
   Hash* iFingerPrintOfThisNode ; /**< set by method openOrCreateSSLCertificate */
   QSslCertificate* iThisNodeCert ; /**< set by method openOrCreateSSLCertificate */
   QSslKey* iThisNodeKey ; /**< set by method openOrCreateSSLCertificate */
-  QList<QPair<QHostAddress,int> > iHotAddresses ;
+  QList<HostConnectQueueItem> iHotAddresses ;
   const Model& iModel ;
   QString iDataDir ;
-  QList<Node *> iConnectionWishList ; 
+  QList<Node *> iConnectionWishList ;
+  /**
+   * this variable holds list of nodes that we've tried to
+   * connect and failed. purpose of this is that we don't 
+   * immediately try again
+   */
+  QList<QPair<Hash,unsigned> > iRecentlyFailedNodes ;
+  int iTimerId ; /**< periodical timer */
 } ;
 #endif

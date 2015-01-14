@@ -130,7 +130,7 @@ private: // data
   Controller *iController ;
   Model *iModel ;
   Connection::ConnectionObserver &iConnectionObserver ;
-  QList<QPair<QHostAddress,int> > iAddressesInOrderToConnect ;
+  QList<MNodeModelProtocolInterface::HostConnectQueueItem> iAddressesInOrderToConnect ;
   QUdpSocket* iBroadCastSocket ; 
   time_t iTimeOfLastBroadCast ;
   /** 

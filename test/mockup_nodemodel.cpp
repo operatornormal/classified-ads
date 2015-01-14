@@ -109,9 +109,9 @@ QList<Node *>* MockUpNodeModel::getNodesAfterHash(const Hash& aHash,
   return NULL ; 
 }
 
-QList<QPair<QHostAddress,int> > MockUpNodeModel::getHotAddresses() 
+QList<MNodeModelProtocolInterface::HostConnectQueueItem > MockUpNodeModel::getHotAddresses() 
 {
-  static QList<QPair<QHostAddress,int> > retval ; 
+  static QList<MNodeModelProtocolInterface::HostConnectQueueItem> retval ; 
   return retval ; 
 }
 
@@ -180,4 +180,9 @@ void MockUpNodeModel::setDnsName(QString s){
 
 QString MockUpNodeModel::getDnsName() {
   return iDnsName ; 
+}
+
+
+void MockUpNodeModel::offerNodeToRecentlyFailedList(const Hash& /*aFailedNodeHash*/) {
+  // have very thin implementation here
 }

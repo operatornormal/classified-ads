@@ -77,7 +77,8 @@ FrontWidget::FrontWidget(Controller* aController,
   iEditContactAction(NULL),
   iSelectedProfileCommentListingModel(aController->model(),*aController),
   iViewedProfileCommentListingModel(aController->model(),*aController),
-  iProfileListingKeyboardGrabber(NULL)
+  iProfileListingKeyboardGrabber(NULL),
+  iWindowSizeAdjusted(false)
 {
   ui.setupUi(this) ;
   ui.tabWidget->setTabText(0, tr("Classified ads")) ;
@@ -1003,12 +1004,14 @@ void FrontWidget::exportSharedFile() {
 void FrontWidget::updateUiFromSelectedProfile() {
   if ( iSelectedProfile ) {
     ui.profileAddressValue->setText(iSelectedProfile->iFingerPrint.toString()) ;
-
-    ui.profileAddressValue->setMinimumWidth(ui.profileAddressValue->fontMetrics().width(iSelectedProfile->iFingerPrint.toString()));
-    iParent.setMinimumWidth ( 
-			     ui.profileAddressValue->fontMetrics().width(iSelectedProfile->iFingerPrint.toString()) +
-			     ui.imageButton->width() + 
-			     ui.profileAddressValue->width() -55 ) ;
+    if ( iWindowSizeAdjusted == false ) {
+      ui.profileAddressValue->setMinimumWidth(ui.profileAddressValue->fontMetrics().width(iSelectedProfile->iFingerPrint.toString()));
+      iParent.setMinimumWidth ( 
+			       ui.profileAddressValue->fontMetrics().width(iSelectedProfile->iFingerPrint.toString()) +
+			       ui.imageButton->width() + 
+			       ui.profileAddressValue->width() -55 ) ;
+      iWindowSizeAdjusted = true ; 
+    }
     ui.profileNickNameEdit->setText(iSelectedProfile->iNickName) ;
     ui.greetingTextEdit->setText(iSelectedProfile->iGreetingText  ) ;  
     ui.firstNameEdit->setText(iSelectedProfile->iFirstName   ) ; 

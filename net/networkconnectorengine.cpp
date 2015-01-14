@@ -78,10 +78,10 @@ void NetworkConnectorEngine::run() {
       if (   connectedCount < KMaxOpenConnections ) {
 	// so, lets start with list above ..
 	if ( iAddressesInOrderToConnect.size() > 0 ) {
-	  QPair<QHostAddress, int> addr = iAddressesInOrderToConnect.at(0) ;
-	  QHostAddress a = addr.first ;
-	  int p = addr.second ;
-	  spawnNewConnection(a,p,KNullHash) ;
+	  MNodeModelProtocolInterface::HostConnectQueueItem connectionItem = iAddressesInOrderToConnect.at(0) ;
+	  QHostAddress a = connectionItem.iAddress ;
+	  int p = connectionItem.iPort ;
+	  spawnNewConnection(a,p,connectionItem.iNodeHash) ;
 	  iAddressesInOrderToConnect.removeAt(0) ;
 	}
       } else {
@@ -132,8 +132,9 @@ bool NetworkConnectorEngine::tryServeWishListItem() {
     }
     iModel->lock() ;
     for ( int i = 0 ; i < iAddressesInOrderToConnect.size() ; i++ ) {
-      QPair<QHostAddress, int> addrFromList = iAddressesInOrderToConnect.at(0) ;
-      if (addrFromList.first == addrOfNode ) {
+
+      MNodeModelProtocolInterface::HostConnectQueueItem addrFromList = iAddressesInOrderToConnect.at(0) ;
+      if (addrFromList.iAddress == addrOfNode ) {
 	// item is already on our list -> discard
 	delete n ; 
 	LOG_STR("Connection wishlist-item was already on list..") ; 
@@ -224,7 +225,10 @@ void NetworkConnectorEngine::updateListOfNodesToConnect() {
       if ( performDNSLookup(&a,
 			    nodeListFromModel->value(i)->DNSAddr(),
 			    hasIpv6 )  ) {
-	QPair<QHostAddress,int> p (a, nodeListFromModel->value(i)->port()) ;
+	MNodeModelProtocolInterface::HostConnectQueueItem p ;
+	p.iAddress = a ; 
+	p.iPort = nodeListFromModel->value(i)->port() ;
+	p.iNodeHash = nodeListFromModel->value(i)->nodeFingerPrint() ; 
 	if ( !iAddressesInOrderToConnect.contains(p) ) {
 	  iAddressesInOrderToConnect.append(p) ;
 	  QLOG_STR("Appending addr to connect #3 " + a.toString()) ;
@@ -236,7 +240,10 @@ void NetworkConnectorEngine::updateListOfNodesToConnect() {
 	   hasIpv6 ) {
 	// both we and the node have ipv6 -> use that
 	QHostAddress a(nodeListFromModel->value(i)->ipv6Addr()) ;
-	QPair<QHostAddress,int> p (a, nodeListFromModel->value(i)->port()) ;
+	MNodeModelProtocolInterface::HostConnectQueueItem p ;
+	p.iAddress = a ; 
+	p.iPort = nodeListFromModel->value(i)->port() ;
+	p.iNodeHash = nodeListFromModel->value(i)->nodeFingerPrint() ; 
 	if ( !iAddressesInOrderToConnect.contains(p) ) {
 	  iAddressesInOrderToConnect.append(p) ;
 	  QLOG_STR("Appending addr to connect #1 " + a.toString()) ;
@@ -245,7 +252,10 @@ void NetworkConnectorEngine::updateListOfNodesToConnect() {
 	// suppose ipv4 always..
 	if ( nodeListFromModel->value(i)->ipv4Addr() ) {
 	  QHostAddress a(nodeListFromModel->value(i)->ipv4Addr()) ;
-	  QPair<QHostAddress,int> p (a, nodeListFromModel->value(i)->port()) ;
+	  MNodeModelProtocolInterface::HostConnectQueueItem p ;
+	  p.iAddress = a ; 
+	  p.iPort = nodeListFromModel->value(i)->port() ;
+	  p.iNodeHash = nodeListFromModel->value(i)->nodeFingerPrint() ; 
 	  if ( !iAddressesInOrderToConnect.contains(p) ) {
 	    iAddressesInOrderToConnect.append(p) ;
 	    QLOG_STR("Appending addr to connect #2 " + a.toString()) ;
@@ -278,7 +288,10 @@ void NetworkConnectorEngine::updateListOfNodesToConnect() {
          hasIpv6 ) {
       // both we and the node have ipv6 -> use that
       QHostAddress a(nodeListFromModel->value(i)->ipv6Addr()) ;
-      QPair<QHostAddress,int> p (a, nodeListFromModel->value(i)->port()) ;
+      MNodeModelProtocolInterface::HostConnectQueueItem p ;
+      p.iAddress = a ; 
+      p.iPort = nodeListFromModel->value(i)->port() ;
+      p.iNodeHash = nodeListFromModel->value(i)->nodeFingerPrint() ; 
       if ( !iAddressesInOrderToConnect.contains(p) ) {
         iAddressesInOrderToConnect.append(p) ;
         QLOG_STR("Appending addr to connect #3 " + a.toString()) ;
@@ -287,7 +300,10 @@ void NetworkConnectorEngine::updateListOfNodesToConnect() {
       // suppose ipv4 always..
       if ( nodeListFromModel->value(i)->ipv4Addr() ) {
         QHostAddress a(nodeListFromModel->value(i)->ipv4Addr()) ;
-        QPair<QHostAddress,int> p (a, nodeListFromModel->value(i)->port()) ;
+      MNodeModelProtocolInterface::HostConnectQueueItem p ;
+      p.iAddress = a ; 
+      p.iPort = nodeListFromModel->value(i)->port() ;
+      p.iNodeHash = nodeListFromModel->value(i)->nodeFingerPrint() ; 
         if ( !iAddressesInOrderToConnect.contains(p) ) {
           iAddressesInOrderToConnect.append(p) ;
           QLOG_STR("Appending addr to connect #4 " + a.toString()) ;
@@ -303,9 +319,9 @@ void NetworkConnectorEngine::updateListOfNodesToConnect() {
   nodeListFromModel = NULL ;
   QList<QHostAddress> ipAddrList = QNetworkInterface::allAddresses() ;
   // then get hot addresses ..
-  QList<QPair<QHostAddress,int> > hotaddresses = iModel->nodeModel().getHotAddresses() ;
+  QList<MNodeModelProtocolInterface::HostConnectQueueItem> hotaddresses = iModel->nodeModel().getHotAddresses() ;
   for ( int i = hotaddresses.size()-1 ; i >= 0 ; i-- ) {
-    if ( iAddressesInOrderToConnect.contains(hotaddresses.value(i) ) ) {
+    if ( iAddressesInOrderToConnect.contains(hotaddresses[i]) ) {
       // was already
     } else {
       // check that node is not already connected
@@ -314,18 +330,18 @@ void NetworkConnectorEngine::updateListOfNodesToConnect() {
       for ( int j = iModel->getConnections().size()-1 ; j >= 0 ; j-- ) {
         // and don't connect to already-connected nodes
         c = iModel->getConnections().value(j) ;
-        if ( c->peerAddress() == hotaddresses.value(i).first ) {
+        if ( c->peerAddress() == hotaddresses.value(i).iAddress ) {
           found = true ;
           LOG_STR2("Pruning already connected hot addr index %d", i) ;
           break ;
         } else {
-          QLOG_STR("Was not: " + hotaddresses.value(i).first.toString() + " equal to " + c->peerAddress().toString() ) ;
+          QLOG_STR("Was not: " + hotaddresses.value(i).iAddress.toString() + " equal to " + c->peerAddress().toString() ) ;
         }
       }
       // check again that our own addr is not among hot addresses:
       for ( int k = 0 ; k < ipAddrList.size() ; k++ ) {
         QHostAddress a = ipAddrList[k] ;
-        if (  hotaddresses.value(i).first == a ) {
+        if (  hotaddresses.value(i).iAddress == a ) {
           found = true ;
           QLOG_STR("Pruned from hotlist own network addr " + a.toString()) ;
           break;
@@ -333,7 +349,7 @@ void NetworkConnectorEngine::updateListOfNodesToConnect() {
       }
       if ( !found ) {
         iAddressesInOrderToConnect.append(hotaddresses.value(i)) ;
-        QLOG_STR("Appending addr to connect #5 " + hotaddresses.value(i).first.toString()) ;
+        QLOG_STR("Appending addr to connect #5 " + hotaddresses.value(i).iAddress.toString()) ;
       }
     }
   }
@@ -587,3 +603,4 @@ bool NetworkConnectorEngine::performDNSLookup(QHostAddress* aAddressToBeSet,
   }
   return isAddressSet ; 
 }
+

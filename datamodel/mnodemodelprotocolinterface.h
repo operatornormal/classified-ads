@@ -37,6 +37,17 @@ class Hash ;
  */
 class MNodeModelProtocolInterface  {
 public:
+  /**
+   * structure used for communicating lists of nodes to connect
+   * between datamodel and networking parts. Basically these 
+   * are nodes but reduced to plain addr/hash. 
+   */
+  typedef struct HostConnectQueueItemStructure {
+    QHostAddress iAddress ; /**< ip addr */
+    int iPort ; /**< tcp port */
+    Hash iNodeHash ; /**< fingerprint of node, if known */
+    bool operator==(const struct HostConnectQueueItemStructure& a) const ;
+  } HostConnectQueueItem ; 
   virtual bool nodeGreetingReceived(Node& aNode ,
                                     bool aWasInitialGreeting = false ) = 0 ;
   virtual Hash& nodeFingerPrint() = 0 ; /**< returns fingerprint of this node */
@@ -54,7 +65,7 @@ public:
   virtual QList<Node *>* getNodesAfterHash(const Hash& aHash,
       unsigned aMaxNodes,
       int aMaxInactivityMinutes = -1 ) = 0 ;
-  virtual QList<QPair<QHostAddress,int> > getHotAddresses() = 0 ;
+  virtual QList<HostConnectQueueItem> getHotAddresses() = 0 ;
   virtual bool updateNodeLastConnectTimeInDb(Node& aNode) =0 ;
   virtual QList<Node *>* getHotNodes(int aMaxNodes) = 0 ;
   /**
@@ -132,5 +143,9 @@ public:
   virtual void setDnsName(QString aName) = 0 ;
   /** called from settings dialog and own node construction */
   virtual QString getDnsName() = 0 ;
+  /** used to offer node to list of recently failed connections.
+   * this model maintains a list of such nodes and tries to 
+   * not immediately re-connect a recently failed node */
+  virtual void offerNodeToRecentlyFailedList(const Hash& aFailedNodeHash) = 0 ; 
 };
 #endif

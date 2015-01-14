@@ -307,5 +307,6 @@ private:
   Hash iSelectedCommentFromOwnCommentListing ;
   Hash iSelectedCommentFromViewedCommentListing ;
   QShortcut* iProfileListingKeyboardGrabber ; 
+  bool iWindowSizeAdjusted ; 
 } ;
 #endif

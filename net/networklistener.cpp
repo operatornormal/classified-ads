@@ -150,6 +150,11 @@ void NetworkListener::connectionClosed(Connection *aDeletee) {
     emit nodeConnectionAttemptStatus(aDeletee->connectionState(),
                                      hashOfClosedConnection ) ;
   }
+  if ( ( aDeletee->connectionState() == Connection::Initial ||
+	 aDeletee->connectionState() == Connection::Error ) &&
+       aDeletee->fingerPrintOfNodeAttempted() != KNullHash ) {
+    iModel->nodeModel().offerNodeToRecentlyFailedList(aDeletee->fingerPrintOfNodeAttempted()) ; 
+  }
   iModel->unlock() ;
   LOG_STR("NetworkListener::connectionClosed out, releasing lock..") ;
 }

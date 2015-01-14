@@ -30,6 +30,7 @@
 #include "../datamodel/profilecommentmodel.h"
 #include "../datamodel/searchmodel.h"
 #include "../datamodel/contentencryptionmodel.h"
+#include <QFile>
 
 MockUpModel::MockUpModel( MController *aController ) : 
   iController(aController),
