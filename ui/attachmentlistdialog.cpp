@@ -142,9 +142,17 @@ void AttachmentListDialog::exportSharedFile() {
   }
   iController->model().unlock() ; 
   if ( fileData.size() > 0 && metadata ) {
+    int periodPosition = metadata->iFileName.lastIndexOf(".") ;
+    QString suffix ; 
+    if ( periodPosition > 0 ) {
+      QString filenameSuffix = metadata->iFileName.mid(periodPosition+1) ;
+      suffix = filenameSuffix + " "+tr("files")+" (*."+filenameSuffix+")" ;
+    } else {
+      suffix = tr("files")+" (*.*)" ;
+    }
     QString fileName = QFileDialog::getSaveFileName(this, tr("Choose file name for saving"),
 						    metadata->iFileName,
-						    tr("Files (*.*)"));
+						    suffix);
     if ( fileName.length() > 0 ) {
       QFile f ( fileName ) ; 
       if ( f.open(QIODevice::WriteOnly) ) {
