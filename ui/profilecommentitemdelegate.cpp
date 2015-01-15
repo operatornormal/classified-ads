@@ -29,9 +29,10 @@
 // http://stackoverflow.com/questions/1956542/how-to-make-item-view-render-rich-html-text-in-qt
 // so thanks Serge :)
 
-ProfileCommentItemDelegate::ProfileCommentItemDelegate(ProfileCommentListingModel& aListingModel) :
-  iListingModel(aListingModel) 
-
+ProfileCommentItemDelegate::ProfileCommentItemDelegate(ProfileCommentListingModel& aListingModel,
+						       const QWidget& aDrawableWidget) :
+  iListingModel(aListingModel) ,
+  iDrawableWidget(aDrawableWidget)
 {
   // empty, just initialize the listing model 
 }
@@ -72,11 +73,11 @@ void ProfileCommentItemDelegate::paint(QPainter *painter,
 						QPalette::HighlightedText));
   }
   // textRect is whole item rect
-  QRect textRect = style->subElementRect(QStyle::SE_ItemViewItemText, &optionV4);
-  doc.setTextWidth(textRect.width()-10);
+  QRect textRect = option.rect ;
+  doc.setTextWidth(iDrawableWidget.width()-10);
   painter->save();
   // paint "title text" on top of the rect
-  painter->drawText(QRect(textRect.left(), textRect.top(), textRect.width(), QFontMetrics(painter->font()).height()),
+  painter->drawText(QRect(textRect.left(), textRect.top(), iDrawableWidget.width()-10, QFontMetrics(painter->font()).height()),
 		    option.displayAlignment, textToDisplayOnTop);
   const unsigned numberOfAttachments = iListingModel.data(index, Qt::UserRole+3).toUInt() ;
   if ( numberOfAttachments == 0 ) {
@@ -87,7 +88,7 @@ void ProfileCommentItemDelegate::paint(QPainter *painter,
     // print also number of attachments
     painter->drawText(QRect(textRect.left(), 
 			    textRect.top()+QFontMetrics(painter->font()).height(), 
-			    textRect.width(), 
+			    iDrawableWidget.width()-10, 
 			    QFontMetrics(painter->font()).height()),
 		      option.displayAlignment, tr("Attachments: ") + QString::number(numberOfAttachments));
     // then set offset to be top+2 lines of text
@@ -107,14 +108,16 @@ QSize ProfileCommentItemDelegate::sizeHint ( const QStyleOptionViewItem & option
 
   QTextDocument doc;
   doc.setHtml(iListingModel.data(index, Qt::UserRole+1).toString()); 
-  doc.setTextWidth(options.rect.width());
+  doc.setTextWidth(iDrawableWidget.width()-10);
   const QFont font = QApplication::font();
   // why making this a member variable results in crash at dialog close??
   const QFontMetrics fm(font);  // so, now automatics and works
   const unsigned numberOfAttachments = iListingModel.data(index, Qt::UserRole+3).toUInt() ;
   if ( numberOfAttachments == 0 ) {
-    return QSize(doc.idealWidth(), doc.size().height()+fm.height());
+    QSize retval( iDrawableWidget.width()-10, doc.size().height()+fm.height());
+    return retval ;
   } else {
-    return QSize(doc.idealWidth(), doc.size().height()+(fm.height()*2));
+    QSize retval( iDrawableWidget.width()-10, doc.size().height()+(fm.height()*2));
+    return retval ; 
   }
 }

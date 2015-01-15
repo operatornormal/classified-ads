@@ -67,7 +67,8 @@ ProfileCommentDisplay::ProfileCommentDisplay(QWidget *aParent,
   ui.commentListView->addAction(iExportSharedFileAction) ;
   connect(iExportSharedFileAction, SIGNAL(triggered()),
 	  this, SLOT(exportSharedFile())) ;
-  ProfileCommentItemDelegate* iItemDelegate = new ProfileCommentItemDelegate(*iListingModel);
+  ProfileCommentItemDelegate* iItemDelegate = new ProfileCommentItemDelegate(*iListingModel,
+									     *(ui.commentListView));
   ui.commentListView->setItemDelegate(iItemDelegate) ; 
   connect(ui.commentListView->selectionModel(),
 	  SIGNAL(currentChanged ( const QModelIndex & , const QModelIndex & ) ),

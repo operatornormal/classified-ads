@@ -32,8 +32,13 @@ class ProfileCommentItemDelegate : public QStyledItemDelegate
 public:
   /**
    * Constructor 
+   * @param aListingModel is the datamodel part where content comes from
+   * @param aDrawableWidget is the container where these items will
+   *        be drawn. It is passed here because we want to query
+   *        its dimensions at runtime.
    */
-  ProfileCommentItemDelegate(ProfileCommentListingModel& aListingModel) ; 
+  ProfileCommentItemDelegate(ProfileCommentListingModel& aListingModel,
+			     const QWidget& aDrawableWidget) ; 
   /** destructor */
   ~ProfileCommentItemDelegate() ; 
 protected:
@@ -47,6 +52,7 @@ protected:
   QSize sizeHint ( const QStyleOptionViewItem & option, const QModelIndex & index ) const;
 private:
   ProfileCommentListingModel& iListingModel ; 
+  const QWidget& iDrawableWidget ; 
 };
 
 
