@@ -27,6 +27,7 @@
 class SearchModel ;
 class Profile ; 
 class QAction ; 
+class QShortcut ;
 
 /**
  * @brief class for search dialog
@@ -57,6 +58,7 @@ signals:
 private slots:
   void closeButtonClicked() ;
   void searchButtonClicked() ;/**< performs search */
+  void keyEnterClicked() ;/**< conditionally performs search */
   void openButtonClicked() ; /**< opens selected item from results-list */
   void resultListDoubleClicked(const QModelIndex& aIndex);
   void currentItemChanged(const QModelIndex & current, const QModelIndex & previous ) ; 
@@ -68,6 +70,7 @@ private:
   ProtocolItemType iTypeOfFocusedResult ; 
   Hash iNodeOfFocusedResult ; 
   QAction* iOpenAction ; /**< context-menu action for open */
+  QShortcut* iSearchDisplayKeyboardGrabber ; 
 }; 
 
 #endif

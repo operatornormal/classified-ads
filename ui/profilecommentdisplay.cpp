@@ -159,25 +159,37 @@ void ProfileCommentDisplay::currentItemChanged(const QModelIndex & aCurrent, con
 
 void ProfileCommentDisplay::newCommentButtonClicked() {
   LOG_STR("ProfileCommentDisplay::newCommentButtonClicked ") ; 
+  
+  QString subject = "" ; 
+  ProfileComment* p ( NULL ); 
+  if ( iFingerPrintOfCommentOnFocus != KNullHash ) {
+    iController->model().lock() ; 
+    p = iCommentModel.profileCommentByFingerPrint(iFingerPrintOfCommentOnFocus) ; 
+    iController->model().unlock();
+    if ( p ) {
+      subject = p->iSubject ; 
+      delete p ; 
+    }
+  }
 
-    NewProfileCommentDialog *posting_dialog = 
-      new NewProfileCommentDialog(this, iController,
-				  iViewedProfile.toString(),
-				  "",
-				  iSelectedProfile,
-				  *iListingModel ) ;
-    connect(posting_dialog,
-	    SIGNAL(  error(MController::CAErrorSituation,
-			   const QString&) ),
-	    iController,
-	    SLOT(handleError(MController::CAErrorSituation,
-			     const QString&)),
-	    Qt::QueuedConnection ) ;
-    posting_dialog->show() ; // the dialog will delete self.
-    // if this dialog is closed, cascade to possible posting dialog too
-    connect ( this,
-	      SIGNAL(rejected()),
-	      posting_dialog,
-	      SLOT(cancelButtonClicked()),
-	      Qt::QueuedConnection  ) ;
+  NewProfileCommentDialog *posting_dialog = 
+    new NewProfileCommentDialog(this, iController,
+				iViewedProfile.toString(),
+				subject,
+				iSelectedProfile,
+				*iListingModel ) ;
+  connect(posting_dialog,
+	  SIGNAL(  error(MController::CAErrorSituation,
+			 const QString&) ),
+	  iController,
+	  SLOT(handleError(MController::CAErrorSituation,
+			   const QString&)),
+	  Qt::QueuedConnection ) ;
+  posting_dialog->show() ; // the dialog will delete self.
+  // if this dialog is closed, cascade to possible posting dialog too
+  connect ( this,
+	    SIGNAL(rejected()),
+	    posting_dialog,
+	    SLOT(cancelButtonClicked()),
+	    Qt::QueuedConnection  ) ;
 }

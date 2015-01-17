@@ -24,6 +24,7 @@
 #include "../datamodel/searchmodel.h"
 #include "../datamodel/profile.h"
 #include "../mcontroller.h"
+#include <QShortcut>
 
 SearchDisplay::SearchDisplay(QWidget *aParent,
 			     MController* aController,
@@ -33,7 +34,8 @@ SearchDisplay::SearchDisplay(QWidget *aParent,
 	       aController,
 	       aSelectedProfile),
     iSearchModel(aSearchModel),
-    iOpenAction(NULL)
+    iOpenAction(NULL),
+    iSearchDisplayKeyboardGrabber(NULL)
 {
   ui.setupUi(this) ; 
   ui.resultsView->setModel(aSearchModel) ;
@@ -62,6 +64,13 @@ SearchDisplay::SearchDisplay(QWidget *aParent,
   ui.resultsView->addAction(iOpenAction) ;
   connect(iOpenAction, SIGNAL(triggered()),
 	  this, SLOT(openSelectedContent())) ;
+  // grab enter key
+  iSearchDisplayKeyboardGrabber = new QShortcut(QKeySequence(QKeySequence::InsertParagraphSeparator),this) ;
+  // and make entery key perform search in this dialog
+  connect(iSearchDisplayKeyboardGrabber,
+	  SIGNAL(activated()),
+	  this,
+	  SLOT(keyEnterClicked())) ; 
 }
 
 
@@ -69,6 +78,7 @@ SearchDisplay::~SearchDisplay()
 {
   LOG_STR("SearchDisplay::~SearchDisplay") ;
   delete iOpenAction ; 
+  delete iSearchDisplayKeyboardGrabber ; 
 }
 
 
@@ -89,6 +99,13 @@ void SearchDisplay::searchButtonClicked() {
 				ui.searchCommentsCheckBox->isChecked(),
 				ui.networkSearchCheckBox->isChecked()) ; 
   iController->model().unlock() ;
+}
+
+void SearchDisplay::keyEnterClicked() {
+  LOG_STR("SearchDisplay::keyEnterClicked") ;
+  if ( ui.wordsEdit->hasFocus() ) {
+    searchButtonClicked() ;
+  }
 }
 
 void SearchDisplay::openButtonClicked() {
