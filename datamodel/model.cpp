@@ -793,9 +793,13 @@ Model::getNetRequests() const {
 }
 
 void Model::addNetworkRequest(NetworkRequestExecutor::NetworkRequestQueueItem& aRequest) const {
-  aRequest.iTimeStampOfLastActivity = QDateTime::currentDateTimeUtc().toTime_t();
-  if ( iNetReqQueue ) {
-    iNetReqQueue->append(aRequest) ;
+  if ( iController->getNode().nodeFingerPrint() == aRequest.iDestinationNode ) {
+    QLOG_STR("Skipping network request destined to self") ; 
+  } else {
+    aRequest.iTimeStampOfLastActivity = QDateTime::currentDateTimeUtc().toTime_t();
+    if ( iNetReqQueue ) {
+      iNetReqQueue->append(aRequest) ;
+    }
   }
 }
 
