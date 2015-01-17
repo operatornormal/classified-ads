@@ -104,19 +104,29 @@ void RetrievalEngine::run() {
 						     300 ) ;// at most 5 hours old	    
 
 	      while ( ! nodesToTry->isEmpty() ) {
-		Node* connectCandidate ( nodesToTry->takeFirst() ) ; 
-		if ( iModel.nodeModel().isNodeAlreadyConnected(connectCandidate->nodeFingerPrint()) ) {
-		  sendQueryToNode(connectCandidate->nodeFingerPrint()) ; 
-		  delete connectCandidate ;
-		  QLOG_STR("In retrieve::processing node " + connectCandidate->nodeFingerPrint().toString() + " was already connected") ; 
-		} else {
-		  iNodeCandidatesToTryQuery.append(connectCandidate->nodeFingerPrint()) ; 
-		  iModel.nodeModel().addNodeToConnectionWishList(connectCandidate) ;
-		  QLOG_STR("In retrieve::processing node " + connectCandidate->nodeFingerPrint().toString() + " was added to wishlist") ; 
+		Node* connectCandidate ( nodesToTry->takeFirst() ) ;
+		if (  connectCandidate->nodeFingerPrint() != iController->getNode().nodeFingerPrint() ) {
+		  if ( iModel.nodeModel().isNodeAlreadyConnected(connectCandidate->nodeFingerPrint()) ) {
+		    sendQueryToNode(connectCandidate->nodeFingerPrint()) ; 
+		    delete connectCandidate ;
+		    QLOG_STR("In retrieve::processing node " + connectCandidate->nodeFingerPrint().toString() + " was already connected") ; 
+		  } else {
+		    iNodeCandidatesToTryQuery.append(connectCandidate->nodeFingerPrint()) ; 
+		    iModel.nodeModel().addNodeToConnectionWishList(connectCandidate) ;
+		    QLOG_STR("In retrieve::processing node " + connectCandidate->nodeFingerPrint().toString() + " was added to wishlist") ; 
+		  }
 		}
 	      }
-	      iObjectBeingRetrieved.iState = NetworkRequestExecutor::NodeIsInWishList ; 
-	      iObjectBeingRetrieved.iTimeStampOfLastActivity= QDateTime::currentDateTimeUtc().toTime_t();	 	    
+	      if ( iNodeCandidatesToTryQuery.size() > 0 ) {
+		iObjectBeingRetrieved.iState = NetworkRequestExecutor::NodeIsInWishList ; 
+		iObjectBeingRetrieved.iTimeStampOfLastActivity= QDateTime::currentDateTimeUtc().toTime_t();	 	    
+	      } else {
+		// did not add anything to wishlist ; set timestamp back
+		// to past so this state-machine will spam the query to
+		// every connected node ; better than nothing
+		iObjectBeingRetrieved.iState = NetworkRequestExecutor::NodeIsInWishList ; 
+		iObjectBeingRetrieved.iTimeStampOfLastActivity= QDateTime::currentDateTimeUtc().toTime_t() - 120;	 	    
+	      }
 	    }
 	  }
 	  break ; 

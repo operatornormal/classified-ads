@@ -772,7 +772,7 @@ QList<Node *>* NodeModel::getNodesAfterHash(const Hash& aHash,
       conditional_inactivity_condition = " ";
     }
 
-    ret = query2.prepare("select hash1,hash2,hash3,hash4,hash5,listenport,last_conn_time,does_listen,ipv4addr,ipv6addr1,ipv6addr2,ipv6addr3,ipv6addr4,last_nodelist_time,dns_name,tor_name from node where 1=1"+
+    ret = query2.prepare("select hash1,hash2,hash3,hash4,hash5,listenport,last_conn_time,does_listen,ipv4addr,ipv6addr1,ipv6addr2,ipv6addr3,ipv6addr4,last_nodelist_time,dns_name,tor_name from node where ( ipv4addr is not null or ipv6addr1 is not null ) "+
                          conditional_inactivity_condition +
 			 conditional_recently_failed_condition +
                          " order by hash1 limit :maxrows") ;
@@ -850,7 +850,7 @@ QList<Node *>* NodeModel::getNodesBeforeHash(const Hash& aHash,
   }
   QLOG_STR("Failed nodes  " + conditional_recently_failed_condition) ; 
   // this is fine, will use index as there is index for hash1
-  ret = query.prepare("select hash1,hash2,hash3,hash4,hash5,listenport,last_conn_time,does_listen,ipv4addr,ipv6addr1,ipv6addr2,ipv6addr3,ipv6addr4,last_nodelist_time,dns_name,tor_name from node where hash1 <= :hash_to_seek "+conditional_recently_failed_condition+" order by hash1 desc limit :maxrows") ;
+  ret = query.prepare("select hash1,hash2,hash3,hash4,hash5,listenport,last_conn_time,does_listen,ipv4addr,ipv6addr1,ipv6addr2,ipv6addr3,ipv6addr4,last_nodelist_time,dns_name,tor_name from node where ( ipv4addr is not null or ipv6addr1 is not null ) and hash1 <= :hash_to_seek "+conditional_recently_failed_condition+" order by hash1 desc limit :maxrows") ;
   query.bindValue(":hash_to_seek", aHash.iHash160bits[0]);
   query.bindValue(":maxrows", aMaxNodes);
   if ( ret && query.exec() ) {
@@ -907,7 +907,7 @@ QList<Node *>* NodeModel::getNodesBeforeHash(const Hash& aHash,
     // reached. .. so in case we need to roll-over the
     // hash-space, this 2nd query here is our implementation
     // for the rolling-over.
-    ret = query2.prepare("select hash1,hash2,hash3,hash4,hash5,listenport,last_conn_time,does_listen,ipv4addr,ipv6addr1,ipv6addr2,ipv6addr3,ipv6addr4,last_nodelist_time from node where 1=1 " + conditional_recently_failed_condition + " order by hash1 desc limit :maxrows") ;
+    ret = query2.prepare("select hash1,hash2,hash3,hash4,hash5,listenport,last_conn_time,does_listen,ipv4addr,ipv6addr1,ipv6addr2,ipv6addr3,ipv6addr4,last_nodelist_time from node where ( ipv4addr is not null or ipv6addr1 is not null ) " + conditional_recently_failed_condition + " order by hash1 desc limit :maxrows") ;
     query2.bindValue(":maxrows", aMaxNodes - (unsigned)(retval->size()));
     if ( ret && query2.exec() ) {
       while ( ret &&
@@ -1424,18 +1424,26 @@ void NodeModel::addNodeFromBroadcast(const Hash& aNodeFingerPrint,
 }
 
 
-void NodeModel::addNodeToConnectionWishList(Node* aNode) {
+bool NodeModel::addNodeToConnectionWishList(Node* aNode) {
+  if ( iController->getNode().nodeFingerPrint() == aNode->nodeFingerPrint() ) {
+    delete aNode ; 
+    return false ; // don't queue connection to self
+  }
   for ( int i = 0 ; i < iConnectionWishList.size() ; i++ ) {
     if ( aNode->nodeFingerPrint() == iConnectionWishList.value(i)->nodeFingerPrint()){
       // node already found from wishlist, don't add again:
       delete aNode ;
-      return ;
+      return false ;
     }
   }
   iConnectionWishList.append(aNode) ; 
+  return true ; 
 }
 
 bool NodeModel::addNodeToConnectionWishList(const Hash& aNode) {
+  if ( iController->getNode().nodeFingerPrint() == aNode ) {
+    return false ; // don't queue connection to self
+  }
   for ( int i = 0 ; i < iConnectionWishList.size() ; i++ ) {
     if ( aNode == iConnectionWishList.value(i)->nodeFingerPrint()){
       return true ;

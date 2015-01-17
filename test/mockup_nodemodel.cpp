@@ -131,9 +131,10 @@ void MockUpNodeModel::addNodeFromBroadcast(const Hash& /*aNodeFingerPrint*/,
   LOG_STR2("addNodeFromBroadcast %d\n", aPort) ; 
 }
 
-void MockUpNodeModel::addNodeToConnectionWishList(Node* aNode) {
+bool MockUpNodeModel::addNodeToConnectionWishList(Node* aNode) {
   LOG_STR("addNodeToConnectionWishList \n") ; 
   delete aNode ; 
+  return true ; 
 }
 
 bool MockUpNodeModel::addNodeToConnectionWishList(const Hash& aNode) {

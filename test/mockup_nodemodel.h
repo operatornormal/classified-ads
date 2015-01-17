@@ -80,7 +80,7 @@ public:
    * nodemodel will take ownership of the node and delete
    * the object later.
    */
-  virtual void addNodeToConnectionWishList(Node* aNode)  ;
+  virtual bool addNodeToConnectionWishList(Node* aNode)  ;
 
   /**
    * method for adding a node to connection-wishlist.

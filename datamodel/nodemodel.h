@@ -192,8 +192,9 @@ public:
    * network connector engine will then later pick them up.
    * nodemodel will take ownership of the node and delete
    * the object later.
+   * @return true if connection was queued
    */
-  virtual void addNodeToConnectionWishList(Node* aNode) ;
+  virtual bool addNodeToConnectionWishList(Node* aNode) ;
   /**
    * method for adding a node to connection-wishlist.
    * network connector engine will then later pick them up.
