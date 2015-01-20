@@ -493,7 +493,8 @@ QHostAddress Connection::peerAddress() const {
   // 2 possibilities, if we're outgoing, we know this already
 
   if ( iSocketIsIncoming ) {
-    if ( iSocket ) {
+    if ( iSocket && ( iSocket->state() == QAbstractSocket::ConnectedState ||
+		      iSocket->state() == QAbstractSocket::ClosingState) ) {
       return iSocket->peerAddress() ;
     } else {
       return QHostAddress(KNullIpv6Addr) ;
