@@ -128,12 +128,12 @@ void SearchModel::setSearchString(const QString& aSearch,
 bool SearchModel::queryIfFTSSupported() {
   bool retval ( false ) ; 
   QSqlQuery query ; 
-  if ( query.prepare ("select sqlite_compileoption_get(:optNumber)" ) ) {
+  if ( query.prepare ("select trim(upper(sqlite_compileoption_get(:optNumber)))" ) ) {
     int i = 0 ; 
     QString queryRes ; 
     do {
       queryRes = QString() ; 
-      query.bindValue(":optNumber",i++);
+      query.bindValue(":optNumber",i);
       if ( query.exec() ) {
 	if ( query.next() && !query.isNull(0) ) {
 	  queryRes = query.value(0).toString() ;
@@ -141,6 +141,8 @@ bool SearchModel::queryIfFTSSupported() {
 	    retval = true ; 
 	    QLOG_STR("FTS is supported") ; 
 	    break ; 
+	  } else {
+	    QLOG_STR("Sqlite option #" + QString::number(i) + ":'"+queryRes+"'") ;
 	  }
 	} else {
 	  break ; 
@@ -149,6 +151,7 @@ bool SearchModel::queryIfFTSSupported() {
 	QLOG_STR(query.lastError().text() + " "+ __FILE__ + QString::number(__LINE__)) ;
 	break ; // out of loop
       }
+      i++ ; 
     } while ( queryRes.length() > 0 ) ;
   }
   return retval ; 

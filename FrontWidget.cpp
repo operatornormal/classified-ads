@@ -535,9 +535,9 @@ void FrontWidget::replyToCaToForumButtonClicked() {
 
     NewClassifiedAdDialog *posting_dialog = 
       new NewClassifiedAdDialog(this, iController,
-				ui.caAboutComboBox->currentIndex(),
-				ui.caRegardingCombobox->currentIndex(),
-				ui.caWhereComboBox->currentIndex(),
+				iController->model().classifiedAdsModel().aboutComboBoxTexts().indexOf(ui.caAboutComboBox->currentText()),
+				iController->model().classifiedAdsModel().regardingComboBoxTexts().indexOf(ui.caRegardingCombobox->currentText()),
+				iController->model().classifiedAdsModel().whereComboBoxTexts().indexOf(ui.caWhereComboBox->currentText()),
 				ui.caAboutComboBox->currentText(),
 				ui.caRegardingCombobox->currentText(),
 				ui.caWhereComboBox->currentText(),
@@ -561,9 +561,9 @@ void FrontWidget::postNewClassifiedAd() {
   if ( iSelectedProfile ) {
     NewClassifiedAdDialog *posting_dialog = 
       new NewClassifiedAdDialog(this, iController,
-				ui.caAboutComboBox->currentIndex(),
-				ui.caRegardingCombobox->currentIndex(),
-				ui.caWhereComboBox->currentIndex(),
+				iController->model().classifiedAdsModel().aboutComboBoxTexts().indexOf(ui.caAboutComboBox->currentText()),
+				iController->model().classifiedAdsModel().regardingComboBoxTexts().indexOf(ui.caRegardingCombobox->currentText()),
+				iController->model().classifiedAdsModel().whereComboBoxTexts().indexOf(ui.caWhereComboBox->currentText()),
 				ui.caAboutComboBox->currentText(),
 				ui.caRegardingCombobox->currentText(),
 				ui.caWhereComboBox->currentText(),
@@ -1285,13 +1285,7 @@ void FrontWidget::setupClassifiedAdsTab() {
           this,
           SLOT(caTabConcernsComboChanged(int))) ;
 
-
-  ui.caWhereComboBox->addItem(tr("Any country")) ; 
-  for ( int c = QLocale::AnyCountry+1 ; 
-	c <= QLocale::LatinAmericaAndTheCaribbean ; 
-	c ++ ) {
-    ui.caWhereComboBox->addItem(QLocale::countryToString((QLocale::Country)c)) ; 
-  }
+  ui.caWhereComboBox->addItems(iController->model().classifiedAdsModel().whereComboBoxTexts()) ; 
   ui.caWhereComboBox->setEditable(true) ;
   ui.caWhereComboBox->setInsertPolicy(QComboBox::InsertAtBottom) ; 
   connect(ui.caWhereComboBox,
@@ -1483,41 +1477,9 @@ void FrontWidget::fillCaSelectionCombobox(QComboBox& aComboBox,
 					  bool isAboutComboBox,
 					  MController& aController) {
   if ( isAboutComboBox ) {
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedPurposeOfAdString(ClassifiedAdsModel::ToBeBought)) ; 
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedPurposeOfAdString(ClassifiedAdsModel::ToBeSold)) ; 
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedPurposeOfAdString(ClassifiedAdsModel::ToBeGivenAway)) ; 
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedPurposeOfAdString(ClassifiedAdsModel::IsWanted)) ; 
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedPurposeOfAdString(ClassifiedAdsModel::ToBeRented)) ; 
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedPurposeOfAdString(ClassifiedAdsModel::ToBeAnnounced)) ;   
+    aComboBox.addItems(aController.model().classifiedAdsModel().aboutComboBoxTexts()) ;
   } else {
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedConcernOfAdString(ClassifiedAdsModel::ConcerningCars)) ; 
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedConcernOfAdString(ClassifiedAdsModel::ConcerningBoats)) ; 
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedConcernOfAdString(ClassifiedAdsModel::ConcerningBikes)) ; 
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedConcernOfAdString(ClassifiedAdsModel::ConcerningOtherVehicles)) ; 
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedConcernOfAdString(ClassifiedAdsModel::ConcerningVehicleParts)) ; 
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedConcernOfAdString(ClassifiedAdsModel::ConcerningHabitation)) ; 
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedConcernOfAdString(ClassifiedAdsModel::ConcerningHouseholdAppliances)) ; 
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedConcernOfAdString(ClassifiedAdsModel::ConcerningFurniture)) ; 
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedConcernOfAdString(ClassifiedAdsModel::ConcerningClothing)) ; 
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedConcernOfAdString(ClassifiedAdsModel::ConcerningTools)) ; 
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedConcernOfAdString(ClassifiedAdsModel::ConcerningSports)) ; 
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedConcernOfAdString(ClassifiedAdsModel::ConcerningMusic)) ; 
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedConcernOfAdString(ClassifiedAdsModel::ConcerningBooks)) ; 
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedConcernOfAdString(ClassifiedAdsModel::ConcerningMovies)) ; 
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedConcernOfAdString(ClassifiedAdsModel::ConcerningAnimals)) ; 
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedConcernOfAdString(ClassifiedAdsModel::ConcerningElectronics)) ; 
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedConcernOfAdString(ClassifiedAdsModel::ConcerningJobs)) ; 
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedConcernOfAdString(ClassifiedAdsModel::ConcerningTransportation)) ; 
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedConcernOfAdString(ClassifiedAdsModel::ConcerningServices)) ; 
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedConcernOfAdString(ClassifiedAdsModel::ConcerningHealthcare)) ; 
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedConcernOfAdString(ClassifiedAdsModel::ConcerningFoodstuff)) ; 
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedConcernOfAdString(ClassifiedAdsModel::ConcerningSoftware)) ; 
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedConcernOfAdString(ClassifiedAdsModel::ConcerningEvents)) ; 
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedConcernOfAdString(ClassifiedAdsModel::ConcerningEducation)) ; 
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedConcernOfAdString(ClassifiedAdsModel::ConcerningFinance)) ; 
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedConcernOfAdString(ClassifiedAdsModel::ConcerningJewelry)) ; 
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedConcernOfAdString(ClassifiedAdsModel::ConcerningReligiousRituals)) ; 
-    aComboBox.addItem(aController.model().classifiedAdsModel().localizedConcernOfAdString(ClassifiedAdsModel::ConcerningPhilosophy)) ; 
+    aComboBox.addItems(aController.model().classifiedAdsModel().regardingComboBoxTexts()) ;
   }
 }
 
@@ -1526,17 +1488,19 @@ QString FrontWidget::selectedClassification(const QComboBox& aAboutCombo,
 					    const QComboBox& aWhereCombo,
 					    const MController& aController) {
   QString retval ; 
-  // note that "ToBeAnnounced" is the last index in the "pre-defined"
-  // classification, anything after that is users own invention and 
-  // pre-defined strings shall not be used any more
-  if ( aAboutCombo.currentIndex() <= ClassifiedAdsModel::ToBeAnnounced) {
-    retval = aController.model().classifiedAdsModel().purposeOfAdString((ClassifiedAdsModel::PurposeOfAd)aAboutCombo.currentIndex()) ; 
+  // check out if pre-defined string from combobox or
+  // something that user wrote himself to combobox. 
+  // it seems like digging that information from combobox itself
+  // is difficult to do .. user would need to hit enter 
+  // to set the indexes correctly and she won't
+  if ( aController.model().classifiedAdsModel().aboutComboBoxTexts().indexOf(aAboutCombo.currentText()) != -1 ) {
+    retval = aController.model().classifiedAdsModel().purposeOfAdString((ClassifiedAdsModel::PurposeOfAd)aController.model().classifiedAdsModel().aboutComboBoxTexts().indexOf(aAboutCombo.currentText())) ; 
   } else {
     retval = aAboutCombo.currentText() ; 
   }
   retval.append(".") ; 
-  if ( aRegardingCombo.currentIndex() <= ClassifiedAdsModel::ConcerningPhilosophy) {
-    retval.append( aController.model().classifiedAdsModel().concernOfAdString((ClassifiedAdsModel::ConcernOfAd)aRegardingCombo.currentIndex())) ; 
+  if ( aController.model().classifiedAdsModel().regardingComboBoxTexts().indexOf( aRegardingCombo.currentText()) != -1 ) {
+    retval.append( aController.model().classifiedAdsModel().concernOfAdString((ClassifiedAdsModel::ConcernOfAd)aController.model().classifiedAdsModel().regardingComboBoxTexts().indexOf( aRegardingCombo.currentText()))) ; 
   } else {
     retval.append( aRegardingCombo.currentText() ) ; 
   }

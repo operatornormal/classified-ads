@@ -57,12 +57,8 @@ NewClassifiedAdDialog::NewClassifiedAdDialog(QWidget *aParent,
   if ( aReferences ) {
     iReferences = *aReferences ; 
   }
-  ui.caWhereComboBox->addItem(tr("Any country")) ; 
-  for ( int c = QLocale::AnyCountry+1 ; 
-	c <= QLocale::LatinAmericaAndTheCaribbean ; 
-	c ++ ) {
-    ui.caWhereComboBox->addItem(QLocale::countryToString((QLocale::Country)c)) ; 
-  }
+  ui.caWhereComboBox->addItems(aController->model().classifiedAdsModel().whereComboBoxTexts()) ; 
+
   if ( aSubject ) {
     ui.subjectEdit->setText(*aSubject) ; 
   }
@@ -75,16 +71,20 @@ NewClassifiedAdDialog::NewClassifiedAdDialog(QWidget *aParent,
 
   LOG_STR2("aAboutComboxIndex = %d\n", aAboutComboxIndex) ; 
   LOG_STR2("ClassifiedAdsModel::ToBeAnnounced = %d\n", (int)(ClassifiedAdsModel::ToBeAnnounced)) ; 
-  if ( aAboutComboxIndex > ClassifiedAdsModel::ToBeAnnounced ) {
+  if ( aAboutComboxIndex == -1 ) {
+    // custom text
     LOG_STR2("aAboutComboText = %s\n", qPrintable(aAboutComboText) ); 
+    QLOG_STR("aAboutComboIndex = %s\n" + QString::number(aAboutComboxIndex)  ); 
     ui.caAboutComboBox->addItem(aAboutComboText) ; 
     ui.caAboutComboBox->setCurrentIndex(ui.caAboutComboBox->count()-1) ;
   } else {
+    QLOG_STR("aAboutComboIndex = %s\n" + QString::number(aAboutComboxIndex)  ); 
     ui.caAboutComboBox->setCurrentIndex(aAboutComboxIndex) ;
   }
 
 
-  if ( aRegardingComboxIndex > ClassifiedAdsModel::ConcerningPhilosophy ) {
+  if ( aRegardingComboxIndex == -1 ) {
+    // custom text
     LOG_STR2( "aRegardingComboText= %s\n", qPrintable(aRegardingComboText) ); 
     ui.caRegardingCombobox->addItem(aRegardingComboText) ; 
     ui.caRegardingCombobox->setCurrentIndex(ui.caRegardingCombobox->count()-1) ;
@@ -92,7 +92,8 @@ NewClassifiedAdDialog::NewClassifiedAdDialog(QWidget *aParent,
     ui.caRegardingCombobox->setCurrentIndex(aRegardingComboxIndex) ;
   }
 
-  if ( aWhereComboxIndex > QLocale::LatinAmericaAndTheCaribbean ) {
+  if ( aWhereComboxIndex == -1 ) {
+    // custom text
     LOG_STR2( "aWhereComboxText= %s\n", qPrintable(aWhereComboxText) ); 
     ui.caWhereComboBox->addItem(aWhereComboxText) ; 
     ui.caWhereComboBox->setCurrentIndex(ui.caWhereComboBox->count()-1) ;
@@ -143,14 +144,18 @@ void NewClassifiedAdDialog::okButtonClicked()
     ad.iTimeOfPublish = QDateTime::currentDateTimeUtc().toTime_t() ; 
     ad.iReplyTo =  iReferences  ; 
 
-    if ( ui.caAboutComboBox->currentIndex() <= ClassifiedAdsModel::ToBeAnnounced) {
-      ad.iAboutComboBoxIndex = ui.caAboutComboBox->currentIndex() ; 
+    int indexOfAboutCombo ( iController->model().classifiedAdsModel().aboutComboBoxTexts().indexOf(ui.caAboutComboBox->currentText()) ) ;
+    int indexOfRegardingCombo ( iController->model().classifiedAdsModel().regardingComboBoxTexts().indexOf(ui.caRegardingCombobox->currentText()) ) ;
+    int indexOfWhereCombo ( iController->model().classifiedAdsModel().whereComboBoxTexts().indexOf(ui.caWhereComboBox->currentText()) ) ;
+
+    if ( indexOfAboutCombo != -1 ) {
+      ad.iAboutComboBoxIndex = indexOfAboutCombo ; 
     } else {
       ad.iAboutComboBoxText = ui.caAboutComboBox->currentText() ; 
     }
 
-    if ( ui.caRegardingCombobox->currentIndex() <= ClassifiedAdsModel::ToBeAnnounced) {
-      ad.iConcernsComboBoxIndex = ui.caRegardingCombobox->currentIndex() ; 
+    if ( indexOfRegardingCombo != -1 ) {
+      ad.iConcernsComboBoxIndex = indexOfRegardingCombo ; 
     } else {
       ad.iConcernsComboBoxText = ui.caRegardingCombobox->currentText() ; 
     }
@@ -158,8 +163,8 @@ void NewClassifiedAdDialog::okButtonClicked()
     // hopefully the indexing of countries won't change inside Qt??
     // if it does, we'll need to start incorporating the old list
     // inside classified ads or groupings will just .. not work
-    if ( ui.caWhereComboBox->currentIndex() <= QLocale::LatinAmericaAndTheCaribbean) {
-      ad.iInComboBoxIndex = ui.caWhereComboBox->currentIndex() ; 
+    if ( indexOfWhereCombo != -1 ) {
+      ad.iInComboBoxIndex = indexOfWhereCombo ; 
     } else {
       ad.iInComboBoxText = ui.caWhereComboBox->currentText() ; 
     }

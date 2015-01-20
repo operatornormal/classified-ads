@@ -94,6 +94,7 @@ ClassifiedAdsModel::ClassifiedAdsModel(MController *aController,
           SLOT(handleError(MController::CAErrorSituation,
                            const QString&)),
           Qt::QueuedConnection ) ;
+  initComboBoxTexts() ; 
 }
 
 
@@ -869,4 +870,64 @@ bool ClassifiedAdsModel::caListingByClassificationReceived(QList<QPair<Hash,quin
     ret = query4.exec("commit ;") ;
   }
   return ret ; 
+}
+
+void ClassifiedAdsModel::initComboBoxTexts() {
+    iAboutComboBoxTexts.append(localizedPurposeOfAdString(ClassifiedAdsModel::ToBeBought)) ; 
+    iAboutComboBoxTexts.append(localizedPurposeOfAdString(ClassifiedAdsModel::ToBeSold)) ; 
+    iAboutComboBoxTexts.append(localizedPurposeOfAdString(ClassifiedAdsModel::ToBeGivenAway)) ; 
+    iAboutComboBoxTexts.append(localizedPurposeOfAdString(ClassifiedAdsModel::IsWanted)) ; 
+    iAboutComboBoxTexts.append(localizedPurposeOfAdString(ClassifiedAdsModel::ToBeRented)) ; 
+    iAboutComboBoxTexts.append(localizedPurposeOfAdString(ClassifiedAdsModel::ToBeAnnounced)) ;   
+
+    iRegardingComboBoxTexts.append(localizedConcernOfAdString(ClassifiedAdsModel::ConcerningCars)) ; 
+    iRegardingComboBoxTexts.append(localizedConcernOfAdString(ClassifiedAdsModel::ConcerningBoats)) ; 
+    iRegardingComboBoxTexts.append(localizedConcernOfAdString(ClassifiedAdsModel::ConcerningBikes)) ; 
+    iRegardingComboBoxTexts.append(localizedConcernOfAdString(ClassifiedAdsModel::ConcerningOtherVehicles)) ; 
+    iRegardingComboBoxTexts.append(localizedConcernOfAdString(ClassifiedAdsModel::ConcerningVehicleParts)) ; 
+    iRegardingComboBoxTexts.append(localizedConcernOfAdString(ClassifiedAdsModel::ConcerningHabitation)) ; 
+    iRegardingComboBoxTexts.append(localizedConcernOfAdString(ClassifiedAdsModel::ConcerningHouseholdAppliances)) ; 
+    iRegardingComboBoxTexts.append(localizedConcernOfAdString(ClassifiedAdsModel::ConcerningFurniture)) ; 
+    iRegardingComboBoxTexts.append(localizedConcernOfAdString(ClassifiedAdsModel::ConcerningClothing)) ; 
+    iRegardingComboBoxTexts.append(localizedConcernOfAdString(ClassifiedAdsModel::ConcerningTools)) ; 
+    iRegardingComboBoxTexts.append(localizedConcernOfAdString(ClassifiedAdsModel::ConcerningSports)) ; 
+    iRegardingComboBoxTexts.append(localizedConcernOfAdString(ClassifiedAdsModel::ConcerningMusic)) ; 
+    iRegardingComboBoxTexts.append(localizedConcernOfAdString(ClassifiedAdsModel::ConcerningBooks)) ; 
+    iRegardingComboBoxTexts.append(localizedConcernOfAdString(ClassifiedAdsModel::ConcerningMovies)) ; 
+    iRegardingComboBoxTexts.append(localizedConcernOfAdString(ClassifiedAdsModel::ConcerningAnimals)) ; 
+    iRegardingComboBoxTexts.append(localizedConcernOfAdString(ClassifiedAdsModel::ConcerningElectronics)) ; 
+    iRegardingComboBoxTexts.append(localizedConcernOfAdString(ClassifiedAdsModel::ConcerningJobs)) ; 
+    iRegardingComboBoxTexts.append(localizedConcernOfAdString(ClassifiedAdsModel::ConcerningTransportation)) ; 
+    iRegardingComboBoxTexts.append(localizedConcernOfAdString(ClassifiedAdsModel::ConcerningServices)) ; 
+    iRegardingComboBoxTexts.append(localizedConcernOfAdString(ClassifiedAdsModel::ConcerningHealthcare)) ; 
+    iRegardingComboBoxTexts.append(localizedConcernOfAdString(ClassifiedAdsModel::ConcerningFoodstuff)) ; 
+    iRegardingComboBoxTexts.append(localizedConcernOfAdString(ClassifiedAdsModel::ConcerningSoftware)) ; 
+    iRegardingComboBoxTexts.append(localizedConcernOfAdString(ClassifiedAdsModel::ConcerningEvents)) ; 
+    iRegardingComboBoxTexts.append(localizedConcernOfAdString(ClassifiedAdsModel::ConcerningEducation)) ; 
+    iRegardingComboBoxTexts.append(localizedConcernOfAdString(ClassifiedAdsModel::ConcerningFinance)) ; 
+    iRegardingComboBoxTexts.append(localizedConcernOfAdString(ClassifiedAdsModel::ConcerningJewelry)) ; 
+    iRegardingComboBoxTexts.append(localizedConcernOfAdString(ClassifiedAdsModel::ConcerningReligiousRituals)) ; 
+    iRegardingComboBoxTexts.append(localizedConcernOfAdString(ClassifiedAdsModel::ConcerningPhilosophy)) ; 
+
+  iWhereComboBoxTexts.append(tr("Any country")) ; 
+  for ( int c = QLocale::AnyCountry+1 ; 
+	c <= QLocale::LatinAmericaAndTheCaribbean ; 
+	c ++ ) {
+    iWhereComboBoxTexts.append(QLocale::countryToString((QLocale::Country)c)) ; 
+  }
+}
+
+const QStringList& ClassifiedAdsModel::aboutComboBoxTexts() const 
+{
+  return iAboutComboBoxTexts; 
+}
+
+const QStringList& ClassifiedAdsModel::regardingComboBoxTexts() const  
+{
+  return iRegardingComboBoxTexts ; 
+}
+
+const QStringList& ClassifiedAdsModel::whereComboBoxTexts() const  
+{
+  return iWhereComboBoxTexts; 
 }

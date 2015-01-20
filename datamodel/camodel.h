@@ -23,6 +23,7 @@
 #include "../mcontroller.h" // because enum from there is needed
 #include "../net/protocol.h" // for SendQueueItem 
 #include "datamodelbase.h"
+#include <QStringList>
 
 class Hash ;
 class MModelProtocolInterface ; 
@@ -266,6 +267,10 @@ public:
    * indexer
    */
   void reIndexAllAdsIntoFTS() ; 
+  
+  const QStringList& aboutComboBoxTexts() const ; /**< returns ui texts */
+  const QStringList& regardingComboBoxTexts() const ; /**< returns ui texts */
+  const QStringList& whereComboBoxTexts() const ; /**< returns ui texts */
 signals:
   void error
 (MController::CAErrorSituation aError,
@@ -294,9 +299,14 @@ private: // methods
 			  const quint32 aTimeStamp,
 			  bool aWasPublish,
 			  const Hash& aFromNode ) ;
+  /** initializes string lists used for classification comboboxes */
+  void initComboBoxTexts() ; 
 private: // member variables:
   MController *iController  ;
   const MModelProtocolInterface& iModel ;
   QList<CAObserver*>* iNewCaObservers ; 
+  QStringList iAboutComboBoxTexts ;
+  QStringList iRegardingComboBoxTexts ;
+  QStringList iWhereComboBoxTexts ;
 } ;
 #endif
