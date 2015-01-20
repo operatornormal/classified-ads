@@ -71,6 +71,12 @@ SearchDisplay::SearchDisplay(QWidget *aParent,
 	  SIGNAL(activated()),
 	  this,
 	  SLOT(keyEnterClicked())) ; 
+  if ( iSearchModel->isFTSSupported() == false ) {
+    // if we can't do search ourselves, have only network search
+    // available 
+    ui.networkSearchCheckBox->setCheckState(Qt::Checked) ;
+    ui.networkSearchCheckBox->setEnabled(false) ; 
+  }
 }
 
 

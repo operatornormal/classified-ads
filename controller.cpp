@@ -105,7 +105,7 @@ Controller::Controller(QApplication &app) : iWin(NULL),
   iWin->setCentralWidget(centralWidget) ;
   centralWidget->setLayout(iLayout) ;
   iModel = new Model(this);
-  iDisplaySearchAct->setEnabled(iModel->searchModel()->isFTSSupported()) ;
+  iDisplaySearchAct->setEnabled(true) ;
   displayFront() ;  // put UI in place only after model has been instantiated
   iWin->show() ;
   iModel->getNetReqExecutor()->start() ;
