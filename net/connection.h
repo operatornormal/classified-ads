@@ -325,5 +325,7 @@ protected: // these are not public
   unsigned long iBytesIn ;
   /** transferred data amount */
   unsigned long iBytesOut ;
+  /** storage for peeraddress */
+  QHostAddress iPeerAddress ; 
 } ;
 #endif

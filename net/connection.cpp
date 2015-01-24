@@ -69,7 +69,8 @@ Connection::Connection (const QHostAddress& aAddr,
     iTimeOfBucketFill(QDateTime::currentDateTimeUtc().toTime_t()),
     iSocketOpenTime(QDateTime::currentDateTimeUtc().toTime_t()),
     iBytesIn(0), 
-    iBytesOut(0)
+    iBytesOut(0),
+    iPeerAddress(aAddr)
 {
   LOG_STR(QString("0x%1 ").arg((qulonglong)this, 8) +"Connection::Connection outgoing") ;
 }
@@ -175,7 +176,8 @@ void Connection::runForIncomingConnections() {
     return ;
   }
 
-  if ( iSocket->peerAddress() == iSocket->localAddress() ) {
+  iPeerAddress = iSocket->peerAddress() ;
+  if ( iPeerAddress == iSocket->localAddress() ) {
     QLOG_STR(QString("0x%1 ").arg((qulonglong)this, 8) + "Connected to self, addr = " + iSocket->peerAddress().toString()) ;
     // oh great, broadcast?
     // connected to self
@@ -489,19 +491,14 @@ void Connection::readLoop() {
   }
 }
 
+// reason for this implementation here is that when connection
+// is about to get deleted, there has been SIGSEGV's in calls
+// iSocket->peerAddress() ; indication of a locking problem
+// or similar, the socket is already partly torn down. 
+// have the peer address here as normal variable and avoid the
+// dangerous call:
 QHostAddress Connection::peerAddress() const {
-  // 2 possibilities, if we're outgoing, we know this already
-
-  if ( iSocketIsIncoming ) {
-    if ( iSocket && ( iSocket->state() == QAbstractSocket::ConnectedState ||
-		      iSocket->state() == QAbstractSocket::ClosingState) ) {
-      return iSocket->peerAddress() ;
-    } else {
-      return QHostAddress(KNullIpv6Addr) ;
-    }
-  } else {
-    return iAddrToConnect  ;
-  }
+  return iPeerAddress ; 
 }
 
 const Hash& Connection::fingerPrintOfNodeAttempted() {

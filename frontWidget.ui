@@ -26,7 +26,7 @@
       </sizepolicy>
      </property>
      <property name="currentIndex">
-      <number>4</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="classifiedAdsTab">
       <property name="sizePolicy">
@@ -180,6 +180,12 @@
            </item>
            <item row="2" column="1">
             <widget class="QTextBrowser" name="profileAddressValue">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>25</height>
+              </size>
+             </property>
              <property name="maximumSize">
               <size>
                <width>16777215</width>
