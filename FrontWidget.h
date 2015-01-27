@@ -110,6 +110,12 @@ public:
   const Profile *selectedProfile() const {
     return iSelectedProfile ; 
   } 
+  /**
+   * method for opening a binary file, called from url handling and
+   * from "save shared file.." selection
+   */
+  void openBinaryFile(const Hash& aFingerPrint,
+		      bool aUseViewedProfileNodeAsNetreqDest = false ) ;
 public slots:
   virtual void publishProfileButtonClicked() ; /**< callback of publish btn */
   virtual void revertProfileButtonClicked() ;/**< callback of revert btn */
@@ -190,6 +196,10 @@ public slots:
    * of own profile
    */
   virtual void ownProfileCommentDoubleClicked(const QModelIndex &aSelection) ;
+  /**
+   * this slot is called when user clicks on link on document
+   */
+  virtual void linkActivated ( const QString &aLink ) ; 
 signals:
   void error(MController::CAErrorSituation aError,
              const QString& aExplanation) ;
@@ -287,7 +297,7 @@ private:
   PrivateMessageSearchModel iPrivMsgSearchModel ;
   PrivMessage iPrivMsgOnDisplay ; 
   QGraphicsScene iPrivMsgScene ; /**< this is used to display elements of an priv msg */
-  QGraphicsTextItem iPrivMsgText ; /**< this is used to render text of classified ad */
+  QGraphicsTextItem iPrivMsgText ; /**< this is used to render text of priv msg */
   QGraphicsSimpleTextItem iPrivMsgFromField ;
   QGraphicsSimpleTextItem iPrivMsgSubjectField ;
   const QPoint iPrivMsgTopLeft ; 

@@ -93,7 +93,7 @@ public:
   virtual QString contentKeyPasswd()  const  ;
 
 
-  virtual void startRetrievingContent(NetworkRequestExecutor::NetworkRequestQueueItem aReq,bool aIsBackgroundDl) ;
+  virtual void startRetrievingContent(NetworkRequestExecutor::NetworkRequestQueueItem aReq,bool aIsBackgroundDl, ProtocolItemType aTypeOfExpectedObject) ;
 
 
    virtual void storePrivateDataOfSelectedProfile()  ; 

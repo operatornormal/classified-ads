@@ -41,6 +41,7 @@
 #include <QMessageBox>
 #include <QScrollBar>
 #include <QMainWindow>
+#include <QDesktopServices>
 
 static const QString internalNameOfProfileTab("profileTabNamed") ; 
 static const QString internalNameOfCommentDialog("caCommentDlgNamed") ; 
@@ -825,6 +826,9 @@ void FrontWidget::userProfileSelected(const Hash& aProfile) {
   }
   iController->model().unlock() ;
   ui.privateMessageListView->resizeColumnToContents(2) ; 
+  iPrivMsgText.setHtml("<html></html>") ; 
+  iPrivMsgSubjectField.setText("") ; 
+  iPrivMsgFromField.setText("") ;
   updateUiFromSelectedProfile() ;
   iContactsModel.clearContents() ; 
   iController->reStorePrivateDataOfSelectedProfile() ; 
@@ -909,7 +913,7 @@ void FrontWidget::fileToBeSharedRemoved() {
 	// addFile will also modify iSelectedProfile->iSharedFiles
 	iSelectedProfileFileListingModel->removeFile(fingerPrint) ;
 	iSelectedProfile->iTimeOfPublish = QDateTime::currentDateTimeUtc().toTime_t() ;
-	iController->model().profileModel().publishProfile(*iSelectedProfile) ; 
+	iController->model().profileModel().publishProfile(*iSelectedProfile);
       }
     }
   }
@@ -919,20 +923,20 @@ void FrontWidget::fileToBeSharedRemoved() {
 void FrontWidget::exportSharedFile() {
   LOG_STR("exportSharedFile") ;
   // ok, see what user had selected ; one file only:
-  bool netRequestStarted(false) ; 
-  QByteArray fileData ; 
-  BinaryFile* metadata (NULL); 
-  iController->model().lock() ; 
+
   if ( iSelectedProfileFileListingModel ) {
     Hash fingerPrint ;
 
     if ( ui.tabWidget->currentIndex() == 1 ) { // 1 == "my profile" so this is export of my own file
+      iController->model().lock() ; 
       foreach(const QModelIndex &index, 
 	      ui.sharedFilesView->selectionModel()->selectedIndexes()) {
 	fingerPrint.fromString((const unsigned char *)(qPrintable(iSelectedProfileFileListingModel->data(index,Qt::ToolTipRole).toString())));
 	break ; 
       }
+      iController->model().unlock() ; 
     } else {
+      iController->model().lock() ; 
       if ( iViewedProfileFileListingModel ) {
 	LOG_STR("Trying to find shared file from other profiles listing..") ; 
 	foreach(const QModelIndex &index, 
@@ -941,48 +945,71 @@ void FrontWidget::exportSharedFile() {
 	  break ; 
 	}      
       }
+      iController->model().unlock() ; 
     }
     if ( fingerPrint != KNullHash ) {
-      // aye, found a selected fingerprint; first check if we have 
-      //  the file or just know the fingerprint. both are possible. 
-      if ( ( metadata = iController->model().binaryFileModel().binaryFileByFingerPrint(fingerPrint) ) == NULL ) {
-	// got no file, ask it to be retrieved:
-	NetworkRequestExecutor::NetworkRequestQueueItem req ;
-	req.iRequestType = RequestForBinaryBlob ;
-	req.iRequestedItem = fingerPrint ;
-	req.iState = NetworkRequestExecutor::NewRequest ; 
-	req.iMaxNumberOfItems = 1 ; 
-	// if the file was shared by some other operator, 
-	// ask node of that operator first
-	if ( ui.tabWidget->currentIndex() != 1 ) { // was not our own profile
-	  if ( iViewedProfile && iViewedProfile->iNodeOfProfile ) {
-	    req.iDestinationNode = iViewedProfile->iNodeOfProfile->nodeFingerPrint();
-	  }
-	}
-	iController->startRetrievingContent(req,true) ; 
-	netRequestStarted = true ; 
-      } else {
-	QByteArray fileSignature ; 
-	Hash fileOwnerFingerPrint ; 
-	fileOwnerFingerPrint.fromString((const unsigned char *)(metadata->iOwner.toLatin1().constData())) ;
-	bool dummy ; 
-	iController->model().binaryFileModel().setTimeLastReference(fingerPrint, QDateTime::currentDateTimeUtc().toTime_t()) ; 
-	if ( !iController->model().binaryFileModel().binaryFileDataByFingerPrint(fingerPrint,
-										 fileOwnerFingerPrint,
-										 fileData,
-										 fileSignature,
-										 &dummy) ) {
-	  LOG_STR("Got no file?") ;
-	}
+      // aye, found a selected fingerprint;
+      openBinaryFile(fingerPrint,true) ; 
+    }
+  }
+}
+
+void FrontWidget::openBinaryFile(const Hash& aFingerPrint,
+				 bool aUseViewedProfileNodeAsNetreqDest) {
+  bool netRequestStarted(false) ; 
+  QByteArray fileData ; 
+  iController->model().lock() ; 
+  BinaryFile* metadata (iController->model().binaryFileModel().binaryFileByFingerPrint(aFingerPrint)); 
+  iController->model().unlock() ;
+ 
+  // first check if we have 
+  //  the file or just know the fingerprint. both are possible. 
+  if ( metadata == NULL ) {
+    // got no file, ask it to be retrieved:
+    NetworkRequestExecutor::NetworkRequestQueueItem req ;
+    req.iRequestType = RequestForBinaryBlob ;
+    req.iRequestedItem = aFingerPrint ;
+    req.iState = NetworkRequestExecutor::NewRequest ; 
+    req.iMaxNumberOfItems = 1 ; 
+    // if the file was shared by some other operator, 
+    // ask node of that operator first
+    if ( ui.tabWidget->currentIndex() != 1 ) { // was not our own profile
+      if ( iViewedProfile && iViewedProfile->iNodeOfProfile  &&
+	   aUseViewedProfileNodeAsNetreqDest ) {
+	req.iDestinationNode = iViewedProfile->iNodeOfProfile->nodeFingerPrint();
       }
     }
-
+    iController->startRetrievingContent(req,true,BinaryBlob) ; 
+    netRequestStarted = true ; 
+  } else {
+    QByteArray fileSignature ; 
+    Hash fileOwnerFingerPrint ; 
+    fileOwnerFingerPrint.fromString((const unsigned char *)(metadata->iOwner.toLatin1().constData())) ;
+    bool dummy ; 
+    iController->model().lock() ; 
+    iController->model().binaryFileModel().setTimeLastReference(aFingerPrint, QDateTime::currentDateTimeUtc().toTime_t()) ; 
+    if ( !iController->model().binaryFileModel().binaryFileDataByFingerPrint(aFingerPrint,
+									     fileOwnerFingerPrint,
+									     fileData,
+									     fileSignature,
+									     &dummy) ) {
+      LOG_STR("Got no file?") ;
+    }
+    iController->model().unlock() ; 
   }
-  iController->model().unlock() ; 
   if ( fileData.size() > 0 && metadata ) {
+    QString suffix  ( tr("files")+" (*.*)" ) ;
+    if ( ( metadata->iFileName != NULL ) 
+	 && ( metadata->iFileName.length() > 0 ) ) {
+      int periodPosition = metadata->iFileName.lastIndexOf(".") ;
+      if ( periodPosition > 0 ) {
+	QString filenameSuffix = metadata->iFileName.mid(periodPosition+1) ;
+	suffix = filenameSuffix + " "+tr("files")+" (*."+filenameSuffix+")" ;
+      }
+    }
     QString fileName = QFileDialog::getSaveFileName(this, tr("Choose file name for saving"),
 						    metadata->iFileName,
-						    tr("Files (*.*)"));
+						    suffix);
     if ( fileName.length() > 0 ) {
       QFile f ( fileName ) ; 
       if ( f.open(QIODevice::WriteOnly) ) {
@@ -996,8 +1023,9 @@ void FrontWidget::exportSharedFile() {
   }
   delete metadata ; 
   if ( netRequestStarted ) {
-    QMessageBox::about(this,tr("Please wait"),
-		       tr("File is being fetched from network"));
+    iController->userInterfaceAction ( MController::DisplayProgressDialog,
+				       KNullHash ,
+				       KNullHash ) ; 
   }
 }
 
@@ -1365,6 +1393,13 @@ void FrontWidget::setupClassifiedAdsTab() {
   ui.caHeadersView->addAction(iAddToContactsFromCaList) ;
   connect(iAddToContactsFromCaList, SIGNAL(triggered()),
 	  this, SLOT(addCaSenderToContacts())) ;
+
+  iCaText.setTextInteractionFlags(Qt::TextBrowserInteraction) ; 
+  assert(
+  connect ( &iCaText,
+	    SIGNAL(linkActivated ( const QString & )),
+	    this,
+	    SLOT(linkActivated ( const QString & )))) ; 
 }
 
 void FrontWidget::setCaDocumentSize() {
@@ -1470,7 +1505,12 @@ void FrontWidget::setupPrivateMessagesTab() {
   ui.privateMessageListView->addAction(iAddToContactsFromMsgList) ;
   connect(iAddToContactsFromMsgList, SIGNAL(triggered()),
 	  this, SLOT(addMessageSenderToContacts())) ;
-
+  iPrivMsgText.setTextInteractionFlags(Qt::TextBrowserInteraction) ; 
+  assert(
+  connect ( &iPrivMsgText,
+	    SIGNAL(linkActivated ( const QString & )),
+	    this,
+	    SLOT(linkActivated ( const QString & )))) ; 
 }
 
 void FrontWidget::fillCaSelectionCombobox(QComboBox& aComboBox,
@@ -1996,3 +2036,53 @@ void FrontWidget::activateProfileCommentDisplay(ProfileCommentListingModel* aLis
   dialog->show() ; // the dialog will delete self			  aInitialComment ) ; 
 }
 
+
+void FrontWidget::linkActivated ( const QString &aLink ) 
+{
+  QLOG_STR("FrontWidget::linkActivated " + aLink ) ; 
+  QUrl url ( aLink, QUrl::StrictMode)  ;
+  if ( url.isValid() &&
+       url.scheme().length() > 0 &&
+       url.host().length() > 0 ) {
+    if ( url.scheme() == "caprofile" ||
+	 url.scheme() == "caad" ||
+	 url.scheme() == "cacomment" ||
+	 url.scheme() == "cablob"  ) {
+      // classified ads link. handle internally.
+      Hash parsedHash ;
+      parsedHash.fromString(reinterpret_cast<const unsigned char *>(url.host().toLatin1().constData())) ;
+      if ( parsedHash == KNullHash ) {
+	QMessageBox errorMessage ;
+	errorMessage.setText(tr("Invalid SHA1 in URL") + " " + aLink );
+	errorMessage.setStandardButtons( QMessageBox::Ok );
+	errorMessage.exec();
+	return ; 
+      } else {
+	if ( url.scheme() == "caprofile" ) {
+	  iController->userInterfaceAction(MController::ViewProfileDetails, 
+					   parsedHash ) ; 
+	} else 	if ( url.scheme() == "caad" ) {
+	  iController->userInterfaceAction(MController::ViewCa, 
+					   parsedHash ) ; 
+	} else 	if ( url.scheme() == "cacomment" ) {
+	  iController->userInterfaceAction(MController::ViewProfileComment, 
+					   parsedHash ) ; 
+	} else {
+	  // handling for binary file. .. save it to disk, 
+	  // we could also check other actions from metadata
+	  // but for now, lets just dump it into filesystem,
+	  // user does what user does.
+	  openBinaryFile(parsedHash, false) ; 
+	} 
+      }
+    } else {
+      QDesktopServices::openUrl(url) ; 
+    }
+  } else {
+    QMessageBox errorMessage ;
+    errorMessage.setText(tr("Invalid URL") + " " + aLink );
+    errorMessage.setStandardButtons( QMessageBox::Ok );
+    errorMessage.exec();
+    return ; 
+  }
+} 

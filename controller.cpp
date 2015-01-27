@@ -318,16 +318,10 @@ void Controller::userInterfaceAction ( CAUserInterfaceRequest aRequest,
       req.iRequestedItem = aHashConcerned ;
       req.iState = NetworkRequestExecutor::NewRequest ; 
       req.iDestinationNode = aFetchFromNode ; // may be KNullHash
-      startRetrievingContent(req,false) ; 
-      iHashOfObjectBeingWaitedFor = aHashConcerned ;
-      iTypeOfObjectBeingWaitedFor = UserProfile ; 
-      QProgressDialog* waitDialog = new QProgressDialog(iCurrentWidget) ; 
-      waitDialog->setLabelText ( tr("Fetching item from network..") ); 
-      waitDialog->setMaximum(0) ; 
-      waitDialog->setMinimum(0) ; 
-      connect(this,SIGNAL(waitDialogToBeDismissed()),
-	      waitDialog,SLOT(reject())) ; 
-      waitDialog->exec() ; 
+      startRetrievingContent(req,false,UserProfile) ; 
+      userInterfaceAction ( DisplayProgressDialog,
+			    KNullHash ,
+			    KNullHash ) ; 
     }
   } else if ( aRequest == ViewCa ) {
     iModel->lock() ; 
@@ -343,16 +337,10 @@ void Controller::userInterfaceAction ( CAUserInterfaceRequest aRequest,
       req.iRequestedItem = aHashConcerned ;
       req.iState = NetworkRequestExecutor::NewRequest ; 
       req.iDestinationNode = aFetchFromNode ; // may be KNullHash
-      startRetrievingContent(req,false) ; 
-      iHashOfObjectBeingWaitedFor = aHashConcerned ;
-      iTypeOfObjectBeingWaitedFor = ClassifiedAd ; 
-      QProgressDialog* waitDialog = new QProgressDialog(iCurrentWidget) ; 
-      waitDialog->setLabelText ( tr("Fetching item from network..") ); 
-      waitDialog->setMaximum(0) ; 
-      waitDialog->setMinimum(0) ; 
-      connect(this,SIGNAL(waitDialogToBeDismissed()),
-	      waitDialog,SLOT(reject())) ; 
-      waitDialog->exec() ; 
+      startRetrievingContent(req,false,ClassifiedAd) ; 
+      userInterfaceAction ( DisplayProgressDialog,
+			    KNullHash ,
+			    KNullHash ) ; 
     }
   } else if ( aRequest == ViewProfileComment ) {
     // ok, profile comment is tricky to display because it 
@@ -385,18 +373,12 @@ void Controller::userInterfaceAction ( CAUserInterfaceRequest aRequest,
       req.iRequestedItem = c->iProfileFingerPrint ;
       req.iState = NetworkRequestExecutor::NewRequest ; 
       req.iDestinationNode = aFetchFromNode ; // may be KNullHash
-      startRetrievingContent(req,false) ; 
-      iHashOfObjectBeingWaitedFor = c->iProfileFingerPrint ;
-      iTypeOfObjectBeingWaitedFor = UserProfile ; 
+      startRetrievingContent(req,false,UserProfile) ; 
       iHashOfProfileCommentBeingWaitedFor = aHashConcerned ;
       iNodeForCommentBeingWaitedFor =  aFetchFromNode ; 
-      QProgressDialog* waitDialog = new QProgressDialog(iCurrentWidget) ; 
-      waitDialog->setLabelText ( tr("Fetching item from network..") ); 
-      waitDialog->setMaximum(0) ; 
-      waitDialog->setMinimum(0) ; 
-      connect(this,SIGNAL(waitDialogToBeDismissed()),
-	      waitDialog,SLOT(reject())) ; 
-      waitDialog->exec() ; 
+      userInterfaceAction ( DisplayProgressDialog,
+			    KNullHash ,
+			    KNullHash ) ; 
       }
       delete c ; 
     } else {
@@ -406,9 +388,13 @@ void Controller::userInterfaceAction ( CAUserInterfaceRequest aRequest,
       req.iRequestedItem = aHashConcerned ;
       req.iState = NetworkRequestExecutor::NewRequest ; 
       req.iDestinationNode = aFetchFromNode ; // may be KNullHash
-      startRetrievingContent(req,false) ; 
-      iHashOfObjectBeingWaitedFor = aHashConcerned ;
-      iTypeOfObjectBeingWaitedFor = UserProfileComment ; 
+      startRetrievingContent(req,false,UserProfileComment) ; 
+      userInterfaceAction ( DisplayProgressDialog,
+			    KNullHash ,
+			    KNullHash ) ; 
+    }
+
+  } else if ( aRequest == DisplayProgressDialog ) {
       QProgressDialog* waitDialog = new QProgressDialog(iCurrentWidget) ; 
       waitDialog->setLabelText ( tr("Fetching item from network..") ); 
       waitDialog->setMaximum(0) ; 
@@ -416,8 +402,6 @@ void Controller::userInterfaceAction ( CAUserInterfaceRequest aRequest,
       connect(this,SIGNAL(waitDialogToBeDismissed()),
 	      waitDialog,SLOT(reject())) ; 
       waitDialog->exec() ; 
-    }
-
   } else {
     LOG_STR2("Unhandled user interface request %d", aRequest) ; 
   }
@@ -857,16 +841,10 @@ void Controller::notifyOfContentReceived(const Hash& aHashOfContent,
 	    req.iState = NetworkRequestExecutor::NewRequest ; 
 	    req.iDestinationNode = iNodeForCommentBeingWaitedFor ; 
 	    iNodeForCommentBeingWaitedFor = KNullHash ; 
-	    startRetrievingContent(req,false) ; 
-	    iHashOfObjectBeingWaitedFor = req.iRequestedItem ;
-	    iTypeOfObjectBeingWaitedFor = UserProfileComment ; 
-	    QProgressDialog* waitDialog = new QProgressDialog(iCurrentWidget) ; 
-	    waitDialog->setLabelText ( tr("Fetching item from network..") ); 
-	    waitDialog->setMaximum(0) ; 
-	    waitDialog->setMinimum(0) ; 
-	    connect(this,SIGNAL(waitDialogToBeDismissed()),
-		    waitDialog,SLOT(reject())) ; 
-	    waitDialog->exec() ; 
+	    startRetrievingContent(req,false,UserProfileComment) ; 
+	    userInterfaceAction ( DisplayProgressDialog,
+				  KNullHash ,
+				  KNullHash ) ; 
 	  } else {
 	    iCurrentWidget->showSingleCommentOfProfile(iHashOfProfileCommentBeingWaitedFor) ;
 	    delete c ; 
@@ -880,6 +858,8 @@ void Controller::notifyOfContentReceived(const Hash& aHashOfContent,
 	if ( ca.iFingerPrint != KNullHash ) {
 	  iCurrentWidget->showClassifiedAd(ca) ; 
 	}
+      } else if ( aTypeOfReceivedContent == BinaryBlob ) {
+	iCurrentWidget->openBinaryFile(aHashOfContent,false) ; 
       }
     } 
   }
@@ -922,16 +902,10 @@ void Controller::notifyOfContentReceived(const Hash& aHashOfContent,
 	    req.iState = NetworkRequestExecutor::NewRequest ; 
 	    req.iDestinationNode = iNodeForCommentBeingWaitedFor ; 
 	    iNodeForCommentBeingWaitedFor = KNullHash ; 
-	    startRetrievingContent(req,false) ; 
-	    iHashOfObjectBeingWaitedFor = req.iRequestedItem ;
-	    iTypeOfObjectBeingWaitedFor = UserProfileComment ; 
-	    QProgressDialog* waitDialog = new QProgressDialog(iCurrentWidget) ; 
-	    waitDialog->setLabelText ( tr("Fetching item from network..") ); 
-	    waitDialog->setMaximum(0) ; 
-	    waitDialog->setMinimum(0) ; 
-	    connect(this,SIGNAL(waitDialogToBeDismissed()),
-		    waitDialog,SLOT(reject())) ; 
-	    waitDialog->exec() ; 
+	    startRetrievingContent(req,false,UserProfileComment) ; 
+	    userInterfaceAction ( DisplayProgressDialog,
+				  KNullHash ,
+				  KNullHash ) ; 
 	  }
 	}
       } else if ( aTypeOfReceivedContent == ClassifiedAd ) {
@@ -966,11 +940,14 @@ void Controller::notifyOfContentNotReceived(const Hash& aHashOfContent,
 }
 
 void Controller::startRetrievingContent(NetworkRequestExecutor::NetworkRequestQueueItem aReq,
-					bool aIsBackgroundDl) 
+					bool aIsBackgroundDl,
+					ProtocolItemType aTypeOfExpectedObject) 
 {
   // here queue the item into retrieval-engine
   iRetrievalEngine->startRetrieving(aReq,
 				    aIsBackgroundDl) ; 
+  iHashOfObjectBeingWaitedFor = aReq.iRequestedItem ;
+  iTypeOfObjectBeingWaitedFor = aTypeOfExpectedObject ; 
 }
 
 void Controller::storePrivateDataOfSelectedProfile() {

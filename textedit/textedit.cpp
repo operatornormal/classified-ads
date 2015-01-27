@@ -67,6 +67,9 @@
 #include <QPrintPreviewDialog>
 #include <QLayout>
 #include <QMimeData>
+#include "../log.h"
+#include "../ui/insertlinkdialog.h"
+#include <assert.h>
 
 #ifdef Q_WS_MAC
 const QString rsrcPath = ":/images/mac";
@@ -276,6 +279,11 @@ void TextEdit::setupEditActions()
   if (const QMimeData *md = QApplication::clipboard()->mimeData())
     actionPaste->setEnabled(md->hasText());
 #endif
+  menu->addSeparator();
+  actionInsertLink = new QAction(tr("Insert link"), this) ; 
+  connect(actionInsertLink, SIGNAL(triggered()),
+	  this, SLOT(insertLinkSelected())) ; 
+  menu->addAction(actionInsertLink) ; 
 }
 
 void TextEdit::setupTextActions()
@@ -513,6 +521,42 @@ void TextEdit::filePrintPreview()
 #endif
 }
 
+void TextEdit::insertLinkSelected()
+{
+  QLOG_STR("TextEdit::insertLinkSelected") ; 
+
+  InsertLinkDialog *link_dialog = 
+    new InsertLinkDialog(this, iController) ;
+  connect(link_dialog,
+	  SIGNAL(  error(MController::CAErrorSituation,
+			 const QString&) ),
+	  iController,
+	  SLOT(handleError(MController::CAErrorSituation,
+			   const QString&)),
+	  Qt::QueuedConnection ) ;
+  connect(this,
+	  SIGNAL( accepted() ),
+	  link_dialog,
+	  SLOT(deleteLater()),
+	  Qt::QueuedConnection ) ;
+  connect(this,
+	  SIGNAL( rejected() ),
+	  link_dialog,
+	  SLOT(deleteLater()),
+	  Qt::QueuedConnection ) ;
+
+  // don't connect as queued, it transfers pointers
+  assert(
+  connect ( link_dialog,
+	    SIGNAL(  linkReady(const QString& ,
+			       const QString& ) ),
+	    this,
+	    SLOT(    linkReady(const QString& ,
+			       const QString& ) ) ) ); 
+  
+  link_dialog->show() ; // the dialog will delete self
+}
+
 void TextEdit::printPreview(QPrinter *printer)
 {
 #ifdef QT_NO_PRINTER
@@ -725,3 +769,10 @@ void TextEdit::alignmentChanged(Qt::Alignment a)
   }
 }
 
+void TextEdit::linkReady(const QString& aLinkAddress,
+			 const QString& aLinkLabel)
+{
+  QLOG_STR("link ready " + aLinkAddress) ; 
+  QLOG_STR("link label " + aLinkLabel) ; 
+  textEdit->insertHtml("<a href='"+aLinkAddress+"'>"+aLinkLabel+"</a> ") ;
+}

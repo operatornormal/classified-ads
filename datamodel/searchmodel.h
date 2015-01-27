@@ -178,7 +178,6 @@ private: // data
   MModelProtocolInterface& iModel ; 
   QString iSearchString ;
   const bool iIsFTSSupported ; 
-  QTextDocument *iHtmlParser ; 
   QList<SearchResultItem> iDisplayedResults ;
   MController& iController ; 
   Hash iSearchId ; /**< searches may be lengthty: this connects results */

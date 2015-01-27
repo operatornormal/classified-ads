@@ -95,9 +95,15 @@ public:
 			    QLayout *aLayOutForMenu,
 			    QLayout* aWidgetForActionsUpper,
 			    QLayout* aWidgetForActionsLower) ; 
+public slots:
+    /**
+     * this slot is called when user has finished entering a link
+     * and it is ready to be included in the document 
+     */
+    virtual void linkReady(const QString& aLinkAddress,
+			   const QString& aLinkLabel) ;
 protected:
     virtual void closeEvent(QCloseEvent *e);
-
 private:
     void setupFileActions();
     void setupEditActions();
@@ -105,7 +111,6 @@ private:
     bool load(const QString &f);
     bool maybeSave();
     void setCurrentFileName(const QString &fileName);
-
 private slots:
     void fileNew();
     void fileOpen();
@@ -129,7 +134,7 @@ private slots:
 
     void clipboardDataChanged();
     void printPreview(QPrinter *);
-
+    void insertLinkSelected() ; /**< user says he wants insert a link */
 private:
     void mergeFormatOnWordOrSelection(const QTextCharFormat &format);
     void fontChanged(const QFont &f);
@@ -156,7 +161,8 @@ private: // variables
         *actionRedo,
         *actionCut,
         *actionCopy,
-        *actionPaste;
+      *actionPaste,
+      *actionInsertLink;
 
     QComboBox *comboStyle;
     QFontComboBox *comboFont;

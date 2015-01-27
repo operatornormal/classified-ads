@@ -5,13 +5,6 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 CONFIG += release
 # enabled -DDEBUG to have console log via qDebug()
 #QMAKE_CXXFLAGS += -DDEBUG
-# compile with O1 instead of O2
-QMAKE_CXXFLAGS_RELEASE -= -O2
-QMAKE_CXXFLAGS_RELEASE -= -O3
-QMAKE_CXXFLAGS_RELEASE += -O1
-QMAKE_LFLAGS_RELEASE -= -O2
-QMAKE_LFLAGS_RELEASE -= -O3
-QMAKE_LFLAGS_RELEASE += -O1
 win32.CONFIG += console
 CODECFORTR = UTF-8
 CODECFORSRC = UTF-8
@@ -39,7 +32,7 @@ HEADERS = mcontroller.h controller.h FrontWidget.h net/node.h util/hash.h \
         ui/attachmentlistdialog.h ui/settings.h ui/status.h \
 	datamodel/connectionlistingmodel.h ui/manualconnection.h \
 	ui/aboutdialog.h textedit/textedit.h datamodel/searchmodel.h \
-	ui/searchdisplay.h	
+	ui/searchdisplay.h ui/insertlinkdialog.h
 SOURCES = main.cpp controller.cpp FrontWidget.cpp net/node.cpp util/hash.cpp \
 	net/connection.cpp datamodel/model.cpp \
         net/networklistener.cpp net/protocol_message_formatter.cpp \
@@ -65,13 +58,13 @@ SOURCES = main.cpp controller.cpp FrontWidget.cpp net/node.cpp util/hash.cpp \
         ui/attachmentlistdialog.cpp ui/settings.cpp ui/status.cpp \
 	datamodel/connectionlistingmodel.cpp ui/manualconnection.cpp \
         ui/aboutdialog.cpp textedit/textedit.cpp datamodel/searchmodel.cpp \
-	ui/searchdisplay.cpp	
+	ui/searchdisplay.cpp ui/insertlinkdialog.cpp
 FORMS = frontWidget.ui ui/profileReadersDialog.ui ui/passwordDialog.ui \
 	ui/newClassifiedAd.ui 	ui/newPrivMsg.ui ui/editContact.ui \
         ui/newProfileComment.ui ui/profileCommentDisplay.ui \
         ui/attachmentListDialog.ui ui/settingsDialog.ui \
 	ui/statusDialog.ui ui/manualConnectionDialog.ui \
-	ui/aboutDialog.ui ui/searchDisplay.ui
+	ui/aboutDialog.ui ui/searchDisplay.ui ui/insertLink.ui
 RESOURCES     = ui_resources.qrc
 
 unix:LIBS = -lssl -lcrypto -lnatpmp -lqjson

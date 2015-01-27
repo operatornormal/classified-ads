@@ -122,7 +122,7 @@ void AttachmentListDialog::exportSharedFile() {
 	if (iNodeToTryForRetrieval != KNullHash ) {
 	  req.iDestinationNode = iNodeToTryForRetrieval;
 	}
-	iController->startRetrievingContent(req,true) ; 
+	iController->startRetrievingContent(req,true,BinaryBlob) ; 
 	netRequestStarted = true ; 
       } else {
 	QByteArray fileSignature ; 
@@ -168,8 +168,9 @@ void AttachmentListDialog::exportSharedFile() {
   }
   delete metadata ; 
   if ( netRequestStarted ) {
-    QMessageBox::about(this,tr("Please wait"),
-		       tr("File is being fetched from network"));
+    iController-> userInterfaceAction ( MController::DisplayProgressDialog,
+					KNullHash ,
+					KNullHash ) ; 
   }
 }
 	       

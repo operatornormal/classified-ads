@@ -42,13 +42,10 @@ SearchModel::SearchModel(MModelProtocolInterface& aModel,
 			 MController& aController) : 
   iModel(aModel),
   iIsFTSSupported(queryIfFTSSupported()),
-  iHtmlParser(NULL),
   iController(aController) {
-  iHtmlParser = new QTextDocument() ; 
 }
 
 SearchModel::~SearchModel() {
-  delete iHtmlParser ; 
 }
 
 int SearchModel::rowCount(const QModelIndex& ) const
@@ -213,9 +210,12 @@ void SearchModel::createFTSTables() {
 void SearchModel::indexClassifiedAd(const CA& aCa) {
   if ( iIsFTSSupported && aCa.iMessageText.length() > 0  ) {
     // dig out message text in plain text
-    iHtmlParser->setHtml(aCa.iMessageText ) ; 
-    QString plainText(iHtmlParser->toPlainText()) ;
-    iHtmlParser->clear() ; 
+    QLOG_STR("indexClassifiedAd setHtml, len = " + QString::number( aCa.iMessageText.length() ) ) ; 
+    QTextDocument* htmlParser = new QTextDocument() ; // create every time, because this method
+                                                       // is called from multiple threads 
+    htmlParser->setHtml(aCa.iMessageText ) ; 
+    QString plainText(htmlParser->toPlainText()) ;
+    htmlParser->clear() ; 
     bool operation_success (false) ; 
     if ( plainText.length() > 0 ) {
       QSqlQuery ins ;
@@ -237,15 +237,18 @@ void SearchModel::indexClassifiedAd(const CA& aCa) {
 	QLOG_STR("insert into classified_ad_search : " + ins.lastError().text()) ; 
       }
     }
+    delete htmlParser ; 
   }
 }
 
 void SearchModel::indexProfileComment(const ProfileComment& aProfileComment) {
   if ( iIsFTSSupported && aProfileComment.iFingerPrint!=KNullHash  ) {
     bool operation_success (false) ; 
-    iHtmlParser->setHtml(aProfileComment.iCommentText ) ; 
-    QString plainText(iHtmlParser->toPlainText()) ;
-    iHtmlParser->clear() ; 
+    QTextDocument* htmlParser = new QTextDocument() ; // create every time, because this method
+                                                       // is called from multiple threads 
+    htmlParser->setHtml(aProfileComment.iCommentText ) ; 
+    QString plainText(htmlParser->toPlainText()) ;
+    htmlParser->clear() ; 
     QSqlQuery ins ;
 
     operation_success= ins.prepare("insert into profilecomment_search("
@@ -269,6 +272,7 @@ void SearchModel::indexProfileComment(const ProfileComment& aProfileComment) {
     } else {
       QLOG_STR("insert/update into profilecomment_search : " + ins.lastError().text()) ; 
     }
+    delete htmlParser ; 
   }
 }
 

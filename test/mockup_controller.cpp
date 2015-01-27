@@ -139,7 +139,7 @@ const Hash& MockUpController::profileInUse()
 } 
 
 
-void MockUpController::startRetrievingContent(NetworkRequestExecutor::NetworkRequestQueueItem aReq,bool aIsBackgroundDl) {
+void MockUpController::startRetrievingContent(NetworkRequestExecutor::NetworkRequestQueueItem aReq,bool aIsBackgroundDl, ProtocolItemType aTypeOfExpectedObject) {
   return ;
 }
 

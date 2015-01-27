@@ -257,24 +257,26 @@ void NetworkRequestExecutor::processNodeGreeting
 						      aEntry.iMaxNumberOfItems) ;
   }
   if ( nodesToSend ) {
-    QByteArray* resultBytes = new QByteArray() ;
-    if ( nodesToSend->size() ) {
-      for ( int i = nodesToSend->size()-1 ; i>= 0 ; i-- ) {
-        Node* n = nodesToSend->value(i) ;
-        resultBytes->append(ProtocolMessageFormatter::nodeGreeting(*n));
-        delete n ;
-        nodesToSend->removeAt(i) ;
+    if ( nodesToSend->count() > 0 ) {
+      QByteArray* resultBytes = new QByteArray() ;
+      if ( nodesToSend->size() ) {
+	for ( int i = nodesToSend->size()-1 ; i>= 0 ; i-- ) {
+	  Node* n = nodesToSend->value(i) ;
+	  resultBytes->append(ProtocolMessageFormatter::nodeGreeting(*n));
+	  delete n ;
+	  nodesToSend->removeAt(i) ;
+	}
+      }
+      if ( resultBytes->size() ) {
+	// datamodel will delete resultBytes
+	iModel.addItemToSend(aEntry.iDestinationNode,
+			     resultBytes) ;
+      } else {
+	// we obtained zero bytes -> delete empty bytearray
+	delete resultBytes ;
       }
     }
     delete nodesToSend ;
-    if ( resultBytes->size() ) {
-      // datamodel will delete resultBytes
-      iModel.addItemToSend(aEntry.iDestinationNode,
-                           resultBytes) ;
-    } else {
-      // we obtained zero bytes -> delete empty bytearray
-      delete resultBytes ;
-    }
   }
   aEntry.iState = ReadyToSend ;
 }

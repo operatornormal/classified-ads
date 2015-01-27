@@ -271,7 +271,7 @@ QVariant Node::asQVariant() const {
     m.insert(KNodeJSonListenPortElement, iListenPort) ;
   }
   m.insert(KNodeJSonLastContactTimeElement,
-           QDateTime::currentDateTimeUtc().toTime_t()) ;
+           (unsigned)iTimeOfLastContact ) ;
   if ( iIPv4Addr ) {
     m.insert(KNodeJSonIPv4Element, iIPv4Addr) ;
   }
@@ -306,7 +306,7 @@ Node* Node::fromQVariant(const QVariantMap& aJSonAsQVariant,
       n = new Node ( nodeFp,nodePort) ;
 
       if ( aJSonAsQVariant.contains(KNodeJSonLastContactTimeElement) ) {
-        quint32 contactTime (aJSonAsQVariant[KNodeJSonLastContactTimeElement].toUInt());
+        unsigned contactTime (aJSonAsQVariant[KNodeJSonLastContactTimeElement].toUInt());
         if ( contactTime ) {
           n->setLastConnectTime(contactTime) ;
         }

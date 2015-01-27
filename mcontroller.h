@@ -61,7 +61,8 @@ public:
   enum CAUserInterfaceRequest {
     ViewProfileDetails, /**< User wants to view details of profile */
     ViewCa, /**< User wants to view classified ad */
-    ViewProfileComment /**< User wants to view profile comment */
+    ViewProfileComment, /**< User wants to view profile comment */
+    DisplayProgressDialog /**< puts wait dialog on screen */
   } ; 
 
   /**
@@ -73,7 +74,8 @@ public:
    *        queued into background as a low-priority item
    */
   virtual void startRetrievingContent(NetworkRequestExecutor::NetworkRequestQueueItem aReq,
-				      bool aIsBackgroundDl) = 0 ;  
+				      bool aIsBackgroundDl,
+				      ProtocolItemType aTypeOfExpectedObject ) = 0 ;  
 
   /**
    * Method for requesting different things to take place in UI.

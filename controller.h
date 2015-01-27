@@ -61,7 +61,8 @@ public:
    *        queued into background as a low-priority item
    */
   virtual void startRetrievingContent(NetworkRequestExecutor::NetworkRequestQueueItem aReq,
-				      bool aIsBackgroundDl) ; 
+				      bool aIsBackgroundDl,
+				      ProtocolItemType aTypeOfExpectedObject) ; 
   /**
    * From MController.
    *
