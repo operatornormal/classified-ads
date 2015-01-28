@@ -63,7 +63,7 @@ void NetworkConnectorEngine::run() {
   time_t timeOfLastNodeListUpdate (0) ;
   int connectedCount = 0 ; // initially must be, later ask datamodel
   if (   iBroadCastSocket == NULL ) {
-    iBroadCastSocket = new QUdpSocket(this) ; 
+    iBroadCastSocket = new QUdpSocket() ; 
   }
   while (iNeedsToRun ) {
     sendBroadCast() ;
