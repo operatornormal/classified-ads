@@ -57,7 +57,7 @@ public:
    */
   AttachmentListDialog(QWidget *aParent,
 		       MController* aController,
-		       const Profile& aSelectedProfile,
+		       Profile& aSelectedProfile,
 		       QList<Hash>& aFilesToDisplay,
 		       const Hash& aNodeToTryForRetrieval = KNullHash );
   /** destructor */

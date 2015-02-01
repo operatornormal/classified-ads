@@ -79,7 +79,7 @@ public:
    */
   TextEdit(QWidget* aParent,
 	   MController* aController,
-	   const Profile& aSelectedProfile);
+	   Profile& aSelectedProfile);
 
   /** destructor */
   ~TextEdit() ; 

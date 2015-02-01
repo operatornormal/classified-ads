@@ -49,7 +49,7 @@ public:
   SearchDisplay(QWidget *aParent,
 		MController* aController,
 		SearchModel* aSearchModel ,
-		const Profile& aSelectedProfile);
+		Profile& aSelectedProfile);
   /** destructor */
   ~SearchDisplay();
 signals:

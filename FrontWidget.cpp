@@ -15,33 +15,34 @@
     along with Classified Ads.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QScrollBar>
+#include <QMainWindow>
+#include <QDesktopServices>
+#include <QClipboard>
+#include <assert.h>
 #include "FrontWidget.h"
 #include "log.h"
 #include "datamodel/model.h"
 #include "mcontroller.h"
 #include "datamodel/profile.h"
 #include "datamodel/profilemodel.h"
-#include "ui/profilereadersdialog.h"
 #include "datamodel/binaryfile.h"
 #include "datamodel/binaryfilemodel.h"
 #include "datamodel/binaryfilelistingmodel.h"
+#include "datamodel/privmsgmodel.h"
+#include "datamodel/contentencryptionmodel.h"
 #include "datamodel/camodel.h"
 #include "datamodel/ca.h"
+#include "ui/profilereadersdialog.h"
 #include "ui/newclassifiedaddialog.h"
 #include "ui/newprivmsgdialog.h"
-#include "datamodel/privmsgmodel.h"
-#include "ui/editcontact.h"
-#include "datamodel/contentencryptionmodel.h"
 #include "ui/newprofilecommentdialog.h"
-#include <assert.h>
 #include "ui/profilecommentdisplay.h"
 #include "ui/attachmentlistdialog.h"
-#include <QFileDialog>
-#include <QMessageBox>
-#include <QScrollBar>
-#include <QMainWindow>
-#include <QDesktopServices>
+#include "ui/newtextdocument.h"
+#include "ui/editcontact.h"
 
 static const QString internalNameOfProfileTab("profileTabNamed") ; 
 static const QString internalNameOfCommentDialog("caCommentDlgNamed") ; 
@@ -55,6 +56,8 @@ FrontWidget::FrontWidget(Controller* aController,
   iAddSharedFileAction(NULL),
   iRemoveSharedFileAction(NULL),
   iExportSharedFileAction(NULL),
+  iCopySharedFileHashAction(NULL),
+  iEditNewSharedFileAction(NULL),
   iSelectedProfileFileListingModel(NULL),
   iViewedProfileFileListingModel(NULL),
   iReplyToCaButton(NULL),
@@ -147,13 +150,18 @@ FrontWidget::FrontWidget(Controller* aController,
   iAddSharedFileAction = new QAction(tr("Add shared file.."),this) ; 
   iRemoveSharedFileAction = new QAction(tr("Stop advertising selected shared file"),this) ; 
   iExportSharedFileAction = new QAction(tr("Save file to disk.."),this) ; 
+  iCopySharedFileHashAction = new QAction(tr("Copy file address (SHA1) to clipboard.."),this) ; 
+  iEditNewSharedFileAction = new QAction(tr("Edit+publish new text document.."),this) ; 
   ui.sharedFilesView->setContextMenuPolicy(Qt::ActionsContextMenu);
   ui.sharedFilesView->addAction(iAddSharedFileAction) ;
   ui.sharedFilesView->addAction(iRemoveSharedFileAction) ;
   ui.sharedFilesView->addAction(iExportSharedFileAction) ;
+  ui.sharedFilesView->addAction(iCopySharedFileHashAction) ;  
+  ui.sharedFilesView->addAction(iEditNewSharedFileAction) ;
 
   ui.profileDetailsSharedFilesView->setContextMenuPolicy(Qt::ActionsContextMenu);
   ui.profileDetailsSharedFilesView->addAction(iExportSharedFileAction) ;
+  ui.profileDetailsSharedFilesView->addAction(iCopySharedFileHashAction) ;  
 
   connect(iAddSharedFileAction, SIGNAL(triggered()),
 	  this, SLOT(fileToBeSharedAdded())) ;
@@ -161,6 +169,10 @@ FrontWidget::FrontWidget(Controller* aController,
 	  this, SLOT(fileToBeSharedRemoved())) ;
   connect(iExportSharedFileAction, SIGNAL(triggered()),
 	  this, SLOT(exportSharedFile())) ;
+  connect(iCopySharedFileHashAction, SIGNAL(triggered()),
+	  this, SLOT(copySharedFileHash())) ;
+  connect(iEditNewSharedFileAction, SIGNAL(triggered()),
+	  this, SLOT(editNewSharedFile())) ;
 
   // and initially remove tab 4 "profile details"
   ui.tabWidget->removeTab(4);
@@ -233,6 +245,12 @@ FrontWidget::FrontWidget(Controller* aController,
   connect ( iController, SIGNAL(userProfileSelected(const Hash&)),
 	    &iSelectedProfileCommentListingModel, SLOT(profileSelected(const Hash&)),
 	    Qt::QueuedConnection)) ; 
+  assert(
+  connect ( ui.tabWidget, 
+	    SIGNAL(currentChanged(int)),
+	    this,
+	    SLOT(updateFileSelectionActions()))) ; 
+  updateFileSelectionActions(); 
 }
 
 FrontWidget::~FrontWidget() {
@@ -245,6 +263,8 @@ FrontWidget::~FrontWidget() {
   delete iAddSharedFileAction ; 
   delete iRemoveSharedFileAction ; 
   delete iExportSharedFileAction ; 
+  delete iCopySharedFileHashAction;
+  delete iEditNewSharedFileAction;
   delete iEditContactAction ; 
   if ( iSelectedProfileFileListingModel ) {
     delete  iSelectedProfileFileListingModel ; 
@@ -920,38 +940,130 @@ void FrontWidget::fileToBeSharedRemoved() {
   iController->model().unlock() ; 
 }
 
+void FrontWidget::ownBinaryFileSelectionChangedSlot(const QModelIndex &aItem, const QModelIndex &/*aPreviousItem*/) {
+  iSelectedOwnBinaryFile = KNullHash ; 
+  iController->model().lock() ; 
+  iSelectedOwnBinaryFile.fromString((const unsigned char *)(qPrintable(iSelectedProfileFileListingModel->data(aItem,Qt::ToolTipRole).toString())));
+  
+  iController->model().unlock() ; 
+  QLOG_STR("FrontWidget::ownBinaryFileSelectionChangedSlot fp " + iSelectedOwnBinaryFile.toString()) ; 
+  updateFileSelectionActions(); 
+}
+
+void FrontWidget::viewedBinaryFileSelectionChangedSlot(const QModelIndex &aItem, const QModelIndex &/*aPreviousItem*/) {
+  iSelectedViewedProfileBinaryfile = KNullHash ; 
+  iController->model().lock() ; 
+  iSelectedViewedProfileBinaryfile.fromString((const unsigned char *)(qPrintable( iViewedProfileFileListingModel->data(aItem,Qt::ToolTipRole).toString())));
+  
+  iController->model().unlock() ; 
+  QLOG_STR("FrontWidget::viewedBinaryFileSelectionChangedSlot  fp " + iSelectedViewedProfileBinaryfile.toString()) ; 
+  updateFileSelectionActions(); 
+}
+
 void FrontWidget::exportSharedFile() {
   LOG_STR("exportSharedFile") ;
   // ok, see what user had selected ; one file only:
 
   if ( iSelectedProfileFileListingModel ) {
     Hash fingerPrint ;
-
     if ( ui.tabWidget->currentIndex() == 1 ) { // 1 == "my profile" so this is export of my own file
-      iController->model().lock() ; 
-      foreach(const QModelIndex &index, 
-	      ui.sharedFilesView->selectionModel()->selectedIndexes()) {
-	fingerPrint.fromString((const unsigned char *)(qPrintable(iSelectedProfileFileListingModel->data(index,Qt::ToolTipRole).toString())));
-	break ; 
-      }
-      iController->model().unlock() ; 
+      fingerPrint = iSelectedOwnBinaryFile ; 
     } else {
-      iController->model().lock() ; 
       if ( iViewedProfileFileListingModel ) {
-	LOG_STR("Trying to find shared file from other profiles listing..") ; 
-	foreach(const QModelIndex &index, 
-		ui.profileDetailsSharedFilesView->selectionModel()->selectedIndexes()) {
-	  fingerPrint.fromString((const unsigned char *)(qPrintable(iViewedProfileFileListingModel->data(index,Qt::ToolTipRole).toString())));
-	  break ; 
-	}      
+	fingerPrint = iSelectedViewedProfileBinaryfile ; 
       }
-      iController->model().unlock() ; 
     }
     if ( fingerPrint != KNullHash ) {
       // aye, found a selected fingerprint;
       openBinaryFile(fingerPrint,true) ; 
     }
   }
+}
+
+void FrontWidget::copySharedFileHash() {
+  QLOG_STR("FrontWidget::copySharedFileHash") ;
+
+  // ok, see what user had selected ; one file only:
+  if ( iSelectedProfileFileListingModel ) {
+    Hash fingerPrint ;
+    if ( ui.tabWidget->currentIndex() == 1 ) { // 1 == "my profile" so this is export of my own file
+      fingerPrint = iSelectedOwnBinaryFile ; 
+    } else {
+      if ( iViewedProfileFileListingModel ) {
+	fingerPrint = iSelectedViewedProfileBinaryfile ; 
+      }
+    }
+    if ( fingerPrint != KNullHash ) {
+      // aye, found a selected fingerprint;
+      QClipboard *clipBoard = QApplication::clipboard();
+      clipBoard->setText ( fingerPrint.toString(), QClipboard::Clipboard ) ; 
+      if ( clipBoard->supportsSelection() ) {
+	clipBoard->setText ( fingerPrint.toString(), QClipboard::Selection ) ; 
+      }
+    }
+  }
+}
+
+void FrontWidget::updateFileSelectionActions() {
+  // first check if we have open "own profile" tab or
+  // viewed profile tab
+  QWidget* currentTabOnDisplay ( ui.tabWidget->currentWidget() ) ;
+  if ( currentTabOnDisplay && currentTabOnDisplay->objectName() == internalNameOfProfileTab ) {
+    QLOG_STR("updateFileSelectionActions viewed profile tab") ; 
+    // viewed profile. it has 2 actions, "save" and "copy hash to
+    // clipboard" so lets handle those 2 only
+    if ( iSelectedViewedProfileBinaryfile == KNullHash ) {
+      // no file selected so lets disable the actions
+      QLOG_STR("updateFileSelectionActions viewed profile tab disable") ; 
+      iCopySharedFileHashAction -> setEnabled(false) ; 
+      iExportSharedFileAction -> setEnabled(false) ; 
+    } else {
+      // file selected so lets enable the actions      
+      QLOG_STR("updateFileSelectionActions viewed profile tab enable") ; 
+      iCopySharedFileHashAction -> setEnabled(true) ; 
+      iExportSharedFileAction -> setEnabled(true) ; 
+    }
+    
+  } else if ( ui.tabWidget->currentIndex() == 1 ) {
+    // own profile
+    if ( iSelectedOwnBinaryFile == KNullHash ) {
+      // no file selected so lets disable the actions
+      QLOG_STR("updateFileSelectionActions own profile tab disable") ; 
+      iCopySharedFileHashAction -> setEnabled(false) ; 
+      iExportSharedFileAction -> setEnabled(false) ;
+      iRemoveSharedFileAction -> setEnabled(false) ;  
+    } else {
+      // file selected so lets enable the actions
+      QLOG_STR("updateFileSelectionActions own profile tab enable") ; 
+      iCopySharedFileHashAction -> setEnabled(true) ; 
+      iExportSharedFileAction -> setEnabled(true) ; 
+      iRemoveSharedFileAction -> setEnabled(true) ;  
+    }
+  } else {
+    // no profile tab so lets disable all
+    QLOG_STR("updateFileSelectionActions other tab disable") ; 
+    iCopySharedFileHashAction -> setEnabled(false) ; 
+    iExportSharedFileAction -> setEnabled(false) ;
+    iRemoveSharedFileAction -> setEnabled(false) ;  
+  }
+}
+
+void FrontWidget::editNewSharedFile() {
+  QLOG_STR("FrontWidget::editNewSharedFile") ;
+
+  NewTextDocument *edit_dialog = 
+    new NewTextDocument(this, 
+			iController,
+			*iSelectedProfile,
+			*iSelectedProfileFileListingModel ) ;
+  connect(edit_dialog,
+	  SIGNAL(  error(MController::CAErrorSituation,
+			 const QString&) ),
+	  iController,
+	  SLOT(handleError(MController::CAErrorSituation,
+			   const QString&)),
+	  Qt::QueuedConnection ) ;
+  edit_dialog->show() ; // the dialog will delete self
 }
 
 void FrontWidget::openBinaryFile(const Hash& aFingerPrint,
@@ -1114,7 +1226,7 @@ void FrontWidget::showDetailsOfProfile(const Hash& aFingerPrint) {
     ui.profileDetailsCommentButton->setEnabled(false) ; 
     ui.profileDetailsSendMsgButton->setEnabled(false) ; 
   }
-
+  updateFileSelectionActions(); 
 }
 
 void   FrontWidget::showClassifiedAd(const CA& ca) {
@@ -1220,7 +1332,14 @@ void FrontWidget::updateUiFromViewedProfile() {
 			     const QString&)),
 	    Qt::QueuedConnection) ;
     ui.profileDetailsSharedFilesView->setModel(iViewedProfileFileListingModel) ; 
+    iSelectedViewedProfileBinaryfile = KNullHash ; 
+    assert(
+    connect(ui.profileDetailsSharedFilesView->selectionModel(), 
+	    SIGNAL(currentChanged (const QModelIndex &, const QModelIndex &)),
+	    this, 
+	    SLOT(viewedBinaryFileSelectionChangedSlot(const QModelIndex &, const QModelIndex &))));
   }
+  updateFileSelectionActions() ;
 }
 
 void FrontWidget::setUpSelectedProfileFileListingModel() {
@@ -1230,6 +1349,7 @@ void FrontWidget::setUpSelectedProfileFileListingModel() {
     delete iSelectedProfileFileListingModel ; 
     iSelectedProfileFileListingModel = NULL ; 
   }
+  iSelectedOwnBinaryFile = KNullHash ; 
   //, if we have profile selected, set up model again
   if ( iSelectedProfile ) {
     iSelectedProfileFileListingModel = new BinaryFileListingModel(iSelectedProfile->iSharedFiles) ; 
@@ -1241,8 +1361,13 @@ void FrontWidget::setUpSelectedProfileFileListingModel() {
 			     const QString&)),
 	    Qt::QueuedConnection) ;
     ui.sharedFilesView->setModel(iSelectedProfileFileListingModel) ; 
+    connect(ui.sharedFilesView->selectionModel(), 
+	    SIGNAL(currentChanged (const QModelIndex &, const QModelIndex &)),
+	    this, 
+	    SLOT(ownBinaryFileSelectionChangedSlot(const QModelIndex &, const QModelIndex &)));
   } 
 }
+
 
 void FrontWidget::setupContactsTab() {
   ui.contactsView->setModel(&iContactsModel) ;   

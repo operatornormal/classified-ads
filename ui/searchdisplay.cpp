@@ -29,7 +29,7 @@
 SearchDisplay::SearchDisplay(QWidget *aParent,
 			     MController* aController,
 			     SearchModel* aSearchModel,
-			     const Profile& aSelectedProfile )
+			     Profile& aSelectedProfile )
   : DialogBase(aParent,
 	       aController,
 	       aSelectedProfile),

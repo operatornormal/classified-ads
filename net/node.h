@@ -36,8 +36,7 @@ extern Q_IPV6ADDR KNullIpv6Addr   ;
  * computer, each user running separate nodes ; but usually
  * only one node per physical computer.
  */
-class Node : public QObject {
-  Q_OBJECT
+class Node {
 
 public:
 

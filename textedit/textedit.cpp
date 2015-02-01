@@ -79,7 +79,7 @@ const QString rsrcPath = ":/images/win";
 
 TextEdit::TextEdit(QWidget* aParent,
 		   MController* aController,
-		   const Profile& aSelectedProfile)
+		   Profile& aSelectedProfile)
   : DialogBase(aParent,aController,aSelectedProfile),
     textEdit(NULL),
     iWidgetForActionsUpper(NULL),

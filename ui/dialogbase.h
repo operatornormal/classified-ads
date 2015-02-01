@@ -36,7 +36,7 @@ protected: // methods
   /** constructor */
   DialogBase(QWidget* aParent,
 	     MController* aController,
-	     const Profile& aSelectedProfile) ;
+	     Profile& aSelectedProfile) ;
   /** 
    * method for publishing an (attachment) file 
    * @param aFileName is name of the file in filesystem
@@ -58,7 +58,7 @@ protected slots:
   void attachButtonClicked() ; 
 protected: // variables
   MController* iController ; 
-  const Profile& iSelectedProfile ;
+  Profile& iSelectedProfile ;
   QList<QString> iFilesAboutToBeAttached ; /**< used in posting-dialogs */
   /** label used to show list of attached files. pointer must be set
       by inheriting class prior to call to slot attachButtonClicked() */

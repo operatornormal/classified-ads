@@ -143,6 +143,10 @@ void Connection::run() {
   iObserver.connectionClosed(this) ; // will call datamodel.lock() inside
   LOG_STR(QString("0x%1 ").arg((qulonglong)this, 8) +"Connection::run out") ;
   emit finished() ; 
+  delete iNodeOfConnectedPeer ; 
+  iNodeOfConnectedPeer = NULL ; 
+  delete iBytesRead ; 
+  iBytesRead = NULL ; 
 }
 
 void Connection::runForIncomingConnections() {

@@ -55,7 +55,7 @@ public:
 			   MController* aController,
 			   const QString& aCommentedProfile,
 			   const QString& aSubject,
-			   const Profile& aSelectedProfile,
+			   Profile& aSelectedProfile,
 			   ProfileCommentListingModel& aCommentListingModel,
 			   const Hash& aReferencesMsg = KNullHash,
 			   const Hash& aReferencesCa = KNullHash,

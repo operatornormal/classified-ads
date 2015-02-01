@@ -107,7 +107,7 @@ public:
    * method for getting currently selected profile or NULL 
    * if no profile selected
    */
-  const Profile *selectedProfile() const {
+  Profile *selectedProfile() const {
     return iSelectedProfile ; 
   } 
   /**
@@ -127,6 +127,8 @@ public slots:
   virtual void fileToBeSharedAdded() ;/**< operator wants to share a file */
   virtual void fileToBeSharedRemoved() ;/**< operator wants to stop advertasing a shared file */
   virtual void exportSharedFile() ;/**< operator wants to save a shared file */
+  virtual void copySharedFileHash() ;/**< copies shared file SHA1 to clipboard */
+  virtual void editNewSharedFile() ;/**< initiates edit+publish of new text document */
   virtual void profileSendMsgButtonClicked() ; 
   virtual void profileShowReadersButtonClicked() ; 
   virtual void profileSendCommentButtonClicked() ; 
@@ -200,6 +202,23 @@ public slots:
    * this slot is called when user clicks on link on document
    */
   virtual void linkActivated ( const QString &aLink ) ; 
+  /**
+   * called when user selects binary file from her own list of 
+   * shared files
+   */
+  virtual void ownBinaryFileSelectionChangedSlot(const QModelIndex &aItem, const QModelIndex &aPreviousItem) ;
+  /**
+   * called when user selects binary file from list of shared files from
+   * list of a viewed profile
+   */
+  virtual void viewedBinaryFileSelectionChangedSlot(const QModelIndex &aItem, const QModelIndex &aPreviousItem) ;
+  /**
+   * sets up binary file listing actions in list of shared
+   * files for both own profile shared file listing and possible
+   * viewed profile shared file listing ; they share same
+   * actions
+   */
+  void updateFileSelectionActions() ; 
 signals:
   void error(MController::CAErrorSituation aError,
              const QString& aExplanation) ;
@@ -268,6 +287,8 @@ private:
   QAction* iAddSharedFileAction ; /**< context-menu action for adding shared file */
   QAction* iRemoveSharedFileAction ; /**< context-menu action for adding shared file */
   QAction* iExportSharedFileAction ; /**< context-menu action for saving to filesystem a shared file */
+  QAction* iCopySharedFileHashAction ; /**< context-menu action copying SHA1 to clipboard */
+  QAction* iEditNewSharedFileAction ; /**< context-menu action for editing new text doc */
   /** model for displaying file list "operator profile" ; there may be 2nd instance
    * for displaying file list of some other profile that is not operators own 
    */
@@ -318,5 +339,15 @@ private:
   Hash iSelectedCommentFromViewedCommentListing ;
   QShortcut* iProfileListingKeyboardGrabber ; 
   bool iWindowSizeAdjusted ; 
+  /**
+   * binary file selected from "shared files" list of own
+   * profiles shared files 
+   */
+  Hash iSelectedOwnBinaryFile ;   
+  /**
+   * binary file selected from "shared files" list of viewed
+   * profiles shared files 
+   */
+  Hash iSelectedViewedProfileBinaryfile ; 
 } ;
 #endif

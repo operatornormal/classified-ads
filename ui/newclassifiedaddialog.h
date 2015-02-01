@@ -66,7 +66,7 @@ public:
 			const QString& aAboutComboText,
 			const QString& aRegardingComboText,
 			const QString& aWhereComboxText,
-			const Profile& aSelectedProfile,
+			Profile& aSelectedProfile,
 			CAListingModel& aCaListingModel,
 			const Hash* aReferences = NULL,
 			const QString* aSubject = NULL );

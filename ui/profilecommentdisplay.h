@@ -56,7 +56,7 @@ public:
 			ProfileCommentModel& aCommentModel,
 			const Hash& aFirstCommentToDisplay,
 			const Hash& aViewedProfile ,
-			const Profile& aSelectedProfile);
+			Profile& aSelectedProfile);
   /** destructor */
   ~ProfileCommentDisplay();
 

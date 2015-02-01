@@ -27,7 +27,7 @@
 
 DialogBase::DialogBase (QWidget* aParent,
 			MController* aController,
-			const Profile& aSelectedProfile) 
+			Profile& aSelectedProfile) 
   : QDialog(aParent),
     iController(aController),
     iSelectedProfile(aSelectedProfile)

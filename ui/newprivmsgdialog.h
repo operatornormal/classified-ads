@@ -54,7 +54,7 @@ class NewPrivMessageDialog : public TextEdit
 		       MController* aController,
 		       const QString& aRecipient,
 		       const QString& aSubject,
-		       const Profile& aSelectedProfile,
+		       Profile& aSelectedProfile,
 		       PrivateMessageSearchModel& aSearchModel,
 		       const Hash& aReferencesMsg = KNullHash,
 		       const Hash& aReferencesCa = KNullHash,

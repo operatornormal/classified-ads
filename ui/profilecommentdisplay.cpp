@@ -37,7 +37,7 @@ ProfileCommentDisplay::ProfileCommentDisplay(QWidget *aParent,
 					     ProfileCommentModel& aCommentModel,
 					     const Hash& aFirstCommentToDisplay,
 					     const Hash& aViewedProfile ,
-					     const Profile& aSelectedProfile )
+					     Profile& aSelectedProfile )
   : DialogBase(aParent,
 	       aController,
 	       aSelectedProfile),

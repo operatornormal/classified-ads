@@ -37,7 +37,7 @@ NewClassifiedAdDialog::NewClassifiedAdDialog(QWidget *aParent,
 					     const QString& aAboutComboText,
 					     const QString& aRegardingComboText,
 					     const QString& aWhereComboxText,
-					     const Profile& aSelectedProfile,
+					     Profile& aSelectedProfile,
 					     CAListingModel& aCaListingModel,
 					     const Hash* aReferences,
 					     const QString* aSubject )

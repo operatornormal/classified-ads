@@ -34,7 +34,7 @@
 
 AttachmentListDialog::AttachmentListDialog(QWidget *aParent,
 					   MController* aController,
-					   const Profile& aSelectedProfile,
+					   Profile& aSelectedProfile,
 					   QList<Hash>& aFilesToDisplay,
 					   const Hash& aNodeToTryForRetrieval)
   : DialogBase(aParent,
