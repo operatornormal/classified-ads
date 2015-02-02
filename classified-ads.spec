@@ -12,7 +12,7 @@ BuildRequires:	qt-devel >= 4
 BuildRequires:	openssl-devel, libnatpmp-devel, qjson-devel, gcc-c++, miniupnpc-devel
 Requires:	qt >= 4
 Requires:	bzip2-libs, expat, fontconfig, freetype, openssl-libs
-Requires:	pcre, qjson, libnatpmp, qjson-devel, xz-libs, zlib
+Requires:	pcre, qjson, libnatpmp, qjson-devel, xz-libs, zlib, miniupnpc
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 

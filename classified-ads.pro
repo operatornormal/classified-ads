@@ -2,9 +2,9 @@ QT     += core network sql
 greaterThan(QT_MAJOR_VERSION, 4) {
     QT += widgets printsupport
 } 
-CONFIG += release
+CONFIG += debug
 # enabled -DDEBUG to have console log via qDebug()
-#QMAKE_CXXFLAGS += -DDEBUG
+QMAKE_CXXFLAGS += -DDEBUG
 win32.CONFIG += console
 CODECFORTR = UTF-8
 CODECFORSRC = UTF-8
@@ -68,7 +68,7 @@ FORMS = frontWidget.ui ui/profileReadersDialog.ui ui/passwordDialog.ui \
         ui/newTextDocument.ui
 RESOURCES     = ui_resources.qrc
 
-unix:LIBS = -lssl -lcrypto -lnatpmp -lqjson
+unix:LIBS = -lssl -lcrypto -lnatpmp -lqjson -lminiupnpc
 # following line is needed for fedora linux, natpnp needs miniupnpc
 unix:INCLUDEPATH += /usr/include/miniupnpc
 win32:LIBS += "c:\msys\1.0\local\lib\libssl.a" 

@@ -32,10 +32,9 @@
 #include <QNetworkInterface>
 #include <QThread>
 #include <QCoreApplication>
-#ifdef WIN32
 #include "miniupnpc.h"
 #include "upnpcommands.h"
-#else
+#ifndef WIN32
 #include "natpmp.h"
 #endif
 #include <errno.h>
@@ -209,9 +208,7 @@ void NetworkListener::figureOutLocalAddresses() {
     // ok, looks bad. we're behind nat-box. no incoming connections.
     // suxxors.
     LOG_STR("Ipv4 nat. Do something") ;
-#ifdef WIN32
     {
-
       int error = 0;
       struct UPNPDev *upnp_dev = upnpDiscover(
 					      2000    , // time to wait (milliseconds)
@@ -254,9 +251,9 @@ void NetworkListener::figureOutLocalAddresses() {
 					    "0"     ); // port map lease duration (in seconds) or zero for "as long as possible"
 
 		// list all port mappings
-		size_t index = 0;
-      
-		for ( int portmappingcounter = 0 ; portmappingcounter < 30 ; portmappingcounter++ )
+		int index = 0;
+		// how many port mappings can you have in large installation? 
+		for ( int portmappingcounter = 0 ; portmappingcounter < 1024 ; portmappingcounter++ )
 		  {
 		    char map_wan_port           [200] = "";
 		    char map_lan_address        [200] = "";
@@ -266,8 +263,8 @@ void NetworkListener::figureOutLocalAddresses() {
 		    char map_mapping_enabled    [200] = "";
 		    char map_remote_host        [200] = "";
 		    char map_lease_duration     [200] = ""; // original time, not remaining time :(
-		    char index_str[200] ; 
-		    sprintf(index_str, "%d", index++) ; 
+		    char index_str[200] = { 0 } ; 
+		    sprintf(index_str, "%d", index) ; 
 		    QLOG_STR("Calling UPNP_GetGenericPortMappingEntry with index = " + QString::number(index)) ; 
 		    error = UPNP_GetGenericPortMappingEntry(
 							    upnp_urls.controlURL            ,
@@ -281,6 +278,7 @@ void NetworkListener::figureOutLocalAddresses() {
 							    map_mapping_enabled             ,
 							    map_remote_host                 ,
 							    map_lease_duration              );
+		    index++ ; 
 		    QLOG_STR("UPNP_GetGenericPortMappingEntry error " + QString::number(error)) ; 
 		    QLOG_STR("map_remote_host = " + QString(map_remote_host)) ; 
 		    QLOG_STR("map_wan_port = " + QString(map_wan_port)) ; 
@@ -288,6 +286,7 @@ void NetworkListener::figureOutLocalAddresses() {
 		    if ( strncmp(map_wan_port, port_number_str , 5 ) == 0 ) {
 		      iController->getNode().setCanReceiveIncoming(true) ;
 		      QLOG_STR("Our port forwarding found, getting out..") ; 
+		      globalIpv4AddrSeen = true ; 
 		      break ; 
 		    } 
 		    if (error)
@@ -302,127 +301,130 @@ void NetworkListener::figureOutLocalAddresses() {
 	}
       }
     }
-#else
-    // kudos to http://miniupnp.free.fr/libnatpmp.html
-    int r = -1;
-    natpmp_t natpmp;
-    natpmpresp_t response;
-    in_addr_t gateway = 0;
-    int forcegw = 0;
-    int loopCount = 0 ;
-    initnatpmp(&natpmp,forcegw,gateway);
-    sendnewportmappingrequest(&natpmp, NATPMP_PROTOCOL_TCP, iModel->nodeModel().listenPortOfThisNode(), iModel->nodeModel().listenPortOfThisNode(),INT_MAX-1);
-    do {
-      fd_set fds;
-      struct timeval timeout;
-      FD_ZERO(&fds);
-      FD_SET(natpmp.s, &fds);
-      getnatpmprequesttimeout(&natpmp, &timeout);
-      select(FD_SETSIZE, &fds, NULL, NULL, &timeout);
-      r = readnatpmpresponseorretry(&natpmp, &response);
-    } while(r==NATPMP_TRYAGAIN && ++loopCount < 100 );
-    if(r>=0) {
-      printf("Mapped public port %hu protocol %s to local port %hu "
-             "lifetime %u resp = %d\n",
-             response.pnu.newportmapping.mappedpublicport,
-             response.type == NATPMP_RESPTYPE_UDPPORTMAPPING ? "UDP" :
-             (response.type == NATPMP_RESPTYPE_TCPPORTMAPPING ? "TCP" :
-              "UNKNOWN"),
-             response.pnu.newportmapping.privateport,
-             response.pnu.newportmapping.lifetime,
-             r);
-      // port done, obtain our public ip addr
-      int addrQueryRespCode = 0  ;
-      if(( addrQueryRespCode = sendpublicaddressrequest(&natpmp)) > 0 ) {
-	LOG_STR2("sendpublicaddressrequest ret = %d", addrQueryRespCode); 
-	loopCount = 0 ;
-	do {
-	  fd_set fds;
-	  struct timeval timeout;
-	  FD_ZERO(&fds);
-	  FD_SET(natpmp.s, &fds);
-	  getnatpmprequesttimeout(&natpmp, &timeout);
-	  select(FD_SETSIZE, &fds, NULL, NULL, &timeout);
-	  r = readnatpmpresponseorretry(&natpmp, &response);
-	} while(r==NATPMP_TRYAGAIN && ++loopCount < 100 );
-	if ( r>= 0 ) {
-	  LOG_STR("Managed to obtain public ip addr via NATPMP") ; 
-	  LOG_STR2("Response type = %d", response.type) ; 
-	  if ( response.type == NATPMP_RESPTYPE_PUBLICADDRESS ) {
-	    in_addr publicaddress = response.pnu.publicaddress.addr;
-	    iController->getNode().setIpv4Addr(ntohl(publicaddress.s_addr)) ;
-	    // if we got port forwarded and ip addr from upnp-box
-	    // we can fairly safely say that we can receive
-	    // incoming connections too:
-	    iController->getNode().setCanReceiveIncoming(true) ; 
+    if ( !globalIpv4AddrSeen ) {
+      // following code did not work in WIN32
+#ifndef WIN32 
+      // kudos to http://miniupnp.free.fr/libnatpmp.html
+      int r = -1;
+      natpmp_t natpmp;
+      natpmpresp_t response;
+      in_addr_t gateway = 0;
+      int forcegw = 0;
+      int loopCount = 0 ;
+      initnatpmp(&natpmp,forcegw,gateway);
+      sendnewportmappingrequest(&natpmp, NATPMP_PROTOCOL_TCP, iModel->nodeModel().listenPortOfThisNode(), iModel->nodeModel().listenPortOfThisNode(),INT_MAX-1);
+      do {
+	fd_set fds;
+	struct timeval timeout;
+	FD_ZERO(&fds);
+	FD_SET(natpmp.s, &fds);
+	getnatpmprequesttimeout(&natpmp, &timeout);
+	select(FD_SETSIZE, &fds, NULL, NULL, &timeout);
+	r = readnatpmpresponseorretry(&natpmp, &response);
+      } while(r==NATPMP_TRYAGAIN && ++loopCount < 100 );
+      if(r>=0) {
+	printf("Mapped public port %hu protocol %s to local port %hu "
+	       "lifetime %u resp = %d\n",
+	       response.pnu.newportmapping.mappedpublicport,
+	       response.type == NATPMP_RESPTYPE_UDPPORTMAPPING ? "UDP" :
+	       (response.type == NATPMP_RESPTYPE_TCPPORTMAPPING ? "TCP" :
+		"UNKNOWN"),
+	       response.pnu.newportmapping.privateport,
+	       response.pnu.newportmapping.lifetime,
+	       r);
+	// port done, obtain our public ip addr
+	int addrQueryRespCode = 0  ;
+	if(( addrQueryRespCode = sendpublicaddressrequest(&natpmp)) > 0 ) {
+	  LOG_STR2("sendpublicaddressrequest ret = %d", addrQueryRespCode); 
+	  loopCount = 0 ;
+	  do {
+	    fd_set fds;
+	    struct timeval timeout;
+	    FD_ZERO(&fds);
+	    FD_SET(natpmp.s, &fds);
+	    getnatpmprequesttimeout(&natpmp, &timeout);
+	    select(FD_SETSIZE, &fds, NULL, NULL, &timeout);
+	    r = readnatpmpresponseorretry(&natpmp, &response);
+	  } while(r==NATPMP_TRYAGAIN && ++loopCount < 100 );
+	  if ( r>= 0 ) {
+	    LOG_STR("Managed to obtain public ip addr via NATPMP") ; 
+	    LOG_STR2("Response type = %d", response.type) ; 
+	    if ( response.type == NATPMP_RESPTYPE_PUBLICADDRESS ) {
+	      in_addr publicaddress = response.pnu.publicaddress.addr;
+	      iController->getNode().setIpv4Addr(ntohl(publicaddress.s_addr)) ;
+	      // if we got port forwarded and ip addr from upnp-box
+	      // we can fairly safely say that we can receive
+	      // incoming connections too:
+	      iController->getNode().setCanReceiveIncoming(true) ; 
+	    }
+	  } else {
+	    LOG_STR2("NATPMP addr retrieval not success, r = %d", r ); 
 	  }
 	} else {
-	  LOG_STR2("NATPMP addr retrieval not success, r = %d", r ); 
+	  LOG_STR2("sendpublicaddressrequest ret = %d", addrQueryRespCode); 
 	}
       } else {
-	LOG_STR2("sendpublicaddressrequest ret = %d", addrQueryRespCode); 
+	LOG_STR2("NATPMP Mapping did not succeed, r = %d", r ); 
+	switch (r) {
+	case NATPMP_ERR_INVALIDARGS:
+	  LOG_STR("NATPMP ERR_INVALIDARGS") ; 
+	  break ; 
+	case NATPMP_ERR_SOCKETERROR:
+	  LOG_STR("NATPMP_ERR_SOCKETERROR : socket() failed. check errno for details") ; 
+	  break ; 
+	case NATPMP_ERR_CANNOTGETGATEWAY:
+	  LOG_STR("NATPMP_ERR_CANNOTGETGATEWAY : can't get default gateway IP");
+	  break ; 
+	case NATPMP_ERR_CLOSEERR:
+	  LOG_STR2("NATPMP_ERR_CLOSEERR : close() failed.  error = %s", strerror(errno));
+	  break ; 
+	case NATPMP_ERR_RECVFROM:
+	  LOG_STR2("NATPMP_ERR_RECVFROM : recvfrom() failed. error = %s", strerror(errno));
+	  break ; 
+	case NATPMP_ERR_NOPENDINGREQ:
+	  LOG_STR("readnatpmpresponseorretry() called while no NAT-PMP request was pending") ; 
+	  break ; 
+	case NATPMP_ERR_NOGATEWAYSUPPORT:
+	  LOG_STR("NATPMP_ERR_NOGATEWAYSUPPORT : the gateway does not support NAT-PMP") ; 
+	  break ; 
+	case NATPMP_ERR_CONNECTERR:
+	  LOG_STR2("NATPMP_ERR_RECVFROM : connect() failed.  error %s", strerror(errno)) ; 
+	  break ; 
+	case NATPMP_ERR_WRONGPACKETSOURCE :
+	  LOG_STR("NATPMP_ERR_WRONGPACKETSOURCE : packet not received from the network gateway") ; 
+	  break ; 
+	case NATPMP_ERR_SENDERR:
+	  LOG_STR2("NATPMP_ERR_RECVFROM : send() failed.  error %s", strerror(errno)) ; 
+	  break ; 
+	case NATPMP_ERR_FCNTLERROR:
+	  LOG_STR2("NATPMP_ERR_RECVFROM : fcntl() failed.  error %s", strerror(errno)) ; 
+	  break ; 
+	case NATPMP_ERR_GETTIMEOFDAYERR :
+	  LOG_STR2("NATPMP_ERR_RECVFROM : gettimeofday() failed.  error %s", strerror(errno)) ; 
+	  break ; 
+	case NATPMP_ERR_UNSUPPORTEDVERSION:
+	  LOG_STR("NATPMP_ERR_WRONGPACKETSOURCE : packet not received from the network gateway") ; 
+	  break ; 
+	case NATPMP_ERR_UNSUPPORTEDOPCODE:
+	  LOG_STR("NATPMP_ERR_WRONGPACKETSOURCE : packet not received from the network gateway") ; 
+	  break ; 
+	case NATPMP_ERR_UNDEFINEDERROR :
+	  LOG_STR("NATPMPErrors from the server : undefined") ; 
+	  break ; 
+	case NATPMP_ERR_NOTAUTHORIZED :
+	  LOG_STR("NATPMPErrors from the server : not authorized") ; 
+	  break ; 
+	case NATPMP_ERR_NETWORKFAILURE :
+	  LOG_STR("NATPMPErrors from the server : network failure") ; 
+	  break ; 
+	case NATPMP_ERR_OUTOFRESOURCES :
+	  LOG_STR("NATPMPErrors from the server : out of resources") ; 
+	  break ; 
+	}
       }
-    } else {
-      LOG_STR2("NATPMP Mapping did not succeed, r = %d", r ); 
-      switch (r) {
-      case NATPMP_ERR_INVALIDARGS:
-	LOG_STR("NATPMP ERR_INVALIDARGS") ; 
-	break ; 
-      case NATPMP_ERR_SOCKETERROR:
-	LOG_STR("NATPMP_ERR_SOCKETERROR : socket() failed. check errno for details") ; 
-	break ; 
-      case NATPMP_ERR_CANNOTGETGATEWAY:
-	LOG_STR("NATPMP_ERR_CANNOTGETGATEWAY : can't get default gateway IP");
-	break ; 
-      case NATPMP_ERR_CLOSEERR:
-      	LOG_STR2("NATPMP_ERR_CLOSEERR : close() failed.  error = %s", strerror(errno));
-	break ; 
-      case NATPMP_ERR_RECVFROM:
-	LOG_STR2("NATPMP_ERR_RECVFROM : recvfrom() failed. error = %s", strerror(errno));
-	break ; 
-      case NATPMP_ERR_NOPENDINGREQ:
-	LOG_STR("readnatpmpresponseorretry() called while no NAT-PMP request was pending") ; 
-	break ; 
-      case NATPMP_ERR_NOGATEWAYSUPPORT:
-	LOG_STR("NATPMP_ERR_NOGATEWAYSUPPORT : the gateway does not support NAT-PMP") ; 
-	break ; 
-      case NATPMP_ERR_CONNECTERR:
-	LOG_STR2("NATPMP_ERR_RECVFROM : connect() failed.  error %s", strerror(errno)) ; 
-	break ; 
-      case NATPMP_ERR_WRONGPACKETSOURCE :
-	LOG_STR("NATPMP_ERR_WRONGPACKETSOURCE : packet not received from the network gateway") ; 
-	break ; 
-      case NATPMP_ERR_SENDERR:
-	LOG_STR2("NATPMP_ERR_RECVFROM : send() failed.  error %s", strerror(errno)) ; 
-	break ; 
-      case NATPMP_ERR_FCNTLERROR:
-	LOG_STR2("NATPMP_ERR_RECVFROM : fcntl() failed.  error %s", strerror(errno)) ; 
-	break ; 
-      case NATPMP_ERR_GETTIMEOFDAYERR :
-	LOG_STR2("NATPMP_ERR_RECVFROM : gettimeofday() failed.  error %s", strerror(errno)) ; 
-	break ; 
-      case NATPMP_ERR_UNSUPPORTEDVERSION:
-	LOG_STR("NATPMP_ERR_WRONGPACKETSOURCE : packet not received from the network gateway") ; 
-	break ; 
-      case NATPMP_ERR_UNSUPPORTEDOPCODE:
-	LOG_STR("NATPMP_ERR_WRONGPACKETSOURCE : packet not received from the network gateway") ; 
-	break ; 
-      case NATPMP_ERR_UNDEFINEDERROR :
-	LOG_STR("NATPMPErrors from the server : undefined") ; 
-	break ; 
-      case NATPMP_ERR_NOTAUTHORIZED :
-	LOG_STR("NATPMPErrors from the server : not authorized") ; 
-	break ; 
-      case NATPMP_ERR_NETWORKFAILURE :
-	LOG_STR("NATPMPErrors from the server : network failure") ; 
-	break ; 
-      case NATPMP_ERR_OUTOFRESOURCES :
-	LOG_STR("NATPMPErrors from the server : out of resources") ; 
-	break ; 
-      }
-    }
-    closenatpmp(&natpmp);
+      closenatpmp(&natpmp);
 #endif // else-part of WIN32
+    }
   }
 
   // lets greet self to have our own record in db updated
