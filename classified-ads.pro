@@ -2,9 +2,9 @@ QT     += core network sql
 greaterThan(QT_MAJOR_VERSION, 4) {
     QT += widgets printsupport
 } 
-CONFIG += debug
+CONFIG += release
 # enabled -DDEBUG to have console log via qDebug()
-QMAKE_CXXFLAGS += -DDEBUG
+#QMAKE_CXXFLAGS += -DDEBUG
 win32.CONFIG += console
 CODECFORTR = UTF-8
 CODECFORSRC = UTF-8
