@@ -42,5 +42,6 @@ HEADERS = ../util/hash.h ../mcontroller.h mockup_controller.h \
 CONFIG  += qtestlib 
 CONFIG  += debug
 QT      += core network sql
-LIBS = -lssl -lcrypto -lgcrypt -lnatpmp -lqjson -lgcov
+LIBS = -lssl -lcrypto -lgcrypt -lnatpmp -lqjson -lgcov -lminiupnpc
+unix:INCLUDEPATH += /usr/include/miniupnpc
 QMAKE_CXXFLAGS += -fprofile-arcs -ftest-coverage
