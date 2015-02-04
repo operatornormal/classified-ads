@@ -210,6 +210,7 @@ void NetworkListener::figureOutLocalAddresses() {
     LOG_STR("Ipv4 nat. Do something") ;
     {
       int error = 0;
+#ifdef MINIUPNPC_API_VERSION
       struct UPNPDev *upnp_dev = upnpDiscover(
 					      2000    , // time to wait (milliseconds)
 					      NULL , // multicast interface (or null defaults to 239.255.255.250)
@@ -217,6 +218,15 @@ void NetworkListener::figureOutLocalAddresses() {
 					      0       , // source port to use (or zero defaults to port 1900)
 					      0       , // 0==IPv4, 1==IPv6
 					      &error  ); // error condition
+#else
+      // ancient upnpc in wheezy has  no API_VERSION defined
+      // and the api, indeed, is different
+      struct UPNPDev *upnp_dev = upnpDiscover(
+					      2000    , // time to wait (milliseconds)
+					      NULL , // multicast interface (or null defaults to 239.255.255.250)
+					      NULL , // path to minissdpd socket (or null defaults to /var/run/minissdpd.sock)
+					      0      ); // source port (0=default 1900)
+#endif
       if ( error == 0 ) {
 	char lan_address[64];
 	struct UPNPUrls upnp_urls;
@@ -247,8 +257,11 @@ void NetworkListener::figureOutLocalAddresses() {
 					    lan_address , // internal (LAN) address to which packets will be redirected
 					    "Classified ads", // text description to indicate why or who is responsible for the port mapping
 					    "TCP"       , // protocol must be either TCP or UDP
-					    NULL     , // remote (peer) host address or nullptr for no restriction
-					    "0"     ); // port map lease duration (in seconds) or zero for "as long as possible"
+					    NULL      // remote (peer) host address or nullptr for no restriction
+#ifdef MINIUPNPC_API_VERSION
+					    ,"0"    // port map lease duration (in seconds) or zero for "as long as possible"
+#endif
+                                             ); 
 
 		// list all port mappings
 		int index = 0;
