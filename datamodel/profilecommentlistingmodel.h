@@ -115,7 +115,12 @@ public slots:
   void profileSelected(const Hash&) ; 
 private:// methods
   void performSearch() ; 
-  void updateSenderAndSubjectOfMsg(ProfileCommentListItem& aItem) ;
+  /**
+   * updates profile comment subject etc. from dabase.
+   * @return false if update was not success indicating that
+   *         comment should be removed from list
+   */
+  bool updateSenderAndSubjectOfMsg(ProfileCommentListItem& aItem) ;
 
 private: // data
   Model& iModel ; 

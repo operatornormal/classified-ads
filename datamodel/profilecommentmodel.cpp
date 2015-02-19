@@ -162,7 +162,8 @@ bool ProfileCommentModel::publishProfileComment(ProfileComment& aProfileComment)
   return retval ;
 }
 
-ProfileComment* ProfileCommentModel::profileCommentByFingerPrint(const Hash& aFingerPrint) {
+ProfileComment* ProfileCommentModel::profileCommentByFingerPrint(const Hash& aFingerPrint,
+								 bool aEmitOnEncryptionError) {
   LOG_STR("ProfileCommentModel::profileCommentByFingerPrint()") ;
   ProfileComment* retval = NULL ;
   QSqlQuery query;
@@ -196,7 +197,8 @@ ProfileComment* ProfileCommentModel::profileCommentByFingerPrint(const Hash& aFi
       if ( isPrivate ) {
 	QByteArray plainTextProfileCommentData ; 
 	if ( iController->model().contentEncryptionModel().decrypt(commentData,
-								   plainTextProfileCommentData)) {
+								   plainTextProfileCommentData,
+								   aEmitOnEncryptionError) ) {
 	  LOG_STR2("profcomment: %s", qPrintable(QString(plainTextProfileCommentData)));
 	  commentData.clear() ; 
 	  commentData = plainTextProfileCommentData ; 

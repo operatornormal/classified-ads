@@ -56,9 +56,14 @@ public:
    * gets a comment or null. whoever calls this method is
    * obliged to delete the returned comments. 
    * @param aFingerPrint profile serial number
+   * @param aEmitOnEncryptionError if set to false, will return NULL
+   *        when no suitable encryption key is found and will not
+   *        emit error message that would be catched by UI and
+   *        shown to user
    * @return profile or NULL
    */
-  ProfileComment* profileCommentByFingerPrint(const Hash& aFingerPrint) ;
+  ProfileComment* profileCommentByFingerPrint(const Hash& aFingerPrint,
+					      bool aEmitOnEncryptionError=true) ;
 
   /**
    * Gets a comment. Because profile comment is signed .. and that means that

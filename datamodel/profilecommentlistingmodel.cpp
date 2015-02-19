@@ -248,7 +248,7 @@ QVariant ProfileCommentListingModel::headerData ( int section, Qt::Orientation o
 
 }
 
-void ProfileCommentListingModel::updateSenderAndSubjectOfMsg(ProfileCommentListItem& aItem) 
+bool ProfileCommentListingModel::updateSenderAndSubjectOfMsg(ProfileCommentListItem& aItem) 
 {
   ProfileComment* msg ( iModel.profileCommentModel().profileCommentByFingerPrint(aItem.iCommentHash));
   if ( msg ) {
@@ -264,6 +264,9 @@ void ProfileCommentListingModel::updateSenderAndSubjectOfMsg(ProfileCommentListI
     aItem.iNrOfAttachedFiles = msg->iAttachedFiles.count() ; 
     QLOG_STR("Nr of attachments in comment " + aItem.iCommentHash.toString() + " = " + QString::number(aItem.iNrOfAttachedFiles)) ;
     delete msg ; 
+    return true ; 
+  } else {
+    return false ; 
   }
 }
 
@@ -271,15 +274,19 @@ void ProfileCommentListingModel::updateSenderAndSubjectOfMsg(ProfileCommentListI
 void   ProfileCommentListingModel::doUpdateDataOnIdle() 
 {
   int indexUpdated(-1) ; 
+  int indexDeleted(-1) ; 
   iModel.lock() ; 
   for ( int i ( 0 ) ; i < iProfileComments.size() ; i++ ) {
     if ( iProfileComments.at(i).iIsUpdated == false) {
       indexUpdated = i ; 
-      ProfileCommentListItem item = iProfileComments.at(i) ;     
-      updateSenderAndSubjectOfMsg(item) ; 
-      LOG_STR2("ProfileCommentListingModel::doUpdateDataOnIdle index = %d", indexUpdated) ; 
-      item.iIsUpdated = true ; 
-      iProfileComments.replace(i, item) ; 
+      ProfileCommentListItem& item ( iProfileComments[i] ) ;     
+      if ( updateSenderAndSubjectOfMsg(item) ) {
+	LOG_STR2("ProfileCommentListingModel::doUpdateDataOnIdle index = %d", indexUpdated) ; 
+	item.iIsUpdated = true ; 
+      } else {
+	indexUpdated = -1 ; 
+	indexDeleted = i ; 
+      }
       break ; // out of loop, e.g. do only one
     }
   }
@@ -292,6 +299,15 @@ void   ProfileCommentListingModel::doUpdateDataOnIdle()
     // messages to handle
     QTimer::singleShot(0, this, SLOT(doUpdateDataOnIdle()));
   }
+  if ( indexDeleted > -1 ) {
+    beginRemoveRows(createIndex(indexDeleted,0),0,2) ;
+    iProfileComments.removeAt(indexDeleted) ; 
+    endRemoveRows() ; 
+    // and re-schedule self to check if there is more
+    // messages to handle
+    QTimer::singleShot(0, this, SLOT(doUpdateDataOnIdle()));
+  }
+
 }
 
 void  ProfileCommentListingModel::setAsRead(const Hash& aComment, bool aIsRead) 
