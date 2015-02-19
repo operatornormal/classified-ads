@@ -250,7 +250,7 @@ QVariant ProfileCommentListingModel::headerData ( int section, Qt::Orientation o
 
 bool ProfileCommentListingModel::updateSenderAndSubjectOfMsg(ProfileCommentListItem& aItem) 
 {
-  ProfileComment* msg ( iModel.profileCommentModel().profileCommentByFingerPrint(aItem.iCommentHash));
+  ProfileComment* msg ( iModel.profileCommentModel().profileCommentByFingerPrint(aItem.iCommentHash,false));
   if ( msg ) {
     if ( msg->iCommentorNickName.length() ) {
       aItem.iSenderName = msg->iCommentorNickName ; 
