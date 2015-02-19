@@ -113,7 +113,9 @@ bool ProfileModel::publishProfile(const Profile& aProfile) {
   return retval ;
 }
 
-Profile* ProfileModel::profileByFingerPrint(const Hash& aFingerPrint) {
+Profile* ProfileModel::profileByFingerPrint(const Hash& aFingerPrint,
+					    bool aEmitErrorOnEncryptionErrors,
+					    bool aOmitImage ) {
   LOG_STR("ProfileModel::profileByFingerPrint()") ;
   Profile* retval = NULL ;
   QSqlQuery query;
@@ -142,15 +144,21 @@ Profile* ProfileModel::profileByFingerPrint(const Hash& aFingerPrint) {
 	if ( isPrivate ) {
 	  QByteArray plainTextProfileData ; 
 	  if ( iController->model().contentEncryptionModel().decrypt(profileData,
-								     plainTextProfileData ) ) 
+								     plainTextProfileData,
+								     aEmitErrorOnEncryptionErrors ) ) 
 	    {
 	      LOG_STR2("prof: %s", qPrintable(QString(plainTextProfileData)));
-	      retval->fromJSon(plainTextProfileData,*iController) ;
+	      retval->fromJSon(plainTextProfileData,*iController,aOmitImage) ;
+	    }
+	  else 
+	    {
+	      delete retval ; 
+	      retval = NULL ; 
 	    }
 	} else {
 	  // was then public and profileData is in plainText:
 	  LOG_STR2("prof: ->%s<-", qPrintable(QString(profileData)));
-	  retval->fromJSon(profileData,*iController) ;
+	  retval->fromJSon(profileData,*iController,aOmitImage) ;
 	}
       }
     }

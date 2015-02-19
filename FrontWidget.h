@@ -95,6 +95,10 @@ public:
    */
   QVariant contactDataOfSelectedProfile() ;
   /**
+   * method for retrieving trust list of the profile currently selected 
+   */
+  QList<Hash> trustListOfSelectedProfile() const ;
+  /**
    * method for setting contacts list of the profile currently selected 
    */
   void setContactDataOfSelectedProfile(const QVariantList& aContacts) ;

@@ -41,8 +41,7 @@ int ContactListingModel::rowCount(const QModelIndex& ) const
   return iContacts.size();
 }
 
-int ContactListingModel::columnCount(const QModelIndex& ) const
-{
+int ContactListingModel::columnCount(const QModelIndex& ) const {
   return 3 ; // what are the columns? Hash, NickName, trust?
 }
  
@@ -123,7 +122,7 @@ QVariant ContactListingModel::headerData ( int section, Qt::Orientation orientat
 	return tr("Nickname") ; 
 	break ;
       case 2:
-	return tr("Trusted") ; 
+	return tr("Publicly trusted") ; 
 	break ;
       default:
 	return QVariant();      
@@ -193,6 +192,18 @@ QVariant ContactListingModel::contactsAsQVariant() const {
   }  
   QLOG_STR("ContactListingModel::contactsAsQVariant size = " + QString::number(contactsAsQVariantList .size())) ; 
   return contactsAsQVariantList ; 
+}
+
+QList<Hash> ContactListingModel::trustList() const {
+  QList<Hash> retval ;
+
+  foreach (const Contact& c, iContacts) {
+    if ( c.iIsTrusted ) {
+      retval << c.iFingerPrint ; 
+    }
+  }
+
+  return retval ; 
 }
 
 void ContactListingModel::setContactsFromQVariant(const QVariantList& aContacts)  {

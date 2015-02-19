@@ -49,6 +49,7 @@ static const char *KJSonFirstName = "given" ;
 static const char *KJSonFamilyName = "family" ;
 static const char *KJSonCityCountry  = "city" ;
 static const char *KJSonBTCAddress = "btcaddr" ;
+static const char *KJSonTrustList = "trustlist" ;
 
 static const int KJSONProfileVersionValue = 1 ; /**< if our format should change? */
 
@@ -57,11 +58,9 @@ Profile::Profile(const Hash& aHash) :
   iIsPrivate(false), // initially all profiles are public ; right? 
   iTimeOfPublish(0),
   iNodeOfProfile(NULL) {
-  LOG_STR("Profile::Profile()") ;
 }
 
 Profile::~Profile() {
-  LOG_STR("Profile::~Profile()") ;
   if ( iNodeOfProfile ) {
     delete iNodeOfProfile ; 
   }
@@ -124,6 +123,17 @@ QVariant Profile::asQVariant(const MController& aController) const
   } else {
     LOG_STR("No shared files in profile serialization") ; 
   }
+
+  if ( iTrustList.size() > 0 ) {
+    QVariantList trustList ; 
+    foreach( const Hash& trustedProfile, iTrustList )    { 
+      QVariant v ;
+      v.setValue(trustedProfile.toString()) ; 
+      trustList.append(v) ; 
+    }
+    m.insert(KJSonTrustList, trustList) ;
+  } 
+
   if ( iIsPrivate && iProfileReaders.size() > 0 ) {
     // insert the readers so replies always get encrypted to
     // every operator in the list
@@ -165,7 +175,8 @@ QVariant Profile::asQVariant(const MController& aController) const
 }
 
 bool Profile::setFromQVariant(const QVariantMap& aJSonAsQVariant,
-			      const MController& aController) {
+			      const MController& aController,
+			      bool aOmitImage ) {
   if ( aJSonAsQVariant.contains(KJSonFPElement) ) {
     QString fingerPrintString = QString::fromUtf8(aJSonAsQVariant[KJSonFPElement].toByteArray()) ;
     if ( fingerPrintString != iFingerPrint.toString() ) {
@@ -178,17 +189,34 @@ bool Profile::setFromQVariant(const QVariantMap& aJSonAsQVariant,
     return false ;
   }
 
+  iSharedFiles.clear() ; 
   if (aJSonAsQVariant.contains(KJSonSharedFiles) ) {
     QVariantList listOfSharedPhiles (aJSonAsQVariant[KJSonSharedFiles].toList()) ;  
-
     QListIterator<QVariant> i(listOfSharedPhiles);
-    iSharedFiles.clear() ; 
     while (i.hasNext()) {
       Hash h ; 
       h.fromString((const unsigned char*)(i.next().toString().toLatin1().constData())) ; 
-      iSharedFiles.append(h);
+      if ( h != KNullHash ) {
+	iSharedFiles.append(h);
+      }
     }
   }
+
+  iTrustList.clear() ; 
+  if (aJSonAsQVariant.contains(KJSonTrustList) ) {
+    QVariantList trustList (aJSonAsQVariant[KJSonTrustList].toList()) ;  
+
+    QListIterator<QVariant> i(trustList);
+
+    while (i.hasNext()) {
+      Hash h ; 
+      h.fromString((const unsigned char*)(i.next().toString().toLatin1().constData())) ; 
+      if ( h != KNullHash ) {
+	iTrustList.append(h);
+      }
+    }
+  }
+  
 
   if ( aJSonAsQVariant.contains(KJSonNickNameElement) ) {
     iNickName = QString::fromUtf8(aJSonAsQVariant[KJSonNickNameElement].toByteArray()) ;
@@ -243,10 +271,10 @@ bool Profile::setFromQVariant(const QVariantMap& aJSonAsQVariant,
   } else {
     iIsPrivate = false ; 
   }
-  if ( aJSonAsQVariant.contains(KJSonProfilePic) ) {
+  if ( aJSonAsQVariant.contains(KJSonProfilePic) && aOmitImage == false ) {
     QByteArray imageBytes ( QByteArray::fromBase64(aJSonAsQVariant[KJSonProfilePic].toByteArray()) ) ;
     if ( imageBytes.size() > 0 ) {
-      QPixmap profileImage ;
+      QImage profileImage ;
       if ( profileImage.loadFromData(imageBytes) ) {
 	imageBytes.clear() ; 
 	iProfilePicture = profileImage ; 
@@ -265,7 +293,8 @@ bool Profile::setFromQVariant(const QVariantMap& aJSonAsQVariant,
 }
 
 bool Profile::fromJSon(const QByteArray &aJSonBytes,
-		       const MController& aController ) {
+		       const MController& aController,
+		       bool aOmitImage ) {
   QJson::Parser parser;
   bool ok;
 
@@ -273,7 +302,7 @@ bool Profile::fromJSon(const QByteArray &aJSonBytes,
   if (!ok) {
     return false ;
   } else {
-    ok = setFromQVariant(result,aController) ; 
+    ok = setFromQVariant(result,aController,aOmitImage) ; 
   }
 
   return ok ;

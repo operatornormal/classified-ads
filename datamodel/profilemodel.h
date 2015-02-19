@@ -65,9 +65,20 @@ public:
    * gets a profile. caller is supposed to delete the returned
    * profile. 
    * @param aFingerPrint profile serial number
+   * @param aEmitErrorOnEncryptionErrors if true and profile cannot
+   *        be opened because selected operator is not in list of
+   *        readers then an error message shall be emit()ted.
+   *        This is set to false for trust-tree related operations
+   *        where it is likely that selected operator is not reader
+   *        of every operator trusted by selected operator. 
+   * @param aOmitImage if set to true, possible image will not be loaded from
+   *        data ; in cases where we know that we'll need only subset of
+   *        information and no image, we can skip this costly operation
    * @return profile or NULL
    */
-  Profile* profileByFingerPrint(const Hash& aFingerPrint) ;
+  Profile* profileByFingerPrint(const Hash& aFingerPrint,
+				bool aEmitErrorOnEncryptionErrors = true,
+				bool aOmitImage = false ) ;
 
   /**
    * Gets a profile. Because profile is signed .. and that means that

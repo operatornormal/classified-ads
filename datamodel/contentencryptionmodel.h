@@ -127,10 +127,17 @@ public:
    * @param aResultingCipherText on successfull completion, this
    *        bytearray will contain the decryped data ready to
    *        be opened. 
+   * @param aEmitErrorOnFailure if true, will emit an error signal
+   *        so that UI can respond accordingly. There are situations
+   *        where decrypt is likely to fail because selected operator
+   *        is not in list of readers and in those obvious cases
+   *        we don't want to flood the UI with error messages, so
+   *        "false" value is supplied there. 
    * @return true on success.
    */
   bool decrypt(const QByteArray& aCipherText,
-	       QByteArray& aResultingPlainText) ;
+	       QByteArray& aResultingPlainText,
+	       bool aEmitErrorOnFailure = true ) ;
   /**
    * method for retrieving list of private keys ; these
    * are supposed to have something to with user profiles

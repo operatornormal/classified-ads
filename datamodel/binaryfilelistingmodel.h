@@ -70,6 +70,10 @@ public:
    */
   virtual QVariant data(const QModelIndex & index, int role = Qt::DisplayRole) const ;
   virtual QVariant headerData(int aSection, Qt::Orientation orientation, int role) const ;
+  /**
+   * method for emptying model contents when viewed profile changes
+   */
+  void clear() ; 
 signals:
   void error(MController::CAErrorSituation aError,
              const QString& aExplanation) ;

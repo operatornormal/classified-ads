@@ -1,37 +1,43 @@
-This work was packaged for Debian by:
+This is Classified Ads, a program for posting ads online for others
+to read.
 
-    Antti Järvinen <classified-ads.questions@katiska.org> on Thu, 14 Nov 2013 22:47:38 +0300
+Copyright (C) 2013 Antti Järvinen <classified-ads.questions@katiska.org>
 
-It was downloaded from:
+Classified ads may be used, modified and distributed according to 
+freedoms stated in GPLv3 or, at your option, any later version of
+the license. 
 
-    <http://katiska.org>
+See /usr/share/common-licenses for copy of GPLv3.
 
-Upstream Author(s):
+Files/components with other copyright statement or owner
+---------------------------------------------------------------------
 
-    <put author's name and email here>
-    <likewise for another author>
+openssl ("Library for openssl toolkit")
+ While Classified Ads does not include openssl, it heavily relies
+ on its functionality and at runtime links to openssl libraries that
+ must have been installed into system. 
 
-Copyright:
+ This product includes software developed by the OpenSSL Project    
+ for use in the OpenSSL Toolkit (http://www.openssl.org/)
 
-    <Copyright (C) 2013 Antti Järvinen>
-    <likewise for another author>
+ In addition, as a special exception, the copyright holders give  
+ permission to link the code of portions of this program with the   
+ OpenSSL library under certain conditions as described in each  
+ individual source file, and distribute linked combinations  
+ including the two.  
 
-License:
+ You must obey the GNU General Public License in all respects  
+ for all of the code used other than OpenSSL.  If you modify  
+ file(s) with this exception, you may extend this exception to your  
+ version of the file(s), but you are not obligated to do so.  If you  
+ do not wish to do so, delete this exception statement from your  
+ version.  If you delete this exception statement from all source  
+ files in the program, then also delete it here.
 
-    GPL-3
+textedit/textedit.cpp,h ("Text editor from Qt examples")
+ Copyright (C) 2012 Nokia Corporation and/or its subsidiary(-ies).
+ 
+ Text editor files are under LGPL 2.1 license and they have been
+ modified by Antti Järvinen.
 
-The Debian packaging is:
-
-    Copyright (C) 2013 Antti Järvinen <classified-ads.questions@katiska.org>
-
-# Please chose a license for your packaging work. If the program you package
-# uses a mainstream license, using the same license is the safest choice.
-# Please avoid to pick license terms that are more restrictive than the
-# packaged work, as it may make Debian's contributions unacceptable upstream.
-# If you just want it to be GPL version 3, leave the following lines in.
-
-and is licensed under the GPL version 3,
-see "/usr/share/common-licenses/GPL-3".
-
-# Please also look if there are files or directories which have a
-# different copyright/license attached and list them here.
+ See /usr/share/common-licenses for copy of LGPL 2.1

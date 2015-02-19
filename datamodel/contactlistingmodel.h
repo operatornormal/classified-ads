@@ -66,6 +66,11 @@ public:
   void setContactsFromQVariant(const QVariantList& aContacts) ; 
   bool isContactContained(const Hash& aFingerPrint) const ; 
   void clearContents() ; 
+  /**
+   * method that returns subset of contacts that are marked as
+   * trusted 
+   */
+  QList<Hash> trustList() const ; 
 signals:
   void error(MController::CAErrorSituation aError,
 	     const QString& aExplanation) ;

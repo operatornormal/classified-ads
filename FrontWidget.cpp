@@ -35,6 +35,7 @@
 #include "datamodel/contentencryptionmodel.h"
 #include "datamodel/camodel.h"
 #include "datamodel/ca.h"
+#include "datamodel/trusttreemodel.h"
 #include "ui/profilereadersdialog.h"
 #include "ui/newclassifiedaddialog.h"
 #include "ui/newprivmsgdialog.h"
@@ -356,7 +357,7 @@ void FrontWidget::profileImageClicked() {
 	  LOG_STR("Scaling image to width") ; 
 	}
 	ui.imageButton->setIcon(QIcon ( profilePic )) ; 
-	iSelectedProfile->iProfilePicture = profilePic ; 
+	iSelectedProfile->iProfilePicture = profilePic.toImage() ; 
 	ui.publisChangesButton->setEnabled(true) ; 
 	ui.revertChangesButton->setEnabled(true) ; 
       }
@@ -777,12 +778,18 @@ void FrontWidget::commentPrivMsgPosterProfile()
   }
 }
 
-void FrontWidget::viewPrivMsgPosterProfile() 
-{
+void FrontWidget::viewPrivMsgPosterProfile() {
   LOG_STR("viewPrivMsgPosterProfile"); 
   if ( iPrivMsgOnDisplay.iSenderHash != KNullHash ) {
-    iController->userInterfaceAction(MController::ViewProfileDetails, 
-				     iPrivMsgOnDisplay.iSenderHash ) ; 
+    if ( iPrivMsgOnDisplay.iSenderHash == iController->profileInUse() ) {
+      iController->userInterfaceAction(MController::ViewProfileDetails, 
+				       iPrivMsgOnDisplay.iRecipient ) ;       
+    } else {
+      iController->userInterfaceAction(MController::ViewProfileDetails, 
+				       iPrivMsgOnDisplay.iSenderHash ) ;       
+    }
+    
+
   }
 }
 void FrontWidget::postNewPrivateMessage() 
@@ -1175,7 +1182,7 @@ void FrontWidget::updateUiFromSelectedProfile() {
       ui.isPrivateCheckbox->setChecked(false) ; 
     }
     if ( !( iSelectedProfile->iProfilePicture.isNull()) ) {
-      ui.imageButton->setIcon(QIcon(iSelectedProfile->iProfilePicture)) ; 
+      ui.imageButton->setIcon(QIcon(QPixmap::fromImage(iSelectedProfile->iProfilePicture))) ; 
     } else {
       QPixmap p ( ":/ui/ui/Lenin_reading_Pravda.png" ) ; 
       ui.imageButton->setIcon(QIcon(p)) ;
@@ -1205,6 +1212,12 @@ void FrontWidget::showDetailsOfProfile(const Hash& aFingerPrint) {
     iController->offerDisplayNameForProfile(iViewedProfile->iFingerPrint,
 					    iViewedProfile->displayName(),
 					    true) ; 
+  } else {
+    if ( iViewedProfileFileListingModel ) {
+      iViewedProfileFileListingModel->clear() ; 
+    }
+    // setting search hash to null will clear the model
+    iViewedProfileCommentListingModel.setSearchHash(KNullHash) ; 
   }
   iController->model().unlock() ;
   if ( iViewedProfile ) {
@@ -1284,14 +1297,32 @@ void FrontWidget::updateUiFromViewedProfile() {
 
     ui.profileDetailsNickNameValue->setText(iViewedProfile->iNickName) ;
 
+    QString trustingProfileNickName ; 
+    Hash trustingProfileHash ; 
+
+    if ( iController->model().trustTreeModel()->isProfileTrusted(iViewedProfile->iFingerPrint,
+								 &trustingProfileNickName,
+								 &trustingProfileHash ) ) {
+      ui.profileDetailsAddrValue->setToolTip(QString(tr("Trusted by %1\nSHA1 %2")).arg(trustingProfileNickName).arg(trustingProfileHash.toString())) ;
+      QLOG_STR("Profile was trusted by " + trustingProfileNickName ) ; 
+    } else {
+      ui.profileDetailsAddrValue->setToolTip(QString()) ; 
+      QLOG_STR("Profile was not trusted") ; 
+    }
+
     if ( isContactInContactList(iViewedProfile->iFingerPrint) ) {
       ui.profileDetailsAddrValue->setTextColor(QColor((Qt::blue))) ; 
       LOG_STR("Profile was in contacts list, setting blue color") ; 
+    } else if ( trustingProfileHash != KNullHash ) {
+      // was trusted by someone we trust:
+      ui.profileDetailsAddrValue->setTextColor(QColor((Qt::darkBlue))) ; 
     } else {
       // default color then:
       ui.profileDetailsAddrValue->setTextColor(QApplication::palette().text().color()) ;
       LOG_STR("Profile was not in contacts list, setting default color") ; 
     }
+
+
     ui.profileDetailsAddrValue->setText(iViewedProfile->iFingerPrint.toString()) ;
 
     if ( iViewedProfile->iIsPrivate ) {
@@ -1313,7 +1344,7 @@ void FrontWidget::updateUiFromViewedProfile() {
     ui.profileDetailsNickNameValue->setToolTip(toolTipText) ; 
     ui.profileDetailsGreetingValue->setToolTip(toolTipText) ; 
     if ( !( iViewedProfile->iProfilePicture.isNull()) ) {
-      ui.profileDetailsImage->setPixmap(iViewedProfile->iProfilePicture) ; 
+      ui.profileDetailsImage->setPixmap(QPixmap::fromImage(iViewedProfile->iProfilePicture)) ; 
     } else {
       QPixmap p ( ":/ui/ui/Lenin_reading_Pravda.png" ) ; 
       ui.profileDetailsImage->setPixmap(p) ;
@@ -1503,6 +1534,7 @@ void FrontWidget::setupClassifiedAdsTab() {
   iCaScene.addItem(&iFromField);
   iCaScene.addItem(&iSubjectField ) ; 
   iSubjectField.setPos(0,0) ; 
+  iSubjectField.setPen(QPen(QColor((QApplication::palette().text().color())))) ; 
   iFromField.setPos(0,20) ; 
   iCaScene.addItem(&iCaText)  ;
   iCaText.setPos(iArticleTopLeft) ; 
@@ -1590,7 +1622,7 @@ void FrontWidget::setupPrivateMessagesTab() {
   iReplyToPrivMsgButton = new QPushButton(tr("&Reply")); 
   iNewPrivMsgButton = new QPushButton(tr("&New message")); 
   iCommentPrivMsgPosterButton= new QPushButton(tr("&Send public comment to sender")); 
-  iViewPrivMsgPosterProfileButton= new QPushButton(tr("&View profile of sender")); 
+  iViewPrivMsgPosterProfileButton= new QPushButton(tr("&View profile of peer")); 
   iViewPrivMsgAttachmentsButton = new QPushButton(tr("Attachments..")); 
 
   connect(iReplyToPrivMsgButton,
@@ -1801,6 +1833,22 @@ void FrontWidget::CAselectionChangedSlot(const QItemSelection &/*aSelection*/, c
     iController->model().unlock() ; 
     emit displayedCaChanged() ; 
     iViewCaAttachmentsButton->setEnabled(iCaOnDisplay.iAttachedFiles.count() > 0) ; 
+
+    QString trustingProfileNickName ; 
+    Hash trustingProfileHash ; 
+
+    if ( iController->model().trustTreeModel()->isProfileTrusted(iCaOnDisplay.iSenderHash,
+								 &trustingProfileNickName,
+								 &trustingProfileHash ) ) {
+      iFromField.setToolTip(QString(tr("Trusted by %1\nSHA1 %2")).arg(trustingProfileNickName).arg(trustingProfileHash.toString())) ;
+      QLOG_STR("CA sender profile was trusted by " + trustingProfileNickName ) ; 
+      iFromField.setPen(QPen(QColor((Qt::blue)))) ; 
+    } else {
+      iFromField.setToolTip(QString()) ; 
+      iFromField.setPen(QPen(QColor((QApplication::palette().text().color())))) ; 
+      QLOG_STR("CA sender profile was not trusted") ; 
+    }
+
     if ( iCaOnDisplay.iSenderName.length() > 0 ) {
       iFromField.setText(tr("From:") + " " + iCaOnDisplay.iSenderName ) ;  
     } else {
@@ -2005,10 +2053,13 @@ void FrontWidget::editContactActionSelected() {
 }
 
 void FrontWidget::removeContactButtonClicked() {
-  if ( iSelectedContact != KNullHash ) {
+  if ( iSelectedContact != KNullHash && iSelectedProfile ) {
     iController->model().lock() ;
     iContactsModel.removeContact(iSelectedContact) ; 
-    iController->storePrivateDataOfSelectedProfile() ; 
+    iController->storePrivateDataOfSelectedProfile(true) ; // true == publish trust list too 
+    iController->model().trustTreeModel()->offerTrustList(iController->profileInUse(),
+							  QString(),
+							  iContactsModel.trustList()) ; 
     iController->model().unlock() ;
   }
 }
@@ -2103,8 +2154,11 @@ QVariant FrontWidget::contactDataOfSelectedProfile() {
   return iContactsModel.contactsAsQVariant() ; 
 }
 
-void FrontWidget::setContactDataOfSelectedProfile(const QVariantList& aContacts) 
-{
+QList<Hash> FrontWidget::trustListOfSelectedProfile() const {
+  return iContactsModel.trustList() ; 
+}
+
+void FrontWidget::setContactDataOfSelectedProfile(const QVariantList& aContacts) {
   iContactsModel.setContactsFromQVariant(aContacts) ; 
 }
 

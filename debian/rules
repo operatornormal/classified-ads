@@ -8,6 +8,8 @@
 
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
+PKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/buildflags.mk
 
 %:
 	dh $@ 
@@ -15,6 +17,28 @@ build: build-stamp
 
 build-stamp: main.cpp controller.h classified-ads.pro
 	dh_testdir
-	qmake-qt4
+	export CA_QMAKE_CPPFLAGS="`dpkg-buildflags --get CPPFLAGS`" ; export CA_QMAKE_CFLAGS="`dpkg-buildflags --get CFLAGS | sed -e s/-g//g`" ; export CA_QMAKE_CXXFLAGS="`dpkg-buildflags --get CXXFLAGS | sed -e s/-g//g`" ; export CA_QMAKE_LDFLAGS="`dpkg-buildflags --get LDFLAGS`" ; qmake-qt4
 	$(MAKE)
 	touch $@
+
+install: build
+	dh_testroot
+	dh_prep
+	dh_auto_install
+	dh_installdocs
+	dh_installman debian/classified-ads.1
+	dh_installchangelogs
+	dh_pysupport
+	dh_perl
+	dh_link
+	dh_compress
+	dh_fixperms
+	dh_strip
+	dh_makeshlibs
+	dh_shlibdeps
+	dh_installdeb
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary: build install

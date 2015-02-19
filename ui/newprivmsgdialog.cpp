@@ -153,7 +153,10 @@ Hash NewPrivMessageDialog::tryFindRecipientNode(const Hash& aRecipientFingerPrin
 {
   Hash retval ;
   Profile *recipientProfile (NULL) ;
-  if ( ( recipientProfile = iController->model().profileModel().profileByFingerPrint(aRecipientFingerPrint) ) != NULL ) {
+  if ( ( recipientProfile = 
+	 iController->model().profileModel().profileByFingerPrint(aRecipientFingerPrint,
+								  false/* do not emit encryption errors*/,
+								  true /* omit image */) ) != NULL ) {
     if ( recipientProfile->iNodeOfProfile ) {
       retval = recipientProfile->iNodeOfProfile->nodeFingerPrint() ; 
     }

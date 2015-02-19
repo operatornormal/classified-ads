@@ -41,11 +41,9 @@ static const int KJSONMsgVersionValue ( 1 ) ;
 Contact::Contact() :
   iFingerPrint(KNullHash),
   iIsTrusted(false) {
-  LOG_STR("Contact::Contact()") ;
 }
 
 Contact::~Contact() {
-  LOG_STR("Contact::~Contact()") ;
 }
 
 QByteArray Contact::asJSon(const MController& /*aController*/) const {

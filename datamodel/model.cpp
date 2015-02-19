@@ -45,6 +45,7 @@
 #include "privmsgmodel.h"
 #include "profilecommentmodel.h"
 #include "searchmodel.h"
+#include "trusttreemodel.h"
 #include <QMutex>
 #include <QTimerEvent>
 #include <QWaitCondition>
@@ -66,7 +67,8 @@ Model::Model(MController *aController) : iController(aController),
 					 iTimerId(-1),
 					 iPrivMsgModel(NULL),
 					 iProfileCommentModel(NULL),
-					 iSearchModel(NULL) {
+					 iSearchModel(NULL),
+					 iTrustTreeModel(NULL) {
   LOG_STR("Model::Model()") ;
   connect(this,
           SIGNAL(  error(MController::CAErrorSituation,
@@ -94,6 +96,7 @@ Model::Model(MController *aController) : iController(aController),
   iPrivMsgModel = new PrivMessageModel(aController, *this) ;
   iSearchModel = new SearchModel(*this,*iController) ;
   iSearchModel->setObjectName("CA SearchModel") ; 
+  iTrustTreeModel = new TrustTreeModel(aController, *this ) ; 
   iProfileCommentModel = new ProfileCommentModel(aController, *this) ;
   iNetReqExecutor->setInterval(1000); // start is called by controller
 
@@ -225,6 +228,7 @@ Model::~Model() {
   delete iNetReqQueue ;
   delete iBinaryFileModel ; 
   delete iSearchModel ; 
+  delete iTrustTreeModel ; 
   delete iCaModel ; 
   delete iContentEncryptionModel ;
   iDb.close();
@@ -849,6 +853,9 @@ ProfileCommentModel& Model::profileCommentModel() const {
 }
 SearchModel* Model::searchModel() const {
   return iSearchModel ; 
+}
+TrustTreeModel* Model::trustTreeModel() const {
+  return iTrustTreeModel ; 
 }
 NetworkRequestExecutor* Model::getNetReqExecutor() {
   return iNetReqExecutor ;

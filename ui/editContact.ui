@@ -61,8 +61,11 @@
      </item>
      <item>
       <widget class="QCheckBox" name="trustedCheckBox">
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Settings some trusted is public information to readers of your profile&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
        <property name="text">
-        <string>This contact is to be trusted in transactions</string>
+        <string>This contact is to be publicly trusted in transactions</string>
        </property>
       </widget>
      </item>

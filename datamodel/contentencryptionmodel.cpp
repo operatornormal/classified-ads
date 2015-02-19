@@ -553,7 +553,8 @@ bool ContentEncryptionModel::encrypt(const QList<Hash> aRecipients,
 }
 
 bool ContentEncryptionModel::decrypt(const QByteArray& aCipherText,
-				     QByteArray& aResultingPlainText) {
+				     QByteArray& aResultingPlainText,
+				     bool aEmitErrorOnFailure ) {
   // Yes, Sir. 
   bool retval ( false ) ; 
 
@@ -617,8 +618,10 @@ bool ContentEncryptionModel::decrypt(const QByteArray& aCipherText,
 				    (const unsigned char *)(aCipherText.mid(sizeof(quint32)+metaDataLen).constData()), 
 				    aCipherText.length()-(sizeof(quint32)+metaDataLen)))
 		  {
-		    QString errmsg(ERR_reason_error_string(ERR_get_error())) ;
-		    emit error(MController::ContentEncryptionError, errmsg) ;
+		    if ( aEmitErrorOnFailure ) {
+		      QString errmsg(ERR_reason_error_string(ERR_get_error())) ;
+		      emit error(MController::ContentEncryptionError, errmsg) ;
+		    }
 		  } else {
 		  if ( len_out > 0 ) {
 		    aResultingPlainText.append((const char *)plainTextPtr,len_out) ; 	
@@ -637,17 +640,16 @@ bool ContentEncryptionModel::decrypt(const QByteArray& aCipherText,
 	      } // if we got plainTextPtr
 	    } else {
 	      // too bad dude, you're not in the club..
-	      QString errmsg(tr("No suitable de-cryption key found")) ;
-	      emit error(MController::ContentEncryptionError, errmsg) ;
+	      if ( aEmitErrorOnFailure ) {
+		QString errmsg(tr("No suitable de-cryption key found")) ;
+		emit error(MController::ContentEncryptionError, errmsg) ;
+	      }
 	      LOG_STR("Decrypt: key not found") ;
 	      retval = false ; 
 	    }
 	    EVP_CIPHER_CTX_cleanup(&ctx);
 	    EVP_PKEY_free(myPrivateKey) ;	
 	  }     
-	  //    QByteArray iv ( QByteArray::fromBase64()) ;
-	  // LOG_STR2("Iv len = %d", iv.length());
-	  // LOG_STR2("Iv: %s", qPrintable(QString(iv.toBase64()))) ;
 	}
       } // if parse was ok
     } // metadata length check

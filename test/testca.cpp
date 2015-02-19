@@ -16,6 +16,7 @@
 #include "../datamodel/ca.h"
 #include "../datamodel/profilemodel.h"
 #include "../datamodel/profile.h"
+#include "../datamodel/trusttreemodel.h"
 
 Q_IPV6ADDR KNullIpv6Addr ( QHostAddress("::0").toIPv6Address () ) ;
 Hash KNullHash ;
@@ -60,6 +61,7 @@ private slots:
   void try3NodeGreetingParsing() ; 
   void tryListOfAdsParsing() ; 
   void trySearchRequest() ; 
+  void tryTrustTreeModel() ; 
   void tryDeletingController() ; 
 private:
   Hash iHashOfPrivateKey ; 
@@ -239,6 +241,19 @@ void TestClassifiedAds::tryContentEncryptionModel()
     {
       iHashOfPrivateKey = iController->model().contentEncryptionModel().generateKeyPair() ; 
       QVERIFY(!(iHashOfPrivateKey == nullHash) ) ; 
+      if ( iHashOfPrivateKey != nullHash  ) {
+	// put some profile data in there too
+	Profile p(iHashOfPrivateKey) ; 
+	p.iNickName = "test profile" ; 
+	p.iGreetingText = "zap" ; 
+	p.iIsPrivate = false ; 
+	p.iTimeOfPublish = QDateTime::currentDateTimeUtc().toTime_t() ;
+	iController->model().profileModel().publishProfile(p) ;
+	QSqlQuery query;
+	query.prepare("delete from publish where hash1 = " + QString::number(iHashOfPrivateKey.iHash160bits[0])) ; 
+	query.exec() ;
+
+      }
     }
   else
     {
@@ -518,12 +533,15 @@ void   TestClassifiedAds::trySearchRequest()
   quint32 dummy ; 
 
   ca.iMessageText = "<html><body>tottamooses,tassoisfraasikunneiesiinnymissaan,eihelepollaainakkaan</body></html>" ; 
+  QLOG_STR("Trying to get profile with key " + iHashOfPrivateKey.toString() + " " + QString::number(iHashOfPrivateKey.iHash160bits[0])) ; 
   Profile *prof = iController->model().profileModel().profileByFingerPrint(iHashOfPrivateKey) ;
   if ( prof  ) {
+    QLOG_STR("Got profile") ; 
     if ( 
 	iController->model().contentEncryptionModel().PublicKey(iHashOfPrivateKey,
 								ca.iProfileKey,
 								&dummy )) {
+      QLOG_STR("Got public key ") ; 
       ca.iFingerPrint = iController->model().classifiedAdsModel().publishClassifiedAd(*prof, ca) ; 
       if(ca.iFingerPrint != KNullHash ) {
 	// ok, the CA is in, lets try to perform a search on it.. first in "network search" manner:
@@ -569,6 +587,8 @@ ProtocolMessageFormatter::searchSend("tottamooses,tassoisfraasikunneiesiinnymiss
 	    }
 	  }
 	}
+      } else {
+	QLOG_STR("CA got null fingerprint? ") ; 
       }
     }
     delete prof ; 
@@ -597,6 +617,78 @@ ProtocolMessageFormatter::searchSend("tottamooses,tassoisfraasikunneiesiinnymiss
   delete p ; 
   delete m ;
   QVERIFY(testCaseSuccess) ;
+}
+
+void TestClassifiedAds::tryTrustTreeModel() 
+{
+  MockUpModel* m = new MockUpModel(iController) ; 
+  TrustTreeModel* tl = new TrustTreeModel(iController,*m) ; 
+
+  tl->initModel(QVariant()) ; 
+  Profile unTrustedProfile1 ( Hash(1,1,1,1,3) ) ; 
+  unTrustedProfile1.iNickName = "Einari E. Epaluotettava" ; 
+  QString displayName ;
+  Hash trustingHash ; 
+
+
+  Profile *self = iController->model().profileModel().profileByFingerPrint(iHashOfPrivateKey) ;
+  if ( self ) {
+    Profile trustedProfile1 ( Hash(1,1,1,1,1) ) ; 
+    trustedProfile1.iNickName = "Taisto T. Trusted" ; 
+    if ( !self->iTrustList.contains(trustedProfile1.iFingerPrint) ) {
+      self->iTrustList << trustedProfile1.iFingerPrint ; 
+      QLOG_STR("Setting trust on " + trustedProfile1.iNickName) ; 
+    }
+    Profile trustedProfile2 ( Hash(1,1,1,1,2) ) ; 
+    trustedProfile2.iNickName = "Tenho T. Trusted" ; 
+    if ( !self->iTrustList.contains(trustedProfile2.iFingerPrint) ) {
+      self->iTrustList << trustedProfile2.iFingerPrint ; 
+      QLOG_STR("Setting trust on " + trustedProfile2.iNickName) ; 
+    }
+
+    iController->model().profileModel().publishProfile(*self) ;
+    QSqlQuery query;
+    query.prepare("delete from publish where hash1 = " + QString::number(iHashOfPrivateKey.iHash160bits[0]));
+    query.exec() ;
+
+    tl->offerTrustList(self->iFingerPrint, self->iNickName, self->iTrustList ) ; 
+    // then, cause calculation of the trust tree:
+    tl->offerTrustList(trustedProfile1.iFingerPrint, trustedProfile1.iNickName, trustedProfile1.iTrustList ) ; 
+    tl->offerTrustList(trustedProfile2.iFingerPrint, trustedProfile2.iNickName, trustedProfile2.iTrustList ) ; 
+    // now, self is trusted and it has 2 trusted profiles.
+    QCOMPARE(tl->isProfileTrusted(self->iFingerPrint,&displayName,&trustingHash), true) ; 
+    QCOMPARE(tl->isProfileTrusted(trustedProfile1.iFingerPrint,&displayName,&trustingHash), true) ; 
+    QCOMPARE(tl->isProfileTrusted(trustedProfile2.iFingerPrint,&displayName,&trustingHash), true) ; 
+
+    QVariant modelState ( tl->trustTreeSettings() ) ;
+    tl->clear() ;
+    tl->initModel(modelState) ; 
+    // and now, Taneli should again be trusted?
+    QCOMPARE(tl->isProfileTrusted(trustedProfile2.iFingerPrint,&displayName,&trustingHash), true) ; 
+
+    // then add 2nd level trusted profile:
+    Profile trustedProfile4 ( Hash(1,1,1,1,4) ) ; 
+    if ( !trustedProfile2.iTrustList.contains(trustedProfile4.iFingerPrint) ) {
+      trustedProfile2.iTrustList << trustedProfile4.iFingerPrint ; 
+    }
+    trustedProfile4.iNickName = "Sigvard S. Semitrusted" ; 
+    // update model as Tenho now expresses trust regarding Sigvard
+    tl->offerTrustList(trustedProfile2.iFingerPrint, trustedProfile2.iNickName, trustedProfile2.iTrustList ) ; 
+    QCOMPARE(tl->isProfileTrusted(trustedProfile4.iFingerPrint,&displayName,&trustingHash), true) ; 
+    QLOG_STR("Sigvard is trusted by " + displayName) ; 
+    // then drop trust on Tenho and that should revoke trust
+    // from Sigvard too:
+    self->iTrustList.removeAll(trustedProfile2.iFingerPrint) ; 
+    iController->model().profileModel().publishProfile(*self) ;
+    query.exec() ;
+    tl->offerTrustList(self->iFingerPrint, self->iNickName, self->iTrustList ) ; 
+    QCOMPARE(tl->isProfileTrusted(trustedProfile4.iFingerPrint,&displayName,&trustingHash), false) ; 
+
+  }	   
+  QVERIFY(tl->isProfileTrusted(unTrustedProfile1.iFingerPrint,&displayName,&trustingHash) == false) ; 
+  delete self ; 
+  delete tl ; 
+  delete m ; 
 }
 
 void TestClassifiedAds::tryCompression()

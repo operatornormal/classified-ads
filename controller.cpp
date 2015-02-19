@@ -50,9 +50,11 @@
 #include "datamodel/searchmodel.h"
 #include "datamodel/profile.h"
 #include "datamodel/profilecomment.h"
+#include "datamodel/trusttreemodel.h"
 
 static const char *KPrivateDataContactsSection = "contacts" ; 
 static const char *KPrivateDataContactsCache = "contactsCache" ; 
+static const char *KPrivateDataTrustTree = "trustTree" ; 
 
 Controller::Controller(QApplication &app) : iWin(NULL),
 					    iCurrentWidget(NULL),
@@ -358,7 +360,9 @@ void Controller::userInterfaceAction ( CAUserInterfaceRequest aRequest,
     if ( c ) {
       // see if we have the profile too:
       iModel->lock() ; 
-      Profile *p ( iModel->profileModel().profileByFingerPrint((c->iProfileFingerPrint) ) ) ; 
+      Profile *p ( iModel->profileModel().profileByFingerPrint(c->iProfileFingerPrint,
+							       true, /* emit */
+							       true  /* no image */  ) ) ; 
       iModel->unlock() ; 
       if ( p ) {
 	delete p ; 
@@ -865,6 +869,11 @@ void Controller::notifyOfContentReceived(const Hash& aHashOfContent,
   }
   iRetrievalEngine->notifyOfContentReceived(aHashOfContent,
 					    aTypeOfReceivedContent) ; 
+  // offer profiles to trust list
+  if ( aTypeOfReceivedContent == UserProfile ) {
+    iModel->trustTreeModel()->contentReceived(aHashOfContent,
+					      aTypeOfReceivedContent) ;
+  }
 }
 
 void Controller::notifyOfContentReceived(const Hash& aHashOfContent,
@@ -950,7 +959,7 @@ void Controller::startRetrievingContent(NetworkRequestExecutor::NetworkRequestQu
   iTypeOfObjectBeingWaitedFor = aTypeOfExpectedObject ; 
 }
 
-void Controller::storePrivateDataOfSelectedProfile() {
+void Controller::storePrivateDataOfSelectedProfile(bool aPublishTrustListToo) {
 
   if ( iProfileHash!= KNullHash ) {
     QMap<QString,QVariant> m ; 
@@ -966,8 +975,20 @@ void Controller::storePrivateDataOfSelectedProfile() {
     m.insert(KPrivateDataContactsCache,
 	     cache) ; 
     }
+    m.insert(KPrivateDataTrustTree, 
+	     iModel->trustTreeModel()->trustTreeSettings()) ;
+
     iModel->profileModel().setPrivateDataForProfile(iProfileHash,
 						    QVariant(m)) ; 
+
+    if ( iCurrentWidget->selectedProfile() ) {
+      iCurrentWidget->selectedProfile()->iTrustList.clear() ; 
+      iCurrentWidget->selectedProfile()->iTrustList.append(iCurrentWidget->trustListOfSelectedProfile()) ;
+      if ( aPublishTrustListToo ) {
+	iCurrentWidget->selectedProfile()->iTimeOfPublish = QDateTime::currentDateTimeUtc().toTime_t() ;
+	iModel->profileModel().publishProfile(*(iCurrentWidget->selectedProfile()));
+      }
+    }
   } else {
     LOG_STR("No selected profile while storePrivateDataOfSelectedProfile") ; 
   }
@@ -980,6 +1001,12 @@ void Controller::reStorePrivateDataOfSelectedProfile() {
       QVariantList listOfContacts (privateData[KPrivateDataContactsSection].toList()) ; 
       iCurrentWidget->setContactDataOfSelectedProfile(listOfContacts) ; 
     }
+    if (privateData.contains(KPrivateDataTrustTree)) {
+      iModel->trustTreeModel()->initModel(privateData[KPrivateDataTrustTree]) ; 
+    } else {
+      iModel->trustTreeModel()->initModel(QVariant()) ; 
+    }
+
     iHashDisplaynameMapping.clear() ; 
     if (privateData.contains(KPrivateDataContactsCache)) {
       QVariantMap contactsCache (privateData[KPrivateDataContactsCache].toMap()) ; 
@@ -1018,6 +1045,11 @@ void Controller::offerDisplayNameForProfile(const Hash& aProfileFingerPrint,
       if ( aStoreInPersistenStorage ) {
 	storePrivateDataOfSelectedProfile() ;
       }
+    }
+    else if ( iHashDisplaynameMapping.contains(aProfileFingerPrint ) &&
+	      aDisplayName.length() > 0 ) {
+      QString& contentAsDescriptor ( iHashDisplaynameMapping[aProfileFingerPrint] ) ;
+      contentAsDescriptor = aDisplayName ; 
     }
   } else {
     QLOG_STR("Offered display name was profile hash -> discarding") ; 

@@ -21,7 +21,7 @@
 #define CLASSIFIED_PROFILE_H
 #include <QString>
 #include "../util/hash.h" // for class Hash  
-#include <QPixmap>
+#include <QImage>
 #include <QVariant> // actually for qvariantmap
 
 class MController ;
@@ -56,12 +56,27 @@ public:
   QVariant asQVariant(const MController& aController) const ;
   /**
    * reverse of @ref asQVariant()
+   * @param aJSonAsQVariant is qvariant supposedly containing the profile data
+   * @param aController application controller 
+   * @param aOmitImage if set to true, possible image will not be loaded from
+   *        data ; in cases where we know that we'll need only subset of
+   *        information and no image, we can skip this costly operation
    * @return true if QVariant looked like profile
    */
   bool setFromQVariant(const QVariantMap& aJSonAsQVariant,
-		       const MController& aController) ;
+		       const MController& aController,
+		       bool aOmitImage = false) ;
+  /** 
+   * parses json into members
+   * @param aJSonBytes is json text supposedly containing the profile data
+   * @param aController application controller 
+   * @param aOmitImage if set to true, possible image will not be loaded from
+   *        data ; in cases where we know that we'll need only subset of
+   *        information and no image, we can skip this costly operation
+   */
   bool fromJSon(const QByteArray &aJSonBytes,
-		const MController& aController ) ; /**< parses json into members*/
+		const MController& aController,
+		bool aOmitImage = false ) ; 
   const Hash iFingerPrint ; /**< profile encryption key fingerprint */
   QString iNickName ;  /**< nickname selected by user */
   QString iGreetingText ; /**< short hello-world by user */
@@ -77,8 +92,9 @@ public:
    * key fingerprints
    */
   QList<Hash> iProfileReaders  ;
-  QPixmap iProfilePicture ; /**< If V. Lenin is too fine for you */
+  QImage iProfilePicture ; /**< If V. Lenin is too fine for you */
   QList<Hash> iSharedFiles  ; /**< Fingerprints of files shared */ 
   Node* iNodeOfProfile ; /**< physical contact addr of this profile */
+  QList<Hash> iTrustList  ; /**< Fingerprints of trusted profiles */ 
 } ;
 #endif

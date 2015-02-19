@@ -187,8 +187,12 @@ public slots:
    * changes.
    *
    * lock the datamodel before calling this method
+   *
+   * @param aPublishTrustListToo if set to true, has selected profiles
+   *        trust list to be updated profile data and profile published
+   *        with the new trust list. 
    */
-  virtual void storePrivateDataOfSelectedProfile() ;
+  virtual void storePrivateDataOfSelectedProfile(bool aPublishTrustListToo = false) ;
   /**
    * method for restoring private data of profile currently in use.
    * shall be called after new profile is selected in frontwidget.

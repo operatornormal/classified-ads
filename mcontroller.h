@@ -148,8 +148,12 @@ public slots:
   virtual Model &model() const = 0 ;
   /**
    * method for storing private data of profile currently in use 
+   *
+   * @param aPublishTrustListToo if set to true, has selected profiles
+   *        trust list to be updated profile data and profile published
+   *        with the new trust list. 
    */
-  virtual void storePrivateDataOfSelectedProfile() = 0 ; 
+  virtual void storePrivateDataOfSelectedProfile(bool aPublishTrustListToo = false ) = 0 ; 
   /**
    * method for restoring private data of profile currently in use.
    * shall be called after new profile is selected in frontwidget.

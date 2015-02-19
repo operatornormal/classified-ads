@@ -21,6 +21,7 @@
 #include <QSqlError>
 #include <QFont>
 #include "privmsgsearchmodel.h"
+#include "trusttreemodel.h"
 #include "../log.h"
 #include "../mcontroller.h"
 #include "model.h"
@@ -103,12 +104,24 @@ QVariant PrivateMessageSearchModel::data(const QModelIndex &index, int role) con
       // here return QIcon of size 26x26 featuring lenin reading pravda? 
       return QVariant(); 
     } else  if(role == Qt::ToolTipRole) {
-      return iPrivateMessages.at(index.row()).iRecipientHash.toString() ; 
+      Hash peerHash ( iController.profileInUse() == 
+		      iPrivateMessages.at(index.row()).iRecipientHash ? 
+		      iPrivateMessages.at(index.row()).iSenderHash : 
+		      iPrivateMessages.at(index.row()).iRecipientHash ) ; 
+      if ( iPrivateMessages.at(index.row()).iTrustingProfileName.length() > 0 ) {
+	return QString(tr("%1\nTrusted by %2")).arg(peerHash.toString()).arg(iPrivateMessages.at(index.row()).iTrustingProfileName) ; 
+      } else {
+	return peerHash.toString() ; 
+      }
     } else if ( role == Qt::ForegroundRole ) {
-      if ( ( iController.profileInUse() == 
-	     iPrivateMessages.at(index.row()).iRecipientHash ) &&
-	   iController.isContactInContactList(iPrivateMessages.at(index.row()).iSenderHash ) ) {
-	return QColor(Qt::blue); // color blue if sender is in contacts
+      Hash peerHash ( iController.profileInUse() == 
+		      iPrivateMessages.at(index.row()).iRecipientHash ? 
+		      iPrivateMessages.at(index.row()).iSenderHash : 
+		      iPrivateMessages.at(index.row()).iRecipientHash ) ; 
+
+      if ( iPrivateMessages.at(index.row()).iTrustingProfileName.length() > 0 ||
+	   iController.isContactInContactList(peerHash ) ) {
+	return QColor(Qt::blue); // color blue if sender is in contacts or trusted
       } else {
 	return QVariant() ; 
       }
@@ -189,6 +202,19 @@ void PrivateMessageSearchModel::performSearch()
       if ( !query.isNull(11) && query.value(11).toUInt() == iController.profileInUse().iHash160bits[0] ) {
 	// was sent by me, yes 
 	item.iSenderHash = iController.profileInUse() ; 
+	QString trustingProfileName ; 
+	Hash trustingProfileHash ; 
+	if ( iController.model().trustTreeModel()->isProfileTrusted(item.iRecipientHash,
+								    &trustingProfileName,
+								    &trustingProfileHash) ) {
+	  if ( trustingProfileName.length() > 0 ) {
+	    item.iTrustingProfileName = trustingProfileName ; 
+	  } else {
+	    item.iTrustingProfileName = trustingProfileHash.toString() ; 
+	  }
+	}
+      } else {
+	// was destined to me, cant't check for trust yet
       }
       if ( !query.isNull(12) && query.value(12).toInt() > 0 ) {
 	item.iIsRead = true ; 
@@ -273,6 +299,21 @@ void PrivateMessageSearchModel::updateSenderAndSubjectOfMsg(PrivateMessageListIt
     aItem.iSenderHash = msg->iSenderHash ; 
     aItem.iMessageSubject = msg->iSubject ; 
     aItem.iMessageTimeStamp = msg->iTimeOfPublish ; 
+
+    QString trustingProfileName ; 
+    Hash trustingProfileHash ; 
+    if ( iController.model().trustTreeModel()->isProfileTrusted( aItem.iSenderHash == iController.profileInUse() ? aItem.iRecipientHash : aItem.iSenderHash ,
+								 &trustingProfileName,
+								 &trustingProfileHash)) {
+      if ( trustingProfileName.length() > 0 ) {
+	aItem.iTrustingProfileName = trustingProfileName ; 
+      } else {
+	aItem.iTrustingProfileName = trustingProfileHash.toString() ; 
+      }
+    } else {
+      aItem.iTrustingProfileName = QString() ; 
+    }
+  
     delete msg ; 
   }
 }
@@ -286,9 +327,8 @@ void   PrivateMessageSearchModel::doUpdateDataOnIdle()
   for ( int i ( 0 ) ; i < iPrivateMessages.size() ; i++ ) {
     if ( iPrivateMessages.at(i).iSenderHash == KNullHash ) {
       indexUpdated = i ; 
-      PrivateMessageListItem item = iPrivateMessages.at(i) ;     
+      PrivateMessageListItem& item ( iPrivateMessages[i] ) ;     
       updateSenderAndSubjectOfMsg(item) ; 
-      iPrivateMessages.replace(i, item) ; 
       break ; // out of loop, e.g. do only one
     }
   }

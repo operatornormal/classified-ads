@@ -17,7 +17,7 @@ SOURCES = testca.cpp ../util/hash.cpp mockup_controller.cpp \
            ../datamodel/profilecommentmodel.cpp \
            ../datamodel/searchmodel.cpp \
            ../datamodel/datamodelbase.cpp \
-           ../datamodel/profilecomment.cpp 
+           ../datamodel/profilecomment.cpp ../datamodel/trusttreemodel.cpp 
 HEADERS = ../util/hash.h ../mcontroller.h mockup_controller.h \
 	   ../datamodel/model.h ../datamodel/nodemodel.h \
 	   ../datamodel/contentencryptionmodel.h ../net/networklistener.h \
@@ -38,10 +38,10 @@ HEADERS = ../util/hash.h ../mcontroller.h mockup_controller.h \
            ../datamodel/profilecommentmodel.h \
            ../datamodel/searchmodel.h \
            ../datamodel/datamodelbase.h \
-           ../datamodel/profilecomment.h 
+           ../datamodel/profilecomment.h ../datamodel/trusttreemodel.h
 CONFIG  += qtestlib 
 CONFIG  += debug
 QT      += core network sql
 LIBS = -lssl -lcrypto -lgcrypt -lnatpmp -lqjson -lgcov -lminiupnpc
 unix:INCLUDEPATH += /usr/include/miniupnpc
-QMAKE_CXXFLAGS += -fprofile-arcs -ftest-coverage
+QMAKE_CXXFLAGS += -fprofile-arcs -ftest-coverage -DDEBUG

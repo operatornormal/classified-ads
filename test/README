@@ -1,4 +1,19 @@
-If you want all test cases to pass you need to have 
-$HOME/.classified_ads/sqlite_db in place, a profile in there and that
-profile needs to have password 'salasana' - if not then the password
-changing test cases will fail.
+In order to successfully run the tests, first backup file
+$HOME/.classified_ads/sqlite_db 
+then remove the file, then run the tests. They're not destructive
+but make certain assumptions and they do manipulate trust 
+list of profile that they manage to open, if they can. If you
+have profile with password 'salasana' it will be used in
+tests. 
+
+If the database is removed prior to running tests, you'll
+exercise also database creation code so code coverage
+gets slightly better .. but is still bad. 
+
+After tests have been run, the database file may be safely
+thrown away and original moved back. If you run the test 
+program twice, you should still get 100% pass rate but on 
+second run it do the run using slightly different code 
+paths because the database is already there. 
+
+

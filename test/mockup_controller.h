@@ -96,7 +96,7 @@ public:
   virtual void startRetrievingContent(NetworkRequestExecutor::NetworkRequestQueueItem aReq,bool aIsBackgroundDl, ProtocolItemType aTypeOfExpectedObject) ;
 
 
-   virtual void storePrivateDataOfSelectedProfile()  ; 
+   virtual void storePrivateDataOfSelectedProfile(bool aPublishTrustListToo = false)  ; 
 
 
    virtual void reStorePrivateDataOfSelectedProfile() ; 

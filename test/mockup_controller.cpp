@@ -143,7 +143,7 @@ void MockUpController::startRetrievingContent(NetworkRequestExecutor::NetworkReq
   return ;
 }
 
-void MockUpController::storePrivateDataOfSelectedProfile() {
+void MockUpController::storePrivateDataOfSelectedProfile(bool /*aPublishTrustListToo*/) {
   return ;
 }
 

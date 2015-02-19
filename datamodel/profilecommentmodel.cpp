@@ -68,7 +68,7 @@ bool ProfileCommentModel::publishProfileComment(ProfileComment& aProfileComment)
     QByteArray encryptedJson ;
     // dig out the profile that is commented, readers of that profile
     // will be the recipients of this comment:
-    Profile* profileCommented ( iController->model().profileModel().profileByFingerPrint(aProfileComment.iProfileFingerPrint));
+    Profile* profileCommented ( iController->model().profileModel().profileByFingerPrint(aProfileComment.iProfileFingerPrint,true /* emit */,true/* no image */));
     if ( profileCommented == NULL ) {
       emit error(MController::ContentEncryptionError, tr("Profile related to comment not found from database")) ;
       return false ; 

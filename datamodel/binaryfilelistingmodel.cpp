@@ -183,3 +183,17 @@ QVariant BinaryFileListingModel::headerData(int aSection, Qt::Orientation orient
   }
   return QVariant();
 }
+
+void BinaryFileListingModel::clear() {
+#if QT_VERSION >= 0x050000
+  // qt5
+  beginResetModel() ; 
+#endif
+  iFilesToList.clear() ; 
+  iNamesAndFingerPrints.clear() ; 
+#if QT_VERSION >= 0x050000
+  endResetModel() ; 
+#else    
+  reset() ; 
+#endif
+}

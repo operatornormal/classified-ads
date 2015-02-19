@@ -44,6 +44,7 @@ public: // types:
     QString iMessageSubject ; 
     QString iSenderName ; 
     bool iIsRead ; 
+    QString iTrustingProfileName ; 
   } ; 
 public: 
  PrivateMessageSearchModel(Model& aModel,MController& aController) ;

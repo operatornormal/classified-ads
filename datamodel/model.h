@@ -36,7 +36,7 @@ class Hash ;
 class QSslCertificate ;
 class QSslKey ;
 class SearchModel ; 
-
+class TrustTreeModel ; 
 /**
  * @brief M of the MVC pattern. Handles permanent storage.
  *
@@ -57,6 +57,7 @@ public:
   virtual PrivMessageModel& privateMessageModel() const ; /**< method for getting the priv msg datamodel */
   virtual ProfileCommentModel& profileCommentModel() const ; /**< method for getting the comment datamodel */
   virtual SearchModel* searchModel() const ; /**< method for getting the full text search datamodel */
+  virtual TrustTreeModel* trustTreeModel() const ; /**< method for getting the trust tree datamodel */
   void addOpenNetworkConnection(Connection *aConnection) ;
   /**
    * Method for telling datamodel about a existing network connection
@@ -219,5 +220,6 @@ private:
   PrivMessageModel* iPrivMsgModel ; /**< storage of private messages */
   ProfileCommentModel* iProfileCommentModel ; /**< comments data storage */
   SearchModel* iSearchModel ; /**< full text search model part */
+  TrustTreeModel *iTrustTreeModel ; /**< trust list handling model */
 } ;
 #endif

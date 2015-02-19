@@ -33,9 +33,15 @@
 #include <QFile>
 
 MockUpModel::MockUpModel( MController *aController ) : 
-  iController(aController),
   iNetworkRequests(NULL),
-  iPrivMsgModel(NULL)
+  iController(aController),
+  iProfileModel(NULL),
+  iBinaryFileModel(NULL),
+  iCAModel(NULL),
+  iPrivMsgModel(NULL),
+  iContentEncryptionModel(NULL),
+  iProfileCommentModel(NULL),
+  iSearchModel(NULL)
 {
   LOG_STR("MockUpModel::MockUpModel in\n") ; 
 

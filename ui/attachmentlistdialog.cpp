@@ -178,7 +178,10 @@ Hash AttachmentListDialog::tryFindNodeByProfile(const Hash& aProfileFingerPrint,
 {
   Hash retval ;
   Profile *recipientProfile (NULL) ;
-  if ( ( recipientProfile = aController.model().profileModel().profileByFingerPrint(aProfileFingerPrint) ) != NULL ) {
+  if ( ( recipientProfile = 
+	 aController.model().profileModel().profileByFingerPrint(aProfileFingerPrint,
+								 false/* do not emit encryption errors*/,
+								 true /* omit image */) ) != NULL ) {
     if ( recipientProfile->iNodeOfProfile ) {
       retval = recipientProfile->iNodeOfProfile->nodeFingerPrint() ; 
     }

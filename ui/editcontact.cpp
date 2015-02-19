@@ -25,6 +25,7 @@
 #include "../datamodel/model.h"
 #include "../FrontWidget.h"
 #include "../datamodel/contactlistingmodel.h"
+#include "../datamodel/trusttreemodel.h"
 #include "editcontact.h"
 
 EditContactDialog::EditContactDialog(QWidget *aParent,
@@ -77,13 +78,19 @@ void EditContactDialog::okButtonClicked()
     c.iIsTrusted = ui.trustedCheckBox->isChecked() ; 
     iController->model().lock() ;
     iContactsModel.newContactAdded(c) ; 
-    close() ; 
-    this->deleteLater() ;
     iController->offerDisplayNameForProfile(c.iFingerPrint,
 					    c.iNickName,
 					    true) ;
-    iController->storePrivateDataOfSelectedProfile() ; 
+    iController->storePrivateDataOfSelectedProfile(true) ; // true == publish trust list too 
+    // trust tree model will obtain the "self" profile from
+    // profilemodel so this notify here must be given after
+    // the profile has been persisted into permanent storage
+    iController->model().trustTreeModel()->offerTrustList(iController->profileInUse(),
+							  QString(),
+							  iContactsModel.trustList()) ; 
     iController->model().unlock() ;
+    close() ; 
+    this->deleteLater() ;
   }
 }
 

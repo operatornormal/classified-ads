@@ -2,10 +2,20 @@ QT     += core network sql
 greaterThan(QT_MAJOR_VERSION, 4) {
     QT += widgets printsupport
 } 
-CONFIG += release
+#CONFIG += debug
+#CONFIG -= release
+CONFIG(release) {
+message("hardening flags for release build")
+unix:QMAKE_CPPFLAGS *= $$(CA_QMAKE_CPPFLAGS)
+unix:QMAKE_CFLAGS   *= $$(CA_QMAKE_CFLAGS)
+unix:QMAKE_CXXFLAGS *= $$(CA_QMAKE_CXXFLAGS)
+unix:QMAKE_LFLAGS   *= $$(CA_QMAKE_LDFLAGS)
+} else {
+message("debug build, no hardening")
 # enabled -DDEBUG to have console log via qDebug()
-#QMAKE_CXXFLAGS += -DDEBUG
+QMAKE_CXXFLAGS += -DDEBUG
 win32.CONFIG += console
+}
 CODECFORTR = UTF-8
 CODECFORSRC = UTF-8
 HEADERS = mcontroller.h controller.h FrontWidget.h net/node.h util/hash.h \
@@ -32,7 +42,8 @@ HEADERS = mcontroller.h controller.h FrontWidget.h net/node.h util/hash.h \
         ui/attachmentlistdialog.h ui/settings.h ui/status.h \
 	datamodel/connectionlistingmodel.h ui/manualconnection.h \
 	ui/aboutdialog.h textedit/textedit.h datamodel/searchmodel.h \
-	ui/searchdisplay.h ui/insertlinkdialog.h ui/newtextdocument.h
+	ui/searchdisplay.h ui/insertlinkdialog.h ui/newtextdocument.h \
+	datamodel/trusttreemodel.h
 SOURCES = main.cpp controller.cpp FrontWidget.cpp net/node.cpp util/hash.cpp \
 	net/connection.cpp datamodel/model.cpp \
         net/networklistener.cpp net/protocol_message_formatter.cpp \
@@ -58,7 +69,8 @@ SOURCES = main.cpp controller.cpp FrontWidget.cpp net/node.cpp util/hash.cpp \
         ui/attachmentlistdialog.cpp ui/settings.cpp ui/status.cpp \
 	datamodel/connectionlistingmodel.cpp ui/manualconnection.cpp \
         ui/aboutdialog.cpp textedit/textedit.cpp datamodel/searchmodel.cpp \
-	ui/searchdisplay.cpp ui/insertlinkdialog.cpp ui/newtextdocument.cpp
+	ui/searchdisplay.cpp ui/insertlinkdialog.cpp ui/newtextdocument.cpp \
+	datamodel/trusttreemodel.cpp
 FORMS = frontWidget.ui ui/profileReadersDialog.ui ui/passwordDialog.ui \
 	ui/newClassifiedAd.ui 	ui/newPrivMsg.ui ui/editContact.ui \
         ui/newProfileComment.ui ui/profileCommentDisplay.ui \
