@@ -210,7 +210,10 @@ void NetworkListener::figureOutLocalAddresses() {
     LOG_STR("Ipv4 nat. Do something") ;
     {
       int error = 0;
-#ifdef MINIUPNPC_API_VERSION
+      // following preprocessor directive tries to detect 
+      // miniupnpc at least version v1.23 (found in ubuntu 14.04)
+      // that has ipv6+error arguments in upnpDiscover
+#if defined(MINIUPNPC_API_VERSION) || defined(UPNPDISCOVER_MEMORY_ERROR)
       struct UPNPDev *upnp_dev = upnpDiscover(
 					      2000    , // time to wait (milliseconds)
 					      NULL , // multicast interface (or null defaults to 239.255.255.250)
@@ -258,7 +261,7 @@ void NetworkListener::figureOutLocalAddresses() {
 					    "Classified ads", // text description to indicate why or who is responsible for the port mapping
 					    "TCP"       , // protocol must be either TCP or UDP
 					    NULL      // remote (peer) host address or nullptr for no restriction
-#ifdef MINIUPNPC_API_VERSION
+#if defined(MINIUPNPC_API_VERSION) || defined(UPNPDISCOVER_MEMORY_ERROR)
 					    ,"0"    // port map lease duration (in seconds) or zero for "as long as possible"
 #endif
                                              ); 
