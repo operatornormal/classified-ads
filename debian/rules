@@ -28,7 +28,6 @@ install: build
 	dh_installdocs
 	dh_installman debian/classified-ads.1
 	dh_installchangelogs
-	dh_pysupport
 	dh_perl
 	dh_link
 	dh_compress
