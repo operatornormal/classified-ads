@@ -84,10 +84,28 @@ int main(int argc, char *argv[]) {
     } 
   else 
     {
-    QLOG_STR( "WSAStartup() success");
+      QLOG_STR( "WSAStartup() success");
     }
 #endif
   app = new QApplication (argc, argv);
+
+  QTranslator qtTranslator;
+  qtTranslator.load("qt_" + QLocale::system().name(),
+		    QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+  app->installTranslator(&qtTranslator);
+
+  QTranslator myappTranslator;
+  myappTranslator.load(
+#ifdef WIN32
+		       // apparently win32 runs the program
+		       // inside installation directory so no
+		       // directory needs to be specified
+#else
+		       QString("/usr/lib/classified-ads/") + 
+#endif
+		       QString("classified_ads_") + QLocale::system().name());
+  app->installTranslator(&myappTranslator);
+  
   // controller will actually start launching the application
   c = new Controller(*app) ;
 #if QT_VERSION < 0x050000

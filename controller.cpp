@@ -99,6 +99,7 @@ Controller::Controller(QApplication &app) : iWin(NULL),
   qRegisterMetaType<ProtocolItemType>("ProtocolItemType");
   qRegisterMetaType<QHostAddress>("QHostAddress");
   iWin = new QMainWindow(NULL) ;
+  iWin->setWindowTitle(tr("Classified ads")) ;
   // somehow Qt should calculate size from widgets. it gets too small vertical..
   iWin->setMinimumSize(450,600) ; 
   createMenus() ;

@@ -29,6 +29,8 @@ class ProfileCommentListingModel ;
  */
 class ProfileCommentItemDelegate : public QStyledItemDelegate
 {
+  Q_OBJECT
+
 public:
   /**
    * Constructor 

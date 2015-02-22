@@ -26,6 +26,19 @@ writeUninstaller "$INSTDIR\uninstall.exe"
 CreateDirectory "$SMPROGRAMS\Classified-ads"
 CreateShortCut "$SMPROGRAMS\Classified-ads\uninstall.lnk" "$INSTDIR\uninstall.exe"
 file /oname=classified-ads.exe ..\release\classified-ads.exe
+file /oname=classified_ads_fi.qm ..\classified_ads_fi.qm
+file /oname=classified_ads_sv.qm ..\classified_ads_sv.qm
+file /oname=qt_ca.qm ..\release\qt_ca.qm
+file /oname=qt_cs.qm ..\release\qt_cs.qm
+file /oname=qt_de.qm ..\release\qt_de.qm
+file /oname=qt_fi.qm ..\release\qt_fi.qm
+file /oname=qt_hu.qm ..\release\qt_hu.qm
+file /oname=qt_it.qm ..\release\qt_it.qm
+file /oname=qt_ja.qm ..\release\qt_ja.qm
+file /oname=qt_lv.qm ..\release\qt_lv.qm
+file /oname=qt_ru.qm ..\release\qt_ru.qm
+file /oname=qt_sk.qm ..\release\qt_sk.qm
+file /oname=qt_uk.qm ..\release\qt_uk.qm
 CreateDirectory "$INSTDIR\bearer"
 CreateDirectory "$INSTDIR\iconengines"
 CreateDirectory "$INSTDIR\imageformats"
@@ -82,6 +95,19 @@ delete "$SMPROGRAMS\Classified-ads\uninstall.lnk"
 delete "$SMPROGRAMS\Classified-ads\Classified-ads.lnk"
 RMDIR "$SMPROGRAMS\Classified-ads"
 delete "$INSTDIR\classified-ads.exe"
+delete "$INSTDIR\classified_ads_fi.qm"
+delete "$INSTDIR\classified_ads_sv.qm"
+delete "$INSTDIR\qt_ca.qm"
+delete "$INSTDIR\qt_cs.qm"
+delete "$INSTDIR\qt_de.qm"
+delete "$INSTDIR\qt_fi.qm"
+delete "$INSTDIR\qt_hu.qm"
+delete "$INSTDIR\qt_it.qm"
+delete "$INSTDIR\qt_ja.qm"
+delete "$INSTDIR\qt_lv.qm"
+delete "$INSTDIR\qt_ru.qm"
+delete "$INSTDIR\qt_sk.qm"
+delete "$INSTDIR\qt_uk.qm"
 delete "$INSTDIR\icudt53.dll"
 delete "$INSTDIR\icuin53.dll"
 delete "$INSTDIR\icuuc53.dll"

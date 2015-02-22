@@ -79,7 +79,8 @@ FORMS = frontWidget.ui ui/profileReadersDialog.ui ui/passwordDialog.ui \
 	ui/aboutDialog.ui ui/searchDisplay.ui ui/insertLink.ui \
         ui/newTextDocument.ui
 RESOURCES     = ui_resources.qrc
-
+TRANSLATIONS  = classified_ads_fi.ts \
+                classified_ads_sv.ts
 unix:LIBS = -lssl -lcrypto -lnatpmp -lqjson -lminiupnpc
 # following line is needed for fedora linux, natpnp needs miniupnpc
 unix:INCLUDEPATH += /usr/include/miniupnpc
@@ -99,5 +100,8 @@ desktopfiles.path = /usr/share/applications
 desktopfiles.files = ui/classified_ads.desktop
 desktopicons.path = /usr/share/app-install/icons/
 desktopicons.files = ui/turt-transparent-128x128.png
-INSTALLS += target desktopfiles desktopicons
+translations.path = /usr/lib/classified-ads
+translations.files = classified_ads_fi.qm \
+                     classified_ads_sv.qm
+INSTALLS += target desktopfiles desktopicons translations
 RC_FILE=classified-ads.rc

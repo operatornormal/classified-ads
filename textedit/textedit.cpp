@@ -377,15 +377,15 @@ void TextEdit::setupTextActions()
 
   comboStyle = new QComboBox(tb);
   addAction(comboStyle,true);
-  comboStyle->addItem("Standard");
-  comboStyle->addItem("Bullet List (Disc)");
-  comboStyle->addItem("Bullet List (Circle)");
-  comboStyle->addItem("Bullet List (Square)");
-  comboStyle->addItem("Ordered List (Decimal)");
-  comboStyle->addItem("Ordered List (Alpha lower)");
-  comboStyle->addItem("Ordered List (Alpha upper)");
-  comboStyle->addItem("Ordered List (Roman lower)");
-  comboStyle->addItem("Ordered List (Roman upper)");
+  comboStyle->addItem(tr("Standard"));
+  comboStyle->addItem(tr("Bullet List (Disc)"));
+  comboStyle->addItem(tr("Bullet List (Circle)"));
+  comboStyle->addItem(tr("Bullet List (Square)"));
+  comboStyle->addItem(tr("Ordered List (Decimal)"));
+  comboStyle->addItem(tr("Ordered List (Alpha lower)"));
+  comboStyle->addItem(tr("Ordered List (Alpha upper)"));
+  comboStyle->addItem(tr("Ordered List (Roman lower)"));
+  comboStyle->addItem(tr("Ordered List (Roman upper)"));
   connect(comboStyle, SIGNAL(activated(int)),
 	  this, SLOT(textStyle(int)));
 
@@ -678,7 +678,6 @@ void TextEdit::textStyle(int styleIndex)
 
     cursor.endEditBlock();
   } else {
-    // ####
     QTextBlockFormat bfmt;
     bfmt.setObjectIndex(-1);
     cursor.mergeBlockFormat(bfmt);
