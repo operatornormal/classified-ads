@@ -1,3 +1,21 @@
+classified-ads (0.03-1) unstable; urgency=low
+	
+  * Rpm build fixes for fedora linux
+  * Slower connection attempts to unreachable nodes
+  * Better file extenstion handling
+  * UI tweaks for small vertical screen resolutions, affects at least 
+    users of some mac models
+  * Classifications entered by user now actually work too 
+  * If no local search avail, still offer network search
+  * Possible crash case fix. Still having random crashes inside
+    json serialize..
+  * Links between documents, still does not work with profile comments
+  * Try miniupnpc also in unix build
+  * Basic support for trust-tree based on trust lists
+  * Translations
+	
+ -- Antti Jarvinen <classified-ads.questions@katiska.org>  Tue, 24 Feb 2015 22:25:47 +0200
+	
 classified-ads (0.02-1) unstable; urgency=low
 	
   * Libnatpmp is not used in windows build
