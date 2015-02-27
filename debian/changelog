@@ -14,7 +14,7 @@ classified-ads (0.03-1) unstable; urgency=low
   * Basic support for trust-tree based on trust lists
   * Translations
 	
- -- Antti Jarvinen <classified-ads.questions@katiska.org>  Tue, 24 Feb 2015 22:25:47 +0200
+ -- Antti Järvinen <classified-ads.questions@katiska.org>  Tue, 24 Feb 2015 22:25:47 +0200
 	
 classified-ads (0.02-1) unstable; urgency=low
 	
