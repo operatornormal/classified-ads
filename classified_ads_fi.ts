@@ -5,29 +5,29 @@
 <context>
     <name>AttachmentListDialog</name>
     <message>
-        <location filename="ui/attachmentlistdialog.cpp" line="56"/>
+        <location filename="ui/attachmentlistdialog.cpp" line="57"/>
         <source>Save file to disk..</source>
         <translation>Tallenna tiedostojärjestelmälle..</translation>
     </message>
     <message>
-        <location filename="ui/attachmentlistdialog.cpp" line="149"/>
-        <location filename="ui/attachmentlistdialog.cpp" line="151"/>
+        <location filename="ui/attachmentlistdialog.cpp" line="150"/>
+        <location filename="ui/attachmentlistdialog.cpp" line="152"/>
         <source>files</source>
         <translation>T
 tiedostot</translation>
     </message>
     <message>
-        <location filename="ui/attachmentlistdialog.cpp" line="153"/>
+        <location filename="ui/attachmentlistdialog.cpp" line="154"/>
         <source>Choose file name for saving</source>
         <translation>Valitse nimi tiedostolle</translation>
     </message>
     <message>
-        <location filename="ui/attachmentlistdialog.cpp" line="164"/>
+        <location filename="ui/attachmentlistdialog.cpp" line="165"/>
         <source>Error</source>
         <translation>Vikaa</translation>
     </message>
     <message>
-        <location filename="ui/attachmentlistdialog.cpp" line="165"/>
+        <location filename="ui/attachmentlistdialog.cpp" line="166"/>
         <source>File open error</source>
         <translatorcomment>Gives no explanation about reason file open failure?</translatorcomment>
         <translation>Vika tiedoston avaamisessa</translation>
@@ -36,7 +36,7 @@ tiedostot</translation>
 <context>
     <name>BinaryFileListingModel</name>
     <message>
-        <location filename="datamodel/binaryfilelistingmodel.cpp" line="178"/>
+        <location filename="datamodel/binaryfilelistingmodel.cpp" line="179"/>
         <source>Name or fingerprint of file</source>
         <translatorcomment>SHA1 digest == tiivistenumero</translatorcomment>
         <translation>Tiedoston nimi tai SHA1 tiiviste</translation>
@@ -45,14 +45,14 @@ tiedostot</translation>
 <context>
     <name>CAListingModel</name>
     <message>
-        <location filename="datamodel/calistingmodel.cpp" line="49"/>
-        <location filename="datamodel/calistingmodel.cpp" line="142"/>
+        <location filename="datamodel/calistingmodel.cpp" line="50"/>
+        <location filename="datamodel/calistingmodel.cpp" line="143"/>
         <source>Date</source>
         <translation>Aika</translation>
     </message>
     <message>
-        <location filename="datamodel/calistingmodel.cpp" line="50"/>
-        <location filename="datamodel/calistingmodel.cpp" line="141"/>
+        <location filename="datamodel/calistingmodel.cpp" line="51"/>
+        <location filename="datamodel/calistingmodel.cpp" line="142"/>
         <source>Subject</source>
         <translation>Aihe</translation>
     </message>
@@ -60,177 +60,177 @@ tiedostot</translation>
 <context>
     <name>ClassifiedAdsModel</name>
     <message>
-        <location filename="datamodel/camodel.cpp" line="130"/>
+        <location filename="datamodel/camodel.cpp" line="131"/>
         <source>Buying</source>
         <translation>Ostetaan</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="132"/>
+        <location filename="datamodel/camodel.cpp" line="133"/>
         <source>Selling</source>
         <translation>Myydään</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="134"/>
+        <location filename="datamodel/camodel.cpp" line="135"/>
         <source>Giving away</source>
         <translation>Annetaan</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="136"/>
+        <location filename="datamodel/camodel.cpp" line="137"/>
         <source>Wanting</source>
         <translation>Halutaan</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="138"/>
+        <location filename="datamodel/camodel.cpp" line="139"/>
         <source>Renting</source>
         <translation>Vuokrataan</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="140"/>
+        <location filename="datamodel/camodel.cpp" line="141"/>
         <source>Announcement</source>
         <translation>Ilmoitetaan</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="213"/>
+        <location filename="datamodel/camodel.cpp" line="214"/>
         <source>Cars</source>
         <translation>Autoja</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="215"/>
+        <location filename="datamodel/camodel.cpp" line="216"/>
         <source>Boats</source>
         <translation>Veneitä</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="217"/>
+        <location filename="datamodel/camodel.cpp" line="218"/>
         <source>Bikes</source>
         <translation>Pyöriä</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="219"/>
+        <location filename="datamodel/camodel.cpp" line="220"/>
         <source>Other vehicles</source>
         <translation>Muita ajoneuvoja</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="221"/>
+        <location filename="datamodel/camodel.cpp" line="222"/>
         <source>Vehicle parts</source>
         <translation>Ajoneuvon osia</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="223"/>
+        <location filename="datamodel/camodel.cpp" line="224"/>
         <source>Habitation</source>
         <translation>Asumuksia</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="225"/>
+        <location filename="datamodel/camodel.cpp" line="226"/>
         <source>Household appliances</source>
         <translation>Kodin tavaroita</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="227"/>
+        <location filename="datamodel/camodel.cpp" line="228"/>
         <source>Furniture</source>
         <translation>Huonekaluja</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="229"/>
+        <location filename="datamodel/camodel.cpp" line="230"/>
         <source>Clothing</source>
         <translation>Vaatteita</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="231"/>
+        <location filename="datamodel/camodel.cpp" line="232"/>
         <source>Tools</source>
         <translation>Työkaluja</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="233"/>
+        <location filename="datamodel/camodel.cpp" line="234"/>
         <source>Sports</source>
         <translation>Urheiluvälineitä</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="235"/>
+        <location filename="datamodel/camodel.cpp" line="236"/>
         <source>Music</source>
         <translation>Musiikkivälineitä</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="237"/>
+        <location filename="datamodel/camodel.cpp" line="238"/>
         <source>Books</source>
         <translation>Kirjoja</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="239"/>
+        <location filename="datamodel/camodel.cpp" line="240"/>
         <source>Movies</source>
         <translation>Elokuvia</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="241"/>
+        <location filename="datamodel/camodel.cpp" line="242"/>
         <source>Animals</source>
         <translation>Eläimiä</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="243"/>
+        <location filename="datamodel/camodel.cpp" line="244"/>
         <source>Electronics</source>
         <translation>Sähkölaitteita</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="245"/>
+        <location filename="datamodel/camodel.cpp" line="246"/>
         <source>Jobs</source>
         <translation>Työpaikkoja</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="247"/>
+        <location filename="datamodel/camodel.cpp" line="248"/>
         <source>Transportation</source>
         <translation>Kuljetuksia</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="249"/>
+        <location filename="datamodel/camodel.cpp" line="250"/>
         <source>Services</source>
         <translation>Palveluita</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="251"/>
+        <location filename="datamodel/camodel.cpp" line="252"/>
         <source>Healthcare</source>
         <translation>Terveydenhoitoa</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="253"/>
+        <location filename="datamodel/camodel.cpp" line="254"/>
         <source>Foodstuff</source>
         <translation>Ruokatarvikkeita</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="255"/>
+        <location filename="datamodel/camodel.cpp" line="256"/>
         <source>Software</source>
         <translation>Ohjelmistoja</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="257"/>
+        <location filename="datamodel/camodel.cpp" line="258"/>
         <source>Events</source>
         <translation>Tapahtumia</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="259"/>
+        <location filename="datamodel/camodel.cpp" line="260"/>
         <source>Education</source>
         <translation>Koulutusta</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="261"/>
+        <location filename="datamodel/camodel.cpp" line="262"/>
         <source>Finance</source>
         <translation>Raha-asioita</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="263"/>
+        <location filename="datamodel/camodel.cpp" line="264"/>
         <source>Jewelry</source>
         <translation>Koruja</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="265"/>
+        <location filename="datamodel/camodel.cpp" line="266"/>
         <source>Religious rituals</source>
         <translation>Uskonnollisia toimituksia</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="267"/>
+        <location filename="datamodel/camodel.cpp" line="268"/>
         <source>Philosophy</source>
         <translation>Filosofiaa</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="912"/>
+        <location filename="datamodel/camodel.cpp" line="913"/>
         <source>Any country</source>
         <translation>Missä maassa vain</translation>
     </message>
@@ -238,52 +238,52 @@ tiedostot</translation>
 <context>
     <name>ConnectionListingModel</name>
     <message>
-        <location filename="datamodel/connectionlistingmodel.cpp" line="147"/>
+        <location filename="datamodel/connectionlistingmodel.cpp" line="148"/>
         <source>Peer network address</source>
         <translation>Solmun verkko-osoite</translation>
     </message>
     <message>
-        <location filename="datamodel/connectionlistingmodel.cpp" line="150"/>
+        <location filename="datamodel/connectionlistingmodel.cpp" line="151"/>
         <source>Inbound connections are those where peer initiated connection</source>
         <translation>Sisääntulevat yhteydet ovat sellaisia, missä etäjärjestelmä aloitti yhteyden</translation>
     </message>
     <message>
-        <location filename="datamodel/connectionlistingmodel.cpp" line="153"/>
+        <location filename="datamodel/connectionlistingmodel.cpp" line="154"/>
         <source>Data transferred from peer to your node</source>
         <translation>Sinun tietokoneeseesi tästä solmusta siirretty tietomäärä</translation>
     </message>
     <message>
-        <location filename="datamodel/connectionlistingmodel.cpp" line="156"/>
+        <location filename="datamodel/connectionlistingmodel.cpp" line="157"/>
         <source>Data transferred to peer from your node</source>
         <translation>Sinun tietokoneestasi tähän verkon solmuun siirretty tietomäärä</translation>
     </message>
     <message>
-        <location filename="datamodel/connectionlistingmodel.cpp" line="159"/>
+        <location filename="datamodel/connectionlistingmodel.cpp" line="160"/>
         <source>Time when connection was opened</source>
         <translation>Yhteyden avaamisaika</translation>
     </message>
     <message>
-        <location filename="datamodel/connectionlistingmodel.cpp" line="170"/>
+        <location filename="datamodel/connectionlistingmodel.cpp" line="171"/>
         <source>Address</source>
         <translation>Verkko-osoite</translation>
     </message>
     <message>
-        <location filename="datamodel/connectionlistingmodel.cpp" line="173"/>
+        <location filename="datamodel/connectionlistingmodel.cpp" line="174"/>
         <source>Inbound</source>
         <translation>Sisääntuleva</translation>
     </message>
     <message>
-        <location filename="datamodel/connectionlistingmodel.cpp" line="176"/>
+        <location filename="datamodel/connectionlistingmodel.cpp" line="177"/>
         <source>Bytes in</source>
         <translation>Oktettia sisään</translation>
     </message>
     <message>
-        <location filename="datamodel/connectionlistingmodel.cpp" line="179"/>
+        <location filename="datamodel/connectionlistingmodel.cpp" line="180"/>
         <source>Bytes out</source>
         <translation>Oktettia ulos</translation>
     </message>
     <message>
-        <location filename="datamodel/connectionlistingmodel.cpp" line="182"/>
+        <location filename="datamodel/connectionlistingmodel.cpp" line="183"/>
         <source>Open time</source>
         <translation>Avaamisaika</translation>
     </message>
@@ -291,42 +291,42 @@ tiedostot</translation>
 <context>
     <name>ContactListingModel</name>
     <message>
-        <location filename="datamodel/contactlistingmodel.cpp" line="75"/>
+        <location filename="datamodel/contactlistingmodel.cpp" line="76"/>
         <source>Yes</source>
         <translation>Tosi on</translation>
     </message>
     <message>
-        <location filename="datamodel/contactlistingmodel.cpp" line="77"/>
+        <location filename="datamodel/contactlistingmodel.cpp" line="78"/>
         <source>Unknown</source>
         <translation>Tuntematon</translation>
     </message>
     <message>
-        <location filename="datamodel/contactlistingmodel.cpp" line="102"/>
+        <location filename="datamodel/contactlistingmodel.cpp" line="103"/>
         <source>Actual network address (SHA1) of the contact</source>
         <translation>Operaattorin varsinainen verkko-osoite (SHA1)</translation>
     </message>
     <message>
-        <location filename="datamodel/contactlistingmodel.cpp" line="105"/>
+        <location filename="datamodel/contactlistingmodel.cpp" line="106"/>
         <source>Locally given nickname ; user may set her own nickname himself</source>
         <translation>Antamasi liikanimi; operaattori voi antaa itselleen eri liikanimen</translation>
     </message>
     <message>
-        <location filename="datamodel/contactlistingmodel.cpp" line="108"/>
+        <location filename="datamodel/contactlistingmodel.cpp" line="109"/>
         <source>Public statement if this operator to be trusted in transactions</source>
         <translation>Julkinen lausunto operaattorin luotettavuudesta asioiden hoitamisessa</translation>
     </message>
     <message>
-        <location filename="datamodel/contactlistingmodel.cpp" line="119"/>
+        <location filename="datamodel/contactlistingmodel.cpp" line="120"/>
         <source>Address</source>
         <translation>Osoite</translation>
     </message>
     <message>
-        <location filename="datamodel/contactlistingmodel.cpp" line="122"/>
+        <location filename="datamodel/contactlistingmodel.cpp" line="123"/>
         <source>Nickname</source>
         <translation>Liikanimi</translation>
     </message>
     <message>
-        <location filename="datamodel/contactlistingmodel.cpp" line="125"/>
+        <location filename="datamodel/contactlistingmodel.cpp" line="126"/>
         <source>Publicly trusted</source>
         <translation>Julkisesti luotettu</translation>
     </message>
@@ -334,23 +334,23 @@ tiedostot</translation>
 <context>
     <name>ContentEncryptionModel</name>
     <message>
-        <location filename="datamodel/contentencryptionmodel.cpp" line="88"/>
+        <location filename="datamodel/contentencryptionmodel.cpp" line="89"/>
         <source>SSL key generation went wrong, calling exit..</source>
         <translation>SSL-avaimen rakentaminen epäonnistui, pakko poistua..</translation>
     </message>
     <message>
-        <location filename="datamodel/contentencryptionmodel.cpp" line="96"/>
+        <location filename="datamodel/contentencryptionmodel.cpp" line="97"/>
         <source>x509 cert generation went wrong, calling exit..</source>
         <translation>x509-sertifikaatin rakentaminen epäonnistui, pakko poistua..</translation>
     </message>
     <message>
-        <location filename="datamodel/contentencryptionmodel.cpp" line="194"/>
-        <location filename="datamodel/contentencryptionmodel.cpp" line="292"/>
+        <location filename="datamodel/contentencryptionmodel.cpp" line="195"/>
+        <location filename="datamodel/contentencryptionmodel.cpp" line="293"/>
         <source>RSA Private key key saving went wrong</source>
         <translation>Salaisen RSA-avaimen tallettaminen epäonnistui</translation>
     </message>
     <message>
-        <location filename="datamodel/contentencryptionmodel.cpp" line="644"/>
+        <location filename="datamodel/contentencryptionmodel.cpp" line="645"/>
         <source>No suitable de-cryption key found</source>
         <translation>Avaamiseen sopivaa salausavainta ei ole käytettävissä</translation>
     </message>
@@ -358,164 +358,164 @@ tiedostot</translation>
 <context>
     <name>Controller</name>
     <message>
-        <location filename="controller.cpp" line="102"/>
+        <location filename="controller.cpp" line="103"/>
         <source>Classified ads</source>
         <translation>Luokitellut ilmoitukset</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="134"/>
+        <location filename="controller.cpp" line="135"/>
         <source>Enter password for protection of your messages:</source>
         <translation>Anna salasana viestiesi sisällön turvaamiseksi</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="404"/>
+        <location filename="controller.cpp" line="405"/>
         <source>Fetching item from network..</source>
         <translation>Kaivellaan kohdetta verkon syövereistä..</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="429"/>
+        <location filename="controller.cpp" line="430"/>
         <source>E&amp;xit</source>
         <translation>Sulje</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="431"/>
+        <location filename="controller.cpp" line="432"/>
         <source>Exit the application</source>
         <translation>Sulje sovellus</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="433"/>
+        <location filename="controller.cpp" line="434"/>
         <source>&amp;About</source>
         <translation>Tietoja</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="434"/>
+        <location filename="controller.cpp" line="435"/>
         <source>Show the application&apos;s About box</source>
         <translation>Esitä selvitys sovelluksen tarkoituksesta</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="436"/>
+        <location filename="controller.cpp" line="437"/>
         <source>&amp;Change password</source>
         <translation>Vaihda salasana</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="437"/>
+        <location filename="controller.cpp" line="438"/>
         <source>Change password of current profile</source>
         <translation>Valitse valitulle operaattori-profiilille uusi salasana</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="439"/>
+        <location filename="controller.cpp" line="440"/>
         <source>Create &amp;new profile</source>
         <translation>Luo uusi profiili</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="440"/>
+        <location filename="controller.cpp" line="441"/>
         <source>Makes a brand new user profile</source>
         <translation>Luo  operaattorille uuden profiilin</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="442"/>
+        <location filename="controller.cpp" line="443"/>
         <source>&amp;Delete current profile</source>
         <translation>Poista valittu profiili</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="443"/>
+        <location filename="controller.cpp" line="444"/>
         <source>Deletes currently open profile</source>
         <translation>Pysyvästi poistaa tämänhetkisen valitun profiilin</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="445"/>
+        <location filename="controller.cpp" line="446"/>
         <source>&amp;Select another profile</source>
         <translation>Valitse käyttöön toinen profiilii</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="446"/>
+        <location filename="controller.cpp" line="447"/>
         <source>If you have multitude of profiles</source>
         <translation>Jos olet luonnut useamman profiilin, voit tästä valita toisen</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="448"/>
+        <location filename="controller.cpp" line="449"/>
         <source>Settings..</source>
         <translation>Asetukset..</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="449"/>
+        <location filename="controller.cpp" line="450"/>
         <source>Node-wide settings..</source>
         <translation>Solmun asetukset..</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="451"/>
+        <location filename="controller.cpp" line="452"/>
         <source>Network status..</source>
         <translation>Verkko-yhteydet..</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="453"/>
+        <location filename="controller.cpp" line="454"/>
         <source>Search..</source>
         <translation>Etsi..</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="470"/>
+        <location filename="controller.cpp" line="471"/>
         <source>&amp;File</source>
         <translation>Tiedosto</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="515"/>
+        <location filename="controller.cpp" line="516"/>
         <source>Enter new password:</source>
         <translation>Anna uusi salasana:</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="543"/>
-        <location filename="controller.cpp" line="652"/>
+        <location filename="controller.cpp" line="544"/>
+        <location filename="controller.cpp" line="653"/>
         <source>Activate another profile with password</source>
         <translation>Valitse uusi profiili antamalla haluamasi profiilin salasana</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="637"/>
+        <location filename="controller.cpp" line="638"/>
         <source>Can&apos;t delete only profile.</source>
         <translation>Viimeistä jäljellä olevaa profiilia ei voi poistaa.</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="641"/>
+        <location filename="controller.cpp" line="642"/>
         <source>Permanently discard profile?</source>
         <translation>Poistetaanko profiili lopullisesti?</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="642"/>
+        <location filename="controller.cpp" line="643"/>
         <source>There will be NO way to access content of this profile later</source>
         <translation>Tämän profiilin viestejä tai muuta sisältöä ei ole mahdollista nähdä enää</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="705"/>
+        <location filename="controller.cpp" line="706"/>
         <source>Cant load node cert or key cert</source>
         <translation>Solmun salausavaimen tai sertifikaatin lataaminen ei onnistunut</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="710"/>
+        <location filename="controller.cpp" line="711"/>
         <source>File error</source>
         <translation>Tiedostokäsittelyyn liittyvä virhe</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="715"/>
+        <location filename="controller.cpp" line="716"/>
         <source>Database error</source>
         <translation>Tietokantavirhe</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="721"/>
-        <location filename="controller.cpp" line="731"/>
+        <location filename="controller.cpp" line="722"/>
+        <location filename="controller.cpp" line="732"/>
         <source>Cryptographic module</source>
         <translation>Salausjärjestelmän virhe</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="726"/>
+        <location filename="controller.cpp" line="727"/>
         <source>Database module</source>
         <translation>Tietokannan vikatila</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="732"/>
+        <location filename="controller.cpp" line="733"/>
         <source>Bad password</source>
         <translation>Kelpaamaton salasana</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="948"/>
+        <location filename="controller.cpp" line="949"/>
         <source>Could not find item from network..</source>
         <translation>Haluttua kohdetta ei verkosta löytynyt..</translation>
     </message>
@@ -523,30 +523,30 @@ tiedostot</translation>
 <context>
     <name>DialogBase</name>
     <message>
-        <location filename="ui/dialogbase.cpp" line="48"/>
-        <location filename="ui/dialogbase.cpp" line="101"/>
+        <location filename="ui/dialogbase.cpp" line="49"/>
+        <location filename="ui/dialogbase.cpp" line="102"/>
         <source>File way too big</source>
         <translation>Tiedosto on ihan liian iso</translation>
     </message>
     <message>
-        <location filename="ui/dialogbase.cpp" line="56"/>
-        <location filename="ui/dialogbase.cpp" line="109"/>
+        <location filename="ui/dialogbase.cpp" line="57"/>
+        <location filename="ui/dialogbase.cpp" line="110"/>
         <source>File too big</source>
         <translation>Tiedosto on liian iso</translation>
     </message>
     <message>
-        <location filename="ui/dialogbase.cpp" line="85"/>
-        <location filename="ui/dialogbase.cpp" line="122"/>
+        <location filename="ui/dialogbase.cpp" line="86"/>
+        <location filename="ui/dialogbase.cpp" line="123"/>
         <source>File open error</source>
         <translation>Ongelma tiedoston avaamisessa</translation>
     </message>
     <message>
-        <location filename="ui/dialogbase.cpp" line="94"/>
+        <location filename="ui/dialogbase.cpp" line="95"/>
         <source>Select file to be published</source>
         <translation>Valitse julkaistava tiedosto</translation>
     </message>
     <message>
-        <location filename="ui/dialogbase.cpp" line="96"/>
+        <location filename="ui/dialogbase.cpp" line="97"/>
         <source>Files (*.*)</source>
         <translation>Kaikki tiedostot (*.*)</translation>
     </message>
@@ -554,12 +554,12 @@ tiedostot</translation>
 <context>
     <name>EditContactDialog</name>
     <message>
-        <location filename="ui/editcontact.cpp" line="74"/>
+        <location filename="ui/editcontact.cpp" line="75"/>
         <source>Error</source>
         <translation>Vikaa</translation>
     </message>
     <message>
-        <location filename="ui/editcontact.cpp" line="75"/>
+        <location filename="ui/editcontact.cpp" line="76"/>
         <source>Operator addr is not valid</source>
         <translation>Operaattorin osoite ei ole sopivaa muotoa</translation>
     </message>
@@ -567,116 +567,134 @@ tiedostot</translation>
 <context>
     <name>FrontWidget</name>
     <message>
-        <location filename="FrontWidget.cpp" line="89"/>
+        <location filename="FrontWidget.cpp" line="90"/>
         <source>Classified ads</source>
         <translation>Luokitellut ilmoitukset</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="90"/>
+        <location filename="FrontWidget.cpp" line="91"/>
         <source>My profile</source>
         <translation>Oma profiili</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="91"/>
+        <location filename="FrontWidget.cpp" line="92"/>
         <source>Contacts</source>
         <translation>Osoitekirja</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="92"/>
+        <location filename="FrontWidget.cpp" line="93"/>
         <source>Private messages</source>
         <translation>Yksityiset viestit</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="151"/>
+        <location filename="FrontWidget.cpp" line="152"/>
         <source>Add shared file..</source>
         <translation>Lisää tiedosto jakoon</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="152"/>
+        <location filename="FrontWidget.cpp" line="153"/>
         <source>Stop advertising selected shared file</source>
         <translation>Lakkaa mainostamasta valittua jaettua tiedostoa</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="153"/>
+        <location filename="FrontWidget.cpp" line="154"/>
         <source>Save file to disk..</source>
         <translation>Tallenna tiedosto tiedostojärjestelmälle</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="154"/>
+        <location filename="FrontWidget.cpp" line="155"/>
         <source>Copy file address (SHA1) to clipboard..</source>
         <translation>Kopioi tiedoston osoite (SHA1) leikepöydälle..</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="155"/>
+        <location filename="FrontWidget.cpp" line="156"/>
         <source>Edit+publish new text document..</source>
         <translation>Muokkaa ja julkaise uusi tekstidokumentti..</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="338"/>
+        <location filename="FrontWidget.cpp" line="339"/>
         <source>Open File</source>
         <translation>Avaa tiedosto</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="340"/>
-        <location filename="FrontWidget.cpp" line="873"/>
+        <location filename="FrontWidget.cpp" line="341"/>
+        <location filename="FrontWidget.cpp" line="874"/>
         <source>Files (*.*)</source>
         <translation>Kaikki tiedostot (*.*)</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="344"/>
-        <location filename="FrontWidget.cpp" line="1138"/>
+        <location filename="FrontWidget.cpp" line="345"/>
+        <location filename="FrontWidget.cpp" line="1139"/>
         <location filename="FrontWidget.cpp" line="1279"/>
         <source>Error</source>
         <translation>Vikaa..</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="345"/>
+        <location filename="FrontWidget.cpp" line="346"/>
         <source>Can&apos;t load image</source>
         <translation>Kuvan avaaminen ei onnistu</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="611"/>
-        <location filename="FrontWidget.cpp" line="753"/>
+        <location filename="FrontWidget.cpp" line="612"/>
+        <location filename="FrontWidget.cpp" line="754"/>
         <source>Profile not in database</source>
         <translation>Profiilia ei tietovarastosta löydy</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="612"/>
-        <location filename="FrontWidget.cpp" line="754"/>
+        <location filename="FrontWidget.cpp" line="613"/>
+        <location filename="FrontWidget.cpp" line="755"/>
         <source>Try viewing profile first to obtain data</source>
         <translation>Yritä valita profiili katseltavaksi ensin, yritä sitten uudelleen</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="871"/>
+        <location filename="FrontWidget.cpp" line="872"/>
         <source>Select file to be published</source>
         <translation>Valitse julkaistava tiedosto</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="878"/>
+        <location filename="FrontWidget.cpp" line="879"/>
         <source>File way too big</source>
         <translation>Tiedosto on aivan liian suuri</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="886"/>
+        <location filename="FrontWidget.cpp" line="887"/>
         <source>File too big</source>
         <translation>Tiedosto on liian suuri</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="920"/>
-        <location filename="FrontWidget.cpp" line="1139"/>
+        <location filename="FrontWidget.cpp" line="921"/>
+        <location filename="FrontWidget.cpp" line="1140"/>
         <source>File open error</source>
         <translation>Ongelma tiedoston avaamisessa</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1120"/>
-        <location filename="FrontWidget.cpp" line="1126"/>
+        <location filename="FrontWidget.cpp" line="1121"/>
+        <location filename="FrontWidget.cpp" line="1127"/>
         <source>files</source>
         <translation>kaikki tiedostot</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1129"/>
+        <location filename="FrontWidget.cpp" line="1130"/>
         <source>Choose file name for saving</source>
         <translation>Valitse nimi tallennettavalle tiedostolle</translation>
+    </message>
+    <message>
+        <location filename="FrontWidget.cpp" line="1188"/>
+        <source>
+
+
+Click
+To
+Add
+Image
+</source>
+        <translation>
+
+
+Klikkaa
+Lisätäksesi
+Kuva
+</translation>
     </message>
     <message>
         <location filename="FrontWidget.cpp" line="1280"/>
@@ -695,6 +713,22 @@ SHA1 %2</translation>
         <location filename="FrontWidget.cpp" line="1343"/>
         <source>Time of last update </source>
         <translation>Viimeinen päivitysajankohta</translation>
+    </message>
+    <message>
+        <location filename="FrontWidget.cpp" line="1349"/>
+        <source>
+
+
+(No
+Image
+Selected)
+</source>
+        <translation>
+
+
+(Ei
+Kuvaa
+Valittuna)</translation>
     </message>
     <message>
         <location filename="FrontWidget.cpp" line="1443"/>
@@ -795,7 +829,7 @@ SHA1 %2</translation>
 <context>
     <name>InsertLinkDialog</name>
     <message>
-        <location filename="ui/insertlinkdialog.cpp" line="71"/>
+        <location filename="ui/insertlinkdialog.cpp" line="72"/>
         <source>Invalid URL</source>
         <translation>Väärän mallinen URL</translation>
     </message>
@@ -803,7 +837,7 @@ SHA1 %2</translation>
 <context>
     <name>ManualConnectionDialog</name>
     <message>
-        <location filename="ui/manualconnection.cpp" line="55"/>
+        <location filename="ui/manualconnection.cpp" line="56"/>
         <source>DNS lookup failure</source>
         <translation>Nimeä ei löydy nimipalvelusta (DNS)</translation>
     </message>
@@ -811,18 +845,18 @@ SHA1 %2</translation>
 <context>
     <name>NewPrivMessageDialog</name>
     <message>
-        <location filename="ui/newprivmsgdialog.cpp" line="90"/>
-        <location filename="ui/newprivmsgdialog.cpp" line="134"/>
+        <location filename="ui/newprivmsgdialog.cpp" line="91"/>
+        <location filename="ui/newprivmsgdialog.cpp" line="135"/>
         <source>Error</source>
         <translation>Vikaa</translation>
     </message>
     <message>
-        <location filename="ui/newprivmsgdialog.cpp" line="91"/>
+        <location filename="ui/newprivmsgdialog.cpp" line="92"/>
         <source>Recipient addr is not valid</source>
         <translation>Vastaanottajan osoite ei ole kelvollinen</translation>
     </message>
     <message>
-        <location filename="ui/newprivmsgdialog.cpp" line="135"/>
+        <location filename="ui/newprivmsgdialog.cpp" line="136"/>
         <source>Recipient encryption key not found from storage</source>
         <translation>Vastaanottajan salausavainta ei paikallisesta tietokannasta löydy</translation>
     </message>
@@ -830,18 +864,18 @@ SHA1 %2</translation>
 <context>
     <name>NewProfileCommentDialog</name>
     <message>
-        <location filename="ui/newprofilecommentdialog.cpp" line="91"/>
-        <location filename="ui/newprofilecommentdialog.cpp" line="128"/>
+        <location filename="ui/newprofilecommentdialog.cpp" line="92"/>
+        <location filename="ui/newprofilecommentdialog.cpp" line="129"/>
         <source>Error</source>
         <translation>Vikaa</translation>
     </message>
     <message>
-        <location filename="ui/newprofilecommentdialog.cpp" line="92"/>
+        <location filename="ui/newprofilecommentdialog.cpp" line="93"/>
         <source>Commented profile addr is not valid</source>
         <translation>Kommentoidun profiilin osoite ei ole kelvollinen</translation>
     </message>
     <message>
-        <location filename="ui/newprofilecommentdialog.cpp" line="129"/>
+        <location filename="ui/newprofilecommentdialog.cpp" line="130"/>
         <source>Recipient encryption key not found from storage</source>
         <translation>Valitun profiilin salausavainta ei paikallisesta tietokannasta löydy</translation>
     </message>
@@ -849,22 +883,22 @@ SHA1 %2</translation>
 <context>
     <name>NodeModel</name>
     <message>
-        <location filename="datamodel/nodemodel.cpp" line="114"/>
+        <location filename="datamodel/nodemodel.cpp" line="115"/>
         <source>SSL key generation went wrong, calling exit..</source>
         <translation>SSL-avaimen luonti epäonnistui, poistutaan..</translation>
     </message>
     <message>
-        <location filename="datamodel/nodemodel.cpp" line="122"/>
+        <location filename="datamodel/nodemodel.cpp" line="123"/>
         <source>x509 cert generation went wrong, calling exit..</source>
         <translation>x509-sertifikaatin luonti epäonnistui, poistutaan..</translation>
     </message>
     <message>
-        <location filename="datamodel/nodemodel.cpp" line="1604"/>
+        <location filename="datamodel/nodemodel.cpp" line="1605"/>
         <source>Cant load SSL cert</source>
         <translation>SSL-sertifikaatin lataaminen ei onnistu</translation>
     </message>
     <message>
-        <location filename="datamodel/nodemodel.cpp" line="1634"/>
+        <location filename="datamodel/nodemodel.cpp" line="1635"/>
         <source>Cant load SSL key</source>
         <translation>SSL-avaimen lataaminen ei onnistu</translation>
     </message>
@@ -872,7 +906,7 @@ SHA1 %2</translation>
 <context>
     <name>PasswdDialog</name>
     <message>
-        <location filename="ui/passwd_dialog.cpp" line="112"/>
+        <location filename="ui/passwd_dialog.cpp" line="113"/>
         <source>Min length 5 (use 10+)</source>
         <translation>Vähimmäispituus on 5 (käytä silti ainakin 10)</translation>
     </message>
@@ -908,34 +942,34 @@ SHA1 %2</translation>
 <context>
     <name>PrivateMessageSearchModel</name>
     <message>
-        <location filename="datamodel/privmsgsearchmodel.cpp" line="112"/>
+        <location filename="datamodel/privmsgsearchmodel.cpp" line="113"/>
         <source>%1
 Trusted by %2</source>
         <translation>%1
 johon luottaa %2</translation>
     </message>
     <message>
-        <location filename="datamodel/privmsgsearchmodel.cpp" line="243"/>
+        <location filename="datamodel/privmsgsearchmodel.cpp" line="244"/>
         <source>Direction of message, sent/received</source>
         <translation>Viestin suunta, lähetetty/vastaanotettu</translation>
     </message>
     <message>
-        <location filename="datamodel/privmsgsearchmodel.cpp" line="254"/>
+        <location filename="datamodel/privmsgsearchmodel.cpp" line="255"/>
         <source>Dir</source>
         <translation>Suunta</translation>
     </message>
     <message>
-        <location filename="datamodel/privmsgsearchmodel.cpp" line="257"/>
+        <location filename="datamodel/privmsgsearchmodel.cpp" line="258"/>
         <source>Peer</source>
         <translation>Osapuoli</translation>
     </message>
     <message>
-        <location filename="datamodel/privmsgsearchmodel.cpp" line="260"/>
+        <location filename="datamodel/privmsgsearchmodel.cpp" line="261"/>
         <source>Time</source>
         <translation>Aika</translation>
     </message>
     <message>
-        <location filename="datamodel/privmsgsearchmodel.cpp" line="263"/>
+        <location filename="datamodel/privmsgsearchmodel.cpp" line="264"/>
         <source>Subject</source>
         <translation>Aihe</translation>
     </message>
@@ -943,22 +977,22 @@ johon luottaa %2</translation>
 <context>
     <name>ProfileCommentDisplay</name>
     <message>
-        <location filename="ui/profilecommentdisplay.cpp" line="54"/>
+        <location filename="ui/profilecommentdisplay.cpp" line="55"/>
         <source>&amp;Add comment...</source>
         <translation>Lisää kommentti</translation>
     </message>
     <message>
-        <location filename="ui/profilecommentdisplay.cpp" line="65"/>
+        <location filename="ui/profilecommentdisplay.cpp" line="66"/>
         <source>Save attachment to disk..</source>
         <translation>Tallenna liite tiedostojärjestelmälle..</translation>
     </message>
     <message>
-        <location filename="ui/profilecommentdisplay.cpp" line="90"/>
+        <location filename="ui/profilecommentdisplay.cpp" line="91"/>
         <source>Error</source>
         <translation>Vikaa</translation>
     </message>
     <message>
-        <location filename="ui/profilecommentdisplay.cpp" line="91"/>
+        <location filename="ui/profilecommentdisplay.cpp" line="92"/>
         <source>Article not found from local storage</source>
         <translation>Kommenttia ei paikallisesta tietokannasta löydy</translation>
     </message>
@@ -966,7 +1000,7 @@ johon luottaa %2</translation>
 <context>
     <name>ProfileCommentItemDelegate</name>
     <message>
-        <location filename="ui/profilecommentitemdelegate.cpp" line="93"/>
+        <location filename="ui/profilecommentitemdelegate.cpp" line="94"/>
         <source>Attachments: </source>
         <translation>Liitteet: </translation>
     </message>
@@ -974,17 +1008,17 @@ johon luottaa %2</translation>
 <context>
     <name>ProfileCommentListingModel</name>
     <message>
-        <location filename="datamodel/profilecommentlistingmodel.cpp" line="226"/>
+        <location filename="datamodel/profilecommentlistingmodel.cpp" line="227"/>
         <source>Sender</source>
         <translation>Lähettäjä</translation>
     </message>
     <message>
-        <location filename="datamodel/profilecommentlistingmodel.cpp" line="229"/>
+        <location filename="datamodel/profilecommentlistingmodel.cpp" line="230"/>
         <source>Time</source>
         <translation>Aika</translation>
     </message>
     <message>
-        <location filename="datamodel/profilecommentlistingmodel.cpp" line="232"/>
+        <location filename="datamodel/profilecommentlistingmodel.cpp" line="233"/>
         <source>Subject</source>
         <translation>Aihe</translation>
     </message>
@@ -992,7 +1026,7 @@ johon luottaa %2</translation>
 <context>
     <name>ProfileCommentModel</name>
     <message>
-        <location filename="datamodel/profilecommentmodel.cpp" line="73"/>
+        <location filename="datamodel/profilecommentmodel.cpp" line="74"/>
         <source>Profile related to comment not found from database</source>
         <translation>Kommenttiin liittyvän profiilin tietoja ei paikallisesta tietokannasta löydy</translation>
     </message>
@@ -1000,7 +1034,7 @@ johon luottaa %2</translation>
 <context>
     <name>ProfileReadersDialog</name>
     <message>
-        <location filename="ui/profilereadersdialog.cpp" line="73"/>
+        <location filename="ui/profilereadersdialog.cpp" line="74"/>
         <source>View profile</source>
         <translation>Tarkastele profiilia</translation>
     </message>
@@ -1008,7 +1042,7 @@ johon luottaa %2</translation>
 <context>
     <name>ProfileReadersListingModel</name>
     <message>
-        <location filename="datamodel/profilereaderslistingmodel.cpp" line="180"/>
+        <location filename="datamodel/profilereaderslistingmodel.cpp" line="181"/>
         <source>Name or fingerprint of reader</source>
         <translation>Lukijan nimi tai SHA1-tiiviste</translation>
     </message>
@@ -1016,7 +1050,7 @@ johon luottaa %2</translation>
 <context>
     <name>SearchDisplay</name>
     <message>
-        <location filename="ui/searchdisplay.cpp" line="62"/>
+        <location filename="ui/searchdisplay.cpp" line="63"/>
         <source>Open..</source>
         <translation>Avaa..</translation>
     </message>
@@ -1363,19 +1397,19 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="frontWidget.ui" line="177"/>
-        <location filename="frontWidget.ui" line="928"/>
+        <location filename="frontWidget.ui" line="932"/>
         <source>Profile address</source>
         <translation>Profiilin osoite</translation>
     </message>
     <message>
         <location filename="frontWidget.ui" line="208"/>
-        <location filename="frontWidget.ui" line="642"/>
+        <location filename="frontWidget.ui" line="643"/>
         <source>Nickname</source>
         <translation>Liikanimi</translation>
     </message>
     <message>
         <location filename="frontWidget.ui" line="225"/>
-        <location filename="frontWidget.ui" line="668"/>
+        <location filename="frontWidget.ui" line="669"/>
         <source>Greeting text</source>
         <translation>Tervehdysteksti</translation>
     </message>
@@ -1386,13 +1420,13 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="frontWidget.ui" line="239"/>
-        <location filename="frontWidget.ui" line="694"/>
+        <location filename="frontWidget.ui" line="695"/>
         <source>First name</source>
         <translation>Etunimi</translation>
     </message>
     <message>
         <location filename="frontWidget.ui" line="253"/>
-        <location filename="frontWidget.ui" line="714"/>
+        <location filename="frontWidget.ui" line="715"/>
         <source>Family name</source>
         <translation>Sukunimi</translation>
     </message>
@@ -1413,7 +1447,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="frontWidget.ui" line="287"/>
-        <location filename="frontWidget.ui" line="798"/>
+        <location filename="frontWidget.ui" line="799"/>
         <source>State of the world</source>
         <translation>Maailman tila</translation>
     </message>
@@ -1458,79 +1492,98 @@ p, li { white-space: pre-wrap; }
         <translation>Operaattorin profiili</translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="424"/>
-        <location filename="frontWidget.ui" line="841"/>
+        <location filename="frontWidget.ui" line="401"/>
+        <source>
+
+Click 
+to 
+Add
+Image</source>
+        <translation>
+
+Klikkaa 
+Lisätäksesi
+Kuva</translation>
+    </message>
+    <message>
+        <location filename="frontWidget.ui" line="425"/>
+        <location filename="frontWidget.ui" line="845"/>
         <source>Shared files</source>
         <translation>Jaetut tiedostot</translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="460"/>
-        <location filename="frontWidget.ui" line="888"/>
+        <location filename="frontWidget.ui" line="461"/>
+        <location filename="frontWidget.ui" line="892"/>
         <source>Latest comments</source>
         <translation>Viimeisimmät kommentit</translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="503"/>
+        <location filename="frontWidget.ui" line="504"/>
         <source>Contacts</source>
         <translation>Osoitekirja</translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="535"/>
+        <location filename="frontWidget.ui" line="536"/>
         <source>Add contact</source>
         <translation>Lisää profiili</translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="542"/>
+        <location filename="frontWidget.ui" line="543"/>
         <source>Remove contact</source>
         <translation>Poista profiili</translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="549"/>
+        <location filename="frontWidget.ui" line="550"/>
         <source>View profile</source>
         <translation>Katsele profiilia</translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="556"/>
+        <location filename="frontWidget.ui" line="557"/>
         <source>Send message</source>
         <translation>Lähetä viesti</translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="568"/>
+        <location filename="frontWidget.ui" line="569"/>
         <source>Private messages</source>
         <translation>Yksityiset viestit</translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="623"/>
+        <location filename="frontWidget.ui" line="624"/>
         <source>Profile details</source>
         <translation>Profiilin yksityiskohdat</translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="740"/>
+        <location filename="frontWidget.ui" line="741"/>
         <source>City/Country</source>
         <translation>Kaupunki/maa</translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="766"/>
+        <location filename="frontWidget.ui" line="767"/>
         <source>BTC Addr</source>
         <translation>BTC-osoite</translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="870"/>
+        <location filename="frontWidget.ui" line="829"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;No&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Image&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Inserted&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Ei&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Kuvaa&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Valittuna&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="frontWidget.ui" line="874"/>
         <source>Send message to operator</source>
         <translation>Lähetä operaattorille viesti</translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="875"/>
+        <location filename="frontWidget.ui" line="879"/>
         <source>View readers</source>
         <translation>Lukijat</translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="923"/>
+        <location filename="frontWidget.ui" line="927"/>
         <source>Comment</source>
         <translation>Kommentti</translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="955"/>
+        <location filename="frontWidget.ui" line="959"/>
         <source>Add to contacts</source>
         <translation>Lisää osoitekirjaan</translation>
     </message>

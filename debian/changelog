@@ -1,39 +1,6 @@
-classified-ads (0.03-1) unstable; urgency=low
+classified-ads (0.03+gitc303a065f9-1) experimental; urgency=low
 	
-  * Rpm build fixes for fedora linux
-  * Slower connection attempts to unreachable nodes
-  * Better file extenstion handling
-  * UI tweaks for small vertical screen resolutions, affects at least 
-    users of some mac models
-  * Classifications entered by user now actually work too 
-  * If no local search avail, still offer network search
-  * Possible crash case fix. Still having random crashes inside
-    json serialize..
-  * Links between documents, still does not work with profile comments
-  * Try miniupnpc also in unix build
-  * Basic support for trust-tree based on trust lists
-  * Translations
+  * Initial release to experimental. Closes: #779377
 	
- -- Antti Järvinen <classified-ads.questions@katiska.org>  Tue, 24 Feb 2015 22:25:47 +0200
-	
-classified-ads (0.02-1) unstable; urgency=low
-	
-  * Libnatpmp is not used in windows build
-  * Profile comment document width setting was missing
-  * Made main window slightly smaller vertically.
-  * Now compiles also under Qt5
-  * Fix for grave bug: only message sender (not recipient) can read binary 
-    attachments
-  * Error messages for some file operations
-  * Fix for situation where published private profile breaks every node in 
-    network
-  * Require c++ compiler for compilation of c++, when building rpm.
-	
- -- Antti Jarvinen <classified-ads.questions@katiska.org>  Sun, 4 Jan 2015 11:53:47 +0200
-
-classified-ads (0.01-1) unstable; urgency=low
-
-  * Release initial
-	
- -- Antti Jarvinen <classified-ads.questions@katiska.org>  Sun, 20 Oct 2013 19:48:47 +0300
+ -- Antti Järvinen <classified-ads.questions@katiska.org>  Sun, 01 Mar 2015 12:54:47 +0200
 

@@ -1,6 +1,5 @@
 <RCC>
   <qresource prefix="ui">
-    <file>ui/Lenin_reading_Pravda.png</file>
     <file>ui/rightarrow.png</file>
     <file>ui/leftarrow.png</file>
     <file>ui/turt558.png</file>

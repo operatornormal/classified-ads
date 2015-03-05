@@ -1,16 +1,24 @@
 Source: classified-ads
 Section: net
-Priority: extra
+Priority: optional
 Maintainer: Antti Järvinen <classified-ads.questions@katiska.org>
-Build-Depends: debhelper (>= 7.0.50~), libqt4-dev , libssl-dev, libgcrypt-dev | libgcrypt11-dev, libnatpmp-dev, libqjson-dev, libminiupnpc-dev, dpkg-dev (>= 1.16.1~)
+Build-Depends: cdbs, qt4-qmake, debhelper (>= 7.0.50~), libqt4-dev , libssl-dev, libgcrypt-dev | libgcrypt11-dev, libnatpmp-dev, libqjson-dev, libminiupnpc-dev, dpkg-dev (>= 1.16.1~)
 Standards-Version: 3.9.6
 Homepage: http://katiska.org/classified-ads/
-#Vcs-Git: git://git.debian.org/collab-maint/classified-ads.git
-#Vcs-Browser: http://git.debian.org/?p=collab-maint/classified-ads.git;a=summary
 
 Package: classified-ads
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, libqt4-network , openssl, libqt4-sql-sqlite , libnatpmp1, libqjson0, miniupnpc
+Depends: ${shlibs:Depends}, ${misc:Depends}, libqt4-sql-sqlite, libssl1.0.0
 Description: Program for displaying classified advertisement items
- This is a server-less version of program that lets you tell the world
- when you're in need of a new bicycle.
+ Classified ads is an attempt to re-produce parts of the functionality 
+ that went away when usenet news ceased to exist. This attempt tries to 
+ fix the problem of disappearing news-servers so that there is no 
+ servers required ; data storage is implemented inside client 
+ applications that you and me are running. Features of the program 
+ currently include
+  * Posting of ads online, with categorization
+  * Replying to ads either in public or privately to operator.
+  * Binary attachments to posts.
+  * Providing basic data of operators - data that operator may enter 
+    himself, or left blank.
+  * Basic searching of content based on words.

@@ -26,7 +26,7 @@
       </sizepolicy>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>4</number>
      </property>
      <widget class="QWidget" name="classifiedAdsTab">
       <property name="sizePolicy">
@@ -398,11 +398,12 @@
               </size>
              </property>
              <property name="text">
-              <string/>
-             </property>
-             <property name="icon">
-              <iconset resource="ui_resources.qrc">
-               <normaloff>:/ui/ui/Lenin_reading_Pravda.png</normaloff>:/ui/ui/Lenin_reading_Pravda.png</iconset>
+              <string>
+
+Click 
+to 
+Add
+Image</string>
              </property>
              <property name="iconSize">
               <size>
@@ -818,11 +819,14 @@
            </property>
            <item>
             <widget class="QLabel" name="profileDetailsImage">
-             <property name="text">
-              <string/>
+             <property name="minimumSize">
+              <size>
+               <width>354</width>
+               <height>451</height>
+              </size>
              </property>
-             <property name="pixmap">
-              <pixmap resource="ui_resources.qrc">:/ui/ui/Lenin_reading_Pravda.png</pixmap>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;No&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Image&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Inserted&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>

@@ -1,18 +1,19 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
     This file is part of Classified Ads.
 
-    Classified Ads is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+    Classified Ads is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Lesser General Public
+    License as published by the Free Software Foundation; either
+    version 2.1 of the License, or (at your option) any later version.
 
     Classified Ads is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Lesser General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with Classified Ads.  If not, see <http://www.gnu.org/licenses/>.
+    You should have received a copy of the GNU Lesser General Public
+    License along with Classified Ads; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include <QFileDialog>
@@ -1184,8 +1185,7 @@ void FrontWidget::updateUiFromSelectedProfile() {
     if ( !( iSelectedProfile->iProfilePicture.isNull()) ) {
       ui.imageButton->setIcon(QIcon(QPixmap::fromImage(iSelectedProfile->iProfilePicture))) ; 
     } else {
-      QPixmap p ( ":/ui/ui/Lenin_reading_Pravda.png" ) ; 
-      ui.imageButton->setIcon(QIcon(p)) ;
+      ui.imageButton->setText(tr("\n\n\nClick\nTo\nAdd\nImage\n")) ; 
     }
     setUpSelectedProfileFileListingModel() ; 
     ui.publisChangesButton->setEnabled(false) ; 
@@ -1346,8 +1346,8 @@ void FrontWidget::updateUiFromViewedProfile() {
     if ( !( iViewedProfile->iProfilePicture.isNull()) ) {
       ui.profileDetailsImage->setPixmap(QPixmap::fromImage(iViewedProfile->iProfilePicture)) ; 
     } else {
-      QPixmap p ( ":/ui/ui/Lenin_reading_Pravda.png" ) ; 
-      ui.profileDetailsImage->setPixmap(p) ;
+      ui.profileDetailsImage->setText(tr("\n\n\n(No\nImage\nSelected)\n")) ; 
+      ui.profileDetailsImage->setAlignment(Qt::AlignCenter|Qt::AlignHCenter);
     }
     if ( iViewedProfileFileListingModel ) {
       delete  iViewedProfileFileListingModel  ; 

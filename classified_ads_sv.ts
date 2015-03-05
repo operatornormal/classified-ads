@@ -5,29 +5,29 @@
 <context>
     <name>AttachmentListDialog</name>
     <message>
-        <location filename="ui/attachmentlistdialog.cpp" line="56"/>
+        <location filename="ui/attachmentlistdialog.cpp" line="57"/>
         <source>Save file to disk..</source>
         <translatorcomment>Man kan spara pengar också? </translatorcomment>
         <translation>Spara till filsystem..</translation>
     </message>
     <message>
-        <location filename="ui/attachmentlistdialog.cpp" line="149"/>
-        <location filename="ui/attachmentlistdialog.cpp" line="151"/>
+        <location filename="ui/attachmentlistdialog.cpp" line="150"/>
+        <location filename="ui/attachmentlistdialog.cpp" line="152"/>
         <source>files</source>
         <translation>filer</translation>
     </message>
     <message>
-        <location filename="ui/attachmentlistdialog.cpp" line="153"/>
+        <location filename="ui/attachmentlistdialog.cpp" line="154"/>
         <source>Choose file name for saving</source>
         <translation>Välj ett namn for din fil</translation>
     </message>
     <message>
-        <location filename="ui/attachmentlistdialog.cpp" line="164"/>
+        <location filename="ui/attachmentlistdialog.cpp" line="165"/>
         <source>Error</source>
         <translation>Fel</translation>
     </message>
     <message>
-        <location filename="ui/attachmentlistdialog.cpp" line="165"/>
+        <location filename="ui/attachmentlistdialog.cpp" line="166"/>
         <source>File open error</source>
         <translation>Fel i att öppna en fil</translation>
     </message>
@@ -35,7 +35,7 @@
 <context>
     <name>BinaryFileListingModel</name>
     <message>
-        <location filename="datamodel/binaryfilelistingmodel.cpp" line="178"/>
+        <location filename="datamodel/binaryfilelistingmodel.cpp" line="179"/>
         <source>Name or fingerprint of file</source>
         <translation>Namn eller SHA1 kontrollsumm av filen</translation>
     </message>
@@ -43,14 +43,14 @@
 <context>
     <name>CAListingModel</name>
     <message>
-        <location filename="datamodel/calistingmodel.cpp" line="49"/>
-        <location filename="datamodel/calistingmodel.cpp" line="142"/>
+        <location filename="datamodel/calistingmodel.cpp" line="50"/>
+        <location filename="datamodel/calistingmodel.cpp" line="143"/>
         <source>Date</source>
         <translation>Datum</translation>
     </message>
     <message>
-        <location filename="datamodel/calistingmodel.cpp" line="50"/>
-        <location filename="datamodel/calistingmodel.cpp" line="141"/>
+        <location filename="datamodel/calistingmodel.cpp" line="51"/>
+        <location filename="datamodel/calistingmodel.cpp" line="142"/>
         <source>Subject</source>
         <translation>Rubrik</translation>
     </message>
@@ -58,177 +58,177 @@
 <context>
     <name>ClassifiedAdsModel</name>
     <message>
-        <location filename="datamodel/camodel.cpp" line="130"/>
+        <location filename="datamodel/camodel.cpp" line="131"/>
         <source>Buying</source>
         <translation>Inköpning</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="132"/>
+        <location filename="datamodel/camodel.cpp" line="133"/>
         <source>Selling</source>
         <translation>Försäljing</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="134"/>
+        <location filename="datamodel/camodel.cpp" line="135"/>
         <source>Giving away</source>
         <translation>Donering</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="136"/>
+        <location filename="datamodel/camodel.cpp" line="137"/>
         <source>Wanting</source>
         <translation>Önskande sig</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="138"/>
+        <location filename="datamodel/camodel.cpp" line="139"/>
         <source>Renting</source>
         <translation>Att hyra</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="140"/>
+        <location filename="datamodel/camodel.cpp" line="141"/>
         <source>Announcement</source>
         <translation>Meddelande</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="213"/>
+        <location filename="datamodel/camodel.cpp" line="214"/>
         <source>Cars</source>
         <translation>Bilar</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="215"/>
+        <location filename="datamodel/camodel.cpp" line="216"/>
         <source>Boats</source>
         <translation>Båtar</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="217"/>
+        <location filename="datamodel/camodel.cpp" line="218"/>
         <source>Bikes</source>
         <translation>Cyklar</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="219"/>
+        <location filename="datamodel/camodel.cpp" line="220"/>
         <source>Other vehicles</source>
         <translation>Andra fordon</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="221"/>
+        <location filename="datamodel/camodel.cpp" line="222"/>
         <source>Vehicle parts</source>
         <translation>Fordondelar</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="223"/>
+        <location filename="datamodel/camodel.cpp" line="224"/>
         <source>Habitation</source>
         <translation>Bostad</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="225"/>
+        <location filename="datamodel/camodel.cpp" line="226"/>
         <source>Household appliances</source>
         <translation>Hushållsapparater</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="227"/>
+        <location filename="datamodel/camodel.cpp" line="228"/>
         <source>Furniture</source>
         <translation>Möbler</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="229"/>
+        <location filename="datamodel/camodel.cpp" line="230"/>
         <source>Clothing</source>
         <translation>Kläder</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="231"/>
+        <location filename="datamodel/camodel.cpp" line="232"/>
         <source>Tools</source>
         <translation>Verktyg</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="233"/>
+        <location filename="datamodel/camodel.cpp" line="234"/>
         <source>Sports</source>
         <translation>Sports</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="235"/>
+        <location filename="datamodel/camodel.cpp" line="236"/>
         <source>Music</source>
         <translation>Musik</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="237"/>
+        <location filename="datamodel/camodel.cpp" line="238"/>
         <source>Books</source>
         <translation>Böcker</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="239"/>
+        <location filename="datamodel/camodel.cpp" line="240"/>
         <source>Movies</source>
         <translation>Bio</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="241"/>
+        <location filename="datamodel/camodel.cpp" line="242"/>
         <source>Animals</source>
         <translation>Djur</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="243"/>
+        <location filename="datamodel/camodel.cpp" line="244"/>
         <source>Electronics</source>
         <translation>Elektroniska aparater</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="245"/>
+        <location filename="datamodel/camodel.cpp" line="246"/>
         <source>Jobs</source>
         <translation>Arbete</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="247"/>
+        <location filename="datamodel/camodel.cpp" line="248"/>
         <source>Transportation</source>
         <translation>Transport</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="249"/>
+        <location filename="datamodel/camodel.cpp" line="250"/>
         <source>Services</source>
         <translation>Tjänster</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="251"/>
+        <location filename="datamodel/camodel.cpp" line="252"/>
         <source>Healthcare</source>
         <translation>Sjukvård</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="253"/>
+        <location filename="datamodel/camodel.cpp" line="254"/>
         <source>Foodstuff</source>
         <translation>Livsmedel</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="255"/>
+        <location filename="datamodel/camodel.cpp" line="256"/>
         <source>Software</source>
         <translation>Programvara</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="257"/>
+        <location filename="datamodel/camodel.cpp" line="258"/>
         <source>Events</source>
         <translation>Händelser</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="259"/>
+        <location filename="datamodel/camodel.cpp" line="260"/>
         <source>Education</source>
         <translation>Utbildning</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="261"/>
+        <location filename="datamodel/camodel.cpp" line="262"/>
         <source>Finance</source>
         <translation>Finans</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="263"/>
+        <location filename="datamodel/camodel.cpp" line="264"/>
         <source>Jewelry</source>
         <translation>Smycken</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="265"/>
+        <location filename="datamodel/camodel.cpp" line="266"/>
         <source>Religious rituals</source>
         <translation>Religiösa ritualer</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="267"/>
+        <location filename="datamodel/camodel.cpp" line="268"/>
         <source>Philosophy</source>
         <translation>Filosofi</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="912"/>
+        <location filename="datamodel/camodel.cpp" line="913"/>
         <source>Any country</source>
         <translation>Alla länder</translation>
     </message>
@@ -236,52 +236,52 @@
 <context>
     <name>ConnectionListingModel</name>
     <message>
-        <location filename="datamodel/connectionlistingmodel.cpp" line="147"/>
+        <location filename="datamodel/connectionlistingmodel.cpp" line="148"/>
         <source>Peer network address</source>
         <translation>Gränsande datorns adress</translation>
     </message>
     <message>
-        <location filename="datamodel/connectionlistingmodel.cpp" line="150"/>
+        <location filename="datamodel/connectionlistingmodel.cpp" line="151"/>
         <source>Inbound connections are those where peer initiated connection</source>
         <translation>Inkommande förbindelse är sådan när en annan dator öppnade dataströmmen </translation>
     </message>
     <message>
-        <location filename="datamodel/connectionlistingmodel.cpp" line="153"/>
+        <location filename="datamodel/connectionlistingmodel.cpp" line="154"/>
         <source>Data transferred from peer to your node</source>
         <translation>Data från din dator</translation>
     </message>
     <message>
-        <location filename="datamodel/connectionlistingmodel.cpp" line="156"/>
+        <location filename="datamodel/connectionlistingmodel.cpp" line="157"/>
         <source>Data transferred to peer from your node</source>
         <translation>Data till din dator</translation>
     </message>
     <message>
-        <location filename="datamodel/connectionlistingmodel.cpp" line="159"/>
+        <location filename="datamodel/connectionlistingmodel.cpp" line="160"/>
         <source>Time when connection was opened</source>
         <translation>Tid när dataström öppnades</translation>
     </message>
     <message>
-        <location filename="datamodel/connectionlistingmodel.cpp" line="170"/>
+        <location filename="datamodel/connectionlistingmodel.cpp" line="171"/>
         <source>Address</source>
         <translation>Adress</translation>
     </message>
     <message>
-        <location filename="datamodel/connectionlistingmodel.cpp" line="173"/>
+        <location filename="datamodel/connectionlistingmodel.cpp" line="174"/>
         <source>Inbound</source>
         <translation>Inkommande</translation>
     </message>
     <message>
-        <location filename="datamodel/connectionlistingmodel.cpp" line="176"/>
+        <location filename="datamodel/connectionlistingmodel.cpp" line="177"/>
         <source>Bytes in</source>
         <translation>Oktett in</translation>
     </message>
     <message>
-        <location filename="datamodel/connectionlistingmodel.cpp" line="179"/>
+        <location filename="datamodel/connectionlistingmodel.cpp" line="180"/>
         <source>Bytes out</source>
         <translation>Oktett ut</translation>
     </message>
     <message>
-        <location filename="datamodel/connectionlistingmodel.cpp" line="182"/>
+        <location filename="datamodel/connectionlistingmodel.cpp" line="183"/>
         <source>Open time</source>
         <translation>Öppningstid</translation>
     </message>
@@ -289,42 +289,42 @@
 <context>
     <name>ContactListingModel</name>
     <message>
-        <location filename="datamodel/contactlistingmodel.cpp" line="75"/>
+        <location filename="datamodel/contactlistingmodel.cpp" line="76"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="datamodel/contactlistingmodel.cpp" line="77"/>
+        <location filename="datamodel/contactlistingmodel.cpp" line="78"/>
         <source>Unknown</source>
         <translation>Okänt</translation>
     </message>
     <message>
-        <location filename="datamodel/contactlistingmodel.cpp" line="102"/>
+        <location filename="datamodel/contactlistingmodel.cpp" line="103"/>
         <source>Actual network address (SHA1) of the contact</source>
         <translation>SHA1 av din contact</translation>
     </message>
     <message>
-        <location filename="datamodel/contactlistingmodel.cpp" line="105"/>
+        <location filename="datamodel/contactlistingmodel.cpp" line="106"/>
         <source>Locally given nickname ; user may set her own nickname himself</source>
         <translation>Smeknamn</translation>
     </message>
     <message>
-        <location filename="datamodel/contactlistingmodel.cpp" line="108"/>
+        <location filename="datamodel/contactlistingmodel.cpp" line="109"/>
         <source>Public statement if this operator to be trusted in transactions</source>
         <translation>Om den här kontakt ska bli förtröstad?</translation>
     </message>
     <message>
-        <location filename="datamodel/contactlistingmodel.cpp" line="119"/>
+        <location filename="datamodel/contactlistingmodel.cpp" line="120"/>
         <source>Address</source>
         <translation>Adress</translation>
     </message>
     <message>
-        <location filename="datamodel/contactlistingmodel.cpp" line="122"/>
+        <location filename="datamodel/contactlistingmodel.cpp" line="123"/>
         <source>Nickname</source>
         <translation>Smeknamn</translation>
     </message>
     <message>
-        <location filename="datamodel/contactlistingmodel.cpp" line="125"/>
+        <location filename="datamodel/contactlistingmodel.cpp" line="126"/>
         <source>Publicly trusted</source>
         <translation>Offentlig förtroende</translation>
     </message>
@@ -332,23 +332,23 @@
 <context>
     <name>ContentEncryptionModel</name>
     <message>
-        <location filename="datamodel/contentencryptionmodel.cpp" line="88"/>
+        <location filename="datamodel/contentencryptionmodel.cpp" line="89"/>
         <source>SSL key generation went wrong, calling exit..</source>
         <translation>Kunde inte generera SSL-nyckel, utgående..</translation>
     </message>
     <message>
-        <location filename="datamodel/contentencryptionmodel.cpp" line="96"/>
+        <location filename="datamodel/contentencryptionmodel.cpp" line="97"/>
         <source>x509 cert generation went wrong, calling exit..</source>
         <translation>Kunde inte generera x509-cert, utgående..</translation>
     </message>
     <message>
-        <location filename="datamodel/contentencryptionmodel.cpp" line="194"/>
-        <location filename="datamodel/contentencryptionmodel.cpp" line="292"/>
+        <location filename="datamodel/contentencryptionmodel.cpp" line="195"/>
+        <location filename="datamodel/contentencryptionmodel.cpp" line="293"/>
         <source>RSA Private key key saving went wrong</source>
         <translation>Kunde inte persist RSA-nyckel</translation>
     </message>
     <message>
-        <location filename="datamodel/contentencryptionmodel.cpp" line="644"/>
+        <location filename="datamodel/contentencryptionmodel.cpp" line="645"/>
         <source>No suitable de-cryption key found</source>
         <translation>Hemlig nyckel för kryptering finns inte</translation>
     </message>
@@ -356,164 +356,164 @@
 <context>
     <name>Controller</name>
     <message>
-        <location filename="controller.cpp" line="102"/>
+        <location filename="controller.cpp" line="103"/>
         <source>Classified ads</source>
         <translation>Annonser</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="134"/>
+        <location filename="controller.cpp" line="135"/>
         <source>Enter password for protection of your messages:</source>
         <translation>Ge ett lösenord: </translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="404"/>
+        <location filename="controller.cpp" line="405"/>
         <source>Fetching item from network..</source>
         <translation>Hämtning objektet..</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="429"/>
+        <location filename="controller.cpp" line="430"/>
         <source>E&amp;xit</source>
         <translation>Stänga</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="431"/>
+        <location filename="controller.cpp" line="432"/>
         <source>Exit the application</source>
         <translation>Stänga av program</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="433"/>
+        <location filename="controller.cpp" line="434"/>
         <source>&amp;About</source>
         <translation>Information</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="434"/>
+        <location filename="controller.cpp" line="435"/>
         <source>Show the application&apos;s About box</source>
         <translation>Visa information av den här program</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="436"/>
+        <location filename="controller.cpp" line="437"/>
         <source>&amp;Change password</source>
         <translation>Förändra din lösenord</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="437"/>
+        <location filename="controller.cpp" line="438"/>
         <source>Change password of current profile</source>
         <translation>Förändra lösenorden av vald profil</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="439"/>
+        <location filename="controller.cpp" line="440"/>
         <source>Create &amp;new profile</source>
         <translation>Skapa en &amp;ny profil</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="440"/>
+        <location filename="controller.cpp" line="441"/>
         <source>Makes a brand new user profile</source>
         <translation>Skapar en ny profil för operator</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="442"/>
+        <location filename="controller.cpp" line="443"/>
         <source>&amp;Delete current profile</source>
         <translation>Radera vald profil</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="443"/>
+        <location filename="controller.cpp" line="444"/>
         <source>Deletes currently open profile</source>
         <translation>Ska glömma allt om vald profil</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="445"/>
+        <location filename="controller.cpp" line="446"/>
         <source>&amp;Select another profile</source>
         <translation>Välja en annan profil</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="446"/>
+        <location filename="controller.cpp" line="447"/>
         <source>If you have multitude of profiles</source>
         <translation>Om du har flera profiler</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="448"/>
+        <location filename="controller.cpp" line="449"/>
         <source>Settings..</source>
         <translation>Inställningar..</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="449"/>
+        <location filename="controller.cpp" line="450"/>
         <source>Node-wide settings..</source>
         <translation>Inställningar av nod</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="451"/>
+        <location filename="controller.cpp" line="452"/>
         <source>Network status..</source>
         <translation>Status av nätverket..</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="453"/>
+        <location filename="controller.cpp" line="454"/>
         <source>Search..</source>
         <translation>Sök..</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="470"/>
+        <location filename="controller.cpp" line="471"/>
         <source>&amp;File</source>
         <translation>&amp;Filer</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="515"/>
+        <location filename="controller.cpp" line="516"/>
         <source>Enter new password:</source>
         <translation>Ge ett lösenord:</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="543"/>
-        <location filename="controller.cpp" line="652"/>
+        <location filename="controller.cpp" line="544"/>
+        <location filename="controller.cpp" line="653"/>
         <source>Activate another profile with password</source>
         <translation>Välja en annan profil med en lösenord</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="637"/>
+        <location filename="controller.cpp" line="638"/>
         <source>Can&apos;t delete only profile.</source>
         <translation>Man kan inte radera den sista profil</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="641"/>
+        <location filename="controller.cpp" line="642"/>
         <source>Permanently discard profile?</source>
         <translation>Radera profil?</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="642"/>
+        <location filename="controller.cpp" line="643"/>
         <source>There will be NO way to access content of this profile later</source>
         <translation>Det finns INTE en metod för att visa den här profil senare</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="705"/>
+        <location filename="controller.cpp" line="706"/>
         <source>Cant load node cert or key cert</source>
         <translation>Kan inte ladda smycken för din nod</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="710"/>
+        <location filename="controller.cpp" line="711"/>
         <source>File error</source>
         <translation>Fel med filen</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="715"/>
+        <location filename="controller.cpp" line="716"/>
         <source>Database error</source>
         <translation>Fel med databas</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="721"/>
-        <location filename="controller.cpp" line="731"/>
+        <location filename="controller.cpp" line="722"/>
+        <location filename="controller.cpp" line="732"/>
         <source>Cryptographic module</source>
         <translation>Fel med kryptering</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="726"/>
+        <location filename="controller.cpp" line="727"/>
         <source>Database module</source>
         <translation>Fel med databas</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="732"/>
+        <location filename="controller.cpp" line="733"/>
         <source>Bad password</source>
         <translation>Fel lösenord</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="948"/>
+        <location filename="controller.cpp" line="949"/>
         <source>Could not find item from network..</source>
         <translation>Kunde inte hitta objektet från nätverket</translation>
     </message>
@@ -521,30 +521,30 @@
 <context>
     <name>DialogBase</name>
     <message>
-        <location filename="ui/dialogbase.cpp" line="48"/>
-        <location filename="ui/dialogbase.cpp" line="101"/>
+        <location filename="ui/dialogbase.cpp" line="49"/>
+        <location filename="ui/dialogbase.cpp" line="102"/>
         <source>File way too big</source>
         <translation>Filen är alldeles för stor</translation>
     </message>
     <message>
-        <location filename="ui/dialogbase.cpp" line="56"/>
-        <location filename="ui/dialogbase.cpp" line="109"/>
+        <location filename="ui/dialogbase.cpp" line="57"/>
+        <location filename="ui/dialogbase.cpp" line="110"/>
         <source>File too big</source>
         <translation>Filen är för stor</translation>
     </message>
     <message>
-        <location filename="ui/dialogbase.cpp" line="85"/>
-        <location filename="ui/dialogbase.cpp" line="122"/>
+        <location filename="ui/dialogbase.cpp" line="86"/>
+        <location filename="ui/dialogbase.cpp" line="123"/>
         <source>File open error</source>
         <translation>Fel med öppningen av filen</translation>
     </message>
     <message>
-        <location filename="ui/dialogbase.cpp" line="94"/>
+        <location filename="ui/dialogbase.cpp" line="95"/>
         <source>Select file to be published</source>
         <translation>Välja filen som du will ha publicerad</translation>
     </message>
     <message>
-        <location filename="ui/dialogbase.cpp" line="96"/>
+        <location filename="ui/dialogbase.cpp" line="97"/>
         <source>Files (*.*)</source>
         <translation>Alla filer (*.*)</translation>
     </message>
@@ -552,12 +552,12 @@
 <context>
     <name>EditContactDialog</name>
     <message>
-        <location filename="ui/editcontact.cpp" line="74"/>
+        <location filename="ui/editcontact.cpp" line="75"/>
         <source>Error</source>
         <translation>Fel</translation>
     </message>
     <message>
-        <location filename="ui/editcontact.cpp" line="75"/>
+        <location filename="ui/editcontact.cpp" line="76"/>
         <source>Operator addr is not valid</source>
         <translation>Adress av operator är inte giltig</translation>
     </message>
@@ -565,116 +565,134 @@
 <context>
     <name>FrontWidget</name>
     <message>
-        <location filename="FrontWidget.cpp" line="89"/>
+        <location filename="FrontWidget.cpp" line="90"/>
         <source>Classified ads</source>
         <translation>Annonser</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="90"/>
+        <location filename="FrontWidget.cpp" line="91"/>
         <source>My profile</source>
         <translation>Egen profil</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="91"/>
+        <location filename="FrontWidget.cpp" line="92"/>
         <source>Contacts</source>
         <translation>Kontakter</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="92"/>
+        <location filename="FrontWidget.cpp" line="93"/>
         <source>Private messages</source>
         <translation>Privat korrespondens</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="151"/>
+        <location filename="FrontWidget.cpp" line="152"/>
         <source>Add shared file..</source>
         <translation>Addera en fil til nätverk..</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="152"/>
+        <location filename="FrontWidget.cpp" line="153"/>
         <source>Stop advertising selected shared file</source>
         <translation>Sluta annonsera den markerade filen</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="153"/>
+        <location filename="FrontWidget.cpp" line="154"/>
         <source>Save file to disk..</source>
         <translation>Spara filen till disk..</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="154"/>
+        <location filename="FrontWidget.cpp" line="155"/>
         <source>Copy file address (SHA1) to clipboard..</source>
         <translation>Kopiera SHA1 till urklipp..</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="155"/>
+        <location filename="FrontWidget.cpp" line="156"/>
         <source>Edit+publish new text document..</source>
         <translation>Skapa+publicera en ny dokument..</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="338"/>
+        <location filename="FrontWidget.cpp" line="339"/>
         <source>Open File</source>
         <translation>Öppna filen</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="340"/>
-        <location filename="FrontWidget.cpp" line="873"/>
+        <location filename="FrontWidget.cpp" line="341"/>
+        <location filename="FrontWidget.cpp" line="874"/>
         <source>Files (*.*)</source>
         <translation>Alla typer (*.*)</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="344"/>
-        <location filename="FrontWidget.cpp" line="1138"/>
+        <location filename="FrontWidget.cpp" line="345"/>
+        <location filename="FrontWidget.cpp" line="1139"/>
         <location filename="FrontWidget.cpp" line="1279"/>
         <source>Error</source>
         <translation>Fel</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="345"/>
+        <location filename="FrontWidget.cpp" line="346"/>
         <source>Can&apos;t load image</source>
         <translation>Kan inte ladda en bild</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="611"/>
-        <location filename="FrontWidget.cpp" line="753"/>
+        <location filename="FrontWidget.cpp" line="612"/>
+        <location filename="FrontWidget.cpp" line="754"/>
         <source>Profile not in database</source>
         <translation>Profil finns inte i lokal databas</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="612"/>
-        <location filename="FrontWidget.cpp" line="754"/>
+        <location filename="FrontWidget.cpp" line="613"/>
+        <location filename="FrontWidget.cpp" line="755"/>
         <source>Try viewing profile first to obtain data</source>
         <translation>Du kan försöka att se profil först för att hämta data</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="871"/>
+        <location filename="FrontWidget.cpp" line="872"/>
         <source>Select file to be published</source>
         <translation>Välja filen du vill ha publicerad</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="878"/>
+        <location filename="FrontWidget.cpp" line="879"/>
         <source>File way too big</source>
         <translation>Filen är alldeles för stor</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="886"/>
+        <location filename="FrontWidget.cpp" line="887"/>
         <source>File too big</source>
         <translation>Filen är för stor</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="920"/>
-        <location filename="FrontWidget.cpp" line="1139"/>
+        <location filename="FrontWidget.cpp" line="921"/>
+        <location filename="FrontWidget.cpp" line="1140"/>
         <source>File open error</source>
         <translation>Fel med öppningen av filen</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1120"/>
-        <location filename="FrontWidget.cpp" line="1126"/>
+        <location filename="FrontWidget.cpp" line="1121"/>
+        <location filename="FrontWidget.cpp" line="1127"/>
         <source>files</source>
         <translation>filer</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1129"/>
+        <location filename="FrontWidget.cpp" line="1130"/>
         <source>Choose file name for saving</source>
         <translation>Välj ett namn for din fil</translation>
+    </message>
+    <message>
+        <location filename="FrontWidget.cpp" line="1188"/>
+        <source>
+
+
+Click
+To
+Add
+Image
+</source>
+        <translation>
+
+
+Klicka för att
+lägga till
+en bild
+</translation>
     </message>
     <message>
         <location filename="FrontWidget.cpp" line="1280"/>
@@ -693,6 +711,22 @@ SHA1 %2</translation>
         <location filename="FrontWidget.cpp" line="1343"/>
         <source>Time of last update </source>
         <translation>Tid av senaste ändring</translation>
+    </message>
+    <message>
+        <location filename="FrontWidget.cpp" line="1349"/>
+        <source>
+
+
+(No
+Image
+Selected)
+</source>
+        <translation>
+
+
+(Ingen
+Bild
+Valts)</translation>
     </message>
     <message>
         <location filename="FrontWidget.cpp" line="1443"/>
@@ -793,7 +827,7 @@ SHA1 %2</translation>
 <context>
     <name>InsertLinkDialog</name>
     <message>
-        <location filename="ui/insertlinkdialog.cpp" line="71"/>
+        <location filename="ui/insertlinkdialog.cpp" line="72"/>
         <source>Invalid URL</source>
         <translation>URL är inte giltig</translation>
     </message>
@@ -801,7 +835,7 @@ SHA1 %2</translation>
 <context>
     <name>ManualConnectionDialog</name>
     <message>
-        <location filename="ui/manualconnection.cpp" line="55"/>
+        <location filename="ui/manualconnection.cpp" line="56"/>
         <source>DNS lookup failure</source>
         <translation>Namnet kunde inte hittas från DNS</translation>
     </message>
@@ -809,18 +843,18 @@ SHA1 %2</translation>
 <context>
     <name>NewPrivMessageDialog</name>
     <message>
-        <location filename="ui/newprivmsgdialog.cpp" line="90"/>
-        <location filename="ui/newprivmsgdialog.cpp" line="134"/>
+        <location filename="ui/newprivmsgdialog.cpp" line="91"/>
+        <location filename="ui/newprivmsgdialog.cpp" line="135"/>
         <source>Error</source>
         <translation>Fel</translation>
     </message>
     <message>
-        <location filename="ui/newprivmsgdialog.cpp" line="91"/>
+        <location filename="ui/newprivmsgdialog.cpp" line="92"/>
         <source>Recipient addr is not valid</source>
         <translation>Adressen av mottagaren är inte giltig</translation>
     </message>
     <message>
-        <location filename="ui/newprivmsgdialog.cpp" line="135"/>
+        <location filename="ui/newprivmsgdialog.cpp" line="136"/>
         <source>Recipient encryption key not found from storage</source>
         <translation>Kryptering-nyckel för mottagaren kunde inte hittas i lokal databas</translation>
     </message>
@@ -828,18 +862,18 @@ SHA1 %2</translation>
 <context>
     <name>NewProfileCommentDialog</name>
     <message>
-        <location filename="ui/newprofilecommentdialog.cpp" line="91"/>
-        <location filename="ui/newprofilecommentdialog.cpp" line="128"/>
+        <location filename="ui/newprofilecommentdialog.cpp" line="92"/>
+        <location filename="ui/newprofilecommentdialog.cpp" line="129"/>
         <source>Error</source>
         <translation>Fel</translation>
     </message>
     <message>
-        <location filename="ui/newprofilecommentdialog.cpp" line="92"/>
+        <location filename="ui/newprofilecommentdialog.cpp" line="93"/>
         <source>Commented profile addr is not valid</source>
         <translation>Adressen av profil är inte giltig</translation>
     </message>
     <message>
-        <location filename="ui/newprofilecommentdialog.cpp" line="129"/>
+        <location filename="ui/newprofilecommentdialog.cpp" line="130"/>
         <source>Recipient encryption key not found from storage</source>
         <translation>Kunde inte hittas kryptering-nyckel från lokal databas</translation>
     </message>
@@ -847,22 +881,22 @@ SHA1 %2</translation>
 <context>
     <name>NodeModel</name>
     <message>
-        <location filename="datamodel/nodemodel.cpp" line="114"/>
+        <location filename="datamodel/nodemodel.cpp" line="115"/>
         <source>SSL key generation went wrong, calling exit..</source>
         <translation>Kunde inte skapa SSL-nyckel, utgående..</translation>
     </message>
     <message>
-        <location filename="datamodel/nodemodel.cpp" line="122"/>
+        <location filename="datamodel/nodemodel.cpp" line="123"/>
         <source>x509 cert generation went wrong, calling exit..</source>
         <translation>Kunde inte skapa x509-nyckel, utgående..</translation>
     </message>
     <message>
-        <location filename="datamodel/nodemodel.cpp" line="1604"/>
+        <location filename="datamodel/nodemodel.cpp" line="1605"/>
         <source>Cant load SSL cert</source>
         <translation>Kunde inte ladda SSL-nyckkel</translation>
     </message>
     <message>
-        <location filename="datamodel/nodemodel.cpp" line="1634"/>
+        <location filename="datamodel/nodemodel.cpp" line="1635"/>
         <source>Cant load SSL key</source>
         <translation>Kunde inte ladda SSL-nyckel </translation>
     </message>
@@ -870,7 +904,7 @@ SHA1 %2</translation>
 <context>
     <name>PasswdDialog</name>
     <message>
-        <location filename="ui/passwd_dialog.cpp" line="112"/>
+        <location filename="ui/passwd_dialog.cpp" line="113"/>
         <source>Min length 5 (use 10+)</source>
         <translation>Minimilängd är 5 (du skulle använda minst 10+)</translation>
     </message>
@@ -906,34 +940,34 @@ SHA1 %2</translation>
 <context>
     <name>PrivateMessageSearchModel</name>
     <message>
-        <location filename="datamodel/privmsgsearchmodel.cpp" line="112"/>
+        <location filename="datamodel/privmsgsearchmodel.cpp" line="113"/>
         <source>%1
 Trusted by %2</source>
         <translation>%1
 Betrodd av %2</translation>
     </message>
     <message>
-        <location filename="datamodel/privmsgsearchmodel.cpp" line="243"/>
+        <location filename="datamodel/privmsgsearchmodel.cpp" line="244"/>
         <source>Direction of message, sent/received</source>
         <translation>Riktning</translation>
     </message>
     <message>
-        <location filename="datamodel/privmsgsearchmodel.cpp" line="254"/>
+        <location filename="datamodel/privmsgsearchmodel.cpp" line="255"/>
         <source>Dir</source>
         <translation>Riktning</translation>
     </message>
     <message>
-        <location filename="datamodel/privmsgsearchmodel.cpp" line="257"/>
+        <location filename="datamodel/privmsgsearchmodel.cpp" line="258"/>
         <source>Peer</source>
         <translation>Peer</translation>
     </message>
     <message>
-        <location filename="datamodel/privmsgsearchmodel.cpp" line="260"/>
+        <location filename="datamodel/privmsgsearchmodel.cpp" line="261"/>
         <source>Time</source>
         <translation>Datum</translation>
     </message>
     <message>
-        <location filename="datamodel/privmsgsearchmodel.cpp" line="263"/>
+        <location filename="datamodel/privmsgsearchmodel.cpp" line="264"/>
         <source>Subject</source>
         <translation>Rubrik</translation>
     </message>
@@ -941,22 +975,22 @@ Betrodd av %2</translation>
 <context>
     <name>ProfileCommentDisplay</name>
     <message>
-        <location filename="ui/profilecommentdisplay.cpp" line="54"/>
+        <location filename="ui/profilecommentdisplay.cpp" line="55"/>
         <source>&amp;Add comment...</source>
         <translation>Skapa en ny komment..</translation>
     </message>
     <message>
-        <location filename="ui/profilecommentdisplay.cpp" line="65"/>
+        <location filename="ui/profilecommentdisplay.cpp" line="66"/>
         <source>Save attachment to disk..</source>
         <translation>Spara filen till disk..</translation>
     </message>
     <message>
-        <location filename="ui/profilecommentdisplay.cpp" line="90"/>
+        <location filename="ui/profilecommentdisplay.cpp" line="91"/>
         <source>Error</source>
         <translation>Fel</translation>
     </message>
     <message>
-        <location filename="ui/profilecommentdisplay.cpp" line="91"/>
+        <location filename="ui/profilecommentdisplay.cpp" line="92"/>
         <source>Article not found from local storage</source>
         <translation>Annons kunde inte hittas i lokal databas</translation>
     </message>
@@ -964,7 +998,7 @@ Betrodd av %2</translation>
 <context>
     <name>ProfileCommentItemDelegate</name>
     <message>
-        <location filename="ui/profilecommentitemdelegate.cpp" line="93"/>
+        <location filename="ui/profilecommentitemdelegate.cpp" line="94"/>
         <source>Attachments: </source>
         <translation>Tilläggade filer:</translation>
     </message>
@@ -972,17 +1006,17 @@ Betrodd av %2</translation>
 <context>
     <name>ProfileCommentListingModel</name>
     <message>
-        <location filename="datamodel/profilecommentlistingmodel.cpp" line="226"/>
+        <location filename="datamodel/profilecommentlistingmodel.cpp" line="227"/>
         <source>Sender</source>
         <translation>Avsändare</translation>
     </message>
     <message>
-        <location filename="datamodel/profilecommentlistingmodel.cpp" line="229"/>
+        <location filename="datamodel/profilecommentlistingmodel.cpp" line="230"/>
         <source>Time</source>
         <translation>Datum</translation>
     </message>
     <message>
-        <location filename="datamodel/profilecommentlistingmodel.cpp" line="232"/>
+        <location filename="datamodel/profilecommentlistingmodel.cpp" line="233"/>
         <source>Subject</source>
         <translation>Rubrik</translation>
     </message>
@@ -990,7 +1024,7 @@ Betrodd av %2</translation>
 <context>
     <name>ProfileCommentModel</name>
     <message>
-        <location filename="datamodel/profilecommentmodel.cpp" line="73"/>
+        <location filename="datamodel/profilecommentmodel.cpp" line="74"/>
         <source>Profile related to comment not found from database</source>
         <translation>Profilen från komment kunde inte hittas i lokal databas</translation>
     </message>
@@ -998,7 +1032,7 @@ Betrodd av %2</translation>
 <context>
     <name>ProfileReadersDialog</name>
     <message>
-        <location filename="ui/profilereadersdialog.cpp" line="73"/>
+        <location filename="ui/profilereadersdialog.cpp" line="74"/>
         <source>View profile</source>
         <translation>Visa profilen</translation>
     </message>
@@ -1006,7 +1040,7 @@ Betrodd av %2</translation>
 <context>
     <name>ProfileReadersListingModel</name>
     <message>
-        <location filename="datamodel/profilereaderslistingmodel.cpp" line="180"/>
+        <location filename="datamodel/profilereaderslistingmodel.cpp" line="181"/>
         <source>Name or fingerprint of reader</source>
         <translation>Namn eller SHA1 kontrollsumm av läsaren </translation>
     </message>
@@ -1014,7 +1048,7 @@ Betrodd av %2</translation>
 <context>
     <name>SearchDisplay</name>
     <message>
-        <location filename="ui/searchdisplay.cpp" line="62"/>
+        <location filename="ui/searchdisplay.cpp" line="63"/>
         <source>Open..</source>
         <translation>Öppna..</translation>
     </message>
@@ -1358,19 +1392,19 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="frontWidget.ui" line="177"/>
-        <location filename="frontWidget.ui" line="928"/>
+        <location filename="frontWidget.ui" line="932"/>
         <source>Profile address</source>
         <translation>Adress av profil</translation>
     </message>
     <message>
         <location filename="frontWidget.ui" line="208"/>
-        <location filename="frontWidget.ui" line="642"/>
+        <location filename="frontWidget.ui" line="643"/>
         <source>Nickname</source>
         <translation>Smeknamn</translation>
     </message>
     <message>
         <location filename="frontWidget.ui" line="225"/>
-        <location filename="frontWidget.ui" line="668"/>
+        <location filename="frontWidget.ui" line="669"/>
         <source>Greeting text</source>
         <translation>Hälsningar</translation>
     </message>
@@ -1381,13 +1415,13 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="frontWidget.ui" line="239"/>
-        <location filename="frontWidget.ui" line="694"/>
+        <location filename="frontWidget.ui" line="695"/>
         <source>First name</source>
         <translation>Förnamn</translation>
     </message>
     <message>
         <location filename="frontWidget.ui" line="253"/>
-        <location filename="frontWidget.ui" line="714"/>
+        <location filename="frontWidget.ui" line="715"/>
         <source>Family name</source>
         <translation>Efternamn</translation>
     </message>
@@ -1408,7 +1442,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="frontWidget.ui" line="287"/>
-        <location filename="frontWidget.ui" line="798"/>
+        <location filename="frontWidget.ui" line="799"/>
         <source>State of the world</source>
         <translation>Tillståndet i världen</translation>
     </message>
@@ -1453,79 +1487,98 @@ p, li { white-space: pre-wrap; }
         <translation>Detaljer om operatörsprofil</translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="424"/>
-        <location filename="frontWidget.ui" line="841"/>
+        <location filename="frontWidget.ui" line="401"/>
+        <source>
+
+Click 
+to 
+Add
+Image</source>
+        <translation>
+
+Klicka för at 
+lägga till
+en bild</translation>
+    </message>
+    <message>
+        <location filename="frontWidget.ui" line="425"/>
+        <location filename="frontWidget.ui" line="845"/>
         <source>Shared files</source>
         <translation>Filer i fildelning  </translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="460"/>
-        <location filename="frontWidget.ui" line="888"/>
+        <location filename="frontWidget.ui" line="461"/>
+        <location filename="frontWidget.ui" line="892"/>
         <source>Latest comments</source>
         <translation>Senaste kommentarer</translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="503"/>
+        <location filename="frontWidget.ui" line="504"/>
         <source>Contacts</source>
         <translation>Kontakter</translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="535"/>
+        <location filename="frontWidget.ui" line="536"/>
         <source>Add contact</source>
         <translation>Lägg kontakt</translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="542"/>
+        <location filename="frontWidget.ui" line="543"/>
         <source>Remove contact</source>
         <translation>Ta bort kontakt</translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="549"/>
+        <location filename="frontWidget.ui" line="550"/>
         <source>View profile</source>
         <translation>Visa profilen</translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="556"/>
+        <location filename="frontWidget.ui" line="557"/>
         <source>Send message</source>
         <translation>Skicka en elektronisk post</translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="568"/>
+        <location filename="frontWidget.ui" line="569"/>
         <source>Private messages</source>
         <translation>Korrespondens</translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="623"/>
+        <location filename="frontWidget.ui" line="624"/>
         <source>Profile details</source>
         <translation>Detaljer av profil</translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="740"/>
+        <location filename="frontWidget.ui" line="741"/>
         <source>City/Country</source>
         <translation>Stad/rike</translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="766"/>
+        <location filename="frontWidget.ui" line="767"/>
         <source>BTC Addr</source>
         <translation>BTC-adress</translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="870"/>
+        <location filename="frontWidget.ui" line="829"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;No&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Image&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Inserted&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Ingen&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Bild&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Valts&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="frontWidget.ui" line="874"/>
         <source>Send message to operator</source>
         <translation>Skicka en brev</translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="875"/>
+        <location filename="frontWidget.ui" line="879"/>
         <source>View readers</source>
         <translation>Läsarna av profilen</translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="923"/>
+        <location filename="frontWidget.ui" line="927"/>
         <source>Comment</source>
         <translation>Skicka en kommentar</translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="955"/>
+        <location filename="frontWidget.ui" line="959"/>
         <source>Add to contacts</source>
         <translation>Lägga till din kontakter</translation>
     </message>
