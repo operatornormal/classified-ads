@@ -1184,6 +1184,7 @@ void FrontWidget::updateUiFromSelectedProfile() {
     }
     if ( !( iSelectedProfile->iProfilePicture.isNull()) ) {
       ui.imageButton->setIcon(QIcon(QPixmap::fromImage(iSelectedProfile->iProfilePicture))) ; 
+      ui.imageButton->setText(QString()) ; 
     } else {
       ui.imageButton->setText(tr("\n\n\nClick\nTo\nAdd\nImage\n")) ; 
     }
@@ -1345,6 +1346,7 @@ void FrontWidget::updateUiFromViewedProfile() {
     ui.profileDetailsGreetingValue->setToolTip(toolTipText) ; 
     if ( !( iViewedProfile->iProfilePicture.isNull()) ) {
       ui.profileDetailsImage->setPixmap(QPixmap::fromImage(iViewedProfile->iProfilePicture)) ; 
+      ui.profileDetailsImage->setText(QString()) ;       
     } else {
       ui.profileDetailsImage->setText(tr("\n\n\n(No\nImage\nSelected)\n")) ; 
       ui.profileDetailsImage->setAlignment(Qt::AlignCenter|Qt::AlignHCenter);
