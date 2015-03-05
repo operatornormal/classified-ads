@@ -2,7 +2,7 @@ Source: classified-ads
 Section: net
 Priority: optional
 Maintainer: Antti Järvinen <classified-ads.questions@katiska.org>
-Build-Depends: cdbs, qt4-qmake, debhelper (>= 7.0.50~), libqt4-dev , libssl-dev, libgcrypt-dev | libgcrypt11-dev, libnatpmp-dev, libqjson-dev, libminiupnpc-dev, dpkg-dev (>= 1.16.1~)
+Build-Depends: cdbs, qt4-qmake, debhelper (>= 9~), libqt4-dev , libssl-dev, libgcrypt-dev | libgcrypt11-dev, libnatpmp-dev, libqjson-dev, libminiupnpc-dev, dpkg-dev (>= 1.16.1~)
 Standards-Version: 3.9.6
 Homepage: http://katiska.org/classified-ads/
 
