@@ -27,4 +27,4 @@ is all right and it is possible to compile all required libs with MinGW.
 Qjson from  version control did not work, there is patch included in 
 directory called patch to make it behave. 
 
-License: GPLv3. Happy hacking. 
+License: LGPL. Happy hacking. 

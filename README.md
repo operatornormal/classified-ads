@@ -1,4 +1,5 @@
 classified_ads
 ==============
 
-Classified ads is a program for posting ads online
+Classified ads is a server-less program for internet communications, 
+including public and private messages. 
