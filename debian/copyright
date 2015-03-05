@@ -30,7 +30,7 @@ License: LGPL-2.1
  General Public License version 2.1 requirements will be met:
  http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
 
-Files: ui/turt* icon.png
+Files: ui/turt* windows/turt-transparent-128x128.ico
 Copyright: Copyright 2013 Meeri Järvinen
 License: LGPL-2.1+
  These image-files may be used under the terms of the GNU Lesser General 
