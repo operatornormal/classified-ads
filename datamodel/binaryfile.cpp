@@ -37,6 +37,7 @@ static const char *KJSonBinaryFileName = "fileName" ;
 static const char *KJSonBinaryFileFP = "fingerPrint" ;
 static const char *KJSonBinaryFileDesc = "desc" ;
 static const char *KJSonBinaryFilePublisher = "publisher" ;
+static const char *KJSonBinaryFileContentOwner = "contentOwner" ;
 static const char *KJSonBinaryFileTime = "time" ;
 static const char *KJSonBinaryFileLicense = "license" ;
 static const char *KJSonBinaryFileMime = "mimetype" ;
@@ -69,6 +70,9 @@ QByteArray BinaryFile::asJSon(const MController& /*aController*/) const {
 
   if ( iOwner.length() > 0 ) {
     m.insert(KJSonBinaryFilePublisher, iOwner.toUtf8()) ;
+  }
+  if ( iContentOwner.length() > 0 ) {
+    m.insert(KJSonBinaryFileContentOwner, iContentOwner.toUtf8()) ;
   }
   m.insert(KJSonBinaryFileTime, iTimeOfPublish) ;
   if ( iLicense.length() > 0 ) {
@@ -116,6 +120,9 @@ bool BinaryFile::fromJSon(const QByteArray &aJSonBytes,
   }
   if ( result.contains(KJSonBinaryFilePublisher) ) {
     iOwner = QString::fromUtf8(result[KJSonBinaryFilePublisher].toByteArray()) ;
+  }
+  if ( result.contains(KJSonBinaryFileContentOwner) ) {
+    iContentOwner = QString::fromUtf8(result[KJSonBinaryFileContentOwner].toByteArray()) ;
   }
   if ( result.contains(KJSonBinaryFileTime) ) {
     iTimeOfPublish = result[KJSonBinaryFilePublisher].toUInt() ; 

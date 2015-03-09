@@ -107,7 +107,8 @@ void NewPrivMessageDialog::okButtonClicked()
     attachmentRecipients->append(iSelectedProfile.iFingerPrint) ; // self
     attachmentRecipients->append(msg.iRecipient) ; // recipient
 
-    foreach (const QString& attachmentFile , iFilesAboutToBeAttached ) {
+    foreach (const MetadataQueryDialog::MetadataResultSet& attachmentFile , 
+	     iFilesAboutToBeAttached ) {
       Hash attachmentHash = publishBinaryAttachment(attachmentFile,
 						    false,
 						    attachmentRecipients ) ;

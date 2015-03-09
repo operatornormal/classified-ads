@@ -62,7 +62,7 @@ HEADERS = mcontroller.h controller.h FrontWidget.h net/node.h util/hash.h \
 	datamodel/connectionlistingmodel.h ui/manualconnection.h \
 	ui/aboutdialog.h textedit/textedit.h datamodel/searchmodel.h \
 	ui/searchdisplay.h ui/insertlinkdialog.h ui/newtextdocument.h \
-	datamodel/trusttreemodel.h
+	datamodel/trusttreemodel.h ui/metadataQuery.h
 SOURCES = main.cpp controller.cpp FrontWidget.cpp net/node.cpp util/hash.cpp \
 	net/connection.cpp datamodel/model.cpp \
         net/networklistener.cpp net/protocol_message_formatter.cpp \
@@ -89,14 +89,14 @@ SOURCES = main.cpp controller.cpp FrontWidget.cpp net/node.cpp util/hash.cpp \
 	datamodel/connectionlistingmodel.cpp ui/manualconnection.cpp \
         ui/aboutdialog.cpp textedit/textedit.cpp datamodel/searchmodel.cpp \
 	ui/searchdisplay.cpp ui/insertlinkdialog.cpp ui/newtextdocument.cpp \
-	datamodel/trusttreemodel.cpp
+	datamodel/trusttreemodel.cpp ui/metadataQuery.cpp
 FORMS = frontWidget.ui ui/profileReadersDialog.ui ui/passwordDialog.ui \
 	ui/newClassifiedAd.ui 	ui/newPrivMsg.ui ui/editContact.ui \
         ui/newProfileComment.ui ui/profileCommentDisplay.ui \
         ui/attachmentListDialog.ui ui/settingsDialog.ui \
 	ui/statusDialog.ui ui/manualConnectionDialog.ui \
 	ui/aboutDialog.ui ui/searchDisplay.ui ui/insertLink.ui \
-        ui/newTextDocument.ui
+        ui/newTextDocument.ui ui/metadataQuery.ui
 RESOURCES     = ui_resources.qrc
 TRANSLATIONS  = classified_ads_fi.ts \
                 classified_ads_sv.ts

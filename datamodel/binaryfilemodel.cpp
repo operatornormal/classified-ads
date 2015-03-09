@@ -70,6 +70,8 @@ Hash BinaryFileModel::publishBinaryFile(const Profile& aPublishingProfile,
 					const QString& aFileName,
 					const QString& aDescription,
 					const QString& aMimeType,
+					const QString& aOwner,
+					const QString& aLicense,
 					const QByteArray& aContents,
 					bool aIsCompressed,
 					bool aNoEncryption,
@@ -112,8 +114,10 @@ Hash BinaryFileModel::publishBinaryFile(const Profile& aPublishingProfile,
   // but the file remains the same, from this programs perspective.
   BinaryFile metadata(contentFingerPrint) ; 
   metadata.iMimeType = aMimeType ; 
-  metadata.iOwner = aPublishingProfile.iFingerPrint.toString() ; 
+  metadata.iOwner = aPublishingProfile.iFingerPrint.toString() ;
+  metadata.iContentOwner = aOwner ; 
   metadata.iFileName = aFileName ; 
+  metadata.iLicense = aLicense ; 
   metadata.iDescription = aDescription ; 
   metadata.iTimeOfPublish = QDateTime::currentDateTimeUtc().toTime_t() ;
   metadata.iIsEncrypted = encryption_was_used ;

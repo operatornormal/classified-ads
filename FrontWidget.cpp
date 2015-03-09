@@ -45,6 +45,7 @@
 #include "ui/attachmentlistdialog.h"
 #include "ui/newtextdocument.h"
 #include "ui/editcontact.h"
+#include "ui/metadataQuery.h" // for query dialog
 
 static const QString internalNameOfProfileTab("profileTabNamed") ; 
 static const QString internalNameOfCommentDialog("caCommentDlgNamed") ; 
@@ -896,25 +897,35 @@ void FrontWidget::fileToBeSharedAdded() {
 	    }
 	    // ok, here we have content in content and it is 
 	    // either compressed or not. size is checked. 
-	    QString description ; // TODO: query user 
-	    QString mimetype ; 
-	    iController->model().lock() ; 
-	    Hash fileFingerPrint ( 
-				  iController->model().binaryFileModel().publishBinaryFile(*iSelectedProfile,
-											   QFileInfo(f).fileName(),
-											   description,
-											   mimetype,
-											   content,
-											   isCompressed) ) ;
-	    if ( fileFingerPrint != KNullHash ) {
-	      if ( ! iSelectedProfile->iSharedFiles.contains(fileFingerPrint ) ) {
-		// addFile will also modify iSelectedProfile->iSharedFiles
-		iSelectedProfileFileListingModel->addFile(fileFingerPrint) ;
-		iSelectedProfile->iTimeOfPublish = QDateTime::currentDateTimeUtc().toTime_t() ;
-		iController->model().profileModel().publishProfile(*iSelectedProfile) ; 
+
+	    MetadataQueryDialog::MetadataResultSet metadata ;
+	    metadata.iFileName = fileName ; 
+	    MetadataQueryDialog metadataDialog(this,
+					       *iController,
+					       metadata ) ;
+	    if ( metadataDialog.exec() == QDialog::Accepted ) {
+	      QString description ; // TODO: query user 
+	      QString mimetype ; 
+	      iController->model().lock() ; 
+	      Hash fileFingerPrint ( 
+				    iController->model().binaryFileModel().publishBinaryFile(*iSelectedProfile,
+											     QFileInfo(f).fileName(),
+											     metadata.iDescription,
+											     metadata.iMimeType,
+											     metadata.iOwner,
+											     metadata.iLicense,
+											     content,
+											     isCompressed) ) ;
+	      if ( fileFingerPrint != KNullHash ) {
+		if ( ! iSelectedProfile->iSharedFiles.contains(fileFingerPrint ) ) {
+		  // addFile will also modify iSelectedProfile->iSharedFiles
+		  iSelectedProfileFileListingModel->addFile(fileFingerPrint) ;
+		  iSelectedProfile->iTimeOfPublish = QDateTime::currentDateTimeUtc().toTime_t() ;
+		  iController->model().profileModel().publishProfile(*iSelectedProfile) ; 
+		}
 	      }
+	      iController->model().unlock() ; 
 	    }
-	    iController->model().unlock() ; 
 	  }
 	}
       } else {
@@ -1186,6 +1197,7 @@ void FrontWidget::updateUiFromSelectedProfile() {
       ui.imageButton->setIcon(QIcon(QPixmap::fromImage(iSelectedProfile->iProfilePicture))) ; 
       ui.imageButton->setText(QString()) ; 
     } else {
+      ui.imageButton->setIcon(QIcon()) ;
       ui.imageButton->setText(tr("\n\n\nClick\nTo\nAdd\nImage\n")) ; 
     }
     setUpSelectedProfileFileListingModel() ; 
@@ -1348,6 +1360,7 @@ void FrontWidget::updateUiFromViewedProfile() {
       ui.profileDetailsImage->setPixmap(QPixmap::fromImage(iViewedProfile->iProfilePicture)) ; 
       ui.profileDetailsImage->setText(QString()) ;       
     } else {
+      ui.profileDetailsImage->setPixmap(QPixmap()) ;
       ui.profileDetailsImage->setText(tr("\n\n\n(No\nImage\nSelected)\n")) ; 
       ui.profileDetailsImage->setAlignment(Qt::AlignCenter|Qt::AlignHCenter);
     }
