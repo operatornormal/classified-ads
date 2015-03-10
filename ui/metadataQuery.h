@@ -56,10 +56,14 @@ public:
 		      MetadataResultSet& aResultsSet );
   /** destructor */
   ~MetadataQueryDialog();
+public slots:
+  void okButtonClicked() ; 
 
 signals:
   void error(MController::CAErrorSituation aError,
 	     const QString& aExplanation) ;
+private: // methods
+  QString findMimeTypeForFile(const QString& aFileName) ;
 private:
   Ui_metadataQuery ui ; 
   MController& iController ;

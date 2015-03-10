@@ -100,7 +100,7 @@ FORMS = frontWidget.ui ui/profileReadersDialog.ui ui/passwordDialog.ui \
 RESOURCES     = ui_resources.qrc
 TRANSLATIONS  = classified_ads_fi.ts \
                 classified_ads_sv.ts
-unix:LIBS = -lssl -lcrypto -lnatpmp -lqjson -lminiupnpc
+unix:LIBS = -lssl -lcrypto -lnatpmp -lqjson -lminiupnpc -lmagic
 # following line is needed for fedora linux, natpnp needs miniupnpc
 unix:INCLUDEPATH += /usr/include/miniupnpc
 win32:LIBS += "c:\msys\1.0\local\lib\libssl.a" 
