@@ -52,6 +52,7 @@
 #include "datamodel/profile.h"
 #include "datamodel/profilecomment.h"
 #include "datamodel/trusttreemodel.h"
+#include "datamodel/binaryfile.h"
 
 static const char *KPrivateDataContactsSection = "contacts" ; 
 static const char *KPrivateDataContactsCache = "contactsCache" ; 
@@ -1056,6 +1057,60 @@ void Controller::offerDisplayNameForProfile(const Hash& aProfileFingerPrint,
   } else {
     QLOG_STR("Offered display name was profile hash -> discarding") ; 
   }
+}
+
+void Controller::displayFileInfoOnUi(const BinaryFile& aFileMetadata) {
+  QMessageBox infoMessage ; 
+  QStringList info ; 
+  info.append(tr("SHA1: ")) ; 
+  info.append(aFileMetadata.iFingerPrint.toString()) ; 
+  info.append("\n") ; 
+
+  if ( aFileMetadata.iMimeType.length() > 0 ) {
+    info.append(tr("Mime-Type: ")) ; 
+    info.append(aFileMetadata.iMimeType) ; 
+    info.append("\n") ; 
+  }
+
+  if ( aFileMetadata.iDescription.length() > 0 ) {
+    info.append(tr("Description: ")) ; 
+    info.append(aFileMetadata.iDescription) ; 
+    info.append("\n") ; 
+  }
+
+  if ( aFileMetadata.iOwner.length() > 0 ) {
+    info.append(tr("Publisher: ")) ; 
+    info.append(aFileMetadata.iOwner) ; 
+    info.append("\n") ; 
+  }
+
+  if ( aFileMetadata.iContentOwner.length() > 0 ) {
+    info.append(tr("Content owner: ")) ; 
+    info.append(aFileMetadata.iContentOwner) ; 
+    info.append("\n") ; 
+  }
+
+  if ( aFileMetadata.iLicense.length() > 0 ) {
+    info.append(tr("License: ")) ; 
+    info.append(aFileMetadata.iLicense) ; 
+    info.append("\n") ; 
+  }
+
+  if ( aFileMetadata.iFileName.length() > 0 ) {
+    info.append(tr("Name: ")) ; 
+    info.append(aFileMetadata.iFileName) ; 
+    info.append("\n") ; 
+  }
+
+  QDateTime d ; 
+  d.setTime_t(aFileMetadata.iTimeOfPublish) ;
+  info.append(tr("Date: ")) ; 
+  info.append(d.toString(Qt::SystemLocaleShortDate)) ; 
+  info.append("\n") ; 
+  
+  infoMessage.setText(info.join("")) ; 
+  infoMessage.setStandardButtons( QMessageBox::Ok );
+  infoMessage.exec() ; 
 }
 
 void Controller::sendProfileUpdateQuery(const Hash& aProfileFingerPrint,

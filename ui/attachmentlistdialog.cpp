@@ -48,8 +48,12 @@ AttachmentListDialog::AttachmentListDialog(QWidget *aParent,
   ui.setupUi(this) ; 
   iListingModel = new BinaryFileListingModel(aFilesToDisplay) ; 
   ui.fileListView->setModel(iListingModel) ; 
+  QAbstractButton* infoButton = new QPushButton("Info..", this) ;
+  ui.bottomButtonsBox->addButton(infoButton, QDialogButtonBox::ActionRole);
   connect(ui.bottomButtonsBox, SIGNAL(accepted()), this, SLOT(okButtonClicked()));
   connect(ui.bottomButtonsBox, SIGNAL(rejected()), this, SLOT(cancelButtonClicked()));
+  connect(infoButton, SIGNAL(clicked()),
+	  this, SLOT(infoButtonClicked())) ; 
   connect(ui.fileListView,
 	  SIGNAL(doubleClicked(const QModelIndex&)),
 	  this,
@@ -59,6 +63,8 @@ AttachmentListDialog::AttachmentListDialog(QWidget *aParent,
   ui.fileListView->addAction(iExportSharedFileAction) ;
   connect(iExportSharedFileAction, SIGNAL(triggered()),
 	  this, SLOT(exportSharedFile())) ;
+  connect(this, SIGNAL(rejected()),
+	  this, SLOT(deleteLater())) ; 
 }
 
 AttachmentListDialog::~AttachmentListDialog()
@@ -190,3 +196,42 @@ Hash AttachmentListDialog::tryFindNodeByProfile(const Hash& aProfileFingerPrint,
   }
   return retval ; 
 } 
+
+void AttachmentListDialog::infoButtonClicked() {
+  QLOG_STR("AttachmentListDialog::infoButtonClicked") ; 
+  BinaryFile* metadata (NULL); 
+  iController->model().lock() ; 
+  if ( iListingModel ) {
+    Hash fingerPrint ;
+
+    foreach(const QModelIndex &index, 
+	    ui.fileListView->selectionModel()->selectedIndexes()) {
+      fingerPrint.fromString((const unsigned char *)(qPrintable(iListingModel->data(index,Qt::ToolTipRole).toString())));
+      break ; 
+    }
+
+    if ( fingerPrint != KNullHash ) {
+      // aye, found a selected fingerprint; first check if we have 
+      //  the file or just know the fingerprint. both are possible. 
+      if ( ( metadata = iController->model().binaryFileModel().binaryFileByFingerPrint(fingerPrint) ) == NULL ) {
+	// got no file, ask it to be retrieved:
+	NetworkRequestExecutor::NetworkRequestQueueItem req ;
+	req.iRequestType = RequestForBinaryBlob ;
+	req.iRequestedItem = fingerPrint ;
+	req.iState = NetworkRequestExecutor::NewRequest ; 
+	req.iMaxNumberOfItems = 1 ; 
+	// if the file was shared by some other operator, 
+	// ask node of that operator first .. who was the operator?
+	if (iNodeToTryForRetrieval != KNullHash ) {
+	  req.iDestinationNode = iNodeToTryForRetrieval;
+	}
+	iController->startRetrievingContent(req,true,BinaryBlob) ; 
+      } 
+    }
+  }
+  iController->model().unlock() ; 
+  if ( metadata ) {
+    iController->displayFileInfoOnUi(*metadata) ; 
+    delete metadata ; 
+  }
+}

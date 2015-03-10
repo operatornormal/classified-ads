@@ -125,7 +125,7 @@ bool BinaryFile::fromJSon(const QByteArray &aJSonBytes,
     iContentOwner = QString::fromUtf8(result[KJSonBinaryFileContentOwner].toByteArray()) ;
   }
   if ( result.contains(KJSonBinaryFileTime) ) {
-    iTimeOfPublish = result[KJSonBinaryFilePublisher].toUInt() ; 
+    iTimeOfPublish = result[KJSonBinaryFileTime].toUInt() ; 
   }
   if ( result.contains(KJSonBinaryFileLicense) ) {
     iLicense = QString::fromUtf8(result[KJSonBinaryFileLicense].toByteArray()) ;

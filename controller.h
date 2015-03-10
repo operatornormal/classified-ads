@@ -221,6 +221,10 @@ public slots:
 					  const QString& aDisplayName,
 					  const bool iUpdatePersistenStorage=false) ;
   /**
+   * method that puts dialog or similar on display, about a published file
+   */
+  virtual void displayFileInfoOnUi(const BinaryFile& aFileMetadata) ; 
+  /**
    * method for sending a poll around network regarding possible
    * update for a profile and possible addition of comments about
    * given profile.
