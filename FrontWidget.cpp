@@ -45,6 +45,7 @@
 #include "ui/attachmentlistdialog.h"
 #include "ui/newtextdocument.h"
 #include "ui/editcontact.h"
+#include "ui/metadataQuery.h" // for query dialog
 
 static const QString internalNameOfProfileTab("profileTabNamed") ; 
 static const QString internalNameOfCommentDialog("caCommentDlgNamed") ; 
@@ -58,6 +59,7 @@ FrontWidget::FrontWidget(Controller* aController,
   iAddSharedFileAction(NULL),
   iRemoveSharedFileAction(NULL),
   iExportSharedFileAction(NULL),
+  iViewSharedFileInfoAction(NULL),
   iCopySharedFileHashAction(NULL),
   iEditNewSharedFileAction(NULL),
   iSelectedProfileFileListingModel(NULL),
@@ -152,17 +154,20 @@ FrontWidget::FrontWidget(Controller* aController,
   iAddSharedFileAction = new QAction(tr("Add shared file.."),this) ; 
   iRemoveSharedFileAction = new QAction(tr("Stop advertising selected shared file"),this) ; 
   iExportSharedFileAction = new QAction(tr("Save file to disk.."),this) ; 
+  iViewSharedFileInfoAction = new QAction(tr("View file information.."), this)  ;
   iCopySharedFileHashAction = new QAction(tr("Copy file address (SHA1) to clipboard.."),this) ; 
   iEditNewSharedFileAction = new QAction(tr("Edit+publish new text document.."),this) ; 
   ui.sharedFilesView->setContextMenuPolicy(Qt::ActionsContextMenu);
   ui.sharedFilesView->addAction(iAddSharedFileAction) ;
   ui.sharedFilesView->addAction(iRemoveSharedFileAction) ;
   ui.sharedFilesView->addAction(iExportSharedFileAction) ;
+  ui.sharedFilesView->addAction(iViewSharedFileInfoAction) ; 
   ui.sharedFilesView->addAction(iCopySharedFileHashAction) ;  
   ui.sharedFilesView->addAction(iEditNewSharedFileAction) ;
 
   ui.profileDetailsSharedFilesView->setContextMenuPolicy(Qt::ActionsContextMenu);
   ui.profileDetailsSharedFilesView->addAction(iExportSharedFileAction) ;
+  ui.profileDetailsSharedFilesView->addAction(iViewSharedFileInfoAction) ;
   ui.profileDetailsSharedFilesView->addAction(iCopySharedFileHashAction) ;  
 
   connect(iAddSharedFileAction, SIGNAL(triggered()),
@@ -171,6 +176,8 @@ FrontWidget::FrontWidget(Controller* aController,
 	  this, SLOT(fileToBeSharedRemoved())) ;
   connect(iExportSharedFileAction, SIGNAL(triggered()),
 	  this, SLOT(exportSharedFile())) ;
+  connect(iViewSharedFileInfoAction, SIGNAL(triggered()),
+	  this, SLOT(viewSharedFileInfo()));
   connect(iCopySharedFileHashAction, SIGNAL(triggered()),
 	  this, SLOT(copySharedFileHash())) ;
   connect(iEditNewSharedFileAction, SIGNAL(triggered()),
@@ -264,7 +271,8 @@ FrontWidget::~FrontWidget() {
   ui.caMessageView->setScene(NULL) ; 
   delete iAddSharedFileAction ; 
   delete iRemoveSharedFileAction ; 
-  delete iExportSharedFileAction ; 
+  delete iExportSharedFileAction ;
+  delete iViewSharedFileInfoAction ; 
   delete iCopySharedFileHashAction;
   delete iEditNewSharedFileAction;
   delete iEditContactAction ; 
@@ -896,25 +904,35 @@ void FrontWidget::fileToBeSharedAdded() {
 	    }
 	    // ok, here we have content in content and it is 
 	    // either compressed or not. size is checked. 
-	    QString description ; // TODO: query user 
-	    QString mimetype ; 
-	    iController->model().lock() ; 
-	    Hash fileFingerPrint ( 
-				  iController->model().binaryFileModel().publishBinaryFile(*iSelectedProfile,
-											   QFileInfo(f).fileName(),
-											   description,
-											   mimetype,
-											   content,
-											   isCompressed) ) ;
-	    if ( fileFingerPrint != KNullHash ) {
-	      if ( ! iSelectedProfile->iSharedFiles.contains(fileFingerPrint ) ) {
-		// addFile will also modify iSelectedProfile->iSharedFiles
-		iSelectedProfileFileListingModel->addFile(fileFingerPrint) ;
-		iSelectedProfile->iTimeOfPublish = QDateTime::currentDateTimeUtc().toTime_t() ;
-		iController->model().profileModel().publishProfile(*iSelectedProfile) ; 
+
+	    MetadataQueryDialog::MetadataResultSet metadata ;
+	    metadata.iFileName = fileName ; 
+	    MetadataQueryDialog metadataDialog(this,
+					       *iController,
+					       metadata ) ;
+	    if ( metadataDialog.exec() == QDialog::Accepted ) {
+	      QString description ; // TODO: query user 
+	      QString mimetype ; 
+	      iController->model().lock() ; 
+	      Hash fileFingerPrint ( 
+				    iController->model().binaryFileModel().publishBinaryFile(*iSelectedProfile,
+											     QFileInfo(f).fileName(),
+											     metadata.iDescription,
+											     metadata.iMimeType,
+											     metadata.iOwner,
+											     metadata.iLicense,
+											     content,
+											     isCompressed) ) ;
+	      if ( fileFingerPrint != KNullHash ) {
+		if ( ! iSelectedProfile->iSharedFiles.contains(fileFingerPrint ) ) {
+		  // addFile will also modify iSelectedProfile->iSharedFiles
+		  iSelectedProfileFileListingModel->addFile(fileFingerPrint) ;
+		  iSelectedProfile->iTimeOfPublish = QDateTime::currentDateTimeUtc().toTime_t() ;
+		  iController->model().profileModel().publishProfile(*iSelectedProfile) ; 
+		}
 	      }
+	      iController->model().unlock() ; 
 	    }
-	    iController->model().unlock() ; 
 	  }
 	}
       } else {
@@ -988,6 +1006,26 @@ void FrontWidget::exportSharedFile() {
   }
 }
 
+void FrontWidget::viewSharedFileInfo() {
+  LOG_STR("viewSharedFileInfo") ;
+  // ok, see what user had selected ; one file only:
+
+  if ( iSelectedProfileFileListingModel ) {
+    Hash fingerPrint ;
+    if ( ui.tabWidget->currentIndex() == 1 ) { // 1 == "my profile" so this is export of my own file
+      fingerPrint = iSelectedOwnBinaryFile ; 
+    } else {
+      if ( iViewedProfileFileListingModel ) {
+	fingerPrint = iSelectedViewedProfileBinaryfile ; 
+      }
+    }
+    if ( fingerPrint != KNullHash ) {
+      // aye, found a selected fingerprint;
+      doShowFileMetadata(fingerPrint) ; 
+    }
+  }
+}
+
 void FrontWidget::copySharedFileHash() {
   QLOG_STR("FrontWidget::copySharedFileHash") ;
 
@@ -1025,11 +1063,13 @@ void FrontWidget::updateFileSelectionActions() {
       QLOG_STR("updateFileSelectionActions viewed profile tab disable") ; 
       iCopySharedFileHashAction -> setEnabled(false) ; 
       iExportSharedFileAction -> setEnabled(false) ; 
+      iViewSharedFileInfoAction -> setEnabled(false) ; 
     } else {
       // file selected so lets enable the actions      
       QLOG_STR("updateFileSelectionActions viewed profile tab enable") ; 
       iCopySharedFileHashAction -> setEnabled(true) ; 
       iExportSharedFileAction -> setEnabled(true) ; 
+      iViewSharedFileInfoAction -> setEnabled(true) ; 
     }
     
   } else if ( ui.tabWidget->currentIndex() == 1 ) {
@@ -1040,12 +1080,14 @@ void FrontWidget::updateFileSelectionActions() {
       iCopySharedFileHashAction -> setEnabled(false) ; 
       iExportSharedFileAction -> setEnabled(false) ;
       iRemoveSharedFileAction -> setEnabled(false) ;  
+      iViewSharedFileInfoAction-> setEnabled(false) ; 
     } else {
       // file selected so lets enable the actions
       QLOG_STR("updateFileSelectionActions own profile tab enable") ; 
       iCopySharedFileHashAction -> setEnabled(true) ; 
       iExportSharedFileAction -> setEnabled(true) ; 
       iRemoveSharedFileAction -> setEnabled(true) ;  
+      iViewSharedFileInfoAction -> setEnabled(true) ; 
     }
   } else {
     // no profile tab so lets disable all
@@ -1053,6 +1095,7 @@ void FrontWidget::updateFileSelectionActions() {
     iCopySharedFileHashAction -> setEnabled(false) ; 
     iExportSharedFileAction -> setEnabled(false) ;
     iRemoveSharedFileAction -> setEnabled(false) ;  
+    iViewSharedFileInfoAction -> setEnabled(false) ; 
   }
 }
 
@@ -1186,6 +1229,7 @@ void FrontWidget::updateUiFromSelectedProfile() {
       ui.imageButton->setIcon(QIcon(QPixmap::fromImage(iSelectedProfile->iProfilePicture))) ; 
       ui.imageButton->setText(QString()) ; 
     } else {
+      ui.imageButton->setIcon(QIcon()) ;
       ui.imageButton->setText(tr("\n\n\nClick\nTo\nAdd\nImage\n")) ; 
     }
     setUpSelectedProfileFileListingModel() ; 
@@ -1348,6 +1392,7 @@ void FrontWidget::updateUiFromViewedProfile() {
       ui.profileDetailsImage->setPixmap(QPixmap::fromImage(iViewedProfile->iProfilePicture)) ; 
       ui.profileDetailsImage->setText(QString()) ;       
     } else {
+      ui.profileDetailsImage->setPixmap(QPixmap()) ;
       ui.profileDetailsImage->setText(tr("\n\n\n(No\nImage\nSelected)\n")) ; 
       ui.profileDetailsImage->setAlignment(Qt::AlignCenter|Qt::AlignHCenter);
     }
@@ -2267,3 +2312,13 @@ void FrontWidget::linkActivated ( const QString &aLink )
     return ; 
   }
 } 
+
+void FrontWidget::doShowFileMetadata(const Hash& aBinaryFileFingerPrint) {
+  iController->model().lock() ; 
+  BinaryFile* metadata (iController->model().binaryFileModel().binaryFileByFingerPrint(aBinaryFileFingerPrint)); 
+  iController->model().unlock() ;
+  if ( metadata ) {
+    iController->displayFileInfoOnUi(*metadata) ; 
+    delete metadata ; 
+  }
+}

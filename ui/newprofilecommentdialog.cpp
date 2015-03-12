@@ -102,7 +102,7 @@ void NewProfileCommentDialog::okButtonClicked()
     } else {
       comment.iReferences = KNullHash ; 
     }
-    foreach (const QString& attachmentFile , iFilesAboutToBeAttached ) {
+    foreach (const MetadataQueryDialog::MetadataResultSet& attachmentFile , iFilesAboutToBeAttached ) {
       Hash attachmentHash = publishBinaryAttachment(attachmentFile,
 						    false) ;
       if ( attachmentHash != KNullHash ) {

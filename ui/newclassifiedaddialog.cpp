@@ -128,7 +128,8 @@ void NewClassifiedAdDialog::okButtonClicked()
     if ( iSelectedProfile.iIsPrivate == false ) {
       ad.iSenderName = iSelectedProfile.displayName() ; 
     }
-    foreach (const QString& attachmentFile , iFilesAboutToBeAttached ) {
+    foreach (const MetadataQueryDialog::MetadataResultSet& attachmentFile , 
+	     iFilesAboutToBeAttached ) {
       Hash attachmentHash = publishBinaryAttachment(attachmentFile,
 						    true) ;
       if ( attachmentHash != KNullHash ) {

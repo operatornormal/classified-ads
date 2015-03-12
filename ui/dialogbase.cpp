@@ -36,14 +36,14 @@ DialogBase::DialogBase (QWidget* aParent,
 
 }
 
-Hash DialogBase::publishBinaryAttachment(const QString& aFileName,
+Hash DialogBase::publishBinaryAttachment(const MetadataQueryDialog::MetadataResultSet& aFileMetadata,
 					 bool aForceNoEncryption,
 					 const QList<Hash>* aBinaryRecipientList) 
 {
   Hash retval ( KNullHash ) ; 
   bool isCompressed (false ) ; 
 
-  QFile f ( aFileName ) ;
+  QFile f ( aFileMetadata.iFileName ) ;
   if ( f.open(QIODevice::ReadOnly) ) {
     if ( f.size() > ( KMaxProtocolItemSize * 10 ) ) {
       emit error ( MController::FileOperationError, tr("File way too big")) ; 
@@ -66,19 +66,20 @@ Hash DialogBase::publishBinaryAttachment(const QString& aFileName,
 	}
 	// ok, here we have content in content and it is 
 	// either compressed or not. size is checked. 
-	QString description ; // TODO: query user 
-	QString mimetype ; 
 	iController->model().lock() ; 
 	retval= 
-	  iController->model().binaryFileModel().publishBinaryFile(iSelectedProfile,
-								   QFileInfo(f).fileName(),
-								   description,
-								   mimetype,
-								   content,
-								   isCompressed,
-								   aForceNoEncryption,
-								   aBinaryRecipientList)  ;
-
+	  iController->model().
+	  binaryFileModel().publishBinaryFile(iSelectedProfile,
+					      QFileInfo(f).fileName(),
+					      aFileMetadata.iDescription,
+					      aFileMetadata.iMimeType,
+					      aFileMetadata.iOwner,
+					      aFileMetadata.iLicense,
+					      content,
+					      isCompressed,
+					      aForceNoEncryption,
+					      aBinaryRecipientList)  ;
+	
 	iController->model().unlock() ; 
       }
     }
@@ -114,9 +115,18 @@ void DialogBase::attachButtonClicked() {
 	  if ( iFilesAboutToBeAttached.count() != 0 ) {
 	    iFilesAboutToBeAttached.clear() ;
 	  }
-	  iFilesAboutToBeAttached.append(fileName) ;
+	  MetadataQueryDialog::MetadataResultSet metadata ;
+	  metadata.iFileName = fileName ; 
+	  MetadataQueryDialog metadataDialog(this,
+					     *iController,
+					     metadata ) ;
+	  if ( metadataDialog.exec() == QDialog::Accepted ) {
+	    iFilesAboutToBeAttached.append(metadata) ;
 	  
-	  iAttachmentListLabel->setText(fileName) ;  	      
+	    iAttachmentListLabel->setText(metadata.iFileName) ;  	     
+	  } else {
+	    iAttachmentListLabel->setText(QString()) ;  	     
+	  }
 	}
       }
     } else {
