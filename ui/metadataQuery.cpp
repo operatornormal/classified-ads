@@ -19,7 +19,13 @@
 */
 
 #include <QtGui>
+#if QT_VERSION >= 0x050000
+// qt5 has its own mime-type-handling so lets depend on that, easier..
+#include <QMimeDatabase>
+#else
+// with qt4 use libmagic that does the same job
 #include <magic.h> // from libmagic
+#endif
 #include <QFile>
 #include "../mcontroller.h"
 #include "../log.h"
@@ -60,6 +66,15 @@ void MetadataQueryDialog::okButtonClicked() {
 
 QString MetadataQueryDialog::findMimeTypeForFile(const QString& aFileName) {
   QString retval ; 
+#if QT_VERSION >= 0x050000
+  if ( QFile(aFileName).exists() ) {
+    QMimeDatabase db ; 
+    QMimeType detectedType ( db.mimeTypeForFile(aFileName) ) ; 
+    if ( detectedType.isValid() ) {
+      retval = detectedType.name() ; 
+    }
+  }
+#else
   if ( QFile(aFileName).exists() ) {
     // what is going to happen if the filesystem is not UTF-8 fs ???
     const char *fileNameCStyleHeap (aFileName.toUtf8().constData()) ; 
@@ -93,5 +108,6 @@ QString MetadataQueryDialog::findMimeTypeForFile(const QString& aFileName) {
       magic_close(magic_cookie);
     }
   }
+#endif
   return retval ; 
 }
