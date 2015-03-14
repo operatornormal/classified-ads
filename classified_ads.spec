@@ -11,8 +11,8 @@ Source0:	classified_ads-0.04.tar.gz
 BuildRequires:	qt-devel >= 4
 BuildRequires:	openssl-devel, libnatpmp-devel, qjson-devel, gcc-c++, miniupnpc-devel, file-devel
 Requires:	qt >= 4
-Requires:	bzip2-libs, expat, fontconfig, freetype, openssl-libs
-Requires:	pcre, qjson, libnatpmp, qjson-devel, xz-libs, zlib, miniupnpc
+Requires:	expat, fontconfig, freetype,
+Requires:	pcre, qjson
 BuildRoot:	%{_tmppath}/%{name}-%{version}-build
 %description
 Classified ads is an attempt to re-produce parts of the functionality
