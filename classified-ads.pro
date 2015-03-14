@@ -121,7 +121,7 @@ desktopicons.path = /usr/share/app-install/icons/
 desktopicons.files = ui/turt-transparent-128x128.png
 manpages.path = /usr/share/man/man1
 manpages.files = classified-ads.1
-translations.path = /usr/lib/classified-ads
+translations.path = /usr/share/classified-ads
 translations.files = classified_ads_fi.qm \
                      classified_ads_sv.qm
 INSTALLS += target desktopfiles desktopicons translations

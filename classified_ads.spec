@@ -1,25 +1,25 @@
 Name:		classified_ads
-Version:	0.03
+Version:	0.04
 Release:	1%{?dist}
 Summary:	Classified ads is a program for posting ads online
 
 Group:		Applications/Internet
-License:	GPLv3
-URL:		https://github.com/operatornormal/classified_ads/releases/tag/0.03
-Source0:	classified_ads-0.03.tar.gz
+License:	LGPL
+URL:		https://github.com/operatornormal/classified_ads/releases/tag/0.04
+Source0:	classified_ads-0.04.tar.gz
 
 BuildRequires:	qt-devel >= 4
-BuildRequires:	openssl-devel, libnatpmp-devel, qjson-devel, gcc-c++, miniupnpc-devel
+BuildRequires:	openssl-devel, libnatpmp-devel, qjson-devel, gcc-c++, miniupnpc-devel, file-devel
 Requires:	qt >= 4
 Requires:	bzip2-libs, expat, fontconfig, freetype, openssl-libs
 Requires:	pcre, qjson, libnatpmp, qjson-devel, xz-libs, zlib, miniupnpc
-
-BuildRoot:      %{_tmppath}/%{name}-%{version}-build
-
+BuildRoot:	%{_tmppath}/%{name}-%{version}-build
 %description
-Classified ads is an attempt to re-produce parts of the functionality that went away when usenet news ceased to exist. This attempt tries to fix the problem of disappearing news-servers so that there is no servers required ; data storage is implemented inside client applications that you and me are running.
-
-
+Classified ads is an attempt to re-produce parts of the functionality
+that went away when Usenet news ceased to exist. This attempt tries to
+fix the problem of disappearing news-servers so that there is no servers
+required ; data storage is implemented inside client applications that
+you and me are running.
 %prep
 %setup -q
 
@@ -41,10 +41,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/classified-ads
 %{_datadir}/applications/classified_ads.desktop
 %{_datadir}/app-install/icons/turt-transparent-128x128.png
-/usr/lib/classified-ads/classified_ads_fi.qm
-/usr/lib/classified-ads/classified_ads_sv.qm
-
+%{_datarootdir}/classified-ads/classified_ads_fi.qm
+%{_datarootdir}/classified-ads/classified_ads_sv.qm
+%{_mandir}/man1/classified-ads.1.gz
 %changelog
+* Sat Mar 14 2015 Antti Jarvinen <classified-ads.questions@katiska.org> - 0.04-1
+- License change GPL->LGPL due to OpenSSL license incompatibility.
+- Minor UI changes as some bitmaps removed due to licensing issues
 * Tue Feb 24 2015 Antti Jarvinen <classified-ads.questions@katiska.org> - 0.03-1
 - Rpm build fixes for fedora linux
 - Slower connection attempts to unreachable nodes

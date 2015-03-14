@@ -102,7 +102,7 @@ int main(int argc, char *argv[]) {
 		       // inside installation directory so no
 		       // directory needs to be specified
 #else
-		       QString("/usr/lib/classified-ads/") + 
+		       QString("/usr/share/classified-ads/") + 
 #endif
 		       QString("classified_ads_") + QLocale::system().name());
   app->installTranslator(&myappTranslator);
