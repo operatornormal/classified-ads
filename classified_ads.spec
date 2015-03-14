@@ -4,7 +4,7 @@ Release:	1%{?dist}
 Summary:	Classified ads is a program for posting ads online
 
 Group:		Applications/Internet
-License:	LGPL
+License:	LGPLv2
 URL:		https://github.com/operatornormal/classified_ads/releases/tag/0.04
 Source0:	classified_ads-0.04.tar.gz
 
