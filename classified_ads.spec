@@ -9,10 +9,7 @@ URL:		https://github.com/operatornormal/classified_ads/releases/tag/0.04
 Source0:	classified_ads-0.04.tar.gz
 
 BuildRequires:	qt-devel >= 4
-BuildRequires:	openssl-devel, libnatpmp-devel, qjson-devel, gcc-c++, miniupnpc-devel, file-devel
-Requires:	qt >= 4
-Requires:	expat, fontconfig, freetype,
-Requires:	pcre, qjson
+BuildRequires:	openssl-devel, libnatpmp-devel, qjson-devel, gcc-c++, miniupnpc-devel, file-devel, libappstream-glib
 BuildRoot:	%{_tmppath}/%{name}-%{version}-build
 %description
 Classified ads is an attempt to re-produce parts of the functionality
@@ -24,18 +21,12 @@ you and me are running.
 %setup -q
 
 %build
-PREFIX="/tmp/foo"
-export CXXFLAGS=-I/usr/include/miniupnpc
-QMAKE_ARGS+="INCLUDEPATH+=${LOCALBASE}/include/miniupnpc/ LIBS+=-L${LOCALBASE}/lib"; qmake-qt4 PREFIX=$RPM_BUILD_ROOT
+qmake-qt4 
 make
 
 %install
 INSTALL_ROOT=$RPM_BUILD_ROOT make install 
-
-%clean
-rm -rf $RPM_BUILD_ROOT
-
-
+appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/classified_ads.appdata.xml
 %files
 %doc README.TXT
 %{_bindir}/classified-ads
@@ -44,6 +35,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datarootdir}/classified-ads/classified_ads_fi.qm
 %{_datarootdir}/classified-ads/classified_ads_sv.qm
 %{_mandir}/man1/classified-ads.1.gz
+%{_datadir}/appdata/classified_ads.appdata.xml
+%license LICENSE
 %changelog
 * Sat Mar 14 2015 Antti Jarvinen <classified-ads.questions@katiska.org> - 0.04-1
 - License change GPL->LGPL due to OpenSSL license incompatibility.
