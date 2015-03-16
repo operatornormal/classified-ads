@@ -294,6 +294,9 @@ bool Model::openDB() {
     }
   }
   if ( isDbOpen ) {
+    // set file mode
+    QFile databaseFile(path) ; 
+    databaseFile.setPermissions(QFile::ReadOwner|QFile::WriteOwner) ;
     // do cleanup to rectify previous bugs:
     QSqlQuery query;
     // removes every comment that does not begin with { as all json
