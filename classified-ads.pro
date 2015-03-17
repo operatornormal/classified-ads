@@ -116,9 +116,9 @@ win32:INCLUDEPATH += "..\qjson-master\include"
 
 target.path = /usr/bin
 desktopfiles.path = /usr/share/applications
-desktopfiles.files = ui/classified_ads.desktop
+desktopfiles.files = ui/classified-ads.desktop
 desktopicons.path = /usr/share/app-install/icons/
-appdata.files = ui/classified_ads.appdata.xml
+appdata.files = ui/classified-ads.appdata.xml
 appdata.path = /usr/share/appdata/
 desktopicons.files = ui/turt-transparent-128x128.png
 manpages.path = /usr/share/man/man1

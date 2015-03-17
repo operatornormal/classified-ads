@@ -12,10 +12,11 @@
       Classified ads is an attempt to re-produce parts of the functionality
       that went away when Usenet news ceased to exist. This attempt tries to
       fix the problem of disappearing news-servers so that there is no servers
-      required ; data storage is implemented inside client applications that
-      you and me are running.  Features of the program currently include:
+      required and no service-providers needed for any operation ; 
+      data storage is implemented inside client applications that
+      users are running.  Features of the program currently include:
       <ul>
-	<li>Posting of ads online. Ads have a category ; there are some pre-defined categories but you can invent your own, just type in the classification that suits your needs.</li>
+	<li>Posting of ads online. Ads have a category ; there are some pre-defined categories but more can be invented just by typing over the suggested categories.</li>
 	<li>Replying to ads either in public or privately to operator.</li>
 	<li>(Small-sized) binary attachments to posts.</li>
 	<li>Providing basic data of operators - data that operator may enter himself, or leave blank.</li>
@@ -23,11 +24,12 @@
       </ul>
     </p>
     <p xml:lang="fi">
-      Luokitellut ilmoitukset on järjestelmä julkisten ja yksityistien viestin
+      Luokitellut ilmoitukset on järjestelmä julkisten ja yksityisten viestin
       välittämiseen internetin ylitse. Järjestelmä toistaa joitain toimintoja,
       jotka löytyvät myös usenet-news -järjestelmästä ja smtp-sähköpostista.
-      Tämä ohjelma on suunniteltu toimimaan ilman palvelinjärjestelmää. Ohjelman
-      ominaisuuksiin kuuluu mm. seuraavaa:
+      Tämä ohjelma on suunniteltu toimimaan ilman palvelinjärjestelmää
+      ja tästä syystä mitään sopimuksia minkään palveluntarjoajankaan
+      kanssa ei tarvitse tehdä. Ohjelma ominaisuuksiin kuuluu mm. seuraavaa:
       <ul>
 	<li>Ilmoitusten jättö kaikkien luettavaksi. Ilmoituksilla on kategoria,
 	ohjelma toteuttaa muutamia kategorioita esivalintana, mutta käyttäjiä
@@ -41,11 +43,11 @@
   </description>
   <screenshots>
     <screenshot type="default">
-      <image>https://github.com/operatornormal/classified_ads/blob/master/doc/ads-search.png?raw=true</image>
+      <image>https://github.com/operatornormal/classified-ads/blob/master/doc/ads-search.png?raw=true</image>
       <caption>Search of classified ads by category</caption>
     </screenshot>
     <screenshot>
-      <image>https://github.com/operatornormal/classified_ads/blob/master/doc/profilecomment.png?raw=true</image>
+      <image>https://github.com/operatornormal/classified-ads/blob/master/doc/profilecomment.png?raw=true</image>
       <caption>Replying to operator in public comment</caption>
     </screenshot>
   </screenshots>

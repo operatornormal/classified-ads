@@ -1,22 +1,20 @@
-Name:		classified_ads
+Name:		classified-ads
 Version:	0.04
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Classified ads is a program for posting ads online
 
 Group:		Applications/Internet
 License:	LGPLv2
-URL:		https://github.com/operatornormal/classified_ads/releases/tag/0.04
-Source0:	classified_ads-0.04.tar.gz
-
+URL:		http://katiska.org/classified_ads/
+Source0:	https://github.com/operatornormal/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 BuildRequires:	qt-devel >= 4
 BuildRequires:	openssl-devel, libnatpmp-devel, qjson-devel, gcc-c++, miniupnpc-devel, file-devel, libappstream-glib
-BuildRoot:	%{_tmppath}/%{name}-%{version}-build
 %description
 Classified ads is an attempt to re-produce parts of the functionality
 that went away when Usenet news ceased to exist. This attempt tries to
 fix the problem of disappearing news-servers so that there is no servers
-required ; data storage is implemented inside client applications that
-you and me are running.
+required and no service providers needed; data storage is implemented
+inside client applications that you and me are running.
 %prep
 %setup -q
 
@@ -26,18 +24,23 @@ make
 
 %install
 INSTALL_ROOT=$RPM_BUILD_ROOT make install 
-appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/classified_ads.appdata.xml
+appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/classified-ads.appdata.xml
 %files
 %doc README.TXT
 %{_bindir}/classified-ads
-%{_datadir}/applications/classified_ads.desktop
+%{_datadir}/applications/classified-ads.desktop
 %{_datadir}/app-install/icons/turt-transparent-128x128.png
 %{_datarootdir}/classified-ads/classified_ads_fi.qm
 %{_datarootdir}/classified-ads/classified_ads_sv.qm
 %{_mandir}/man1/classified-ads.1.gz
-%{_datadir}/appdata/classified_ads.appdata.xml
+%{_datadir}/appdata/classified-ads.appdata.xml
 %license LICENSE
 %changelog
+* Tue Mar 17 2015 Antti Jarvinen <classified-ads.questions@katiska.org> - 0.04-2
+- Changed packaging to happen in more civilized way.
+  Lot of changes into spec file. 
+- Package name has changed classified_ads -> classified-ads.
+- Added appdata, re-wrote the small manpage in less personal tone. 
 * Sat Mar 14 2015 Antti Jarvinen <classified-ads.questions@katiska.org> - 0.04-1
 - License change GPL->LGPL due to OpenSSL license incompatibility.
 - Minor UI changes as some bitmaps removed due to licensing issues
