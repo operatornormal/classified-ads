@@ -3,11 +3,11 @@ Upstream-Name: Classified Ads
 Source: https://github.com/operatornormal/classified_ads
 
 Files: *
-Copyright: Copyright 2013 Antti Järvinen <antti.jarvinen@katiska.org>
+Copyright: 2013 Antti Järvinen <antti.jarvinen@katiska.org>
 License: LGPL-2.1+
 
 Files: textedit/* images/*
-Copyright: Copyright 2012 Nokia Corporation and/or its subsidiary(-ies)
+Copyright: 2012 Nokia Corporation and/or its subsidiary(-ies)
 License: LGPL-2.1-with-Nokia-Exception or GPL-3.0 or Nokia-nonfree
  GNU Lesser General Public License Usage
  This file may be used under the terms of the GNU Lesser General Public
@@ -34,11 +34,11 @@ License: LGPL-2.1-with-Nokia-Exception or GPL-3.0 or Nokia-nonfree
  conditions contained in a signed written agreement between you and Nokia.
 
 Files: ui/turt* windows/turt-transparent-128x128.ico
-Copyright: Copyright 2013 Meeri Järvinen
+Copyright: 2013 Meeri Järvinen
 License: LGPL-2.1+
 
 Files: classified-ads.spec
-Copyright: Copyright 2014 Tuomas Haarala <tuoppi@hieno.net>
+Copyright: 2014 Tuomas Haarala <tuoppi@hieno.net>
 License: LGPL-2.1+
 
 License: LGPL-2.1

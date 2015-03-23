@@ -2,8 +2,8 @@ Source: classified-ads
 Section: net
 Priority: optional
 Maintainer: Antti Järvinen <antti.jarvinen@katiska.org>
-Build-Depends: debhelper,
-               dpkg-dev,
+Build-Depends: debhelper (>= 9~),
+               dpkg-dev (>= 1.16.1~),
                libgcrypt-dev,
                libmagic-dev,
                libminiupnpc-dev,
