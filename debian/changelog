@@ -1,6 +1,5 @@
-classified-ads (0.04-2) experimental; urgency=low
-	
-  * Initial release to experimental. Closes: #779375
-	
- -- Antti Järvinen <classified-ads.questions@katiska.org>  Thu, 05 Mar 2015 17:23:47 +0200
+classified-ads (0.04-1) unstable; urgency=low
 
+  * Initial release to experimental. Closes: #779375
+
+ -- Antti Järvinen <antti.jarvinen@katiska.org>  Mon, 16 Mar 2015 22:17:32 +0200
