@@ -1,4 +1,6 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
+    Classified Ads is Copyright (c) Antti Järvinen 2013.
+
     This file is part of Classified Ads.
 
     Classified Ads is free software; you can redistribute it and/or

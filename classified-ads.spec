@@ -7,14 +7,15 @@ Group:		Applications/Internet
 License:	LGPLv2
 URL:		http://katiska.org/classified_ads/
 Source0:	https://github.com/operatornormal/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:	qt-devel >= 4
-BuildRequires:	openssl-devel, libnatpmp-devel, qjson-devel, gcc-c++, miniupnpc-devel, file-devel, libappstream-glib
+BuildRequires:	openssl-devel, libnatpmp-devel, qjson-devel, miniupnpc-devel, file-devel, libappstream-glib
 %description
 Classified ads is an attempt to re-produce parts of the functionality
 that went away when Usenet news ceased to exist. This attempt tries to
 fix the problem of disappearing news-servers so that there is no servers
 required and no service providers needed; data storage is implemented
-inside client applications that you and me are running.
+inside client applications that users are running.
 %prep
 %setup -q
 
@@ -29,7 +30,10 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/classifie
 %doc README.TXT
 %{_bindir}/classified-ads
 %{_datadir}/applications/classified-ads.desktop
+%dir %{_datadir}/app-install
+%dir %{_datadir}/app-install/icons
 %{_datadir}/app-install/icons/turt-transparent-128x128.png
+%dir %{_datarootdir}/classified-ads
 %{_datarootdir}/classified-ads/classified_ads_fi.qm
 %{_datarootdir}/classified-ads/classified_ads_sv.qm
 %{_mandir}/man1/classified-ads.1.gz
