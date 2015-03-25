@@ -7,9 +7,9 @@ Group:		Applications/Internet
 License:	LGPLv2
 URL:		http://katiska.org/classified_ads/
 Source0:	https://github.com/operatornormal/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:	qt-devel >= 4
-BuildRequires:	openssl-devel, libnatpmp-devel, qjson-devel, miniupnpc-devel, file-devel, libappstream-glib
+BuildRequires:	openssl-devel, libnatpmp-devel, qjson-devel, miniupnpc-devel, file-devel
+BuildRequires:	libappstream-glib, desktop-file-utils
 %description
 Classified ads is an attempt to re-produce parts of the functionality
 that went away when Usenet news ceased to exist. This attempt tries to
@@ -21,11 +21,12 @@ inside client applications that users are running.
 
 %build
 qmake-qt4 
-make
+make %{?_smp_mflags}
 
 %install
-INSTALL_ROOT=$RPM_BUILD_ROOT make install 
+INSTALL_ROOT=%{buildroot} make install
 appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/classified-ads.appdata.xml
+desktop-file-validate %{buildroot}/%{_datadir}/applications/classified-ads.desktop
 %files
 %doc README.TXT
 %{_bindir}/classified-ads
