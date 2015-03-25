@@ -1,6 +1,6 @@
 Name:		classified-ads
-Version:	0.04
-Release:	2%{?dist}
+Version:	0.05
+Release:	1%{?dist}
 Summary:	Classified ads is a program for posting ads online
 
 Group:		Applications/Internet
@@ -41,6 +41,11 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/classified-ads.deskt
 %{_datadir}/appdata/classified-ads.appdata.xml
 %license LICENSE
 %changelog
+* Wed Mar 25 2015 Antti Jarvinen <classified-ads.questions@katiska.org> - 0.05-1
+- spec-file changes due to review comments.
+- tagged a new version to allow building of latest version.
+- added copyright notice to FrontWidget.cpp.
+- included LGPL_EXCEPTION.txt from Nokia alongside sources.
 * Tue Mar 17 2015 Antti Jarvinen <classified-ads.questions@katiska.org> - 0.04-2
 - Changed packaging to happen in more civilized way.
   Lot of changes into spec file. 
