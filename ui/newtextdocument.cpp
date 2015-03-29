@@ -81,6 +81,8 @@ void NewTextDocument::okButtonClicked()
 							     fileName,
 							     ui.titleEdit->text(),
 							     "application/classified_ads_text",
+							     QString(),
+							     QString(),
 							     content,
 							     true) ;
   iController->model().unlock() ; 

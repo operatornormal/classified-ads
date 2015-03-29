@@ -5,29 +5,29 @@
 <context>
     <name>AttachmentListDialog</name>
     <message>
-        <location filename="ui/attachmentlistdialog.cpp" line="57"/>
+        <location filename="ui/attachmentlistdialog.cpp" line="61"/>
         <source>Save file to disk..</source>
         <translatorcomment>Man kan spara pengar också? </translatorcomment>
         <translation>Spara till filsystem..</translation>
     </message>
     <message>
-        <location filename="ui/attachmentlistdialog.cpp" line="150"/>
-        <location filename="ui/attachmentlistdialog.cpp" line="152"/>
+        <location filename="ui/attachmentlistdialog.cpp" line="156"/>
+        <location filename="ui/attachmentlistdialog.cpp" line="158"/>
         <source>files</source>
         <translation>filer</translation>
     </message>
     <message>
-        <location filename="ui/attachmentlistdialog.cpp" line="154"/>
+        <location filename="ui/attachmentlistdialog.cpp" line="160"/>
         <source>Choose file name for saving</source>
         <translation>Välj ett namn for din fil</translation>
     </message>
     <message>
-        <location filename="ui/attachmentlistdialog.cpp" line="165"/>
+        <location filename="ui/attachmentlistdialog.cpp" line="171"/>
         <source>Error</source>
         <translation>Fel</translation>
     </message>
     <message>
-        <location filename="ui/attachmentlistdialog.cpp" line="166"/>
+        <location filename="ui/attachmentlistdialog.cpp" line="172"/>
         <source>File open error</source>
         <translation>Fel i att öppna en fil</translation>
     </message>
@@ -356,195 +356,235 @@
 <context>
     <name>Controller</name>
     <message>
-        <location filename="controller.cpp" line="103"/>
+        <location filename="controller.cpp" line="104"/>
         <source>Classified ads</source>
         <translation>Annonser</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="135"/>
+        <location filename="controller.cpp" line="136"/>
         <source>Enter password for protection of your messages:</source>
         <translation>Ge ett lösenord: </translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="405"/>
+        <location filename="controller.cpp" line="406"/>
         <source>Fetching item from network..</source>
         <translation>Hämtning objektet..</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="430"/>
+        <location filename="controller.cpp" line="431"/>
         <source>E&amp;xit</source>
         <translation>Stänga</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="432"/>
+        <location filename="controller.cpp" line="433"/>
         <source>Exit the application</source>
         <translation>Stänga av program</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="434"/>
+        <location filename="controller.cpp" line="435"/>
         <source>&amp;About</source>
         <translation>Om &amp;annonser</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="435"/>
+        <location filename="controller.cpp" line="436"/>
         <source>Show the application&apos;s About box</source>
         <translation>Visa information av den här program</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="437"/>
+        <location filename="controller.cpp" line="438"/>
         <source>&amp;Change password</source>
         <translation>Förändra din lösenord</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="438"/>
+        <location filename="controller.cpp" line="439"/>
         <source>Change password of current profile</source>
         <translation>Förändra lösenorden av vald profil</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="440"/>
+        <location filename="controller.cpp" line="441"/>
         <source>Create &amp;new profile</source>
         <translation>Skapa en &amp;ny profil</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="441"/>
+        <location filename="controller.cpp" line="442"/>
         <source>Makes a brand new user profile</source>
         <translation>Skapar en ny profil för operator</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="443"/>
+        <location filename="controller.cpp" line="444"/>
         <source>&amp;Delete current profile</source>
         <translation>Radera vald profil</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="444"/>
+        <location filename="controller.cpp" line="445"/>
         <source>Deletes currently open profile</source>
         <translation>Ska glömma allt om vald profil</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="446"/>
+        <location filename="controller.cpp" line="447"/>
         <source>&amp;Select another profile</source>
         <translation>Välja en annan profil</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="447"/>
+        <location filename="controller.cpp" line="448"/>
         <source>If you have multitude of profiles</source>
         <translation>Om du har flera profiler</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="449"/>
+        <location filename="controller.cpp" line="450"/>
         <source>Settings..</source>
         <translation>Inställningar..</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="450"/>
+        <location filename="controller.cpp" line="451"/>
         <source>Node-wide settings..</source>
         <translation>Inställningar av nod</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="452"/>
+        <location filename="controller.cpp" line="453"/>
         <source>Network status..</source>
         <translation>Status av nätverket..</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="454"/>
+        <location filename="controller.cpp" line="455"/>
         <source>Search..</source>
         <translation>Sök..</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="471"/>
+        <location filename="controller.cpp" line="472"/>
         <source>&amp;File</source>
         <translation>&amp;Filer</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="516"/>
+        <location filename="controller.cpp" line="517"/>
         <source>Enter new password:</source>
         <translation>Ge ett lösenord:</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="544"/>
-        <location filename="controller.cpp" line="653"/>
+        <location filename="controller.cpp" line="545"/>
+        <location filename="controller.cpp" line="654"/>
         <source>Activate another profile with password</source>
         <translation>Välja en annan profil med en lösenord</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="638"/>
+        <location filename="controller.cpp" line="639"/>
         <source>Can&apos;t delete only profile.</source>
         <translation>Man kan inte radera den sista profil</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="642"/>
+        <location filename="controller.cpp" line="643"/>
         <source>Permanently discard profile?</source>
         <translation>Radera profil?</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="643"/>
+        <location filename="controller.cpp" line="644"/>
         <source>There will be NO way to access content of this profile later</source>
         <translation>Det finns INTE en metod för att visa den här profil senare</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="706"/>
+        <location filename="controller.cpp" line="707"/>
         <source>Cant load node cert or key cert</source>
         <translation>Kan inte ladda smycken för din nod</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="711"/>
+        <location filename="controller.cpp" line="712"/>
         <source>File error</source>
         <translation>Fel med filen</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="716"/>
+        <location filename="controller.cpp" line="717"/>
         <source>Database error</source>
         <translation>Fel med databas</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="722"/>
-        <location filename="controller.cpp" line="732"/>
+        <location filename="controller.cpp" line="723"/>
+        <location filename="controller.cpp" line="733"/>
         <source>Cryptographic module</source>
         <translation>Fel med kryptering</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="727"/>
+        <location filename="controller.cpp" line="728"/>
         <source>Database module</source>
         <translation>Fel med databas</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="733"/>
+        <location filename="controller.cpp" line="734"/>
         <source>Bad password</source>
         <translation>Fel lösenord</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="949"/>
+        <location filename="controller.cpp" line="950"/>
         <source>Could not find item from network..</source>
         <translation>Kunde inte hitta objektet från nätverket</translation>
+    </message>
+    <message>
+        <location filename="controller.cpp" line="1065"/>
+        <source>SHA1: </source>
+        <translation>SHA1:</translation>
+    </message>
+    <message>
+        <location filename="controller.cpp" line="1070"/>
+        <source>Mime-Type: </source>
+        <translation>Mime-Type:</translation>
+    </message>
+    <message>
+        <location filename="controller.cpp" line="1076"/>
+        <source>Description: </source>
+        <translation>Beskrivning: </translation>
+    </message>
+    <message>
+        <location filename="controller.cpp" line="1082"/>
+        <source>Publisher: </source>
+        <translation>Förläggare: </translation>
+    </message>
+    <message>
+        <location filename="controller.cpp" line="1088"/>
+        <source>Content owner: </source>
+        <translation>Innehållsägare: </translation>
+    </message>
+    <message>
+        <location filename="controller.cpp" line="1094"/>
+        <source>License: </source>
+        <translation>Licens: </translation>
+    </message>
+    <message>
+        <location filename="controller.cpp" line="1100"/>
+        <source>Name: </source>
+        <translation>Namn: </translation>
+    </message>
+    <message>
+        <location filename="controller.cpp" line="1107"/>
+        <source>Date: </source>
+        <translation>Datum: </translation>
     </message>
 </context>
 <context>
     <name>DialogBase</name>
     <message>
         <location filename="ui/dialogbase.cpp" line="49"/>
-        <location filename="ui/dialogbase.cpp" line="102"/>
+        <location filename="ui/dialogbase.cpp" line="103"/>
         <source>File way too big</source>
         <translation>Filen är alldeles för stor</translation>
     </message>
     <message>
         <location filename="ui/dialogbase.cpp" line="57"/>
-        <location filename="ui/dialogbase.cpp" line="110"/>
+        <location filename="ui/dialogbase.cpp" line="111"/>
         <source>File too big</source>
         <translation>Filen är för stor</translation>
     </message>
     <message>
-        <location filename="ui/dialogbase.cpp" line="86"/>
-        <location filename="ui/dialogbase.cpp" line="123"/>
+        <location filename="ui/dialogbase.cpp" line="87"/>
+        <location filename="ui/dialogbase.cpp" line="133"/>
         <source>File open error</source>
         <translation>Fel med öppningen av filen</translation>
     </message>
     <message>
-        <location filename="ui/dialogbase.cpp" line="95"/>
+        <location filename="ui/dialogbase.cpp" line="96"/>
         <source>Select file to be published</source>
         <translation>Välja filen som du will ha publicerad</translation>
     </message>
     <message>
-        <location filename="ui/dialogbase.cpp" line="97"/>
+        <location filename="ui/dialogbase.cpp" line="98"/>
         <source>Files (*.*)</source>
         <translation>Alla filer (*.*)</translation>
     </message>
@@ -565,119 +605,124 @@
 <context>
     <name>FrontWidget</name>
     <message>
-        <location filename="FrontWidget.cpp" line="90"/>
+        <location filename="FrontWidget.cpp" line="92"/>
         <source>Classified ads</source>
         <translation>Annonser</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="91"/>
+        <location filename="FrontWidget.cpp" line="93"/>
         <source>My profile</source>
         <translation>Egen profil</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="92"/>
+        <location filename="FrontWidget.cpp" line="94"/>
         <source>Contacts</source>
         <translation>Kontakter</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="93"/>
+        <location filename="FrontWidget.cpp" line="95"/>
         <source>Private messages</source>
         <translation>Privat korrespondens</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="152"/>
+        <location filename="FrontWidget.cpp" line="154"/>
         <source>Add shared file..</source>
         <translation>Addera en fil til nätverk..</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="153"/>
+        <location filename="FrontWidget.cpp" line="155"/>
         <source>Stop advertising selected shared file</source>
         <translation>Sluta annonsera den markerade filen</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="154"/>
+        <location filename="FrontWidget.cpp" line="156"/>
         <source>Save file to disk..</source>
         <translation>Spara filen till disk..</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="155"/>
+        <location filename="FrontWidget.cpp" line="157"/>
+        <source>View file information..</source>
+        <translation>Visa beskrivning av filen..</translation>
+    </message>
+    <message>
+        <location filename="FrontWidget.cpp" line="158"/>
         <source>Copy file address (SHA1) to clipboard..</source>
         <translation>Kopiera SHA1 till urklipp..</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="156"/>
+        <location filename="FrontWidget.cpp" line="159"/>
         <source>Edit+publish new text document..</source>
         <translation>Skapa+publicera en ny dokument..</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="339"/>
+        <location filename="FrontWidget.cpp" line="347"/>
         <source>Open File</source>
         <translation>Öppna filen</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="341"/>
-        <location filename="FrontWidget.cpp" line="874"/>
+        <location filename="FrontWidget.cpp" line="349"/>
+        <location filename="FrontWidget.cpp" line="882"/>
         <source>Files (*.*)</source>
         <translation>Alla typer (*.*)</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="345"/>
-        <location filename="FrontWidget.cpp" line="1139"/>
-        <location filename="FrontWidget.cpp" line="1279"/>
+        <location filename="FrontWidget.cpp" line="353"/>
+        <location filename="FrontWidget.cpp" line="1182"/>
+        <location filename="FrontWidget.cpp" line="1324"/>
         <source>Error</source>
         <translation>Fel</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="346"/>
+        <location filename="FrontWidget.cpp" line="354"/>
         <source>Can&apos;t load image</source>
         <translation>Kan inte ladda en bild</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="612"/>
-        <location filename="FrontWidget.cpp" line="754"/>
+        <location filename="FrontWidget.cpp" line="620"/>
+        <location filename="FrontWidget.cpp" line="762"/>
         <source>Profile not in database</source>
         <translation>Profil finns inte i lokal databas</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="613"/>
-        <location filename="FrontWidget.cpp" line="755"/>
+        <location filename="FrontWidget.cpp" line="621"/>
+        <location filename="FrontWidget.cpp" line="763"/>
         <source>Try viewing profile first to obtain data</source>
         <translation>Du kan försöka att se profil först för att hämta data</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="872"/>
+        <location filename="FrontWidget.cpp" line="880"/>
         <source>Select file to be published</source>
         <translation>Välja filen du vill ha publicerad</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="879"/>
+        <location filename="FrontWidget.cpp" line="887"/>
         <source>File way too big</source>
         <translation>Filen är alldeles för stor</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="887"/>
+        <location filename="FrontWidget.cpp" line="895"/>
         <source>File too big</source>
         <translation>Filen är för stor</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="921"/>
-        <location filename="FrontWidget.cpp" line="1140"/>
+        <location filename="FrontWidget.cpp" line="939"/>
+        <location filename="FrontWidget.cpp" line="1183"/>
         <source>File open error</source>
         <translation>Fel med öppningen av filen</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1121"/>
-        <location filename="FrontWidget.cpp" line="1127"/>
+        <location filename="FrontWidget.cpp" line="1164"/>
+        <location filename="FrontWidget.cpp" line="1170"/>
         <source>files</source>
         <translation>filer</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1130"/>
+        <location filename="FrontWidget.cpp" line="1173"/>
         <source>Choose file name for saving</source>
         <translation>Välj ett namn for din fil</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1188"/>
+        <location filename="FrontWidget.cpp" line="1233"/>
         <source>
 
 
@@ -695,25 +740,25 @@ en bild
 </translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1280"/>
+        <location filename="FrontWidget.cpp" line="1325"/>
         <source>Article not found from local storage</source>
         <translation>Annons kunde inte hittas i local databas</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1306"/>
-        <location filename="FrontWidget.cpp" line="1843"/>
+        <location filename="FrontWidget.cpp" line="1351"/>
+        <location filename="FrontWidget.cpp" line="1890"/>
         <source>Trusted by %1
 SHA1 %2</source>
         <translation>Betrodd av %1
 SHA1 %2</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1343"/>
+        <location filename="FrontWidget.cpp" line="1388"/>
         <source>Time of last update </source>
         <translation>Tid av senaste ändring</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1349"/>
+        <location filename="FrontWidget.cpp" line="1396"/>
         <source>
 
 
@@ -729,97 +774,97 @@ Bild
 Valts)</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1443"/>
+        <location filename="FrontWidget.cpp" line="1490"/>
         <source>Edit contact..</source>
         <translation>Redigera kontakt</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1483"/>
+        <location filename="FrontWidget.cpp" line="1530"/>
         <source>&amp;Reply to sender</source>
         <translation>Svara avsändaren</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1484"/>
+        <location filename="FrontWidget.cpp" line="1531"/>
         <source>Reply to &amp;forum</source>
         <translation>Svara på &amp;forumet</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1485"/>
+        <location filename="FrontWidget.cpp" line="1532"/>
         <source>&amp;Post new ad</source>
         <translation>Ska&amp;pa en ny annons</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1486"/>
+        <location filename="FrontWidget.cpp" line="1533"/>
         <source>&amp;Public comment</source>
         <translation>&amp;Publik kommentar</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1487"/>
+        <location filename="FrontWidget.cpp" line="1534"/>
         <source>&amp;View profile</source>
         <translation>&amp;Visa profilen</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1488"/>
-        <location filename="FrontWidget.cpp" line="1626"/>
+        <location filename="FrontWidget.cpp" line="1535"/>
+        <location filename="FrontWidget.cpp" line="1673"/>
         <source>Attachments..</source>
         <translation>Bilagor..</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1548"/>
+        <location filename="FrontWidget.cpp" line="1595"/>
         <source>Add selected operator to contacts..</source>
         <translation>Lägga operator till din kontakter</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1622"/>
+        <location filename="FrontWidget.cpp" line="1669"/>
         <source>&amp;Reply</source>
         <translation>Svara</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1623"/>
+        <location filename="FrontWidget.cpp" line="1670"/>
         <source>&amp;New message</source>
         <translation>Skapa en ny brev</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1624"/>
+        <location filename="FrontWidget.cpp" line="1671"/>
         <source>&amp;Send public comment to sender</source>
         <translation>Skicka en publik kommentar om profilen </translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1625"/>
+        <location filename="FrontWidget.cpp" line="1672"/>
         <source>&amp;View profile of peer</source>
         <translation>&amp;Visa profilen</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1660"/>
+        <location filename="FrontWidget.cpp" line="1707"/>
         <source>Add selected to contacts..</source>
         <translation>Lägga till din kontakter..</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1853"/>
-        <location filename="FrontWidget.cpp" line="1855"/>
-        <location filename="FrontWidget.cpp" line="1920"/>
-        <location filename="FrontWidget.cpp" line="1922"/>
+        <location filename="FrontWidget.cpp" line="1900"/>
+        <location filename="FrontWidget.cpp" line="1902"/>
+        <location filename="FrontWidget.cpp" line="1967"/>
+        <location filename="FrontWidget.cpp" line="1969"/>
         <source>From:</source>
         <translation>Från:</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1857"/>
-        <location filename="FrontWidget.cpp" line="1925"/>
+        <location filename="FrontWidget.cpp" line="1904"/>
+        <location filename="FrontWidget.cpp" line="1972"/>
         <source>Subject:</source>
         <translation>Rubrik:</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1917"/>
+        <location filename="FrontWidget.cpp" line="1964"/>
         <source>To:</source>
         <translation>Mottagare:</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="2235"/>
+        <location filename="FrontWidget.cpp" line="2282"/>
         <source>Invalid SHA1 in URL</source>
         <translation>SHA1 i URL är inte giltig</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="2262"/>
+        <location filename="FrontWidget.cpp" line="2309"/>
         <source>Invalid URL</source>
         <translation>URL är inte giltig</translation>
     </message>
@@ -844,7 +889,7 @@ Valts)</translation>
     <name>NewPrivMessageDialog</name>
     <message>
         <location filename="ui/newprivmsgdialog.cpp" line="91"/>
-        <location filename="ui/newprivmsgdialog.cpp" line="135"/>
+        <location filename="ui/newprivmsgdialog.cpp" line="136"/>
         <source>Error</source>
         <translation>Fel</translation>
     </message>
@@ -854,7 +899,7 @@ Valts)</translation>
         <translation>Adressen av mottagaren är inte giltig</translation>
     </message>
     <message>
-        <location filename="ui/newprivmsgdialog.cpp" line="136"/>
+        <location filename="ui/newprivmsgdialog.cpp" line="137"/>
         <source>Recipient encryption key not found from storage</source>
         <translation>Kryptering-nyckel för mottagaren kunde inte hittas i lokal databas</translation>
     </message>
@@ -1284,8 +1329,8 @@ Do you want to save your changes?</source>
     </message>
     <message>
         <location filename="ui/aboutDialog.ui" line="160"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Classified ads is free software. You may use, copy and modify it if you follow the conditions given in GNU lesser general public license version 2.1.&lt;/p&gt;&lt;p&gt;Classified ads is copyright © Antti Järvinen 2013. &lt;/p&gt;&lt;p&gt;Main feature of the the program is an &amp;quot;advertisement&amp;quot; - a piece of text belonging to selected classification. There are several pre-programmed classifications and operators are encouraged to invent new classifications for new purposes ; the selection boxes in classification-selection tab are editable. Other operators may then view the ads, publicly comment the ads, the operators and also send private messages to each others. &lt;/p&gt;&lt;p&gt;Another important feature of classified ads is that it is designed to be operated without any centralized server infrastucture - it is you and other operators whose computers store and transmit all the content visible inside classified ads. To get connected you need to know address of at least one existing computer (a &lt;span style=&quot; font-style:italic;&quot;&gt;node&lt;/span&gt;) so if your network connection dialog shows no connections, you may need to contact someone you know is using the software and ask for address of her node to make initial contact with the network. Once connected the software should maintain list of addresses of other nodes. &lt;/p&gt;&lt;p&gt;Due to its server-less design the whole system works best if you leave the program running always when you have your computer powered on ; while processing other operators requests it will hog some computing resources and generate network traffic also when you are not actively using the program youself - others are. &lt;/p&gt;&lt;p&gt;Operators concerned about privacy of the content should be aware of following items:&lt;/p&gt;&lt;p&gt;- Data storage implementation is variant of &lt;span style=&quot; font-style:italic;&quot;&gt;distributed hash table&lt;/span&gt;, practically meaning that content posted by you gets copied some more-or-less random nodes in the network. &lt;/p&gt;&lt;p&gt;- Any data item (ad, comment, binary file, private message etc.) is digitally signed. This makes it more difficult to try to pose as another operator. &lt;/p&gt;&lt;p&gt;- Operators are reliably identified only by the SHA1 hash of their generated encryption keys. SHA1 hash is displayed when viewing details of operator profiles. Other identifying information like nickname or city name are entered by operator himself and can be anything. The operator profile, as it is published to the network, is also signed with the encryption keys of the operator - if you identify an operator by her SHA1 hash, you have a mechanism for identifying if any content inside classified ads is posted by this operator or not. Classified ads internally checks for digital signatures, throwing away content that fails signature check and tries to provide SHA1 hash of the operator who posted the content.&lt;/p&gt;&lt;p&gt;- All classified ads are posted as plain text, no encryption is used. All public profiles are posted as plain text, no encryption is used. If profile is made private, it is encrypted to be readable only by selected other profiles. This applies also to binary files shared by operators private profiles and comments about private profiles after the profile was made private (previously plain-text comments or files don&apos;t get magically encrypted afterwards). Private messages are encrypted always to be readable only by recipient and sender. Attachments follow the privary rules of the document, they&apos;re attachted to. &lt;/p&gt;&lt;p&gt;- As is the case with all internet-communications, this small fact is true for classified ads too : &lt;span style=&quot; font-style:italic;&quot;&gt;once something gets posted online, there is no way to remove it from network&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;- Data encryption implementation for content is OpenSSL, relying mostly on algorithms RSA-2048 and AES-256. &lt;/p&gt;&lt;p&gt;- While connections between nodes are implemented using SSL, other nodes inside network do get to know what content is being transmitted in neighboring nodes. While there is no central point for easily collecting this information about particular classification or operator, operators still should expect no privacy regarding their doings online, altough some effort has been been put into hiding &lt;span style=&quot; font-style:italic;&quot;&gt;contents&lt;/span&gt; of private messages and private profiles. &lt;/p&gt;&lt;p&gt;Programming was (mostly) done by Antti Järvinen, artwork by Meeri Järvinen.&lt;/p&gt;&lt;p&gt;This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit (http://www.openssl.org/).&lt;/p&gt;&lt;p&gt;Happy advertising!&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <oldsource>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Classified ads is free software. You may use, copy and modify it if you follow the conditions given in GNU general public license version 3.&lt;/p&gt;&lt;p&gt;Classified ads is copyright © Antti Järvinen 2013. &lt;/p&gt;&lt;p&gt;Main feature of the the program is an &amp;quot;advertisement&amp;quot; - a piece of text belonging to selected classification. There are several pre-programmed classifications and operators are encouraged to invent new classifications for new purposes ; the selection boxes in classification-selection tab are editable. Other operators may then view the ads, publicly comment the ads, the operators and also send private messages to each others. &lt;/p&gt;&lt;p&gt;Another important feature of classified ads is that it is designed to be operated without any centralized server infrastucture - it is you and other operators whose computers store and transmit all the content visible inside classified ads. To get connected you need to know address of at least one existing computer (a &lt;span style=&quot; font-style:italic;&quot;&gt;node&lt;/span&gt;) so if your network connection dialog shows no connections, you may need to contact someone you know is using the software and ask for address of her node to make initial contact with the network. Once connected the software should maintain list of addresses of other nodes. &lt;/p&gt;&lt;p&gt;Due to its server-less design the whole system works best if you leave the program running always when you have your computer powered on ; while processing other operators requests it will hog some computing resources and generate network traffic also when you are not actively using the program youself - others are. &lt;/p&gt;&lt;p&gt;Operators concerned about privacy of the content should be aware of following items:&lt;/p&gt;&lt;p&gt;- Data storage implementation is variant of &lt;span style=&quot; font-style:italic;&quot;&gt;distributed hash table&lt;/span&gt;, practically meaning that content posted by you gets copied some more-or-less random nodes in the network. &lt;/p&gt;&lt;p&gt;- Any data item (ad, comment, binary file, private message etc.) is digitally signed. This makes it more difficult to try to pose as another operator. &lt;/p&gt;&lt;p&gt;- Operators are reliably identified only by the SHA1 hash of their generated encryption keys. SHA1 hash is displayed when viewing details of operator profiles. Other identifying information like nickname or city name are entered by operator himself and can be anything. The operator profile, as it is published to the network, is also signed with the encryption keys of the operator - if you identify an operator by her SHA1 hash, you have a mechanism for identifying if any content inside classified ads is posted by this operator or not. Classified ads internally checks for digital signatures, throwing away content that fails signature check and tries to provide SHA1 hash of the operator who posted the content.&lt;/p&gt;&lt;p&gt;- All classified ads are posted as plain text, no encryption is used. All public profiles are posted as plain text, no encryption is used. If profile is made private, it is encrypted to be readable only by selected other profiles. This applies also to binary files shared by operators private profiles and comments about private profiles after the profile was made private (previously plain-text comments or files don&apos;t get magically encrypted afterwards). Private messages are encrypted always to be readable only by recipient and sender. Attachments follow the privary rules of the document, they&apos;re attachted to. &lt;/p&gt;&lt;p&gt;- As is the case with all internet-communications, this small fact is true for classified ads too : &lt;span style=&quot; font-style:italic;&quot;&gt;once something gets posted online, there is no way to remove it from network&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;- Data encryption implementation for content is OpenSSL, relying mostly on algorithms RSA-2048 and AES-256. &lt;/p&gt;&lt;p&gt;- While connections between nodes are implemented using SSL, other nodes inside network do get to know what content is being transmitted in neighboring nodes. While there is no central point for easily collecting this information about particular classification or operator, operators still should expect no privacy regarding their doings online, altough some effort has been been put into hiding &lt;span style=&quot; font-style:italic;&quot;&gt;contents&lt;/span&gt; of private messages and private profiles. &lt;/p&gt;&lt;p&gt;Programming was (mostly) done by Antti Järvinen, artwork by Meeri Järvinen.&lt;/p&gt;&lt;p&gt;This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit (http://www.openssl.org/).&lt;/p&gt;&lt;p&gt;Happy advertising!&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</oldsource>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Classified ads is free software. You may use, copy and modify it if you follow the conditions given in GNU lesser general public license version 2.1.&lt;/p&gt;&lt;p&gt;Classified ads is copyright © Antti Järvinen 2013. &lt;/p&gt;&lt;p&gt;Main feature of the the program is an &amp;quot;advertisement&amp;quot; - a piece of text belonging to selected classification. There are several pre-programmed classifications and operators are encouraged to invent new classifications for new purposes ; the selection boxes in classification-selection tab are editable. Other operators may then view the ads, publicly comment the ads, the operators and also send private messages to each others. &lt;/p&gt;&lt;p&gt;Another important feature of classified ads is that it is designed to be operated without any centralized server infrastucture - it is you and other operators whose computers store and transmit all the content visible inside classified ads. To get connected you need to know address of at least one existing computer (a &lt;span style=&quot; font-style:italic;&quot;&gt;node&lt;/span&gt;) so if your network connection dialog shows no connections, you may need to contact someone you know is using the software and ask for address of her node to make initial contact with the network. Once connected the software should maintain list of addresses of other nodes. &lt;/p&gt;&lt;p&gt;Due to its server-less design the whole system works best if you leave the program running always when you have your computer powered on ; while processing other operators requests it will hog some computing resources and generate network traffic also when you are not actively using the program youself - others are. &lt;/p&gt;&lt;p&gt;Operators concerned about privacy of the content should be aware of following items:&lt;/p&gt;&lt;p&gt;- Data storage implementation is variant of &lt;span style=&quot; font-style:italic;&quot;&gt;distributed hash table&lt;/span&gt;, practically meaning that content posted by you gets copied some more-or-less random nodes in the network. &lt;/p&gt;&lt;p&gt;- Any data item (ad, comment, binary file, private message etc.) is digitally signed. This makes it more difficult to try to pose as another operator. &lt;/p&gt;&lt;p&gt;- Operators are reliably identified only by the SHA1 hash of their generated encryption keys. SHA1 hash is displayed when viewing details of operator profiles. Other identifying information like nickname or city name are entered by operator himself and can be anything. The operator profile, as it is published to the network, is also signed with the encryption keys of the operator - if you identify an operator by her SHA1 hash, you have a mechanism for identifying if any content inside classified ads is posted by this operator or not. Classified ads internally checks for digital signatures, throwing away content that fails signature check and tries to provide SHA1 hash of the operator who posted the content.&lt;/p&gt;&lt;p&gt;- All classified ads are posted as plain text, no encryption is used. All public profiles are posted as plain text, no encryption is used. If profile is made private, it is encrypted to be readable only by selected other profiles. This applies also to binary files shared by operators private profiles and comments about private profiles after the profile was made private (previously plain-text comments or files don&apos;t get magically encrypted afterwards). Private messages are encrypted always to be readable only by recipient and sender. Attachments follow the privary rules of the document, they&apos;re attachted to. &lt;/p&gt;&lt;p&gt;- As is the case with all internet-communications, this small fact is true for classified ads too : &lt;span style=&quot; font-style:italic;&quot;&gt;once something gets posted online, there is no way to remove it from network&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;- Data encryption implementation for content is OpenSSL, relying mostly on algorithms RSA-2048 and AES-256. &lt;/p&gt;&lt;p&gt;- While connections between nodes are implemented using SSL, other nodes inside network do get to know what content is being transmitted in neighboring nodes. While there is no central point for easily collecting this information about particular classification or operator, operators still should expect no privacy regarding their doings online, although some effort has been been put into hiding &lt;span style=&quot; font-style:italic;&quot;&gt;contents&lt;/span&gt; of private messages and private profiles. &lt;/p&gt;&lt;p&gt;Programming was (mostly) done by Antti Järvinen, artwork by Meeri Järvinen.&lt;/p&gt;&lt;p&gt;This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit (http://www.openssl.org/).&lt;/p&gt;&lt;p&gt;Happy advertising!&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <oldsource>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Classified ads is free software. You may use, copy and modify it if you follow the conditions given in GNU lesser general public license version 2.1.&lt;/p&gt;&lt;p&gt;Classified ads is copyright © Antti Järvinen 2013. &lt;/p&gt;&lt;p&gt;Main feature of the the program is an &amp;quot;advertisement&amp;quot; - a piece of text belonging to selected classification. There are several pre-programmed classifications and operators are encouraged to invent new classifications for new purposes ; the selection boxes in classification-selection tab are editable. Other operators may then view the ads, publicly comment the ads, the operators and also send private messages to each others. &lt;/p&gt;&lt;p&gt;Another important feature of classified ads is that it is designed to be operated without any centralized server infrastucture - it is you and other operators whose computers store and transmit all the content visible inside classified ads. To get connected you need to know address of at least one existing computer (a &lt;span style=&quot; font-style:italic;&quot;&gt;node&lt;/span&gt;) so if your network connection dialog shows no connections, you may need to contact someone you know is using the software and ask for address of her node to make initial contact with the network. Once connected the software should maintain list of addresses of other nodes. &lt;/p&gt;&lt;p&gt;Due to its server-less design the whole system works best if you leave the program running always when you have your computer powered on ; while processing other operators requests it will hog some computing resources and generate network traffic also when you are not actively using the program youself - others are. &lt;/p&gt;&lt;p&gt;Operators concerned about privacy of the content should be aware of following items:&lt;/p&gt;&lt;p&gt;- Data storage implementation is variant of &lt;span style=&quot; font-style:italic;&quot;&gt;distributed hash table&lt;/span&gt;, practically meaning that content posted by you gets copied some more-or-less random nodes in the network. &lt;/p&gt;&lt;p&gt;- Any data item (ad, comment, binary file, private message etc.) is digitally signed. This makes it more difficult to try to pose as another operator. &lt;/p&gt;&lt;p&gt;- Operators are reliably identified only by the SHA1 hash of their generated encryption keys. SHA1 hash is displayed when viewing details of operator profiles. Other identifying information like nickname or city name are entered by operator himself and can be anything. The operator profile, as it is published to the network, is also signed with the encryption keys of the operator - if you identify an operator by her SHA1 hash, you have a mechanism for identifying if any content inside classified ads is posted by this operator or not. Classified ads internally checks for digital signatures, throwing away content that fails signature check and tries to provide SHA1 hash of the operator who posted the content.&lt;/p&gt;&lt;p&gt;- All classified ads are posted as plain text, no encryption is used. All public profiles are posted as plain text, no encryption is used. If profile is made private, it is encrypted to be readable only by selected other profiles. This applies also to binary files shared by operators private profiles and comments about private profiles after the profile was made private (previously plain-text comments or files don&apos;t get magically encrypted afterwards). Private messages are encrypted always to be readable only by recipient and sender. Attachments follow the privary rules of the document, they&apos;re attachted to. &lt;/p&gt;&lt;p&gt;- As is the case with all internet-communications, this small fact is true for classified ads too : &lt;span style=&quot; font-style:italic;&quot;&gt;once something gets posted online, there is no way to remove it from network&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;- Data encryption implementation for content is OpenSSL, relying mostly on algorithms RSA-2048 and AES-256. &lt;/p&gt;&lt;p&gt;- While connections between nodes are implemented using SSL, other nodes inside network do get to know what content is being transmitted in neighboring nodes. While there is no central point for easily collecting this information about particular classification or operator, operators still should expect no privacy regarding their doings online, altough some effort has been been put into hiding &lt;span style=&quot; font-style:italic;&quot;&gt;contents&lt;/span&gt; of private messages and private profiles. &lt;/p&gt;&lt;p&gt;Programming was (mostly) done by Antti Järvinen, artwork by Meeri Järvinen.&lt;/p&gt;&lt;p&gt;This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit (http://www.openssl.org/).&lt;/p&gt;&lt;p&gt;Happy advertising!&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</oldsource>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -1662,6 +1707,95 @@ en bild</translation>
         <location filename="ui/manualConnectionDialog.ui" line="91"/>
         <source>IPv4, IPv6 or DNS name</source>
         <translation>IPv4, IPv6 eller DNS-namn</translation>
+    </message>
+</context>
+<context>
+    <name>metadataQuery</name>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="26"/>
+        <source>File information</source>
+        <translation>Information av filen</translation>
+    </message>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="60"/>
+        <source>Name of the file:</source>
+        <translation>Namn: </translation>
+    </message>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="81"/>
+        <source>Owner of file (name or SHA1 if CA operator):</source>
+        <translation>Innehållsägare: </translation>
+    </message>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="111"/>
+        <source>License of use:</source>
+        <translation>Licens: </translation>
+    </message>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="122"/>
+        <source>Public domain</source>
+        <translatorcomment>Lets not translate license names..</translatorcomment>
+        <translation>Public domain</translation>
+    </message>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="127"/>
+        <source>GPL</source>
+        <translation>GPL</translation>
+    </message>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="132"/>
+        <source>LGPL</source>
+        <translation>LGPL</translation>
+    </message>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="137"/>
+        <source>BSD</source>
+        <translation>BSD</translation>
+    </message>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="142"/>
+        <source>CC-BY</source>
+        <translation>CC-BY</translation>
+    </message>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="147"/>
+        <source>CC-BY-SA</source>
+        <translation>CC-BY-SA</translation>
+    </message>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="152"/>
+        <source>CC-BY-ND</source>
+        <translation>CC-BY-ND</translation>
+    </message>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="157"/>
+        <source>CC-BY-NC</source>
+        <translation>CC-BY-NC</translation>
+    </message>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="162"/>
+        <source>CC-BY-NC-SA</source>
+        <translation>CC-BY-NC-SA</translation>
+    </message>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="167"/>
+        <source>CC-BY-NC-ND</source>
+        <translation>CC-BY-NC-ND</translation>
+    </message>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="182"/>
+        <source>Mime-type:</source>
+        <translation>Mime-typ:</translation>
+    </message>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="199"/>
+        <source>Description of file:</source>
+        <translation>Beskrivning:</translation>
+    </message>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="218"/>
+        <source>Enter information regarding file before publish:</source>
+        <translation>Ange information före publicera:</translation>
     </message>
 </context>
 <context>

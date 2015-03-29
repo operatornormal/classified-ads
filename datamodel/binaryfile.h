@@ -57,7 +57,8 @@ public:
   const Hash iFingerPrint ; /**< file hash */
   QString iMimeType ;  /**< what kind of data */
   QString iDescription ; /**< what is inside */
-  QString iOwner ; /**< if someone owns the content ; most naturally this could be profile-fingerprint */
+  QString iOwner ; /**< fingerprint of publisher */
+  QString iContentOwner ; /**< if someone owns the content, name or SHA1 fp */
   QString iLicense ; /**< restriction in usage;PD or GPL or C-C or anything? */
   QString iFileName ; /**< name of the file-system file */
   quint32 iTimeOfPublish ; /**< seconds since 1-jan-1970 */

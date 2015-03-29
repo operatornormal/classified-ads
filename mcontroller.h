@@ -29,6 +29,7 @@ class Model ;
 class NetworkListener ;
 class NetworkConnectorEngine ;
 class NetworkRequestExecutor; 
+class BinaryFile ; 
 
 /**
  * @brief Pure-virtual interface class for controller.
@@ -168,6 +169,10 @@ public slots:
   virtual void offerDisplayNameForProfile(const Hash& aProfileFingerPrint,
 					  const QString& aDisplayName,
 					  const bool iUpdatePersistenStorage=false) = 0 ;
+  /**
+   * method that puts dialog or similar on display, about a published file
+   */
+  virtual void displayFileInfoOnUi(const BinaryFile& aFileMetadata) = 0 ; 
 } ;
 #endif
 

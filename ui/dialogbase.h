@@ -22,7 +22,7 @@
 #include <QString>
 #include <QDialog>
 #include "../mcontroller.h"
-
+#include "metadataQuery.h" // for metadata data structure
 class Profile ; 
 class QLabel ; 
 
@@ -40,7 +40,8 @@ protected: // methods
 	     Profile& aSelectedProfile) ;
   /** 
    * method for publishing an (attachment) file 
-   * @param aFileName is name of the file in filesystem
+   * @param aFileMetadata describes the file. The iFileName member of 
+   *        the structure must contain valid filesystem filename
    * @param aForceNoEncryption if set to true, always produce
    *        plain-text binary, with no encryption
    * @param aBinaryRecipientList if non-NULL, contains list of operator
@@ -48,7 +49,7 @@ protected: // methods
    *        read the binary. 
    * @return fingerprint of the published file or KNullHash
    */
-  Hash publishBinaryAttachment(const QString& aFileName,
+  Hash publishBinaryAttachment(const MetadataQueryDialog::MetadataResultSet& aFileMetadata,
 			       bool aForceNoEncryption = false,
 			       const QList<Hash>* aBinaryRecipientList = NULL) ; 
 
@@ -60,7 +61,8 @@ protected slots:
 protected: // variables
   MController* iController ; 
   Profile& iSelectedProfile ;
-  QList<QString> iFilesAboutToBeAttached ; /**< used in posting-dialogs */
+  /** list of files used in posting-dialogs */
+  QList<MetadataQueryDialog::MetadataResultSet> iFilesAboutToBeAttached ; 
   /** label used to show list of attached files. pointer must be set
       by inheriting class prior to call to slot attachButtonClicked() */
   QLabel* iAttachmentListLabel ; 

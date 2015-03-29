@@ -58,6 +58,9 @@ public:
    * @param aFileName is string telling original file-system file name
    * @param aDescription is free text describing the content
    * @param aMimeType is mime type, like application/octet-stream or image/gif
+   * @param aOwner who owns the file (content)
+   * @param aLicense string for specifying usage permission, something like
+   *                 "public domain" or "creative commons share-alike"
    * @param aContents is the meat being thrown
    * @param aIsCompressed indicates if aContent should be uncompressed
    *                      before use. 
@@ -81,6 +84,8 @@ public:
 			 const QString& aFileName,
 			 const QString& aDescription,
 			 const QString& aMimeType,
+			 const QString& aOwner,
+			 const QString& aLicense,
 			 const QByteArray& aContents,
 			 bool aIsCompressed,
 			 bool aNoEncryption = false,

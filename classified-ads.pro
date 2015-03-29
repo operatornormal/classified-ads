@@ -62,7 +62,7 @@ HEADERS = mcontroller.h controller.h FrontWidget.h net/node.h util/hash.h \
 	datamodel/connectionlistingmodel.h ui/manualconnection.h \
 	ui/aboutdialog.h textedit/textedit.h datamodel/searchmodel.h \
 	ui/searchdisplay.h ui/insertlinkdialog.h ui/newtextdocument.h \
-	datamodel/trusttreemodel.h
+	datamodel/trusttreemodel.h ui/metadataQuery.h
 SOURCES = main.cpp controller.cpp FrontWidget.cpp net/node.cpp util/hash.cpp \
 	net/connection.cpp datamodel/model.cpp \
         net/networklistener.cpp net/protocol_message_formatter.cpp \
@@ -89,18 +89,18 @@ SOURCES = main.cpp controller.cpp FrontWidget.cpp net/node.cpp util/hash.cpp \
 	datamodel/connectionlistingmodel.cpp ui/manualconnection.cpp \
         ui/aboutdialog.cpp textedit/textedit.cpp datamodel/searchmodel.cpp \
 	ui/searchdisplay.cpp ui/insertlinkdialog.cpp ui/newtextdocument.cpp \
-	datamodel/trusttreemodel.cpp
+	datamodel/trusttreemodel.cpp ui/metadataQuery.cpp
 FORMS = frontWidget.ui ui/profileReadersDialog.ui ui/passwordDialog.ui \
 	ui/newClassifiedAd.ui 	ui/newPrivMsg.ui ui/editContact.ui \
         ui/newProfileComment.ui ui/profileCommentDisplay.ui \
         ui/attachmentListDialog.ui ui/settingsDialog.ui \
 	ui/statusDialog.ui ui/manualConnectionDialog.ui \
 	ui/aboutDialog.ui ui/searchDisplay.ui ui/insertLink.ui \
-        ui/newTextDocument.ui
+        ui/newTextDocument.ui ui/metadataQuery.ui
 RESOURCES     = ui_resources.qrc
 TRANSLATIONS  = classified_ads_fi.ts \
                 classified_ads_sv.ts
-unix:LIBS = -lssl -lcrypto -lnatpmp -lqjson -lminiupnpc
+unix:LIBS = -lssl -lcrypto -lnatpmp -lqjson -lminiupnpc -lmagic
 # following line is needed for fedora linux, natpnp needs miniupnpc
 unix:INCLUDEPATH += /usr/include/miniupnpc
 win32:LIBS += "c:\msys\1.0\local\lib\libssl.a" 
@@ -116,14 +116,17 @@ win32:INCLUDEPATH += "..\qjson-master\include"
 
 target.path = /usr/bin
 desktopfiles.path = /usr/share/applications
-desktopfiles.files = ui/classified_ads.desktop
+desktopfiles.files = ui/classified-ads.desktop
 desktopicons.path = /usr/share/app-install/icons/
+appdata.files = ui/classified-ads.appdata.xml
+appdata.path = /usr/share/appdata/
 desktopicons.files = ui/turt-transparent-128x128.png
 manpages.path = /usr/share/man/man1
 manpages.files = classified-ads.1
-translations.path = /usr/lib/classified-ads
+translations.path = /usr/share/classified-ads
 translations.files = classified_ads_fi.qm \
                      classified_ads_sv.qm
 INSTALLS += target desktopfiles desktopicons translations
 unix:INSTALLS += manpages
+unix:INSTALLS += appdata
 RC_FILE=classified-ads.rc

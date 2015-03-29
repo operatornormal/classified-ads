@@ -132,6 +132,7 @@ public slots:
   virtual void fileToBeSharedAdded() ;/**< operator wants to share a file */
   virtual void fileToBeSharedRemoved() ;/**< operator wants to stop advertasing a shared file */
   virtual void exportSharedFile() ;/**< operator wants to save a shared file */
+  virtual void viewSharedFileInfo() ; /**< for viewing metadata of a shared file */
   virtual void copySharedFileHash() ;/**< copies shared file SHA1 to clipboard */
   virtual void editNewSharedFile() ;/**< initiates edit+publish of new text document */
   virtual void profileSendMsgButtonClicked() ; 
@@ -283,6 +284,7 @@ private:
 private: // methods
   void setCaDocumentSize() ; 
   void setPrivMsgSize() ;
+  void doShowFileMetadata(const Hash& aBinaryFileFingerPrint) ; 
 private:
   Ui::frontWidget ui ;
   Controller* iController ;
@@ -292,6 +294,7 @@ private:
   QAction* iAddSharedFileAction ; /**< context-menu action for adding shared file */
   QAction* iRemoveSharedFileAction ; /**< context-menu action for adding shared file */
   QAction* iExportSharedFileAction ; /**< context-menu action for saving to filesystem a shared file */
+  QAction* iViewSharedFileInfoAction ; /**< context-menu action for checking file metadata */
   QAction* iCopySharedFileHashAction ; /**< context-menu action copying SHA1 to clipboard */
   QAction* iEditNewSharedFileAction ; /**< context-menu action for editing new text doc */
   /** model for displaying file list "operator profile" ; there may be 2nd instance

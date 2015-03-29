@@ -111,7 +111,10 @@ public:
   virtual void offerDisplayNameForProfile(const Hash& aProfileFingerPrint,
 					  const QString& aDisplayName,
 					  const bool iUpdatePersistenStorage=false)  ;
-
+  /**
+   * method that puts dialog or similar on display, about a published file
+   */
+  virtual void displayFileInfoOnUi(const BinaryFile& aFileMetadata)  ; 
 private:
   Node *iNode ; /**< our network presence object, there is single instance */
   Model *iModel ; /**< data storage animal */

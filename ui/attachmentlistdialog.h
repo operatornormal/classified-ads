@@ -75,6 +75,7 @@ public:
 private slots:
   void okButtonClicked() ;
   void cancelButtonClicked() ;
+  void infoButtonClicked() ; /**< file information button clicked */ 
   void fileListDoubleClicked(const QModelIndex& aIndex);
   void exportSharedFile() ;
 signals:

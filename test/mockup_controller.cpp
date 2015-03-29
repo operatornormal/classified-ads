@@ -27,6 +27,7 @@
 #include "../net/networkconnectorengine.h"
 #include <unistd.h> // for getpid() 
 #include <signal.h>
+#include "../datamodel/binaryfile.h"
 
 MockUpController::MockUpController() : 
   iNode(NULL),
@@ -166,4 +167,8 @@ void MockUpController::offerDisplayNameForProfile(const Hash& aProfileFingerPrin
 						  const QString& aDisplayName,
 						  const bool iUpdatePersistenStorage) {
   return ; 
+}
+
+void MockUpController::displayFileInfoOnUi(const BinaryFile& aFileMetadata) {
+  QLOG_STR("displayFileInfoOnUi file = " + aFileMetadata.iFileName) ; 
 }

@@ -1,50 +1,59 @@
-Name:		classified_ads
-Version:	0.03
+Name:		classified-ads
+Version:	0.05
 Release:	1%{?dist}
 Summary:	Classified ads is a program for posting ads online
 
 Group:		Applications/Internet
-License:	GPLv3
-URL:		https://github.com/operatornormal/classified_ads/releases/tag/0.03
-Source0:	classified_ads-0.03.tar.gz
-
+License:	LGPLv2
+URL:		http://katiska.org/classified_ads/
+Source0:	https://github.com/operatornormal/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 BuildRequires:	qt-devel >= 4
-BuildRequires:	openssl-devel, libnatpmp-devel, qjson-devel, gcc-c++, miniupnpc-devel
-Requires:	qt >= 4
-Requires:	bzip2-libs, expat, fontconfig, freetype, openssl-libs
-Requires:	pcre, qjson, libnatpmp, qjson-devel, xz-libs, zlib, miniupnpc
-
-BuildRoot:      %{_tmppath}/%{name}-%{version}-build
-
+BuildRequires:	openssl-devel, libnatpmp-devel, qjson-devel, miniupnpc-devel, file-devel
+BuildRequires:	libappstream-glib, desktop-file-utils
 %description
-Classified ads is an attempt to re-produce parts of the functionality that went away when usenet news ceased to exist. This attempt tries to fix the problem of disappearing news-servers so that there is no servers required ; data storage is implemented inside client applications that you and me are running.
-
-
+Classified ads is an attempt to re-produce parts of the functionality
+that went away when Usenet news ceased to exist. This attempt tries to
+fix the problem of disappearing news-servers so that there is no servers
+required and no service providers needed; data storage is implemented
+inside client applications that users are running.
 %prep
 %setup -q
 
 %build
-PREFIX="/tmp/foo"
-export CXXFLAGS=-I/usr/include/miniupnpc
-QMAKE_ARGS+="INCLUDEPATH+=${LOCALBASE}/include/miniupnpc/ LIBS+=-L${LOCALBASE}/lib"; qmake-qt4 PREFIX=$RPM_BUILD_ROOT
-make
+qmake-qt4 
+make %{?_smp_mflags}
 
 %install
-INSTALL_ROOT=$RPM_BUILD_ROOT make install 
-
-%clean
-rm -rf $RPM_BUILD_ROOT
-
-
+INSTALL_ROOT=%{buildroot} make install
+appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/classified-ads.appdata.xml
+desktop-file-validate %{buildroot}/%{_datadir}/applications/classified-ads.desktop
 %files
 %doc README.TXT
 %{_bindir}/classified-ads
-%{_datadir}/applications/classified_ads.desktop
+%{_datadir}/applications/classified-ads.desktop
+%dir %{_datadir}/app-install
+%dir %{_datadir}/app-install/icons
 %{_datadir}/app-install/icons/turt-transparent-128x128.png
-/usr/lib/classified-ads/classified_ads_fi.qm
-/usr/lib/classified-ads/classified_ads_sv.qm
-
+%dir %{_datarootdir}/classified-ads
+%{_datarootdir}/classified-ads/classified_ads_fi.qm
+%{_datarootdir}/classified-ads/classified_ads_sv.qm
+%{_mandir}/man1/classified-ads.1.gz
+%{_datadir}/appdata/classified-ads.appdata.xml
+%license LICENSE
 %changelog
+* Wed Mar 25 2015 Antti Jarvinen <classified-ads.questions@katiska.org> - 0.05-1
+- spec-file changes due to review comments.
+- tagged a new version to allow building of latest version.
+- added copyright notice to FrontWidget.cpp.
+- included LGPL_EXCEPTION.txt from Nokia alongside sources.
+* Tue Mar 17 2015 Antti Jarvinen <classified-ads.questions@katiska.org> - 0.04-2
+- Changed packaging to happen in more civilized way.
+  Lot of changes into spec file. 
+- Package name has changed classified_ads -> classified-ads.
+- Added appdata, re-wrote the small manpage in less personal tone. 
+* Sat Mar 14 2015 Antti Jarvinen <classified-ads.questions@katiska.org> - 0.04-1
+- License change GPL->LGPL due to OpenSSL license incompatibility.
+- Minor UI changes as some bitmaps removed due to licensing issues
 * Tue Feb 24 2015 Antti Jarvinen <classified-ads.questions@katiska.org> - 0.03-1
 - Rpm build fixes for fedora linux
 - Slower connection attempts to unreachable nodes
