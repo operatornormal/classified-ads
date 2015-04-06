@@ -1,6 +1,5 @@
 #!/usr/bin/make -f
 export QT_SELECT := qt4
-export DEB_BUILD_MAINT_OPTIONS=hardening=+all
 
 %:
 	dh $@ --buildsystem=qmake --parallel
