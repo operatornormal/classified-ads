@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-    Classified Ads is Copyright (c) Antti Järvinen 2013. 
+    Classified Ads is Copyright (c) Antti Järvinen 2013.
 
     This file is part of Classified Ads.
 
@@ -23,168 +23,154 @@
 #include "../net/node.h"
 #include <QSslKey>
 
-MockUpNodeModel::MockUpNodeModel( MController *aController ) : 
-  iLastNodeReceived(NULL),
-  iController(aController)
-{
-  iFingerPrintOfThisNode = new Hash(1,2,3,4,5) ; 
-  LOG_STR("MockUpNodeModel::MockUpNodeModel in\n") ; 
-  LOG_STR("MockUpNodeModel::MockUpNodeModel out\n") ; 
+MockUpNodeModel::MockUpNodeModel( MController *aController ) :
+    iLastNodeReceived(NULL),
+    iController(aController) {
+    iFingerPrintOfThisNode = new Hash(1,2,3,4,5) ;
+    LOG_STR("MockUpNodeModel::MockUpNodeModel in\n") ;
+    LOG_STR("MockUpNodeModel::MockUpNodeModel out\n") ;
 }
 
-MockUpNodeModel::~MockUpNodeModel()
-{
-  LOG_STR("MockUpNodeModel::~MockUpNodeModel\n") ;
-  iController = NULL ; 
-  if ( iLastNodeReceived ) {
-    delete iLastNodeReceived ; 
-  }
-  delete  iFingerPrintOfThisNode ; 
+MockUpNodeModel::~MockUpNodeModel() {
+    LOG_STR("MockUpNodeModel::~MockUpNodeModel\n") ;
+    iController = NULL ;
+    if ( iLastNodeReceived ) {
+        delete iLastNodeReceived ;
+    }
+    delete  iFingerPrintOfThisNode ;
 }
 
 bool MockUpNodeModel::nodeGreetingReceived(Node& aNode ,
-			  bool aWasInitialGreeting  )  
-{
-  QLOG_STR("MockUpNodeModel::nodeGreetingReceived " + aNode.nodeFingerPrint().toString()) ; 
-  if ( iLastNodeReceived) {
-    delete iLastNodeReceived ;
-  }
-  iLastNodeReceived = new Node(aNode.nodeFingerPrint(), aNode.port()) ; 
-  iLastNodeReceived->setIpv4Addr(aNode.ipv4Addr()) ; 
-  iLastNodeReceived->setIpv6Addr(aNode.ipv6Addr()) ; 
-  iLastNodeReceived->setGoodNodeListTime(aNode.goodNodeListTime()) ;   
-  iLastNodeReceived->setLastConnectTime(aNode.lastConnectTime()) ; 
-  iLastNodeReceived->setLastMutualConnectTime(aNode.lastMutualConnectTime()) ; 
-  iLastNodeReceived->setCanReceiveIncoming(aNode.canReceiveIncoming()) ; 
-  return true ; 
+        bool aWasInitialGreeting  ) {
+    QLOG_STR("MockUpNodeModel::nodeGreetingReceived " + aNode.nodeFingerPrint().toString()) ;
+    if ( iLastNodeReceived) {
+        delete iLastNodeReceived ;
+    }
+    iLastNodeReceived = new Node(aNode.nodeFingerPrint(), aNode.port()) ;
+    iLastNodeReceived->setIpv4Addr(aNode.ipv4Addr()) ;
+    iLastNodeReceived->setIpv6Addr(aNode.ipv6Addr()) ;
+    iLastNodeReceived->setGoodNodeListTime(aNode.goodNodeListTime()) ;
+    iLastNodeReceived->setLastConnectTime(aNode.lastConnectTime()) ;
+    iLastNodeReceived->setLastMutualConnectTime(aNode.lastMutualConnectTime()) ;
+    iLastNodeReceived->setCanReceiveIncoming(aNode.canReceiveIncoming()) ;
+    return true ;
 }
 
-Hash& MockUpNodeModel::nodeFingerPrint()  /**< returns fingerprint of this node */
-{
-  return *iFingerPrintOfThisNode ; 
+Hash& MockUpNodeModel::nodeFingerPrint() { /**< returns fingerprint of this node */
+    return *iFingerPrintOfThisNode ;
 }
 
-int MockUpNodeModel::listenPortOfThisNode()   /**< TCP listen port number method */
-{
-  return 3 ; 
+int MockUpNodeModel::listenPortOfThisNode() { /**< TCP listen port number method */
+    return 3 ;
 }
 
-const QSslCertificate& MockUpNodeModel::nodeCert()  const  
-{
-  static QSslCertificate retval ; 
-  return retval ; 
+const QSslCertificate& MockUpNodeModel::nodeCert()  const {
+    static QSslCertificate retval ;
+    return retval ;
 }
 
 /** getter for ssl certificate of SSL sock */
-const QSslKey& MockUpNodeModel::nodeKey()  const  
+const QSslKey& MockUpNodeModel::nodeKey()  const
 
 {
-  static QSslKey retval ; 
-  return retval ; 
+    static QSslKey retval ;
+    return retval ;
 }
 
-QByteArray* MockUpNodeModel::getNextItemToSend(Connection& aConnection)   
-{
-  return NULL ; 
+QByteArray* MockUpNodeModel::getNextItemToSend(Connection& aConnection) {
+    return NULL ;
 }
 
-Node* MockUpNodeModel::nodeByHash(const Hash& aHash) 
-{
-  return NULL ; 
+Node* MockUpNodeModel::nodeByHash(const Hash& aHash) {
+    return NULL ;
 }
 QList<Node *>* MockUpNodeModel::getNodesBeforeHash(const Hash& aHash,
-				  int aMaxNodes)  
-{
-  return NULL ; 
+        int aMaxNodes) {
+    return NULL ;
 }
 
-void MockUpNodeModel::closeOldestInactiveConnection()  
-{
+void MockUpNodeModel::closeOldestInactiveConnection() {
 
 }
 
 QList<Node *>* MockUpNodeModel::getNodesAfterHash(const Hash& aHash,
-				 int aMaxNodes,
-				 int aMaxInactivityMinutes )  
-{
-  return NULL ; 
+        int aMaxNodes,
+        int aMaxInactivityMinutes ) {
+    return NULL ;
 }
 
-QList<MNodeModelProtocolInterface::HostConnectQueueItem > MockUpNodeModel::getHotAddresses() 
-{
-  static QList<MNodeModelProtocolInterface::HostConnectQueueItem> retval ; 
-  return retval ; 
+QList<MNodeModelProtocolInterface::HostConnectQueueItem > MockUpNodeModel::getHotAddresses() {
+    static QList<MNodeModelProtocolInterface::HostConnectQueueItem> retval ;
+    return retval ;
 }
 
-bool MockUpNodeModel::updateNodeLastConnectTimeInDb(Node& aNode)  
-{
-  return false ;
+bool MockUpNodeModel::updateNodeLastConnectTimeInDb(Node& aNode) {
+    return false ;
 }
 
-QList<Node *>* MockUpNodeModel::getHotNodes(int aMaxNodes)  
-{
-  return NULL ; 
+QList<Node *>* MockUpNodeModel::getHotNodes(int aMaxNodes) {
+    return NULL ;
 }
 
 void MockUpNodeModel::addNodeFromBroadcast(const Hash& /*aNodeFingerPrint*/,
-					   const QHostAddress& /*aAddr*/,
-					   int aPort ) {
-  LOG_STR2("addNodeFromBroadcast %d\n", aPort) ; 
+        const QHostAddress& /*aAddr*/,
+        int aPort ) {
+    LOG_STR2("addNodeFromBroadcast %d\n", aPort) ;
 }
 
 bool MockUpNodeModel::addNodeToConnectionWishList(Node* aNode) {
-  LOG_STR("addNodeToConnectionWishList \n") ; 
-  delete aNode ; 
-  return true ; 
+    LOG_STR("addNodeToConnectionWishList \n") ;
+    delete aNode ;
+    return true ;
 }
 
 bool MockUpNodeModel::addNodeToConnectionWishList(const Hash& aNode) {
-  LOG_STR("addNodeToConnectionWishList hash-reference version \n") ; 
-  return true ; 
+    LOG_STR("addNodeToConnectionWishList hash-reference version \n") ;
+    return true ;
 }
 
 Node* MockUpNodeModel::nextConnectionWishListItem()  {
-  return NULL; // means that no more connections in list
+    return NULL; // means that no more connections in list
 }
 
 bool MockUpNodeModel::isNodeAlreadyConnected(const Node& aNode) const {
-  return true ; 
+    return true ;
 }
 
 bool MockUpNodeModel::isNodeAlreadyConnected(const Hash& aHash) const {
-  return false ; 
+    return false ;
 }
 
 Hash MockUpNodeModel::bucketEndHash(const Hash& aFingerPrintOfNodeAsking)  {
-  return aFingerPrintOfNodeAsking    ;
+    return aFingerPrintOfNodeAsking    ;
 }
 
 bool MockUpNodeModel::updateNodeLastMutualConnectTimeInDb(const Hash& aNodeFp,
-							  quint32 aTime ) {
-  return true ; 
+        quint32 aTime ) {
+    return true ;
 }
 
 void MockUpNodeModel::setListenPortOfThisNode(int port) {
-  // yes
-  return ; 
+    // yes
+    return ;
 }
 QList<Node*>* MockUpNodeModel::getNodesBeforeHash(const Hash& h, unsigned int i) {
-  QList<Node*>* r = new QList<Node*>() ;
-  return r ; 
+    QList<Node*>* r = new QList<Node*>() ;
+    return r ;
 }
 QList<Node*>* MockUpNodeModel::getNodesAfterHash(const Hash& h, unsigned int u, int i) {
-  QList<Node*>* r = new QList<Node*>() ;
-  return r ; 
+    QList<Node*>* r = new QList<Node*>() ;
+    return r ;
 }
-void MockUpNodeModel::setDnsName(QString s){
-  iDnsName = s ;
+void MockUpNodeModel::setDnsName(QString s) {
+    iDnsName = s ;
 }
 
 QString MockUpNodeModel::getDnsName() {
-  return iDnsName ; 
+    return iDnsName ;
 }
 
 
 void MockUpNodeModel::offerNodeToRecentlyFailedList(const Hash& /*aFailedNodeHash*/) {
-  // have very thin implementation here
+    // have very thin implementation here
 }

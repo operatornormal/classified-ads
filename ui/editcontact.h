@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-       Classified Ads is Copyright (c) Antti Järvinen 2013. 
+       Classified Ads is Copyright (c) Antti Järvinen 2013.
 
        This file is part of Classified Ads.
 
@@ -32,33 +32,32 @@ class Contact ;
  * @brief class for editing a contact-list item
  *
  */
-class EditContactDialog : public QDialog
-{
-  Q_OBJECT
+class EditContactDialog : public QDialog {
+    Q_OBJECT
 
-    public:
-  /**
-   * Constructor.
-   */
-  EditContactDialog(QWidget *aParent,
-		    MController* aController,
-		    const Hash& aProfileFingerPrint,
-		    const QString& aNickName,
-		    bool aIsTrusted,
-		    ContactListingModel& aContactsModel );
-  /** destructor */
-  ~EditContactDialog();
+public:
+    /**
+     * Constructor.
+     */
+    EditContactDialog(QWidget *aParent,
+                      MController* aController,
+                      const Hash& aProfileFingerPrint,
+                      const QString& aNickName,
+                      bool aIsTrusted,
+                      ContactListingModel& aContactsModel );
+    /** destructor */
+    ~EditContactDialog();
 
 private slots:
-  void okButtonClicked() ;
-  void cancelButtonClicked() ;
+    void okButtonClicked() ;
+    void cancelButtonClicked() ;
 signals:
-  void error(MController::CAErrorSituation aError,
-	     const QString& aExplanation) ;
+    void error(MController::CAErrorSituation aError,
+               const QString& aExplanation) ;
 private:
-  Ui_editContactDialog ui ; 
-  MController* iController ;
-  ContactListingModel& iContactsModel ;
+    Ui_editContactDialog ui ;
+    MController* iController ;
+    ContactListingModel& iContactsModel ;
 };
 
 #endif

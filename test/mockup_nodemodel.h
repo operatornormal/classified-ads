@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-    Classified Ads is Copyright (c) Antti Järvinen 2013. 
+    Classified Ads is Copyright (c) Antti Järvinen 2013.
 
     This file is part of Classified Ads.
 
@@ -27,105 +27,104 @@
 #include <QMutex>
 
 /**
- * @brief not a real part datamodel. debugging aid. 
+ * @brief not a real part datamodel. debugging aid.
  */
-class MockUpNodeModel : public QObject, public MNodeModelProtocolInterface
-{
-  Q_OBJECT
+class MockUpNodeModel : public QObject, public MNodeModelProtocolInterface {
+    Q_OBJECT
 
 public:
-  /**
-   * constructor
-   */
-  MockUpNodeModel(MController *aMController) ; 
-  /**
-   * Destructor
-   */
-  ~MockUpNodeModel() ;
-  virtual bool nodeGreetingReceived(Node& aNode ,
-			    bool aWasInitialGreeting = false )  ; 
-  virtual Hash& nodeFingerPrint() ; /**< returns fingerprint of this node */
-  virtual int listenPortOfThisNode()  ; /**< TCP listen port number method */
-  virtual const QSslCertificate& nodeCert()  const  ;  
-  /** getter for ssl certificate of SSL sock */
-  virtual const QSslKey& nodeKey()  const  ; 
-  virtual QByteArray* getNextItemToSend(Connection& aConnection)   ;
-  virtual Node* nodeByHash(const Hash& aHash) ;
-  virtual QList<Node *>* getNodesBeforeHash(const Hash& aHash,
-				    int aMaxNodes)  ; 
-  virtual void       closeOldestInactiveConnection()  ; 
-  virtual QList<Node *>* getNodesAfterHash(const Hash& aHash,
-				   int aMaxNodes,
-				   int aMaxInactivityMinutes = -1 )  ;
-  virtual QList<HostConnectQueueItem> getHotAddresses() ;
-  virtual bool updateNodeLastConnectTimeInDb(Node& aNode)  ;
-  virtual QList<Node *>* getHotNodes(int aMaxNodes)  ; 
+    /**
+     * constructor
+     */
+    MockUpNodeModel(MController *aMController) ;
+    /**
+     * Destructor
+     */
+    ~MockUpNodeModel() ;
+    virtual bool nodeGreetingReceived(Node& aNode ,
+                                      bool aWasInitialGreeting = false )  ;
+    virtual Hash& nodeFingerPrint() ; /**< returns fingerprint of this node */
+    virtual int listenPortOfThisNode()  ; /**< TCP listen port number method */
+    virtual const QSslCertificate& nodeCert()  const  ;
+    /** getter for ssl certificate of SSL sock */
+    virtual const QSslKey& nodeKey()  const  ;
+    virtual QByteArray* getNextItemToSend(Connection& aConnection)   ;
+    virtual Node* nodeByHash(const Hash& aHash) ;
+    virtual QList<Node *>* getNodesBeforeHash(const Hash& aHash,
+            int aMaxNodes)  ;
+    virtual void       closeOldestInactiveConnection()  ;
+    virtual QList<Node *>* getNodesAfterHash(const Hash& aHash,
+            int aMaxNodes,
+            int aMaxInactivityMinutes = -1 )  ;
+    virtual QList<HostConnectQueueItem> getHotAddresses() ;
+    virtual bool updateNodeLastConnectTimeInDb(Node& aNode)  ;
+    virtual QList<Node *>* getHotNodes(int aMaxNodes)  ;
 
-  /**
-   * method for adding node reference from broadcast. 
-   * this needs difference in handling because in IPv4
-   * network this typically contains private addr space
-   * addresses that we don't want to permanently store nor
-   * give to others as node-references. 
-   *
-   * For making connections inside LANs of organisations 
-   * having NATs and firewalls and whatnot this might
-   * still be a handy feature. 
-   */
-  virtual void addNodeFromBroadcast(const Hash& aNodeFingerPrint,
-				    const QHostAddress& aAddr,
-				    int aPort )  ;
-  /**
-   * method for adding a node to connection-wishlist.
-   * network connector engine will then later pick them up.
-   * nodemodel will take ownership of the node and delete
-   * the object later.
-   */
-  virtual bool addNodeToConnectionWishList(Node* aNode)  ;
+    /**
+     * method for adding node reference from broadcast.
+     * this needs difference in handling because in IPv4
+     * network this typically contains private addr space
+     * addresses that we don't want to permanently store nor
+     * give to others as node-references.
+     *
+     * For making connections inside LANs of organisations
+     * having NATs and firewalls and whatnot this might
+     * still be a handy feature.
+     */
+    virtual void addNodeFromBroadcast(const Hash& aNodeFingerPrint,
+                                      const QHostAddress& aAddr,
+                                      int aPort )  ;
+    /**
+     * method for adding a node to connection-wishlist.
+     * network connector engine will then later pick them up.
+     * nodemodel will take ownership of the node and delete
+     * the object later.
+     */
+    virtual bool addNodeToConnectionWishList(Node* aNode)  ;
 
-  /**
-   * method for adding a node to connection-wishlist.
-   * network connector engine will then later pick them up.
-   */
-  virtual bool addNodeToConnectionWishList(const Hash& aNode)  ;
+    /**
+     * method for adding a node to connection-wishlist.
+     * network connector engine will then later pick them up.
+     */
+    virtual bool addNodeToConnectionWishList(const Hash& aNode)  ;
 
-  /**
-   * method for getting one node from wishlist.
-   * caller is obliged to delete the node returned.
-   * @return node or null if there is nothing in wishlist
-   */
-  virtual Node* nextConnectionWishListItem()   ;
-  /**
-   * method for checking if a node is already connected 
-   */
-  virtual bool isNodeAlreadyConnected(const Node& aNode) const ; 
-  /**
-   * Method for checking if a node is already connected.
-   * This version checks only hash, not addresses.
-   */
-  virtual bool isNodeAlreadyConnected(const Hash& aHash) const  ; 
+    /**
+     * method for getting one node from wishlist.
+     * caller is obliged to delete the node returned.
+     * @return node or null if there is nothing in wishlist
+     */
+    virtual Node* nextConnectionWishListItem()   ;
+    /**
+     * method for checking if a node is already connected
+     */
+    virtual bool isNodeAlreadyConnected(const Node& aNode) const ;
+    /**
+     * Method for checking if a node is already connected.
+     * This version checks only hash, not addresses.
+     */
+    virtual bool isNodeAlreadyConnected(const Hash& aHash) const  ;
 
-  virtual Hash bucketEndHash(const Hash& aFingerPrintOfNodeAsking)  ;
-  /**
-   * updates last mutual connect time, used for deciding what content
-   * to send automatically upon node connect
-   */ 
-  virtual bool updateNodeLastMutualConnectTimeInDb(const Hash& aNodeFp,
-						   quint32 aTime )  ;
-  virtual void setListenPortOfThisNode(int port)  ; 
-  virtual QList<Node*>* getNodesBeforeHash(const Hash& h, unsigned int i);
-  virtual QList<Node*>* getNodesAfterHash(const Hash& h, unsigned int u, int i) ;
-  virtual void setDnsName(QString aName) ;
-  virtual QString getDnsName()  ;
-  /** used to offer node to list of recently failed connections.
-   * this model maintains a list of such nodes and tries to 
-   * not immediately re-connect a recently failed node */
-  virtual void offerNodeToRecentlyFailedList(const Hash& aFailedNodeHash) ; 
+    virtual Hash bucketEndHash(const Hash& aFingerPrintOfNodeAsking)  ;
+    /**
+     * updates last mutual connect time, used for deciding what content
+     * to send automatically upon node connect
+     */
+    virtual bool updateNodeLastMutualConnectTimeInDb(const Hash& aNodeFp,
+            quint32 aTime )  ;
+    virtual void setListenPortOfThisNode(int port)  ;
+    virtual QList<Node*>* getNodesBeforeHash(const Hash& h, unsigned int i);
+    virtual QList<Node*>* getNodesAfterHash(const Hash& h, unsigned int u, int i) ;
+    virtual void setDnsName(QString aName) ;
+    virtual QString getDnsName()  ;
+    /** used to offer node to list of recently failed connections.
+     * this model maintains a list of such nodes and tries to
+     * not immediately re-connect a recently failed node */
+    virtual void offerNodeToRecentlyFailedList(const Hash& aFailedNodeHash) ;
 public:
-  Node* iLastNodeReceived ; 
+    Node* iLastNodeReceived ;
 private:
-  MController *iController ; 
-  Hash* iFingerPrintOfThisNode ; /**< set by method openOrCreateSSLCertificate */
-  QString iDnsName ;
-} ; 
+    MController *iController ;
+    Hash* iFingerPrintOfThisNode ; /**< set by method openOrCreateSSLCertificate */
+    QString iDnsName ;
+} ;
 #endif

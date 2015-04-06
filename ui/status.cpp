@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-       Classified Ads is Copyright (c) Antti Järvinen 2013. 
+       Classified Ads is Copyright (c) Antti Järvinen 2013.
 
        This file is part of Classified Ads.
 
@@ -27,53 +27,50 @@
 #include "manualconnection.h"
 
 StatusDialog::StatusDialog(QWidget *aParent,
-			       MController& aController)
-  : QDialog(aParent),
-    iController(aController),
-    iListingModel(NULL) 
-{
-  ui.setupUi(this) ; 
+                           MController& aController)
+    : QDialog(aParent),
+      iController(aController),
+      iListingModel(NULL) {
+    ui.setupUi(this) ;
 
-  connect(ui.addConnectionButton, SIGNAL(clicked()), this, SLOT(addButtonClicked()));
+    connect(ui.addConnectionButton, SIGNAL(clicked()), this, SLOT(addButtonClicked()));
 
-  ui.portDisplay->setText ( QString::number(iController.model().nodeModel().listenPortOfThisNode()) );
-  if ( iController.getNode().ipv4Addr() ) {
-    QHostAddress ipv4 ( iController.getNode().ipv4Addr() ) ;
-    ui.ipv4display->setText ( ipv4.toString()) ;
-  }
-  if ( Connection::Ipv6AddressesEqual(iController.getNode().ipv6Addr(),
-				      KNullIpv6Addr ) == false ) {
-    QHostAddress ipv6 ( iController.getNode().ipv6Addr() ) ;
-    ui.ipv6display->setText ( ipv6.toString()) ;
-  }
-  adjustSize() ;
-  connect (this, SIGNAL(rejected()), this, SLOT(deleteLater())) ;
-  iListingModel = new   ConnectionListingModel(iController.model(),
-					       iController) ; 
-  ui.connectionsView->setModel(iListingModel) ; 
+    ui.portDisplay->setText ( QString::number(iController.model().nodeModel().listenPortOfThisNode()) );
+    if ( iController.getNode().ipv4Addr() ) {
+        QHostAddress ipv4 ( iController.getNode().ipv4Addr() ) ;
+        ui.ipv4display->setText ( ipv4.toString()) ;
+    }
+    if ( Connection::Ipv6AddressesEqual(iController.getNode().ipv6Addr(),
+                                        KNullIpv6Addr ) == false ) {
+        QHostAddress ipv6 ( iController.getNode().ipv6Addr() ) ;
+        ui.ipv6display->setText ( ipv6.toString()) ;
+    }
+    adjustSize() ;
+    connect (this, SIGNAL(rejected()), this, SLOT(deleteLater())) ;
+    iListingModel = new   ConnectionListingModel(iController.model(),
+            iController) ;
+    ui.connectionsView->setModel(iListingModel) ;
 }
 
-StatusDialog::~StatusDialog()
-{
-  LOG_STR("StatusDialog::~StatusDialog\n") ;
-  ui.connectionsView->setModel(NULL) ; 
-  delete iListingModel ; 
+StatusDialog::~StatusDialog() {
+    LOG_STR("StatusDialog::~StatusDialog\n") ;
+    ui.connectionsView->setModel(NULL) ;
+    delete iListingModel ;
 }
 
-void StatusDialog::addButtonClicked()
-{
-  LOG_STR("StatusDialog::addButtonClicked()\n") ;
-  const QString dlgName ("classified_ads_manual_connection_dialog") ; 
-  ManualConnectionDialog *dialog = this->findChild<ManualConnectionDialog *>(dlgName) ;
-  if ( dialog == NULL ) {
-    dialog = new ManualConnectionDialog(this, iController) ;
-    dialog->setObjectName(dlgName) ; 
-    dialog->show() ;
-    connect(this, SIGNAL(destroyed()),
-	    dialog, SLOT(reject()));
-  } else {
-    dialog->setFocus(Qt::MenuBarFocusReason) ;
-  }
+void StatusDialog::addButtonClicked() {
+    LOG_STR("StatusDialog::addButtonClicked()\n") ;
+    const QString dlgName ("classified_ads_manual_connection_dialog") ;
+    ManualConnectionDialog *dialog = this->findChild<ManualConnectionDialog *>(dlgName) ;
+    if ( dialog == NULL ) {
+        dialog = new ManualConnectionDialog(this, iController) ;
+        dialog->setObjectName(dlgName) ;
+        dialog->show() ;
+        connect(this, SIGNAL(destroyed()),
+                dialog, SLOT(reject()));
+    } else {
+        dialog->setFocus(Qt::MenuBarFocusReason) ;
+    }
 }
 
 

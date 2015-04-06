@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-       Classified Ads is Copyright (c) Antti Järvinen 2013. 
+       Classified Ads is Copyright (c) Antti Järvinen 2013.
 
        This file is part of Classified Ads.
 
@@ -33,51 +33,50 @@ class PrivateMessageSearchModel ;
  * @brief class for allowing posting of a message to named recipient
  *
  */
-class NewPrivMessageDialog : public TextEdit
-{
-  Q_OBJECT
+class NewPrivMessageDialog : public TextEdit {
+    Q_OBJECT
 
-    public:
-  /**
-   * Constructor.
-   *
-   * @param aParent is owner-window of this dialog
-   * @param aController application controller reference
-   * @param aRecipient profile that will receive the message
-   * @param aSubject if msg is reply to another msg, this is subject of 
-   *                 the original posting  
-   * @param aSelectedProfile profile doing the sending
-   * @param aReferences if msg is reply to another msg, this is article referenced. NULL 
-   *                    if article is start of a new thread. 
+public:
+    /**
+     * Constructor.
+     *
+     * @param aParent is owner-window of this dialog
+     * @param aController application controller reference
+     * @param aRecipient profile that will receive the message
+     * @param aSubject if msg is reply to another msg, this is subject of
+     *                 the original posting
+     * @param aSelectedProfile profile doing the sending
+     * @param aReferences if msg is reply to another msg, this is article referenced. NULL
+     *                    if article is start of a new thread.
 
-   */
-  NewPrivMessageDialog(QWidget *aParent,
-		       MController* aController,
-		       const QString& aRecipient,
-		       const QString& aSubject,
-		       Profile& aSelectedProfile,
-		       PrivateMessageSearchModel& aSearchModel,
-		       const Hash& aReferencesMsg = KNullHash,
-		       const Hash& aReferencesCa = KNullHash,
-		       const Hash& aRecipientsNode = KNullHash);
-  /** destructor */
-  ~NewPrivMessageDialog();
+     */
+    NewPrivMessageDialog(QWidget *aParent,
+                         MController* aController,
+                         const QString& aRecipient,
+                         const QString& aSubject,
+                         Profile& aSelectedProfile,
+                         PrivateMessageSearchModel& aSearchModel,
+                         const Hash& aReferencesMsg = KNullHash,
+                         const Hash& aReferencesCa = KNullHash,
+                         const Hash& aRecipientsNode = KNullHash);
+    /** destructor */
+    ~NewPrivMessageDialog();
 
 private slots:
-  void okButtonClicked() ;
-  void cancelButtonClicked() ;
+    void okButtonClicked() ;
+    void cancelButtonClicked() ;
 signals:
-  void error(MController::CAErrorSituation aError,
-	     const QString& aExplanation) ;
+    void error(MController::CAErrorSituation aError,
+               const QString& aExplanation) ;
 private: // methods
-  // if recipients node is not known, here try finding out one
-  Hash tryFindRecipientNode(const Hash& aRecipientFingerPrint) ;
+    // if recipients node is not known, here try finding out one
+    Hash tryFindRecipientNode(const Hash& aRecipientFingerPrint) ;
 private:
-  Ui_newPrivMsgDialog ui ; 
-  Hash iReferencesMsg ; /**< if we're referencing another msg, this is the FP */
-  Hash iReferencesCa ; /**< if we're referencing ca, this is the FP */
-  PrivateMessageSearchModel& iSearchModel ; 
-  Hash iRecipientsNode ; 
+    Ui_newPrivMsgDialog ui ;
+    Hash iReferencesMsg ; /**< if we're referencing another msg, this is the FP */
+    Hash iReferencesCa ; /**< if we're referencing ca, this is the FP */
+    PrivateMessageSearchModel& iSearchModel ;
+    Hash iRecipientsNode ;
 };
 
 #endif

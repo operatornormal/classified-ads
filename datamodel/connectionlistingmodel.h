@@ -25,7 +25,7 @@
 #include "../net/connection.h"
 #include <QAbstractTableModel>
 
-class Model ; 
+class Model ;
 
 /**
  * @brief Model-class for displaying open network connections
@@ -33,53 +33,53 @@ class Model ;
  * dialog
  */
 class ConnectionListingModel: public QAbstractTableModel {
- Q_OBJECT
-public: 
- /**
-  * instead of relaying the connections from Model::iConnections
-  * we keep our local copy of the same stuff here, updating
-  * it as necessary
-  */
- typedef struct ConnectionDisplayItemStructure {
-   QHostAddress iAddr ;
-   bool iIsInBound ; 
-   unsigned long iBytesIn ; 
-   unsigned long iBytesOut ; 
-   time_t iOpenTime ;
-   Hash iNodeFingerPrint ;
- } ConnectionDisplayItem ;
+    Q_OBJECT
+public:
+    /**
+     * instead of relaying the connections from Model::iConnections
+     * we keep our local copy of the same stuff here, updating
+     * it as necessary
+     */
+    typedef struct ConnectionDisplayItemStructure {
+        QHostAddress iAddr ;
+        bool iIsInBound ;
+        unsigned long iBytesIn ;
+        unsigned long iBytesOut ;
+        time_t iOpenTime ;
+        Hash iNodeFingerPrint ;
+    } ConnectionDisplayItem ;
 
- ConnectionListingModel(Model& aModel,MController& aController) ;
-  ~ConnectionListingModel() ; 
+    ConnectionListingModel(Model& aModel,MController& aController) ;
+    ~ConnectionListingModel() ;
 
-  virtual int rowCount(const QModelIndex & parent = QModelIndex())  const  ; 
-  /**
-   * re-implemented from QAbstractTableModel
-   * @return number of columns in view
-   */
-  virtual int columnCount(const QModelIndex & parent = QModelIndex())  const  ; 
-  /**
-   * re-implemented from QAbstractListModel
-   * @return data to display in list
-   */
-  virtual QVariant data(const QModelIndex & index, int role = Qt::DisplayRole) const ;
-  virtual QVariant headerData ( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const ;
+    virtual int rowCount(const QModelIndex & parent = QModelIndex())  const  ;
+    /**
+     * re-implemented from QAbstractTableModel
+     * @return number of columns in view
+     */
+    virtual int columnCount(const QModelIndex & parent = QModelIndex())  const  ;
+    /**
+     * re-implemented from QAbstractListModel
+     * @return data to display in list
+     */
+    virtual QVariant data(const QModelIndex & index, int role = Qt::DisplayRole) const ;
+    virtual QVariant headerData ( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const ;
 
 signals:
-  void error(MController::CAErrorSituation aError,
-	     const QString& aExplanation) ;
+    void error(MController::CAErrorSituation aError,
+               const QString& aExplanation) ;
 
 protected: // methods
-  /**
-   * for periodical stuff inside datamodel
-   */
-  void timerEvent(QTimerEvent *event);
+    /**
+     * for periodical stuff inside datamodel
+     */
+    void timerEvent(QTimerEvent *event);
 private: // methods
-  void updateModelContents() ; 
+    void updateModelContents() ;
 private: // data
-  Model& iModel ; 
-  MController& iController ;
-  QList<ConnectionDisplayItem> iConnections ; 
-  int iTimerId ; 
-} ; 
+    Model& iModel ;
+    MController& iController ;
+    QList<ConnectionDisplayItem> iConnections ;
+    int iTimerId ;
+} ;
 #endif

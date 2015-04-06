@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-       Classified Ads is Copyright (c) Antti Järvinen 2013. 
+       Classified Ads is Copyright (c) Antti Järvinen 2013.
 
        This file is part of Classified Ads.
 
@@ -29,28 +29,27 @@
  * @brief class for editing node-wide settings
  *
  */
-class SettingsDialog : public QDialog
-{
-  Q_OBJECT
+class SettingsDialog : public QDialog {
+    Q_OBJECT
 
-    public:
-  /**
-   * Constructor.
-   */
-  SettingsDialog(QWidget *aParent,
-		    MController& aController );
-  /** destructor */
-  ~SettingsDialog();
+public:
+    /**
+     * Constructor.
+     */
+    SettingsDialog(QWidget *aParent,
+                   MController& aController );
+    /** destructor */
+    ~SettingsDialog();
 
 private slots:
-  void okButtonClicked() ;
-  void cancelButtonClicked() ;
+    void okButtonClicked() ;
+    void cancelButtonClicked() ;
 signals:
-  void error(MController::CAErrorSituation aError,
-	     const QString& aExplanation) ;
+    void error(MController::CAErrorSituation aError,
+               const QString& aExplanation) ;
 private:
-  Ui_settingsDialog ui ; 
-  MController& iController ;
+    Ui_settingsDialog ui ;
+    MController& iController ;
 };
 
 #endif

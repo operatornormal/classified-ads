@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-       Classified Ads is Copyright (c) Antti Järvinen 2013. 
+       Classified Ads is Copyright (c) Antti Järvinen 2013.
 
        This file is part of Classified Ads.
 
@@ -28,46 +28,45 @@
 /**
  * @brief class for querying metadata of file about to get published
  */
-class MetadataQueryDialog : public QDialog
-{
-Q_OBJECT
+class MetadataQueryDialog : public QDialog {
+    Q_OBJECT
 
 public:
-/**
- * This structure contains results of @ref MetadataQueryDialog
- * e.g the dialog queries this dataset from user
- */
-  typedef struct MetadataResultSetStruct {
-    QString iFileName; /**< name of file in filesystem */
-    QString iDescription;
-    QString iMimeType;
-    QString iOwner;
-    QString iLicense;
-  } MetadataResultSet ;
-  /**
-   * Constructor.
-   * @param aParent is the parent widget
-   * @param aController is application controller instance
-   * @param aResultsSet is reference to structure where this dialog
-   *                    will store its results. 
-   */
-  MetadataQueryDialog(QWidget *aParent,
-		      MController& aController,
-		      MetadataResultSet& aResultsSet );
-  /** destructor */
-  ~MetadataQueryDialog();
+    /**
+     * This structure contains results of @ref MetadataQueryDialog
+     * e.g the dialog queries this dataset from user
+     */
+    typedef struct MetadataResultSetStruct {
+        QString iFileName; /**< name of file in filesystem */
+        QString iDescription;
+        QString iMimeType;
+        QString iOwner;
+        QString iLicense;
+    } MetadataResultSet ;
+    /**
+     * Constructor.
+     * @param aParent is the parent widget
+     * @param aController is application controller instance
+     * @param aResultsSet is reference to structure where this dialog
+     *                    will store its results.
+     */
+    MetadataQueryDialog(QWidget *aParent,
+                        MController& aController,
+                        MetadataResultSet& aResultsSet );
+    /** destructor */
+    ~MetadataQueryDialog();
 public slots:
-  void okButtonClicked() ; 
+    void okButtonClicked() ;
 
 signals:
-  void error(MController::CAErrorSituation aError,
-	     const QString& aExplanation) ;
+    void error(MController::CAErrorSituation aError,
+               const QString& aExplanation) ;
 private: // methods
-  QString findMimeTypeForFile(const QString& aFileName) ;
+    QString findMimeTypeForFile(const QString& aFileName) ;
 private:
-  Ui_metadataQuery ui ; 
-  MController& iController ;
-  MetadataResultSet& iResultsSet ;
+    Ui_metadataQuery ui ;
+    MController& iController ;
+    MetadataResultSet& iResultsSet ;
 };
 
 #endif

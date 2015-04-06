@@ -24,7 +24,7 @@
 #include "../util/hash.h" // for class Hash  
 
 class MController ;
-class Node ; 
+class Node ;
 
 /**
  * @brief Carrier-class for a profile that is in contacts-list
@@ -34,29 +34,29 @@ class Node ;
  */
 class Contact {
 public:
-  Contact() ; /**< constructor */
-  ~Contact() ; /**< destructor */
-  /**
-   * method for string that is shown to user about the message.
-   *
-   * @return string to display to user
-   */
-  QString displayName() const ; 
-  QByteArray asJSon(const MController& aController) const ; /**< returns msg data as JSon stream */
-  bool fromJSon(const QByteArray &aJSonBytes,
-		const MController& aController ) ; /**< parses json into members*/
-  /**
-   * Method for getting contact as JSon / QVariant
-   */
-  QVariant asQVariant() const ;
-  /**
-   * reverse of @ref asQVariant()
-   * @return node or NULL if
-   */
-  static Contact fromQVariant(const QVariantMap& aJSonAsQVariant) ;
-  /** hash of the profile that is presented here */
-  Hash iFingerPrint ; 
-  QString iNickName ;  /**< nickname/display-name of contact ; may empty if private profile */
-  bool iIsTrusted ; /**< In addition to being in contacts-list, this user is also trusted */ 
+    Contact() ; /**< constructor */
+    ~Contact() ; /**< destructor */
+    /**
+     * method for string that is shown to user about the message.
+     *
+     * @return string to display to user
+     */
+    QString displayName() const ;
+    QByteArray asJSon(const MController& aController) const ; /**< returns msg data as JSon stream */
+    bool fromJSon(const QByteArray &aJSonBytes,
+                  const MController& aController ) ; /**< parses json into members*/
+    /**
+     * Method for getting contact as JSon / QVariant
+     */
+    QVariant asQVariant() const ;
+    /**
+     * reverse of @ref asQVariant()
+     * @return node or NULL if
+     */
+    static Contact fromQVariant(const QVariantMap& aJSonAsQVariant) ;
+    /** hash of the profile that is presented here */
+    Hash iFingerPrint ;
+    QString iNickName ;  /**< nickname/display-name of contact ; may empty if private profile */
+    bool iIsTrusted ; /**< In addition to being in contacts-list, this user is also trusted */
 } ;
 #endif

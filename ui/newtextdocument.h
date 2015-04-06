@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-       Classified Ads is Copyright (c) Antti Järvinen 2013. 
+       Classified Ads is Copyright (c) Antti Järvinen 2013.
 
        This file is part of Classified Ads.
 
@@ -26,39 +26,38 @@
 #include "../ui_newTextDocument.h"
 #include "../textedit/textedit.h"
 
-class Profile ; 
+class Profile ;
 class BinaryFileListingModel  ;
 
 /**
  * @brief class for editing and publishing a new text document
  */
-class NewTextDocument : public TextEdit
-{
-  Q_OBJECT
+class NewTextDocument : public TextEdit {
+    Q_OBJECT
 
 public:
-  /**
-   * Constructor.
-   *
-   * @param aParent is owner-window of this dialog
-   * @param aController application controller reference
-   */
-  NewTextDocument (QWidget *aParent,
-		   MController* aController,
-		   Profile& aSelectedProfile,
-		   BinaryFileListingModel& aProfileFileListingModel );
-  /** destructor */
-  ~NewTextDocument ();
+    /**
+     * Constructor.
+     *
+     * @param aParent is owner-window of this dialog
+     * @param aController application controller reference
+     */
+    NewTextDocument (QWidget *aParent,
+                     MController* aController,
+                     Profile& aSelectedProfile,
+                     BinaryFileListingModel& aProfileFileListingModel );
+    /** destructor */
+    ~NewTextDocument ();
 
 private slots:
-  void okButtonClicked() ;
-  void cancelButtonClicked() ;
+    void okButtonClicked() ;
+    void cancelButtonClicked() ;
 signals:
-  void error(MController::CAErrorSituation aError,
-	     const QString& aExplanation) ;
+    void error(MController::CAErrorSituation aError,
+               const QString& aExplanation) ;
 private:
-  Ui_newTextDocumentDialog ui ; 
-  BinaryFileListingModel& iProfileFileListingModel ; 
+    Ui_newTextDocumentDialog ui ;
+    BinaryFileListingModel& iProfileFileListingModel ;
 };
 
 #endif

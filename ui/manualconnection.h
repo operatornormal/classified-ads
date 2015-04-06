@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-       Classified Ads is Copyright (c) Antti Järvinen 2013. 
+       Classified Ads is Copyright (c) Antti Järvinen 2013.
 
        This file is part of Classified Ads.
 
@@ -28,27 +28,26 @@
 /**
  * @brief class for manually adding node connection wishlist-item
  */
-class ManualConnectionDialog : public QDialog
-{
-Q_OBJECT
+class ManualConnectionDialog : public QDialog {
+    Q_OBJECT
 
 public:
-  /**
-   * Constructor.
-   */
-  ManualConnectionDialog(QWidget *aParent,
-			 MController& aController );
-  /** destructor */
-  ~ManualConnectionDialog();
+    /**
+     * Constructor.
+     */
+    ManualConnectionDialog(QWidget *aParent,
+                           MController& aController );
+    /** destructor */
+    ~ManualConnectionDialog();
 
 private slots:
-  void addButtonClicked() ;
+    void addButtonClicked() ;
 signals:
-  void error(MController::CAErrorSituation aError,
-	     const QString& aExplanation) ;
+    void error(MController::CAErrorSituation aError,
+               const QString& aExplanation) ;
 private:
-  Ui_manualConnectionDialog ui ; 
-  MController& iController ;
+    Ui_manualConnectionDialog ui ;
+    MController& iController ;
 };
 
 #endif

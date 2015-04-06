@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-       Classified Ads is Copyright (c) Antti Järvinen 2013. 
+       Classified Ads is Copyright (c) Antti Järvinen 2013.
 
        This file is part of Classified Ads.
 
@@ -23,49 +23,49 @@
 #include <QDialog>
 #include "../mcontroller.h"
 #include "metadataQuery.h" // for metadata data structure
-class Profile ; 
-class QLabel ; 
+class Profile ;
+class QLabel ;
 
 /**
  * @brief base-class for content-posting dialogs of classified ads
  */
 class DialogBase : public QDialog {
-  Q_OBJECT
+    Q_OBJECT
 
 
 protected: // methods
-  /** constructor */
-  DialogBase(QWidget* aParent,
-	     MController* aController,
-	     Profile& aSelectedProfile) ;
-  /** 
-   * method for publishing an (attachment) file 
-   * @param aFileMetadata describes the file. The iFileName member of 
-   *        the structure must contain valid filesystem filename
-   * @param aForceNoEncryption if set to true, always produce
-   *        plain-text binary, with no encryption
-   * @param aBinaryRecipientList if non-NULL, contains list of operator
-   *        key fingerprints that are the operators that will be able to
-   *        read the binary. 
-   * @return fingerprint of the published file or KNullHash
-   */
-  Hash publishBinaryAttachment(const MetadataQueryDialog::MetadataResultSet& aFileMetadata,
-			       bool aForceNoEncryption = false,
-			       const QList<Hash>* aBinaryRecipientList = NULL) ; 
+    /** constructor */
+    DialogBase(QWidget* aParent,
+               MController* aController,
+               Profile& aSelectedProfile) ;
+    /**
+     * method for publishing an (attachment) file
+     * @param aFileMetadata describes the file. The iFileName member of
+     *        the structure must contain valid filesystem filename
+     * @param aForceNoEncryption if set to true, always produce
+     *        plain-text binary, with no encryption
+     * @param aBinaryRecipientList if non-NULL, contains list of operator
+     *        key fingerprints that are the operators that will be able to
+     *        read the binary.
+     * @return fingerprint of the published file or KNullHash
+     */
+    Hash publishBinaryAttachment(const MetadataQueryDialog::MetadataResultSet& aFileMetadata,
+                                 bool aForceNoEncryption = false,
+                                 const QList<Hash>* aBinaryRecipientList = NULL) ;
 
 signals:
-  void error(MController::CAErrorSituation aError,
-	     const QString& aExplanation) ;
+    void error(MController::CAErrorSituation aError,
+               const QString& aExplanation) ;
 protected slots:
-  void attachButtonClicked() ; 
+    void attachButtonClicked() ;
 protected: // variables
-  MController* iController ; 
-  Profile& iSelectedProfile ;
-  /** list of files used in posting-dialogs */
-  QList<MetadataQueryDialog::MetadataResultSet> iFilesAboutToBeAttached ; 
-  /** label used to show list of attached files. pointer must be set
-      by inheriting class prior to call to slot attachButtonClicked() */
-  QLabel* iAttachmentListLabel ; 
-} ; 
+    MController* iController ;
+    Profile& iSelectedProfile ;
+    /** list of files used in posting-dialogs */
+    QList<MetadataQueryDialog::MetadataResultSet> iFilesAboutToBeAttached ;
+    /** label used to show list of attached files. pointer must be set
+        by inheriting class prior to call to slot attachButtonClicked() */
+    QLabel* iAttachmentListLabel ;
+} ;
 
 #endif

@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-    Classified Ads is Copyright (c) Antti Järvinen 2013. 
+    Classified Ads is Copyright (c) Antti Järvinen 2013.
 
     This file is part of Classified Ads.
 
@@ -29,146 +29,130 @@
 #include <signal.h>
 #include "../datamodel/binaryfile.h"
 
-MockUpController::MockUpController() : 
-  iNode(NULL),
-  iModel(NULL),
-  iListener(NULL)
-{
-  LOG_STR("MockUpController::Controller in\n") ; 
-  qRegisterMetaType<MController::CAErrorSituation>("MController::CAErrorSituation");
-  iModel = new Model(this);
-  iNode = new Node(iModel->nodeModel().nodeFingerPrint(),
-		   iModel->nodeModel().listenPortOfThisNode()) ; 
-  iListener = new  NetworkListener (this, iModel) ; 
-  // network listener enumerates network interfaces and sets
-  // possible ipv6 addr into iNode() ->
-  LOG_STR("MockUpController::Controller out\n") ; 
+MockUpController::MockUpController() :
+    iNode(NULL),
+    iModel(NULL),
+    iListener(NULL) {
+    LOG_STR("MockUpController::Controller in\n") ;
+    qRegisterMetaType<MController::CAErrorSituation>("MController::CAErrorSituation");
+    iModel = new Model(this);
+    iNode = new Node(iModel->nodeModel().nodeFingerPrint(),
+                     iModel->nodeModel().listenPortOfThisNode()) ;
+    iListener = new  NetworkListener (this, iModel) ;
+    // network listener enumerates network interfaces and sets
+    // possible ipv6 addr into iNode() ->
+    LOG_STR("MockUpController::Controller out\n") ;
 }
 
-MockUpController::~MockUpController()
-{
-  LOG_STR("MockUpController::~Controller\n") ; 
-  // .. connections reference iListener.
-  // so in order to prevent random crash at closing, lets first get rid
-  // of connections, only after that delete iListener ; 
-  iModel->closeAllConnections(true) ; 
-  // now safe to delete listener (and net engine)
-  delete iListener ; // will delete also connections received by listener
-  delete iModel ; 
-  delete iNode ; 
+MockUpController::~MockUpController() {
+    LOG_STR("MockUpController::~Controller\n") ;
+    // .. connections reference iListener.
+    // so in order to prevent random crash at closing, lets first get rid
+    // of connections, only after that delete iListener ;
+    iModel->closeAllConnections(true) ;
+    // now safe to delete listener (and net engine)
+    delete iListener ; // will delete also connections received by listener
+    delete iModel ;
+    delete iNode ;
 }
 
 void MockUpController::userInterfaceAction ( CAUserInterfaceRequest aRequest,
-					     const Hash& aHashConcerned,
-					     const Hash& aFetchFromNode ) {
-  LOG_STR2("MockUpController::userInterfaceAction %d\n", (int) aRequest) ; 
+        const Hash& aHashConcerned,
+        const Hash& aFetchFromNode ) {
+    LOG_STR2("MockUpController::userInterfaceAction %d\n", (int) aRequest) ;
 }
 
-void MockUpController::hideUI() 
-{
+void MockUpController::hideUI() {
 
 }
-void MockUpController::showUI() 
-{
-
-}
-
-
-void MockUpController::exitApp() 
-{
+void MockUpController::showUI() {
 
 }
 
-void MockUpController::displayAboutBox() 
-{
+
+void MockUpController::exitApp() {
 
 }
 
-void MockUpController::displayFront()
-{
-  LOG_STR("displayFront\n") ; 
+void MockUpController::displayAboutBox() {
+
+}
+
+void MockUpController::displayFront() {
+    LOG_STR("displayFront\n") ;
 
 }
 
 void MockUpController::handleError(MController::CAErrorSituation aError,
-			     const QString& aExplanation) 
-{
-  LOG_STR2("Error enum value %d\n", aError) ;
-  QLOG_STR(aExplanation) ; 
-  switch ( aError )
-    {
+                                   const QString& aExplanation) {
+    LOG_STR2("Error enum value %d\n", aError) ;
+    QLOG_STR(aExplanation) ;
+    switch ( aError ) {
     case DataBaseNotMountable:
-      LOG_STR("Can't open DB\n") ; 
-      break ;
+        LOG_STR("Can't open DB\n") ;
+        break ;
     }
-  return ;
+    return ;
 }
 
-Node& MockUpController::getNode() const 
-{
-  return *iNode ; 
+Node& MockUpController::getNode() const {
+    return *iNode ;
 }
 
-NetworkListener *MockUpController::networkListener() const 
-{
-  return iListener ; 
+NetworkListener *MockUpController::networkListener() const {
+    return iListener ;
 }
 
-Model& MockUpController::model() const  
-{
-  return *iModel ; 
+Model& MockUpController::model() const {
+    return *iModel ;
 }
 
 
-void MockUpController::setContentKeyPasswd(QString aPasswd)  
-{
-  iContentPasswd = aPasswd ; 
+void MockUpController::setContentKeyPasswd(QString aPasswd) {
+    iContentPasswd = aPasswd ;
 }
 
-QString MockUpController::contentKeyPasswd()  const
-{
-  return iContentPasswd ; 
+QString MockUpController::contentKeyPasswd()  const {
+    return iContentPasswd ;
 }
 
-void MockUpController::setProfileInUse(const Hash& aProfileHash) 
-{
-  iProfileHash = aProfileHash ; 
+void MockUpController::setProfileInUse(const Hash& aProfileHash) {
+    iProfileHash = aProfileHash ;
 }
 
-const Hash& MockUpController::profileInUse()
-{
-  return iProfileHash; 
-} 
+const Hash& MockUpController::profileInUse() {
+    return iProfileHash;
+}
 
 
 void MockUpController::startRetrievingContent(NetworkRequestExecutor::NetworkRequestQueueItem aReq,bool aIsBackgroundDl, ProtocolItemType aTypeOfExpectedObject) {
-  return ;
+    return ;
 }
 
 void MockUpController::storePrivateDataOfSelectedProfile(bool /*aPublishTrustListToo*/) {
-  return ;
+    return ;
 }
 
 void MockUpController::reStorePrivateDataOfSelectedProfile() {
-  return ; 
+    return ;
 }
 
 
 bool MockUpController::isContactInContactList(const Hash& aFingerPrint) const {
-  return true ; 
+    return true ;
 }
 
 
 QString MockUpController::displayableNameForProfile(const Hash& aProfileFingerPrint) const {
-  return "eino leino reino" ; 
+    return "eino leino reino" ;
 }
 
 void MockUpController::offerDisplayNameForProfile(const Hash& aProfileFingerPrint,
-						  const QString& aDisplayName,
-						  const bool iUpdatePersistenStorage) {
-  return ; 
+        const QString& aDisplayName,
+        const bool iUpdatePersistenStorage) {
+    return ;
 }
 
 void MockUpController::displayFileInfoOnUi(const BinaryFile& aFileMetadata) {
-  QLOG_STR("displayFileInfoOnUi file = " + aFileMetadata.iFileName) ; 
+    QLOG_STR("displayFileInfoOnUi file = " + aFileMetadata.iFileName) ;
 }

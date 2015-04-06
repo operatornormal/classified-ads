@@ -30,8 +30,8 @@ class ProfileModel ;
 class BinaryFileModel ;
 class ClassifiedAdsModel ;
 class PrivMessageModel ;
-class ContentEncryptionModel ; 
-class ProfileCommentModel ; 
+class ContentEncryptionModel ;
+class ProfileCommentModel ;
 class SearchModel ;
 
 /**
@@ -43,42 +43,42 @@ class SearchModel ;
  * behind this interface, in normal situation the normal datamodel.
  */
 class MModelProtocolInterface : public QObject {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  /**
-   * method for adding a network request
-   * @param aRequest is the request to add
-   * @return none
-   */
-  virtual void addNetworkRequest(NetworkRequestExecutor::NetworkRequestQueueItem&
-                                 aRequest) const = 0 ;
-  /**
-   * thread sync: this claims access to datamodel
-   */
-  virtual bool lock() = 0 ;
-  /**
-   * thread sync: releases data model to other threads
-   */
-  virtual void unlock() = 0 ;
-  /**
-   * method for getting node-specific datamodel
-   */
-  virtual MNodeModelProtocolInterface& nodeModel() const = 0 ;
-  /**
-   * method for getting profile-specific datamodel
-   */
-  virtual ProfileModel& profileModel() const = 0 ;
-  /**
-   * method for getting blob-specific datamodel
-   */
-  virtual BinaryFileModel& binaryFileModel() const = 0 ;
-  /** method for getting the ads datamodel */
-  virtual ClassifiedAdsModel& classifiedAdsModel() const = 0 ; 
-  /** method for getting the private message datamodel */
-  virtual PrivMessageModel& privateMessageModel() const = 0 ; 
-  /** method for getting the en/de-cryption part of the datamodel */
-  virtual ContentEncryptionModel& contentEncryptionModel() const = 0 ; 
-  virtual ProfileCommentModel& profileCommentModel() const = 0 ; /**< method for getting the comment datamodel */
-  virtual SearchModel* searchModel() const = 0 ; /**< method for getting the full text search datamodel */
+    /**
+     * method for adding a network request
+     * @param aRequest is the request to add
+     * @return none
+     */
+    virtual void addNetworkRequest(NetworkRequestExecutor::NetworkRequestQueueItem&
+                                   aRequest) const = 0 ;
+    /**
+     * thread sync: this claims access to datamodel
+     */
+    virtual bool lock() = 0 ;
+    /**
+     * thread sync: releases data model to other threads
+     */
+    virtual void unlock() = 0 ;
+    /**
+     * method for getting node-specific datamodel
+     */
+    virtual MNodeModelProtocolInterface& nodeModel() const = 0 ;
+    /**
+     * method for getting profile-specific datamodel
+     */
+    virtual ProfileModel& profileModel() const = 0 ;
+    /**
+     * method for getting blob-specific datamodel
+     */
+    virtual BinaryFileModel& binaryFileModel() const = 0 ;
+    /** method for getting the ads datamodel */
+    virtual ClassifiedAdsModel& classifiedAdsModel() const = 0 ;
+    /** method for getting the private message datamodel */
+    virtual PrivMessageModel& privateMessageModel() const = 0 ;
+    /** method for getting the en/de-cryption part of the datamodel */
+    virtual ContentEncryptionModel& contentEncryptionModel() const = 0 ;
+    virtual ProfileCommentModel& profileCommentModel() const = 0 ; /**< method for getting the comment datamodel */
+    virtual SearchModel* searchModel() const = 0 ; /**< method for getting the full text search datamodel */
 };
 #endif

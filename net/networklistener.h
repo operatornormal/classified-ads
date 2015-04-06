@@ -39,80 +39,80 @@ class ProtocolMessageParser ;
  * network connection.
  */
 class NetworkListener :
-  public QTcpServer,
-  public Connection::ConnectionObserver {
-  Q_OBJECT
+    public QTcpServer,
+    public Connection::ConnectionObserver {
+    Q_OBJECT
 public:
-  /**
-   * Constructor
-   * @param aController application controller for app state frobnication
-   * @param aModel data model reference for data storage
-   * @param aIpv6 if set to true, this class will listen in Ipv6 instead
-   *        of v4 and will not enumerate local network interfaces.
-   */
-  NetworkListener(MController *aController,
-                  Model *aModel) ;
-  /**
-   * Destructor
-   */
-  ~NetworkListener() ;
-  /**
-   * separate method for starting the listen. this now works with qt4.8
-   * but it seems like semantics of listen may change in qt5, where
-   * listening in QHostAddress::Any automatically means both v4 and v6.
-   * @param aIpv6 if true, tries to listen on both IPv6
-   *        and ipv4.
-   * @return true if listening started.
-   */
-  bool startListen(bool aIpv6) ;
+    /**
+     * Constructor
+     * @param aController application controller for app state frobnication
+     * @param aModel data model reference for data storage
+     * @param aIpv6 if set to true, this class will listen in Ipv6 instead
+     *        of v4 and will not enumerate local network interfaces.
+     */
+    NetworkListener(MController *aController,
+                    Model *aModel) ;
+    /**
+     * Destructor
+     */
+    ~NetworkListener() ;
+    /**
+     * separate method for starting the listen. this now works with qt4.8
+     * but it seems like semantics of listen may change in qt5, where
+     * listening in QHostAddress::Any automatically means both v4 and v6.
+     * @param aIpv6 if true, tries to listen on both IPv6
+     *        and ipv4.
+     * @return true if listening started.
+     */
+    bool startListen(bool aIpv6) ;
 
-  /**
-   * from ConnectionObserver
-   */
-  virtual bool dataReceived(const QByteArray& aData,
-                            Connection& aConnection) ;
-  /**
-   * From ConnectionObserver
-   * this is called by peer connection at close
-   */
-  virtual void connectionClosed(Connection *aDeletee) ;
-  /**
-   * From ConnectionObserver
-   * this is called by peer connection at successful open
-   */
-  virtual void connectionReady(Connection *aBusinessEntity)  ;
-  /**
-   * used in closing of app: stops accepting connections
-   */
-  void stopAccepting() ;
+    /**
+     * from ConnectionObserver
+     */
+    virtual bool dataReceived(const QByteArray& aData,
+                              Connection& aConnection) ;
+    /**
+     * From ConnectionObserver
+     * this is called by peer connection at close
+     */
+    virtual void connectionClosed(Connection *aDeletee) ;
+    /**
+     * From ConnectionObserver
+     * this is called by peer connection at successful open
+     */
+    virtual void connectionReady(Connection *aBusinessEntity)  ;
+    /**
+     * used in closing of app: stops accepting connections
+     */
+    void stopAccepting() ;
 protected:
-  void incomingConnection (int aSocketDescriptor ) ;
+    void incomingConnection (int aSocketDescriptor ) ;
 signals:
-  void error(QTcpSocket::SocketError socketError);
-  /**
-   * this signal is used to communicate (at least to publishing engine)
-   * status of connection attempt to particular node. network connection
-   * engine will spawn connections to more-or-less random nodes but
-   * publishing logic may ask for connections to specific nodes.
-   * this signal will communicate outcome of such requests
-   */
-  void nodeConnectionAttemptStatus(Connection::ConnectionState aStatus,
-                                   const Hash aHashOfAttemptedNode );
+    void error(QTcpSocket::SocketError socketError);
+    /**
+     * this signal is used to communicate (at least to publishing engine)
+     * status of connection attempt to particular node. network connection
+     * engine will spawn connections to more-or-less random nodes but
+     * publishing logic may ask for connections to specific nodes.
+     * this signal will communicate outcome of such requests
+     */
+    void nodeConnectionAttemptStatus(Connection::ConnectionState aStatus,
+                                     const Hash aHashOfAttemptedNode );
 private slots:
-  void broadCastReceived() ;
-  void threadIsDeleted() ;
+    void broadCastReceived() ;
+    void threadIsDeleted() ;
 private: // methods
-  void figureOutLocalAddresses() ;
+    void figureOutLocalAddresses() ;
 private: // data
-  MController *iController ;
-  Model *iModel ;
-  /** This animal here knows all incoming bytearrays */
-  ProtocolMessageParser *iParser ;
-  QUdpSocket iBroadCastListener ; 
-  /**
-   * used in closing of application: flag for not accepting
-   * connections any more 
-   */
-  bool iCanAccept ; 
+    MController *iController ;
+    Model *iModel ;
+    /** This animal here knows all incoming bytearrays */
+    ProtocolMessageParser *iParser ;
+    QUdpSocket iBroadCastListener ;
+    /**
+     * used in closing of application: flag for not accepting
+     * connections any more
+     */
+    bool iCanAccept ;
 } ;
 #endif

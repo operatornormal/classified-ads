@@ -25,37 +25,37 @@
 #include "../util/hash.h"
 #include "../mcontroller.h"
 
-class Model ; 
+class Model ;
 /**
  * @brief Model-class for performing a name-based search of profiles.
- * This is supposed to act as an underlying data-container for 
+ * This is supposed to act as an underlying data-container for
  * an user-interface view (QListView etc.)
  */
 class ProfileSearchModel: public QAbstractListModel {
- Q_OBJECT
-public: 
-   ProfileSearchModel(Model& aModel) ;
-   ~ProfileSearchModel() ; 
+    Q_OBJECT
+public:
+    ProfileSearchModel(Model& aModel) ;
+    ~ProfileSearchModel() ;
 
-   void setSearchString(const QString& aSearch) ; 
-   /**
-    * re-implemented from QAbstractListModel
-    * @return number of rows in list 
-    */
-   virtual int rowCount(const QModelIndex & parent = QModelIndex())  const  ; 
-   /**
-    * re-implemented from QAbstractListModel
-    * @return data to display in list
-    */
-   virtual QVariant data(const QModelIndex & index, int role = Qt::DisplayRole) const ;
+    void setSearchString(const QString& aSearch) ;
+    /**
+     * re-implemented from QAbstractListModel
+     * @return number of rows in list
+     */
+    virtual int rowCount(const QModelIndex & parent = QModelIndex())  const  ;
+    /**
+     * re-implemented from QAbstractListModel
+     * @return data to display in list
+     */
+    virtual QVariant data(const QModelIndex & index, int role = Qt::DisplayRole) const ;
 signals:
-  void error(MController::CAErrorSituation aError,
-             const QString& aExplanation) ;
+    void error(MController::CAErrorSituation aError,
+               const QString& aExplanation) ;
 private:// methods
-   void performSearch() ; 
+    void performSearch() ;
 private: // data
-   Model& iModel ; 
-   QList<QPair<Hash,QString> > iProfiles ; 
-   QString iSearchString ;
-} ; 
+    Model& iModel ;
+    QList<QPair<Hash,QString> > iProfiles ;
+    QString iSearchString ;
+} ;
 #endif

@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-    Classified Ads is Copyright (c) Antti Järvinen 2013. 
+    Classified Ads is Copyright (c) Antti Järvinen 2013.
 
     This file is part of Classified Ads.
 
@@ -33,99 +33,92 @@
 #include "../datamodel/contentencryptionmodel.h"
 #include <QFile>
 
-MockUpModel::MockUpModel( MController *aController ) : 
-  iNetworkRequests(NULL),
-  iController(aController),
-  iProfileModel(NULL),
-  iBinaryFileModel(NULL),
-  iCAModel(NULL),
-  iPrivMsgModel(NULL),
-  iContentEncryptionModel(NULL),
-  iProfileCommentModel(NULL),
-  iSearchModel(NULL)
-{
-  LOG_STR("MockUpModel::MockUpModel in\n") ; 
+MockUpModel::MockUpModel( MController *aController ) :
+    iNetworkRequests(NULL),
+    iController(aController),
+    iProfileModel(NULL),
+    iBinaryFileModel(NULL),
+    iCAModel(NULL),
+    iPrivMsgModel(NULL),
+    iContentEncryptionModel(NULL),
+    iProfileCommentModel(NULL),
+    iSearchModel(NULL) {
+    LOG_STR("MockUpModel::MockUpModel in\n") ;
 
-  SSL_load_error_strings() ;
-  SSL_library_init() ; 
-  QFile randomFile("/dev/urandom") ;
-  QByteArray randomBytes = randomFile.read(1024) ;
-  char *randomBytesPointer = randomBytes.data() ;
-  RAND_seed(randomBytesPointer, 1024);
-  iNodeModel = new MockUpNodeModel(iController) ; 
-  iProfileModel = new ProfileModel(aController, *this)  ; 
-  iBinaryFileModel = new BinaryFileModel(aController, *this) ;
-  iCAModel = new ClassifiedAdsModel(aController, *this) ;
-  iPrivMsgModel = new PrivMessageModel(aController, *this) ;
-  iProfileCommentModel = new ProfileCommentModel(aController, *this) ;
-  iContentEncryptionModel = new ContentEncryptionModel(aController, *this) ;
-  iSearchModel = new SearchModel(*this,*iController) ;
-  iSearchModel->setObjectName("CA SearchModel test") ; 
-  LOG_STR("MockUpModel::MockUpModel out\n") ; 
+    SSL_load_error_strings() ;
+    SSL_library_init() ;
+    QFile randomFile("/dev/urandom") ;
+    QByteArray randomBytes = randomFile.read(1024) ;
+    char *randomBytesPointer = randomBytes.data() ;
+    RAND_seed(randomBytesPointer, 1024);
+    iNodeModel = new MockUpNodeModel(iController) ;
+    iProfileModel = new ProfileModel(aController, *this)  ;
+    iBinaryFileModel = new BinaryFileModel(aController, *this) ;
+    iCAModel = new ClassifiedAdsModel(aController, *this) ;
+    iPrivMsgModel = new PrivMessageModel(aController, *this) ;
+    iProfileCommentModel = new ProfileCommentModel(aController, *this) ;
+    iContentEncryptionModel = new ContentEncryptionModel(aController, *this) ;
+    iSearchModel = new SearchModel(*this,*iController) ;
+    iSearchModel->setObjectName("CA SearchModel test") ;
+    LOG_STR("MockUpModel::MockUpModel out\n") ;
 }
 
-MockUpModel::~MockUpModel()
-{
-  delete iNetworkRequests ;
-  delete iNodeModel ; 
-  delete iProfileModel ;
-  delete iBinaryFileModel ; 
-  delete iCAModel ; 
-  delete iPrivMsgModel ; 
-  delete iProfileCommentModel ;
-  delete iContentEncryptionModel ;
-  delete iSearchModel;
-  LOG_STR("MockUpModel::~MockUpModel\n") ; 
+MockUpModel::~MockUpModel() {
+    delete iNetworkRequests ;
+    delete iNodeModel ;
+    delete iProfileModel ;
+    delete iBinaryFileModel ;
+    delete iCAModel ;
+    delete iPrivMsgModel ;
+    delete iProfileCommentModel ;
+    delete iContentEncryptionModel ;
+    delete iSearchModel;
+    LOG_STR("MockUpModel::~MockUpModel\n") ;
 }
 void MockUpModel::addNetworkRequest(NetworkRequestExecutor::NetworkRequestQueueItem&
-                                 aRequest) const  
-{
-  LOG_STR2(" MockUpModel::addNetworkRequest type %d\n", aRequest.iRequestType) ; 
-  if ( iNetworkRequests!= NULL ) {
-  iNetworkRequests->append(aRequest) ;
-  }
+                                    aRequest) const {
+    LOG_STR2(" MockUpModel::addNetworkRequest type %d\n", aRequest.iRequestType) ;
+    if ( iNetworkRequests!= NULL ) {
+        iNetworkRequests->append(aRequest) ;
+    }
 }
 
-bool MockUpModel::lock()  
-{
-  return iMutex.tryLock(100*1000); 
+bool MockUpModel::lock() {
+    return iMutex.tryLock(100*1000);
 }
 
-void MockUpModel::unlock()  
-{
-  iMutex.unlock() ; 
+void MockUpModel::unlock() {
+    iMutex.unlock() ;
 }
 
-MNodeModelProtocolInterface& MockUpModel::nodeModel() const  
-{
-  return *iNodeModel ; 
-} 
+MNodeModelProtocolInterface& MockUpModel::nodeModel() const {
+    return *iNodeModel ;
+}
 
-ProfileModel& MockUpModel::profileModel() const 
-{
-  return *iProfileModel ; 
+ProfileModel& MockUpModel::profileModel() const {
+    return *iProfileModel ;
 }
 
 BinaryFileModel& MockUpModel::binaryFileModel() const {
-  return *iBinaryFileModel ;
+    return *iBinaryFileModel ;
 }
 
 ClassifiedAdsModel& MockUpModel::classifiedAdsModel() const {
-  return *iCAModel ;
+    return *iCAModel ;
 }
 
 PrivMessageModel& MockUpModel::privateMessageModel() const {
-  return *iPrivMsgModel ;
+    return *iPrivMsgModel ;
 }
 
 ContentEncryptionModel& MockUpModel::contentEncryptionModel() const {
-  return *iContentEncryptionModel ;
+    return *iContentEncryptionModel ;
 }
 
 ProfileCommentModel& MockUpModel::profileCommentModel() const {
-  return *iProfileCommentModel ; 
+    return *iProfileCommentModel ;
 }
 
 SearchModel* MockUpModel::searchModel() const {
-  return iSearchModel ; 
+    return iSearchModel ;
 }
