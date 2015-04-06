@@ -109,8 +109,8 @@ void RetrievalEngine::run() {
 		if (  connectCandidate->nodeFingerPrint() != iController->getNode().nodeFingerPrint() ) {
 		  if ( iModel.nodeModel().isNodeAlreadyConnected(connectCandidate->nodeFingerPrint()) ) {
 		    sendQueryToNode(connectCandidate->nodeFingerPrint()) ; 
-		    delete connectCandidate ;
 		    QLOG_STR("In retrieve::processing node " + connectCandidate->nodeFingerPrint().toString() + " was already connected") ; 
+		    delete connectCandidate ;
 		  } else {
 		    iNodeCandidatesToTryQuery.append(connectCandidate->nodeFingerPrint()) ; 
 		    iModel.nodeModel().addNodeToConnectionWishList(connectCandidate) ;
