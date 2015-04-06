@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-       Classified Ads is Copyright (c) Antti Järvinen 2013. 
+       Classified Ads is Copyright (c) Antti Järvinen 2013.
 
        This file is part of Classified Ads.
 
@@ -28,34 +28,33 @@ class ProfileCommentListingModel ;
 /**
  * @brief class for displaying single profile comment in a list view
  */
-class ProfileCommentItemDelegate : public QStyledItemDelegate
-{
-  Q_OBJECT
+class ProfileCommentItemDelegate : public QStyledItemDelegate {
+    Q_OBJECT
 
 public:
-  /**
-   * Constructor 
-   * @param aListingModel is the datamodel part where content comes from
-   * @param aDrawableWidget is the container where these items will
-   *        be drawn. It is passed here because we want to query
-   *        its dimensions at runtime.
-   */
-  ProfileCommentItemDelegate(ProfileCommentListingModel& aListingModel,
-			     const QWidget& aDrawableWidget) ; 
-  /** destructor */
-  ~ProfileCommentItemDelegate() ; 
+    /**
+     * Constructor
+     * @param aListingModel is the datamodel part where content comes from
+     * @param aDrawableWidget is the container where these items will
+     *        be drawn. It is passed here because we want to query
+     *        its dimensions at runtime.
+     */
+    ProfileCommentItemDelegate(ProfileCommentListingModel& aListingModel,
+                               const QWidget& aDrawableWidget) ;
+    /** destructor */
+    ~ProfileCommentItemDelegate() ;
 protected:
-  /**
-   * implemented from class QStyledItemDelegate
-   */
-  void paint ( QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index ) const;
-  /**
-   * implemented from class QStyledItemDelegate
-   */
-  QSize sizeHint ( const QStyleOptionViewItem & option, const QModelIndex & index ) const;
+    /**
+     * implemented from class QStyledItemDelegate
+     */
+    void paint ( QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index ) const;
+    /**
+     * implemented from class QStyledItemDelegate
+     */
+    QSize sizeHint ( const QStyleOptionViewItem & option, const QModelIndex & index ) const;
 private:
-  ProfileCommentListingModel& iListingModel ; 
-  const QWidget& iDrawableWidget ; 
+    ProfileCommentListingModel& iListingModel ;
+    const QWidget& iDrawableWidget ;
 };
 
 

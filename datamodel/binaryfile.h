@@ -32,38 +32,38 @@ class MController ;
  * @ref BinaryFileModel. Lets decide that this class carries
  * the metadata only, actual octet-stream of the file
  * is retrieved using a QByteArray only, there is method
- * for that in the model. 
+ * for that in the model.
  */
 class BinaryFile {
 public:
-  /** enum for storing information if we have file locally or not */
-  enum LocalStorageStatus {
-    FileIsLocallyStored,
-    FileIsNotLocallyStored,
-    LocalStorageStatusUnknown
-  } ; 
-  BinaryFile(const Hash& aHash) ; /**< constructor */
-  ~BinaryFile() ; /**< destructor */
-  /**
-   * method for string that is shown to user about the file.
-   * Most often could be original name from filesystem but
-   * other explanation too..
-   * @return string to display to user
-   */
-  QString displayName() const ; 
-  QByteArray asJSon(const MController& aController) const ; /**< returns file data as JSon stream */
-  bool fromJSon(const QByteArray &aJSonBytes,
-		const MController& aController ) ; /**< parses json into members*/
-  const Hash iFingerPrint ; /**< file hash */
-  QString iMimeType ;  /**< what kind of data */
-  QString iDescription ; /**< what is inside */
-  QString iOwner ; /**< fingerprint of publisher */
-  QString iContentOwner ; /**< if someone owns the content, name or SHA1 fp */
-  QString iLicense ; /**< restriction in usage;PD or GPL or C-C or anything? */
-  QString iFileName ; /**< name of the file-system file */
-  quint32 iTimeOfPublish ; /**< seconds since 1-jan-1970 */
-  bool iIsEncrypted ;
-  bool iIsCompressed ; /**< needs to be in DB, not in JSon */
-  LocalStorageStatus iLocalStorageStatus ; /** file is stored locally, or not */
+    /** enum for storing information if we have file locally or not */
+    enum LocalStorageStatus {
+        FileIsLocallyStored,
+        FileIsNotLocallyStored,
+        LocalStorageStatusUnknown
+    } ;
+    BinaryFile(const Hash& aHash) ; /**< constructor */
+    ~BinaryFile() ; /**< destructor */
+    /**
+     * method for string that is shown to user about the file.
+     * Most often could be original name from filesystem but
+     * other explanation too..
+     * @return string to display to user
+     */
+    QString displayName() const ;
+    QByteArray asJSon(const MController& aController) const ; /**< returns file data as JSon stream */
+    bool fromJSon(const QByteArray &aJSonBytes,
+                  const MController& aController ) ; /**< parses json into members*/
+    const Hash iFingerPrint ; /**< file hash */
+    QString iMimeType ;  /**< what kind of data */
+    QString iDescription ; /**< what is inside */
+    QString iOwner ; /**< fingerprint of publisher */
+    QString iContentOwner ; /**< if someone owns the content, name or SHA1 fp */
+    QString iLicense ; /**< restriction in usage;PD or GPL or C-C or anything? */
+    QString iFileName ; /**< name of the file-system file */
+    quint32 iTimeOfPublish ; /**< seconds since 1-jan-1970 */
+    bool iIsEncrypted ;
+    bool iIsCompressed ; /**< needs to be in DB, not in JSon */
+    LocalStorageStatus iLocalStorageStatus ; /** file is stored locally, or not */
 } ;
 #endif

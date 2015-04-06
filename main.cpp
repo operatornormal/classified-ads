@@ -30,7 +30,7 @@ QApplication* app ; /**< The qt application, we need to have 1 instance */
 Controller* c ; /** Application controller, here as static for signal handlers */
 /** ipv6 addr with all bits zero, to denote an invalid addr */
 Q_IPV6ADDR KNullIpv6Addr ( QHostAddress("::0").toIPv6Address () ) ;
-/** 
+/**
  * Hash with all bits zero, to denote an invalid or non-used hash.
  * Some lucky dudette will have this generated for her profile fingerprint  :)
  */
@@ -42,10 +42,10 @@ Hash KNullHash ;
  * application
  */
 void sigINThandler(int) {
-  LOG_STR("SIGINT trapped..") ;
-  if ( app != NULL ) {
-    QApplication::quit() ;
-  }
+    LOG_STR("SIGINT trapped..") ;
+    if ( app != NULL ) {
+        QApplication::quit() ;
+    }
 }
 
 /**
@@ -53,10 +53,10 @@ void sigINThandler(int) {
  * lets have that for hiding the UI
  */
 void sigUSR1handler(int) {
-  LOG_STR("SIGUSR1 trapped..") ;
-  if ( c != NULL ) {
-    c->hideUI() ;
-  }
+    LOG_STR("SIGUSR1 trapped..") ;
+    if ( c != NULL ) {
+        c->hideUI() ;
+    }
 }
 
 /**
@@ -64,10 +64,10 @@ void sigUSR1handler(int) {
  * lets have that for showing the hidden UI
  */
 void sigUSR2handler(int) {
-  LOG_STR("SIGUSR2 trapped..") ;
-  if ( c != NULL ) {
-    c->showUI() ;
-  }
+    LOG_STR("SIGUSR2 trapped..") ;
+    if ( c != NULL ) {
+        c->showUI() ;
+    }
 }
 #endif
 
@@ -75,59 +75,56 @@ void sigUSR2handler(int) {
  * FZ - in the night of the iron sausage
  */
 int main(int argc, char *argv[]) {
-  KNullHash = Hash() ; 
+    KNullHash = Hash() ;
 #ifdef WIN32
-  WSADATA wsaData;
-  int nResult = WSAStartup(MAKEWORD(2,2), &wsaData);
-  if(nResult != NO_ERROR)
-    {
-      QLOG_STR( "WSAStartup() failed.");
-    } 
-  else 
-    {
-      QLOG_STR( "WSAStartup() success");
+    WSADATA wsaData;
+    int nResult = WSAStartup(MAKEWORD(2,2), &wsaData);
+    if(nResult != NO_ERROR) {
+        QLOG_STR( "WSAStartup() failed.");
+    } else {
+        QLOG_STR( "WSAStartup() success");
     }
 #endif
-  app = new QApplication (argc, argv);
+    app = new QApplication (argc, argv);
 
-  QTranslator qtTranslator;
-  qtTranslator.load("qt_" + QLocale::system().name(),
-		    QLibraryInfo::location(QLibraryInfo::TranslationsPath));
-  app->installTranslator(&qtTranslator);
+    QTranslator qtTranslator;
+    qtTranslator.load("qt_" + QLocale::system().name(),
+                      QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    app->installTranslator(&qtTranslator);
 
-  QTranslator myappTranslator;
-  myappTranslator.load(
+    QTranslator myappTranslator;
+    myappTranslator.load(
 #ifdef WIN32
-		       // apparently win32 runs the program
-		       // inside installation directory so no
-		       // directory needs to be specified
+        // apparently win32 runs the program
+        // inside installation directory so no
+        // directory needs to be specified
 #else
-		       QString("/usr/share/classified-ads/") + 
+        QString("/usr/share/classified-ads/") +
 #endif
-		       QString("classified_ads_") + QLocale::system().name());
-  app->installTranslator(&myappTranslator);
-  
-  // controller will actually start launching the application
-  c = new Controller(*app) ;
+        QString("classified_ads_") + QLocale::system().name());
+    app->installTranslator(&myappTranslator);
+
+    // controller will actually start launching the application
+    c = new Controller(*app) ;
 #if QT_VERSION < 0x050000
-  // without this qt4+qjson does not handle utf-8 well ; every
-  // byte in multi-byte unicode-sequences appears as separate
-  // character after the string is parsed back in windows environment.
-  // linux does some magick tricks to not fail due to broken utf-8.
-  QTextCodec *codec = QTextCodec::codecForName("UTF-8");
-  QTextCodec::setCodecForCStrings(codec);
-  QTextCodec::setCodecForTr(codec);
+    // without this qt4+qjson does not handle utf-8 well ; every
+    // byte in multi-byte unicode-sequences appears as separate
+    // character after the string is parsed back in windows environment.
+    // linux does some magick tricks to not fail due to broken utf-8.
+    QTextCodec *codec = QTextCodec::codecForName("UTF-8");
+    QTextCodec::setCodecForCStrings(codec);
+    QTextCodec::setCodecForTr(codec);
 #endif
 #ifndef WIN32
-  signal(SIGINT,sigINThandler); // if user presses CTRL-C
-  signal(SIGHUP,sigINThandler); // if user closed the terminal..
-  signal(SIGUSR1,sigUSR1handler);
-  signal(SIGUSR2,sigUSR2handler);
+    signal(SIGINT,sigINThandler); // if user presses CTRL-C
+    signal(SIGHUP,sigINThandler); // if user closed the terminal..
+    signal(SIGUSR1,sigUSR1handler);
+    signal(SIGUSR2,sigUSR2handler);
 #endif
-  int retval = app->exec() ;
-  delete c ;
-  delete app ;
-  return retval ;
+    int retval = app->exec() ;
+    delete c ;
+    delete app ;
+    return retval ;
 }
 
 

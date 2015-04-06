@@ -26,7 +26,7 @@
 #include <QVariant> // actually for qvariantmap
 
 class MController ;
-class Node ; 
+class Node ;
 
 /**
  * @brief Carrier-class for user-profile data
@@ -35,67 +35,67 @@ class Node ;
  * @ref ProfileModel.
  */
 class Profile : public QObject {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  Profile(const Hash& aHash) ; /**< constructor */
-  ~Profile() ; /**< destructor */
-  /**
-   * method for string that is shown to user about the profile.
-   * displays nickname or real name etc. or hash fingerprint
-   * if no other data avail. the string returned by this method
-   * must be no longer than 160 bytes in utf-8. some chinese 
-   * glyphs take up to 4 bytes so lets here limit max-len to 
-   * 40 characters. 
-   * @return string to display to user
-   */
-  QString displayName() const ; 
-  QByteArray asJSon(const MController& aController) const ; /**< returns profile data as JSon stream */
-  /**
-   * Method for getting profile as JSon / QVariant
-   */
-  QVariant asQVariant(const MController& aController) const ;
-  /**
-   * reverse of @ref asQVariant()
-   * @param aJSonAsQVariant is qvariant supposedly containing the profile data
-   * @param aController application controller 
-   * @param aOmitImage if set to true, possible image will not be loaded from
-   *        data ; in cases where we know that we'll need only subset of
-   *        information and no image, we can skip this costly operation
-   * @return true if QVariant looked like profile
-   */
-  bool setFromQVariant(const QVariantMap& aJSonAsQVariant,
-		       const MController& aController,
-		       bool aOmitImage = false) ;
-  /** 
-   * parses json into members
-   * @param aJSonBytes is json text supposedly containing the profile data
-   * @param aController application controller 
-   * @param aOmitImage if set to true, possible image will not be loaded from
-   *        data ; in cases where we know that we'll need only subset of
-   *        information and no image, we can skip this costly operation
-   */
-  bool fromJSon(const QByteArray &aJSonBytes,
-		const MController& aController,
-		bool aOmitImage = false ) ; 
-  const Hash iFingerPrint ; /**< profile encryption key fingerprint */
-  QString iNickName ;  /**< nickname selected by user */
-  QString iGreetingText ; /**< short hello-world by user */
-  QString iFirstName ; /**< given name */
-  QString iFamilyName ; /**< family name */
-  QString iCityCountry ; /**< location of residence */
-  QString iBTCAddress ; /**< payment addr */
-  QString iStateOfTheWorld ; /**< State of the world as explained by user.. */
-  bool iIsPrivate ;  /**< if set to true, profile is published encrypted */
-  quint32 iTimeOfPublish ; /**< seconds since 1-jan-1970 */
-  /**
-   * in case of private profile, list of reader encryption
-   * key fingerprints
-   */
-  QList<Hash> iProfileReaders  ;
-  QImage iProfilePicture ; /**< If V. Lenin is too fine for you */
-  QList<Hash> iSharedFiles  ; /**< Fingerprints of files shared */ 
-  Node* iNodeOfProfile ; /**< physical contact addr of this profile */
-  QList<Hash> iTrustList  ; /**< Fingerprints of trusted profiles */ 
+    Profile(const Hash& aHash) ; /**< constructor */
+    ~Profile() ; /**< destructor */
+    /**
+     * method for string that is shown to user about the profile.
+     * displays nickname or real name etc. or hash fingerprint
+     * if no other data avail. the string returned by this method
+     * must be no longer than 160 bytes in utf-8. some chinese
+     * glyphs take up to 4 bytes so lets here limit max-len to
+     * 40 characters.
+     * @return string to display to user
+     */
+    QString displayName() const ;
+    QByteArray asJSon(const MController& aController) const ; /**< returns profile data as JSon stream */
+    /**
+     * Method for getting profile as JSon / QVariant
+     */
+    QVariant asQVariant(const MController& aController) const ;
+    /**
+     * reverse of @ref asQVariant()
+     * @param aJSonAsQVariant is qvariant supposedly containing the profile data
+     * @param aController application controller
+     * @param aOmitImage if set to true, possible image will not be loaded from
+     *        data ; in cases where we know that we'll need only subset of
+     *        information and no image, we can skip this costly operation
+     * @return true if QVariant looked like profile
+     */
+    bool setFromQVariant(const QVariantMap& aJSonAsQVariant,
+                         const MController& aController,
+                         bool aOmitImage = false) ;
+    /**
+     * parses json into members
+     * @param aJSonBytes is json text supposedly containing the profile data
+     * @param aController application controller
+     * @param aOmitImage if set to true, possible image will not be loaded from
+     *        data ; in cases where we know that we'll need only subset of
+     *        information and no image, we can skip this costly operation
+     */
+    bool fromJSon(const QByteArray &aJSonBytes,
+                  const MController& aController,
+                  bool aOmitImage = false ) ;
+    const Hash iFingerPrint ; /**< profile encryption key fingerprint */
+    QString iNickName ;  /**< nickname selected by user */
+    QString iGreetingText ; /**< short hello-world by user */
+    QString iFirstName ; /**< given name */
+    QString iFamilyName ; /**< family name */
+    QString iCityCountry ; /**< location of residence */
+    QString iBTCAddress ; /**< payment addr */
+    QString iStateOfTheWorld ; /**< State of the world as explained by user.. */
+    bool iIsPrivate ;  /**< if set to true, profile is published encrypted */
+    quint32 iTimeOfPublish ; /**< seconds since 1-jan-1970 */
+    /**
+     * in case of private profile, list of reader encryption
+     * key fingerprints
+     */
+    QList<Hash> iProfileReaders  ;
+    QImage iProfilePicture ; /**< If V. Lenin is too fine for you */
+    QList<Hash> iSharedFiles  ; /**< Fingerprints of files shared */
+    Node* iNodeOfProfile ; /**< physical contact addr of this profile */
+    QList<Hash> iTrustList  ; /**< Fingerprints of trusted profiles */
 } ;
 #endif

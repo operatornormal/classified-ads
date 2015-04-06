@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-       Classified Ads is Copyright (c) Antti Järvinen 2013. 
+       Classified Ads is Copyright (c) Antti Järvinen 2013.
 
        This file is part of Classified Ads.
 
@@ -27,63 +27,62 @@
 #include "../textedit/textedit.h"
 
 class ProfileSearchModel ;
-class ProfileReadersListingModel ; 
+class ProfileReadersListingModel ;
 class Profile ;
-class CAListingModel ; 
+class CAListingModel ;
 /**
  * @brief class for allowing posting of new classified ad
  *
  * Inherits @ref DialogBase via @ref TextEdit where most editing
- * functionality comes from. 
+ * functionality comes from.
  */
-class NewClassifiedAdDialog : public TextEdit
-{
-  Q_OBJECT
+class NewClassifiedAdDialog : public TextEdit {
+    Q_OBJECT
 
 public:
-  /**
-   * Constructor.
-   *
-   * @param aParent is owner-window of this dialog
-   * @param aController application controller reference
-   * @param aAboutComboxIndex index of combobox of "about" in classification-selection
-   * @param aRegardingComboxIndex index of combobox of "regarding" in classification-selection
-   * @param aWhereComboxIndex index of combobox of "in" in classification-selection
-   * @param aAboutComboText text of combobox in of "about" in classification-selection ; this may be text
-   *                        typed by user, in which case the index (aAboutComboxIndex) is ignored
-   * @param aRegardingComboText  text of combobox in of "regarding" in classification-selection 
-   * @param aWhereComboxText  text of combobox in of "where" in classification-selection 
-   * @param aSelectedProfile profile doing the sending
-   * @param aReferences if CA is reply to another CA, this is article referenced. NULL 
-   *                    if article is start of a new thread. 
-   * @param aSubject if CA is reply to another CA, this is subject of 
-   *                 the original posting 
-   */
-  NewClassifiedAdDialog(QWidget *aParent,
-			MController* aController,
-			int aAboutComboxIndex ,
-			int aRegardingComboxIndex ,
-			int aWhereComboxIndex ,
-			const QString& aAboutComboText,
-			const QString& aRegardingComboText,
-			const QString& aWhereComboxText,
-			Profile& aSelectedProfile,
-			CAListingModel& aCaListingModel,
-			const Hash* aReferences = NULL,
-			const QString* aSubject = NULL );
-  /** destructor */
-  ~NewClassifiedAdDialog();
+    /**
+     * Constructor.
+     *
+     * @param aParent is owner-window of this dialog
+     * @param aController application controller reference
+     * @param aAboutComboxIndex index of combobox of "about" in classification-selection
+     * @param aRegardingComboxIndex index of combobox of "regarding" in classification-selection
+     * @param aWhereComboxIndex index of combobox of "in" in classification-selection
+     * @param aAboutComboText text of combobox in of "about" in classification-selection ; this may be text
+     *                        typed by user, in which case the index (aAboutComboxIndex) is ignored
+     * @param aRegardingComboText  text of combobox in of "regarding" in classification-selection
+     * @param aWhereComboxText  text of combobox in of "where" in classification-selection
+     * @param aSelectedProfile profile doing the sending
+     * @param aReferences if CA is reply to another CA, this is article referenced. NULL
+     *                    if article is start of a new thread.
+     * @param aSubject if CA is reply to another CA, this is subject of
+     *                 the original posting
+     */
+    NewClassifiedAdDialog(QWidget *aParent,
+                          MController* aController,
+                          int aAboutComboxIndex ,
+                          int aRegardingComboxIndex ,
+                          int aWhereComboxIndex ,
+                          const QString& aAboutComboText,
+                          const QString& aRegardingComboText,
+                          const QString& aWhereComboxText,
+                          Profile& aSelectedProfile,
+                          CAListingModel& aCaListingModel,
+                          const Hash* aReferences = NULL,
+                          const QString* aSubject = NULL );
+    /** destructor */
+    ~NewClassifiedAdDialog();
 
 private slots:
-  void okButtonClicked() ;
-  void cancelButtonClicked() ;
+    void okButtonClicked() ;
+    void cancelButtonClicked() ;
 signals:
-  void error(MController::CAErrorSituation aError,
-	     const QString& aExplanation) ;
+    void error(MController::CAErrorSituation aError,
+               const QString& aExplanation) ;
 private:
-  Ui_newCaDialog ui ; 
-  Hash iReferences ; /**< if we're referencing another CA, this is the FP */
-  CAListingModel& iCAListingModel ;
+    Ui_newCaDialog ui ;
+    Hash iReferences ; /**< if we're referencing another CA, this is the FP */
+    CAListingModel& iCAListingModel ;
 };
 
 #endif

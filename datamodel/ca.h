@@ -24,7 +24,7 @@
 #include "../util/hash.h" // for class Hash  
 
 class MController ;
-class Profile ; 
+class Profile ;
 
 /**
  * @brief Carrier-class for classified ad
@@ -34,38 +34,38 @@ class Profile ;
  */
 class CA {
 public:
-  CA() ; /**< constructor */
-  ~CA() ; /**< destructor */
-  /**
-   * method for string that is shown to user about the ad.
-   *
-   * @return string to display to user
-   */
-  QString displayName() const ; 
-  QByteArray asJSon(const MController& aController) const ; /**< returns ad data as JSon stream */
-  bool fromJSon(const QByteArray &aJSonBytes,
-		const MController& aController ) ; /**< parses json into members*/
-  /** hash of the message text .. more specifically hash
-   * of the ad when it is serialized into json */
-  Hash iFingerPrint ; 
-  QString iSenderName ;  /**< nickname/display-name of sender ; may empty if private profile */
-  Hash iSenderHash ; /**< profile fingerprint of the sender */
-  quint32 iTimeOfPublish ; /**< seconds since 1-jan-1970 */
-  /**
-   * file attachements ; they're published as normal binary blobs and 
-   * then just listed here 
-   */
-  QList<Hash> iAttachedFiles ; 
-  QString iSubject ; /**< Subject of the post */
-  Hash iReplyTo ; /**< Possible reference to another post that this is reply to */
-  QString iGroup ; /**< about-concerning-where -string - a bit like usenet newsgroup */
-  QString iMessageText ; /**< actual message here */
-  QByteArray iProfileKey ; /**< in case of private profile, include only key */
-  int iAboutComboBoxIndex ;
-  int iConcernsComboBoxIndex ;
-  int iInComboBoxIndex ;
-  QString iAboutComboBoxText ;
-  QString iConcernsComboBoxText ;
-  QString iInComboBoxText ;
+    CA() ; /**< constructor */
+    ~CA() ; /**< destructor */
+    /**
+     * method for string that is shown to user about the ad.
+     *
+     * @return string to display to user
+     */
+    QString displayName() const ;
+    QByteArray asJSon(const MController& aController) const ; /**< returns ad data as JSon stream */
+    bool fromJSon(const QByteArray &aJSonBytes,
+                  const MController& aController ) ; /**< parses json into members*/
+    /** hash of the message text .. more specifically hash
+     * of the ad when it is serialized into json */
+    Hash iFingerPrint ;
+    QString iSenderName ;  /**< nickname/display-name of sender ; may empty if private profile */
+    Hash iSenderHash ; /**< profile fingerprint of the sender */
+    quint32 iTimeOfPublish ; /**< seconds since 1-jan-1970 */
+    /**
+     * file attachements ; they're published as normal binary blobs and
+     * then just listed here
+     */
+    QList<Hash> iAttachedFiles ;
+    QString iSubject ; /**< Subject of the post */
+    Hash iReplyTo ; /**< Possible reference to another post that this is reply to */
+    QString iGroup ; /**< about-concerning-where -string - a bit like usenet newsgroup */
+    QString iMessageText ; /**< actual message here */
+    QByteArray iProfileKey ; /**< in case of private profile, include only key */
+    int iAboutComboBoxIndex ;
+    int iConcernsComboBoxIndex ;
+    int iInComboBoxIndex ;
+    QString iAboutComboBoxText ;
+    QString iConcernsComboBoxText ;
+    QString iInComboBoxText ;
 } ;
 #endif

@@ -55,53 +55,52 @@ QT_FORWARD_DECLARE_CLASS(QTextEdit)
 QT_FORWARD_DECLARE_CLASS(QTextCharFormat)
 QT_FORWARD_DECLARE_CLASS(QMenu)
 
-class QLayout ; 
-class QWidget ; 
-class QMenuBar ; 
-class QPrinter ; 
+class QLayout ;
+class QWidget ;
+class QMenuBar ;
+class QPrinter ;
 class QToolBar ;
 
 /**
- * @brief text editor class. 
- * 
+ * @brief text editor class.
+ *
  * This is inteneded for inheritance for dialogs that allow editing
- * of content. Implements a very nice rich text editor. 
+ * of content. Implements a very nice rich text editor.
  */
-class TextEdit : public DialogBase
-{
+class TextEdit : public DialogBase {
     Q_OBJECT
 
 public:
-  /**
-   * Constructor. Does very basic init only, method 
-   * @ref TextEdit::initializeTextEditor must be called
-   * before this class is functional
-   */
-  TextEdit(QWidget* aParent,
-	   MController* aController,
-	   Profile& aSelectedProfile);
+    /**
+     * Constructor. Does very basic init only, method
+     * @ref TextEdit::initializeTextEditor must be called
+     * before this class is functional
+     */
+    TextEdit(QWidget* aParent,
+             MController* aController,
+             Profile& aSelectedProfile);
 
-  /** destructor */
-  ~TextEdit() ; 
+    /** destructor */
+    ~TextEdit() ;
 
     /**
-     * Actual initialization of the editor. 
-     * 
+     * Actual initialization of the editor.
+     *
      * @param aTextEdit pointer to actual editing area, allocated
      *        by inheriting class that has UI-layout. Inheriting class
      *        remains responsible to delete the editor after use.
      */
-  void initializeTextEditor(QTextEdit *aTextEdit,
-			    QLayout *aLayOutForMenu,
-			    QLayout* aWidgetForActionsUpper,
-			    QLayout* aWidgetForActionsLower) ; 
+    void initializeTextEditor(QTextEdit *aTextEdit,
+                              QLayout *aLayOutForMenu,
+                              QLayout* aWidgetForActionsUpper,
+                              QLayout* aWidgetForActionsLower) ;
 public slots:
     /**
      * this slot is called when user has finished entering a link
-     * and it is ready to be included in the document 
+     * and it is ready to be included in the document
      */
     virtual void linkReady(const QString& aLinkAddress,
-			   const QString& aLinkLabel) ;
+                           const QString& aLinkLabel) ;
 protected:
     virtual void closeEvent(QCloseEvent *e);
 private:
@@ -141,28 +140,30 @@ private:
     void colorChanged(const QColor &c);
     void alignmentChanged(Qt::Alignment a);
     /** method for adding editing action to designated area */
-    void addAction(QAction* aAction) ; 
-    void addAction(QWidget* aAction,bool aLower=true) ; 
+    void addAction(QAction* aAction) ;
+    void addAction(QWidget* aAction,bool aLower=true) ;
     /** returns dialog menu bar */
-    QMenuBar* menuBar() { return iDialogMenuBar ; } ; 
+    QMenuBar* menuBar() {
+        return iDialogMenuBar ;
+    } ;
 protected: // variables
     QTextEdit *textEdit; /**< holds the text being edited */
 private: // variables
     QAction *actionSave,
-        *actionTextBold,
-        *actionTextUnderline,
-        *actionTextItalic,
-        *actionTextColor,
-        *actionAlignLeft,
-        *actionAlignCenter,
-        *actionAlignRight,
-        *actionAlignJustify,
-        *actionUndo,
-        *actionRedo,
-        *actionCut,
-        *actionCopy,
-      *actionPaste,
-      *actionInsertLink;
+            *actionTextBold,
+            *actionTextUnderline,
+            *actionTextItalic,
+            *actionTextColor,
+            *actionAlignLeft,
+            *actionAlignCenter,
+            *actionAlignRight,
+            *actionAlignJustify,
+            *actionUndo,
+            *actionRedo,
+            *actionCut,
+            *actionCopy,
+            *actionPaste,
+            *actionInsertLink;
 
     QComboBox *comboStyle;
     QFontComboBox *comboFont;
@@ -170,9 +171,9 @@ private: // variables
 
     QToolBar *tb;
     QString fileName;
-    QLayout* iWidgetForActionsUpper ; 
-    QLayout* iWidgetForActionsLower ; 
-    QMenuBar* iDialogMenuBar ; 
+    QLayout* iWidgetForActionsUpper ;
+    QLayout* iWidgetForActionsLower ;
+    QMenuBar* iDialogMenuBar ;
 };
 
 #endif

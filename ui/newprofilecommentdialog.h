@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-       Classified Ads is Copyright (c) Antti Järvinen 2013. 
+       Classified Ads is Copyright (c) Antti Järvinen 2013.
 
        This file is part of Classified Ads.
 
@@ -27,58 +27,57 @@
 #include "../datamodel/profile.h"
 #include "../textedit/textedit.h"
 
-class ProfileCommentListingModel ; 
+class ProfileCommentListingModel ;
 
 /**
  * @brief class for allowing posting of a comment about user profile
  *
  */
-class NewProfileCommentDialog : public TextEdit
-{
-  Q_OBJECT
+class NewProfileCommentDialog : public TextEdit {
+    Q_OBJECT
 
 public:
-  /**
-   * Constructor.
-   *
-   * @param aParent is owner-window of this dialog
-   * @param aController application controller reference
-   * @param aCommentedProfile is fingerprint of the profile
-   *        that is about to be commented. If KNullHash, then
-   *        dialog will open with empty recipient
-   * @param aSubject if comment is reply to another comment, this is subject of 
-   *                 the original posting  
-   * @param aSelectedProfile profile doing the sending
-   * @param aReferencesMsg if msg is reply to another msg, this is article referenced. NULL 
-   *                    if article is start of a new thread. 
-   */
-  NewProfileCommentDialog (QWidget *aParent,
-			   MController* aController,
-			   const QString& aCommentedProfile,
-			   const QString& aSubject,
-			   Profile& aSelectedProfile,
-			   ProfileCommentListingModel& aCommentListingModel,
-			   const Hash& aReferencesMsg = KNullHash,
-			   const Hash& aReferencesCa = KNullHash,
-			   const Hash& aRecipientsNode = KNullHash);
-  /** destructor */
-  ~NewProfileCommentDialog ();
+    /**
+     * Constructor.
+     *
+     * @param aParent is owner-window of this dialog
+     * @param aController application controller reference
+     * @param aCommentedProfile is fingerprint of the profile
+     *        that is about to be commented. If KNullHash, then
+     *        dialog will open with empty recipient
+     * @param aSubject if comment is reply to another comment, this is subject of
+     *                 the original posting
+     * @param aSelectedProfile profile doing the sending
+     * @param aReferencesMsg if msg is reply to another msg, this is article referenced. NULL
+     *                    if article is start of a new thread.
+     */
+    NewProfileCommentDialog (QWidget *aParent,
+                             MController* aController,
+                             const QString& aCommentedProfile,
+                             const QString& aSubject,
+                             Profile& aSelectedProfile,
+                             ProfileCommentListingModel& aCommentListingModel,
+                             const Hash& aReferencesMsg = KNullHash,
+                             const Hash& aReferencesCa = KNullHash,
+                             const Hash& aRecipientsNode = KNullHash);
+    /** destructor */
+    ~NewProfileCommentDialog ();
 
 private slots:
-  void okButtonClicked() ;
-  void cancelButtonClicked() ;
+    void okButtonClicked() ;
+    void cancelButtonClicked() ;
 signals:
-  void error(MController::CAErrorSituation aError,
-	     const QString& aExplanation) ;
+    void error(MController::CAErrorSituation aError,
+               const QString& aExplanation) ;
 private: // methods
-  // if recipients node is not known, here try finding out one
-  Hash tryFindRecipientNode(const Hash& aRecipientFingerPrint) ;
+    // if recipients node is not known, here try finding out one
+    Hash tryFindRecipientNode(const Hash& aRecipientFingerPrint) ;
 private:
-  Ui_newProfileCommentDialog ui ; 
-  Hash iReferencesMsg ; /**< if we're referencing another msg, this is the FP */
-  Hash iReferencesCa ; /**< if we're referencing ca, this is the FP */
-  Hash iRecipientsNode ; 
-  ProfileCommentListingModel& iCommentListingModel ; 
+    Ui_newProfileCommentDialog ui ;
+    Hash iReferencesMsg ; /**< if we're referencing another msg, this is the FP */
+    Hash iReferencesCa ; /**< if we're referencing ca, this is the FP */
+    Hash iRecipientsNode ;
+    ProfileCommentListingModel& iCommentListingModel ;
 };
 
 #endif

@@ -26,62 +26,62 @@
 #include "../mcontroller.h"
 
 class BinaryFile ;
-class Model ; 
+class Model ;
 /**
  * @brief Model-class for helping display of shared binary blobs,
  *        usually from a profile
  */
 class BinaryFileListingModel: public QAbstractTableModel {
-  Q_OBJECT
-public: 
-  BinaryFileListingModel(QList<Hash>& aFilesToList) ;/**< Constructor */
-  ~BinaryFileListingModel() ; /**< Destructor */
+    Q_OBJECT
+public:
+    BinaryFileListingModel(QList<Hash>& aFilesToList) ;/**< Constructor */
+    ~BinaryFileListingModel() ; /**< Destructor */
 
-  /**
-   * method for removing a reader.
-   * too.
-   * @param aFingerPrint is fingerprint of the file to add
-   */
-  void addFile(const Hash& aFingerPrint) ; 
-  /**
-   * method for removing a file.
-   * too.
-   * @param aFingerPrint is fingerprint of the file to remove
-   */
-  void removeFile(const Hash& aFingerPrint) ; 
+    /**
+     * method for removing a reader.
+     * too.
+     * @param aFingerPrint is fingerprint of the file to add
+     */
+    void addFile(const Hash& aFingerPrint) ;
+    /**
+     * method for removing a file.
+     * too.
+     * @param aFingerPrint is fingerprint of the file to remove
+     */
+    void removeFile(const Hash& aFingerPrint) ;
 
-  /**
-   * method for retrieving display-name of a file
-   */
-  QString fileDisplayNameByFingerPrint(const Hash& aFingerPrint)  ;
+    /**
+     * method for retrieving display-name of a file
+     */
+    QString fileDisplayNameByFingerPrint(const Hash& aFingerPrint)  ;
 
-  /**
-   * re-implemented from QAbstractTableModel
-   * @return number of rows in list 
-   */
-   virtual int rowCount(const QModelIndex & parent = QModelIndex())  const  ; 
-  /**
-   * re-implemented from QAbstractTableModel
-   * @return number of columns in model
-   */
-  virtual int columnCount ( const QModelIndex & parent = QModelIndex() ) const ;
-  /**
-   * re-implemented from QAbstractTableModel
-   * @return data to display in list
-   */
-  virtual QVariant data(const QModelIndex & index, int role = Qt::DisplayRole) const ;
-  virtual QVariant headerData(int aSection, Qt::Orientation orientation, int role) const ;
-  /**
-   * method for emptying model contents when viewed profile changes
-   */
-  void clear() ; 
+    /**
+     * re-implemented from QAbstractTableModel
+     * @return number of rows in list
+     */
+    virtual int rowCount(const QModelIndex & parent = QModelIndex())  const  ;
+    /**
+     * re-implemented from QAbstractTableModel
+     * @return number of columns in model
+     */
+    virtual int columnCount ( const QModelIndex & parent = QModelIndex() ) const ;
+    /**
+     * re-implemented from QAbstractTableModel
+     * @return data to display in list
+     */
+    virtual QVariant data(const QModelIndex & index, int role = Qt::DisplayRole) const ;
+    virtual QVariant headerData(int aSection, Qt::Orientation orientation, int role) const ;
+    /**
+     * method for emptying model contents when viewed profile changes
+     */
+    void clear() ;
 signals:
-  void error(MController::CAErrorSituation aError,
-             const QString& aExplanation) ;
+    void error(MController::CAErrorSituation aError,
+               const QString& aExplanation) ;
 private: // methods
-  void updateFileDataInArray( const Hash& aFingerPrint,bool aEmit ) ; 
+    void updateFileDataInArray( const Hash& aFingerPrint,bool aEmit ) ;
 private: // data
-  QList<Hash>& iFilesToList ;
-  QList<QPair<Hash,QString> > iNamesAndFingerPrints ; 
-} ; 
+    QList<Hash>& iFilesToList ;
+    QList<QPair<Hash,QString> > iNamesAndFingerPrints ;
+} ;
 #endif

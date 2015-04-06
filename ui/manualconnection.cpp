@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-       Classified Ads is Copyright (c) Antti Järvinen 2013. 
+       Classified Ads is Copyright (c) Antti Järvinen 2013.
 
        This file is part of Classified Ads.
 
@@ -28,81 +28,78 @@
 #include <QHostInfo>
 
 ManualConnectionDialog::ManualConnectionDialog(QWidget *aParent,
-					       MController& aController)
-  : QDialog(aParent),
-    iController(aController)
-{
-  ui.setupUi(this) ; 
+        MController& aController)
+    : QDialog(aParent),
+      iController(aController) {
+    ui.setupUi(this) ;
 
-  connect(ui.connectionDlgButtonBox, SIGNAL(accepted()), 
-	  this, SLOT(addButtonClicked()));
-  connect(this, SIGNAL(rejected()),
-	  this, SLOT(deleteLater())) ; 
-  adjustSize() ; 
+    connect(ui.connectionDlgButtonBox, SIGNAL(accepted()),
+            this, SLOT(addButtonClicked()));
+    connect(this, SIGNAL(rejected()),
+            this, SLOT(deleteLater())) ;
+    adjustSize() ;
 }
 
-ManualConnectionDialog::~ManualConnectionDialog()
-{
-  LOG_STR("ManualConnectionDialog::~ManualConnectionDialog\n") ;
+ManualConnectionDialog::~ManualConnectionDialog() {
+    LOG_STR("ManualConnectionDialog::~ManualConnectionDialog\n") ;
 }
 
-void ManualConnectionDialog::addButtonClicked()
-{
-  LOG_STR("ManualConnectionDialog::addButtonClicked()\n") ;
-  const bool hasIpv6 =
-    !Connection::Ipv6AddressesEqual(iController.getNode().ipv6Addr(),
-                                    KNullIpv6Addr) ;
-  QMessageBox msgBox;
-  msgBox.setText(tr("DNS lookup failure")) ;
-  msgBox.setStandardButtons( QMessageBox::Ok );
-  bool isAddressSet (false) ; 
-  if ( ui.addressEdit->text().length() > 0 ) {
-    QLOG_STR("Entered network addr " + ui.addressEdit->text()) ;
-    QHostAddress addrToConnect ; 
-    QHostInfo info = QHostInfo::fromName(ui.addressEdit->text()) ;
-    if ( info.error() == QHostInfo::NoError ) {
-      // check for ipv6 addr if we have one
-      if ( hasIpv6 ) {
-	foreach ( const QHostAddress& result,
-		  info.addresses() ) {
-	  if ( result.protocol() == QAbstractSocket::IPv6Protocol ) {
-	    isAddressSet = true ; 
-	    addrToConnect.setAddress(result.toIPv6Address()) ; 
-	    QLOG_STR("Found valid IPv6 addr " + addrToConnect.toString()) ;
-	    break  ;
-	  }
-	}
-      }
-      if ( isAddressSet == false ) {
-	foreach ( const QHostAddress& result,
-		  info.addresses() ) {
-	  if ( result.protocol() == QAbstractSocket::IPv4Protocol ) {
-	    isAddressSet = true ; 
-	    addrToConnect.setAddress(result.toIPv4Address()) ; 
-	    QLOG_STR("Found valid IPv4 addr " + addrToConnect.toString()) ;
-	    break  ;
-	  }
-	}
-      }
-      if ( isAddressSet ) {
-	Node* n = new Node(KNullHash,
-			   ui.portEdit->value()) ;
-	if ( addrToConnect.protocol() == QAbstractSocket::IPv4Protocol ) {
-	  n->setIpv4Addr(addrToConnect.toIPv4Address()) ;
-	} else {
-	  n->setIpv6Addr(addrToConnect.toIPv6Address()) ;
-	}
-	iController.model().nodeModel().addNodeToConnectionWishList(n) ;
-	// nodemodel will delete n 
-	close() ;
-	deleteLater() ; 
-      } else {
-	msgBox.exec();
-      }
-    } else {
-      msgBox.exec();
+void ManualConnectionDialog::addButtonClicked() {
+    LOG_STR("ManualConnectionDialog::addButtonClicked()\n") ;
+    const bool hasIpv6 =
+        !Connection::Ipv6AddressesEqual(iController.getNode().ipv6Addr(),
+                                        KNullIpv6Addr) ;
+    QMessageBox msgBox;
+    msgBox.setText(tr("DNS lookup failure")) ;
+    msgBox.setStandardButtons( QMessageBox::Ok );
+    bool isAddressSet (false) ;
+    if ( ui.addressEdit->text().length() > 0 ) {
+        QLOG_STR("Entered network addr " + ui.addressEdit->text()) ;
+        QHostAddress addrToConnect ;
+        QHostInfo info = QHostInfo::fromName(ui.addressEdit->text()) ;
+        if ( info.error() == QHostInfo::NoError ) {
+            // check for ipv6 addr if we have one
+            if ( hasIpv6 ) {
+                foreach ( const QHostAddress& result,
+                          info.addresses() ) {
+                    if ( result.protocol() == QAbstractSocket::IPv6Protocol ) {
+                        isAddressSet = true ;
+                        addrToConnect.setAddress(result.toIPv6Address()) ;
+                        QLOG_STR("Found valid IPv6 addr " + addrToConnect.toString()) ;
+                        break  ;
+                    }
+                }
+            }
+            if ( isAddressSet == false ) {
+                foreach ( const QHostAddress& result,
+                          info.addresses() ) {
+                    if ( result.protocol() == QAbstractSocket::IPv4Protocol ) {
+                        isAddressSet = true ;
+                        addrToConnect.setAddress(result.toIPv4Address()) ;
+                        QLOG_STR("Found valid IPv4 addr " + addrToConnect.toString()) ;
+                        break  ;
+                    }
+                }
+            }
+            if ( isAddressSet ) {
+                Node* n = new Node(KNullHash,
+                                   ui.portEdit->value()) ;
+                if ( addrToConnect.protocol() == QAbstractSocket::IPv4Protocol ) {
+                    n->setIpv4Addr(addrToConnect.toIPv4Address()) ;
+                } else {
+                    n->setIpv6Addr(addrToConnect.toIPv6Address()) ;
+                }
+                iController.model().nodeModel().addNodeToConnectionWishList(n) ;
+                // nodemodel will delete n
+                close() ;
+                deleteLater() ;
+            } else {
+                msgBox.exec();
+            }
+        } else {
+            msgBox.exec();
+        }
     }
-  }
 }
 
 

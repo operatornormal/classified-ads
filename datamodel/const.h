@@ -27,11 +27,11 @@
  *
  * file for application-wide constants for various purposes
  */
-static const unsigned KMaxRowsInTableNode ( 10000 ) ; 
-static const unsigned KMaxRowsInTableProfile ( 50000 ) ; 
-static const unsigned KMaxRowsInTableProfileComment ( 50000 ) ; 
-static const unsigned KMaxRowsInTableBinaryFile ( 50000 ) ; 
-static const unsigned KMaxRowsInTableClassified_Ad ( 50000 ) ; 
-static const unsigned KMaxRowsInTablePrivate_Message ( 50000 ) ; 
+static const unsigned KMaxRowsInTableNode ( 10000 ) ;
+static const unsigned KMaxRowsInTableProfile ( 50000 ) ;
+static const unsigned KMaxRowsInTableProfileComment ( 50000 ) ;
+static const unsigned KMaxRowsInTableBinaryFile ( 50000 ) ;
+static const unsigned KMaxRowsInTableClassified_Ad ( 50000 ) ;
+static const unsigned KMaxRowsInTablePrivate_Message ( 50000 ) ;
 
 #endif

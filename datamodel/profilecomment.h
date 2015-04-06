@@ -37,46 +37,46 @@
  */
 class ProfileComment  {
 public:
-  /**
-   * Constructor. Fingerprint must be given, this is normal when
-   * fetching a comment from storage. When publishing a new comment,
-   * the fingerprint naturally is not known in advance, in which
-   * case KNullHash may be used and real fingerprint can be then
-   * updated during publish-process
-   */
-  ProfileComment(const Hash& aHash = KNullHash ) ; /**< constructor */
-  ~ProfileComment() ; /**< destructor */
+    /**
+     * Constructor. Fingerprint must be given, this is normal when
+     * fetching a comment from storage. When publishing a new comment,
+     * the fingerprint naturally is not known in advance, in which
+     * case KNullHash may be used and real fingerprint can be then
+     * updated during publish-process
+     */
+    ProfileComment(const Hash& aHash = KNullHash ) ; /**< constructor */
+    ~ProfileComment() ; /**< destructor */
 
-  QByteArray asJSon(const MController& aController) const ; /**< returns profile comment data as JSon stream */
-  bool fromJSon(const QByteArray &aJSonBytes,
-		const MController& aController ) ; /**< parses json into members*/
-  /**
-   * Method for getting profile comment as JSon / QVariant
-   */
-  QVariant asQVariant(const MController& aController) const ;
-  /**
-   * reverse of @ref asQVariant()
-   * @return true if QVariant looked like profile
-   */
-  bool setFromQVariant(const QVariantMap& aJSonAsQVariant,
-		       const MController& aController) ;
+    QByteArray asJSon(const MController& aController) const ; /**< returns profile comment data as JSon stream */
+    bool fromJSon(const QByteArray &aJSonBytes,
+                  const MController& aController ) ; /**< parses json into members*/
+    /**
+     * Method for getting profile comment as JSon / QVariant
+     */
+    QVariant asQVariant(const MController& aController) const ;
+    /**
+     * reverse of @ref asQVariant()
+     * @return true if QVariant looked like profile
+     */
+    bool setFromQVariant(const QVariantMap& aJSonAsQVariant,
+                         const MController& aController) ;
 
-  // data is also public
-  Hash iFingerPrint ; /**< fingerprint of the comment */
-  Hash iProfileFingerPrint ; /**< fingerprint of the profile commented */
-  Hash iCommentorHash ; /**< fingerprint of profile that posted the comment */
-  QList<Hash> iAttachedFiles ; 
-  QString iCommentText ; 
-  QString iSubject ;
-  bool iIsPrivate ;  /**< if set to true, profile, and this comment too, 
+    // data is also public
+    Hash iFingerPrint ; /**< fingerprint of the comment */
+    Hash iProfileFingerPrint ; /**< fingerprint of the profile commented */
+    Hash iCommentorHash ; /**< fingerprint of profile that posted the comment */
+    QList<Hash> iAttachedFiles ;
+    QString iCommentText ;
+    QString iSubject ;
+    bool iIsPrivate ;  /**< if set to true, profile, and this comment too,
 			is published encrypted */
-  quint32 iTimeOfPublish ; /**< seconds since 1-jan-1970 */
-  QByteArray iKeyOfCommentor ; /**< public key of profile that sent the comment */
-  QString iCommentorNickName ; /**< if commentor is public profile, its nick */
-  Hash iReferences ; /**< if comment is reply to another comment, this 
+    quint32 iTimeOfPublish ; /**< seconds since 1-jan-1970 */
+    QByteArray iKeyOfCommentor ; /**< public key of profile that sent the comment */
+    QString iCommentorNickName ; /**< if commentor is public profile, its nick */
+    Hash iReferences ; /**< if comment is reply to another comment, this
 			is the hash of the commented comment */
-  ProtocolItemType iTypeOfObjectReferenced ; /**< if comment reference
-						is CA, or profile, 
+    ProtocolItemType iTypeOfObjectReferenced ; /**< if comment reference
+						is CA, or profile,
 						or another comment */
 } ;
 #endif

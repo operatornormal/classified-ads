@@ -26,57 +26,57 @@
 #include "../mcontroller.h"
 
 class Profile ;
-class Model ; 
+class Model ;
 /**
  * @brief Model-class for helping display of readers of a profile
  */
 class ProfileReadersListingModel: public QAbstractTableModel {
-  Q_OBJECT
-public: 
-  ProfileReadersListingModel(Profile& aProfile) ;/**< Constructor */
-  ~ProfileReadersListingModel() ; /**< Destructor */
+    Q_OBJECT
+public:
+    ProfileReadersListingModel(Profile& aProfile) ;/**< Constructor */
+    ~ProfileReadersListingModel() ; /**< Destructor */
 
-  /**
-   * method for adding a reader. this change will be made to iProfile
-   * too.
-   * @param aFingerPrint is fingerprint of the reader to add
-   */
-  void addReader(const Hash& aFingerPrint) ; 
-  /**
-   * method for removing a reader. this change will be made to iProfile
-   * too.
-   * @param aFingerPrint is fingerprint of the reader to remove
-   */
-  void removeReader(const Hash& aFingerPrint) ; 
+    /**
+     * method for adding a reader. this change will be made to iProfile
+     * too.
+     * @param aFingerPrint is fingerprint of the reader to add
+     */
+    void addReader(const Hash& aFingerPrint) ;
+    /**
+     * method for removing a reader. this change will be made to iProfile
+     * too.
+     * @param aFingerPrint is fingerprint of the reader to remove
+     */
+    void removeReader(const Hash& aFingerPrint) ;
 
-  /**
-   * method for retrieving display-name of a profile
-   */
-  QString profileDisplayNameByFingerPrint(const Hash& aFingerPrint)  ;
+    /**
+     * method for retrieving display-name of a profile
+     */
+    QString profileDisplayNameByFingerPrint(const Hash& aFingerPrint)  ;
 
-  /**
-   * re-implemented from QAbstractTableModel
-   * @return number of rows in list 
-   */
-   virtual int rowCount(const QModelIndex & parent = QModelIndex())  const  ; 
-  /**
-   * re-implemented from QAbstractTableModel
-   * @return number of columns in model
-   */
-  virtual int columnCount ( const QModelIndex & parent = QModelIndex() ) const ;
-  /**
-   * re-implemented from QAbstractTableModel
-   * @return data to display in list
-   */
-  virtual QVariant data(const QModelIndex & index, int role = Qt::DisplayRole) const ;
-  virtual QVariant headerData(int aSection, Qt::Orientation orientation, int role) const ;
+    /**
+     * re-implemented from QAbstractTableModel
+     * @return number of rows in list
+     */
+    virtual int rowCount(const QModelIndex & parent = QModelIndex())  const  ;
+    /**
+     * re-implemented from QAbstractTableModel
+     * @return number of columns in model
+     */
+    virtual int columnCount ( const QModelIndex & parent = QModelIndex() ) const ;
+    /**
+     * re-implemented from QAbstractTableModel
+     * @return data to display in list
+     */
+    virtual QVariant data(const QModelIndex & index, int role = Qt::DisplayRole) const ;
+    virtual QVariant headerData(int aSection, Qt::Orientation orientation, int role) const ;
 signals:
-  void error(MController::CAErrorSituation aError,
-             const QString& aExplanation) ;
+    void error(MController::CAErrorSituation aError,
+               const QString& aExplanation) ;
 private: // methods
-  void updateReaderDataInArray( const Hash& aFingerPrint,bool aEmit ) ; 
+    void updateReaderDataInArray( const Hash& aFingerPrint,bool aEmit ) ;
 private: // data
-  Profile& iProfile ;
-  QList<QPair<Hash,QString> > iNamesAndFingerPrints ; 
-} ; 
+    Profile& iProfile ;
+    QList<QPair<Hash,QString> > iNamesAndFingerPrints ;
+} ;
 #endif

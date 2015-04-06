@@ -39,55 +39,55 @@
  *       node.
  */
 class PublishingEngine : public QTimer {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  /**
-   * Constructor
-   * @param aController application controller. not owned
-   * @param aModel persistent storage.
-   */
-  PublishingEngine(Controller* aController,
-                   Model& aModel ) ;
-  /**
-   * Destructor
-   */
-  ~PublishingEngine() ;
+    /**
+     * Constructor
+     * @param aController application controller. not owned
+     * @param aModel persistent storage.
+     */
+    PublishingEngine(Controller* aController,
+                     Model& aModel ) ;
+    /**
+     * Destructor
+     */
+    ~PublishingEngine() ;
 signals:
-  void error(QTcpSocket::SocketError socketError);
+    void error(QTcpSocket::SocketError socketError);
 public slots:
-  /** when connection is attempted, @ref NetworkListener will
-   * emit the status (failed or success) of the connection,
-   * emitted signal is connected here
-   */
-  void nodeConnectionAttemptStatus(Connection::ConnectionState aStatus,
-                                   const Hash aHashOfAttemptedNode );
-  /**
-   * this class is a not a thread, but QTimer, thus run.
-   */
-  void run();
+    /** when connection is attempted, @ref NetworkListener will
+     * emit the status (failed or success) of the connection,
+     * emitted signal is connected here
+     */
+    void nodeConnectionAttemptStatus(Connection::ConnectionState aStatus,
+                                     const Hash aHashOfAttemptedNode );
+    /**
+     * this class is a not a thread, but QTimer, thus run.
+     */
+    void run();
 private:
-  void emptyNodeCandidateList() ; 
-  void askConnectionsForNodesOnPublishList() ; 
-  enum StageOfPublish {
-    InitialStage,
-    AwaitingConnection 
-  } ;
-  void sendPublishItemToAlreadyConnectedNodes() ; 
-  void publishToNode(const Hash& aNode) ; 
-  void checkForSuccessfullyConnectedNodes() ; 
-  void checkForUnSuccessfullyConnectedNodes() ; 
+    void emptyNodeCandidateList() ;
+    void askConnectionsForNodesOnPublishList() ;
+    enum StageOfPublish {
+        InitialStage,
+        AwaitingConnection
+    } ;
+    void sendPublishItemToAlreadyConnectedNodes() ;
+    void publishToNode(const Hash& aNode) ;
+    void checkForSuccessfullyConnectedNodes() ;
+    void checkForUnSuccessfullyConnectedNodes() ;
 public:
-  /** when this is set to false, thread will terminate and run() return */
-  bool iNeedsToRun ;
+    /** when this is set to false, thread will terminate and run() return */
+    bool iNeedsToRun ;
 private: // data
-  Controller* iController ; /**< application controller */
-  Model &iModel ; /**< persistent storage */
-  PublishItem iWorkItem ; /**< what we're trying to publish */
-  /** list of nodes where iWorkItem might be pushed to */
-  QList<Node *> iNodeCandidatesToTryPush ; 
-  QList<Hash> iNodesSuccessfullyConnected ; 
-  QList<Hash> iNodesFailurefullyConnected ; 
-  StageOfPublish iStageOfPublish ;
-  bool iNowRunning ;
+    Controller* iController ; /**< application controller */
+    Model &iModel ; /**< persistent storage */
+    PublishItem iWorkItem ; /**< what we're trying to publish */
+    /** list of nodes where iWorkItem might be pushed to */
+    QList<Node *> iNodeCandidatesToTryPush ;
+    QList<Hash> iNodesSuccessfullyConnected ;
+    QList<Hash> iNodesFailurefullyConnected ;
+    StageOfPublish iStageOfPublish ;
+    bool iNowRunning ;
 } ;
 #endif

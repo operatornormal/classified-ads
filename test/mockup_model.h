@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-    Classified Ads is Copyright (c) Antti Järvinen 2013. 
+    Classified Ads is Copyright (c) Antti Järvinen 2013.
 
     This file is part of Classified Ads.
 
@@ -24,77 +24,76 @@
 #include "../datamodel/mmodelprotocolinterface.h"
 #include "../datamodel/mnodemodelprotocolinterface.h"
 #include <QMutex>
-class MockUpNodeModel ; 
+class MockUpNodeModel ;
 class ProfileModel ;
 class BinaryFileModel ;
-class ClassifiedAdsModel ; 
-class PrivMessageModel ; 
+class ClassifiedAdsModel ;
+class PrivMessageModel ;
 class ContentEncryptionModel ;
 class ProfileCommentModel ;
 class SearchModel;
 
 /**
- * @brief not a real datamodel. debugging aid. 
+ * @brief not a real datamodel. debugging aid.
  */
-class MockUpModel : public MModelProtocolInterface
-{
-  Q_OBJECT
+class MockUpModel : public MModelProtocolInterface {
+    Q_OBJECT
 
 public:
-  /**
-   * constructor
-   */
-  MockUpModel(MController *aMController) ; 
-  /**
-   * Destructor
-   */
-  ~MockUpModel() ; 
-  /**
-   * method for adding a network request
-   * @param aRequest is the request to add
-   * @return none
-   */
-  virtual void addNetworkRequest(NetworkRequestExecutor::NetworkRequestQueueItem&
-                                 aRequest) const  ;
-  /** 
-   * thread sync: this claims access to datamodel 
-   */
-  virtual bool lock()  ; 
-  /** 
-   * thread sync: releases data model to other threads 
-   */
-  virtual void unlock()  ; 
-  /** 
-   * method for getting node-specific datamodel 
-   */
-  virtual MNodeModelProtocolInterface& nodeModel() const  ; 
-  virtual ProfileModel& profileModel() const ;
+    /**
+     * constructor
+     */
+    MockUpModel(MController *aMController) ;
+    /**
+     * Destructor
+     */
+    ~MockUpModel() ;
+    /**
+     * method for adding a network request
+     * @param aRequest is the request to add
+     * @return none
+     */
+    virtual void addNetworkRequest(NetworkRequestExecutor::NetworkRequestQueueItem&
+                                   aRequest) const  ;
+    /**
+     * thread sync: this claims access to datamodel
+     */
+    virtual bool lock()  ;
+    /**
+     * thread sync: releases data model to other threads
+     */
+    virtual void unlock()  ;
+    /**
+     * method for getting node-specific datamodel
+     */
+    virtual MNodeModelProtocolInterface& nodeModel() const  ;
+    virtual ProfileModel& profileModel() const ;
 
-  /**
-   * method for getting blob-specific datamodel
-   */
-  virtual BinaryFileModel& binaryFileModel() const  ;
-  /** method for getting the ads datamodel */
-  virtual ClassifiedAdsModel& classifiedAdsModel() const  ; 
-  virtual PrivMessageModel& privateMessageModel() const ; /**< method for getting the priv msg datamodel */
+    /**
+     * method for getting blob-specific datamodel
+     */
+    virtual BinaryFileModel& binaryFileModel() const  ;
+    /** method for getting the ads datamodel */
+    virtual ClassifiedAdsModel& classifiedAdsModel() const  ;
+    virtual PrivMessageModel& privateMessageModel() const ; /**< method for getting the priv msg datamodel */
 
-   virtual ContentEncryptionModel& contentEncryptionModel() const  ; 
-   virtual ProfileCommentModel& profileCommentModel() const  ; /**< method for getting the comment datamodel */
-   virtual SearchModel* searchModel() const  ; /**< method for getting the full text search datamodel */
+    virtual ContentEncryptionModel& contentEncryptionModel() const  ;
+    virtual ProfileCommentModel& profileCommentModel() const  ; /**< method for getting the comment datamodel */
+    virtual SearchModel* searchModel() const  ; /**< method for getting the full text search datamodel */
 
 public:
-  MockUpNodeModel* iNodeModel ;   
-  QList<NetworkRequestExecutor::NetworkRequestQueueItem>* iNetworkRequests ;
+    MockUpNodeModel* iNodeModel ;
+    QList<NetworkRequestExecutor::NetworkRequestQueueItem>* iNetworkRequests ;
 private: // member data
-  MController *iController  ;
-  QMutex iMutex  ; 
-  ProfileModel* iProfileModel ; 
-  BinaryFileModel* iBinaryFileModel  ;
-  ClassifiedAdsModel* iCAModel ; 
-  PrivMessageModel* iPrivMsgModel ; 
-  ContentEncryptionModel* iContentEncryptionModel ;
-  ProfileCommentModel* iProfileCommentModel ;
-  SearchModel* iSearchModel ;
-} ; 
+    MController *iController  ;
+    QMutex iMutex  ;
+    ProfileModel* iProfileModel ;
+    BinaryFileModel* iBinaryFileModel  ;
+    ClassifiedAdsModel* iCAModel ;
+    PrivMessageModel* iPrivMsgModel ;
+    ContentEncryptionModel* iContentEncryptionModel ;
+    ProfileCommentModel* iProfileCommentModel ;
+    SearchModel* iSearchModel ;
+} ;
 
 #endif /* #define MOCKUP_CONTROLLER_H */
