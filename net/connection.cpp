@@ -190,7 +190,7 @@ void Connection::runForIncomingConnections() {
     }
 
     // ok, obviously we can receive, mark that down for future
-    // advertisment:
+    // advertisement:
     iModel.lock() ;
     iController.getNode().setIpAddrWithChecks(iSocket->localAddress()) ;
     iModel.unlock() ;

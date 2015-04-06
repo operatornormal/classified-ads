@@ -309,7 +309,7 @@ BinaryFile* BinaryFileModel::binaryFileByFingerPrint(const Hash& aFingerPrint) {
 }
 
 // unlike previous method, this does check signature.
-// it might be useful to check for presense of aPresumedSender
+// it might be useful to check for presence of aPresumedSender
 // public key before calling this method.. for the sake of
 // producing meaningful errormessages.
 bool BinaryFileModel::binaryFileDataByFingerPrint(const Hash& aFingerPrint,

@@ -87,7 +87,7 @@ public:
      *        Purpose of this parameter is mainly to
      *        clearly distinguis this constuctor from the
      *        one that has single "unsigned char *" param
-     *        but expects different lenght for the string
+     *        but expects different length for the string
      */
     Hash(const char* aHexString, int aHexStringLen) ;
     /**
@@ -167,9 +167,9 @@ public:
      * Man-kinds greatest invention ever follows: bignum operations for
      * small bignums.
      *
-     * Substraction operator. As our hash if you think of it as
+     * Subtraction operator. As our hash if you think of it as
      * a number, is unsigned, this operator will definitely return
-     * undefined-kind-of-crap if you try to substract bigger number
+     * undefined-kind-of-crap if you try to subtract bigger number
      * from a smaller one. Something you'll get but it can be anything.
      *
      * Other way around it seems to do something.
@@ -196,7 +196,7 @@ public:
      * 64-bit integers and have this thing working
      * a bit faster - hopefully this thing will still
      * work fast enough to work also in less-powerful
-     * 32-bit architechtures for which we don't here
+     * 32-bit architectures for which we don't here
      * want to invent a separate implementation.
      */
     quint32 iHash160bits[KNumberOfIntsInHash] ;

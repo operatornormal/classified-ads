@@ -58,7 +58,7 @@ public:
      *
      * Old valid password of aFingerPrint key must be stored
      * inside controller before this method is called. Upon
-     * successfull pwd change, this method will replace the
+     * successful pwd change, this method will replace the
      * password stored inside controller with the new one.
      *
      * @param aFingerPrint fingerprint of the key that is to have the passwd changed
@@ -112,7 +112,7 @@ public:
      *        omitted. If less than 1 valid public key is found,
      *        this method returns false.
      * @param aPlainText contains the data to encrypt
-     * @param aResultingCipherText on successfull completion, this
+     * @param aResultingCipherText on successful completion, this
      *        bytearray will contain the encrypted data ready to
      *        be signed.
      * @return true on success.
@@ -125,7 +125,7 @@ public:
      * @param aCipherText contains the data to decrypt using
      *        private key whose fingerprint is returned by
      *        @ref MController::profileInUse method.
-     * @param aResultingCipherText on successfull completion, this
+     * @param aResultingCipherText on successful completion, this
      *        bytearray will contain the decryped data ready to
      *        be opened.
      * @param aEmitErrorOnFailure if true, will emit an error signal

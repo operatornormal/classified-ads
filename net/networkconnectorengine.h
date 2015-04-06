@@ -88,7 +88,7 @@ private:
      */
     bool pruneConnectionProspectList(QList<Node *>* aListToPrune) const ;
     /**
-     * method for sending advertisment about node in ip protocl
+     * method for sending advertisement about node in ip protocl
      * broadcast packet
      */
     void sendBroadCast() ;

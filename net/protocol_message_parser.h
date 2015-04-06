@@ -141,7 +141,7 @@ private: // private methods for doing the actual work
                                           const Connection &aConnection) ;
     /**
      * Method for parsing a search request from remote node.
-     * If parse is succesful, this method will also ask searchmodel
+     * If parse is successful, this method will also ask searchmodel
      * to perform the search and place possible results immediately
      * into send-queue of aConnection so search works slightly differently
      * compared to rest of the network requests

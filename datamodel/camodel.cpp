@@ -327,7 +327,7 @@ Hash ClassifiedAdsModel::publishClassifiedAd(const Profile& aPublishingProfile, 
             if ( ( operation_success = ins.exec() ) == false ) {
                 emit error(MController::DbTransactionError, ins.lastError().text()) ;
             }  else {
-                // insert was successfull: index the article
+                // insert was successful: index the article
                 aAd.iFingerPrint = articleFingerPrint ;
                 iModel.searchModel()->indexClassifiedAd(aAd) ;
             }

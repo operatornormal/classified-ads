@@ -263,10 +263,10 @@ Hash Hash::distanceFrom (const Hash& aHash) {
     Hash retvalCandidateBySubstraction ;
     Hash retvalCandidateByRollingOver ;
 
-    // so first, without rolling over, substract the bigger from
+    // so first, without rolling over, subtract the bigger from
     // the smaller and that is one distance ; must compare here
-    // because our substraction operator will mis-behave if
-    // substracting bigger from smaller
+    // because our subtraction operator will mis-behave if
+    // subtracting bigger from smaller
     if ( *this > aHash ) {
         retvalCandidateBySubstraction = *this - aHash ;
     } else {
@@ -308,10 +308,10 @@ Hash Hash::operator-(const Hash& aToBeSubstracted) const {
     // needs to modify upper-significance bits
     Hash temporary_copy = *this ;
     // so here we play a trick that seems to work.
-    // substract digit by digit. our digits in hash are
-    // unsigned ints e.g. we're doing substraction in "normal"
+    // subtract digit by digit. our digits in hash are
+    // unsigned ints e.g. we're doing subtraction in "normal"
     // pen-and-paper manner but our base is 2^32 instead of 10.
-    // this way we'll substract the 160-bit hash by looping 5 times.
+    // this way we'll subtract the 160-bit hash by looping 5 times.
     for(int i=(KNumberOfIntsInHash-1) ; i>=0 ; i-- ) {
         if ( temporary_copy.iHash160bits[i] >= aToBeSubstracted.iHash160bits[i] ) {
             retval.iHash160bits[i] = temporary_copy.iHash160bits[i] -
@@ -328,7 +328,7 @@ Hash Hash::operator-(const Hash& aToBeSubstracted) const {
                     temporary_copy.iHash160bits[borrow_digit] = UINT_MAX ;
                 }
             }
-            // borrow done, now substract ; now we'll need to substract
+            // borrow done, now subtract ; now we'll need to subtract
             // ( 0xFF + temporary_copy.bits[i] ) -  aToBeSubstracted.bits[i]
             // obviously the 0xFF + temporary_copy.bits[i] will not fit our bits
             // but here it is ok to roll over, looks like we obtain correct result.

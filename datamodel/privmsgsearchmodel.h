@@ -55,7 +55,7 @@ public:
      * messages that are either sent by profile given in
      * parameter, or destined to given profile.
      * @param aSearch profile fingerprint whose messages are
-     *        the item of intrest
+     *        the item of interest
      * @return no thing, always succeeds
      */
     void setSearchHash(const Hash& aSearch) ;

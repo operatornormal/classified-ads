@@ -136,7 +136,8 @@ public:
      * method intended for setting local address ; this will either
      * set or not set an addr, based on checks inside
      * @param aAddress is the address to try
-     * @return true if aAddress was decided to be valid for future advertisment
+     * @return true if aAddress was decided to be valid for future 
+     *              advertisement
      */
     bool setIpAddrWithChecks(const QHostAddress& aAddress) ;
     /**

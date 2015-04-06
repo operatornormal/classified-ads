@@ -97,7 +97,7 @@ public:
                                   quint32* aTimeOfPublish = NULL ) ;
     /**
      * called by protocol parser when a profile comment is received.
-     * note the absense of signing key. if the profile commented is public, the
+     * note the absence of signing key. if the profile commented is public, the
      * key is found inside the comment. if the profile commented is private,
      * the comment behaves like  a private message, the recipient needs to
      * first open the encryption before she can verify that the comment

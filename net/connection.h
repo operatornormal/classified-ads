@@ -89,7 +89,7 @@ public:
      *        in case of failed connection of the connection was
      *        attempted to some particular node. In particular this logic
      *        is used by publishing engine that needs to know not only
-     *        successfull connections but also failed ones and for failed
+     *        successful connections but also failed ones and for failed
      *        ones we don't get node FP via normal mechanism (node greeting)
      */
     Connection(const QHostAddress& aAddr,

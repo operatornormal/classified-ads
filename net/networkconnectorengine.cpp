@@ -378,7 +378,8 @@ bool NetworkConnectorEngine::pruneConnectionProspectList(QList<Node *>* aListToP
                     aListToPrune->removeAt(i) ;
                     retval = true ;
                     prunedAlready= true ;
-                    break; // out from j-loop because i to compare agains is not any more
+                    break; // out from j-loop because i to compare against 
+                           // is not any more
                 }
             }
             // and check that no our own addresses are at list:
