@@ -5,4 +5,9 @@ export QT_SELECT := qt4
 	dh $@ --buildsystem=qmake --parallel
 
 override_dh_auto_configure:
+	cd graphics-highres && $(MAKE)
 	dh_auto_configure -- CONFIG+=nosilent
+
+override_dh_auto_clean:
+	cd graphics-highres && $(MAKE) clean
+	dh_auto_clean
