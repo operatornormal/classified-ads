@@ -10,7 +10,8 @@ Build-Depends: debhelper (>= 9),
                libqjson-dev,
                libqt4-dev,
                libssl-dev,
-               qt4-qmake
+               qt4-qmake,
+               imagemagick
 Standards-Version: 3.9.6
 Homepage: http://katiska.org/classified-ads/
 Vcs-Git: git://github.com/operatornormal/classified-ads.git -b debian
