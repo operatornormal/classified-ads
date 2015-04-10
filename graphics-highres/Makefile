@@ -32,3 +32,6 @@ all: ../ui/turt558.png ../ui/turt-transparent-128x128.png
 
 ../ui/turt-transparent-128x128.png: turt-transparent.xcf
 	convert turt-transparent.xcf -resize 128x128\>   -gravity center -background none -extent 128x128 ../ui/turt-transparent-128x128.png
+
+clean:
+	rm -f ../ui/turt558.png ../ui/turt-transparent-128x128.png

@@ -7,6 +7,7 @@ Group:		Applications/Internet
 License:	LGPLv2
 URL:		http://katiska.org/classified_ads/
 Source0:	https://github.com/operatornormal/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source1:	https://github.com/operatornormal/classified-ads/blob/graphics/preprocessed.tar.gz?raw=true#/%{name}-graphics-%{version}.tar.gz
 BuildRequires:	qt-devel >= 4
 BuildRequires:	openssl-devel, libnatpmp-devel, qjson-devel, miniupnpc-devel, file-devel
 BuildRequires:	libappstream-glib, desktop-file-utils
@@ -17,7 +18,7 @@ fix the problem of disappearing news-servers so that there is no servers
 required and no service providers needed; data storage is implemented
 inside client applications that users are running.
 %prep
-%setup -q
+%setup -q -a 1
 
 %build
 qmake-qt4 
