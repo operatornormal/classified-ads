@@ -1,5 +1,5 @@
-classified-ads (0.06-1) unstable; urgency=low
+classified-ads (0.07-1) unstable; urgency=low
 
   * Initial release. Closes: #779375
 
- -- Antti Järvinen <antti.jarvinen@katiska.org>  Mon, 06 Apr 2015 23:46:29 +0300
+ -- Antti Järvinen <antti.jarvinen@katiska.org>  Sun, 12 Apr 2015 13:21:59 +0300
