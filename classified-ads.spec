@@ -1,5 +1,5 @@
 Name:		classified-ads
-Version:	0.06
+Version:	0.07
 Release:	1%{?dist}
 Summary:	Classified ads is a program for posting ads online
 
@@ -42,7 +42,9 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/classified-ads.deskt
 %{_datadir}/appdata/classified-ads.appdata.xml
 %license LICENSE
 %changelog
-%changelog
+* Sun Apr 12 2015 Antti Jarvinen <classified-ads.questions@katiska.org> - 0.07-1
+- Removed intermediate PNG files into separate tarball
+- Included code to generate intermediate PNG files manually
 * Mon Apr 6 2015 Antti Jarvinen <classified-ads.questions@katiska.org> - 0.06-1
 - Included original high-res bitmaps in different format, conversion routines.
 - Fixed potential SIGSEGV appearing in debug build
