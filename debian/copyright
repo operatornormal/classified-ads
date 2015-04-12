@@ -10,7 +10,7 @@ Files: textedit/* images/*
 Copyright: 2012 Nokia Corporation and/or its subsidiary(-ies)
 License: LGPL-2.1-with-Nokia-Exception or GPL-3.0 or Nokia-nonfree
 
-Files: ui/turt* windows/turt-transparent-128x128.ico graphics-highres/*.xcf
+Files: windows/turt-transparent-128x128.ico graphics-highres/*.xcf
 Copyright: 2013 Meeri Järvinen
 License: LGPL-2.1+
 
