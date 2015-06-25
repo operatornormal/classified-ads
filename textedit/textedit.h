@@ -134,6 +134,7 @@ private slots:
     void clipboardDataChanged();
     void printPreview(QPrinter *);
     void insertLinkSelected() ; /**< user says he wants insert a link */
+    void insertImageSelected() ; /**< user says he wants embed an image */
 private:
     void mergeFormatOnWordOrSelection(const QTextCharFormat &format);
     void fontChanged(const QFont &f);
@@ -163,7 +164,8 @@ private: // variables
             *actionCut,
             *actionCopy,
             *actionPaste,
-            *actionInsertLink;
+            *actionInsertLink,
+            *actionInsertImage;
 
     QComboBox *comboStyle;
     QFontComboBox *comboFont;
