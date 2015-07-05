@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
+        <herd>proxy-maintainers</herd>
+        <maintainer>
+                <email>idella4@gentoo.org</email>
+        </maintainer>
 	<maintainer>
 		<email>antti.jarvinen@katiska.org</email>
-		<name>Antti Järvinen</name>
+		<name>Antti JÃ¤rvinen</name>
+		<description>proxy maintainer</description>
 	</maintainer>
 	<longdescription lang="en">
    Classified ads is an attempt to re-produce parts of the functionality
@@ -22,9 +27,6 @@
    himself, or leave blank.
  * Basic searching of content based on words.
 	</longdescription>
-	<use>
-		<flag name="classified-ads">Opens Qt GUI of classified ads</flag>
-	</use>
 	<upstream>
                 <maintainer status="active">
                         <email>antti.jarvinen@katiska.org</email>
