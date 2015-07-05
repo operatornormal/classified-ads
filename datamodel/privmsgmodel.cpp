@@ -26,11 +26,6 @@
 #include <QSqlError>
 #include "privmsg.h"
 #include "contentencryptionmodel.h"
-#ifdef WIN32
-#include <QJson/Parser>
-#else
-#include <qjson/parser.h>
-#endif
 #include "const.h"
 
 PrivMessageModel::PrivMessageModel(MController *aController,
@@ -549,3 +544,4 @@ void PrivMessageModel::setAsRead(const Hash& aMessageHash, bool aIsRead ) {
         emit error(MController::DbTransactionError, query.lastError().text()) ;
     }
 }
+

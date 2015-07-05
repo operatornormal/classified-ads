@@ -20,21 +20,18 @@
 #ifdef WIN32
 #define NOMINMAX
 #include <WinSock2.h>
-#include <QJson/Parser>
-#include <QJson/Serializer>
 #include <stdio.h>
 #include <stdlib.h>
 #include <openssl/pem.h>
 #include <openssl/conf.h>
 #else
 #include <unistd.h>
-#include <qjson/serializer.h>
-#include <qjson/parser.h>
 #include <arpa/inet.h> // for ntohl
 #endif
 #include "contentencryptionmodel.h"
 #include "../log.h"
 #include "../util/hash.h"
+#include "../util/jsonwrapper.h"
 #include "model.h"
 #include <locale.h>
 #include <stdlib.h>
@@ -480,11 +477,9 @@ bool ContentEncryptionModel::encrypt(const QList<Hash> aRecipients,
                             resultJSon.insert(KJSonEncryptedMessageEkElement, listOfEncryptionKeys) ;
 
 
-                            QJson::Serializer serializer;
-
                             QVariant json (resultJSon); // then put the map inside QVariant and that
                             // may then be serialized in libqjson-0.7 and 0.8
-                            QByteArray cryptoMetaData (serializer.serialize(json)) ;
+                            QByteArray cryptoMetaData (JSonWrapper::serialize(json)) ;
                             quint32 metadataLenNwBo ( htonl(cryptoMetaData.length() )) ;
                             aResultingCipherText.append((const char *)&metadataLenNwBo,sizeof(quint32)) ;
                             aResultingCipherText.append(cryptoMetaData) ;
@@ -560,14 +555,13 @@ bool ContentEncryptionModel::decrypt(const QByteArray& aCipherText,
 
     // We have come here with high hopes that we're among the
     // recipients of ResultingPlainText, right?
-    QJson::Parser parser;
     bool ok;
 
     if ( aCipherText.length() > 256 ) {
         const quint32* lenPtr = (const quint32* ) aCipherText.constData()  ;
         quint32 metaDataLen = ntohl(*lenPtr) ;
         if ( metaDataLen < (quint32)(aCipherText.length()) ) {
-            QVariantMap result = parser.parse (aCipherText.mid(sizeof(quint32),metaDataLen), &ok).toMap();
+            QVariantMap result ( JSonWrapper::parse (aCipherText.mid(sizeof(quint32),metaDataLen), &ok) );
             if (ok &&
                     result.contains(KJSonEncryptedMessageEkElement) &&
                     result.contains(KJSonEncryptedMessageIvElement) ) {
@@ -903,3 +897,4 @@ Hash ContentEncryptionModel::hashOfPublicKey(const QByteArray& aPemBytes) {
     }
     return retval ;
 }
+

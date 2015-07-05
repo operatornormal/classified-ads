@@ -62,7 +62,7 @@ HEADERS = mcontroller.h controller.h FrontWidget.h net/node.h util/hash.h \
 	datamodel/connectionlistingmodel.h ui/manualconnection.h \
 	ui/aboutdialog.h textedit/textedit.h datamodel/searchmodel.h \
 	ui/searchdisplay.h ui/insertlinkdialog.h ui/newtextdocument.h \
-	datamodel/trusttreemodel.h ui/metadataQuery.h
+	datamodel/trusttreemodel.h ui/metadataQuery.h util/jsonwrapper.h
 SOURCES = main.cpp controller.cpp FrontWidget.cpp net/node.cpp util/hash.cpp \
 	net/connection.cpp datamodel/model.cpp \
         net/networklistener.cpp net/protocol_message_formatter.cpp \
@@ -89,7 +89,7 @@ SOURCES = main.cpp controller.cpp FrontWidget.cpp net/node.cpp util/hash.cpp \
 	datamodel/connectionlistingmodel.cpp ui/manualconnection.cpp \
         ui/aboutdialog.cpp textedit/textedit.cpp datamodel/searchmodel.cpp \
 	ui/searchdisplay.cpp ui/insertlinkdialog.cpp ui/newtextdocument.cpp \
-	datamodel/trusttreemodel.cpp ui/metadataQuery.cpp
+	datamodel/trusttreemodel.cpp ui/metadataQuery.cpp util/jsonwrapper.cpp
 FORMS = frontWidget.ui ui/profileReadersDialog.ui ui/passwordDialog.ui \
 	ui/newClassifiedAd.ui 	ui/newPrivMsg.ui ui/editContact.ui \
         ui/newProfileComment.ui ui/profileCommentDisplay.ui \
@@ -101,19 +101,26 @@ RESOURCES     = ui_resources.qrc
 TRANSLATIONS  = classified_ads_fi.ts \
                 classified_ads_sv.ts
 unix:LIBS = -lssl -lcrypto -lnatpmp -lqjson -lminiupnpc -lmagic
+lessThan(QT_MAJOR_VERSION, 5) {
+     unix:LIBS +=  -lqjson
+} 
+
 # following line is needed for fedora linux, natpnp needs miniupnpc
 unix:INCLUDEPATH += /usr/include/miniupnpc
 win32:LIBS += "c:\msys\1.0\local\lib\libssl.a" 
 win32:LIBS += "c:\msys\1.0\local\lib\libcrypto.a" 
 win32:LIBS += "..\miniupnpc\miniupnpc-1.9\miniupnpc.lib" 
-win32:LIBS += "-L" 
-win32:LIBS += "..\qjson-master\build\src"
-win32:LIBS += "-lqjson"
+lessThan(QT_MAJOR_VERSION, 5) {
+    win32:LIBS += "-L" 
+    win32:LIBS += "..\qjson-master\build\src"
+    win32:LIBS += "-lqjson"
+}
 win32:LIBS += "-lWs2_32" "-lGdi32" "-lIphlpapi"
 win32:INCLUDEPATH += "C:\msys\1.0\local\include"
 win32:INCLUDEPATH += "..\miniupnpc\miniupnpc-1.9"
-win32:INCLUDEPATH += "..\qjson-master\include"
-
+lessThan(QT_MAJOR_VERSION, 5) {
+    win32:INCLUDEPATH += "..\qjson-master\include"
+}
 target.path = /usr/bin
 desktopfiles.path = /usr/share/applications
 desktopfiles.files = ui/classified-ads.desktop

@@ -21,13 +21,7 @@
 #include "binaryfile.h"
 #include "../util/hash.h"
 #include "../log.h"
-#ifdef WIN32
-#include <QJson/Parser>
-#include <QJson/Serializer>
-#else
-#include <qjson/parser.h>
-#include <qjson/serializer.h>
-#endif
+#include "../util/jsonwrapper.h"
 #include <QVariantMap>
 #include "../mcontroller.h"
 #include "model.h"
@@ -82,21 +76,18 @@ QByteArray BinaryFile::asJSon(const MController& /*aController*/) const {
     }
     m.insert(  KJSonBinaryFileEncryption, iIsEncrypted) ;
 
-    QJson::Serializer serializer;
-
     QVariant j (m); // then put the map inside QVariant and that
     // may then be serialized in libqjson-0.7 and 0.8
-    QByteArray retval ( serializer.serialize(j) ) ;
+    QByteArray retval ( JSonWrapper::serialize(j) ) ;
     LOG_STR2("blob metadata %s", qPrintable(QString(retval))) ;
     return retval ;
 }
 
 bool BinaryFile::fromJSon(const QByteArray &aJSonBytes,
                           const MController& /*aController*/ ) {
-    QJson::Parser parser;
     bool ok;
 
-    QVariantMap result = parser.parse (aJSonBytes, &ok).toMap();
+    QVariantMap result ( JSonWrapper::parse (aJSonBytes, &ok) );
     if (!ok) {
         return false ;
     }
@@ -161,3 +152,4 @@ QString BinaryFile::displayName() const {
     }
     return retval ;
 }
+

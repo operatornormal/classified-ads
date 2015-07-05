@@ -594,6 +594,7 @@ bool Model::createTables() {
 void Model::initPseudoRandom() {
     SSL_load_error_strings();
     SSL_library_init();
+    LOG_STR2("Openssl %s\n", SSLeay_version(SSLEAY_VERSION)) ;
 #ifdef WIN32
     OpenSSL_add_all_algorithms() ;
 #endif
@@ -1292,4 +1293,5 @@ void Model::timerEvent(QTimerEvent*
     mutex.unlock() ;
     LOG_STR2( "timerEvent Timer ID: %d out" , event->timerId());
 }
+
 

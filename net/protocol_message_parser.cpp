@@ -29,13 +29,7 @@
 #include "../datamodel/mnodemodelprotocolinterface.h"
 #include "../mcontroller.h"
 #include <QDateTime>
-#ifdef WIN32
-#include <QJson/Serializer>
-#include <QJson/Parser>
-#else
-#include <qjson/parser.h>
-#include <qjson/serializer.h>
-#endif
+#include "../util/jsonwrapper.h"
 #include "../util/hash.h"
 #include "../datamodel/profilemodel.h"
 #include "../datamodel/binaryfilemodel.h"
@@ -788,12 +782,11 @@ bool ProtocolMessageParser::parseNodeGreetingV1(const QByteArray& aSingleNodeGre
                                1,
                                &JSONlen) == true ) {
             if ( (int)(JSONlen ) == aSingleNodeGreeting.size() ) {
-                QJson::Parser parser;
                 bool ok;
                 QByteArray unCompressedNodeGreeting ( qUncompress(aSingleNodeGreeting.mid(5))) ;
                 if ( unCompressedNodeGreeting.size() > 0 ) {
-                    QVariantMap result = parser.parse (unCompressedNodeGreeting, &ok).toMap();
-                    LOG_STR2("Size of uncompressed = %d", unCompressedNodeGreeting.length()) ;
+                    QVariantMap result ( JSonWrapper::parse (unCompressedNodeGreeting, &ok));
+                    QLOG_STR("Size of uncompressed = " + QString::number(unCompressedNodeGreeting.length()) + " ok = " + QString::number((int)ok)) ;
                     if (!ok) {
                         return false ;
                     } else {
@@ -1192,8 +1185,7 @@ bool ProtocolMessageParser::parseSearchResults( const QByteArray& aQueryBytes,
     }
     pos += sizeof(quint32) ;
     if ( len == (jsonLen + sizeof(unsigned char) + sizeof(quint32)) ) {
-        QJson::Parser parser ;
-        QVariantMap result = parser.parse ( aQueryBytes.mid(pos, jsonLen), &retval).toMap() ;
+        QVariantMap result (JSonWrapper::parse ( aQueryBytes.mid(pos, jsonLen), &retval) ) ;
         if ( retval == true ) {
             QList<SearchModel::SearchResultItem> results;
             quint32 searchId ;
@@ -1212,3 +1204,4 @@ bool ProtocolMessageParser::parseSearchResults( const QByteArray& aQueryBytes,
     }
     return retval ;
 }
+

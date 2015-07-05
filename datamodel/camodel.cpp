@@ -28,14 +28,10 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include "contentencryptionmodel.h"
-#ifdef WIN32
-#include <QJson/Parser>
-#include <QJson/Serializer>
-#else
-#include <qjson/parser.h>
-#include <qjson/serializer.h>
+#ifndef WIN32
 #include <arpa/inet.h>
 #endif
+#include "../util/jsonwrapper.h"
 #include "mmodelprotocolinterface.h"
 #include "ca.h"
 #include "profile.h"
@@ -332,6 +328,7 @@ Hash ClassifiedAdsModel::publishClassifiedAd(const Profile& aPublishingProfile, 
                 iModel.searchModel()->indexClassifiedAd(aAd) ;
             }
         } else {
+            QLOG_STR("ca insert failure" + ins.lastError().text()) ;
             emit error(MController::DbTransactionError, ins.lastError().text()) ;
         }
     }
@@ -927,3 +924,4 @@ const QStringList& ClassifiedAdsModel::regardingComboBoxTexts() const {
 const QStringList& ClassifiedAdsModel::whereComboBoxTexts() const {
     return iWhereComboBoxTexts;
 }
+

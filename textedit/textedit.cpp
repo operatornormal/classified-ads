@@ -574,7 +574,7 @@ void TextEdit::insertImageSelected() {
         QString mimeType ;
 #if QT_VERSION >= 0x050000
         QMimeDatabase db ;
-        QMimeType detectedType ( db.mimeTypeForFile(aFileName) ) ;
+        QMimeType detectedType ( db.mimeTypeForFile(fileName) ) ;
         if ( detectedType.isValid() ) {
             mimeType = detectedType.name() ;
         }

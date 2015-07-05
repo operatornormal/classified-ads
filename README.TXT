@@ -1,9 +1,9 @@
 Compiling:
  You need qt4 or 5, libnatmpm, openssl and qjson. The debian control file is 
-made for qt4 but program compiles with qt5 also. If using qt5 make sure that
-the libqjson in use is linked against qt5 and not qt4, in most linux
-distributions shipping both qt4 and 5 the libqjson is linked against qt4
-and will crash if used with qt5. So, using your favourite package-manager
+made for qt4 but program compiles with qt5 also. If using qt5 internal
+json routines of Qt are used so libqjson that is listed in
+dependencies is actually not used if qt5 is selected. 
+So, using your favourite package-manager
 install 
  libqt4-dev  
  libssl-dev 
@@ -41,12 +41,23 @@ directory called patch to make it behave. In windows you can do the
 graphics-highres part if you have imagemagick. For windows build you
 naturally have the same dependencies as with unix build. For openssl
 build instructions follow the build instructions that came with
-openssl, you'll want to do the msys-based build. Resulting static
+openssl, you'll want to do the msys-based build, using same version 
+of MinGW that you use with Qt compile process. Resulting static
 libraries should be in c:\msys\1.0\local\lib\. For miniupnpc the 
 path that should lead to library is ..\miniupnpc\miniupnpc-1.9\miniupnpc.lib
-and that compiles under mingw. QJson is qt-sw and the directory
-containing the libs should be ..\qjson-master\build\src. If these paths
-do not suit your configuration, see classified-ads.pro file, remember
-to modify both include paths and library paths. 
+and that compiles under mingw. Libnatpmp is not used win32 build because 
+development team was unable to produce a working version of natpmp. 
+Build process for win32 has been tried only using Qt 5.4 so qjson is not 
+dependency there. If these paths do not suit your configuration, see 
+classified-ads.pro file, remember to modify both include paths and 
+library paths.  ; for windows
+the normal Qt compile 
+qmake
+mingw32-make -j 4
+should produce a binary. Before usage it was required to copy miniupnpc.dll
+from miniupnpc build directory into same directory with the classified
+ads executable. If you have intention of making the windows installer
+too (nsis file in windows-subdirectory) then run the deps.bat before
+launching the nsis installer.
 
 License: LGPL. Happy hacking. 

@@ -28,13 +28,6 @@
 #include <QSqlError>
 #include "profilecomment.h"
 #include "contentencryptionmodel.h"
-#ifdef WIN32
-#include <QJson/Parser>
-#include <QJson/Serializer>
-#else
-#include <qjson/parser.h>
-#include <qjson/serializer.h>
-#endif
 #include "const.h"
 #include "searchmodel.h"
 
