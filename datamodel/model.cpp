@@ -1249,15 +1249,64 @@ void Model::timerEvent(QTimerEvent*
 #endif
                       ) {
     LOG_STR2( "timerEvent Timer ID: %d" , event->timerId());
+    const time_t currentTime ( QDateTime::currentDateTimeUtc().toTime_t() ) ; 
     lock() ;
+    // update mutual connect time:
     for ( int i = iConnections->size()-1 ; i >= 0 ; i-- ) {
         Connection *connectedNode = iConnections->at(i) ;
         if ( connectedNode->node() ) {
-            iNodeModel->updateNodeLastMutualConnectTimeInDb (connectedNode->node()->nodeFingerPrint(),QDateTime::currentDateTimeUtc().toTime_t() ) ;
+            iNodeModel->updateNodeLastMutualConnectTimeInDb (connectedNode->node()->nodeFingerPrint(),currentTime ) ;
 
         }
     }
+    typedef QPair<int,Connection *> ConnectionRemovalItem; 
+    // then check for dead connections:
+    QList<ConnectionRemovalItem> connectionsToDelete ;
+    for ( int i = iConnections->size()-1 ; i >= 0 ; i-- ) {
+      Connection *connectedNode = iConnections->at(i) ;
+      if ( connectedNode->iTimeOfLastActivity < 
+	   ( currentTime - ( 60 * (Connection::iMinutesBetweenBucketFill+2) ) ) ) {
+	// no traffic for minimum time + 2 minutes -> ask gently for closing:
+	connectedNode->iNeedsToRun = false ; 
+	LOG_STR2( "Connection at array pos %d is dead -> asking for close" , i);
+      }
+      if ( connectedNode->iTimeOfLastActivity < 
+	   ( currentTime - ( 60 * (Connection::iMinutesBetweenBucketFill+5) ) ) ) {
+	// no traffic for minimum time + 5 minutes -> ask non-gently for closing:
+	ConnectionRemovalItem item ( i, connectedNode) ; 
+	connectionsToDelete << item ; // have intermediate array because 
+	// destructor of Connection locks datamodel itself
+	LOG_STR2( "Connection at array pos %d has been dead -> asking for delete" , i);
+      }
+    }
     unlock() ;
+    foreach ( const ConnectionRemovalItem& reallyDeadPeer, connectionsToDelete ) {
+      Connection* connectionToDelete ( NULL ) ; 
+      lock();
+      if ( iConnections->size() > reallyDeadPeer.first ) {
+	Connection *c = iConnections->at(reallyDeadPeer.first) ; 
+	if ( c == reallyDeadPeer.second ) {
+	  connectionToDelete = c ; 
+	}
+      }
+      unlock() ;
+      if ( connectionToDelete ) {
+	delete connectionToDelete ; // will call mutex.lock itself
+	lock() ; 
+	if ( iConnections->size() > reallyDeadPeer.first ) {
+	  Connection *c = iConnections->at(reallyDeadPeer.first) ; 
+	  if ( c == reallyDeadPeer.second ) {
+	    iConnections->removeAt( reallyDeadPeer.first ) ; 
+	  }
+	}
+	unlock() ;
+      }
+    }
+    // 
+    // dead process checking now done
+    //
+    // continue with database housekeeping
+    //
     QWaitCondition waitCondition;
     QMutex mutex;
     mutex.lock();
@@ -1293,5 +1342,4 @@ void Model::timerEvent(QTimerEvent*
     mutex.unlock() ;
     LOG_STR2( "timerEvent Timer ID: %d out" , event->timerId());
 }
-
 
