@@ -26,9 +26,7 @@
 #include "../log.h"
 #include <QSslSocket>
 #include "../datamodel/model.h"
-#ifdef WIN32
-
-#else
+#ifndef WIN32
 #include "arpa/inet.h"
 #endif
 #include <QDateTime>
@@ -596,8 +594,8 @@ void Connection::checkForBucketFill() {
             break ;
 
         case ClassifiedAd2NdAddr: // this is our final stage
-            if ( ( iTimeOfBucketFill + (60*30 ))  < QDateTime::currentDateTimeUtc().toTime_t() ) {
-                // 30 minutes passed since last bucket fill: re-do
+            if ( ( iTimeOfBucketFill + (60*iMinutesBetweenBucketFill ))  < QDateTime::currentDateTimeUtc().toTime_t() ) {
+                // iMinutesBetweenBucketFill minutes passed since last bucket fill: re-do
                 iTimeOfBucketFill = QDateTime::currentDateTimeUtc().toTime_t() ;
                 iStageOfBucketFill = OwnNodeGreeting;
             }

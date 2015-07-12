@@ -119,7 +119,9 @@ bool NetworkConnectorEngine::tryServeWishListItem() {
             addrOfNode.setAddress(n->DNSAddr()) ;
         } else {
             if (!Connection::Ipv6AddressesEqual( n->ipv6Addr(),
-                                                 KNullIpv6Addr ) ) {
+                                                 KNullIpv6Addr ) 
+		&& // try connect only if we ourselves have ipv6:
+		hasIpv6 ) {
                 addrOfNode.setAddress( n->ipv6Addr() ) ;
             } else if (  n->ipv4Addr() ) {
                 addrOfNode.setAddress( n->ipv4Addr() ) ;
