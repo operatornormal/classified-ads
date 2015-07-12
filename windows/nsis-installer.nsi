@@ -45,7 +45,6 @@ CreateDirectory "$INSTDIR\imageformats"
 CreateDirectory "$INSTDIR\printsupport"
 CreateDirectory "$INSTDIR\platforms"
 CreateDirectory "$INSTDIR\sqldrivers"
-file /oname=libqjson.dll ..\..\qjson-master\build\src\libqjson.dll
 file /oname=miniupnpc.dll ..\..\miniupnpc\miniupnpc-1.9\miniupnpc.dll
 CreateShortCut "$SMPROGRAMS\Classified-ads\Classified-ads.lnk" "$INSTDIR\Classified-ads.exe"
 file /oname=icudt53.dll deps\icudt53.dll
@@ -142,7 +141,6 @@ delete "$INSTDIR\printsupport\windowsprintersupport.dll"
 delete "$INSTDIR\sqldrivers\qsqlite.dll"
 delete "$INSTDIR\libeay32.dll"
 delete "$INSTDIR\ssleay32.dll"
-delete "$INSTDIR\libqjson.dll"
 delete "$INSTDIR\miniupnpc.dll"
 RMDIR "$INSTDIR\bearer"
 RMDIR "$INSTDIR\iconengines"
