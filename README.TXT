@@ -8,6 +8,7 @@ install
  libqt4-dev  
  libssl-dev 
  libnatpmp-dev
+ libminiupnpc-dev
  libqjson-dev
  dpkg-dev (if going to build with dpkg-buildpackage)
  libgcrypt11-dev (if going to build with dpkg-buildpackage, it checks for this)
