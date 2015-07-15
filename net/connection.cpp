@@ -617,3 +617,13 @@ Hash Connection::getPeerHash() const {
         return iFpOfNodeWeTrying ;
     }
 }
+
+bool Connection::forciblyCloseSocket() {
+    iNeedsToRun = false ;
+    if ( iSocket ) {
+        iSocket->abort() ; 
+        return true ; 
+    } else {
+        return false ; 
+    }
+}

@@ -1259,9 +1259,7 @@ void Model::timerEvent(QTimerEvent*
 
         }
     }
-    typedef QPair<int,Connection *> ConnectionRemovalItem; 
     // then check for dead connections:
-    QList<ConnectionRemovalItem> connectionsToDelete ;
     for ( int i = iConnections->size()-1 ; i >= 0 ; i-- ) {
       Connection *connectedNode = iConnections->at(i) ;
       if ( connectedNode->iTimeOfLastActivity < 
@@ -1271,37 +1269,13 @@ void Model::timerEvent(QTimerEvent*
 	LOG_STR2( "Connection at array pos %d is dead -> asking for close" , i);
       }
       if ( connectedNode->iTimeOfLastActivity < 
-	   ( currentTime - ( 60 * (Connection::iMinutesBetweenBucketFill+5) ) ) ) {
-	// no traffic for minimum time + 5 minutes -> ask non-gently for closing:
-	ConnectionRemovalItem item ( i, connectedNode) ; 
-	connectionsToDelete << item ; // have intermediate array because 
-	// destructor of Connection locks datamodel itself
-	LOG_STR2( "Connection at array pos %d has been dead -> asking for delete" , i);
+	   ( currentTime - ( 60 * (Connection::iMinutesBetweenBucketFill+6) ) ) ) {
+	// no traffic for minimum time + 6 minutes -> ask non-gently for closing:
+        connectedNode->forciblyCloseSocket() ; 
+	LOG_STR2( "Connection at array pos %d has been dead -> abort()" , i);
       }
     }
     unlock() ;
-    foreach ( const ConnectionRemovalItem& reallyDeadPeer, connectionsToDelete ) {
-      Connection* connectionToDelete ( NULL ) ; 
-      lock();
-      if ( iConnections->size() > reallyDeadPeer.first ) {
-	Connection *c = iConnections->at(reallyDeadPeer.first) ; 
-	if ( c == reallyDeadPeer.second ) {
-	  connectionToDelete = c ; 
-	}
-      }
-      unlock() ;
-      if ( connectionToDelete ) {
-	delete connectionToDelete ; // will call mutex.lock itself
-	lock() ; 
-	if ( iConnections->size() > reallyDeadPeer.first ) {
-	  Connection *c = iConnections->at(reallyDeadPeer.first) ; 
-	  if ( c == reallyDeadPeer.second ) {
-	    iConnections->removeAt( reallyDeadPeer.first ) ; 
-	  }
-	}
-	unlock() ;
-      }
-    }
     // 
     // dead process checking now done
     //

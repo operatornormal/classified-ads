@@ -186,11 +186,17 @@ public:
         return iBytesIn ;
     }
     /**
-     * returs data transfer amount
+     * returns data transfer amount
      */
     unsigned long bytesOut() const {
         return iBytesOut ;
     }
+    /**
+     * Forcibly closes socket.
+     * @return true if socket was still allocated and its "abort" method
+     *         got called. 
+     */
+    bool forciblyCloseSocket() ;
 public slots:
     void socketReady() ;
     /**
