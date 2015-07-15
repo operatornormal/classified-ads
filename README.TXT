@@ -7,6 +7,7 @@ So, using your favourite package-manager
 install 
  libqt4-dev  
  libssl-dev 
+ libmagic-dev
  libnatpmp-dev
  libminiupnpc-dev
  libqjson-dev
