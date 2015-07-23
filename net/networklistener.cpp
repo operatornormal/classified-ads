@@ -36,6 +36,16 @@
 #include "miniupnpc.h"
 #include "upnpcommands.h"
 #ifndef WIN32
+// Difficult issue here. Miniupnp and natpmp share some codebase
+// and a common header "declspec.h" that contains common definitions. 
+// Different linux distributions package these 2 packages sometimes
+// from same original version, sometimes from different, 
+// sometimes declspec.h is inclduded twice, etc. 
+#if defined(MINIUPNP_LIBSPEC) && !defined(LIBSPEC)
+#define LIBSPEC MINIUPNP_LIBSPEC
+#endif
+// hopefully LIBSPEC is now ok, continue to include natpmp
+// header. 
 #include "natpmp.h"
 #endif
 #include <errno.h>
