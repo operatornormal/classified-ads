@@ -27,6 +27,7 @@
 #include <QList>
 #include "connection.h" // for ConnectionObserver
 #include <QUdpSocket>
+#include <QNetworkSession>
 
 class MController ;
 class Model ;
@@ -85,6 +86,11 @@ public:
      * used in closing of app: stops accepting connections
      */
     void stopAccepting() ;
+    /** 
+     * Method that loops network interfaces and tries to find a valid
+     * local address to advertise 
+     */
+    void figureOutLocalAddresses() ;
 protected:
     void incomingConnection (int aSocketDescriptor ) ;
 signals:
@@ -101,8 +107,7 @@ signals:
 private slots:
     void broadCastReceived() ;
     void threadIsDeleted() ;
-private: // methods
-    void figureOutLocalAddresses() ;
+    void networkStateChanged( QNetworkSession::State aState ) ; 
 private: // data
     MController *iController ;
     Model *iModel ;
@@ -114,5 +119,7 @@ private: // data
      * connections any more
      */
     bool iCanAccept ;
+    QNetworkConfiguration iConnectionConfig ;
+    QNetworkSession* iNetworkSession ; 
 } ;
 #endif

@@ -35,6 +35,7 @@
 #include "../net/connection.h"
 #include "../net/protocol_message_formatter.h"
 #include "../net/node.h"
+#include "../net/networklistener.h"
 #include "netrequestexecutor.h"
 #include "contentencryptionmodel.h"
 #include "profilemodel.h"
@@ -69,7 +70,8 @@ Model::Model(MController *aController) : iController(aController),
     iPrivMsgModel(NULL),
     iProfileCommentModel(NULL),
     iSearchModel(NULL),
-    iTrustTreeModel(NULL) {
+    iTrustTreeModel(NULL),
+    iTimeOfLastNetworkAddrCheck(QDateTime::currentDateTimeUtc().toTime_t()) {
     LOG_STR("Model::Model()") ;
     connect(this,
             SIGNAL(  error(MController::CAErrorSituation,
@@ -1314,6 +1316,16 @@ void Model::timerEvent(QTimerEvent*
     iBinaryFileModel->truncateDataTableToMaxRows() ;
     unlock() ;
     mutex.unlock() ;
+
+    // then check out for local network addresses:
+    if ( (iTimeOfLastNetworkAddrCheck + (120*60)) < // every 120 minutes
+	 QDateTime::currentDateTimeUtc().toTime_t()) {
+      iTimeOfLastNetworkAddrCheck = QDateTime::currentDateTimeUtc().toTime_t();
+      lock() ; 
+      iController->networkListener()->figureOutLocalAddresses() ;       
+      unlock() ; 
+    }
     LOG_STR2( "timerEvent Timer ID: %d out" , event->timerId());
 }
+
 
