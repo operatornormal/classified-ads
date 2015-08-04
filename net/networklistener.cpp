@@ -554,7 +554,7 @@ void NetworkListener::stopAccepting() {
 }
 
 void NetworkListener::networkStateChanged( QNetworkSession::State aState ) {
-    QLOG_STR("### NetworkListener::networkStateChanged " + QString::number(aState));
+    QLOG_STR("NetworkListener::networkStateChanged " + QString::number(aState));
     if ( aState == QNetworkSession::Connected ) {
       iModel->lock() ;
       this->figureOutLocalAddresses() ;

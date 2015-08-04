@@ -1289,17 +1289,17 @@ void   FrontWidget::showClassifiedAd(const CA& ca) {
     QLOG_STR("Show classified ad " + ca.iFingerPrint.toString() ) ;
     if ( ca.iFingerPrint != KNullHash && ui.tabWidget ) {
         ui.tabWidget->setCurrentIndex(0) ; // 0 is the ca tab
-        if ( ca.iAboutComboBoxIndex > 0 ) {
+        if ( ca.iAboutComboBoxIndex >= 0 ) {
             ui.caAboutComboBox->setCurrentIndex(ca.iAboutComboBoxIndex) ;
         } else {
             ui.caAboutComboBox->setEditText(ca.iAboutComboBoxText) ;
         }
-        if ( ca.iConcernsComboBoxIndex > 0 ) {
+        if ( ca.iConcernsComboBoxIndex >= 0 ) {
             ui.caRegardingCombobox->setCurrentIndex(ca.iConcernsComboBoxIndex) ;
         } else {
             ui.caRegardingCombobox->setEditText(ca.iConcernsComboBoxText) ;
         }
-        if ( ca.iInComboBoxIndex > 0 ) {
+        if ( ca.iInComboBoxIndex >= 0 ) {
             ui.caWhereComboBox->setCurrentIndex(ca.iInComboBoxIndex) ;
         } else {
             ui.caWhereComboBox->setEditText(ca.iInComboBoxText) ;
@@ -1747,7 +1747,19 @@ QString FrontWidget::selectedClassification(const QComboBox& aAboutCombo,
         retval.append( aRegardingCombo.currentText() ) ;
     }
     retval.append(".") ;
-    retval.append( aWhereCombo.currentText() ) ;
+
+    if ( aController.model().classifiedAdsModel().whereComboBoxTexts().indexOf( aWhereCombo.currentText()) == 0 ) {
+        // explanation: the country names in "where" are not localized.
+        // except for the first entry, "Any country" and if we get that,
+        // lets put un-localized "Any country" in there -> note that this
+        // same string appears inside tr() in datamodel/camodel.cpp
+        retval.append( "Any country" ) ;
+    } else {
+        // if not the "Any country", then just take the literal 
+        // string value, regardless of index
+        retval.append( aWhereCombo.currentText() ) ;
+    }
+  
     return retval ;
 }
 
