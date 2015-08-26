@@ -38,9 +38,13 @@
 #include "../datamodel/privmsgmodel.h"
 #include "../datamodel/profilecommentmodel.h"
 
+/** nat subnet. see similar variable in node.cpp */
 static const QPair<QHostAddress, int> normalNats1 ( QHostAddress::parseSubnet("10.0.0.0/8") );
 static const QPair<QHostAddress, int> normalNats2 ( QHostAddress::parseSubnet("172.16.0.0/20"));
 static const QPair<QHostAddress, int> normalNats3 ( QHostAddress::parseSubnet("192.168.0.0/16") );
+/** non-routable address space that some ISP's seem to offer */
+static const QPair<QHostAddress, int> rfc6598 ( QHostAddress::parseSubnet("100.64.0.0/10") );
+
 
 Connection::Connection (const QHostAddress& aAddr,
                         const int aPort,
@@ -514,8 +518,9 @@ bool Connection::isInPrivateAddrSpace() const {
         if ( peer.protocol() == QAbstractSocket::IPv4Protocol ) {
 
             if ( peer.isInSubnet(normalNats1) ||
-                    peer.isInSubnet(normalNats2) ||
-                    peer.isInSubnet(normalNats3) )
+		 peer.isInSubnet(normalNats2) ||
+		 peer.isInSubnet(normalNats3) ||
+		 peer.isInSubnet(rfc6598))
                 retval = true ;
         }
     }
