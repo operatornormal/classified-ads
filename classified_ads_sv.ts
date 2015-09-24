@@ -771,7 +771,8 @@ Selected)
 
 (Ingen
 Bild
-Valts)</translation>
+Valts)
+</translation>
     </message>
     <message>
         <location filename="FrontWidget.cpp" line="1488"/>
@@ -1385,8 +1386,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Programmering gjorts av Antti Järvinen, konst av Meeri Järvinen.&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Denna produkt innehåller programvara som har utvecklats av OpenSSL project för användning i OpenSSL toolkit (http://www.openssl.org).&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
-</translation>
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -1673,12 +1673,7 @@ en bild</translation>
         <translation>URL</translation>
     </message>
     <message>
-        <location filename="ui/insertLink.ui" line="83"/>
-        <source>://</source>
-        <translation>://</translation>
-    </message>
-    <message>
-        <location filename="ui/insertLink.ui" line="97"/>
+        <location filename="ui/insertLink.ui" line="112"/>
         <source>Link label in text</source>
         <translation>Länktext</translation>
     </message>

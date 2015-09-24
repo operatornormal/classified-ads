@@ -26,30 +26,32 @@ writeUninstaller "$INSTDIR\uninstall.exe"
 CreateDirectory "$SMPROGRAMS\Classified-ads"
 CreateShortCut "$SMPROGRAMS\Classified-ads\uninstall.lnk" "$INSTDIR\uninstall.exe"
 file /oname=classified-ads.exe ..\release\classified-ads.exe
-file /oname=classified_ads_fi.qm ..\classified_ads_fi.qm
-file /oname=classified_ads_sv.qm ..\classified_ads_sv.qm
-file /oname=qt_ca.qm ..\release\qt_ca.qm
-file /oname=qt_cs.qm ..\release\qt_cs.qm
-file /oname=qt_de.qm ..\release\qt_de.qm
-file /oname=qt_fi.qm ..\release\qt_fi.qm
-file /oname=qt_hu.qm ..\release\qt_hu.qm
-file /oname=qt_it.qm ..\release\qt_it.qm
-file /oname=qt_ja.qm ..\release\qt_ja.qm
-file /oname=qt_lv.qm ..\release\qt_lv.qm
-file /oname=qt_ru.qm ..\release\qt_ru.qm
-file /oname=qt_sk.qm ..\release\qt_sk.qm
-file /oname=qt_uk.qm ..\release\qt_uk.qm
+CreateDirectory "$INSTDIR\fi\LC_MESSAGES"
+file /oname=$INSTDIR\fi\LC_MESSAGES\classified-ads.mo ..\po\fi.mo
+CreateDirectory "$INSTDIR\sv\LC_MESSAGES"
+file /oname=$INSTDIR\sv\LC_MESSAGES\classified-ads.mo ..\po\sv.mo
+file /oname=qt_ca.qm ..\release\translations\qt_ca.qm
+file /oname=qt_cs.qm ..\release\translations\qt_cs.qm
+file /oname=qt_de.qm ..\release\translations\qt_de.qm
+file /oname=qt_fi.qm ..\release\translations\qt_fi.qm
+file /oname=qt_hu.qm ..\release\translations\qt_hu.qm
+file /oname=qt_it.qm ..\release\translations\qt_it.qm
+file /oname=qt_ja.qm ..\release\translations\qt_ja.qm
+file /oname=qt_lv.qm ..\release\translations\qt_lv.qm
+file /oname=qt_ru.qm ..\release\translations\qt_ru.qm
+file /oname=qt_sk.qm ..\release\translations\qt_sk.qm
+file /oname=qt_uk.qm ..\release\translations\qt_uk.qm
 CreateDirectory "$INSTDIR\bearer"
 CreateDirectory "$INSTDIR\iconengines"
 CreateDirectory "$INSTDIR\imageformats"
 CreateDirectory "$INSTDIR\printsupport"
 CreateDirectory "$INSTDIR\platforms"
 CreateDirectory "$INSTDIR\sqldrivers"
-file /oname=miniupnpc.dll ..\..\miniupnpc\miniupnpc-1.9\miniupnpc.dll
+file /oname=miniupnpc.dll ..\..\miniupnpc-1.9\miniupnpc.dll
 CreateShortCut "$SMPROGRAMS\Classified-ads\Classified-ads.lnk" "$INSTDIR\Classified-ads.exe"
-file /oname=icudt53.dll deps\icudt53.dll
-file /oname=icuin53.dll deps\icuin53.dll
-file /oname=icuuc53.dll deps\icuuc53.dll
+file /oname=D3Dcompiler_41.dll deps\D3Dcompiler_41.dll
+file /oname=libEGL.dll deps\libEGL.dll
+file /oname=libGLESV2.dll deps\libGLESV2.dll
 file /oname=libgcc_s_dw2-1.dll deps\libgcc_s_dw2-1.dll
 file /oname=libstdc++-6.dll deps\libstdc++-6.dll
 file /oname=libwinpthread-1.dll deps\libwinpthread-1.dll
@@ -78,8 +80,10 @@ file /oname=imageformats\qwebp.dll ..\release\imageformats\qwebp.dll
 file /oname=platforms\qwindows.dll ..\release\platforms\qwindows.dll
 file /oname=printsupport\windowsprintersupport.dll ..\release\printsupport\windowsprintersupport.dll
 file /oname=sqldrivers\qsqlite.dll ..\release\sqldrivers\qsqlite.dll
-file /oname=libeay32.dll C:\Qt\Tools\mingw491_32\opt\bin\libeay32.dll
-file /oname=ssleay32.dll C:\Qt\Tools\mingw491_32\opt\bin\ssleay32.dll
+file /oname=libeay32.dll ..\release\libeay32.dll
+file /oname=ssleay32.dll ..\release\ssleay32.dll
+file /oname=libiconv-2.dll ..\release\libiconv-2.dll
+file /oname=libintl-8.dll ..\release\libintl-8.dll
 file /oname=LICENSE ..\LICENSE
 WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Classified-ads" "DisplayName" "Classified-ads (remove only)"
 WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Classified-ads" "UninstallString" "$INSTDIR\Uninstall.exe"
@@ -94,8 +98,6 @@ delete "$SMPROGRAMS\Classified-ads\uninstall.lnk"
 delete "$SMPROGRAMS\Classified-ads\Classified-ads.lnk"
 RMDIR "$SMPROGRAMS\Classified-ads"
 delete "$INSTDIR\classified-ads.exe"
-delete "$INSTDIR\classified_ads_fi.qm"
-delete "$INSTDIR\classified_ads_sv.qm"
 delete "$INSTDIR\qt_ca.qm"
 delete "$INSTDIR\qt_cs.qm"
 delete "$INSTDIR\qt_de.qm"
@@ -107,9 +109,9 @@ delete "$INSTDIR\qt_lv.qm"
 delete "$INSTDIR\qt_ru.qm"
 delete "$INSTDIR\qt_sk.qm"
 delete "$INSTDIR\qt_uk.qm"
-delete "$INSTDIR\icudt53.dll"
-delete "$INSTDIR\icuin53.dll"
-delete "$INSTDIR\icuuc53.dll"
+delete "$INSTDIR\D3Dcompiler_41.dll"
+delete "$INSTDIR\libEGL.dll"
+delete "$INSTDIR\libGLESV2.dll"
 delete "$INSTDIR\libgcc_s_dw2-1.dll"
 delete "$INSTDIR\libstdc++-6.dll"
 delete "$INSTDIR\libwinpthread-1.dll"
@@ -142,6 +144,14 @@ delete "$INSTDIR\sqldrivers\qsqlite.dll"
 delete "$INSTDIR\libeay32.dll"
 delete "$INSTDIR\ssleay32.dll"
 delete "$INSTDIR\miniupnpc.dll"
+delete "$INSTDIR\libiconv-2.dll"
+delete "$INSTDIR\libintl-8.dll"
+delete "$INSTDIR\fi\LC_MESSAGES\classified-ads.mo"
+delete "$INSTDIR\sv\LC_MESSAGES\classified-ads.mo"
+RMDIR "$INSTDIR\sv\LC_MESSAGES"
+RMDIR "$INSTDIR\sv"
+RMDIR "$INSTDIR\fi\LC_MESSAGES"
+RMDIR "$INSTDIR\fi"
 RMDIR "$INSTDIR\bearer"
 RMDIR "$INSTDIR\iconengines"
 RMDIR "$INSTDIR\imageformats"

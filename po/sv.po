@@ -1,0 +1,2187 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Language: sv_SE\n"
+"X-Qt-Contexts: true\n"
+
+# Man kan spara pengar också? 
+#: ui/attachmentlistdialog.cpp:60
+msgctxt "AttachmentListDialog|"
+msgid "Save file to disk.."
+msgstr "Spara till filsystem.."
+
+#: ui/attachmentlistdialog.cpp:151 ui/attachmentlistdialog.cpp:153
+msgctxt "AttachmentListDialog|"
+msgid "files"
+msgstr "filer"
+
+#: ui/attachmentlistdialog.cpp:155
+msgctxt "AttachmentListDialog|"
+msgid "Choose file name for saving"
+msgstr "Välj ett namn for din fil"
+
+#: ui/attachmentlistdialog.cpp:166
+msgctxt "AttachmentListDialog|"
+msgid "Error"
+msgstr "Fel"
+
+#: ui/attachmentlistdialog.cpp:167
+msgctxt "AttachmentListDialog|"
+msgid "File open error"
+msgstr "Fel i att öppna en fil"
+
+#: datamodel/binaryfilelistingmodel.cpp:173
+msgctxt "BinaryFileListingModel|"
+msgid "Name or fingerprint of file"
+msgstr "Namn eller SHA1 kontrollsumm av filen"
+
+#: datamodel/calistingmodel.cpp:50 datamodel/calistingmodel.cpp:143
+msgctxt "CAListingModel|"
+msgid "Date"
+msgstr "Datum"
+
+#: datamodel/calistingmodel.cpp:51 datamodel/calistingmodel.cpp:142
+msgctxt "CAListingModel|"
+msgid "Subject"
+msgstr "Rubrik"
+
+#: datamodel/camodel.cpp:127
+msgctxt "ClassifiedAdsModel|"
+msgid "Buying"
+msgstr "Inköpning"
+
+#: datamodel/camodel.cpp:129
+msgctxt "ClassifiedAdsModel|"
+msgid "Selling"
+msgstr "Försäljing"
+
+#: datamodel/camodel.cpp:131
+msgctxt "ClassifiedAdsModel|"
+msgid "Giving away"
+msgstr "Donering"
+
+#: datamodel/camodel.cpp:133
+msgctxt "ClassifiedAdsModel|"
+msgid "Wanting"
+msgstr "Önskande sig"
+
+#: datamodel/camodel.cpp:135
+msgctxt "ClassifiedAdsModel|"
+msgid "Renting"
+msgstr "Att hyra"
+
+#: datamodel/camodel.cpp:137
+msgctxt "ClassifiedAdsModel|"
+msgid "Announcement"
+msgstr "Meddelande"
+
+#: datamodel/camodel.cpp:210
+msgctxt "ClassifiedAdsModel|"
+msgid "Cars"
+msgstr "Bilar"
+
+#: datamodel/camodel.cpp:212
+msgctxt "ClassifiedAdsModel|"
+msgid "Boats"
+msgstr "Båtar"
+
+#: datamodel/camodel.cpp:214
+msgctxt "ClassifiedAdsModel|"
+msgid "Bikes"
+msgstr "Cyklar"
+
+#: datamodel/camodel.cpp:216
+msgctxt "ClassifiedAdsModel|"
+msgid "Other vehicles"
+msgstr "Andra fordon"
+
+#: datamodel/camodel.cpp:218
+msgctxt "ClassifiedAdsModel|"
+msgid "Vehicle parts"
+msgstr "Fordondelar"
+
+#: datamodel/camodel.cpp:220
+msgctxt "ClassifiedAdsModel|"
+msgid "Habitation"
+msgstr "Bostad"
+
+#: datamodel/camodel.cpp:222
+msgctxt "ClassifiedAdsModel|"
+msgid "Household appliances"
+msgstr "Hushållsapparater"
+
+#: datamodel/camodel.cpp:224
+msgctxt "ClassifiedAdsModel|"
+msgid "Furniture"
+msgstr "Möbler"
+
+#: datamodel/camodel.cpp:226
+msgctxt "ClassifiedAdsModel|"
+msgid "Clothing"
+msgstr "Kläder"
+
+#: datamodel/camodel.cpp:228
+msgctxt "ClassifiedAdsModel|"
+msgid "Tools"
+msgstr "Verktyg"
+
+#: datamodel/camodel.cpp:230
+msgctxt "ClassifiedAdsModel|"
+msgid "Sports"
+msgstr "Sports"
+
+#: datamodel/camodel.cpp:232
+msgctxt "ClassifiedAdsModel|"
+msgid "Music"
+msgstr "Musik"
+
+#: datamodel/camodel.cpp:234
+msgctxt "ClassifiedAdsModel|"
+msgid "Books"
+msgstr "Böcker"
+
+#: datamodel/camodel.cpp:236
+msgctxt "ClassifiedAdsModel|"
+msgid "Movies"
+msgstr "Bio"
+
+#: datamodel/camodel.cpp:238
+msgctxt "ClassifiedAdsModel|"
+msgid "Animals"
+msgstr "Djur"
+
+#: datamodel/camodel.cpp:240
+msgctxt "ClassifiedAdsModel|"
+msgid "Electronics"
+msgstr "Elektroniska aparater"
+
+#: datamodel/camodel.cpp:242
+msgctxt "ClassifiedAdsModel|"
+msgid "Jobs"
+msgstr "Arbete"
+
+#: datamodel/camodel.cpp:244
+msgctxt "ClassifiedAdsModel|"
+msgid "Transportation"
+msgstr "Transport"
+
+#: datamodel/camodel.cpp:246
+msgctxt "ClassifiedAdsModel|"
+msgid "Services"
+msgstr "Tjänster"
+
+#: datamodel/camodel.cpp:248
+msgctxt "ClassifiedAdsModel|"
+msgid "Healthcare"
+msgstr "Sjukvård"
+
+#: datamodel/camodel.cpp:250
+msgctxt "ClassifiedAdsModel|"
+msgid "Foodstuff"
+msgstr "Livsmedel"
+
+#: datamodel/camodel.cpp:252
+msgctxt "ClassifiedAdsModel|"
+msgid "Software"
+msgstr "Programvara"
+
+#: datamodel/camodel.cpp:254
+msgctxt "ClassifiedAdsModel|"
+msgid "Events"
+msgstr "Händelser"
+
+#: datamodel/camodel.cpp:256
+msgctxt "ClassifiedAdsModel|"
+msgid "Education"
+msgstr "Utbildning"
+
+#: datamodel/camodel.cpp:258
+msgctxt "ClassifiedAdsModel|"
+msgid "Finance"
+msgstr "Finans"
+
+#: datamodel/camodel.cpp:260
+msgctxt "ClassifiedAdsModel|"
+msgid "Jewelry"
+msgstr "Smycken"
+
+#: datamodel/camodel.cpp:262
+msgctxt "ClassifiedAdsModel|"
+msgid "Religious rituals"
+msgstr "Religiösa ritualer"
+
+#: datamodel/camodel.cpp:264
+msgctxt "ClassifiedAdsModel|"
+msgid "Philosophy"
+msgstr "Filosofi"
+
+#: datamodel/camodel.cpp:908
+msgctxt "ClassifiedAdsModel|"
+msgid "Any country"
+msgstr "Alla länder"
+
+#: datamodel/connectionlistingmodel.cpp:142
+msgctxt "ConnectionListingModel|"
+msgid "Peer network address"
+msgstr "Gränsande datorns adress"
+
+#: datamodel/connectionlistingmodel.cpp:145
+msgctxt "ConnectionListingModel|"
+msgid "Inbound connections are those where peer initiated connection"
+msgstr ""
+"Inkommande förbindelse är sådan när en annan dator öppnade dataströmmen "
+
+#: datamodel/connectionlistingmodel.cpp:148
+msgctxt "ConnectionListingModel|"
+msgid "Data transferred from peer to your node"
+msgstr "Data från din dator"
+
+#: datamodel/connectionlistingmodel.cpp:151
+msgctxt "ConnectionListingModel|"
+msgid "Data transferred to peer from your node"
+msgstr "Data till din dator"
+
+#: datamodel/connectionlistingmodel.cpp:154
+msgctxt "ConnectionListingModel|"
+msgid "Time when connection was opened"
+msgstr "Tid när dataström öppnades"
+
+#: datamodel/connectionlistingmodel.cpp:164
+msgctxt "ConnectionListingModel|"
+msgid "Address"
+msgstr "Adress"
+
+#: datamodel/connectionlistingmodel.cpp:167
+msgctxt "ConnectionListingModel|"
+msgid "Inbound"
+msgstr "Inkommande"
+
+#: datamodel/connectionlistingmodel.cpp:170
+msgctxt "ConnectionListingModel|"
+msgid "Bytes in"
+msgstr "Oktett in"
+
+#: datamodel/connectionlistingmodel.cpp:173
+msgctxt "ConnectionListingModel|"
+msgid "Bytes out"
+msgstr "Oktett ut"
+
+#: datamodel/connectionlistingmodel.cpp:176
+msgctxt "ConnectionListingModel|"
+msgid "Open time"
+msgstr "Öppningstid"
+
+#: datamodel/contactlistingmodel.cpp:73
+msgctxt "ContactListingModel|"
+msgid "Yes"
+msgstr "Ja"
+
+#: datamodel/contactlistingmodel.cpp:75
+msgctxt "ContactListingModel|"
+msgid "Unknown"
+msgstr "Okänt"
+
+#: datamodel/contactlistingmodel.cpp:98
+msgctxt "ContactListingModel|"
+msgid "Actual network address (SHA1) of the contact"
+msgstr "SHA1 av din contact"
+
+#: datamodel/contactlistingmodel.cpp:101
+msgctxt "ContactListingModel|"
+msgid "Locally given nickname ; user may set her own nickname himself"
+msgstr "Smeknamn"
+
+#: datamodel/contactlistingmodel.cpp:104
+msgctxt "ContactListingModel|"
+msgid "Public statement if this operator to be trusted in transactions"
+msgstr "Om den här kontakt ska bli förtröstad?"
+
+#: datamodel/contactlistingmodel.cpp:114
+msgctxt "ContactListingModel|"
+msgid "Address"
+msgstr "Adress"
+
+#: datamodel/contactlistingmodel.cpp:117
+msgctxt "ContactListingModel|"
+msgid "Nickname"
+msgstr "Smeknamn"
+
+#: datamodel/contactlistingmodel.cpp:120
+msgctxt "ContactListingModel|"
+msgid "Publicly trusted"
+msgstr "Offentlig förtroende"
+
+#: datamodel/contentencryptionmodel.cpp:86
+msgctxt "ContentEncryptionModel|"
+msgid "SSL key generation went wrong, calling exit.."
+msgstr "Kunde inte generera SSL-nyckel, utgående.."
+
+#: datamodel/contentencryptionmodel.cpp:94
+msgctxt "ContentEncryptionModel|"
+msgid "x509 cert generation went wrong, calling exit.."
+msgstr "Kunde inte generera x509-cert, utgående.."
+
+#: datamodel/contentencryptionmodel.cpp:192
+#: datamodel/contentencryptionmodel.cpp:290
+msgctxt "ContentEncryptionModel|"
+msgid "RSA Private key key saving went wrong"
+msgstr "Kunde inte persist RSA-nyckel"
+
+#: datamodel/contentencryptionmodel.cpp:637
+msgctxt "ContentEncryptionModel|"
+msgid "No suitable de-cryption key found"
+msgstr "Hemlig nyckel för kryptering finns inte"
+
+#: controller.cpp:103
+msgctxt "Controller|"
+msgid "Classified ads"
+msgstr "Annonser"
+
+#: controller.cpp:135
+msgctxt "Controller|"
+msgid "Enter password for protection of your messages:"
+msgstr "Ge ett lösenord: "
+
+#: controller.cpp:405
+msgctxt "Controller|"
+msgid "Fetching item from network.."
+msgstr "Hämtning objektet.."
+
+#: controller.cpp:430
+msgctxt "Controller|"
+msgid "E&xit"
+msgstr "Stänga"
+
+#: controller.cpp:432
+msgctxt "Controller|"
+msgid "Exit the application"
+msgstr "Stänga av program"
+
+#: controller.cpp:434
+msgctxt "Controller|"
+msgid "&About"
+msgstr "Om &annonser"
+
+#: controller.cpp:435
+msgctxt "Controller|"
+msgid "Show the application's About box"
+msgstr "Visa information av den här program"
+
+#: controller.cpp:437
+msgctxt "Controller|"
+msgid "&Change password"
+msgstr "Förändra din lösenord"
+
+#: controller.cpp:438
+msgctxt "Controller|"
+msgid "Change password of current profile"
+msgstr "Förändra lösenorden av vald profil"
+
+#: controller.cpp:440
+msgctxt "Controller|"
+msgid "Create &new profile"
+msgstr "Skapa en &ny profil"
+
+#: controller.cpp:441
+msgctxt "Controller|"
+msgid "Makes a brand new user profile"
+msgstr "Skapar en ny profil för operator"
+
+#: controller.cpp:443
+msgctxt "Controller|"
+msgid "&Delete current profile"
+msgstr "Radera vald profil"
+
+#: controller.cpp:444
+msgctxt "Controller|"
+msgid "Deletes currently open profile"
+msgstr "Ska glömma allt om vald profil"
+
+#: controller.cpp:446
+msgctxt "Controller|"
+msgid "&Select another profile"
+msgstr "Välja en annan profil"
+
+#: controller.cpp:447
+msgctxt "Controller|"
+msgid "If you have multitude of profiles"
+msgstr "Om du har flera profiler"
+
+#: controller.cpp:449
+msgctxt "Controller|"
+msgid "Settings.."
+msgstr "Inställningar.."
+
+#: controller.cpp:450
+msgctxt "Controller|"
+msgid "Node-wide settings.."
+msgstr "Inställningar av nod"
+
+#: controller.cpp:452
+msgctxt "Controller|"
+msgid "Network status.."
+msgstr "Status av nätverket.."
+
+#: controller.cpp:454
+msgctxt "Controller|"
+msgid "Search.."
+msgstr "Sök.."
+
+#: controller.cpp:471
+msgctxt "Controller|"
+msgid "&File"
+msgstr "&Filer"
+
+#: controller.cpp:516
+msgctxt "Controller|"
+msgid "Enter new password:"
+msgstr "Ge ett lösenord:"
+
+#: controller.cpp:544 controller.cpp:653
+msgctxt "Controller|"
+msgid "Activate another profile with password"
+msgstr "Välja en annan profil med en lösenord"
+
+#: controller.cpp:638
+msgctxt "Controller|"
+msgid "Can't delete only profile."
+msgstr "Man kan inte radera den sista profil"
+
+#: controller.cpp:642
+msgctxt "Controller|"
+msgid "Permanently discard profile?"
+msgstr "Radera profil?"
+
+#: controller.cpp:643
+msgctxt "Controller|"
+msgid "There will be NO way to access content of this profile later"
+msgstr "Det finns INTE en metod för att visa den här profil senare"
+
+#: controller.cpp:706
+msgctxt "Controller|"
+msgid "Cant load node cert or key cert"
+msgstr "Kan inte ladda smycken för din nod"
+
+#: controller.cpp:711
+msgctxt "Controller|"
+msgid "File error"
+msgstr "Fel med filen"
+
+#: controller.cpp:716
+msgctxt "Controller|"
+msgid "Database error"
+msgstr "Fel med databas"
+
+#: controller.cpp:722 controller.cpp:732
+msgctxt "Controller|"
+msgid "Cryptographic module"
+msgstr "Fel med kryptering"
+
+#: controller.cpp:727
+msgctxt "Controller|"
+msgid "Database module"
+msgstr "Fel med databas"
+
+#: controller.cpp:733
+msgctxt "Controller|"
+msgid "Bad password"
+msgstr "Fel lösenord"
+
+#: controller.cpp:949
+msgctxt "Controller|"
+msgid "Could not find item from network.."
+msgstr "Kunde inte hitta objektet från nätverket"
+
+#: controller.cpp:1062
+msgctxt "Controller|"
+msgid "SHA1: "
+msgstr "SHA1:"
+
+#: controller.cpp:1067
+msgctxt "Controller|"
+msgid "Mime-Type: "
+msgstr "Mime-Type:"
+
+#: controller.cpp:1073
+msgctxt "Controller|"
+msgid "Description: "
+msgstr "Beskrivning: "
+
+#: controller.cpp:1079
+msgctxt "Controller|"
+msgid "Publisher: "
+msgstr "Förläggare: "
+
+#: controller.cpp:1085
+msgctxt "Controller|"
+msgid "Content owner: "
+msgstr "Innehållsägare: "
+
+#: controller.cpp:1091
+msgctxt "Controller|"
+msgid "License: "
+msgstr "Licens: "
+
+#: controller.cpp:1097
+msgctxt "Controller|"
+msgid "Name: "
+msgstr "Namn: "
+
+#: controller.cpp:1104
+msgctxt "Controller|"
+msgid "Date: "
+msgstr "Datum: "
+
+#: ui/dialogbase.cpp:47 ui/dialogbase.cpp:101
+msgctxt "DialogBase|"
+msgid "File way too big"
+msgstr "Filen är alldeles för stor"
+
+#: ui/dialogbase.cpp:55 ui/dialogbase.cpp:109
+msgctxt "DialogBase|"
+msgid "File too big"
+msgstr "Filen är för stor"
+
+#: ui/dialogbase.cpp:85 ui/dialogbase.cpp:131
+msgctxt "DialogBase|"
+msgid "File open error"
+msgstr "Fel med öppningen av filen"
+
+#: ui/dialogbase.cpp:94
+msgctxt "DialogBase|"
+msgid "Select file to be published"
+msgstr "Välja filen som du will ha publicerad"
+
+#: ui/dialogbase.cpp:96
+msgctxt "DialogBase|"
+msgid "Files (*.*)"
+msgstr "Alla filer (*.*)"
+
+#: ui/editcontact.cpp:72
+msgctxt "EditContactDialog|"
+msgid "Error"
+msgstr "Fel"
+
+#: ui/editcontact.cpp:73
+msgctxt "EditContactDialog|"
+msgid "Operator addr is not valid"
+msgstr "Adress av operator är inte giltig"
+
+#: FrontWidget.cpp:93
+msgctxt "FrontWidget|"
+msgid "Classified ads"
+msgstr "Annonser"
+
+#: FrontWidget.cpp:94
+msgctxt "FrontWidget|"
+msgid "My profile"
+msgstr "Egen profil"
+
+#: FrontWidget.cpp:95
+msgctxt "FrontWidget|"
+msgid "Contacts"
+msgstr "Kontakter"
+
+#: FrontWidget.cpp:96
+msgctxt "FrontWidget|"
+msgid "Private messages"
+msgstr "Privat korrespondens"
+
+#: FrontWidget.cpp:155
+msgctxt "FrontWidget|"
+msgid "Add shared file.."
+msgstr "Addera en fil til nätverk.."
+
+#: FrontWidget.cpp:156
+msgctxt "FrontWidget|"
+msgid "Stop advertising selected shared file"
+msgstr "Sluta annonsera den markerade filen"
+
+#: FrontWidget.cpp:157
+msgctxt "FrontWidget|"
+msgid "Save file to disk.."
+msgstr "Spara filen till disk.."
+
+#: FrontWidget.cpp:158
+msgctxt "FrontWidget|"
+msgid "View file information.."
+msgstr "Visa beskrivning av filen.."
+
+#: FrontWidget.cpp:159
+msgctxt "FrontWidget|"
+msgid "Copy file address (SHA1) to clipboard.."
+msgstr "Kopiera SHA1 till urklipp.."
+
+#: FrontWidget.cpp:160
+msgctxt "FrontWidget|"
+msgid "Edit+publish new text document.."
+msgstr "Skapa+publicera en ny dokument.."
+
+#: FrontWidget.cpp:348
+msgctxt "FrontWidget|"
+msgid "Open File"
+msgstr "Öppna filen"
+
+#: FrontWidget.cpp:350 FrontWidget.cpp:880
+msgctxt "FrontWidget|"
+msgid "Files (*.*)"
+msgstr "Alla typer (*.*)"
+
+#: FrontWidget.cpp:354 FrontWidget.cpp:1180 FrontWidget.cpp:1322
+msgctxt "FrontWidget|"
+msgid "Error"
+msgstr "Fel"
+
+#: FrontWidget.cpp:355
+msgctxt "FrontWidget|"
+msgid "Can't load image"
+msgstr "Kan inte ladda en bild"
+
+#: FrontWidget.cpp:621 FrontWidget.cpp:761
+msgctxt "FrontWidget|"
+msgid "Profile not in database"
+msgstr "Profil finns inte i lokal databas"
+
+#: FrontWidget.cpp:622 FrontWidget.cpp:762
+msgctxt "FrontWidget|"
+msgid "Try viewing profile first to obtain data"
+msgstr "Du kan försöka att se profil först för att hämta data"
+
+#: FrontWidget.cpp:878
+msgctxt "FrontWidget|"
+msgid "Select file to be published"
+msgstr "Välja filen du vill ha publicerad"
+
+#: FrontWidget.cpp:885
+msgctxt "FrontWidget|"
+msgid "File way too big"
+msgstr "Filen är alldeles för stor"
+
+#: FrontWidget.cpp:893
+msgctxt "FrontWidget|"
+msgid "File too big"
+msgstr "Filen är för stor"
+
+#: FrontWidget.cpp:937 FrontWidget.cpp:1181
+msgctxt "FrontWidget|"
+msgid "File open error"
+msgstr "Fel med öppningen av filen"
+
+#: FrontWidget.cpp:1162 FrontWidget.cpp:1168
+msgctxt "FrontWidget|"
+msgid "files"
+msgstr "filer"
+
+#: FrontWidget.cpp:1171
+msgctxt "FrontWidget|"
+msgid "Choose file name for saving"
+msgstr "Välj ett namn for din fil"
+
+#: FrontWidget.cpp:1231
+msgctxt "FrontWidget|"
+msgid ""
+"\n"
+"\n"
+"\n"
+"Click\n"
+"To\n"
+"Add\n"
+"Image\n"
+msgstr ""
+"\n"
+"\n"
+"\n"
+"Klicka för att\n"
+"lägga till\n"
+"en bild\n"
+
+#: FrontWidget.cpp:1323
+msgctxt "FrontWidget|"
+msgid "Article not found from local storage"
+msgstr "Annons kunde inte hittas i local databas"
+
+#: FrontWidget.cpp:1349 FrontWidget.cpp:1897
+#, qt-format
+msgctxt "FrontWidget|"
+msgid ""
+"Trusted by %1\n"
+"SHA1 %2"
+msgstr ""
+"Betrodd av %1\n"
+"SHA1 %2"
+
+#: FrontWidget.cpp:1386
+msgctxt "FrontWidget|"
+msgid "Time of last update "
+msgstr "Tid av senaste ändring"
+
+#: FrontWidget.cpp:1394
+msgctxt "FrontWidget|"
+msgid ""
+"\n"
+"\n"
+"\n"
+"(No\n"
+"Image\n"
+"Selected)\n"
+msgstr ""
+"\n"
+"\n"
+"\n"
+"(Ingen\n"
+"Bild\n"
+"Valts)\n"
+
+#: FrontWidget.cpp:1488
+msgctxt "FrontWidget|"
+msgid "Edit contact.."
+msgstr "Redigera kontakt"
+
+#: FrontWidget.cpp:1528
+msgctxt "FrontWidget|"
+msgid "&Reply to sender"
+msgstr "Svara avsändaren"
+
+#: FrontWidget.cpp:1529
+msgctxt "FrontWidget|"
+msgid "Reply to &forum"
+msgstr "Svara på &forumet"
+
+#: FrontWidget.cpp:1530
+msgctxt "FrontWidget|"
+msgid "&Post new ad"
+msgstr "Ska&pa en ny annons"
+
+#: FrontWidget.cpp:1531
+msgctxt "FrontWidget|"
+msgid "&Public comment"
+msgstr "&Publik kommentar"
+
+#: FrontWidget.cpp:1532
+msgctxt "FrontWidget|"
+msgid "&View profile"
+msgstr "&Visa profilen"
+
+#: FrontWidget.cpp:1533 FrontWidget.cpp:1671
+msgctxt "FrontWidget|"
+msgid "Attachments.."
+msgstr "Bilagor.."
+
+#: FrontWidget.cpp:1593
+msgctxt "FrontWidget|"
+msgid "Add selected operator to contacts.."
+msgstr "Lägga operator till din kontakter"
+
+#: FrontWidget.cpp:1667
+msgctxt "FrontWidget|"
+msgid "&Reply"
+msgstr "Svara"
+
+#: FrontWidget.cpp:1668
+msgctxt "FrontWidget|"
+msgid "&New message"
+msgstr "Skapa en ny brev"
+
+#: FrontWidget.cpp:1669
+msgctxt "FrontWidget|"
+msgid "&Send public comment to sender"
+msgstr "Skicka en publik kommentar om profilen "
+
+#: FrontWidget.cpp:1670
+msgctxt "FrontWidget|"
+msgid "&View profile of peer"
+msgstr "&Visa profilen"
+
+#: FrontWidget.cpp:1705
+msgctxt "FrontWidget|"
+msgid "Add selected to contacts.."
+msgstr "Lägga till din kontakter.."
+
+#: FrontWidget.cpp:1907 FrontWidget.cpp:1909 FrontWidget.cpp:1973
+#: FrontWidget.cpp:1975
+msgctxt "FrontWidget|"
+msgid "From:"
+msgstr "Från:"
+
+#: FrontWidget.cpp:1911 FrontWidget.cpp:1978
+msgctxt "FrontWidget|"
+msgid "Subject:"
+msgstr "Rubrik:"
+
+#: FrontWidget.cpp:1970
+msgctxt "FrontWidget|"
+msgid "To:"
+msgstr "Mottagare:"
+
+#: FrontWidget.cpp:2282
+msgctxt "FrontWidget|"
+msgid "Invalid SHA1 in URL"
+msgstr "SHA1 i URL är inte giltig"
+
+#: FrontWidget.cpp:2309
+msgctxt "FrontWidget|"
+msgid "Invalid URL"
+msgstr "URL är inte giltig"
+
+#: ui/insertlinkdialog.cpp:69
+msgctxt "InsertLinkDialog|"
+msgid "Invalid URL"
+msgstr "URL är inte giltig"
+
+#: ui/manualconnection.cpp:53
+msgctxt "ManualConnectionDialog|"
+msgid "DNS lookup failure"
+msgstr "Namnet kunde inte hittas från DNS"
+
+#: ui/newprivmsgdialog.cpp:88 ui/newprivmsgdialog.cpp:133
+msgctxt "NewPrivMessageDialog|"
+msgid "Error"
+msgstr "Fel"
+
+#: ui/newprivmsgdialog.cpp:89
+msgctxt "NewPrivMessageDialog|"
+msgid "Recipient addr is not valid"
+msgstr "Adressen av mottagaren är inte giltig"
+
+#: ui/newprivmsgdialog.cpp:134
+msgctxt "NewPrivMessageDialog|"
+msgid "Recipient encryption key not found from storage"
+msgstr "Kryptering-nyckel för mottagaren kunde inte hittas i lokal databas"
+
+#: ui/newprofilecommentdialog.cpp:89 ui/newprofilecommentdialog.cpp:126
+msgctxt "NewProfileCommentDialog|"
+msgid "Error"
+msgstr "Fel"
+
+#: ui/newprofilecommentdialog.cpp:90
+msgctxt "NewProfileCommentDialog|"
+msgid "Commented profile addr is not valid"
+msgstr "Adressen av profil är inte giltig"
+
+#: ui/newprofilecommentdialog.cpp:127
+msgctxt "NewProfileCommentDialog|"
+msgid "Recipient encryption key not found from storage"
+msgstr "Kunde inte hittas kryptering-nyckel från lokal databas"
+
+#: datamodel/nodemodel.cpp:115
+msgctxt "NodeModel|"
+msgid "SSL key generation went wrong, calling exit.."
+msgstr "Kunde inte skapa SSL-nyckel, utgående.."
+
+#: datamodel/nodemodel.cpp:123
+msgctxt "NodeModel|"
+msgid "x509 cert generation went wrong, calling exit.."
+msgstr "Kunde inte skapa x509-nyckel, utgående.."
+
+#: datamodel/nodemodel.cpp:1594
+msgctxt "NodeModel|"
+msgid "Cant load SSL cert"
+msgstr "Kunde inte ladda SSL-nyckkel"
+
+#: datamodel/nodemodel.cpp:1624
+msgctxt "NodeModel|"
+msgid "Cant load SSL key"
+msgstr "Kunde inte ladda SSL-nyckel "
+
+#: ui/passwd_dialog.cpp:104
+msgctxt "PasswdDialog|"
+msgid "Min length 5 (use 10+)"
+msgstr "Minimilängd är 5 (du skulle använda minst 10+)"
+
+#: ui/passwordDialog.ui:14
+msgctxt "PasswordDialog|"
+msgid "Password required"
+msgstr "Lösenord krävs"
+
+#: ui/passwordDialog.ui:17
+msgctxt "PasswordDialog|"
+msgid ""
+"Should you forget this word, there is no easy way to recover any of your "
+"content"
+msgstr ""
+"Om du glömmer det här ordet, det finns inte en praktiskt metod för att visa "
+"dina filer senare"
+
+#: ui/passwordDialog.ui:29
+msgctxt "PasswordDialog|"
+msgid "Enter password for protection of your messages"
+msgstr "Ge ett lösenord"
+
+#: ui/passwordDialog.ui:42
+msgctxt "PasswordDialog|"
+msgid ""
+"If you forget this word, there is no simple way to recover your contents"
+msgstr ""
+"Om du glömmer det här ordet, det finns inte en praktiskt metod för att visa "
+"dina filer senare"
+
+#: ui/passwordDialog.ui:55
+msgctxt "PasswordDialog|"
+msgid "OK"
+msgstr "OK"
+
+#: datamodel/privmsgsearchmodel.cpp:110
+#, qt-format
+msgctxt "PrivateMessageSearchModel|"
+msgid ""
+"%1\n"
+"Trusted by %2"
+msgstr ""
+"%1\n"
+"Betrodd av %2"
+
+#: datamodel/privmsgsearchmodel.cpp:237
+msgctxt "PrivateMessageSearchModel|"
+msgid "Direction of message, sent/received"
+msgstr "Riktning"
+
+#: datamodel/privmsgsearchmodel.cpp:247
+msgctxt "PrivateMessageSearchModel|"
+msgid "Dir"
+msgstr "Riktning"
+
+#: datamodel/privmsgsearchmodel.cpp:250
+msgctxt "PrivateMessageSearchModel|"
+msgid "Peer"
+msgstr "Peer"
+
+#: datamodel/privmsgsearchmodel.cpp:253
+msgctxt "PrivateMessageSearchModel|"
+msgid "Time"
+msgstr "Datum"
+
+#: datamodel/privmsgsearchmodel.cpp:256
+msgctxt "PrivateMessageSearchModel|"
+msgid "Subject"
+msgstr "Rubrik"
+
+#: ui/profilecommentdisplay.cpp:54
+msgctxt "ProfileCommentDisplay|"
+msgid "&Add comment..."
+msgstr "Skapa en ny komment.."
+
+#: ui/profilecommentdisplay.cpp:65
+msgctxt "ProfileCommentDisplay|"
+msgid "Save attachment to disk.."
+msgstr "Spara filen till disk.."
+
+#: ui/profilecommentdisplay.cpp:90
+msgctxt "ProfileCommentDisplay|"
+msgid "Error"
+msgstr "Fel"
+
+#: ui/profilecommentdisplay.cpp:91
+msgctxt "ProfileCommentDisplay|"
+msgid "Article not found from local storage"
+msgstr "Annons kunde inte hittas i lokal databas"
+
+#: ui/profilecommentitemdelegate.cpp:91
+msgctxt "ProfileCommentItemDelegate|"
+msgid "Attachments: "
+msgstr "Tilläggade filer:"
+
+#: datamodel/profilecommentlistingmodel.cpp:219
+msgctxt "ProfileCommentListingModel|"
+msgid "Sender"
+msgstr "Avsändare"
+
+#: datamodel/profilecommentlistingmodel.cpp:222
+msgctxt "ProfileCommentListingModel|"
+msgid "Time"
+msgstr "Datum"
+
+#: datamodel/profilecommentlistingmodel.cpp:225
+msgctxt "ProfileCommentListingModel|"
+msgid "Subject"
+msgstr "Rubrik"
+
+#: datamodel/profilecommentmodel.cpp:67
+msgctxt "ProfileCommentModel|"
+msgid "Profile related to comment not found from database"
+msgstr "Profilen från komment kunde inte hittas i lokal databas"
+
+#: ui/profilereadersdialog.cpp:73
+msgctxt "ProfileReadersDialog|"
+msgid "View profile"
+msgstr "Visa profilen"
+
+#: datamodel/profilereaderslistingmodel.cpp:174
+msgctxt "ProfileReadersListingModel|"
+msgid "Name or fingerprint of reader"
+msgstr "Namn eller SHA1 kontrollsumm av läsaren "
+
+#: ui/searchdisplay.cpp:62
+msgctxt "SearchDisplay|"
+msgid "Open.."
+msgstr "Öppna.."
+
+#: textedit/textedit.cpp:127
+msgctxt "TextEdit|"
+msgid "Help"
+msgstr "Hjälp"
+
+#: textedit/textedit.cpp:129
+msgctxt "TextEdit|"
+msgid "About &Qt"
+msgstr "Information om &Qt"
+
+#: textedit/textedit.cpp:186
+msgctxt "TextEdit|"
+msgid "Edit Actions"
+msgstr "Aktions för redigering"
+
+#: textedit/textedit.cpp:188
+msgctxt "TextEdit|"
+msgid "&File"
+msgstr "Arkiv"
+
+#: textedit/textedit.cpp:194
+msgctxt "TextEdit|"
+msgid "&Open..."
+msgstr "Öppna.."
+
+#: textedit/textedit.cpp:203
+msgctxt "TextEdit|"
+msgid "&Save locally before send"
+msgstr "&Spara före skickning"
+
+#: textedit/textedit.cpp:210
+msgctxt "TextEdit|"
+msgid "Save locally &As..."
+msgstr "Spara i lokal disk med namn.."
+
+#: textedit/textedit.cpp:218
+msgctxt "TextEdit|"
+msgid "&Print..."
+msgstr "Skriv ut.."
+
+#: textedit/textedit.cpp:226
+msgctxt "TextEdit|"
+msgid "Print Preview..."
+msgstr "Förhandsgranskning"
+
+#: textedit/textedit.cpp:231
+msgctxt "TextEdit|"
+msgid "&Export PDF..."
+msgstr "&Exportera som PDF"
+
+#: textedit/textedit.cpp:244
+msgctxt "TextEdit|"
+msgid "&Edit"
+msgstr "R&edigera"
+
+#: textedit/textedit.cpp:249
+msgctxt "TextEdit|"
+msgid "&Undo"
+msgstr "Ångra"
+
+#: textedit/textedit.cpp:254
+msgctxt "TextEdit|"
+msgid "&Redo"
+msgstr "Återställ"
+
+#: textedit/textedit.cpp:261
+msgctxt "TextEdit|"
+msgid "Cu&t"
+msgstr "Klipp ut"
+
+#: textedit/textedit.cpp:267
+msgctxt "TextEdit|"
+msgid "&Copy"
+msgstr "Kopiera"
+
+#: textedit/textedit.cpp:273
+msgctxt "TextEdit|"
+msgid "&Paste"
+msgstr "Klistra in"
+
+#: textedit/textedit.cpp:283
+msgctxt "TextEdit|"
+msgid "Insert link"
+msgstr "Infoga en länk"
+
+#: textedit/textedit.cpp:287
+msgctxt "TextEdit|"
+msgid "Embed image"
+msgstr "Bädda in en bild"
+
+#: textedit/textedit.cpp:294
+msgctxt "TextEdit|"
+msgid "F&ormat"
+msgstr "F&ormat"
+
+#: textedit/textedit.cpp:298
+msgctxt "TextEdit|"
+msgid "&Bold"
+msgstr "Fet"
+
+#: textedit/textedit.cpp:310
+msgctxt "TextEdit|"
+msgid "&Italic"
+msgstr "Kursiv"
+
+#: textedit/textedit.cpp:322
+msgctxt "TextEdit|"
+msgid "&Underline"
+msgstr "Understruken"
+
+#: textedit/textedit.cpp:341 textedit/textedit.cpp:347
+msgctxt "TextEdit|"
+msgid "&Left"
+msgstr "Vänsterjustera"
+
+#: textedit/textedit.cpp:342 textedit/textedit.cpp:346
+msgctxt "TextEdit|"
+msgid "C&enter"
+msgstr "Centrerat"
+
+#: textedit/textedit.cpp:343 textedit/textedit.cpp:345
+msgctxt "TextEdit|"
+msgid "&Right"
+msgstr "Högerjustera"
+
+#: textedit/textedit.cpp:349
+msgctxt "TextEdit|"
+msgid "&Justify"
+msgstr "Marginaljustering"
+
+#: textedit/textedit.cpp:376
+msgctxt "TextEdit|"
+msgid "&Color..."
+msgstr "Färg.."
+
+#: textedit/textedit.cpp:383
+msgctxt "TextEdit|"
+msgid "Standard"
+msgstr "Standardformat"
+
+#: textedit/textedit.cpp:384
+msgctxt "TextEdit|"
+msgid "Bullet List (Disc)"
+msgstr "Punktuppställning (bollar)"
+
+#: textedit/textedit.cpp:385
+msgctxt "TextEdit|"
+msgid "Bullet List (Circle)"
+msgstr "Punktuppställning (cirklar)"
+
+#: textedit/textedit.cpp:386
+msgctxt "TextEdit|"
+msgid "Bullet List (Square)"
+msgstr "Punktuppställning (kvadrater)"
+
+#: textedit/textedit.cpp:387
+msgctxt "TextEdit|"
+msgid "Ordered List (Decimal)"
+msgstr "Numrering (decimal)"
+
+#: textedit/textedit.cpp:388
+msgctxt "TextEdit|"
+msgid "Ordered List (Alpha lower)"
+msgstr "Numrering (små bokstäver)"
+
+#: textedit/textedit.cpp:389
+msgctxt "TextEdit|"
+msgid "Ordered List (Alpha upper)"
+msgstr "Numrering (stora bokstäver)"
+
+#: textedit/textedit.cpp:390
+msgctxt "TextEdit|"
+msgid "Ordered List (Roman lower)"
+msgstr "Numrering (små roman)"
+
+#: textedit/textedit.cpp:391
+msgctxt "TextEdit|"
+msgid "Ordered List (Roman upper)"
+msgstr "Numrering (stora roman)"
+
+#: textedit/textedit.cpp:442
+msgctxt "TextEdit|"
+msgid "Application"
+msgstr "Annonser"
+
+#: textedit/textedit.cpp:443
+msgctxt "TextEdit|"
+msgid ""
+"The document has been modified.\n"
+"Do you want to save your changes?"
+msgstr "Dokument har ändrats, spara?"
+
+#: textedit/textedit.cpp:467
+msgctxt "TextEdit|"
+msgid "Open File..."
+msgstr "Öppna filen.."
+
+#: textedit/textedit.cpp:468
+msgctxt "TextEdit|"
+msgid "HTML-Files (*.htm *.html);;All Files (*)"
+msgstr "HTML-Filer (*.htm *.html);;Alla typer (*)"
+
+#: textedit/textedit.cpp:485
+msgctxt "TextEdit|"
+msgid "Save as..."
+msgstr "Spara som.."
+
+#: textedit/textedit.cpp:486
+msgctxt "TextEdit|"
+msgid "ODF files (*.odt);;HTML-Files (*.htm *.html);;All Files (*)"
+msgstr "ODF filer (*.odt);;HTML-Filer (*.htm *.html);;Alla typer (*)"
+
+#: textedit/textedit.cpp:501
+msgctxt "TextEdit|"
+msgid "Print Document"
+msgstr "Skriv ut dokument"
+
+#: textedit/textedit.cpp:559
+msgctxt "TextEdit|"
+msgid "Open File"
+msgstr "Öppna filen"
+
+#: textedit/textedit.cpp:561
+msgctxt "TextEdit|"
+msgid "Files (*.*)"
+msgstr "Alla filer (*.*)"
+
+#: textedit/textedit.cpp:566
+msgctxt "TextEdit|"
+msgid "Error"
+msgstr "Fel"
+
+#: textedit/textedit.cpp:567
+msgctxt "TextEdit|"
+msgid "Can't load image"
+msgstr "Kan inte ladda en bild"
+
+#: textedit/textedit.cpp:621 textedit/textedit.cpp:631
+msgctxt "TextEdit|"
+msgid "File way too big"
+msgstr "Filen är alldeles för stor"
+
+#: ui/aboutDialog.ui:26
+msgctxt "aboutDialog|"
+msgid "About classified ads"
+msgstr "Information om Annonser"
+
+#: ui/aboutDialog.ui:100
+msgctxt "aboutDialog|"
+msgid " Classified ads is a program for online communications"
+msgstr "Annonser är en programvara för kommunikation över internet"
+
+#: ui/aboutDialog.ui:160
+#| msgid ""
+#| "<html><head/><body><p>Classified ads is free software. You may use, copy "
+#| "and modify it if you follow the conditions given in GNU lesser general "
+#| "public license version 2.1.</p><p>Classified ads is copyright © Antti "
+#| "Järvinen 2013. </p><p>Main feature of the the program is an "
+#| "&quot;advertisement&quot; - a piece of text belonging to selected "
+#| "classification. There are several pre-programmed classifications and "
+#| "operators are encouraged to invent new classifications for new purposes ; "
+#| "the selection boxes in classification-selection tab are editable. Other "
+#| "operators may then view the ads, publicly comment the ads, the operators "
+#| "and also send private messages to each others. </p><p>Another important "
+#| "feature of classified ads is that it is designed to be operated without "
+#| "any centralized server infrastucture - it is you and other operators "
+#| "whose computers store and transmit all the content visible inside "
+#| "classified ads. To get connected you need to know address of at least one "
+#| "existing computer (a <span style=\" font-style:italic;\">node</span>) so "
+#| "if your network connection dialog shows no connections, you may need to "
+#| "contact someone you know is using the software and ask for address of her "
+#| "node to make initial contact with the network. Once connected the "
+#| "software should maintain list of addresses of other nodes. </p><p>Due to "
+#| "its server-less design the whole system works best if you leave the "
+#| "program running always when you have your computer powered on ; while "
+#| "processing other operators requests it will hog some computing resources "
+#| "and generate network traffic also when you are not actively using the "
+#| "program youself - others are. </p><p>Operators concerned about privacy of "
+#| "the content should be aware of following items:</p><p>- Data storage "
+#| "implementation is variant of <span style=\" "
+#| "font-style:italic;\">distributed hash table</span>, practically meaning "
+#| "that content posted by you gets copied some more-or-less random nodes in "
+#| "the network. </p><p>- Any data item (ad, comment, binary file, private "
+#| "message etc.) is digitally signed. This makes it more difficult to try to "
+#| "pose as another operator. </p><p>- Operators are reliably identified only "
+#| "by the SHA1 hash of their generated encryption keys. SHA1 hash is "
+#| "displayed when viewing details of operator profiles. Other identifying "
+#| "information like nickname or city name are entered by operator himself "
+#| "and can be anything. The operator profile, as it is published to the "
+#| "network, is also signed with the encryption keys of the operator - if you "
+#| "identify an operator by her SHA1 hash, you have a mechanism for "
+#| "identifying if any content inside classified ads is posted by this "
+#| "operator or not. Classified ads internally checks for digital signatures, "
+#| "throwing away content that fails signature check and tries to provide "
+#| "SHA1 hash of the operator who posted the content.</p><p>- All classified "
+#| "ads are posted as plain text, no encryption is used. All public profiles "
+#| "are posted as plain text, no encryption is used. If profile is made "
+#| "private, it is encrypted to be readable only by selected other profiles. "
+#| "This applies also to binary files shared by operators private profiles "
+#| "and comments about private profiles after the profile was made private "
+#| "(previously plain-text comments or files don't get magically encrypted "
+#| "afterwards). Private messages are encrypted always to be readable only by "
+#| "recipient and sender. Attachments follow the privary rules of the "
+#| "document, they're attachted to. </p><p>- As is the case with all "
+#| "internet-communications, this small fact is true for classified ads too : "
+#| "<span style=\" font-style:italic;\">once something gets posted online, "
+#| "there is no way to remove it from network</span>. </p><p>- Data "
+#| "encryption implementation for content is OpenSSL, relying mostly on "
+#| "algorithms RSA-2048 and AES-256. </p><p>- While connections between nodes "
+#| "are implemented using SSL, other nodes inside network do get to know what "
+#| "content is being transmitted in neighboring nodes. While there is no "
+#| "central point for easily collecting this information about particular "
+#| "classification or operator, operators still should expect no privacy "
+#| "regarding their doings online, altough some effort has been been put into "
+#| "hiding <span style=\" font-style:italic;\">contents</span> of private "
+#| "messages and private profiles. </p><p>Programming was (mostly) done by "
+#| "Antti Järvinen, artwork by Meeri Järvinen.</p><p>This product includes "
+#| "software developed by the OpenSSL Project for use in the OpenSSL Toolkit "
+#| "(http://www.openssl.org/).</p><p>Happy "
+#| "advertising!</p><p><br/></p></body></html>"
+msgctxt "aboutDialog|"
+msgid ""
+"<html><head/><body><p>Classified ads is free software. You may use, copy and "
+"modify it if you follow the conditions given in GNU lesser general public "
+"license version 2.1.</p><p>Classified ads is copyright © Antti Järvinen "
+"2013. </p><p>Main feature of the the program is an &quot;advertisement&quot; "
+"- a piece of text belonging to selected classification. There are several "
+"pre-programmed classifications and operators are encouraged to invent new "
+"classifications for new purposes ; the selection boxes in "
+"classification-selection tab are editable. Other operators may then view the "
+"ads, publicly comment the ads, the operators and also send private messages "
+"to each others. </p><p>Another important feature of classified ads is that "
+"it is designed to be operated without any centralized server infrastucture - "
+"it is you and other operators whose computers store and transmit all the "
+"content visible inside classified ads. To get connected you need to know "
+"address of at least one existing computer (a <span style=\" "
+"font-style:italic;\">node</span>) so if your network connection dialog shows "
+"no connections, you may need to contact someone you know is using the "
+"software and ask for address of her node to make initial contact with the "
+"network. Once connected the software should maintain list of addresses of "
+"other nodes. </p><p>Due to its server-less design the whole system works "
+"best if you leave the program running always when you have your computer "
+"powered on ; while processing other operators requests it will hog some "
+"computing resources and generate network traffic also when you are not "
+"actively using the program youself - others are. </p><p>Operators concerned "
+"about privacy of the content should be aware of following items:</p><p>- "
+"Data storage implementation is variant of <span style=\" "
+"font-style:italic;\">distributed hash table</span>, practically meaning that "
+"content posted by you gets copied some more-or-less random nodes in the "
+"network. </p><p>- Any data item (ad, comment, binary file, private message "
+"etc.) is digitally signed. This makes it more difficult to try to pose as "
+"another operator. </p><p>- Operators are reliably identified only by the "
+"SHA1 hash of their generated encryption keys. SHA1 hash is displayed when "
+"viewing details of operator profiles. Other identifying information like "
+"nickname or city name are entered by operator himself and can be anything. "
+"The operator profile, as it is published to the network, is also signed with "
+"the encryption keys of the operator - if you identify an operator by her "
+"SHA1 hash, you have a mechanism for identifying if any content inside "
+"classified ads is posted by this operator or not. Classified ads internally "
+"checks for digital signatures, throwing away content that fails signature "
+"check and tries to provide SHA1 hash of the operator who posted the "
+"content.</p><p>- All classified ads are posted as plain text, no encryption "
+"is used. All public profiles are posted as plain text, no encryption is "
+"used. If profile is made private, it is encrypted to be readable only by "
+"selected other profiles. This applies also to binary files shared by "
+"operators private profiles and comments about private profiles after the "
+"profile was made private (previously plain-text comments or files don't get "
+"magically encrypted afterwards). Private messages are encrypted always to be "
+"readable only by recipient and sender. Attachments follow the privary rules "
+"of the document, they're attachted to. </p><p>- As is the case with all "
+"internet-communications, this small fact is true for classified ads too : "
+"<span style=\" font-style:italic;\">once something gets posted online, there "
+"is no way to remove it from network</span>. </p><p>- Data encryption "
+"implementation for content is OpenSSL, relying mostly on algorithms RSA-2048 "
+"and AES-256. </p><p>- While connections between nodes are implemented using "
+"SSL, other nodes inside network do get to know what content is being "
+"transmitted in neighboring nodes. While there is no central point for easily "
+"collecting this information about particular classification or operator, "
+"operators still should expect no privacy regarding their doings online, "
+"although some effort has been been put into hiding <span style=\" "
+"font-style:italic;\">contents</span> of private messages and private "
+"profiles. </p><p>Programming was (mostly) done by Antti Järvinen, artwork by "
+"Meeri Järvinen.</p><p>This product includes software developed by the "
+"OpenSSL Project for use in the OpenSSL Toolkit "
+"(http://www.openssl.org/).</p><p>Happy "
+"advertising!</p><p><br/></p></body></html>"
+msgstr ""
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta "
+"http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /><style "
+"type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Ubuntu'; font-size:9pt; "
+"font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; "
+"margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Annonser är fri "
+"programvara. Du kan använda, kopiera och modifiera det om du följer "
+"konditioner av GNU LGPL licens v2.1 (GNU Lesser General Public License). "
+"</p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
+"margin-left:0px; margin-right:0px; -qt-block-indent:0; "
+"text-indent:0px;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; "
+"margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Copyright © Antti "
+"Järvinen 2013.</p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
+"margin-left:0px; margin-right:0px; -qt-block-indent:0; "
+"text-indent:0px;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; "
+"margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Den viktig "
+"funktionen av Annonser är &quot;annons&quot; - dokument som har en "
+"klassificering. Program har flera klassificrings och användarna kan skapa "
+"mera. Användarna kan läsa annonser, skapa kommentarer om dom och ha "
+"korrespondens.</p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
+"margin-left:0px; margin-right:0px; -qt-block-indent:0; "
+"text-indent:0px;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; "
+"margin-right:0px; -qt-block-indent:0; text-indent:0px;\">En annan viktig "
+"egenskap är att Annonser är inte serverbaserad, det använder inte en databas "
+"i server över nätverket. Alla filer sparas i datorer av användarna av "
+"Annonser. För at kunna ansluta sig med nätverket av Annonser man har at veta "
+"minst en adress av en dator som är i nätverket. När program har anslutat sig "
+"med nätverket det ska underhålla sin egen listan om andra datorer i "
+"nätverket. </p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
+"margin-left:0px; margin-right:0px; -qt-block-indent:0; "
+"text-indent:0px;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; "
+"margin-right:0px; -qt-block-indent:0; text-indent:0px;\">På grund av "
+"partnerbaserad-konstruktion hela system fungerar bäst om du lämnar program "
+"på också när du inte använder program själv. Program ska ta datorkraft och "
+"generera traffic över nätverket när du inte använder program, men andra "
+"användare ska bli betjänad. </p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
+"margin-left:0px; margin-right:0px; -qt-block-indent:0; "
+"text-indent:0px;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; "
+"margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Användarna "
+"intresserad av sina informationssäkerhet skulle veta att:</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; "
+"margin-right:0px; -qt-block-indent:0; text-indent:0px;\"> - Databas är en "
+"variant av distribuerad hashtabell (DHT). Det betyder att filer skickad i "
+"nätverket sparas i flera datorer i andra användarnas ägo.</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; "
+"margin-right:0px; -qt-block-indent:0; text-indent:0px;\"> - Alla "
+"dataobjekter i Annonser har en digital signatur. <br /> - Den enda värdig "
+"identifiering för operatör ar SHA1 kontrollsumm av hennes RSA-nyckel. Alla "
+"andra punkter om operatör kan vara vad som helst.</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; "
+"margin-right:0px; -qt-block-indent:0; text-indent:0px;\"> - Alla annonser "
+"ska sparas i nätverket utan kryptering - alla kan läsa dom. Alla publik "
+"profiler sparas i nätverket utan kryptering. Operatörprofiler som är privat "
+"ska bli krypterad bara för listade användare. Samma gäller också för "
+"kommentarer och filer av profil. Om en profil blir privat, gammal "
+"kommentarer och filer av profil är inte krypterad. Korrespondens (brev) "
+"mellan användarna ska vara krypterad alltid.  Bilagor följer kryptering av "
+"sina ägande dokument. </p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; "
+"margin-right:0px; -qt-block-indent:0; text-indent:0px;\"> - Som är fallet "
+"med alla kommunikation över internet, det här gäller också: om någonting är "
+"publicerad i Annonser, <span style=\" font-style:italic;\">det finns inte en "
+"metod för att ta det bort senare</span>. <br /> - Programvara för kryptering "
+"är OpenSSL, algoritmen mest avända är RSA-2048 och AES-256.</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; "
+"margin-right:0px; -qt-block-indent:0; text-indent:0px;\"> - Kommunikationen "
+"mellan datorer i nätverket är krypterad med SSL. Din partners i nätverket "
+"kan se alla trafik till din nod. Användarna skulle inte ponera anonymitet "
+"eller hemlighet över saker dom gör i nätverket. </p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
+"margin-left:0px; margin-right:0px; -qt-block-indent:0; "
+"text-indent:0px;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; "
+"margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Programmering "
+"gjorts av Antti Järvinen, konst av Meeri Järvinen.</p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
+"margin-left:0px; margin-right:0px; -qt-block-indent:0; "
+"text-indent:0px;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; "
+"margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Denna produkt "
+"innehåller programvara som har utvecklats av OpenSSL project för användning "
+"i OpenSSL toolkit (http://www.openssl.org).</p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
+"margin-left:0px; margin-right:0px; -qt-block-indent:0; "
+"text-indent:0px;\"><br /></p></body></html>"
+
+#: ui/attachmentListDialog.ui:26
+msgctxt "attachmentListDialog|"
+msgid "List of attached files"
+msgstr "Listan av bilagor"
+
+#: ui/editContact.ui:26
+msgctxt "editContactDialog|"
+msgid "Edit a contact"
+msgstr "Redigera en kontakt"
+
+#: ui/editContact.ui:39
+msgctxt "editContactDialog|"
+msgid "Address (SHA1) of contact"
+msgstr "Adress (SHA1 kontrollsumm) av kontakt "
+
+#: ui/editContact.ui:53
+msgctxt "editContactDialog|"
+msgid "Local nickname"
+msgstr "Lokal smeknamn"
+
+#: ui/editContact.ui:65
+msgctxt "editContactDialog|"
+msgid ""
+"<html><head/><body><p>Settings some trusted is public information to readers "
+"of your profile</p></body></html>"
+msgstr ""
+"<html><head/><body><p>Om du tröst på en profil, det är publik "
+"information</p></body></html> "
+
+#: ui/editContact.ui:68
+msgctxt "editContactDialog|"
+msgid "This contact is to be publicly trusted in transactions"
+msgstr "Den här kontakt är tillförlitlig "
+
+#: frontWidget.ui:14
+msgctxt "frontWidget|"
+msgid "Form"
+msgstr "Form"
+
+#: frontWidget.ui:39
+msgctxt "frontWidget|"
+msgid "Classified ads"
+msgstr "Annonseravdelning"
+
+#: frontWidget.ui:67
+msgctxt "frontWidget|"
+msgid "Search for classified ads about"
+msgstr "Sök annonser efter"
+
+#: frontWidget.ui:74
+msgctxt "frontWidget|"
+msgid "Perform"
+msgstr "Utföra"
+
+#: frontWidget.ui:97
+msgctxt "frontWidget|"
+msgid "of"
+msgstr "av"
+
+#: frontWidget.ui:113
+msgctxt "frontWidget|"
+msgid "in"
+msgstr "i"
+
+#: frontWidget.ui:123
+msgctxt "frontWidget|"
+msgid "Search"
+msgstr "Sök"
+
+#: frontWidget.ui:161
+msgctxt "frontWidget|"
+msgid "My profile"
+msgstr "Egen profil"
+
+#: frontWidget.ui:177 frontWidget.ui:932
+msgctxt "frontWidget|"
+msgid "Profile address"
+msgstr "Adress av profil"
+
+#: frontWidget.ui:208 frontWidget.ui:643
+msgctxt "frontWidget|"
+msgid "Nickname"
+msgstr "Smeknamn"
+
+#: frontWidget.ui:225 frontWidget.ui:669
+msgctxt "frontWidget|"
+msgid "Greeting text"
+msgstr "Hälsningar"
+
+#: frontWidget.ui:232
+msgctxt "frontWidget|"
+msgid "For the rest of the world. "
+msgstr "För hela världen"
+
+#: frontWidget.ui:239 frontWidget.ui:695
+msgctxt "frontWidget|"
+msgid "First name"
+msgstr "Förnamn"
+
+#: frontWidget.ui:253 frontWidget.ui:715
+msgctxt "frontWidget|"
+msgid "Family name"
+msgstr "Efternamn"
+
+#: frontWidget.ui:263
+msgctxt "frontWidget|"
+msgid "City/country"
+msgstr "Stad/rike"
+
+#: frontWidget.ui:273
+msgctxt "frontWidget|"
+msgid "BTC address"
+msgstr "BTC-adress"
+
+#: frontWidget.ui:280
+msgctxt "frontWidget|"
+msgid "If you wish to receive payments via BTC, include your BTC address too."
+msgstr "Om du will ta mot betalningar, ge din BTC-adress "
+
+#: frontWidget.ui:287 frontWidget.ui:799
+msgctxt "frontWidget|"
+msgid "State of the world"
+msgstr "Tillståndet i världen"
+
+#: frontWidget.ui:294
+msgctxt "frontWidget|"
+msgid "Longer explanation about state of the world"
+msgstr "Tillståndet i världen"
+
+#: frontWidget.ui:301
+msgctxt "frontWidget|"
+msgid "Profile is private"
+msgstr "Profilen är privat"
+
+#: frontWidget.ui:308
+msgctxt "frontWidget|"
+msgid "Readers of profile"
+msgstr "Läsarna av profilen"
+
+#: frontWidget.ui:315
+msgctxt "frontWidget|"
+msgid "None of the fields is mandatory"
+msgstr "Ingent pukt är obligatoriskt "
+
+#: frontWidget.ui:322
+msgctxt "frontWidget|"
+msgid "Time of last update"
+msgstr "Tid av senaste ändring"
+
+#: frontWidget.ui:342
+msgctxt "frontWidget|"
+msgid "Publish"
+msgstr "Publicera"
+
+#: frontWidget.ui:355
+msgctxt "frontWidget|"
+msgid "Revert changes"
+msgstr "Återgå"
+
+#: frontWidget.ui:369
+msgctxt "frontWidget|"
+msgid "Details of operator profile:"
+msgstr "Detaljer om operatörsprofil"
+
+#: frontWidget.ui:401
+msgctxt "frontWidget|"
+msgid ""
+"\n"
+"\n"
+"Click \n"
+"to \n"
+"Add\n"
+"Image"
+msgstr ""
+"\n"
+"\n"
+"Klicka för at \n"
+"lägga till\n"
+"en bild"
+
+#: frontWidget.ui:425 frontWidget.ui:845
+msgctxt "frontWidget|"
+msgid "Shared files"
+msgstr "Filer i fildelning  "
+
+#: frontWidget.ui:461 frontWidget.ui:892
+msgctxt "frontWidget|"
+msgid "Latest comments"
+msgstr "Senaste kommentarer"
+
+#: frontWidget.ui:504
+msgctxt "frontWidget|"
+msgid "Contacts"
+msgstr "Kontakter"
+
+#: frontWidget.ui:536
+msgctxt "frontWidget|"
+msgid "Add contact"
+msgstr "Lägg kontakt"
+
+#: frontWidget.ui:543
+msgctxt "frontWidget|"
+msgid "Remove contact"
+msgstr "Ta bort kontakt"
+
+#: frontWidget.ui:550
+msgctxt "frontWidget|"
+msgid "View profile"
+msgstr "Visa profilen"
+
+#: frontWidget.ui:557
+msgctxt "frontWidget|"
+msgid "Send message"
+msgstr "Skicka en elektronisk post"
+
+#: frontWidget.ui:569
+msgctxt "frontWidget|"
+msgid "Private messages"
+msgstr "Korrespondens"
+
+#: frontWidget.ui:624
+msgctxt "frontWidget|"
+msgid "Profile details"
+msgstr "Detaljer av profil"
+
+#: frontWidget.ui:741
+msgctxt "frontWidget|"
+msgid "City/Country"
+msgstr "Stad/rike"
+
+#: frontWidget.ui:767
+msgctxt "frontWidget|"
+msgid "BTC Addr"
+msgstr "BTC-adress"
+
+#: frontWidget.ui:829
+msgctxt "frontWidget|"
+msgid ""
+"<html><head/><body><p align=\"center\"><span style=\" "
+"font-size:16pt;\"><br/></span></p><p align=\"center\"><span style=\" "
+"font-size:16pt;\"><br/></span></p><p align=\"center\"><span style=\" "
+"font-size:16pt;\"><br/></span></p><p align=\"center\"><span style=\" "
+"font-size:16pt;\">No</span></p><p align=\"center\"><span style=\" "
+"font-size:16pt;\">Image</span></p><p align=\"center\"><span style=\" "
+"font-size:16pt;\">Inserted</span></p></body></html>"
+msgstr ""
+"<html><head/><body><p align=\"center\"><span style=\" "
+"font-size:16pt;\"><br/></span></p><p align=\"center\"><span style=\" "
+"font-size:16pt;\"><br/></span></p><p align=\"center\"><span style=\" "
+"font-size:16pt;\"><br/></span></p><p align=\"center\"><span style=\" "
+"font-size:16pt;\">Ingen</span></p><p align=\"center\"><span style=\" "
+"font-size:16pt;\">Bild</span></p><p align=\"center\"><span style=\" "
+"font-size:16pt;\">Valts</span></p></body></html>"
+
+#: frontWidget.ui:874
+msgctxt "frontWidget|"
+msgid "Send message to operator"
+msgstr "Skicka en brev"
+
+#: frontWidget.ui:879
+msgctxt "frontWidget|"
+msgid "View readers"
+msgstr "Läsarna av profilen"
+
+#: frontWidget.ui:927
+msgctxt "frontWidget|"
+msgid "Comment"
+msgstr "Skicka en kommentar"
+
+#: frontWidget.ui:959
+msgctxt "frontWidget|"
+msgid "Add to contacts"
+msgstr "Lägga till din kontakter"
+
+#: ui/insertLink.ui:26
+msgctxt "insertLinkDialog|"
+msgid "Insert link"
+msgstr "Infoga en länk"
+
+#: ui/insertLink.ui:39
+msgctxt "insertLinkDialog|"
+msgid "URL"
+msgstr "URL"
+
+#: ui/insertLink.ui:112
+msgctxt "insertLinkDialog|"
+msgid "Link label in text"
+msgstr "Länktext"
+
+#: ui/manualConnectionDialog.ui:26
+msgctxt "manualConnectionDialog|"
+msgid "Manually add node to connection queue"
+msgstr "Lägga till en nod (anslutningen)"
+
+#: ui/manualConnectionDialog.ui:48
+msgctxt "manualConnectionDialog|"
+msgid "Remote node listen port"
+msgstr "TCP-port av peer"
+
+#: ui/manualConnectionDialog.ui:78
+msgctxt "manualConnectionDialog|"
+msgid "Remote node network address"
+msgstr "Nätverk adress"
+
+#: ui/manualConnectionDialog.ui:91
+msgctxt "manualConnectionDialog|"
+msgid "IPv4, IPv6 or DNS name"
+msgstr "IPv4, IPv6 eller DNS-namn"
+
+#: ui/metadataQuery.ui:26
+msgctxt "metadataQuery|"
+msgid "File information"
+msgstr "Information av filen"
+
+#: ui/metadataQuery.ui:60
+msgctxt "metadataQuery|"
+msgid "Name of the file:"
+msgstr "Namn: "
+
+#: ui/metadataQuery.ui:81
+msgctxt "metadataQuery|"
+msgid "Owner of file (name or SHA1 if CA operator):"
+msgstr "Innehållsägare: "
+
+#: ui/metadataQuery.ui:111
+msgctxt "metadataQuery|"
+msgid "License of use:"
+msgstr "Licens: "
+
+# Lets not translate license names..
+#: ui/metadataQuery.ui:122
+msgctxt "metadataQuery|"
+msgid "Public domain"
+msgstr "Public domain"
+
+#: ui/metadataQuery.ui:127
+msgctxt "metadataQuery|"
+msgid "GPL"
+msgstr "GPL"
+
+#: ui/metadataQuery.ui:132
+msgctxt "metadataQuery|"
+msgid "LGPL"
+msgstr "LGPL"
+
+#: ui/metadataQuery.ui:137
+msgctxt "metadataQuery|"
+msgid "BSD"
+msgstr "BSD"
+
+#: ui/metadataQuery.ui:142
+msgctxt "metadataQuery|"
+msgid "CC-BY"
+msgstr "CC-BY"
+
+#: ui/metadataQuery.ui:147
+msgctxt "metadataQuery|"
+msgid "CC-BY-SA"
+msgstr "CC-BY-SA"
+
+#: ui/metadataQuery.ui:152
+msgctxt "metadataQuery|"
+msgid "CC-BY-ND"
+msgstr "CC-BY-ND"
+
+#: ui/metadataQuery.ui:157
+msgctxt "metadataQuery|"
+msgid "CC-BY-NC"
+msgstr "CC-BY-NC"
+
+#: ui/metadataQuery.ui:162
+msgctxt "metadataQuery|"
+msgid "CC-BY-NC-SA"
+msgstr "CC-BY-NC-SA"
+
+#: ui/metadataQuery.ui:167
+msgctxt "metadataQuery|"
+msgid "CC-BY-NC-ND"
+msgstr "CC-BY-NC-ND"
+
+#: ui/metadataQuery.ui:182
+msgctxt "metadataQuery|"
+msgid "Mime-type:"
+msgstr "Mime-typ:"
+
+#: ui/metadataQuery.ui:199
+msgctxt "metadataQuery|"
+msgid "Description of file:"
+msgstr "Beskrivning:"
+
+#: ui/metadataQuery.ui:218
+msgctxt "metadataQuery|"
+msgid "Enter information regarding file before publish:"
+msgstr "Ange information före publicera:"
+
+#: ui/newClassifiedAd.ui:26
+msgctxt "newCaDialog|"
+msgid "Post a new classified ad"
+msgstr "Skicka en ny annons"
+
+#: ui/newClassifiedAd.ui:47
+msgctxt "newCaDialog|"
+msgid "About"
+msgstr "I fråga om"
+
+#: ui/newClassifiedAd.ui:65
+msgctxt "newCaDialog|"
+msgid "of"
+msgstr "av"
+
+#: ui/newClassifiedAd.ui:81
+msgctxt "newCaDialog|"
+msgid "in"
+msgstr "i"
+
+#: ui/newClassifiedAd.ui:95
+msgctxt "newCaDialog|"
+msgid "Subject"
+msgstr "Rubrik"
+
+#: ui/newClassifiedAd.ui:129
+msgctxt "newCaDialog|"
+msgid "Attachment: "
+msgstr "Bilagor: "
+
+#: ui/newClassifiedAd.ui:149
+msgctxt "newCaDialog|"
+msgid "Add"
+msgstr "Inkludera"
+
+#: ui/newPrivMsg.ui:26
+msgctxt "newPrivMsgDialog|"
+msgid "Send a private message"
+msgstr "Skicka en ny brev"
+
+#: ui/newPrivMsg.ui:39
+msgctxt "newPrivMsgDialog|"
+msgid "Subject"
+msgstr "Rubrik"
+
+#: ui/newPrivMsg.ui:53
+msgctxt "newPrivMsgDialog|"
+msgid "Recipient"
+msgstr "Mottagare"
+
+#: ui/newPrivMsg.ui:83
+msgctxt "newPrivMsgDialog|"
+msgid "Attachments: "
+msgstr "Bilagor: "
+
+#: ui/newPrivMsg.ui:103
+msgctxt "newPrivMsgDialog|"
+msgid "Attach"
+msgstr "Inkludera"
+
+#: ui/newProfileComment.ui:26
+msgctxt "newProfileCommentDialog|"
+msgid "Comment a operators profile"
+msgstr "Skicka en kommentar av en profil"
+
+#: ui/newProfileComment.ui:39
+msgctxt "newProfileCommentDialog|"
+msgid "Subject"
+msgstr "Rubrik"
+
+#: ui/newProfileComment.ui:53
+msgctxt "newProfileCommentDialog|"
+msgid "Commented profile"
+msgstr "Operatörsprofil"
+
+#: ui/newProfileComment.ui:89
+msgctxt "newProfileCommentDialog|"
+msgid "Attachments:"
+msgstr "Bilagor:"
+
+#: ui/newProfileComment.ui:109
+msgctxt "newProfileCommentDialog|"
+msgid "Attach"
+msgstr "Inkludera"
+
+#: ui/newTextDocument.ui:26
+msgctxt "newTextDocumentDialog|"
+msgid "Edit and publish a new text document"
+msgstr "Skapa och publicera en ny dokument"
+
+#: ui/newTextDocument.ui:39
+msgctxt "newTextDocumentDialog|"
+msgid "Document title"
+msgstr "Rubrik"
+
+#: ui/newTextDocument.ui:75
+msgctxt "newTextDocumentDialog|"
+msgid "Attachments:"
+msgstr "Bilagor:"
+
+#: ui/newTextDocument.ui:95
+msgctxt "newTextDocumentDialog|"
+msgid "Attach"
+msgstr "Inkludera"
+
+#: ui/profileCommentDisplay.ui:26
+msgctxt "profileCommentDisplay|"
+msgid "Comments regarding operator"
+msgstr "Kommentarer av en operatör"
+
+#: ui/profileReadersDialog.ui:26
+msgctxt "profileReadersDialog|"
+msgid "Profile readers list"
+msgstr "Läsarna av en profil"
+
+#: ui/profileReadersDialog.ui:37
+msgctxt "profileReadersDialog|"
+msgid "Search for profiles to add"
+msgstr "Sök för profiler som ska bli läggad till"
+
+#: ui/profileReadersDialog.ui:44
+msgctxt "profileReadersDialog|"
+msgid "First 100 matching profiles:"
+msgstr "Först 100 motsvarande profiler:"
+
+#: ui/profileReadersDialog.ui:66
+msgctxt "profileReadersDialog|"
+msgid "Add seleted to list of readers"
+msgstr "Inkludera vald profiler"
+
+#: ui/profileReadersDialog.ui:73
+msgctxt "profileReadersDialog|"
+msgid "Current list of readers"
+msgstr "Aktuell listan"
+
+#: ui/profileReadersDialog.ui:90
+msgctxt "profileReadersDialog|"
+msgid "Close"
+msgstr "Stäng"
+
+#: ui/profileReadersDialog.ui:109
+msgctxt "profileReadersDialog|"
+msgid "Remove selected"
+msgstr "Ta bort vald profiler"
+
+#: ui/searchDisplay.ui:26
+msgctxt "searchDisplay|"
+msgid "Search data storage"
+msgstr "Sök lokal databas"
+
+#: ui/searchDisplay.ui:60
+msgctxt "searchDisplay|"
+msgid "Words:"
+msgstr "Alla ord:"
+
+#: ui/searchDisplay.ui:70
+msgctxt "searchDisplay|"
+msgid "Search"
+msgstr "Sök"
+
+#: ui/searchDisplay.ui:87
+msgctxt "searchDisplay|"
+msgid "Network search"
+msgstr "Sök i nätverket"
+
+#: ui/searchDisplay.ui:101
+msgctxt "searchDisplay|"
+msgid "Search ads"
+msgstr "Sök annonser"
+
+#: ui/searchDisplay.ui:111
+msgctxt "searchDisplay|"
+msgid "Search profiles"
+msgstr "Sök profiler"
+
+#: ui/searchDisplay.ui:121
+msgctxt "searchDisplay|"
+msgid "Search comments"
+msgstr "Sök kommentarer"
+
+#: ui/settingsDialog.ui:26
+msgctxt "settingsDialog|"
+msgid "Node settings"
+msgstr "Inställningar av dator"
+
+#: ui/settingsDialog.ui:39
+msgctxt "settingsDialog|"
+msgid "TCP listen port"
+msgstr "TCP-port"
+
+#: ui/settingsDialog.ui:58
+msgctxt "settingsDialog|"
+msgid "Incoming TCP listen port. Change requires node restart. "
+msgstr "TCP-port för inkommande trafik. Måste omstarta programmen om ändrats.."
+
+#: ui/settingsDialog.ui:84
+msgctxt "settingsDialog|"
+msgid "DNS name of node"
+msgstr "DNS-namn"
+
+#: ui/settingsDialog.ui:91
+msgctxt "settingsDialog|"
+msgid ""
+"If you have permanent DNS name for your machine, you may type it here to be "
+"used to reference your node"
+msgstr "Om du har DNS-namnet for din dator"
+
+#: ui/settingsDialog.ui:103
+msgctxt "settingsDialog|"
+msgid "Data store limits:"
+msgstr "Begränsningar för databas"
+
+#: ui/settingsDialog.ui:115
+msgctxt "settingsDialog|"
+msgid "Nr of profiles to keep"
+msgstr "Antal profiler"
+
+#: ui/settingsDialog.ui:154
+msgctxt "settingsDialog|"
+msgid "Nr of private messages to keep"
+msgstr "Antal E-brev"
+
+#: ui/settingsDialog.ui:193
+msgctxt "settingsDialog|"
+msgid "Nr of binary blobs to keep"
+msgstr "Antal filer"
+
+#: ui/settingsDialog.ui:232
+msgctxt "settingsDialog|"
+msgid "Nr of CAs to keep"
+msgstr "Antal annons"
+
+#: ui/settingsDialog.ui:251
+msgctxt "settingsDialog|"
+msgid ""
+"Number of classified ads to keep in storage, total, including all "
+"classifications. Oldest referenced will be deleted first."
+msgstr ""
+
+#: ui/settingsDialog.ui:274
+msgctxt "settingsDialog|"
+msgid "Nr of profile comments to keep"
+msgstr "Antal kommentarer"
+
+#: ui/statusDialog.ui:26
+msgctxt "statusDialog|"
+msgid "Network and connection status"
+msgstr "Översikt av nätverket"
+
+#: ui/statusDialog.ui:48
+msgctxt "statusDialog|"
+msgid "Detected own IPv4"
+msgstr "Upphittade egen IPv4 adress"
+
+#: ui/statusDialog.ui:61 ui/statusDialog.ui:93
+msgctxt "statusDialog|"
+msgid ""
+"Should your friend have trouble connecting, give her this address with port "
+"number"
+msgstr ""
+"Om din vän kan inte ta kontakt med nätverket, ge honom den här adress med "
+"port "
+
+#: ui/statusDialog.ui:74
+msgctxt "statusDialog|"
+msgid "IPv6"
+msgstr "IPv6"
+
+#: ui/statusDialog.ui:113
+msgctxt "statusDialog|"
+msgid "TCP port currently used"
+msgstr "TCP port"
+
+#: ui/statusDialog.ui:151
+msgctxt "statusDialog|"
+msgid "Currently open connections"
+msgstr "Öppna dataströmmar"
+
+#: ui/statusDialog.ui:195
+msgctxt "statusDialog|"
+msgid "Manually add connection"
+msgstr "Lägga till en peer"
+
+#: ui/statusDialog.ui:202
+msgctxt "statusDialog|"
+msgid "Close"
+msgstr "Stäng"
