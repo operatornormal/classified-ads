@@ -69,8 +69,10 @@ public:
                               const char *aDisambiguation = 0
 #if QT_VERSION >= 0x050000
                                       , int aPluralForm = -1
-#endif
                              ) const Q_DECL_OVERRIDE;
+#else
+                             ) const ;
+#endif
     virtual bool isEmpty() const;
 } ;
 #endif /* JSONWRAPPER_H */
