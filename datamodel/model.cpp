@@ -1251,7 +1251,7 @@ void Model::timerEvent(QTimerEvent*
 #endif
                       ) {
     LOG_STR2( "timerEvent Timer ID: %d" , event->timerId());
-    const time_t currentTime ( QDateTime::currentDateTimeUtc().toTime_t() ) ; 
+    const time_t currentTime ( QDateTime::currentDateTimeUtc().toTime_t() ) ;
     lock() ;
     // update mutual connect time:
     for ( int i = iConnections->size()-1 ; i >= 0 ; i-- ) {
@@ -1263,22 +1263,16 @@ void Model::timerEvent(QTimerEvent*
     }
     // then check for dead connections:
     for ( int i = iConnections->size()-1 ; i >= 0 ; i-- ) {
-      Connection *connectedNode = iConnections->at(i) ;
-      if ( connectedNode->iTimeOfLastActivity < 
-	   ( currentTime - ( 60 * (Connection::iMinutesBetweenBucketFill+2) ) ) ) {
-	// no traffic for minimum time + 2 minutes -> ask gently for closing:
-	connectedNode->iNeedsToRun = false ; 
-	LOG_STR2( "Connection at array pos %d is dead -> asking for close" , i);
-      }
-      if ( connectedNode->iTimeOfLastActivity < 
-	   ( currentTime - ( 60 * (Connection::iMinutesBetweenBucketFill+6) ) ) ) {
-	// no traffic for minimum time + 6 minutes -> ask non-gently for closing:
-        connectedNode->forciblyCloseSocket() ; 
-	LOG_STR2( "Connection at array pos %d has been dead -> abort()" , i);
-      }
+        Connection *connectedNode = iConnections->at(i) ;
+        if ( connectedNode->iTimeOfLastActivity <
+                ( currentTime - ( 60 * (Connection::iMinutesBetweenBucketFill+2) ) ) ) {
+            // no traffic for minimum time + 2 minutes -> ask non-gently for closing:
+            connectedNode->forciblyCloseSocket() ;
+            LOG_STR2( "Connection at array pos %d has been dead -> abort()" , i);
+        }
     }
     unlock() ;
-    // 
+    //
     // dead process checking now done
     //
     // continue with database housekeeping
@@ -1319,11 +1313,11 @@ void Model::timerEvent(QTimerEvent*
 
     // then check out for local network addresses:
     if ( (iTimeOfLastNetworkAddrCheck + (120*60)) < // every 120 minutes
-	 QDateTime::currentDateTimeUtc().toTime_t()) {
-      iTimeOfLastNetworkAddrCheck = QDateTime::currentDateTimeUtc().toTime_t();
-      lock() ; 
-      iController->networkListener()->figureOutLocalAddresses() ;       
-      unlock() ; 
+            QDateTime::currentDateTimeUtc().toTime_t()) {
+        iTimeOfLastNetworkAddrCheck = QDateTime::currentDateTimeUtc().toTime_t();
+        lock() ;
+        iController->networkListener()->figureOutLocalAddresses() ;
+        unlock() ;
     }
     LOG_STR2( "timerEvent Timer ID: %d out" , event->timerId());
 }

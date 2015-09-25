@@ -46,10 +46,10 @@ CATranslator::CATranslator(QObject* aParent) :
 #ifdef WIN32
     // in win32 user typically has no locale set in environment variables
     // in way that gnu gettext would recognice. offer a bit help:
-    QString langVariableName ( "LANGUAGE=" ) ;  
-    QLocale systemLocale (  QLocale::system() ) ; 
-    const QString languageName ( systemLocale.name() ) ;  
-    putenv((langVariableName + languageName).toUtf8().constData()) ; 
+    QString langVariableName ( "LANGUAGE=" ) ;
+    QLocale systemLocale (  QLocale::system() ) ;
+    const QString languageName ( systemLocale.name() ) ;
+    putenv((langVariableName + languageName).toUtf8().constData()) ;
     setlocale(LC_MESSAGES,languageName.toUtf8().constData());
     // in win32, assume the translation files reside under
     // same directory as the binary

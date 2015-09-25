@@ -64,11 +64,11 @@ public:
      * @return Translation. If translation was not available, then
      *                      returns aSourceText as it is.
      */
-    virtual QString translate(const char *aContext, 
+    virtual QString translate(const char *aContext,
                               const char *aSourceText,
                               const char *aDisambiguation = 0
 #if QT_VERSION >= 0x050000
-                              , int aPluralForm = -1
+                                      , int aPluralForm = -1
 #endif
                              ) const Q_DECL_OVERRIDE;
     virtual bool isEmpty() const;

@@ -92,23 +92,23 @@ int main(int argc, char *argv[]) {
 
     if ( caTranslator.load( "qt_" + QLocale::system().name()) == false )  {
         QLOG_STR("Trying translations from " + QLibraryInfo::location(QLibraryInfo::TranslationsPath)) ;
-      if ( caTranslator.load("qt_" + QLocale::system().name(),
-			     QLibraryInfo::location(QLibraryInfo::TranslationsPath)) == true ) {
-	QLOG_STR("Qt translation loaded from "  + 
-		 QLibraryInfo::location(QLibraryInfo::TranslationsPath)) ; 
-      } else {
+        if ( caTranslator.load("qt_" + QLocale::system().name(),
+                               QLibraryInfo::location(QLibraryInfo::TranslationsPath)) == true ) {
+            QLOG_STR("Qt translation loaded from "  +
+                     QLibraryInfo::location(QLibraryInfo::TranslationsPath)) ;
+        } else {
 #ifndef WIN32
-          if ( caTranslator.load(QLibraryInfo::location(QLibraryInfo::TranslationsPath) + "/qt_" + QLocale::system().name())  ) {
-              QLOG_STR("Qt translation found from "+QLibraryInfo::location(QLibraryInfo::TranslationsPath) + " using direct file naming") ; 
-          } else {
-              QLOG_STR("Qt translation not found") ; 
-          }
+            if ( caTranslator.load(QLibraryInfo::location(QLibraryInfo::TranslationsPath) + "/qt_" + QLocale::system().name())  ) {
+                QLOG_STR("Qt translation found from "+QLibraryInfo::location(QLibraryInfo::TranslationsPath) + " using direct file naming") ;
+            } else {
+                QLOG_STR("Qt translation not found") ;
+            }
 #else
-	QLOG_STR("Qt translation not found") ; 
+            QLOG_STR("Qt translation not found") ;
 #endif
-      }
+        }
     } else {
-      QLOG_STR("Qt translation found from current directory") ; 
+        QLOG_STR("Qt translation found from current directory") ;
     }
     app->installTranslator(&caTranslator);
 
