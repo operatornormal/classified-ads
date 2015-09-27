@@ -112,9 +112,9 @@ FORMS = frontWidget.ui ui/profileReadersDialog.ui ui/passwordDialog.ui \
 RESOURCES     = ui_resources.qrc
 TRANSLATIONS  = classified_ads_fi.ts \
                 classified_ads_sv.ts
-unix:LIBS = -lssl -lcrypto -lnatpmp -lminiupnpc -lmagic
+unix:LIBS = -lssl -lcrypto -lnatpmp -lminiupnpc 
 lessThan(QT_MAJOR_VERSION, 5) {
-     unix:LIBS +=  -lqjson
+     unix:LIBS +=  -lqjson -lmagic
 } 
 
 # following line is needed for fedora linux, natpnp needs miniupnpc
