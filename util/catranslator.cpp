@@ -75,9 +75,13 @@ QString CATranslator::translate ( const char * aContext,
                                   ,int aPluralForm
 #endif
                                 ) const {
-    char *contextAndSourceText = new char[strlen(aContext) +
-                                          strlen(aSourceText) +
-                                          5] ;
+    char *contextAndSourceText ((char *)malloc(strlen(aContext) +
+                                               strlen(aSourceText) +
+                                               5)) ;
+    if ( contextAndSourceText == NULL ) {
+        // uh, oh, malloc failure
+        return QString::fromUtf8(aSourceText) ;
+    }
     strcpy(contextAndSourceText, aContext) ;
     strcat(contextAndSourceText, KGetTextContextGlue) ;
     strcat(contextAndSourceText, aSourceText) ;
@@ -87,7 +91,7 @@ QString CATranslator::translate ( const char * aContext,
     );
     if ( strcmp(proposed_string, contextAndSourceText) == 0 ) {
         // no match, maybe qt platform string
-        delete contextAndSourceText ;
+        free( contextAndSourceText );
         if ( QTranslator::isEmpty() ) {
             // we have no strings in parent class, e.g. native qt
             // format translation strings: just return the source
@@ -106,7 +110,7 @@ QString CATranslator::translate ( const char * aContext,
     } else {
         // yes, a match
         QString retval( QString::fromUtf8(proposed_string) ) ;
-        delete contextAndSourceText ;
+        free(contextAndSourceText) ;
         return retval ;
     }
 }
