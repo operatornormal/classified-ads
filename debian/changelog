@@ -1,3 +1,12 @@
+classified-ads (0.08-1) unstable; urgency=medium
+
+  * Qt version change (4->5)
+  * Translation system change from dm files of qt to gnu gettext
+  * Bitmap conversion produces same binary always. Closes: #794395
+  * Networking related bugfixes
+
+ -- Antti Järvinen <antti.jarvinen@katiska.org>  Wed, 30 Sep 2015 22:14:48 +0300
+
 classified-ads (0.07-1) unstable; urgency=low
 
   * Initial release. Closes: #779375

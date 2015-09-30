@@ -4,13 +4,11 @@ Priority: optional
 Maintainer: Antti Järvinen <antti.jarvinen@katiska.org>
 Build-Depends: debhelper (>= 9),
                libgcrypt-dev,
-               libmagic-dev,
                libminiupnpc-dev,
                libnatpmp-dev,
-               libqjson-dev,
-               libqt4-dev,
+               qtbase5-dev,
                libssl-dev,
-               qt4-qmake,
+               qt5-qmake,
                imagemagick
 Standards-Version: 3.9.6
 Homepage: http://katiska.org/classified-ads/
@@ -19,7 +17,7 @@ Vcs-Browser: https://github.com/operatornormal/classified-ads
 
 Package: classified-ads
 Architecture: any
-Depends: libqt4-sql-sqlite, ${misc:Depends}, ${shlibs:Depends}
+Depends: libqt5sql5-sqlite, ${misc:Depends}, ${shlibs:Depends}
 Description: Program for displaying classified advertisement items
  Classified ads is an attempt to re-produce parts of the functionality
  that went away when usenet news ceased to exist. This attempt tries to
