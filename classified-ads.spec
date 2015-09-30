@@ -1,5 +1,5 @@
 Name:		classified-ads
-Version:	0.07
+Version:	0.08
 Release:	1%{?dist}
 Summary:	Classified ads is a program for posting ads online
 
@@ -8,8 +8,8 @@ License:	LGPLv2
 URL:		http://katiska.org/classified_ads/
 Source0:	https://github.com/operatornormal/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Source1:	https://github.com/operatornormal/classified-ads/blob/graphics/preprocessed.tar.gz?raw=true#/%{name}-graphics-%{version}.tar.gz
-BuildRequires:	qt-devel >= 4
-BuildRequires:	openssl-devel, libnatpmp-devel, qjson-devel, miniupnpc-devel, file-devel
+BuildRequires:	qt5-qtbase-devel
+BuildRequires:	openssl-devel, libnatpmp-devel, miniupnpc-devel, gettext
 BuildRequires:	libappstream-glib, desktop-file-utils
 %description
 Classified ads is an attempt to re-produce parts of the functionality
@@ -21,11 +21,11 @@ inside client applications that users are running.
 %setup -q -a 1
 
 %build
-qmake-qt4 
+qmake-qt5 
 make %{?_smp_mflags}
 
 %install
-INSTALL_ROOT=%{buildroot} make install
+INSTALL_ROOT=%{buildroot} make install DESTDIR=%{buildroot}
 appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/classified-ads.appdata.xml
 desktop-file-validate %{buildroot}/%{_datadir}/applications/classified-ads.desktop
 %files
@@ -35,13 +35,22 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/classified-ads.deskt
 %dir %{_datadir}/app-install
 %dir %{_datadir}/app-install/icons
 %{_datadir}/app-install/icons/turt-transparent-128x128.png
-%dir %{_datarootdir}/classified-ads
-%{_datarootdir}/classified-ads/classified_ads_fi.qm
-%{_datarootdir}/classified-ads/classified_ads_sv.qm
 %{_mandir}/man1/classified-ads.1.gz
 %{_datadir}/appdata/classified-ads.appdata.xml
+%dir %{_datadir}/locale/
+%dir %{_datadir}/locale/fi
+%dir %{_datadir}/locale/fi/LC_MESSAGES/
+%{_datadir}/locale/fi/LC_MESSAGES/classified-ads.mo
+%dir %{_datadir}/locale/sv
+%dir %{_datadir}/locale/sv/LC_MESSAGES/
+%{_datadir}/locale/sv/LC_MESSAGES/classified-ads.mo
 %license LICENSE
 %changelog
+* Mon Sep 28 2015 Antti Jarvinen <antti.jarvinen@katiska.org> - 0.08-1
+- Links against qt5 instead of qt4
+- Translation system is gnu gettext instead of qm files of Qt.
+- Better tracking of changing local network addresses
+- Numerous small bugfixes, mostly in networking code
 * Sun Apr 12 2015 Antti Jarvinen <classified-ads.questions@katiska.org> - 0.07-1
 - Removed intermediate PNG files into separate tarball
 - Included code to generate intermediate PNG files manually
