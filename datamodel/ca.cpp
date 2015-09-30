@@ -21,13 +21,7 @@
 #include "ca.h"
 #include "../util/hash.h"
 #include "../log.h"
-#ifdef WIN32
-#include <QJson/Parser>
-#include <QJson/Serializer>
-#else
-#include <qjson/parser.h>
-#include <qjson/serializer.h>
-#endif
+#include "../util/jsonwrapper.h"
 #include <QVariantMap>
 #include "../mcontroller.h"
 #include "model.h"
@@ -126,20 +120,17 @@ QByteArray CA::asJSon(const MController& /*aController*/) const {
     }
 
 
-    QJson::Serializer serializer;
-
     QVariant j (m); // then put the map inside QVariant and that
     // may then be serialized in libqjson-0.7 and 0.8
-    QByteArray retval ( serializer.serialize(j) ) ;
+    QByteArray retval ( JSonWrapper::serialize(j) ) ;
     LOG_STR2("ca %s", qPrintable(QString(retval))) ;
     return retval ;
 }
 
 bool CA::fromJSon(const QByteArray &aJSonBytes,
                   const MController& /*aController*/ ) {
-    QJson::Parser parser;
     bool ok;
-    QVariantMap result = parser.parse (aJSonBytes, &ok).toMap();
+    QVariantMap result ( JSonWrapper::parse (aJSonBytes, &ok) );
     if (!ok) {
         QLOG_STR("QJson::Parser failed to parse " + QString::number(aJSonBytes.size()) + " bytes") ;
         return false ;

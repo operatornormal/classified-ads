@@ -35,6 +35,7 @@
 #include "../net/connection.h"
 #include "../net/protocol_message_formatter.h"
 #include "../net/node.h"
+#include "../net/networklistener.h"
 #include "netrequestexecutor.h"
 #include "contentencryptionmodel.h"
 #include "profilemodel.h"
@@ -69,7 +70,8 @@ Model::Model(MController *aController) : iController(aController),
     iPrivMsgModel(NULL),
     iProfileCommentModel(NULL),
     iSearchModel(NULL),
-    iTrustTreeModel(NULL) {
+    iTrustTreeModel(NULL),
+    iTimeOfLastNetworkAddrCheck(QDateTime::currentDateTimeUtc().toTime_t()) {
     LOG_STR("Model::Model()") ;
     connect(this,
             SIGNAL(  error(MController::CAErrorSituation,
@@ -594,6 +596,7 @@ bool Model::createTables() {
 void Model::initPseudoRandom() {
     SSL_load_error_strings();
     SSL_library_init();
+    LOG_STR2("Openssl %s\n", SSLeay_version(SSLEAY_VERSION)) ;
 #ifdef WIN32
     OpenSSL_add_all_algorithms() ;
 #endif
@@ -1248,15 +1251,32 @@ void Model::timerEvent(QTimerEvent*
 #endif
                       ) {
     LOG_STR2( "timerEvent Timer ID: %d" , event->timerId());
+    const time_t currentTime ( QDateTime::currentDateTimeUtc().toTime_t() ) ;
     lock() ;
+    // update mutual connect time:
     for ( int i = iConnections->size()-1 ; i >= 0 ; i-- ) {
         Connection *connectedNode = iConnections->at(i) ;
         if ( connectedNode->node() ) {
-            iNodeModel->updateNodeLastMutualConnectTimeInDb (connectedNode->node()->nodeFingerPrint(),QDateTime::currentDateTimeUtc().toTime_t() ) ;
+            iNodeModel->updateNodeLastMutualConnectTimeInDb (connectedNode->node()->nodeFingerPrint(),currentTime ) ;
 
         }
     }
+    // then check for dead connections:
+    for ( int i = iConnections->size()-1 ; i >= 0 ; i-- ) {
+        Connection *connectedNode = iConnections->at(i) ;
+        if ( connectedNode->iTimeOfLastActivity <
+                ( currentTime - ( 60 * (Connection::iMinutesBetweenBucketFill+2) ) ) ) {
+            // no traffic for minimum time + 2 minutes -> ask non-gently for closing:
+            connectedNode->forciblyCloseSocket() ;
+            LOG_STR2( "Connection at array pos %d has been dead -> abort()" , i);
+        }
+    }
     unlock() ;
+    //
+    // dead process checking now done
+    //
+    // continue with database housekeeping
+    //
     QWaitCondition waitCondition;
     QMutex mutex;
     mutex.lock();
@@ -1290,6 +1310,16 @@ void Model::timerEvent(QTimerEvent*
     iBinaryFileModel->truncateDataTableToMaxRows() ;
     unlock() ;
     mutex.unlock() ;
+
+    // then check out for local network addresses:
+    if ( (iTimeOfLastNetworkAddrCheck + (120*60)) < // every 120 minutes
+            QDateTime::currentDateTimeUtc().toTime_t()) {
+        iTimeOfLastNetworkAddrCheck = QDateTime::currentDateTimeUtc().toTime_t();
+        lock() ;
+        iController->networkListener()->figureOutLocalAddresses() ;
+        unlock() ;
+    }
     LOG_STR2( "timerEvent Timer ID: %d out" , event->timerId());
 }
+
 

@@ -222,5 +222,6 @@ private:
     ProfileCommentModel* iProfileCommentModel ; /**< comments data storage */
     SearchModel* iSearchModel ; /**< full text search model part */
     TrustTreeModel *iTrustTreeModel ; /**< trust list handling model */
+    time_t iTimeOfLastNetworkAddrCheck ; /**< timestamp of local addr update */
 } ;
 #endif

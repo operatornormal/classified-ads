@@ -25,6 +25,7 @@
 #include "log.h"
 #include <QHostAddress> // for Q_IPV6ADDR
 #include <QApplication>
+#include "util/catranslator.h"
 
 QApplication* app ; /**< The qt application, we need to have 1 instance */
 Controller* c ; /** Application controller, here as static for signal handlers */
@@ -87,22 +88,29 @@ int main(int argc, char *argv[]) {
 #endif
     app = new QApplication (argc, argv);
 
-    QTranslator qtTranslator;
-    qtTranslator.load("qt_" + QLocale::system().name(),
-                      QLibraryInfo::location(QLibraryInfo::TranslationsPath));
-    app->installTranslator(&qtTranslator);
+    CATranslator caTranslator;
 
-    QTranslator myappTranslator;
-    myappTranslator.load(
-#ifdef WIN32
-        // apparently win32 runs the program
-        // inside installation directory so no
-        // directory needs to be specified
+    if ( caTranslator.load( "qt_" + QLocale::system().name()) == false )  {
+        QLOG_STR("Trying translations from " + QLibraryInfo::location(QLibraryInfo::TranslationsPath)) ;
+        if ( caTranslator.load("qt_" + QLocale::system().name(),
+                               QLibraryInfo::location(QLibraryInfo::TranslationsPath)) == true ) {
+            QLOG_STR("Qt translation loaded from "  +
+                     QLibraryInfo::location(QLibraryInfo::TranslationsPath)) ;
+        } else {
+#ifndef WIN32
+            if ( caTranslator.load(QLibraryInfo::location(QLibraryInfo::TranslationsPath) + "/qt_" + QLocale::system().name())  ) {
+                QLOG_STR("Qt translation found from "+QLibraryInfo::location(QLibraryInfo::TranslationsPath) + " using direct file naming") ;
+            } else {
+                QLOG_STR("Qt translation not found") ;
+            }
 #else
-        QString("/usr/share/classified-ads/") +
+            QLOG_STR("Qt translation not found") ;
 #endif
-        QString("classified_ads_") + QLocale::system().name());
-    app->installTranslator(&myappTranslator);
+        }
+    } else {
+        QLOG_STR("Qt translation found from current directory") ;
+    }
+    app->installTranslator(&caTranslator);
 
     // controller will actually start launching the application
     c = new Controller(*app) ;

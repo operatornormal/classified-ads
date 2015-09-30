@@ -186,11 +186,17 @@ public:
         return iBytesIn ;
     }
     /**
-     * returs data transfer amount
+     * returns data transfer amount
      */
     unsigned long bytesOut() const {
         return iBytesOut ;
     }
+    /**
+     * Forcibly closes socket.
+     * @return true if socket was still allocated and its "abort" method
+     *         got called. 
+     */
+    bool forciblyCloseSocket() ;
 public slots:
     void socketReady() ;
     /**
@@ -254,6 +260,12 @@ public:
     bool iNeedsToRun ; /**< if set to false, connection closes itself */
     time_t iTimeOfLastActivity ; /**< last time there was any traffic with peer */
     unsigned iNumberOfPacketsReceived ; /**< nr of received complete protocol packets*/
+  /** 
+   * how often peers are queried for new content to send/receive ; this is also
+   * max permitted lenght for data transmission inactivity ; nodes that have been
+   * idle longer than this are considered "dead"
+   */
+  static const unsigned iMinutesBetweenBucketFill = 30  ; 
 protected: // these are not public
     ConnectionState iConnectionState /**< closed/open etc. */ ;
     /** received data is sent to @ref ConnectionObserver */

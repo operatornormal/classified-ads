@@ -32,11 +32,13 @@
 #include <QHostAddress> // for Q_IPV6ADDR
 #include <QThread>
 #include <QSqlQuery>
+#include <QSqlError>
 #include "../datamodel/camodel.h"
 #include "../datamodel/ca.h"
 #include "../datamodel/profilemodel.h"
 #include "../datamodel/profile.h"
 #include "../datamodel/trusttreemodel.h"
+#include "../util/jsonwrapper.h"
 
 Q_IPV6ADDR KNullIpv6Addr ( QHostAddress("::0").toIPv6Address () ) ;
 Hash KNullHash ;
@@ -81,6 +83,10 @@ private slots:
     void tryListOfAdsParsing() ;
     void trySearchRequest() ;
     void tryTrustTreeModel() ;
+    void tryJSonParse() ;
+    void tryJSonParseWithCompress() ;
+    void tryJSonParseFailure() ;
+    void tryJSonSerialize() ;
     void tryDeletingController() ;
 private:
     Hash iHashOfPrivateKey ;
@@ -579,7 +585,10 @@ void   TestClassifiedAds::trySearchRequest() {
                         QByteArray resultsSerialized ( ProtocolMessageFormatter::searchResultsSend(items,searchId.iHash160bits[0]) ) ;
                         if(p->parseMessage(resultsSerialized,*c)) {
                             testCaseSuccess = true ;
-                        }
+			    QLOG_STR("p->parseMessage(resultsSerialized,*c) returned true") ; 
+                        } else {
+			  QLOG_STR("p->parseMessage(resultsSerialized,*c) returned false") ; 
+			}
                     }
                 }
             } else {
@@ -591,23 +600,39 @@ void   TestClassifiedAds::trySearchRequest() {
         QLOG_STR("Profile was null??") ;
     }
 
+    // interestingly numRowsAffected() with delete returns always 0 
+    // if used under qt5.2.1 but under qt4 it returns the number
+    // of rows deleted. in order to assess the number of rows under
+    // qt5 we need a separate query:
+    QSqlQuery query0;
+    query0.prepare("select count(hash1) from classified_ad where hash1 = :h1 and hash2 = :h2 and hash3 = :h3 ") ;
+    query0.bindValue(":hash1", ca.iFingerPrint.iHash160bits[0]);
+    query0.bindValue(":hash2", ca.iFingerPrint.iHash160bits[1]);
+    query0.bindValue(":hash3", ca.iFingerPrint.iHash160bits[2]);
+    bool querySuccess = query0.exec() ;
+
+    if ( querySuccess && query0.next() && !query0.isNull(0) ) {
+      if ( testCaseSuccess == true && query0.value(0).toInt() == 1 )   {
+	testCaseSuccess = true ; 
+      }
+    } else {
+      testCaseSuccess = false ; 
+      QLOG_STR("failure: " + query0.lastError().text() + " querySuccess = " + QString::number(querySuccess) + " isnull = " + QString::number(query0.isNull(0))) ; 
+    }
+    // after count is checked, the row may go:
     QSqlQuery query;
     query.prepare("delete from classified_ad where hash1 = :h1 and hash2 = :h2 and hash3 = :h3 ") ;
     query.bindValue(":hash1", ca.iFingerPrint.iHash160bits[0]);
     query.bindValue(":hash2", ca.iFingerPrint.iHash160bits[1]);
     query.bindValue(":hash3", ca.iFingerPrint.iHash160bits[2]);
     query.exec() ;
-    if( query.numRowsAffected () != 1  ) testCaseSuccess = false ;
+
     QSqlQuery query2;
     query2.prepare("delete from publish where hash1 = :h1 and hash2 = :h2 and hash3 = :h3 ") ;
     query2.bindValue(":hash1", ca.iFingerPrint.iHash160bits[0]);
     query2.bindValue(":hash2", ca.iFingerPrint.iHash160bits[1]);
     query2.bindValue(":hash3", ca.iFingerPrint.iHash160bits[2]);
     query.exec() ;
-    if ( c->iNextProtocolItemToSend.size() != 1 ) {
-        testCaseSuccess = false ;
-        QLOG_STR("c->iNextProtocolItemToSend->size() != 1 => FAILURE") ;
-    }
     delete c;
     delete p ;
     delete m ;
@@ -683,6 +708,42 @@ void TestClassifiedAds::tryTrustTreeModel() {
     delete self ;
     delete tl ;
     delete m ;
+}
+/**
+ * "ok" case of json text parsing
+ */
+void TestClassifiedAds::tryJSonParse() {
+    QByteArray json("{ \"dataItem\": { \"description\": \"is descriptive\" }}");
+    bool ok (false);
+    QVariantMap result = JSonWrapper::parse(json, &ok) ;
+    QCOMPARE(ok, true) ; 
+    QVERIFY(result.contains("dataItem") == true) ; 
+}
+void TestClassifiedAds::tryJSonParseWithCompress() {
+    QByteArray json("{ \"dataItem\": { \"description\": \"is descriptive\" }}");
+    bool ok (false);
+    QVariantMap result = JSonWrapper::parse(qCompress(json), &ok,true) ;
+    QCOMPARE(ok, true) ; 
+    QVERIFY(result.contains("dataItem") == true) ; 
+}
+/**
+ * tests that if parser is given text that is not json,
+ * it will correctly reject the result
+ */
+void TestClassifiedAds::tryJSonParseFailure() {
+    QByteArray json("{\"is just text, no json text,trolloloo");
+    bool ok (false);
+    QVariantMap result = JSonWrapper::parse(json, &ok) ;
+    QVERIFY(ok == false) ; 
+}
+/**
+ * tests that qvariant does get converted into json text
+ */
+void TestClassifiedAds::tryJSonSerialize() {
+    QMap<QString,QVariant> m ;
+    m.insert("stringKey", "stringValue") ; 
+    QByteArray serialized ( JSonWrapper::serialize(QVariant(m).toMap())) ; 
+    QVERIFY(serialized.indexOf("stringValue") > 1) ; 
 }
 
 void TestClassifiedAds::tryCompression() {

@@ -23,12 +23,10 @@
 #endif
 #include "protocol_message_formatter.h"
 #include <time.h>
-#ifdef WIN32
-#include <QJson/Serializer>
-#else
-#include <qjson/serializer.h>
+#ifndef WIN32
 #include "arpa/inet.h"
 #endif
+#include "../util/jsonwrapper.h"
 #include "node.h"
 #include "connection.h"
 #include "../log.h"
@@ -42,9 +40,7 @@ QByteArray ProtocolMessageFormatter::nodeGreeting(const Node& aNode) {
     retval.append((const char *)&ch, 1) ;
     QVariant v ( aNode.asQVariant()) ;
 
-    QJson::Serializer serializer;
-
-    QByteArray nodeRefAsJson ( serializer.serialize(v) ) ;
+    QByteArray nodeRefAsJson ( JSonWrapper::serialize(v) ) ;
     QLOG_STR(nodeRefAsJson) ;
     QByteArray nodeRefAsCompressedJson (qCompress( nodeRefAsJson )) ;
     nodeRefAsJson.clear() ;
@@ -557,8 +553,7 @@ QByteArray ProtocolMessageFormatter::searchResultsSend(const QList<SearchModel::
     const QVariant toplevel
     ( SearchModel::serializeSearchResults(aResults,
                                           aSearchId) ) ;
-    QJson::Serializer serializer ;
-    const QByteArray resultBytes ( serializer.serialize(toplevel) ) ;
+    const QByteArray resultBytes ( JSonWrapper::serialize(toplevel) ) ;
     if ( resultBytes.size() > 0 ) {
         quint32 sizeNetworkBO ( htonl(resultBytes.size()) ) ;
         retval.append((const char *)(&sizeNetworkBO), sizeof(quint32)) ;
@@ -694,4 +689,5 @@ QByteArray ProtocolMessageFormatter::doCommentSendOrPublish(const Hash& aContent
     retval.append((const char *)&timestampNetworkBO, sizeof(quint32))  ;
     return retval ;
 }
+
 

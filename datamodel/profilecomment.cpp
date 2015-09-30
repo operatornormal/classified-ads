@@ -21,13 +21,7 @@
 #include "profilecomment.h"
 #include "../util/hash.h"
 #include "../log.h"
-#ifdef WIN32
-#include <QJson/Parser>
-#include <QJson/Serializer>
-#else
-#include <qjson/parser.h>
-#include <qjson/serializer.h>
-#endif
+#include "../util/jsonwrapper.h"
 #include <QVariantMap>
 #include "../mcontroller.h"
 #include "model.h"
@@ -57,10 +51,7 @@ ProfileComment::~ProfileComment() {
 }
 
 QByteArray ProfileComment::asJSon(const MController& aController) const {
-
-    // may then be serialized in libqjson-0.7 and 0.8
-    QJson::Serializer serializer;
-    QByteArray retval ( serializer.serialize(asQVariant(aController)) ) ;
+    QByteArray retval ( JSonWrapper::serialize(asQVariant(aController)) ) ;
     LOG_STR2("profilecomment %s", qPrintable(QString(retval))) ;
     return retval ;
 }
@@ -160,10 +151,9 @@ bool ProfileComment::setFromQVariant(const QVariantMap& aJSonAsQVariant,
 
 bool ProfileComment::fromJSon(const QByteArray &aJSonBytes,
                               const MController& aController ) {
-    QJson::Parser parser;
     bool ok;
 
-    QVariantMap result = parser.parse (aJSonBytes, &ok).toMap();
+    QVariantMap result ( JSonWrapper::parse (aJSonBytes, &ok));
     if (!ok) {
         return false ;
     } else {
@@ -172,4 +162,5 @@ bool ProfileComment::fromJSon(const QByteArray &aJSonBytes,
 
     return ok ;
 }
+
 

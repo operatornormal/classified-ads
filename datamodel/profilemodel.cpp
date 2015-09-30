@@ -26,13 +26,7 @@
 #include <QSqlError>
 #include "profile.h"
 #include "contentencryptionmodel.h"
-#ifdef WIN32
-#include <QJson/Parser>
-#include <QJson/Serializer>
-#else
-#include <qjson/parser.h>
-#include <qjson/serializer.h>
-#endif
+#include "../util/jsonwrapper.h"
 #include "const.h"
 #include "searchmodel.h"
 
@@ -282,10 +276,7 @@ bool ProfileModel::doHandlepublishedOrSentProfile(const Hash& aFingerPrint,
         // looks like QJson will set parseResult to true also
         // when content is actually encrypted so we can check only
         // for non-encrypted data here. it still needs to parse.
-        QJson::Parser* jsonParser = new QJson::Parser();
-        QVariantMap dummyResult = jsonParser->parse (aContent, &parseResult).toMap();
-        delete jsonParser ;
-        jsonParser = NULL ;
+        QVariantMap dummyResult ( JSonWrapper::parse (aContent, &parseResult) );
     }
     bool flagThisNodeAlreadyHadContent ( false ) ;
     if ( ( parseResult &&  ( ( aFlags & 1 ) == 0  ) ) || (( aFlags & 1 ) == 1)  ) { // it did parse and encryption flag was 0
@@ -518,8 +509,7 @@ void ProfileModel::setPrivateMessagePollTimeForProfile(const quint32 aTimeStamp,
 void  ProfileModel::setPrivateDataForProfile( const Hash& aProfile,
         const QVariant& aPrivateData ) {
 
-    QJson::Serializer serializer;
-    QByteArray dataJSon (serializer.serialize(aPrivateData) ) ;
+    QByteArray dataJSon (JSonWrapper::serialize(aPrivateData) ) ;
     QByteArray encryptedJson ;
     QList<Hash> privateDataReaders ;
     privateDataReaders << aProfile ; // private data is encrypted only to self
@@ -573,9 +563,8 @@ QVariant ProfileModel::privateDataOfProfile( const Hash& aProfile ) {
             QByteArray plainTextProfileData ;
             if ( iController->model().contentEncryptionModel().decrypt(encryptedPrivateData,
                     plainTextProfileData ) ) {
-                QJson::Parser parser;
                 QLOG_STR("priv data: " + plainTextProfileData) ;
-                retval = parser.parse (plainTextProfileData, &ret).toMap();
+                retval = JSonWrapper::parse (plainTextProfileData, &ret);
                 if ( !ret ) {
                     retval = QVariant() ;
                 }
@@ -670,3 +659,4 @@ bool ProfileModel::deleteOldestDataRowInTable() {
     }
     return ret ;
 }
+

@@ -26,9 +26,7 @@
 #include "../log.h"
 #include <QSslSocket>
 #include "../datamodel/model.h"
-#ifdef WIN32
-
-#else
+#ifndef WIN32
 #include "arpa/inet.h"
 #endif
 #include <QDateTime>
@@ -40,9 +38,13 @@
 #include "../datamodel/privmsgmodel.h"
 #include "../datamodel/profilecommentmodel.h"
 
+/** nat subnet. see similar variable in node.cpp */
 static const QPair<QHostAddress, int> normalNats1 ( QHostAddress::parseSubnet("10.0.0.0/8") );
 static const QPair<QHostAddress, int> normalNats2 ( QHostAddress::parseSubnet("172.16.0.0/20"));
 static const QPair<QHostAddress, int> normalNats3 ( QHostAddress::parseSubnet("192.168.0.0/16") );
+/** non-routable address space that some ISP's seem to offer */
+static const QPair<QHostAddress, int> rfc6598 ( QHostAddress::parseSubnet("100.64.0.0/10") );
+
 
 Connection::Connection (const QHostAddress& aAddr,
                         const int aPort,
@@ -138,7 +140,6 @@ void Connection::run() {
         runForIncomingConnections() ;
     } else {
         runForOutgoingConnections() ;
-
     }
     iObserver.connectionClosed(this) ; // will call datamodel.lock() inside
     LOG_STR(QString("0x%1 ").arg((qulonglong)this, 8) +"Connection::run out") ;
@@ -147,11 +148,15 @@ void Connection::run() {
     iNodeOfConnectedPeer = NULL ;
     delete iBytesRead ;
     iBytesRead = NULL ;
+    iSocket = NULL ; // iSocket was automatic variable inside scope
+    // of runForIncomingConnections/runForOutgoingConnections
+    // and it is no more -> set to NULL to prevent accidental access
 }
 
 void Connection::runForIncomingConnections() {
     QSslSocket sock ;
-    iSocket = &sock ;
+    iSocket = &sock ; // when this method goes out of
+    // scope, iSocket must be set to NULL
     if (iSocket->setSocketDescriptor(iSocketDescriptor)) {
         connect(iSocket, SIGNAL(encrypted()), this, SLOT(socketReady()));
         // the idea here with model.lock is that
@@ -164,6 +169,7 @@ void Connection::runForIncomingConnections() {
         // or anything should be ok, and of course the
         // automatic variables.
         if ( iModel.lock() == false ) {
+            iSocket->close() ;
             return ;
         }
         iSocket->setLocalCertificate(iModel.nodeModel().nodeCert());
@@ -172,8 +178,10 @@ void Connection::runForIncomingConnections() {
         iSocket->startServerEncryption();
     } else {
         LOG_STR(QString("0x%1 ").arg((qulonglong)this, 8) +"iSocket->setSocketDescriptor failed?????") ;
+        iSocket->close() ;
         return ;
     }
+    iSocket->setSocketOption(QAbstractSocket::LowDelayOption,1) ; // immediate send
     if ( iSocket->waitForEncrypted(10*1000) == false ) {
         LOG_STR(QString("0x%1 ").arg((qulonglong)this, 8) +"socket was not encrypted in 10 seconds -> out") ;
         iSocket->abort() ;
@@ -186,6 +194,7 @@ void Connection::runForIncomingConnections() {
         // oh great, broadcast?
         // connected to self
         iNeedsToRun = false ;
+        iSocket->close() ;
         return ;
     }
 
@@ -234,7 +243,6 @@ void Connection::runForIncomingConnections() {
         iSocket->close() ;
     }
     iSocket->waitForDisconnected(10*1000) ;
-    iSocket = NULL ;
     LOG_STR(QString("0x%1 ").arg((qulonglong)this, 8) +"Connection::run(incoming) out") ;
 }
 
@@ -268,6 +276,7 @@ void Connection::runForOutgoingConnections () {
     if ( iModel.lock() == false ) {
         return ;
     }
+    iSocket->setSocketOption(QAbstractSocket::LowDelayOption,1) ; // immediate send
     iSocket->setLocalCertificate(iModel.nodeModel().nodeCert());
     iSocket->setPrivateKey(iModel.nodeModel().nodeKey());
     iModel.unlock() ;
@@ -286,6 +295,7 @@ void Connection::runForOutgoingConnections () {
         // oh great, broadcast?
         // connected to self
         iNeedsToRun = false ;
+        iSocket->close() ;
         return ;
     }
 
@@ -296,7 +306,7 @@ void Connection::runForOutgoingConnections () {
     // than that?
     if (  iFpOfNodeWeTrying != KNullHash  ) { // if other than null hash
         if (  iFpOfNodeWeTrying != fingerPrintOfPeer ) {
-            iSocket->disconnectFromHost() ;
+            iSocket->abort() ;
             iNeedsToRun = false ; // this causes readloop to return immediately
         }
     }
@@ -327,10 +337,10 @@ void Connection::runForOutgoingConnections () {
     if ( iNeedsToRun == false && iSocket &&  iSocket->state() == QAbstractSocket::ConnectedState ) {
         iSocket->close() ;
     }
-    if ( iNeedsToRun ) {
+    if ( iNeedsToRun && iSocket ) {
         iSocket->waitForDisconnected(30*1000) ;
-        iSocket = NULL ;
     }
+    iSocket = NULL ;
     LOG_STR(QString("0x%1 ").arg((qulonglong)this, 8) +"Connection::run  (outgoing )out") ;
 }
 
@@ -346,7 +356,7 @@ void Connection::performRead() {
             iModel.lock() ;
             iModel.connectionStateChanged(Connection::Closing, this) ;
             iModel.unlock() ;
-            iSocket->disconnectFromHost() ;
+            iSocket->abort() ;
             return ;
         } else {
             iBytesIn += sizeof(quint32) ;
@@ -421,7 +431,7 @@ void Connection::readLoop() {
                     iConnectionState = Connection::Closing ;
                     iModel.connectionStateChanged(Connection::Closing, this) ;
                     iModel.unlock() ;
-                    iSocket->disconnectFromHost() ;
+                    iSocket->abort() ;
                     iNeedsToRun = false ;
                     LOG_STR(QString("0x%1 ").arg((qulonglong)this, 8) +"Giving up pending read operation after 500 seconds");
                 }
@@ -450,7 +460,7 @@ void Connection::readLoop() {
                         iModel.connectionStateChanged(Connection::Closing, this) ;
                         iModel.unlock() ;
                     }
-                    iSocket->disconnectFromHost() ;
+                    iSocket->abort() ;
                     iNeedsToRun = false ;
                 } else {
                     iBytesOut += sizeof(quint32) ;
@@ -463,7 +473,7 @@ void Connection::readLoop() {
                         iModel.connectionStateChanged(Connection::Closing, this) ;
                         iModel.unlock() ;
                     }
-                    iSocket->disconnectFromHost() ;
+                    iSocket->abort() ;
                     iNeedsToRun = false ;
                 } else {
                     iBytesOut += itemToSend->size() ;
@@ -480,7 +490,7 @@ void Connection::readLoop() {
                         iModel.connectionStateChanged(Connection::Closing, this) ;
                         iModel.unlock() ;
                     }
-                    iSocket->disconnectFromHost() ;
+                    iSocket->abort() ;
                     iNeedsToRun = false ;
                 }
                 delete itemToSend ;
@@ -517,7 +527,8 @@ bool Connection::isInPrivateAddrSpace() const {
 
             if ( peer.isInSubnet(normalNats1) ||
                     peer.isInSubnet(normalNats2) ||
-                    peer.isInSubnet(normalNats3) )
+                    peer.isInSubnet(normalNats3) ||
+                    peer.isInSubnet(rfc6598))
                 retval = true ;
         }
     }
@@ -528,6 +539,7 @@ void Connection::checkForBucketFill() {
     if ( iTimeOfBucketFill+15 < QDateTime::currentDateTimeUtc().toTime_t() &&
             iNextProtocolItemToSend.size() == 0 &&
             iSendQueue.size() == 0 &&
+            iSocket &&
             iNumberOfPacketsReceived > 1 &&
             iNodeOfConnectedPeer ) {
         // we've been connected for 15 seconds now and there is nothing in queue.
@@ -596,8 +608,8 @@ void Connection::checkForBucketFill() {
             break ;
 
         case ClassifiedAd2NdAddr: // this is our final stage
-            if ( ( iTimeOfBucketFill + (60*30 ))  < QDateTime::currentDateTimeUtc().toTime_t() ) {
-                // 30 minutes passed since last bucket fill: re-do
+            if ( ( iTimeOfBucketFill + (60*iMinutesBetweenBucketFill ))  < QDateTime::currentDateTimeUtc().toTime_t() ) {
+                // iMinutesBetweenBucketFill minutes passed since last bucket fill: re-do
                 iTimeOfBucketFill = QDateTime::currentDateTimeUtc().toTime_t() ;
                 iStageOfBucketFill = OwnNodeGreeting;
             }
@@ -618,4 +630,10 @@ Hash Connection::getPeerHash() const {
         // yet in connected state.
         return iFpOfNodeWeTrying ;
     }
+}
+
+bool Connection::forciblyCloseSocket() {
+    iNeedsToRun = false ;
+    iFpOfNodeWeTrying = KNullHash ;
+    return true ;
 }

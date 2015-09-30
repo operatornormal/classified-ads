@@ -35,12 +35,16 @@ const static char *KNodeJSonDnsElement= "d" ;
 const static char *KNodeJSonLastContactTimeElement= "l" ;
 const static char *KNodeJSonFPElement= "f" ;
 
+/** nat subnets. see similar variable in connection.cpp */
 const static      QPair<QHostAddress, int> nodeNormalNats1 =
     QHostAddress::parseSubnet("10.0.0.0/8");
 const static      QPair<QHostAddress, int> nodeNormalNats2 =
     QHostAddress::parseSubnet("172.16.0.0/20");
 const static      QPair<QHostAddress, int> nodeNormalNats3 =
     QHostAddress::parseSubnet("192.168.0.0/16");
+/** non-routable address space that some ISP's seem to offer */
+static const QPair<QHostAddress, int> nodeRfc6598 
+    ( QHostAddress::parseSubnet("100.64.0.0/10") );
 
 
 Node::Node(const Hash &aNodeFingerPrint,
@@ -245,10 +249,10 @@ bool Node::setIpAddrWithChecks(const QHostAddress& aAddress) {
         } else if ( QAbstractSocket::IPv4Protocol == aAddress.protocol() ) {
             // hmm ..
             if ( aAddress.isInSubnet(nodeNormalNats1) ||
-                    aAddress.isInSubnet(nodeNormalNats2) ||
-                    aAddress.isInSubnet(nodeNormalNats3) ) {
+		 aAddress.isInSubnet(nodeNormalNats2) ||
+		 aAddress.isInSubnet(nodeNormalNats3) ||
+		 aAddress.isInSubnet(nodeRfc6598) ) {
                 // is nat addr, no-no
-
             } else {
                 if ( aAddress.toString().startsWith("169.254") ) {
                     QLOG_STR("Got link-local ipv4-addr (zeroconf?) -> not using "+ aAddress.toString()) ;

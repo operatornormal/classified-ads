@@ -31,14 +31,10 @@
 #include "binaryfile.h"
 #include "profile.h"
 #include "contentencryptionmodel.h"
-#ifdef WIN32
-#include <QJson/Parser>
-#include <QJson/Serializer>
-#else
-#include <qjson/parser.h>
-#include <qjson/serializer.h>
+#ifndef WIN32
 #include <arpa/inet.h>
 #endif
+#include "../util/jsonwrapper.h"
 #include "mmodelprotocolinterface.h"
 #include "profilemodel.h"
 #include "const.h"
@@ -722,3 +718,4 @@ void BinaryFileModel::fillBucket(QList<SendQueueItem>& aSendQueue,
         }
     }
 }
+

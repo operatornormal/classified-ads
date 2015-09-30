@@ -33,9 +33,20 @@
 #include <QNetworkInterface>
 #include <QThread>
 #include <QCoreApplication>
+#include <QNetworkConfigurationManager>
 #include "miniupnpc.h"
 #include "upnpcommands.h"
 #ifndef WIN32
+// Difficult issue here. Miniupnp and natpmp share some codebase
+// and a common header "declspec.h" that contains common definitions. 
+// Different linux distributions package these 2 packages sometimes
+// from same original version, sometimes from different, 
+// sometimes declspec.h is inclduded twice, etc. 
+#if defined(MINIUPNP_LIBSPEC) && !defined(LIBSPEC)
+#define LIBSPEC MINIUPNP_LIBSPEC
+#endif
+// hopefully LIBSPEC is now ok, continue to include natpmp
+// header. 
 #include "natpmp.h"
 #endif
 #include <errno.h>
@@ -46,11 +57,31 @@ NetworkListener::NetworkListener(MController *aController,
     iController(aController),
     iModel(aModel),
     iBroadCastListener(this),
-    iCanAccept(true) {
+    iCanAccept(true),
+    iNetworkSession(NULL) {
     iParser = new ProtocolMessageParser(*iController,*iModel) ;
     setMaxPendingConnections(50) ;
     qRegisterMetaType<Connection::ConnectionState>("Connection::ConnectionState");
+    
+    // Set Internet Access Point
+    QNetworkConfigurationManager manager;
+    const bool canStartIAP = (manager.capabilities()
+                              & QNetworkConfigurationManager::CanStartAndStopInterfaces);
+    // Is there default access point, use it
+    iConnectionConfig = manager.defaultConfiguration();
+    if (!iConnectionConfig.isValid() || (!canStartIAP && iConnectionConfig.state() != QNetworkConfiguration::Active)) {
+        QLOG_STR("Can't open network access point??") ; 
+    }
+
+    iNetworkSession = new QNetworkSession(iConnectionConfig, this);
+    iNetworkSession->open();
+    iNetworkSession->waitForOpened(-1);
+
     figureOutLocalAddresses() ;
+    connect ( iNetworkSession,
+              SIGNAL(stateChanged ( QNetworkSession::State ) ),
+              this, 
+              SLOT(networkStateChanged( QNetworkSession::State ))) ; 
 }
 
 NetworkListener::~NetworkListener() {
@@ -230,7 +261,7 @@ void NetworkListener::figureOutLocalAddresses() {
                                            NULL , // path to minissdpd socket (or null defaults to /var/run/minissdpd.sock)
                                            0      ); // source port (0=default 1900)
 #endif
-            if ( error == 0 ) {
+            if ( error == 0 && upnp_dev != NULL ) {
                 char lan_address[64];
                 struct UPNPUrls upnp_urls;
                 struct IGDdatas upnp_data;
@@ -312,6 +343,8 @@ void NetworkListener::figureOutLocalAddresses() {
                         }
                     }
                 }
+		freeUPNPDevlist(upnp_dev) ; 
+		upnp_dev = NULL ; 
             }
         }
         if ( !globalIpv4AddrSeen ) {
@@ -518,4 +551,13 @@ void  NetworkListener::broadCastReceived() {
 void NetworkListener::stopAccepting() {
     iCanAccept = false ;
     close() ;
+}
+
+void NetworkListener::networkStateChanged( QNetworkSession::State aState ) {
+    QLOG_STR("NetworkListener::networkStateChanged " + QString::number(aState));
+    if ( aState == QNetworkSession::Connected ) {
+      iModel->lock() ;
+      this->figureOutLocalAddresses() ;
+      iModel->unlock() ;      
+    }
 }

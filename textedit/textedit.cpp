@@ -70,7 +70,13 @@
 #include "../log.h"
 #include "../ui/insertlinkdialog.h"
 #include <assert.h>
-
+#if QT_VERSION >= 0x050000
+// qt5 has its own mime-type-handling so lets depend on that, easier..
+#include <QMimeDatabase>
+#else
+// with qt4 use libmagic that does the same job
+#include <magic.h> // from libmagic
+#endif
 #ifdef Q_WS_MAC
 const QString rsrcPath = ":/images/mac";
 #else
@@ -278,6 +284,10 @@ void TextEdit::setupEditActions() {
     connect(actionInsertLink, SIGNAL(triggered()),
             this, SLOT(insertLinkSelected())) ;
     menu->addAction(actionInsertLink) ;
+    actionInsertImage = new QAction(tr("Embed image"), this) ;
+    connect(actionInsertImage, SIGNAL(triggered()),
+            this, SLOT(insertImageSelected())) ;
+    menu->addAction(actionInsertImage) ;
 }
 
 void TextEdit::setupTextActions() {
@@ -539,6 +549,94 @@ void TextEdit::insertLinkSelected() {
 
     link_dialog->show() ; // the dialog will delete self
 }
+//
+// motivation here: we want to insert html snippet that
+// looks like this:
+// <img alt="Embedded Image" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIA..." />
+//
+void TextEdit::insertImageSelected() {
+    QLOG_STR("TextEdit::insertImageSelected") ;
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"),
+                       "",
+                       tr("Files (*.*)"));
+    bool imageIsOk (false) ;
+    if ( fileName.length() > 0 ) {
+        QPixmap pic ;
+        if ( ! pic.load(fileName) ) {
+            QMessageBox::about(this,tr("Error"),
+                               tr("Can't load image"));
+            return ;
+        } else {
+            imageIsOk = true ;
+        }
+    }
+    if ( imageIsOk ) {
+        QString mimeType ;
+#if QT_VERSION >= 0x050000
+        QMimeDatabase db ;
+        QMimeType detectedType ( db.mimeTypeForFile(fileName) ) ;
+        if ( detectedType.isValid() ) {
+            mimeType = detectedType.name() ;
+        }
+#else
+        const char *fileNameCStyleHeap (fileName.toUtf8().constData()) ;
+
+        char fileNameCStyle[1024]  ;
+        if ( strlen(fileNameCStyleHeap) < 1024 ) {
+            strncpy(fileNameCStyle, fileNameCStyleHeap, 1023) ;
+            // code stolen from http://vivithemage.co.uk/blog/?p=105 so thanks Vivi.
+            magic_t magic_cookie;
+            /*MAGIC_MIME tells magic to return a mime of the file, but you can specify different things*/
+            magic_cookie = magic_open(MAGIC_MIME);
+            if (magic_cookie == NULL) {
+                QLOG_STR("unable to initialize magic library");
+                return ;
+            }
+            if (magic_load(magic_cookie, NULL) != 0) {
+                LOG_STR2("cannot load magic database - %s", magic_error(magic_cookie));
+                magic_close(magic_cookie);
+                return ;
+            }
+            LOG_STR2("Filename for magic = >%s<", fileNameCStyle);
+            const char *magic_full( magic_file(magic_cookie, fileNameCStyle) ) ;
+            if ( magic_full == NULL ) {
+                LOG_STR2("Magic_file error - %s", magic_error(magic_cookie));
+            } else {
+                mimeType = QString::fromUtf8(magic_full) ;
+            }
+            magic_close(magic_cookie);
+        }
+#endif
+
+        if ( mimeType.length() > 0 ) {
+            int indexOfSemicolon = mimeType.indexOf(';') ;
+            if ( indexOfSemicolon > 1 ) {
+                QLOG_STR("Pruning semicolon from mime type " + mimeType) ;
+                mimeType = mimeType.left(indexOfSemicolon) ;
+            }
+            QLOG_STR("mime type " + mimeType) ;
+            QFile f ( fileName ) ;
+            if ( f.open(QIODevice::ReadOnly) ) {
+                if ( f.size() >  KMaxProtocolItemSize  ) {
+                    emit error ( MController::FileOperationError, tr("File way too big")) ;
+                } else {
+                    QByteArray content ( f.read(f.size() ) ) ;
+                    QString snippet =
+                        "<img alt=\""+QFileInfo(f).fileName()+"\" src=\"data:"+mimeType+";base64,"+content.toBase64()+"\"/>" ;
+                    content.clear() ;
+                    if ( ( (quint32)(snippet.length()) +
+                            (quint32)(textEdit->toHtml().length()) +
+                            10240 )
+                            >  KMaxProtocolItemSize  ) {
+                        emit error ( MController::FileOperationError, tr("File way too big")) ;
+                    } else {
+                        textEdit->insertHtml(snippet) ;
+                    }
+                }
+            }
+        }
+    }
+}
 
 void TextEdit::printPreview(QPrinter *printer) {
 #ifdef QT_NO_PRINTER
@@ -740,3 +838,4 @@ void TextEdit::linkReady(const QString& aLinkAddress,
     QLOG_STR("link label " + aLinkLabel) ;
     textEdit->insertHtml("<a href='"+aLinkAddress+"'>"+aLinkLabel+"</a> ") ;
 }
+
