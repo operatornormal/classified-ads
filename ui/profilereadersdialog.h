@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-       Classified Ads is Copyright (c) Antti Järvinen 2013. 
+       Classified Ads is Copyright (c) Antti Järvinen 2013.
 
        This file is part of Classified Ads.
 
@@ -26,55 +26,54 @@
 #include "../ui_profileReadersDialog.h"
 
 class ProfileSearchModel ;
-class QTimerEvent ; 
-class ProfileReadersListingModel ; 
+class QTimerEvent ;
+class ProfileReadersListingModel ;
 class Profile ;
 
 /**
  * @brief class for allowing edit of profile readers list
  *
  */
-class ProfileReadersDialog : public QDialog
-{
-  Q_OBJECT
+class ProfileReadersDialog : public QDialog {
+    Q_OBJECT
 
-    public:
-  /**
-   * Constructor.
-   *
-   * @param aParent is owner-window of this dialog
-   * @param aController application controller reference
-   * @param aProfile is profile whose readers are listed
-   */
-  ProfileReadersDialog(QWidget *aParent,
-		       MController* aController,
-		       Profile& aProfile );
-  /** destructor */
-  ~ProfileReadersDialog();
+public:
+    /**
+     * Constructor.
+     *
+     * @param aParent is owner-window of this dialog
+     * @param aController application controller reference
+     * @param aProfile is profile whose readers are listed
+     */
+    ProfileReadersDialog(QWidget *aParent,
+                         MController* aController,
+                         Profile& aProfile );
+    /** destructor */
+    ~ProfileReadersDialog();
 protected:
-  /**
-   * method used to check for changes in users search-field ; this way
-   * user can keep on typing and we can perform the search when
-   * field content changes ..
-   */
-  void timerEvent(QTimerEvent *event);
+    /**
+     * method used to check for changes in users search-field ; this way
+     * user can keep on typing and we can perform the search when
+     * field content changes ..
+     */
+    void timerEvent(QTimerEvent *event);
 private slots:
-  void closeButtonClicked() ;
-  void addButtonClicked() ;
-  void removeButtonClicked() ;
-  void viewProfileSelected() ;
+    void closeButtonClicked() ;
+    void addButtonClicked() ;
+    void removeButtonClicked() ;
+    void viewProfileSelected() ;
 signals:
-  void error(MController::CAErrorSituation aError,
-	     const QString& aExplanation) ;
+    void error(MController::CAErrorSituation aError,
+               const QString& aExplanation) ;
 private:
-  Ui_profileReadersDialog ui ; 
-  MController* iController ;
-  ProfileSearchModel* iSearchModel ; /**< datamodel that does search */
-  int iTimerId ; 
-  QString iPreviousSearchFieldContent ; 
-  Profile& iProfile ;
-  ProfileReadersListingModel* iListingModel ; /**< datamodel that lists names in nifty manner */
-  QAction *iViewProfileAction ; 
+    Ui_profileReadersDialog ui ;
+    MController* iController ;
+    ProfileSearchModel* iSearchModel ; /**< datamodel that does search */
+    int iTimerId ;
+    QString iPreviousSearchFieldContent ;
+    Profile& iProfile ;
+    ProfileReadersListingModel* iListingModel ; /**< datamodel that lists names in nifty manner */
+    QAction *iViewProfileAction ;
 };
 
 #endif

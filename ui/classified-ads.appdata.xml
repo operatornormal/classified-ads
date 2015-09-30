@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2013 Antti Järvinen <classified-ads.questions@katiska.org> -->
+<component type="desktop">
+  <id>classified_ads.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>LGPLv2</project_license>
+  <name>Classified ads</name>
+  <summary>Internet messaging system</summary>
+  <summary xml:lang="fi">Viestinvälitysjärjestelmä Internettiä varten</summary>
+  <description>
+    <p>
+      Classified ads is an attempt to re-produce parts of the functionality
+      that went away when Usenet news ceased to exist. This attempt tries to
+      fix the problem of disappearing news-servers so that there is no servers
+      required and no service-providers needed for any operation ; 
+      data storage is implemented inside client applications that
+      users are running.  Features of the program currently include:
+      <ul>
+	<li>Posting of ads online. Ads have a category ; there are some pre-defined categories but more can be invented just by typing over the suggested categories.</li>
+	<li>Replying to ads either in public or privately to operator.</li>
+	<li>(Small-sized) binary attachments to posts.</li>
+	<li>Providing basic data of operators - data that operator may enter himself, or leave blank.</li>
+	<li>Basic searching of content based on words.</li>
+      </ul>
+    </p>
+    <p xml:lang="fi">
+      Luokitellut ilmoitukset on järjestelmä julkisten ja yksityisten viestin
+      välittämiseen internetin ylitse. Järjestelmä toistaa joitain toimintoja,
+      jotka löytyvät myös usenet-news -järjestelmästä ja smtp-sähköpostista.
+      Tämä ohjelma on suunniteltu toimimaan ilman palvelinjärjestelmää
+      ja tästä syystä mitään sopimuksia minkään palveluntarjoajankaan
+      kanssa ei tarvitse tehdä. Ohjelma ominaisuuksiin kuuluu mm. seuraavaa:
+      <ul>
+	<li>Ilmoitusten jättö kaikkien luettavaksi. Ilmoituksilla on kategoria,
+	ohjelma toteuttaa muutamia kategorioita esivalintana, mutta käyttäjiä
+	rohkaistaan keksimään uusia kategorioita.</li>
+	<li>Ilmoituksiin vastaaminen joko julkisesti tai yksityisesti</li>
+	<li>(Pienikokoiset) binääriliitteet viesteissä.</li>
+	<li>Käyttäjän perutietojen välitys ; käyttäjä voi myös jättää itseään koskevat tiedot antamatta.</li>
+	<li>Sanahakutoiminto julkisesta materiaalista.</li>
+      </ul>
+    </p>
+  </description>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://github.com/operatornormal/classified-ads/blob/master/doc/ads-search.png?raw=true</image>
+      <caption>Search of classified ads by category</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://github.com/operatornormal/classified-ads/blob/master/doc/profilecomment.png?raw=true</image>
+      <caption>Replying to operator in public comment</caption>
+    </screenshot>
+  </screenshots>
+  <url type="homepage">http://katiska.org/classified_ads/</url>
+  <updatecontact>classified-ads.questions@katiska.org</updatecontact>
+  <project_group></project_group>
+</component>

@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-       Classified Ads is Copyright (c) Antti Järvinen 2013. 
+       Classified Ads is Copyright (c) Antti Järvinen 2013.
 
        This file is part of Classified Ads.
 
@@ -24,18 +24,16 @@
 #include "aboutdialog.h"
 
 AboutDialog::AboutDialog(QWidget *aParent,
-			 MController& aController)
-  : QDialog(aParent),
-    iController(aController)
-{
-  ui.setupUi(this) ; 
+                         MController& aController)
+    : QDialog(aParent),
+      iController(aController) {
+    ui.setupUi(this) ;
 
-  connect (this, SIGNAL(rejected()), this, SLOT(deleteLater())) ;
+    connect (this, SIGNAL(rejected()), this, SLOT(deleteLater())) ;
 }
 
-AboutDialog::~AboutDialog()
-{
-  LOG_STR("AboutDialog::~AboutDialog\n") ;
+AboutDialog::~AboutDialog() {
+    LOG_STR("AboutDialog::~AboutDialog\n") ;
 }
 
 

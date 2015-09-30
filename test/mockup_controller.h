@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-    Classified Ads is Copyright (c) Antti Järvinen 2013. 
+    Classified Ads is Copyright (c) Antti Järvinen 2013.
 
     This file is part of Classified Ads.
 
@@ -28,96 +28,98 @@
 /**
  * @brief Controller for testing purposes only. Not included in real binary.
  */
-class MockUpController : public MController
-{
-  Q_OBJECT
+class MockUpController : public MController {
+    Q_OBJECT
 
 public:
 
-  /**
-   * constructor
-   */
-  MockUpController() ; 
-  /**
-   * Destructor
-   */
-  ~MockUpController() ; 
-  /**
-   * Method for requesting different things to take place in UI.
-   * controller mostly routes these to FrontWidget but other actions
-   * may be in order too..
-   * @param aRequest users orders 
-   * @param aHashConcerned possible hash parameter ; can be 
-   *        null hash if action is not about specific hash
-   * @return none
-   */
-  virtual void userInterfaceAction ( CAUserInterfaceRequest aRequest,
-				     const Hash& aHashConcerned = KNullHash,
-				     const Hash& aFetchFromNode = KNullHash ) ; 
-  /**
-   * method for hiding UI
-   */
-  virtual void hideUI() ;
-  /**
-   * method for showing UI
-   */
-  virtual void showUI() ;
- public slots:
-  virtual void exitApp() ; /**< quitting */
-  virtual void displayAboutBox() ; /**< bragging */
-  virtual void displayFront() ; /**< this initializes the "normal" display */
-  /**
-   * Method for handling errors inside application.
-   * @param aError Reason for error call, from error enum above
-   * @param aExplanation NULL or human-readable description about what went
-   *                     wrong. 
-   */
-  virtual void handleError(MController::CAErrorSituation aError,
-			   const QString& aExplanation) ;
-  /**
-   * Method for node ; this may be changed during startup-phase
-   * but not after that 
-   */
-  virtual Node& getNode() const ; 
-  /**
-   * method for network listener ; it is parent of all connections,
-   * also the outgoing
-   */
-  virtual NetworkListener *networkListener() const ; 
-  virtual Model& model() const ; 
-  virtual void setProfileInUse(const Hash& aProfileHash) ;
-  const Hash& profileInUse() ;
-  virtual void setContentKeyPasswd(QString aPasswd)  ;
-  /**
-   * method for getting gpg passwd previously set
-   */
-  virtual QString contentKeyPasswd()  const  ;
+    /**
+     * constructor
+     */
+    MockUpController() ;
+    /**
+     * Destructor
+     */
+    ~MockUpController() ;
+    /**
+     * Method for requesting different things to take place in UI.
+     * controller mostly routes these to FrontWidget but other actions
+     * may be in order too..
+     * @param aRequest users orders
+     * @param aHashConcerned possible hash parameter ; can be
+     *        null hash if action is not about specific hash
+     * @return none
+     */
+    virtual void userInterfaceAction ( CAUserInterfaceRequest aRequest,
+                                       const Hash& aHashConcerned = KNullHash,
+                                       const Hash& aFetchFromNode = KNullHash ) ;
+    /**
+     * method for hiding UI
+     */
+    virtual void hideUI() ;
+    /**
+     * method for showing UI
+     */
+    virtual void showUI() ;
+public slots:
+    virtual void exitApp() ; /**< quitting */
+    virtual void displayAboutBox() ; /**< bragging */
+    virtual void displayFront() ; /**< this initializes the "normal" display */
+    /**
+     * Method for handling errors inside application.
+     * @param aError Reason for error call, from error enum above
+     * @param aExplanation NULL or human-readable description about what went
+     *                     wrong.
+     */
+    virtual void handleError(MController::CAErrorSituation aError,
+                             const QString& aExplanation) ;
+    /**
+     * Method for node ; this may be changed during startup-phase
+     * but not after that
+     */
+    virtual Node& getNode() const ;
+    /**
+     * method for network listener ; it is parent of all connections,
+     * also the outgoing
+     */
+    virtual NetworkListener *networkListener() const ;
+    virtual Model& model() const ;
+    virtual void setProfileInUse(const Hash& aProfileHash) ;
+    const Hash& profileInUse() ;
+    virtual void setContentKeyPasswd(QString aPasswd)  ;
+    /**
+     * method for getting gpg passwd previously set
+     */
+    virtual QString contentKeyPasswd()  const  ;
 
 
-  virtual void startRetrievingContent(NetworkRequestExecutor::NetworkRequestQueueItem aReq,bool aIsBackgroundDl, ProtocolItemType aTypeOfExpectedObject) ;
+    virtual void startRetrievingContent(NetworkRequestExecutor::NetworkRequestQueueItem aReq,bool aIsBackgroundDl, ProtocolItemType aTypeOfExpectedObject) ;
 
 
-   virtual void storePrivateDataOfSelectedProfile(bool aPublishTrustListToo = false)  ; 
+    virtual void storePrivateDataOfSelectedProfile(bool aPublishTrustListToo = false)  ;
 
 
-   virtual void reStorePrivateDataOfSelectedProfile() ; 
+    virtual void reStorePrivateDataOfSelectedProfile() ;
 
 
-   virtual bool isContactInContactList(const Hash& aFingerPrint) const; 
+    virtual bool isContactInContactList(const Hash& aFingerPrint) const;
 
 
-   virtual QString displayableNameForProfile(const Hash& aProfileFingerPrint) const ; 
+    virtual QString displayableNameForProfile(const Hash& aProfileFingerPrint) const ;
 
-  virtual void offerDisplayNameForProfile(const Hash& aProfileFingerPrint,
-					  const QString& aDisplayName,
-					  const bool iUpdatePersistenStorage=false)  ;
-
+    virtual void offerDisplayNameForProfile(const Hash& aProfileFingerPrint,
+                                            const QString& aDisplayName,
+                                            const bool iUpdatePersistenStorage=false)  ;
+    /**
+     * method that puts dialog or similar on display, about a published file
+     */
+    virtual void displayFileInfoOnUi(const BinaryFile& aFileMetadata)  ;
 private:
-  Node *iNode ; /**< our network presence object, there is single instance */
-  Model *iModel ; /**< data storage animal */
-  NetworkListener *iListener ; /**< Incoming connections handler, for ipv4 */
-  QString iContentPasswd ; 
-  Hash iProfileHash ; 
-} ; 
+    Node *iNode ; /**< our network presence object, there is single instance */
+    Model *iModel ; /**< data storage animal */
+    NetworkListener *iListener ; /**< Incoming connections handler, for ipv4 */
+    QString iContentPasswd ;
+    Hash iProfileHash ;
+} ;
 #endif
 

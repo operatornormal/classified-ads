@@ -8,17 +8,18 @@ classified-ads \- Program for posting ads online for others to see
 Classified ads is a program for online communications. 
 Main features include server-less design, public announcements,
 private messages, user data and comments. For longer explanation
-of the program, please see "About" -dialog inside the program. 
+of the program, please see "About" dialog inside the program. 
 .SH FILES
 For each individual user a file $HOME/.classified_ads/sqlite_db is 
 created. This is a normal sqlite database that contains state of
-the program. For backup purpose user may copy this file elsewhere
-and later restore it while the program is not running. 
+the program. For backup purpose a copy may be made and later restored
+while the program is not running. Restoring an old file fully resets the
+programs state to moment when backup was taken. 
 
 Upon uninstall of the program, the datafile is left lingering around.
 Users who are sure they'll never user the program again should delete
 the file by hand. Note that users encryption keys are inside this
 file among other data so deleting the file will affect users ability
-to read his private messages later. 
+to access private messages later. 
 .SH AUTHOR
-Classified ads is copyright (C) Antti Jarvinen 2015.
+Classified ads is copyright Antti Jarvinen 2015.

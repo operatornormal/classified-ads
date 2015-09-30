@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-       Classified Ads is Copyright (c) Antti Järvinen 2013. 
+       Classified Ads is Copyright (c) Antti Järvinen 2013.
 
        This file is part of Classified Ads.
 
@@ -28,24 +28,23 @@
 /**
  * @brief class for displaying brief information about this sw
  */
-class AboutDialog : public QDialog
-{
-Q_OBJECT
+class AboutDialog : public QDialog {
+    Q_OBJECT
 
 public:
-  /**
-   * Constructor.
-   */
-  AboutDialog(QWidget *aParent,
-	      MController& aController );
-  /** destructor */
-  ~AboutDialog();
+    /**
+     * Constructor.
+     */
+    AboutDialog(QWidget *aParent,
+                MController& aController );
+    /** destructor */
+    ~AboutDialog();
 
 private slots:
 
 private:
-  Ui_aboutDialog ui ; 
-  MController& iController ;
+    Ui_aboutDialog ui ;
+    MController& iController ;
 };
 
 #endif

@@ -27,66 +27,66 @@
 #include "camodel.h"
 
 class BinaryFile ;
-class Model ; 
-class MController ; 
+class Model ;
+class MController ;
 /**
  * @brief Model-class for helping display of classified ads.
  */
 class CAListingModel: public QObject , public ClassifiedAdsModel::CAObserver {
-  Q_OBJECT
-public: 
-  /**
-   * Constructor
-   * @param aForumToList specifies the classification of the ads 
-   *        to include into model
-   */
-  CAListingModel(const Hash& aForumToList,
-		 const MModelProtocolInterface &aModel,
-		 MController* aController ) ;
-  ~CAListingModel() ; /**< Destructor */
+    Q_OBJECT
+public:
+    /**
+     * Constructor
+     * @param aForumToList specifies the classification of the ads
+     *        to include into model
+     */
+    CAListingModel(const Hash& aForumToList,
+                   const MModelProtocolInterface &aModel,
+                   MController* aController ) ;
+    ~CAListingModel() ; /**< Destructor */
 
-  /**
-   * method for getting the actual model for view to consume.
-   * ownership of the pointer is not transferred.
-   */
-  QStandardItemModel* theCaModel() ; 
+    /**
+     * method for getting the actual model for view to consume.
+     * ownership of the pointer is not transferred.
+     */
+    QStandardItemModel* theCaModel() ;
 
-  /**
-   * method for setting another forum to be listed
-   * @param aForumToList specifies the forum
-   */
-  void setClassification(const Hash& aForumToList) ; 
-  /**
-   * notification method telling abuot newly-persisted
-   * classified ad. From CAObserver. 
-   */
-  virtual void newCaReceived(const CA& aNewCa)  ;
-  /**
-   * Notification method telling abuot newly-persisted
-   * classified ad. Called from via controller.
-   */
-  virtual void newCaReceived(const Hash& aHashNewCa,
-			     const Hash& aHashOfClassification)  ;
+    /**
+     * method for setting another forum to be listed
+     * @param aForumToList specifies the forum
+     */
+    void setClassification(const Hash& aForumToList) ;
+    /**
+     * notification method telling abuot newly-persisted
+     * classified ad. From CAObserver.
+     */
+    virtual void newCaReceived(const CA& aNewCa)  ;
+    /**
+     * Notification method telling abuot newly-persisted
+     * classified ad. Called from via controller.
+     */
+    virtual void newCaReceived(const Hash& aHashNewCa,
+                               const Hash& aHashOfClassification)  ;
 
 signals:
-  void error(MController::CAErrorSituation aError,
-             const QString& aExplanation) ;
+    void error(MController::CAErrorSituation aError,
+               const QString& aExplanation) ;
 private: // methods
-  bool insertCaIntoModel(const Hash& aArticleFingerPrint) ;
+    bool insertCaIntoModel(const Hash& aArticleFingerPrint) ;
 private: // data
-  QStandardItemModel iCaModel ; /**< this model is exposed to UI */
-  Hash iForumToList ; /**< this model lists exactly one forum at time, given here */
-  const MModelProtocolInterface &iModel ;  /**< datamodel reference */
-  /**
-   * This qhash contains pointers to items inside iCaModel
-   * but the key in hash is the low-order bits of the fingerprints
-   * of the articles as there seems to be no convenient way
-   * of finding items from model based on fingerprint, only
-   * search seems to be text-based
-   */
-  QHash<int, QStandardItem *>* iItemAndArticleHashRelation ; 
-  MController *iController  ;
-  QStandardItem *iListingHeaderDate ; 
-  QStandardItem *iListingHeaderSubject ; 
-} ; 
+    QStandardItemModel iCaModel ; /**< this model is exposed to UI */
+    Hash iForumToList ; /**< this model lists exactly one forum at time, given here */
+    const MModelProtocolInterface &iModel ;  /**< datamodel reference */
+    /**
+     * This qhash contains pointers to items inside iCaModel
+     * but the key in hash is the low-order bits of the fingerprints
+     * of the articles as there seems to be no convenient way
+     * of finding items from model based on fingerprint, only
+     * search seems to be text-based
+     */
+    QHash<int, QStandardItem *>* iItemAndArticleHashRelation ;
+    MController *iController  ;
+    QStandardItem *iListingHeaderDate ;
+    QStandardItem *iListingHeaderSubject ;
+} ;
 #endif

@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-       Classified Ads is Copyright (c) Antti Järvinen 2013. 
+       Classified Ads is Copyright (c) Antti Järvinen 2013.
 
        This file is part of Classified Ads.
 
@@ -26,65 +26,65 @@
 #include "../ui_attachmentListDialog.h"
 
 class BinaryFileListingModel ;
-class Hash ; 
+class Hash ;
 class Profile ;
-class QAction ; 
+class QAction ;
 
 /**
  * @brief class for dialog for listing (attached) files
  */
-class AttachmentListDialog : public DialogBase
-{
-  Q_OBJECT
+class AttachmentListDialog : public DialogBase {
+    Q_OBJECT
 
 public:
-  /**
-   * Constructor.
-   * @param aParent parent widget
-   * @param aController application controller
-   * @param aSelectedProfile operator profile currently open on application
-   * @param aFilesToDisplay list of hashes that are supposed to be found
-   *                        from table of binary blobs
-   * @param aNodeToTryForRetrieval In case the selected file is not
-   *                               found from local db table, this is
-   *                               the node where query for missing file
-   *                               could be first sent, in addition to nodes
-   *                               determined by the binary blob hash. 
-   *                               Use-case for this is CA attachment where
-   *                               the posting-node is known from CA metadata.
-   *                               If we don't have the binary blob, we 
-   *                               could first send query about attachment
-   *                               to the originating node. 
-   */
-  AttachmentListDialog(QWidget *aParent,
-		       MController* aController,
-		       Profile& aSelectedProfile,
-		       QList<Hash>& aFilesToDisplay,
-		       const Hash& aNodeToTryForRetrieval = KNullHash );
-  /** destructor */
-  ~AttachmentListDialog();
-  /**
-   * Method that tries to find node fingerprint by profile. This is
-   * used to find original posting node of binary attachments
-   * that are associated with many objects (ca, privmsg etc.) 
-   * @param aProfileFingerPrint fingerprint of profile whose node is sought for
-   * @param aController application controller.
-   * @return node hash or KNullHash if nothing found
-   */
-  static Hash tryFindNodeByProfile(const Hash& aProfileFingerPrint, MController& aController); 
+    /**
+     * Constructor.
+     * @param aParent parent widget
+     * @param aController application controller
+     * @param aSelectedProfile operator profile currently open on application
+     * @param aFilesToDisplay list of hashes that are supposed to be found
+     *                        from table of binary blobs
+     * @param aNodeToTryForRetrieval In case the selected file is not
+     *                               found from local db table, this is
+     *                               the node where query for missing file
+     *                               could be first sent, in addition to nodes
+     *                               determined by the binary blob hash.
+     *                               Use-case for this is CA attachment where
+     *                               the posting-node is known from CA metadata.
+     *                               If we don't have the binary blob, we
+     *                               could first send query about attachment
+     *                               to the originating node.
+     */
+    AttachmentListDialog(QWidget *aParent,
+                         MController* aController,
+                         Profile& aSelectedProfile,
+                         QList<Hash>& aFilesToDisplay,
+                         const Hash& aNodeToTryForRetrieval = KNullHash );
+    /** destructor */
+    ~AttachmentListDialog();
+    /**
+     * Method that tries to find node fingerprint by profile. This is
+     * used to find original posting node of binary attachments
+     * that are associated with many objects (ca, privmsg etc.)
+     * @param aProfileFingerPrint fingerprint of profile whose node is sought for
+     * @param aController application controller.
+     * @return node hash or KNullHash if nothing found
+     */
+    static Hash tryFindNodeByProfile(const Hash& aProfileFingerPrint, MController& aController);
 private slots:
-  void okButtonClicked() ;
-  void cancelButtonClicked() ;
-  void fileListDoubleClicked(const QModelIndex& aIndex);
-  void exportSharedFile() ;
+    void okButtonClicked() ;
+    void cancelButtonClicked() ;
+    void infoButtonClicked() ; /**< file information button clicked */
+    void fileListDoubleClicked(const QModelIndex& aIndex);
+    void exportSharedFile() ;
 signals:
-  void error(MController::CAErrorSituation aError,
-	     const QString& aExplanation) ;
+    void error(MController::CAErrorSituation aError,
+               const QString& aExplanation) ;
 private: // members
-  Ui_attachmentListDialog ui ; 
-  BinaryFileListingModel* iListingModel ;
-  QAction* iExportSharedFileAction ; /**< context-menu action for saving to filesystem a shared file */
-  const Hash iNodeToTryForRetrieval ;
+    Ui_attachmentListDialog ui ;
+    BinaryFileListingModel* iListingModel ;
+    QAction* iExportSharedFileAction ; /**< context-menu action for saving to filesystem a shared file */
+    const Hash iNodeToTryForRetrieval ;
 };
 
 #endif

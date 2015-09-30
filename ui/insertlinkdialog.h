@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-       Classified Ads is Copyright (c) Antti Järvinen 2013. 
+       Classified Ads is Copyright (c) Antti Järvinen 2013.
 
        This file is part of Classified Ads.
 
@@ -28,35 +28,34 @@
 /**
  * @brief class for editing link to be inserted into edited text
  */
-class InsertLinkDialog : public QDialog
-{
-  Q_OBJECT
+class InsertLinkDialog : public QDialog {
+    Q_OBJECT
 
-    public:
-  /**
-   * Constructor.
-   */
-  InsertLinkDialog(QWidget *aParent,
-		   MController* aController );
-  /** destructor */
-  ~InsertLinkDialog();
+public:
+    /**
+     * Constructor.
+     */
+    InsertLinkDialog(QWidget *aParent,
+                     MController* aController );
+    /** destructor */
+    ~InsertLinkDialog();
 signals:
-  void error(MController::CAErrorSituation aError,
-	     const QString& aExplanation) ;
-  /**
-   * signal that is emitted when user is finished with
-   * addition ; this should be connected to suitable
-   * text editor 
-   */
-  void linkReady(const QString& aLinkAddress,
-		 const QString& aLinkLabel) ;
+    void error(MController::CAErrorSituation aError,
+               const QString& aExplanation) ;
+    /**
+     * signal that is emitted when user is finished with
+     * addition ; this should be connected to suitable
+     * text editor
+     */
+    void linkReady(const QString& aLinkAddress,
+                   const QString& aLinkLabel) ;
 private slots:
-  void okButtonClicked() ;
-  void urlTextEdited(const QString &aText) ; /**< when user changes URL text */
+    void okButtonClicked() ;
+    void urlTextEdited(const QString &aText) ; /**< when user changes URL text */
 
 private:
-  Ui_insertLinkDialog ui ; 
-  MController* iController ;
+    Ui_insertLinkDialog ui ;
+    MController* iController ;
 };
 
 #endif

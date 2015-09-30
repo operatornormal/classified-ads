@@ -4,6 +4,7 @@
 [Desktop Entry]
 Comment=Classified ads the advertisment posting program
 Exec=classified-ads %u
+Keywords=messaging;communications;
 GenericName[en_US]=Classified ads
 GenericName[fi_FI]=Luokitellut ilmoitukset
 GenericName[sv_SE]=Annonser

@@ -37,6 +37,16 @@ win32.CONFIG += console
 }
 CODECFORTR = UTF-8
 CODECFORSRC = UTF-8
+QMAKE_EXTRA_TARGETS += translations_compile
+PRE_TARGETDEPS += translations_compile
+unix {
+    translations_compile.commands = cd po ; $(MAKE)
+    QMAKE_CLEAN += po/*.mo
+}
+win32 {
+    translations_compile.commands = $(MAKE) -C po MSGFMT_PATH=/msys32/usr/local/bin/
+    QMAKE_CLEAN += po\*.mo
+}
 HEADERS = mcontroller.h controller.h FrontWidget.h net/node.h util/hash.h \
 	net/connection.h datamodel/model.h \
 	net/networklistener.h net/protocol_message_formatter.h \
@@ -62,7 +72,8 @@ HEADERS = mcontroller.h controller.h FrontWidget.h net/node.h util/hash.h \
 	datamodel/connectionlistingmodel.h ui/manualconnection.h \
 	ui/aboutdialog.h textedit/textedit.h datamodel/searchmodel.h \
 	ui/searchdisplay.h ui/insertlinkdialog.h ui/newtextdocument.h \
-	datamodel/trusttreemodel.h
+	datamodel/trusttreemodel.h ui/metadataQuery.h util/jsonwrapper.h \
+        util/catranslator.h
 SOURCES = main.cpp controller.cpp FrontWidget.cpp net/node.cpp util/hash.cpp \
 	net/connection.cpp datamodel/model.cpp \
         net/networklistener.cpp net/protocol_message_formatter.cpp \
@@ -89,41 +100,60 @@ SOURCES = main.cpp controller.cpp FrontWidget.cpp net/node.cpp util/hash.cpp \
 	datamodel/connectionlistingmodel.cpp ui/manualconnection.cpp \
         ui/aboutdialog.cpp textedit/textedit.cpp datamodel/searchmodel.cpp \
 	ui/searchdisplay.cpp ui/insertlinkdialog.cpp ui/newtextdocument.cpp \
-	datamodel/trusttreemodel.cpp
+	datamodel/trusttreemodel.cpp ui/metadataQuery.cpp \
+        util/jsonwrapper.cpp util/catranslator.cpp
 FORMS = frontWidget.ui ui/profileReadersDialog.ui ui/passwordDialog.ui \
 	ui/newClassifiedAd.ui 	ui/newPrivMsg.ui ui/editContact.ui \
         ui/newProfileComment.ui ui/profileCommentDisplay.ui \
         ui/attachmentListDialog.ui ui/settingsDialog.ui \
 	ui/statusDialog.ui ui/manualConnectionDialog.ui \
 	ui/aboutDialog.ui ui/searchDisplay.ui ui/insertLink.ui \
-        ui/newTextDocument.ui
+        ui/newTextDocument.ui ui/metadataQuery.ui
 RESOURCES     = ui_resources.qrc
 TRANSLATIONS  = classified_ads_fi.ts \
                 classified_ads_sv.ts
-unix:LIBS = -lssl -lcrypto -lnatpmp -lqjson -lminiupnpc
+unix:LIBS = -lssl -lcrypto -lnatpmp -lminiupnpc 
+lessThan(QT_MAJOR_VERSION, 5) {
+     unix:LIBS +=  -lqjson -lmagic
+} 
+
 # following line is needed for fedora linux, natpnp needs miniupnpc
 unix:INCLUDEPATH += /usr/include/miniupnpc
-win32:LIBS += "c:\msys\1.0\local\lib\libssl.a" 
-win32:LIBS += "c:\msys\1.0\local\lib\libcrypto.a" 
-win32:LIBS += "..\miniupnpc\miniupnpc-1.9\miniupnpc.lib" 
-win32:LIBS += "-L" 
-win32:LIBS += "..\qjson-master\build\src"
-win32:LIBS += "-lqjson"
+win32:LIBS += "-L..\openssl-1.0.2d"
+win32:LIBS += "-lcrypto"
+win32:LIBS += "-lssl"
+win32:LIBS += "..\miniupnpc-1.9\miniupnpc.lib" 
+win32:LIBS += "-L\msys32\usr\local\lib"
+win32:LIBS += "-lintl"
+lessThan(QT_MAJOR_VERSION, 5) {
+    win32:LIBS += "-L" 
+    win32:LIBS += "..\qjson-master\build\src"
+    win32:LIBS += "-lqjson"
+}
 win32:LIBS += "-lWs2_32" "-lGdi32" "-lIphlpapi"
-win32:INCLUDEPATH += "C:\msys\1.0\local\include"
-win32:INCLUDEPATH += "..\miniupnpc\miniupnpc-1.9"
-win32:INCLUDEPATH += "..\qjson-master\include"
-
+win32:INCLUDEPATH += "..\openssl-1.0.2d\include"
+win32:INCLUDEPATH += "..\miniupnpc-1.9"
+win32:INCLUDEPATH += "\msys32\usr\local\include"
+lessThan(QT_MAJOR_VERSION, 5) {
+    win32:INCLUDEPATH += "..\qjson-master\include"
+}
 target.path = /usr/bin
 desktopfiles.path = /usr/share/applications
-desktopfiles.files = ui/classified_ads.desktop
-desktopicons.path = /usr/share/app-install/icons/
+desktopfiles.files = ui/classified-ads.desktop
+appdata.files = ui/classified-ads.appdata.xml
+appdata.path = /usr/share/appdata/
+unix {
+    # in unix install translations as part of appdata:
+    appdata.extra = cd po ; $(MAKE) install DESTDIR=$(DESTDIR)
+}
 desktopicons.files = ui/turt-transparent-128x128.png
+desktopicons.path = /usr/share/app-install/icons/
 manpages.path = /usr/share/man/man1
 manpages.files = classified-ads.1
-translations.path = /usr/lib/classified-ads
-translations.files = classified_ads_fi.qm \
-                     classified_ads_sv.qm
-INSTALLS += target desktopfiles desktopicons translations
+INSTALLS += target \
+        desktopfiles \
+        desktopicons \
+        appdata
 unix:INSTALLS += manpages
+unix:INSTALLS += appdata
 RC_FILE=classified-ads.rc

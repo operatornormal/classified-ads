@@ -5,29 +5,29 @@
 <context>
     <name>AttachmentListDialog</name>
     <message>
-        <location filename="ui/attachmentlistdialog.cpp" line="57"/>
+        <location filename="ui/attachmentlistdialog.cpp" line="60"/>
         <source>Save file to disk..</source>
         <translatorcomment>Man kan spara pengar också? </translatorcomment>
         <translation>Spara till filsystem..</translation>
     </message>
     <message>
-        <location filename="ui/attachmentlistdialog.cpp" line="150"/>
-        <location filename="ui/attachmentlistdialog.cpp" line="152"/>
+        <location filename="ui/attachmentlistdialog.cpp" line="151"/>
+        <location filename="ui/attachmentlistdialog.cpp" line="153"/>
         <source>files</source>
         <translation>filer</translation>
     </message>
     <message>
-        <location filename="ui/attachmentlistdialog.cpp" line="154"/>
+        <location filename="ui/attachmentlistdialog.cpp" line="155"/>
         <source>Choose file name for saving</source>
         <translation>Välj ett namn for din fil</translation>
     </message>
     <message>
-        <location filename="ui/attachmentlistdialog.cpp" line="165"/>
+        <location filename="ui/attachmentlistdialog.cpp" line="166"/>
         <source>Error</source>
         <translation>Fel</translation>
     </message>
     <message>
-        <location filename="ui/attachmentlistdialog.cpp" line="166"/>
+        <location filename="ui/attachmentlistdialog.cpp" line="167"/>
         <source>File open error</source>
         <translation>Fel i att öppna en fil</translation>
     </message>
@@ -35,7 +35,7 @@
 <context>
     <name>BinaryFileListingModel</name>
     <message>
-        <location filename="datamodel/binaryfilelistingmodel.cpp" line="179"/>
+        <location filename="datamodel/binaryfilelistingmodel.cpp" line="173"/>
         <source>Name or fingerprint of file</source>
         <translation>Namn eller SHA1 kontrollsumm av filen</translation>
     </message>
@@ -58,177 +58,177 @@
 <context>
     <name>ClassifiedAdsModel</name>
     <message>
-        <location filename="datamodel/camodel.cpp" line="131"/>
+        <location filename="datamodel/camodel.cpp" line="127"/>
         <source>Buying</source>
         <translation>Inköpning</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="133"/>
+        <location filename="datamodel/camodel.cpp" line="129"/>
         <source>Selling</source>
         <translation>Försäljing</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="135"/>
+        <location filename="datamodel/camodel.cpp" line="131"/>
         <source>Giving away</source>
         <translation>Donering</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="137"/>
+        <location filename="datamodel/camodel.cpp" line="133"/>
         <source>Wanting</source>
         <translation>Önskande sig</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="139"/>
+        <location filename="datamodel/camodel.cpp" line="135"/>
         <source>Renting</source>
         <translation>Att hyra</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="141"/>
+        <location filename="datamodel/camodel.cpp" line="137"/>
         <source>Announcement</source>
         <translation>Meddelande</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="214"/>
+        <location filename="datamodel/camodel.cpp" line="210"/>
         <source>Cars</source>
         <translation>Bilar</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="216"/>
+        <location filename="datamodel/camodel.cpp" line="212"/>
         <source>Boats</source>
         <translation>Båtar</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="218"/>
+        <location filename="datamodel/camodel.cpp" line="214"/>
         <source>Bikes</source>
         <translation>Cyklar</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="220"/>
+        <location filename="datamodel/camodel.cpp" line="216"/>
         <source>Other vehicles</source>
         <translation>Andra fordon</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="222"/>
+        <location filename="datamodel/camodel.cpp" line="218"/>
         <source>Vehicle parts</source>
         <translation>Fordondelar</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="224"/>
+        <location filename="datamodel/camodel.cpp" line="220"/>
         <source>Habitation</source>
         <translation>Bostad</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="226"/>
+        <location filename="datamodel/camodel.cpp" line="222"/>
         <source>Household appliances</source>
         <translation>Hushållsapparater</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="228"/>
+        <location filename="datamodel/camodel.cpp" line="224"/>
         <source>Furniture</source>
         <translation>Möbler</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="230"/>
+        <location filename="datamodel/camodel.cpp" line="226"/>
         <source>Clothing</source>
         <translation>Kläder</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="232"/>
+        <location filename="datamodel/camodel.cpp" line="228"/>
         <source>Tools</source>
         <translation>Verktyg</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="234"/>
+        <location filename="datamodel/camodel.cpp" line="230"/>
         <source>Sports</source>
         <translation>Sports</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="236"/>
+        <location filename="datamodel/camodel.cpp" line="232"/>
         <source>Music</source>
         <translation>Musik</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="238"/>
+        <location filename="datamodel/camodel.cpp" line="234"/>
         <source>Books</source>
         <translation>Böcker</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="240"/>
+        <location filename="datamodel/camodel.cpp" line="236"/>
         <source>Movies</source>
         <translation>Bio</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="242"/>
+        <location filename="datamodel/camodel.cpp" line="238"/>
         <source>Animals</source>
         <translation>Djur</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="244"/>
+        <location filename="datamodel/camodel.cpp" line="240"/>
         <source>Electronics</source>
         <translation>Elektroniska aparater</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="246"/>
+        <location filename="datamodel/camodel.cpp" line="242"/>
         <source>Jobs</source>
         <translation>Arbete</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="248"/>
+        <location filename="datamodel/camodel.cpp" line="244"/>
         <source>Transportation</source>
         <translation>Transport</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="250"/>
+        <location filename="datamodel/camodel.cpp" line="246"/>
         <source>Services</source>
         <translation>Tjänster</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="252"/>
+        <location filename="datamodel/camodel.cpp" line="248"/>
         <source>Healthcare</source>
         <translation>Sjukvård</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="254"/>
+        <location filename="datamodel/camodel.cpp" line="250"/>
         <source>Foodstuff</source>
         <translation>Livsmedel</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="256"/>
+        <location filename="datamodel/camodel.cpp" line="252"/>
         <source>Software</source>
         <translation>Programvara</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="258"/>
+        <location filename="datamodel/camodel.cpp" line="254"/>
         <source>Events</source>
         <translation>Händelser</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="260"/>
+        <location filename="datamodel/camodel.cpp" line="256"/>
         <source>Education</source>
         <translation>Utbildning</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="262"/>
+        <location filename="datamodel/camodel.cpp" line="258"/>
         <source>Finance</source>
         <translation>Finans</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="264"/>
+        <location filename="datamodel/camodel.cpp" line="260"/>
         <source>Jewelry</source>
         <translation>Smycken</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="266"/>
+        <location filename="datamodel/camodel.cpp" line="262"/>
         <source>Religious rituals</source>
         <translation>Religiösa ritualer</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="268"/>
+        <location filename="datamodel/camodel.cpp" line="264"/>
         <source>Philosophy</source>
         <translation>Filosofi</translation>
     </message>
     <message>
-        <location filename="datamodel/camodel.cpp" line="913"/>
+        <location filename="datamodel/camodel.cpp" line="908"/>
         <source>Any country</source>
         <translation>Alla länder</translation>
     </message>
@@ -236,52 +236,52 @@
 <context>
     <name>ConnectionListingModel</name>
     <message>
-        <location filename="datamodel/connectionlistingmodel.cpp" line="148"/>
+        <location filename="datamodel/connectionlistingmodel.cpp" line="142"/>
         <source>Peer network address</source>
         <translation>Gränsande datorns adress</translation>
     </message>
     <message>
-        <location filename="datamodel/connectionlistingmodel.cpp" line="151"/>
+        <location filename="datamodel/connectionlistingmodel.cpp" line="145"/>
         <source>Inbound connections are those where peer initiated connection</source>
         <translation>Inkommande förbindelse är sådan när en annan dator öppnade dataströmmen </translation>
     </message>
     <message>
-        <location filename="datamodel/connectionlistingmodel.cpp" line="154"/>
+        <location filename="datamodel/connectionlistingmodel.cpp" line="148"/>
         <source>Data transferred from peer to your node</source>
         <translation>Data från din dator</translation>
     </message>
     <message>
-        <location filename="datamodel/connectionlistingmodel.cpp" line="157"/>
+        <location filename="datamodel/connectionlistingmodel.cpp" line="151"/>
         <source>Data transferred to peer from your node</source>
         <translation>Data till din dator</translation>
     </message>
     <message>
-        <location filename="datamodel/connectionlistingmodel.cpp" line="160"/>
+        <location filename="datamodel/connectionlistingmodel.cpp" line="154"/>
         <source>Time when connection was opened</source>
         <translation>Tid när dataström öppnades</translation>
     </message>
     <message>
-        <location filename="datamodel/connectionlistingmodel.cpp" line="171"/>
+        <location filename="datamodel/connectionlistingmodel.cpp" line="164"/>
         <source>Address</source>
         <translation>Adress</translation>
     </message>
     <message>
-        <location filename="datamodel/connectionlistingmodel.cpp" line="174"/>
+        <location filename="datamodel/connectionlistingmodel.cpp" line="167"/>
         <source>Inbound</source>
         <translation>Inkommande</translation>
     </message>
     <message>
-        <location filename="datamodel/connectionlistingmodel.cpp" line="177"/>
+        <location filename="datamodel/connectionlistingmodel.cpp" line="170"/>
         <source>Bytes in</source>
         <translation>Oktett in</translation>
     </message>
     <message>
-        <location filename="datamodel/connectionlistingmodel.cpp" line="180"/>
+        <location filename="datamodel/connectionlistingmodel.cpp" line="173"/>
         <source>Bytes out</source>
         <translation>Oktett ut</translation>
     </message>
     <message>
-        <location filename="datamodel/connectionlistingmodel.cpp" line="183"/>
+        <location filename="datamodel/connectionlistingmodel.cpp" line="176"/>
         <source>Open time</source>
         <translation>Öppningstid</translation>
     </message>
@@ -289,42 +289,42 @@
 <context>
     <name>ContactListingModel</name>
     <message>
-        <location filename="datamodel/contactlistingmodel.cpp" line="76"/>
+        <location filename="datamodel/contactlistingmodel.cpp" line="73"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="datamodel/contactlistingmodel.cpp" line="78"/>
+        <location filename="datamodel/contactlistingmodel.cpp" line="75"/>
         <source>Unknown</source>
         <translation>Okänt</translation>
     </message>
     <message>
-        <location filename="datamodel/contactlistingmodel.cpp" line="103"/>
+        <location filename="datamodel/contactlistingmodel.cpp" line="98"/>
         <source>Actual network address (SHA1) of the contact</source>
         <translation>SHA1 av din contact</translation>
     </message>
     <message>
-        <location filename="datamodel/contactlistingmodel.cpp" line="106"/>
+        <location filename="datamodel/contactlistingmodel.cpp" line="101"/>
         <source>Locally given nickname ; user may set her own nickname himself</source>
         <translation>Smeknamn</translation>
     </message>
     <message>
-        <location filename="datamodel/contactlistingmodel.cpp" line="109"/>
+        <location filename="datamodel/contactlistingmodel.cpp" line="104"/>
         <source>Public statement if this operator to be trusted in transactions</source>
         <translation>Om den här kontakt ska bli förtröstad?</translation>
     </message>
     <message>
-        <location filename="datamodel/contactlistingmodel.cpp" line="120"/>
+        <location filename="datamodel/contactlistingmodel.cpp" line="114"/>
         <source>Address</source>
         <translation>Adress</translation>
     </message>
     <message>
-        <location filename="datamodel/contactlistingmodel.cpp" line="123"/>
+        <location filename="datamodel/contactlistingmodel.cpp" line="117"/>
         <source>Nickname</source>
         <translation>Smeknamn</translation>
     </message>
     <message>
-        <location filename="datamodel/contactlistingmodel.cpp" line="126"/>
+        <location filename="datamodel/contactlistingmodel.cpp" line="120"/>
         <source>Publicly trusted</source>
         <translation>Offentlig förtroende</translation>
     </message>
@@ -332,23 +332,23 @@
 <context>
     <name>ContentEncryptionModel</name>
     <message>
-        <location filename="datamodel/contentencryptionmodel.cpp" line="89"/>
+        <location filename="datamodel/contentencryptionmodel.cpp" line="86"/>
         <source>SSL key generation went wrong, calling exit..</source>
         <translation>Kunde inte generera SSL-nyckel, utgående..</translation>
     </message>
     <message>
-        <location filename="datamodel/contentencryptionmodel.cpp" line="97"/>
+        <location filename="datamodel/contentencryptionmodel.cpp" line="94"/>
         <source>x509 cert generation went wrong, calling exit..</source>
         <translation>Kunde inte generera x509-cert, utgående..</translation>
     </message>
     <message>
-        <location filename="datamodel/contentencryptionmodel.cpp" line="195"/>
-        <location filename="datamodel/contentencryptionmodel.cpp" line="293"/>
+        <location filename="datamodel/contentencryptionmodel.cpp" line="192"/>
+        <location filename="datamodel/contentencryptionmodel.cpp" line="290"/>
         <source>RSA Private key key saving went wrong</source>
         <translation>Kunde inte persist RSA-nyckel</translation>
     </message>
     <message>
-        <location filename="datamodel/contentencryptionmodel.cpp" line="645"/>
+        <location filename="datamodel/contentencryptionmodel.cpp" line="637"/>
         <source>No suitable de-cryption key found</source>
         <translation>Hemlig nyckel för kryptering finns inte</translation>
     </message>
@@ -517,34 +517,74 @@
         <source>Could not find item from network..</source>
         <translation>Kunde inte hitta objektet från nätverket</translation>
     </message>
+    <message>
+        <location filename="controller.cpp" line="1062"/>
+        <source>SHA1: </source>
+        <translation>SHA1:</translation>
+    </message>
+    <message>
+        <location filename="controller.cpp" line="1067"/>
+        <source>Mime-Type: </source>
+        <translation>Mime-Type:</translation>
+    </message>
+    <message>
+        <location filename="controller.cpp" line="1073"/>
+        <source>Description: </source>
+        <translation>Beskrivning: </translation>
+    </message>
+    <message>
+        <location filename="controller.cpp" line="1079"/>
+        <source>Publisher: </source>
+        <translation>Förläggare: </translation>
+    </message>
+    <message>
+        <location filename="controller.cpp" line="1085"/>
+        <source>Content owner: </source>
+        <translation>Innehållsägare: </translation>
+    </message>
+    <message>
+        <location filename="controller.cpp" line="1091"/>
+        <source>License: </source>
+        <translation>Licens: </translation>
+    </message>
+    <message>
+        <location filename="controller.cpp" line="1097"/>
+        <source>Name: </source>
+        <translation>Namn: </translation>
+    </message>
+    <message>
+        <location filename="controller.cpp" line="1104"/>
+        <source>Date: </source>
+        <translation>Datum: </translation>
+    </message>
 </context>
 <context>
     <name>DialogBase</name>
     <message>
-        <location filename="ui/dialogbase.cpp" line="49"/>
-        <location filename="ui/dialogbase.cpp" line="102"/>
+        <location filename="ui/dialogbase.cpp" line="47"/>
+        <location filename="ui/dialogbase.cpp" line="101"/>
         <source>File way too big</source>
         <translation>Filen är alldeles för stor</translation>
     </message>
     <message>
-        <location filename="ui/dialogbase.cpp" line="57"/>
-        <location filename="ui/dialogbase.cpp" line="110"/>
+        <location filename="ui/dialogbase.cpp" line="55"/>
+        <location filename="ui/dialogbase.cpp" line="109"/>
         <source>File too big</source>
         <translation>Filen är för stor</translation>
     </message>
     <message>
-        <location filename="ui/dialogbase.cpp" line="86"/>
-        <location filename="ui/dialogbase.cpp" line="123"/>
+        <location filename="ui/dialogbase.cpp" line="85"/>
+        <location filename="ui/dialogbase.cpp" line="131"/>
         <source>File open error</source>
         <translation>Fel med öppningen av filen</translation>
     </message>
     <message>
-        <location filename="ui/dialogbase.cpp" line="95"/>
+        <location filename="ui/dialogbase.cpp" line="94"/>
         <source>Select file to be published</source>
         <translation>Välja filen som du will ha publicerad</translation>
     </message>
     <message>
-        <location filename="ui/dialogbase.cpp" line="97"/>
+        <location filename="ui/dialogbase.cpp" line="96"/>
         <source>Files (*.*)</source>
         <translation>Alla filer (*.*)</translation>
     </message>
@@ -552,12 +592,12 @@
 <context>
     <name>EditContactDialog</name>
     <message>
-        <location filename="ui/editcontact.cpp" line="75"/>
+        <location filename="ui/editcontact.cpp" line="72"/>
         <source>Error</source>
         <translation>Fel</translation>
     </message>
     <message>
-        <location filename="ui/editcontact.cpp" line="76"/>
+        <location filename="ui/editcontact.cpp" line="73"/>
         <source>Operator addr is not valid</source>
         <translation>Adress av operator är inte giltig</translation>
     </message>
@@ -565,119 +605,124 @@
 <context>
     <name>FrontWidget</name>
     <message>
-        <location filename="FrontWidget.cpp" line="90"/>
+        <location filename="FrontWidget.cpp" line="93"/>
         <source>Classified ads</source>
         <translation>Annonser</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="91"/>
+        <location filename="FrontWidget.cpp" line="94"/>
         <source>My profile</source>
         <translation>Egen profil</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="92"/>
+        <location filename="FrontWidget.cpp" line="95"/>
         <source>Contacts</source>
         <translation>Kontakter</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="93"/>
+        <location filename="FrontWidget.cpp" line="96"/>
         <source>Private messages</source>
         <translation>Privat korrespondens</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="152"/>
+        <location filename="FrontWidget.cpp" line="155"/>
         <source>Add shared file..</source>
         <translation>Addera en fil til nätverk..</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="153"/>
+        <location filename="FrontWidget.cpp" line="156"/>
         <source>Stop advertising selected shared file</source>
         <translation>Sluta annonsera den markerade filen</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="154"/>
+        <location filename="FrontWidget.cpp" line="157"/>
         <source>Save file to disk..</source>
         <translation>Spara filen till disk..</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="155"/>
+        <location filename="FrontWidget.cpp" line="158"/>
+        <source>View file information..</source>
+        <translation>Visa beskrivning av filen..</translation>
+    </message>
+    <message>
+        <location filename="FrontWidget.cpp" line="159"/>
         <source>Copy file address (SHA1) to clipboard..</source>
         <translation>Kopiera SHA1 till urklipp..</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="156"/>
+        <location filename="FrontWidget.cpp" line="160"/>
         <source>Edit+publish new text document..</source>
         <translation>Skapa+publicera en ny dokument..</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="339"/>
+        <location filename="FrontWidget.cpp" line="348"/>
         <source>Open File</source>
         <translation>Öppna filen</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="341"/>
-        <location filename="FrontWidget.cpp" line="874"/>
+        <location filename="FrontWidget.cpp" line="350"/>
+        <location filename="FrontWidget.cpp" line="880"/>
         <source>Files (*.*)</source>
         <translation>Alla typer (*.*)</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="345"/>
-        <location filename="FrontWidget.cpp" line="1139"/>
-        <location filename="FrontWidget.cpp" line="1279"/>
+        <location filename="FrontWidget.cpp" line="354"/>
+        <location filename="FrontWidget.cpp" line="1180"/>
+        <location filename="FrontWidget.cpp" line="1322"/>
         <source>Error</source>
         <translation>Fel</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="346"/>
+        <location filename="FrontWidget.cpp" line="355"/>
         <source>Can&apos;t load image</source>
         <translation>Kan inte ladda en bild</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="612"/>
-        <location filename="FrontWidget.cpp" line="754"/>
+        <location filename="FrontWidget.cpp" line="621"/>
+        <location filename="FrontWidget.cpp" line="761"/>
         <source>Profile not in database</source>
         <translation>Profil finns inte i lokal databas</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="613"/>
-        <location filename="FrontWidget.cpp" line="755"/>
+        <location filename="FrontWidget.cpp" line="622"/>
+        <location filename="FrontWidget.cpp" line="762"/>
         <source>Try viewing profile first to obtain data</source>
         <translation>Du kan försöka att se profil först för att hämta data</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="872"/>
+        <location filename="FrontWidget.cpp" line="878"/>
         <source>Select file to be published</source>
         <translation>Välja filen du vill ha publicerad</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="879"/>
+        <location filename="FrontWidget.cpp" line="885"/>
         <source>File way too big</source>
         <translation>Filen är alldeles för stor</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="887"/>
+        <location filename="FrontWidget.cpp" line="893"/>
         <source>File too big</source>
         <translation>Filen är för stor</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="921"/>
-        <location filename="FrontWidget.cpp" line="1140"/>
+        <location filename="FrontWidget.cpp" line="937"/>
+        <location filename="FrontWidget.cpp" line="1181"/>
         <source>File open error</source>
         <translation>Fel med öppningen av filen</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1121"/>
-        <location filename="FrontWidget.cpp" line="1127"/>
+        <location filename="FrontWidget.cpp" line="1162"/>
+        <location filename="FrontWidget.cpp" line="1168"/>
         <source>files</source>
         <translation>filer</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1130"/>
+        <location filename="FrontWidget.cpp" line="1171"/>
         <source>Choose file name for saving</source>
         <translation>Välj ett namn for din fil</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1188"/>
+        <location filename="FrontWidget.cpp" line="1231"/>
         <source>
 
 
@@ -695,25 +740,25 @@ en bild
 </translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1280"/>
+        <location filename="FrontWidget.cpp" line="1323"/>
         <source>Article not found from local storage</source>
         <translation>Annons kunde inte hittas i local databas</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1306"/>
-        <location filename="FrontWidget.cpp" line="1843"/>
+        <location filename="FrontWidget.cpp" line="1349"/>
+        <location filename="FrontWidget.cpp" line="1897"/>
         <source>Trusted by %1
 SHA1 %2</source>
         <translation>Betrodd av %1
 SHA1 %2</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1343"/>
+        <location filename="FrontWidget.cpp" line="1386"/>
         <source>Time of last update </source>
         <translation>Tid av senaste ändring</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1349"/>
+        <location filename="FrontWidget.cpp" line="1394"/>
         <source>
 
 
@@ -726,100 +771,101 @@ Selected)
 
 (Ingen
 Bild
-Valts)</translation>
+Valts)
+</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1443"/>
+        <location filename="FrontWidget.cpp" line="1488"/>
         <source>Edit contact..</source>
         <translation>Redigera kontakt</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1483"/>
+        <location filename="FrontWidget.cpp" line="1528"/>
         <source>&amp;Reply to sender</source>
         <translation>Svara avsändaren</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1484"/>
+        <location filename="FrontWidget.cpp" line="1529"/>
         <source>Reply to &amp;forum</source>
         <translation>Svara på &amp;forumet</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1485"/>
+        <location filename="FrontWidget.cpp" line="1530"/>
         <source>&amp;Post new ad</source>
         <translation>Ska&amp;pa en ny annons</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1486"/>
+        <location filename="FrontWidget.cpp" line="1531"/>
         <source>&amp;Public comment</source>
         <translation>&amp;Publik kommentar</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1487"/>
+        <location filename="FrontWidget.cpp" line="1532"/>
         <source>&amp;View profile</source>
         <translation>&amp;Visa profilen</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1488"/>
-        <location filename="FrontWidget.cpp" line="1626"/>
+        <location filename="FrontWidget.cpp" line="1533"/>
+        <location filename="FrontWidget.cpp" line="1671"/>
         <source>Attachments..</source>
         <translation>Bilagor..</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1548"/>
+        <location filename="FrontWidget.cpp" line="1593"/>
         <source>Add selected operator to contacts..</source>
         <translation>Lägga operator till din kontakter</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1622"/>
+        <location filename="FrontWidget.cpp" line="1667"/>
         <source>&amp;Reply</source>
         <translation>Svara</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1623"/>
+        <location filename="FrontWidget.cpp" line="1668"/>
         <source>&amp;New message</source>
         <translation>Skapa en ny brev</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1624"/>
+        <location filename="FrontWidget.cpp" line="1669"/>
         <source>&amp;Send public comment to sender</source>
         <translation>Skicka en publik kommentar om profilen </translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1625"/>
+        <location filename="FrontWidget.cpp" line="1670"/>
         <source>&amp;View profile of peer</source>
         <translation>&amp;Visa profilen</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1660"/>
+        <location filename="FrontWidget.cpp" line="1705"/>
         <source>Add selected to contacts..</source>
         <translation>Lägga till din kontakter..</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1853"/>
-        <location filename="FrontWidget.cpp" line="1855"/>
-        <location filename="FrontWidget.cpp" line="1920"/>
-        <location filename="FrontWidget.cpp" line="1922"/>
+        <location filename="FrontWidget.cpp" line="1907"/>
+        <location filename="FrontWidget.cpp" line="1909"/>
+        <location filename="FrontWidget.cpp" line="1973"/>
+        <location filename="FrontWidget.cpp" line="1975"/>
         <source>From:</source>
         <translation>Från:</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1857"/>
-        <location filename="FrontWidget.cpp" line="1925"/>
+        <location filename="FrontWidget.cpp" line="1911"/>
+        <location filename="FrontWidget.cpp" line="1978"/>
         <source>Subject:</source>
         <translation>Rubrik:</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1917"/>
+        <location filename="FrontWidget.cpp" line="1970"/>
         <source>To:</source>
         <translation>Mottagare:</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="2235"/>
+        <location filename="FrontWidget.cpp" line="2282"/>
         <source>Invalid SHA1 in URL</source>
         <translation>SHA1 i URL är inte giltig</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="2262"/>
+        <location filename="FrontWidget.cpp" line="2309"/>
         <source>Invalid URL</source>
         <translation>URL är inte giltig</translation>
     </message>
@@ -827,7 +873,7 @@ Valts)</translation>
 <context>
     <name>InsertLinkDialog</name>
     <message>
-        <location filename="ui/insertlinkdialog.cpp" line="72"/>
+        <location filename="ui/insertlinkdialog.cpp" line="69"/>
         <source>Invalid URL</source>
         <translation>URL är inte giltig</translation>
     </message>
@@ -835,7 +881,7 @@ Valts)</translation>
 <context>
     <name>ManualConnectionDialog</name>
     <message>
-        <location filename="ui/manualconnection.cpp" line="56"/>
+        <location filename="ui/manualconnection.cpp" line="53"/>
         <source>DNS lookup failure</source>
         <translation>Namnet kunde inte hittas från DNS</translation>
     </message>
@@ -843,18 +889,18 @@ Valts)</translation>
 <context>
     <name>NewPrivMessageDialog</name>
     <message>
-        <location filename="ui/newprivmsgdialog.cpp" line="91"/>
-        <location filename="ui/newprivmsgdialog.cpp" line="135"/>
+        <location filename="ui/newprivmsgdialog.cpp" line="88"/>
+        <location filename="ui/newprivmsgdialog.cpp" line="133"/>
         <source>Error</source>
         <translation>Fel</translation>
     </message>
     <message>
-        <location filename="ui/newprivmsgdialog.cpp" line="92"/>
+        <location filename="ui/newprivmsgdialog.cpp" line="89"/>
         <source>Recipient addr is not valid</source>
         <translation>Adressen av mottagaren är inte giltig</translation>
     </message>
     <message>
-        <location filename="ui/newprivmsgdialog.cpp" line="136"/>
+        <location filename="ui/newprivmsgdialog.cpp" line="134"/>
         <source>Recipient encryption key not found from storage</source>
         <translation>Kryptering-nyckel för mottagaren kunde inte hittas i lokal databas</translation>
     </message>
@@ -862,18 +908,18 @@ Valts)</translation>
 <context>
     <name>NewProfileCommentDialog</name>
     <message>
-        <location filename="ui/newprofilecommentdialog.cpp" line="92"/>
-        <location filename="ui/newprofilecommentdialog.cpp" line="129"/>
+        <location filename="ui/newprofilecommentdialog.cpp" line="89"/>
+        <location filename="ui/newprofilecommentdialog.cpp" line="126"/>
         <source>Error</source>
         <translation>Fel</translation>
     </message>
     <message>
-        <location filename="ui/newprofilecommentdialog.cpp" line="93"/>
+        <location filename="ui/newprofilecommentdialog.cpp" line="90"/>
         <source>Commented profile addr is not valid</source>
         <translation>Adressen av profil är inte giltig</translation>
     </message>
     <message>
-        <location filename="ui/newprofilecommentdialog.cpp" line="130"/>
+        <location filename="ui/newprofilecommentdialog.cpp" line="127"/>
         <source>Recipient encryption key not found from storage</source>
         <translation>Kunde inte hittas kryptering-nyckel från lokal databas</translation>
     </message>
@@ -891,12 +937,12 @@ Valts)</translation>
         <translation>Kunde inte skapa x509-nyckel, utgående..</translation>
     </message>
     <message>
-        <location filename="datamodel/nodemodel.cpp" line="1605"/>
+        <location filename="datamodel/nodemodel.cpp" line="1594"/>
         <source>Cant load SSL cert</source>
         <translation>Kunde inte ladda SSL-nyckkel</translation>
     </message>
     <message>
-        <location filename="datamodel/nodemodel.cpp" line="1635"/>
+        <location filename="datamodel/nodemodel.cpp" line="1624"/>
         <source>Cant load SSL key</source>
         <translation>Kunde inte ladda SSL-nyckel </translation>
     </message>
@@ -904,7 +950,7 @@ Valts)</translation>
 <context>
     <name>PasswdDialog</name>
     <message>
-        <location filename="ui/passwd_dialog.cpp" line="113"/>
+        <location filename="ui/passwd_dialog.cpp" line="104"/>
         <source>Min length 5 (use 10+)</source>
         <translation>Minimilängd är 5 (du skulle använda minst 10+)</translation>
     </message>
@@ -940,34 +986,34 @@ Valts)</translation>
 <context>
     <name>PrivateMessageSearchModel</name>
     <message>
-        <location filename="datamodel/privmsgsearchmodel.cpp" line="113"/>
+        <location filename="datamodel/privmsgsearchmodel.cpp" line="110"/>
         <source>%1
 Trusted by %2</source>
         <translation>%1
 Betrodd av %2</translation>
     </message>
     <message>
-        <location filename="datamodel/privmsgsearchmodel.cpp" line="244"/>
+        <location filename="datamodel/privmsgsearchmodel.cpp" line="237"/>
         <source>Direction of message, sent/received</source>
         <translation>Riktning</translation>
     </message>
     <message>
-        <location filename="datamodel/privmsgsearchmodel.cpp" line="255"/>
+        <location filename="datamodel/privmsgsearchmodel.cpp" line="247"/>
         <source>Dir</source>
         <translation>Riktning</translation>
     </message>
     <message>
-        <location filename="datamodel/privmsgsearchmodel.cpp" line="258"/>
+        <location filename="datamodel/privmsgsearchmodel.cpp" line="250"/>
         <source>Peer</source>
         <translation>Peer</translation>
     </message>
     <message>
-        <location filename="datamodel/privmsgsearchmodel.cpp" line="261"/>
+        <location filename="datamodel/privmsgsearchmodel.cpp" line="253"/>
         <source>Time</source>
         <translation>Datum</translation>
     </message>
     <message>
-        <location filename="datamodel/privmsgsearchmodel.cpp" line="264"/>
+        <location filename="datamodel/privmsgsearchmodel.cpp" line="256"/>
         <source>Subject</source>
         <translation>Rubrik</translation>
     </message>
@@ -975,22 +1021,22 @@ Betrodd av %2</translation>
 <context>
     <name>ProfileCommentDisplay</name>
     <message>
-        <location filename="ui/profilecommentdisplay.cpp" line="55"/>
+        <location filename="ui/profilecommentdisplay.cpp" line="54"/>
         <source>&amp;Add comment...</source>
         <translation>Skapa en ny komment..</translation>
     </message>
     <message>
-        <location filename="ui/profilecommentdisplay.cpp" line="66"/>
+        <location filename="ui/profilecommentdisplay.cpp" line="65"/>
         <source>Save attachment to disk..</source>
         <translation>Spara filen till disk..</translation>
     </message>
     <message>
-        <location filename="ui/profilecommentdisplay.cpp" line="91"/>
+        <location filename="ui/profilecommentdisplay.cpp" line="90"/>
         <source>Error</source>
         <translation>Fel</translation>
     </message>
     <message>
-        <location filename="ui/profilecommentdisplay.cpp" line="92"/>
+        <location filename="ui/profilecommentdisplay.cpp" line="91"/>
         <source>Article not found from local storage</source>
         <translation>Annons kunde inte hittas i lokal databas</translation>
     </message>
@@ -998,7 +1044,7 @@ Betrodd av %2</translation>
 <context>
     <name>ProfileCommentItemDelegate</name>
     <message>
-        <location filename="ui/profilecommentitemdelegate.cpp" line="94"/>
+        <location filename="ui/profilecommentitemdelegate.cpp" line="91"/>
         <source>Attachments: </source>
         <translation>Tilläggade filer:</translation>
     </message>
@@ -1006,17 +1052,17 @@ Betrodd av %2</translation>
 <context>
     <name>ProfileCommentListingModel</name>
     <message>
-        <location filename="datamodel/profilecommentlistingmodel.cpp" line="227"/>
+        <location filename="datamodel/profilecommentlistingmodel.cpp" line="219"/>
         <source>Sender</source>
         <translation>Avsändare</translation>
     </message>
     <message>
-        <location filename="datamodel/profilecommentlistingmodel.cpp" line="230"/>
+        <location filename="datamodel/profilecommentlistingmodel.cpp" line="222"/>
         <source>Time</source>
         <translation>Datum</translation>
     </message>
     <message>
-        <location filename="datamodel/profilecommentlistingmodel.cpp" line="233"/>
+        <location filename="datamodel/profilecommentlistingmodel.cpp" line="225"/>
         <source>Subject</source>
         <translation>Rubrik</translation>
     </message>
@@ -1024,7 +1070,7 @@ Betrodd av %2</translation>
 <context>
     <name>ProfileCommentModel</name>
     <message>
-        <location filename="datamodel/profilecommentmodel.cpp" line="74"/>
+        <location filename="datamodel/profilecommentmodel.cpp" line="67"/>
         <source>Profile related to comment not found from database</source>
         <translation>Profilen från komment kunde inte hittas i lokal databas</translation>
     </message>
@@ -1032,7 +1078,7 @@ Betrodd av %2</translation>
 <context>
     <name>ProfileReadersDialog</name>
     <message>
-        <location filename="ui/profilereadersdialog.cpp" line="74"/>
+        <location filename="ui/profilereadersdialog.cpp" line="73"/>
         <source>View profile</source>
         <translation>Visa profilen</translation>
     </message>
@@ -1040,7 +1086,7 @@ Betrodd av %2</translation>
 <context>
     <name>ProfileReadersListingModel</name>
     <message>
-        <location filename="datamodel/profilereaderslistingmodel.cpp" line="181"/>
+        <location filename="datamodel/profilereaderslistingmodel.cpp" line="174"/>
         <source>Name or fingerprint of reader</source>
         <translation>Namn eller SHA1 kontrollsumm av läsaren </translation>
     </message>
@@ -1048,7 +1094,7 @@ Betrodd av %2</translation>
 <context>
     <name>SearchDisplay</name>
     <message>
-        <location filename="ui/searchdisplay.cpp" line="63"/>
+        <location filename="ui/searchdisplay.cpp" line="62"/>
         <source>Open..</source>
         <translation>Öppna..</translation>
     </message>
@@ -1056,52 +1102,52 @@ Betrodd av %2</translation>
 <context>
     <name>TextEdit</name>
     <message>
-        <location filename="textedit/textedit.cpp" line="124"/>
+        <location filename="textedit/textedit.cpp" line="127"/>
         <source>Help</source>
         <translation>Hjälp</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="126"/>
+        <location filename="textedit/textedit.cpp" line="129"/>
         <source>About &amp;Qt</source>
         <translation>Information om &amp;Qt</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="185"/>
+        <location filename="textedit/textedit.cpp" line="186"/>
         <source>Edit Actions</source>
         <translation>Aktions för redigering</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="187"/>
+        <location filename="textedit/textedit.cpp" line="188"/>
         <source>&amp;File</source>
         <translation>Arkiv</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="193"/>
+        <location filename="textedit/textedit.cpp" line="194"/>
         <source>&amp;Open...</source>
         <translation>Öppna..</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="202"/>
+        <location filename="textedit/textedit.cpp" line="203"/>
         <source>&amp;Save locally before send</source>
         <translation>&amp;Spara före skickning</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="209"/>
+        <location filename="textedit/textedit.cpp" line="210"/>
         <source>Save locally &amp;As...</source>
         <translation>Spara i lokal disk med namn..</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="217"/>
+        <location filename="textedit/textedit.cpp" line="218"/>
         <source>&amp;Print...</source>
         <translation>Skriv ut..</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="225"/>
+        <location filename="textedit/textedit.cpp" line="226"/>
         <source>Print Preview...</source>
         <translation>Förhandsgranskning</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="230"/>
+        <location filename="textedit/textedit.cpp" line="231"/>
         <source>&amp;Export PDF...</source>
         <translation>&amp;Exportera som PDF</translation>
     </message>
@@ -1141,133 +1187,164 @@ Betrodd av %2</translation>
         <translation>Infoga en länk</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="291"/>
+        <location filename="textedit/textedit.cpp" line="287"/>
+        <source>Embed image</source>
+        <translation>Bädda in en bild</translation>
+    </message>
+    <message>
+        <location filename="textedit/textedit.cpp" line="294"/>
         <source>F&amp;ormat</source>
         <translation>F&amp;ormat</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="295"/>
+        <location filename="textedit/textedit.cpp" line="298"/>
         <source>&amp;Bold</source>
         <translation>Fet</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="307"/>
+        <location filename="textedit/textedit.cpp" line="310"/>
         <source>&amp;Italic</source>
         <translation>Kursiv</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="319"/>
+        <location filename="textedit/textedit.cpp" line="322"/>
         <source>&amp;Underline</source>
         <translation>Understruken</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="338"/>
-        <location filename="textedit/textedit.cpp" line="344"/>
+        <location filename="textedit/textedit.cpp" line="341"/>
+        <location filename="textedit/textedit.cpp" line="347"/>
         <source>&amp;Left</source>
         <translation>Vänsterjustera</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="339"/>
-        <location filename="textedit/textedit.cpp" line="343"/>
+        <location filename="textedit/textedit.cpp" line="342"/>
+        <location filename="textedit/textedit.cpp" line="346"/>
         <source>C&amp;enter</source>
         <translation>Centrerat</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="340"/>
-        <location filename="textedit/textedit.cpp" line="342"/>
+        <location filename="textedit/textedit.cpp" line="343"/>
+        <location filename="textedit/textedit.cpp" line="345"/>
         <source>&amp;Right</source>
         <translation>Högerjustera</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="346"/>
+        <location filename="textedit/textedit.cpp" line="349"/>
         <source>&amp;Justify</source>
         <translation>Marginaljustering</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="373"/>
+        <location filename="textedit/textedit.cpp" line="376"/>
         <source>&amp;Color...</source>
         <translation>Färg..</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="380"/>
+        <location filename="textedit/textedit.cpp" line="383"/>
         <source>Standard</source>
         <translation>Standardformat</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="381"/>
+        <location filename="textedit/textedit.cpp" line="384"/>
         <source>Bullet List (Disc)</source>
         <translation>Punktuppställning (bollar)</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="382"/>
+        <location filename="textedit/textedit.cpp" line="385"/>
         <source>Bullet List (Circle)</source>
         <translation>Punktuppställning (cirklar)</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="383"/>
+        <location filename="textedit/textedit.cpp" line="386"/>
         <source>Bullet List (Square)</source>
         <translation>Punktuppställning (kvadrater)</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="384"/>
+        <location filename="textedit/textedit.cpp" line="387"/>
         <source>Ordered List (Decimal)</source>
         <translation>Numrering (decimal)</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="385"/>
+        <location filename="textedit/textedit.cpp" line="388"/>
         <source>Ordered List (Alpha lower)</source>
         <translation>Numrering (små bokstäver)</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="386"/>
+        <location filename="textedit/textedit.cpp" line="389"/>
         <source>Ordered List (Alpha upper)</source>
         <translation>Numrering (stora bokstäver)</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="387"/>
+        <location filename="textedit/textedit.cpp" line="390"/>
         <source>Ordered List (Roman lower)</source>
         <translation>Numrering (små roman)</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="388"/>
+        <location filename="textedit/textedit.cpp" line="391"/>
         <source>Ordered List (Roman upper)</source>
         <translation>Numrering (stora roman)</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="441"/>
+        <location filename="textedit/textedit.cpp" line="442"/>
         <source>Application</source>
         <translation>Annonser</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="442"/>
+        <location filename="textedit/textedit.cpp" line="443"/>
         <source>The document has been modified.
 Do you want to save your changes?</source>
         <translation>Dokument har ändrats, spara?</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="469"/>
+        <location filename="textedit/textedit.cpp" line="467"/>
         <source>Open File...</source>
         <translation>Öppna filen..</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="470"/>
+        <location filename="textedit/textedit.cpp" line="468"/>
         <source>HTML-Files (*.htm *.html);;All Files (*)</source>
         <translation>HTML-Filer (*.htm *.html);;Alla typer (*)</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="489"/>
+        <location filename="textedit/textedit.cpp" line="485"/>
         <source>Save as...</source>
         <translation>Spara som..</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="490"/>
+        <location filename="textedit/textedit.cpp" line="486"/>
         <source>ODF files (*.odt);;HTML-Files (*.htm *.html);;All Files (*)</source>
         <translation>ODF filer (*.odt);;HTML-Filer (*.htm *.html);;Alla typer (*)</translation>
     </message>
     <message>
-        <location filename="textedit/textedit.cpp" line="506"/>
+        <location filename="textedit/textedit.cpp" line="501"/>
         <source>Print Document</source>
         <translation>Skriv ut dokument</translation>
+    </message>
+    <message>
+        <location filename="textedit/textedit.cpp" line="559"/>
+        <source>Open File</source>
+        <translation>Öppna filen</translation>
+    </message>
+    <message>
+        <location filename="textedit/textedit.cpp" line="561"/>
+        <source>Files (*.*)</source>
+        <translation>Alla filer (*.*)</translation>
+    </message>
+    <message>
+        <location filename="textedit/textedit.cpp" line="566"/>
+        <source>Error</source>
+        <translation>Fel</translation>
+    </message>
+    <message>
+        <location filename="textedit/textedit.cpp" line="567"/>
+        <source>Can&apos;t load image</source>
+        <translation>Kan inte ladda en bild</translation>
+    </message>
+    <message>
+        <location filename="textedit/textedit.cpp" line="621"/>
+        <location filename="textedit/textedit.cpp" line="631"/>
+        <source>File way too big</source>
+        <translation>Filen är alldeles för stor</translation>
     </message>
 </context>
 <context>
@@ -1284,8 +1361,8 @@ Do you want to save your changes?</source>
     </message>
     <message>
         <location filename="ui/aboutDialog.ui" line="160"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Classified ads is free software. You may use, copy and modify it if you follow the conditions given in GNU lesser general public license version 2.1.&lt;/p&gt;&lt;p&gt;Classified ads is copyright © Antti Järvinen 2013. &lt;/p&gt;&lt;p&gt;Main feature of the the program is an &amp;quot;advertisement&amp;quot; - a piece of text belonging to selected classification. There are several pre-programmed classifications and operators are encouraged to invent new classifications for new purposes ; the selection boxes in classification-selection tab are editable. Other operators may then view the ads, publicly comment the ads, the operators and also send private messages to each others. &lt;/p&gt;&lt;p&gt;Another important feature of classified ads is that it is designed to be operated without any centralized server infrastucture - it is you and other operators whose computers store and transmit all the content visible inside classified ads. To get connected you need to know address of at least one existing computer (a &lt;span style=&quot; font-style:italic;&quot;&gt;node&lt;/span&gt;) so if your network connection dialog shows no connections, you may need to contact someone you know is using the software and ask for address of her node to make initial contact with the network. Once connected the software should maintain list of addresses of other nodes. &lt;/p&gt;&lt;p&gt;Due to its server-less design the whole system works best if you leave the program running always when you have your computer powered on ; while processing other operators requests it will hog some computing resources and generate network traffic also when you are not actively using the program youself - others are. &lt;/p&gt;&lt;p&gt;Operators concerned about privacy of the content should be aware of following items:&lt;/p&gt;&lt;p&gt;- Data storage implementation is variant of &lt;span style=&quot; font-style:italic;&quot;&gt;distributed hash table&lt;/span&gt;, practically meaning that content posted by you gets copied some more-or-less random nodes in the network. &lt;/p&gt;&lt;p&gt;- Any data item (ad, comment, binary file, private message etc.) is digitally signed. This makes it more difficult to try to pose as another operator. &lt;/p&gt;&lt;p&gt;- Operators are reliably identified only by the SHA1 hash of their generated encryption keys. SHA1 hash is displayed when viewing details of operator profiles. Other identifying information like nickname or city name are entered by operator himself and can be anything. The operator profile, as it is published to the network, is also signed with the encryption keys of the operator - if you identify an operator by her SHA1 hash, you have a mechanism for identifying if any content inside classified ads is posted by this operator or not. Classified ads internally checks for digital signatures, throwing away content that fails signature check and tries to provide SHA1 hash of the operator who posted the content.&lt;/p&gt;&lt;p&gt;- All classified ads are posted as plain text, no encryption is used. All public profiles are posted as plain text, no encryption is used. If profile is made private, it is encrypted to be readable only by selected other profiles. This applies also to binary files shared by operators private profiles and comments about private profiles after the profile was made private (previously plain-text comments or files don&apos;t get magically encrypted afterwards). Private messages are encrypted always to be readable only by recipient and sender. Attachments follow the privary rules of the document, they&apos;re attachted to. &lt;/p&gt;&lt;p&gt;- As is the case with all internet-communications, this small fact is true for classified ads too : &lt;span style=&quot; font-style:italic;&quot;&gt;once something gets posted online, there is no way to remove it from network&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;- Data encryption implementation for content is OpenSSL, relying mostly on algorithms RSA-2048 and AES-256. &lt;/p&gt;&lt;p&gt;- While connections between nodes are implemented using SSL, other nodes inside network do get to know what content is being transmitted in neighboring nodes. While there is no central point for easily collecting this information about particular classification or operator, operators still should expect no privacy regarding their doings online, altough some effort has been been put into hiding &lt;span style=&quot; font-style:italic;&quot;&gt;contents&lt;/span&gt; of private messages and private profiles. &lt;/p&gt;&lt;p&gt;Programming was (mostly) done by Antti Järvinen, artwork by Meeri Järvinen.&lt;/p&gt;&lt;p&gt;This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit (http://www.openssl.org/).&lt;/p&gt;&lt;p&gt;Happy advertising!&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <oldsource>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Classified ads is free software. You may use, copy and modify it if you follow the conditions given in GNU general public license version 3.&lt;/p&gt;&lt;p&gt;Classified ads is copyright © Antti Järvinen 2013. &lt;/p&gt;&lt;p&gt;Main feature of the the program is an &amp;quot;advertisement&amp;quot; - a piece of text belonging to selected classification. There are several pre-programmed classifications and operators are encouraged to invent new classifications for new purposes ; the selection boxes in classification-selection tab are editable. Other operators may then view the ads, publicly comment the ads, the operators and also send private messages to each others. &lt;/p&gt;&lt;p&gt;Another important feature of classified ads is that it is designed to be operated without any centralized server infrastucture - it is you and other operators whose computers store and transmit all the content visible inside classified ads. To get connected you need to know address of at least one existing computer (a &lt;span style=&quot; font-style:italic;&quot;&gt;node&lt;/span&gt;) so if your network connection dialog shows no connections, you may need to contact someone you know is using the software and ask for address of her node to make initial contact with the network. Once connected the software should maintain list of addresses of other nodes. &lt;/p&gt;&lt;p&gt;Due to its server-less design the whole system works best if you leave the program running always when you have your computer powered on ; while processing other operators requests it will hog some computing resources and generate network traffic also when you are not actively using the program youself - others are. &lt;/p&gt;&lt;p&gt;Operators concerned about privacy of the content should be aware of following items:&lt;/p&gt;&lt;p&gt;- Data storage implementation is variant of &lt;span style=&quot; font-style:italic;&quot;&gt;distributed hash table&lt;/span&gt;, practically meaning that content posted by you gets copied some more-or-less random nodes in the network. &lt;/p&gt;&lt;p&gt;- Any data item (ad, comment, binary file, private message etc.) is digitally signed. This makes it more difficult to try to pose as another operator. &lt;/p&gt;&lt;p&gt;- Operators are reliably identified only by the SHA1 hash of their generated encryption keys. SHA1 hash is displayed when viewing details of operator profiles. Other identifying information like nickname or city name are entered by operator himself and can be anything. The operator profile, as it is published to the network, is also signed with the encryption keys of the operator - if you identify an operator by her SHA1 hash, you have a mechanism for identifying if any content inside classified ads is posted by this operator or not. Classified ads internally checks for digital signatures, throwing away content that fails signature check and tries to provide SHA1 hash of the operator who posted the content.&lt;/p&gt;&lt;p&gt;- All classified ads are posted as plain text, no encryption is used. All public profiles are posted as plain text, no encryption is used. If profile is made private, it is encrypted to be readable only by selected other profiles. This applies also to binary files shared by operators private profiles and comments about private profiles after the profile was made private (previously plain-text comments or files don&apos;t get magically encrypted afterwards). Private messages are encrypted always to be readable only by recipient and sender. Attachments follow the privary rules of the document, they&apos;re attachted to. &lt;/p&gt;&lt;p&gt;- As is the case with all internet-communications, this small fact is true for classified ads too : &lt;span style=&quot; font-style:italic;&quot;&gt;once something gets posted online, there is no way to remove it from network&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;- Data encryption implementation for content is OpenSSL, relying mostly on algorithms RSA-2048 and AES-256. &lt;/p&gt;&lt;p&gt;- While connections between nodes are implemented using SSL, other nodes inside network do get to know what content is being transmitted in neighboring nodes. While there is no central point for easily collecting this information about particular classification or operator, operators still should expect no privacy regarding their doings online, altough some effort has been been put into hiding &lt;span style=&quot; font-style:italic;&quot;&gt;contents&lt;/span&gt; of private messages and private profiles. &lt;/p&gt;&lt;p&gt;Programming was (mostly) done by Antti Järvinen, artwork by Meeri Järvinen.&lt;/p&gt;&lt;p&gt;This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit (http://www.openssl.org/).&lt;/p&gt;&lt;p&gt;Happy advertising!&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</oldsource>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Classified ads is free software. You may use, copy and modify it if you follow the conditions given in GNU lesser general public license version 2.1.&lt;/p&gt;&lt;p&gt;Classified ads is copyright © Antti Järvinen 2013. &lt;/p&gt;&lt;p&gt;Main feature of the the program is an &amp;quot;advertisement&amp;quot; - a piece of text belonging to selected classification. There are several pre-programmed classifications and operators are encouraged to invent new classifications for new purposes ; the selection boxes in classification-selection tab are editable. Other operators may then view the ads, publicly comment the ads, the operators and also send private messages to each others. &lt;/p&gt;&lt;p&gt;Another important feature of classified ads is that it is designed to be operated without any centralized server infrastucture - it is you and other operators whose computers store and transmit all the content visible inside classified ads. To get connected you need to know address of at least one existing computer (a &lt;span style=&quot; font-style:italic;&quot;&gt;node&lt;/span&gt;) so if your network connection dialog shows no connections, you may need to contact someone you know is using the software and ask for address of her node to make initial contact with the network. Once connected the software should maintain list of addresses of other nodes. &lt;/p&gt;&lt;p&gt;Due to its server-less design the whole system works best if you leave the program running always when you have your computer powered on ; while processing other operators requests it will hog some computing resources and generate network traffic also when you are not actively using the program youself - others are. &lt;/p&gt;&lt;p&gt;Operators concerned about privacy of the content should be aware of following items:&lt;/p&gt;&lt;p&gt;- Data storage implementation is variant of &lt;span style=&quot; font-style:italic;&quot;&gt;distributed hash table&lt;/span&gt;, practically meaning that content posted by you gets copied some more-or-less random nodes in the network. &lt;/p&gt;&lt;p&gt;- Any data item (ad, comment, binary file, private message etc.) is digitally signed. This makes it more difficult to try to pose as another operator. &lt;/p&gt;&lt;p&gt;- Operators are reliably identified only by the SHA1 hash of their generated encryption keys. SHA1 hash is displayed when viewing details of operator profiles. Other identifying information like nickname or city name are entered by operator himself and can be anything. The operator profile, as it is published to the network, is also signed with the encryption keys of the operator - if you identify an operator by her SHA1 hash, you have a mechanism for identifying if any content inside classified ads is posted by this operator or not. Classified ads internally checks for digital signatures, throwing away content that fails signature check and tries to provide SHA1 hash of the operator who posted the content.&lt;/p&gt;&lt;p&gt;- All classified ads are posted as plain text, no encryption is used. All public profiles are posted as plain text, no encryption is used. If profile is made private, it is encrypted to be readable only by selected other profiles. This applies also to binary files shared by operators private profiles and comments about private profiles after the profile was made private (previously plain-text comments or files don&apos;t get magically encrypted afterwards). Private messages are encrypted always to be readable only by recipient and sender. Attachments follow the privary rules of the document, they&apos;re attachted to. &lt;/p&gt;&lt;p&gt;- As is the case with all internet-communications, this small fact is true for classified ads too : &lt;span style=&quot; font-style:italic;&quot;&gt;once something gets posted online, there is no way to remove it from network&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;- Data encryption implementation for content is OpenSSL, relying mostly on algorithms RSA-2048 and AES-256. &lt;/p&gt;&lt;p&gt;- While connections between nodes are implemented using SSL, other nodes inside network do get to know what content is being transmitted in neighboring nodes. While there is no central point for easily collecting this information about particular classification or operator, operators still should expect no privacy regarding their doings online, although some effort has been been put into hiding &lt;span style=&quot; font-style:italic;&quot;&gt;contents&lt;/span&gt; of private messages and private profiles. &lt;/p&gt;&lt;p&gt;Programming was (mostly) done by Antti Järvinen, artwork by Meeri Järvinen.&lt;/p&gt;&lt;p&gt;This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit (http://www.openssl.org/).&lt;/p&gt;&lt;p&gt;Happy advertising!&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <oldsource>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Classified ads is free software. You may use, copy and modify it if you follow the conditions given in GNU lesser general public license version 2.1.&lt;/p&gt;&lt;p&gt;Classified ads is copyright © Antti Järvinen 2013. &lt;/p&gt;&lt;p&gt;Main feature of the the program is an &amp;quot;advertisement&amp;quot; - a piece of text belonging to selected classification. There are several pre-programmed classifications and operators are encouraged to invent new classifications for new purposes ; the selection boxes in classification-selection tab are editable. Other operators may then view the ads, publicly comment the ads, the operators and also send private messages to each others. &lt;/p&gt;&lt;p&gt;Another important feature of classified ads is that it is designed to be operated without any centralized server infrastucture - it is you and other operators whose computers store and transmit all the content visible inside classified ads. To get connected you need to know address of at least one existing computer (a &lt;span style=&quot; font-style:italic;&quot;&gt;node&lt;/span&gt;) so if your network connection dialog shows no connections, you may need to contact someone you know is using the software and ask for address of her node to make initial contact with the network. Once connected the software should maintain list of addresses of other nodes. &lt;/p&gt;&lt;p&gt;Due to its server-less design the whole system works best if you leave the program running always when you have your computer powered on ; while processing other operators requests it will hog some computing resources and generate network traffic also when you are not actively using the program youself - others are. &lt;/p&gt;&lt;p&gt;Operators concerned about privacy of the content should be aware of following items:&lt;/p&gt;&lt;p&gt;- Data storage implementation is variant of &lt;span style=&quot; font-style:italic;&quot;&gt;distributed hash table&lt;/span&gt;, practically meaning that content posted by you gets copied some more-or-less random nodes in the network. &lt;/p&gt;&lt;p&gt;- Any data item (ad, comment, binary file, private message etc.) is digitally signed. This makes it more difficult to try to pose as another operator. &lt;/p&gt;&lt;p&gt;- Operators are reliably identified only by the SHA1 hash of their generated encryption keys. SHA1 hash is displayed when viewing details of operator profiles. Other identifying information like nickname or city name are entered by operator himself and can be anything. The operator profile, as it is published to the network, is also signed with the encryption keys of the operator - if you identify an operator by her SHA1 hash, you have a mechanism for identifying if any content inside classified ads is posted by this operator or not. Classified ads internally checks for digital signatures, throwing away content that fails signature check and tries to provide SHA1 hash of the operator who posted the content.&lt;/p&gt;&lt;p&gt;- All classified ads are posted as plain text, no encryption is used. All public profiles are posted as plain text, no encryption is used. If profile is made private, it is encrypted to be readable only by selected other profiles. This applies also to binary files shared by operators private profiles and comments about private profiles after the profile was made private (previously plain-text comments or files don&apos;t get magically encrypted afterwards). Private messages are encrypted always to be readable only by recipient and sender. Attachments follow the privary rules of the document, they&apos;re attachted to. &lt;/p&gt;&lt;p&gt;- As is the case with all internet-communications, this small fact is true for classified ads too : &lt;span style=&quot; font-style:italic;&quot;&gt;once something gets posted online, there is no way to remove it from network&lt;/span&gt;. &lt;/p&gt;&lt;p&gt;- Data encryption implementation for content is OpenSSL, relying mostly on algorithms RSA-2048 and AES-256. &lt;/p&gt;&lt;p&gt;- While connections between nodes are implemented using SSL, other nodes inside network do get to know what content is being transmitted in neighboring nodes. While there is no central point for easily collecting this information about particular classification or operator, operators still should expect no privacy regarding their doings online, altough some effort has been been put into hiding &lt;span style=&quot; font-style:italic;&quot;&gt;contents&lt;/span&gt; of private messages and private profiles. &lt;/p&gt;&lt;p&gt;Programming was (mostly) done by Antti Järvinen, artwork by Meeri Järvinen.&lt;/p&gt;&lt;p&gt;This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit (http://www.openssl.org/).&lt;/p&gt;&lt;p&gt;Happy advertising!&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</oldsource>
         <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -1309,8 +1386,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Programmering gjorts av Antti Järvinen, konst av Meeri Järvinen.&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Denna produkt innehåller programvara som har utvecklats av OpenSSL project för användning i OpenSSL toolkit (http://www.openssl.org).&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
-</translation>
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -1597,46 +1673,7 @@ en bild</translation>
         <translation>URL</translation>
     </message>
     <message>
-        <location filename="ui/insertLink.ui" line="50"/>
-        <source>caprofile</source>
-        <extracomment>Link to classified ads operator profile</extracomment>
-        <translatorcomment>Skulle inte ändras</translatorcomment>
-        <translation>caprofile</translation>
-    </message>
-    <message>
-        <location filename="ui/insertLink.ui" line="55"/>
-        <source>caad</source>
-        <extracomment>Link to classified ad</extracomment>
-        <translatorcomment>Skulle inte ändras</translatorcomment>
-        <translation>caad</translation>
-    </message>
-    <message>
-        <location filename="ui/insertLink.ui" line="65"/>
-        <source>cablob</source>
-        <extracomment>Link to binary file inside classified ads</extracomment>
-        <translatorcomment>Skulle inte ändras</translatorcomment>
-        <translation>cablob</translation>
-    </message>
-    <message>
-        <location filename="ui/insertLink.ui" line="70"/>
-        <source>http</source>
-        <translatorcomment>Skulle inte ändras, har at vara &quot;http&quot;</translatorcomment>
-        <translation>http</translation>
-    </message>
-    <message>
-        <location filename="ui/insertLink.ui" line="75"/>
-        <source>ftp</source>
-        <extracomment>Link to ftp resource outside classified ads</extracomment>
-        <translatorcomment>Skulle inte ändras, har at vara &quot;ftp&quot;</translatorcomment>
-        <translation>ftp</translation>
-    </message>
-    <message>
-        <location filename="ui/insertLink.ui" line="83"/>
-        <source>://</source>
-        <translation>://</translation>
-    </message>
-    <message>
-        <location filename="ui/insertLink.ui" line="97"/>
+        <location filename="ui/insertLink.ui" line="112"/>
         <source>Link label in text</source>
         <translation>Länktext</translation>
     </message>
@@ -1662,6 +1699,95 @@ en bild</translation>
         <location filename="ui/manualConnectionDialog.ui" line="91"/>
         <source>IPv4, IPv6 or DNS name</source>
         <translation>IPv4, IPv6 eller DNS-namn</translation>
+    </message>
+</context>
+<context>
+    <name>metadataQuery</name>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="26"/>
+        <source>File information</source>
+        <translation>Information av filen</translation>
+    </message>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="60"/>
+        <source>Name of the file:</source>
+        <translation>Namn: </translation>
+    </message>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="81"/>
+        <source>Owner of file (name or SHA1 if CA operator):</source>
+        <translation>Innehållsägare: </translation>
+    </message>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="111"/>
+        <source>License of use:</source>
+        <translation>Licens: </translation>
+    </message>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="122"/>
+        <source>Public domain</source>
+        <translatorcomment>Lets not translate license names..</translatorcomment>
+        <translation>Public domain</translation>
+    </message>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="127"/>
+        <source>GPL</source>
+        <translation>GPL</translation>
+    </message>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="132"/>
+        <source>LGPL</source>
+        <translation>LGPL</translation>
+    </message>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="137"/>
+        <source>BSD</source>
+        <translation>BSD</translation>
+    </message>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="142"/>
+        <source>CC-BY</source>
+        <translation>CC-BY</translation>
+    </message>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="147"/>
+        <source>CC-BY-SA</source>
+        <translation>CC-BY-SA</translation>
+    </message>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="152"/>
+        <source>CC-BY-ND</source>
+        <translation>CC-BY-ND</translation>
+    </message>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="157"/>
+        <source>CC-BY-NC</source>
+        <translation>CC-BY-NC</translation>
+    </message>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="162"/>
+        <source>CC-BY-NC-SA</source>
+        <translation>CC-BY-NC-SA</translation>
+    </message>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="167"/>
+        <source>CC-BY-NC-ND</source>
+        <translation>CC-BY-NC-ND</translation>
+    </message>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="182"/>
+        <source>Mime-type:</source>
+        <translation>Mime-typ:</translation>
+    </message>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="199"/>
+        <source>Description of file:</source>
+        <translation>Beskrivning:</translation>
+    </message>
+    <message>
+        <location filename="ui/metadataQuery.ui" line="218"/>
+        <source>Enter information regarding file before publish:</source>
+        <translation>Ange information före publicera:</translation>
     </message>
 </context>
 <context>

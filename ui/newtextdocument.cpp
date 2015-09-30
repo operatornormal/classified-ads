@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-       Classified Ads is Copyright (c) Antti Järvinen 2013. 
+       Classified Ads is Copyright (c) Antti Järvinen 2013.
 
        This file is part of Classified Ads.
 
@@ -30,74 +30,72 @@
 #include "../datamodel/profile.h"
 
 NewTextDocument::NewTextDocument(QWidget *aParent,
-				 MController* aController,
-				 Profile& aSelectedProfile,
-				 BinaryFileListingModel& aProfileFileListingModel)
-  : TextEdit(aParent,
-	     aController,
-	     aSelectedProfile) ,
-    iProfileFileListingModel(aProfileFileListingModel)
-{
-  ui.setupUi(this) ; 
-  initializeTextEditor(ui.documentEdit,
-		       ui.gridLayout,
-		       ui.toolBoxLayoutUpper,
-		       ui.toolBoxLayoutLower) ; 
+                                 MController* aController,
+                                 Profile& aSelectedProfile,
+                                 BinaryFileListingModel& aProfileFileListingModel)
+    : TextEdit(aParent,
+               aController,
+               aSelectedProfile) ,
+    iProfileFileListingModel(aProfileFileListingModel) {
+    ui.setupUi(this) ;
+    initializeTextEditor(ui.documentEdit,
+                         ui.gridLayout,
+                         ui.toolBoxLayoutUpper,
+                         ui.toolBoxLayoutLower) ;
 
-  iAttachmentListLabel = ui.attahcmentsListLabel ;
-  // lets not have attachments in here, this thing itself
-  // is more or less an attachment ; user can create links and 
-  // that is ok
-  ui.attahcmentsListLabel->hide() ; 
-  ui.attachButton->hide() ; 
-  ui.attachmentsLabel->hide() ; 
+    iAttachmentListLabel = ui.attahcmentsListLabel ;
+    // lets not have attachments in here, this thing itself
+    // is more or less an attachment ; user can create links and
+    // that is ok
+    ui.attahcmentsListLabel->hide() ;
+    ui.attachButton->hide() ;
+    ui.attachmentsLabel->hide() ;
 
-  connect(ui.bottomButtonsBox, SIGNAL(accepted()), this, SLOT(okButtonClicked()));
-  connect(ui.bottomButtonsBox, SIGNAL(rejected()), this, SLOT(cancelButtonClicked()));
-  ui.titleEdit->setFocus(Qt::PopupFocusReason) ; 
+    connect(ui.bottomButtonsBox, SIGNAL(accepted()), this, SLOT(okButtonClicked()));
+    connect(ui.bottomButtonsBox, SIGNAL(rejected()), this, SLOT(cancelButtonClicked()));
+    ui.titleEdit->setFocus(Qt::PopupFocusReason) ;
 }
 
-NewTextDocument::~NewTextDocument()
-{
-  LOG_STR("NewTextDocument::~NewTextDocument") ;
+NewTextDocument::~NewTextDocument() {
+    LOG_STR("NewTextDocument::~NewTextDocument") ;
 }
 
 
-void NewTextDocument::okButtonClicked()
-{
-  LOG_STR("NewTextDocument::okButtonClicked") ;
+void NewTextDocument::okButtonClicked() {
+    LOG_STR("NewTextDocument::okButtonClicked") ;
 
-  QString fileName ;
-  if ( ui.titleEdit->text().remove(QChar(' ')).length() < 1 ) {
-    fileName = "doc.html" ; 
-  } else {
-    fileName = ui.titleEdit->text().remove(QChar(' '))+".html" ; 
-  }
-  QByteArray content ( qCompress( ui.documentEdit->toHtml().toUtf8() ) ) ; 
+    QString fileName ;
+    if ( ui.titleEdit->text().remove(QChar(' ')).length() < 1 ) {
+        fileName = "doc.html" ;
+    } else {
+        fileName = ui.titleEdit->text().remove(QChar(' '))+".html" ;
+    }
+    QByteArray content ( qCompress( ui.documentEdit->toHtml().toUtf8() ) ) ;
 
-  iController->model().lock() ; 
-  Hash publishedFileHash = 
-    iController->model().binaryFileModel().publishBinaryFile(iSelectedProfile,
-							     fileName,
-							     ui.titleEdit->text(),
-							     "application/classified_ads_text",
-							     content,
-							     true) ;
-  iController->model().unlock() ; 
-  if ( publishedFileHash != KNullHash ) {
-    iProfileFileListingModel.addFile(publishedFileHash) ;
-    iSelectedProfile.iTimeOfPublish = QDateTime::currentDateTimeUtc().toTime_t() ;
-    iController->model().profileModel().publishProfile(iSelectedProfile) ; 
-    close() ; 
+    iController->model().lock() ;
+    Hash publishedFileHash =
+        iController->model().binaryFileModel().publishBinaryFile(iSelectedProfile,
+                fileName,
+                ui.titleEdit->text(),
+                "application/classified_ads_text",
+                QString(),
+                QString(),
+                content,
+                true) ;
+    iController->model().unlock() ;
+    if ( publishedFileHash != KNullHash ) {
+        iProfileFileListingModel.addFile(publishedFileHash) ;
+        iSelectedProfile.iTimeOfPublish = QDateTime::currentDateTimeUtc().toTime_t() ;
+        iController->model().profileModel().publishProfile(iSelectedProfile) ;
+        close() ;
+        this->deleteLater() ;
+    }
+}
+
+
+void NewTextDocument::cancelButtonClicked() {
+    LOG_STR("NewTextDocument::cancelButtonClicked") ;
+    close() ;
     this->deleteLater() ;
-  }
-}
-
-
-void NewTextDocument::cancelButtonClicked()
-{
-  LOG_STR("NewTextDocument::cancelButtonClicked") ;
-  close() ; 
-  this->deleteLater() ;
 }
 

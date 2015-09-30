@@ -33,81 +33,81 @@
  * @brief Network-connection logic relating fetching items from DHT
  *
  * This class has some similarity to @ref PublishingEngine but this
- * does somewhat the reverse. This is given a hash of object to 
+ * does somewhat the reverse. This is given a hash of object to
  * find from network ; in order to so, it will initiate connections
- * nearby nodes and ask for the content in-demand. 
+ * nearby nodes and ask for the content in-demand.
  */
 class RetrievalEngine : public QTimer {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  /**
-   * Constructor
-   * @param aController application controller. not owned
-   * @param aModel persistent storage.
-   */
-  RetrievalEngine(Controller* aController,
-		  Model& aModel ) ;
-  /**
-   * Destructor
-   */
-  ~RetrievalEngine() ;
-  /**
-   * command-interface for this class: start to do work
-   * @param aObject specifies the object to dl. 
-   * @param aIsPriorityWork is set to true if download should
-   *                       start right away, bypassing all other
-   *                       stuff that might be in the queue
-   */
-  void startRetrieving(  NetworkRequestExecutor::NetworkRequestQueueItem aObject,
-			 bool aIsPriorityWork) ; 
-  /**
-   * when content is received, we may want to check if it
-   * was the content we were waiting for. this method 
-   * is for performing that check
-   */
-  void notifyOfContentReceived(const Hash& aHashOfContent,
-			       const ProtocolItemType aTypeOfReceivdContent );
+    /**
+     * Constructor
+     * @param aController application controller. not owned
+     * @param aModel persistent storage.
+     */
+    RetrievalEngine(Controller* aController,
+                    Model& aModel ) ;
+    /**
+     * Destructor
+     */
+    ~RetrievalEngine() ;
+    /**
+     * command-interface for this class: start to do work
+     * @param aObject specifies the object to dl.
+     * @param aIsPriorityWork is set to true if download should
+     *                       start right away, bypassing all other
+     *                       stuff that might be in the queue
+     */
+    void startRetrieving(  NetworkRequestExecutor::NetworkRequestQueueItem aObject,
+                           bool aIsPriorityWork) ;
+    /**
+     * when content is received, we may want to check if it
+     * was the content we were waiting for. this method
+     * is for performing that check
+     */
+    void notifyOfContentReceived(const Hash& aHashOfContent,
+                                 const ProtocolItemType aTypeOfReceivdContent );
 signals:
-  void error(QTcpSocket::SocketError socketError);
-  void notifyOfContentNotReceived(const Hash& aHashOfContent,
-				  const ProtocolItemType aTypeOfNotReceivdContent );
+    void error(QTcpSocket::SocketError socketError);
+    void notifyOfContentNotReceived(const Hash& aHashOfContent,
+                                    const ProtocolItemType aTypeOfNotReceivdContent );
 public slots:
-  /** 
-   * when connection is attempted, @ref NetworkListener will
-   * emit the status (failed or success) of the connection,
-   * emitted signal is connected here
-   */
-  void nodeConnectionAttemptStatus(Connection::ConnectionState aStatus,
-                                   const Hash aHashOfAttemptedNode );
-  /**
-   * this class is a not a thread, but QTimer, thus run.
-   */
-  void run();
+    /**
+     * when connection is attempted, @ref NetworkListener will
+     * emit the status (failed or success) of the connection,
+     * emitted signal is connected here
+     */
+    void nodeConnectionAttemptStatus(Connection::ConnectionState aStatus,
+                                     const Hash aHashOfAttemptedNode );
+    /**
+     * this class is a not a thread, but QTimer, thus run.
+     */
+    void run();
 private:
-  void emptyNodeCandidateList() ; 
-  void askConnectionsForNodesOnConnectList() ; 
-  void sendQueryItemToAlreadyConnectedNodes() ; 
-  void sendQueryToNode(const Hash& aNode) ; 
-  void checkForSuccessfullyConnectedNodes() ; 
-  void checkForUnSuccessfullyConnectedNodes() ; 
+    void emptyNodeCandidateList() ;
+    void askConnectionsForNodesOnConnectList() ;
+    void sendQueryItemToAlreadyConnectedNodes() ;
+    void sendQueryToNode(const Hash& aNode) ;
+    void checkForSuccessfullyConnectedNodes() ;
+    void checkForUnSuccessfullyConnectedNodes() ;
 public:
-  /** when this is set to false, thread will terminate and run() return */
-  bool iNeedsToRun ;
+    /** when this is set to false, thread will terminate and run() return */
+    bool iNeedsToRun ;
 private: // data
-  Controller* iController ; /**< application controller */
-  Model &iModel ; /**< persistent storage */
-  /** 
-   * what kind of stuff we try. ..this class waits for 
-   * exactly one item at time. item currently being fetched
-   * is stored in this variable
-   */
-  NetworkRequestExecutor::NetworkRequestQueueItem iObjectBeingRetrieved ; 
-  /** list of nodes where iWorkItem might be pushed to */
-  QList<Hash> iNodeCandidatesToTryQuery ; 
-  QList<Hash> iNodesSuccessfullyConnected ; 
-  QList<Hash> iNodesFailurefullyConnected ; 
-  bool iNowRunning ;
-  /** queue of items that we should get */
-  QList<NetworkRequestExecutor::NetworkRequestQueueItem> iDownloadQueue ; 
+    Controller* iController ; /**< application controller */
+    Model &iModel ; /**< persistent storage */
+    /**
+     * what kind of stuff we try. ..this class waits for
+     * exactly one item at time. item currently being fetched
+     * is stored in this variable
+     */
+    NetworkRequestExecutor::NetworkRequestQueueItem iObjectBeingRetrieved ;
+    /** list of nodes where iWorkItem might be pushed to */
+    QList<Hash> iNodeCandidatesToTryQuery ;
+    QList<Hash> iNodesSuccessfullyConnected ;
+    QList<Hash> iNodesFailurefullyConnected ;
+    bool iNowRunning ;
+    /** queue of items that we should get */
+    QList<NetworkRequestExecutor::NetworkRequestQueueItem> iDownloadQueue ;
 } ;
 #endif

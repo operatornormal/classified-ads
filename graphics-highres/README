@@ -1,0 +1,8 @@
+The file turt-transparent.xcf is the highest-resolution version available
+of the turtle logo. It is not used in runtime in that high-res version but 
+instead converted to 2 smaller resolutions before build. 
+
+If you modify the high-res original, have imagemagick installed and say
+"make all" in this directory to produce the smaller-resolution versions
+that are then used at compile+install stages. Smaller-resolution versions
+reside at folder ../ui/.

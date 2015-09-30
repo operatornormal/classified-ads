@@ -23,6 +23,7 @@
 #include <stdio.h>
 #include <QDateTime>
 #ifdef DEBUG
+#include <QDebug>
 #define LOG_STR(a)  qDebug() << QDateTime::currentDateTime().toString("hh:mm:ss") << a
 #define LOG_STR2(a,b) { QString str ; qDebug() << QDateTime::currentDateTime().toString("hh:mm:ss") << str.sprintf(a,b) ; }
 #define QLOG_STR(a) qDebug() << QDateTime::currentDateTime().toString("hh:mm:ss") << a

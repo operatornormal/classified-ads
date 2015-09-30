@@ -52,5 +52,22 @@
   </layout>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>bottomButtonsBox</sender>
+   <signal>rejected()</signal>
+   <receiver>attachmentListDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>149</x>
+     <y>275</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>149</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

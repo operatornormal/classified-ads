@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-       Classified Ads is Copyright (c) Antti Järvinen 2013. 
+       Classified Ads is Copyright (c) Antti Järvinen 2013.
 
        This file is part of Classified Ads.
 
@@ -24,7 +24,7 @@
 #include "../log.h"
 #include "../datamodel/model.h"
 #include "../datamodel/profilecomment.h"
-#include "../datamodel/profile.h" 
+#include "../datamodel/profile.h"
 #include "../datamodel/profilecommentmodel.h"
 #include "../datamodel/profilecommentlistingmodel.h"
 #include "../datamodel/profilemodel.h"
@@ -33,114 +33,110 @@
 #include "attachmentlistdialog.h" // for tryFindNodeByProfile()
 
 NewProfileCommentDialog::NewProfileCommentDialog(QWidget *aParent,
-						 MController* aController,
-						 const QString& aCommentedProfile,
-						 const QString& aSubject,
-						 Profile& aSelectedProfile,
-						 ProfileCommentListingModel& aCommentListingModel,
-						 const Hash& aReferencesMsg,
-						 const Hash& aReferencesCa,
-						 const Hash& aRecipientsNode)
-  : TextEdit(aParent,
-	       aController,
-	       aSelectedProfile),
+        MController* aController,
+        const QString& aCommentedProfile,
+        const QString& aSubject,
+        Profile& aSelectedProfile,
+        ProfileCommentListingModel& aCommentListingModel,
+        const Hash& aReferencesMsg,
+        const Hash& aReferencesCa,
+        const Hash& aRecipientsNode)
+    : TextEdit(aParent,
+               aController,
+               aSelectedProfile),
     iRecipientsNode(aRecipientsNode),
-    iCommentListingModel(aCommentListingModel) 
-{
-  ui.setupUi(this) ; 
-  initializeTextEditor(ui.messageEdit,
-		       ui.gridLayout,
-		       ui.toolBoxLayoutUpper,
-		       ui.toolBoxLayoutLower) ; 
-  iReferencesMsg = aReferencesMsg ; 
-  iReferencesCa = aReferencesCa ; 
+    iCommentListingModel(aCommentListingModel) {
+    ui.setupUi(this) ;
+    initializeTextEditor(ui.messageEdit,
+                         ui.gridLayout,
+                         ui.toolBoxLayoutUpper,
+                         ui.toolBoxLayoutLower) ;
+    iReferencesMsg = aReferencesMsg ;
+    iReferencesCa = aReferencesCa ;
 
-  ui.subjectEdit->setText(aSubject) ; 
-  ui.commentedProfileEdit->setText(aCommentedProfile) ; 
-  iAttachmentListLabel = ui.attahcmentsListLabel ;
-  connect(ui.attachButton, SIGNAL(clicked()),
-	  this, SLOT(attachButtonClicked()));
-  connect(ui.bottomButtonsBox, SIGNAL(accepted()), this, SLOT(okButtonClicked()));
-  connect(ui.bottomButtonsBox, SIGNAL(rejected()), this, SLOT(cancelButtonClicked()));
-  ui.messageEdit->setFocus(Qt::PopupFocusReason) ; 
+    ui.subjectEdit->setText(aSubject) ;
+    ui.commentedProfileEdit->setText(aCommentedProfile) ;
+    iAttachmentListLabel = ui.attahcmentsListLabel ;
+    connect(ui.attachButton, SIGNAL(clicked()),
+            this, SLOT(attachButtonClicked()));
+    connect(ui.bottomButtonsBox, SIGNAL(accepted()), this, SLOT(okButtonClicked()));
+    connect(ui.bottomButtonsBox, SIGNAL(rejected()), this, SLOT(cancelButtonClicked()));
+    ui.messageEdit->setFocus(Qt::PopupFocusReason) ;
 }
 
-NewProfileCommentDialog::~NewProfileCommentDialog()
-{
-  LOG_STR("NewProfileCommentDialog::~NewProfileCommentDialog") ;
+NewProfileCommentDialog::~NewProfileCommentDialog() {
+    LOG_STR("NewProfileCommentDialog::~NewProfileCommentDialog") ;
 }
 
 
-void NewProfileCommentDialog::okButtonClicked()
-{
-  LOG_STR("NewProfileCommentDialog::okButtonClicked") ;
+void NewProfileCommentDialog::okButtonClicked() {
+    LOG_STR("NewProfileCommentDialog::okButtonClicked") ;
 
-  Hash selectedUserProfileHash ( iController->profileInUse() ) ; 
-  ProfileComment comment ; 
+    Hash selectedUserProfileHash ( iController->profileInUse() ) ;
+    ProfileComment comment ;
 
-  if ( iSelectedProfile.iIsPrivate == false ) {
-    comment.iCommentorNickName = iSelectedProfile.displayName() ; 
-  }
-  comment.iSubject = ui.subjectEdit->text() ; 
-  comment.iCommentText = ui.messageEdit->toHtml() ; 
+    if ( iSelectedProfile.iIsPrivate == false ) {
+        comment.iCommentorNickName = iSelectedProfile.displayName() ;
+    }
+    comment.iSubject = ui.subjectEdit->text() ;
+    comment.iCommentText = ui.messageEdit->toHtml() ;
 
-  comment.iCommentorHash = iSelectedProfile.iFingerPrint ; 
-  QLOG_STR("New profile comment comment.iCommentorHash = " + comment.iCommentorHash.toString() ) ; 
-  comment.iTimeOfPublish = QDateTime::currentDateTimeUtc().toTime_t() ; 
-  comment.iProfileFingerPrint.fromString(reinterpret_cast<const unsigned char *>(ui.commentedProfileEdit->text().toLatin1().constData())) ;
-  if ( comment.iProfileFingerPrint == KNullHash ) {
-    QMessageBox::about(this, tr("Error"),
-		       tr("Commented profile addr is not valid")) ;
-  } else {
-    QLOG_STR("Profilecomment comment.iProfileFingerPrint = " + comment.iProfileFingerPrint.toString() ) ; 
-    if ( iReferencesMsg != KNullHash ) {
-      comment.iReferences = iReferencesMsg  ; 
-      comment.iTypeOfObjectReferenced = PrivateMessage ; 
-    } else if ( iReferencesCa != KNullHash ) {
-      comment.iReferences = iReferencesCa  ; 
-      comment.iTypeOfObjectReferenced = ClassifiedAd ; 
+    comment.iCommentorHash = iSelectedProfile.iFingerPrint ;
+    QLOG_STR("New profile comment comment.iCommentorHash = " + comment.iCommentorHash.toString() ) ;
+    comment.iTimeOfPublish = QDateTime::currentDateTimeUtc().toTime_t() ;
+    comment.iProfileFingerPrint.fromString(reinterpret_cast<const unsigned char *>(ui.commentedProfileEdit->text().toLatin1().constData())) ;
+    if ( comment.iProfileFingerPrint == KNullHash ) {
+        QMessageBox::about(this, tr("Error"),
+                           tr("Commented profile addr is not valid")) ;
     } else {
-      comment.iReferences = KNullHash ; 
-    }
-    foreach (const QString& attachmentFile , iFilesAboutToBeAttached ) {
-      Hash attachmentHash = publishBinaryAttachment(attachmentFile,
-						    false) ;
-      if ( attachmentHash != KNullHash ) {
-	comment.iAttachedFiles.append(attachmentHash) ; 
-      }
-    }
-    // TODO:
-    // set iReferences to some meaningful value
-    iController->model().lock() ;
+        QLOG_STR("Profilecomment comment.iProfileFingerPrint = " + comment.iProfileFingerPrint.toString() ) ;
+        if ( iReferencesMsg != KNullHash ) {
+            comment.iReferences = iReferencesMsg  ;
+            comment.iTypeOfObjectReferenced = PrivateMessage ;
+        } else if ( iReferencesCa != KNullHash ) {
+            comment.iReferences = iReferencesCa  ;
+            comment.iTypeOfObjectReferenced = ClassifiedAd ;
+        } else {
+            comment.iReferences = KNullHash ;
+        }
+        foreach (const MetadataQueryDialog::MetadataResultSet& attachmentFile , iFilesAboutToBeAttached ) {
+            Hash attachmentHash = publishBinaryAttachment(attachmentFile,
+                                  false) ;
+            if ( attachmentHash != KNullHash ) {
+                comment.iAttachedFiles.append(attachmentHash) ;
+            }
+        }
+        // TODO:
+        // set iReferences to some meaningful value
+        iController->model().lock() ;
 
-    if ( iRecipientsNode == KNullHash ) {
-      iRecipientsNode =  AttachmentListDialog::tryFindNodeByProfile(comment.iProfileFingerPrint, *iController) ;
-    }
+        if ( iRecipientsNode == KNullHash ) {
+            iRecipientsNode =  AttachmentListDialog::tryFindNodeByProfile(comment.iProfileFingerPrint, *iController) ;
+        }
 
-    quint32 dummy  ; 
-    if ( 
-	iController->model().contentEncryptionModel().PublicKey(iSelectedProfile.iFingerPrint,
-								comment.iKeyOfCommentor,
-								&dummy )) {
-      if ( iController->model().profileCommentModel().publishProfileComment(comment) ) {
-	iCommentListingModel.newCommentReceived(comment) ; 
-      }
-    } else {
-      QMessageBox::about(this, tr("Error"),
-			 tr("Recipient encryption key not found from storage")) ;
-    }
-    iController->model().unlock() ; 
+        quint32 dummy  ;
+        if (
+            iController->model().contentEncryptionModel().PublicKey(iSelectedProfile.iFingerPrint,
+                    comment.iKeyOfCommentor,
+                    &dummy )) {
+            if ( iController->model().profileCommentModel().publishProfileComment(comment) ) {
+                iCommentListingModel.newCommentReceived(comment) ;
+            }
+        } else {
+            QMessageBox::about(this, tr("Error"),
+                               tr("Recipient encryption key not found from storage")) ;
+        }
+        iController->model().unlock() ;
 
-    close() ; 
+        close() ;
+        this->deleteLater() ;
+    }
+}
+
+
+void NewProfileCommentDialog::cancelButtonClicked() {
+    LOG_STR("NewProfileCommentDialog::cancelButtonClicked") ;
+    close() ;
     this->deleteLater() ;
-  }
-}
-
-
-void NewProfileCommentDialog::cancelButtonClicked()
-{
-  LOG_STR("NewProfileCommentDialog::cancelButtonClicked") ;
-  close() ; 
-  this->deleteLater() ;
 }
 

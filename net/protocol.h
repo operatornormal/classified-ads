@@ -91,63 +91,63 @@ static const unsigned char KPrivMessagesForProfile (116) ; /**< Request for priv
 static const unsigned char KProfileCommentPublish (117) ; /**< user is publishing a new comment to profile */
 static const unsigned char KProfileCommentSend (118) ; /**< node is sending a profile comment */
 /**
- * sent as a request to send profile comments. This is not about 
+ * sent as a request to send profile comments. This is not about
  * sending individual comment but instead comments of a profile
  * there is separate request for single comment
  */
-static const unsigned char KProfileCommentAtHash (119) ; 
+static const unsigned char KProfileCommentAtHash (119) ;
 /**
  * sent as a request to send single profile comment.
  */
-static const unsigned char KSingleProfileCommentAtHash (120) ; 
+static const unsigned char KSingleProfileCommentAtHash (120) ;
 /**
  * sent as a request to perform search
  */
-static const unsigned char KSearchRequest (121) ; 
+static const unsigned char KSearchRequest (121) ;
 /**
  * sent as a response to KSearchRequest (if there were any results)
  */
-static const unsigned char KSearchResults (122) ; 
+static const unsigned char KSearchResults (122) ;
 /**
  * Protocol constants for future use
  */
-static const unsigned char KFutureUse1 (123) ; 
-static const unsigned char KFutureUse2 (124) ; 
-static const unsigned char KFutureUse3 (125) ; 
-static const unsigned char KFutureUse4 (126) ; 
+static const unsigned char KFutureUse1 (123) ;
+static const unsigned char KFutureUse2 (124) ;
+static const unsigned char KFutureUse3 (125) ;
+static const unsigned char KFutureUse4 (126) ;
 static const unsigned char KFutureUse5 (127) ;
-static const unsigned char KFutureUse6 (128) ;  
+static const unsigned char KFutureUse6 (128) ;
 /**
  * this enum lists possible items that we send over socket
  * from one node to another. These get serialized into bitstream
  * whose values are #defined above.
  */
 enum ProtocolItemType {
-  OwnNodeGreeting=1, /**< normal node greeting but inside program special handling */
-  NodeGreeting=2, /**< node connectivity details */
-  ClassifiedAd=3, /**< normal public posting */
-  PrivateMessage=4, /**< a message destined to owner of specific profile */
-  BinaryBlob=5, /**< just data, relates to something, has SHA1 */
-  UserProfile=6, /**< user RSA key and possible other related data */
-  RequestForClassifiedAd=7,/**< query for other nodes if there is anything about classified ads */
-  RequestForPrivateMessage=8,/**< query for other nodes if there is any private msgs */
-  RequestForBinaryBlob=9,/**< query for other nodes if there is specific binary avail */
-  RequestForUserProfile=10,/**< query for other nodes if user has been in da hood */
-  RandomNumbers=11, /**< explained later. this really contains 1 or more random numbers */
-  RequestForNodesAroundHash=12, /**< request that other nodes use to retrieve node-refs around given hash */
-  UserProfilePublish=13, /**< publish message is different from normal UserProfile */
-  BinaryFilePublish=14, /**< publish binary blob is different from normal BinaryBlob */
-  ClassifiedAdPublish=15, /**< publish CA is different from normal ad */
-  ClassifiedAd2NdAddr=16, /**< publish of CA to group controller */
-  RequestAdsClassified=17,/**< query for articles whose classification is known */
-  PrivateMessagePublish=18,/**< local user is sending a privmsg */
-  PrivateMessagesForProfile=19, /**< specifies a request to send messages destined to profile */
-  UserProfileComment=20, /**< invididual profile comment to be sent */
-  ProfileCommentPublish=21, /**< profile comment publish item type */
-  UserProfileCommentsForProfile=22, /**< request to queue profile comments commenting given profile */
-  RequestForProfilePoll=23, /**< UI request regarding profile update poll */
-  RequestForProfileComment=24, /**< UI request regarding individual comment */
-  RequestForSearchSend=25 /**< UI request about network search */
+    OwnNodeGreeting=1, /**< normal node greeting but inside program special handling */
+    NodeGreeting=2, /**< node connectivity details */
+    ClassifiedAd=3, /**< normal public posting */
+    PrivateMessage=4, /**< a message destined to owner of specific profile */
+    BinaryBlob=5, /**< just data, relates to something, has SHA1 */
+    UserProfile=6, /**< user RSA key and possible other related data */
+    RequestForClassifiedAd=7,/**< query for other nodes if there is anything about classified ads */
+    RequestForPrivateMessage=8,/**< query for other nodes if there is any private msgs */
+    RequestForBinaryBlob=9,/**< query for other nodes if there is specific binary avail */
+    RequestForUserProfile=10,/**< query for other nodes if user has been in da hood */
+    RandomNumbers=11, /**< explained later. this really contains 1 or more random numbers */
+    RequestForNodesAroundHash=12, /**< request that other nodes use to retrieve node-refs around given hash */
+    UserProfilePublish=13, /**< publish message is different from normal UserProfile */
+    BinaryFilePublish=14, /**< publish binary blob is different from normal BinaryBlob */
+    ClassifiedAdPublish=15, /**< publish CA is different from normal ad */
+    ClassifiedAd2NdAddr=16, /**< publish of CA to group controller */
+    RequestAdsClassified=17,/**< query for articles whose classification is known */
+    PrivateMessagePublish=18,/**< local user is sending a privmsg */
+    PrivateMessagesForProfile=19, /**< specifies a request to send messages destined to profile */
+    UserProfileComment=20, /**< invididual profile comment to be sent */
+    ProfileCommentPublish=21, /**< profile comment publish item type */
+    UserProfileCommentsForProfile=22, /**< request to queue profile comments commenting given profile */
+    RequestForProfilePoll=23, /**< UI request regarding profile update poll */
+    RequestForProfileComment=24, /**< UI request regarding individual comment */
+    RequestForSearchSend=25 /**< UI request about network search */
 };
 /**
  * @brief send-queue item.
@@ -156,8 +156,8 @@ enum ProtocolItemType {
  * entry in that list looks like this
  */
 struct SendQueueItem {
-  ProtocolItemType iItemType ; /**< what kind data sits in queue */
-  Hash iHash ; /**< and its id, if applicable */
+    ProtocolItemType iItemType ; /**< what kind data sits in queue */
+    Hash iHash ; /**< and its id, if applicable */
 } ;
 /**
  * @brief Carrier for keeping state of item about to be published.
@@ -167,11 +167,11 @@ struct SendQueueItem {
  * and brief list of nodes where it has been already pushed to
  */
 struct PublishItem {
-  ProtocolItemType iObjectType ; /**< profile,classified ad,priv-msg etc*/
-  Hash iObjectHash ; /**< Identifier of the data itself */
-  /** low order hash bits of nodes that already have the content */
-  QList<quint32> iAlreadyPushedHosts ; 
-  Hash i2NdAddr ; /**< CAs and comments get published twice, here is the 2nd addr */
+    ProtocolItemType iObjectType ; /**< profile,classified ad,priv-msg etc*/
+    Hash iObjectHash ; /**< Identifier of the data itself */
+    /** low order hash bits of nodes that already have the content */
+    QList<quint32> iAlreadyPushedHosts ;
+    Hash i2NdAddr ; /**< CAs and comments get published twice, here is the 2nd addr */
 } ;
 
 /**
@@ -198,5 +198,5 @@ static const quint32 KMaxProtocolItemSize ( 1024*1024*2 ) ;
  * node may advertise itself in local ethernet segment with broadcast.
  * the port where ads are sent is this
  */
-static const quint16 KBroadCastAdvertismentPort ( 23432 ) ; 
+static const quint16 KBroadCastAdvertismentPort ( 23432 ) ;
 #endif /* CA_PROTOCOL_H */

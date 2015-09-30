@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-       Classified Ads is Copyright (c) Antti Järvinen 2013. 
+       Classified Ads is Copyright (c) Antti Järvinen 2013.
 
        This file is part of Classified Ads.
 
@@ -26,58 +26,57 @@
 #include "../ui_profileCommentDisplay.h"
 #include "dialogbase.h"
 
-class ProfileCommentListingModel ; 
+class ProfileCommentListingModel ;
 class ProfileCommentModel ;
 class ProfileComment ;
 class QPushButton ;
-class ProfileCommentItemDelegate ; 
-class Profile ; 
+class ProfileCommentItemDelegate ;
+class Profile ;
 
 /**
  * @brief class for display of single classified ad
  */
-class ProfileCommentDisplay : public DialogBase
-{
-  Q_OBJECT
+class ProfileCommentDisplay : public DialogBase {
+    Q_OBJECT
 
 public:
-  /**
-   * Constructor.
-   *
-   * @param aParent is owner-window of this dialog
-   * @param aController application controller reference
-   * @param aListingModel where the content comes from 
-   * @param aCommentModel needed when posting new comments
-   * @param aFirstCommentToDisplay where dialog should scroll initialy
-   * @param aViewedProfile profile whose comments are displayed 
-   */
-  ProfileCommentDisplay(QWidget *aParent,
-			MController* aController,
-			ProfileCommentListingModel* aListingModel,
-			ProfileCommentModel& aCommentModel,
-			const Hash& aFirstCommentToDisplay,
-			const Hash& aViewedProfile ,
-			Profile& aSelectedProfile);
-  /** destructor */
-  ~ProfileCommentDisplay();
+    /**
+     * Constructor.
+     *
+     * @param aParent is owner-window of this dialog
+     * @param aController application controller reference
+     * @param aListingModel where the content comes from
+     * @param aCommentModel needed when posting new comments
+     * @param aFirstCommentToDisplay where dialog should scroll initialy
+     * @param aViewedProfile profile whose comments are displayed
+     */
+    ProfileCommentDisplay(QWidget *aParent,
+                          MController* aController,
+                          ProfileCommentListingModel* aListingModel,
+                          ProfileCommentModel& aCommentModel,
+                          const Hash& aFirstCommentToDisplay,
+                          const Hash& aViewedProfile ,
+                          Profile& aSelectedProfile);
+    /** destructor */
+    ~ProfileCommentDisplay();
 
 private slots:
-  void closeButtonClicked() ;
-  /**
-   * method for handling "add comment"-button
-   */
-  void newCommentButtonClicked() ;
-  void exportSharedFile() ;
-  void currentItemChanged(const QModelIndex & current, const QModelIndex & previous ) ; 
+    void closeButtonClicked() ;
+    /**
+     * method for handling "add comment"-button
+     */
+    void newCommentButtonClicked() ;
+    void exportSharedFile() ;
+    void currentItemChanged(const QModelIndex & current, const QModelIndex & previous ) ;
 private:
-  Ui_profileCommentDisplay ui ; 
-  ProfileCommentListingModel* iListingModel;
-  ProfileCommentModel& iCommentModel;
-  Hash iCommentToDisplay; 
-  ProfileCommentItemDelegate* iItemDelegate ; 
-  Hash iViewedProfile ; 
-  QAction* iExportSharedFileAction ; /**< context-menu action for saving to filesystem a shared file */
-  Hash iFingerPrintOfCommentOnFocus ; 
-}; 
+    Ui_profileCommentDisplay ui ;
+    ProfileCommentListingModel* iListingModel;
+    ProfileCommentModel& iCommentModel;
+    Hash iCommentToDisplay;
+    ProfileCommentItemDelegate* iItemDelegate ;
+    Hash iViewedProfile ;
+    QAction* iExportSharedFileAction ; /**< context-menu action for saving to filesystem a shared file */
+    Hash iFingerPrintOfCommentOnFocus ;
+};
 
 #endif

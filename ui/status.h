@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-       Classified Ads is Copyright (c) Antti Järvinen 2013. 
+       Classified Ads is Copyright (c) Antti Järvinen 2013.
 
        This file is part of Classified Ads.
 
@@ -25,34 +25,33 @@
 #include "../mcontroller.h"
 #include "../ui_statusDialog.h"
 
-class ConnectionListingModel ; 
+class ConnectionListingModel ;
 
 /**
  * @brief class for displaying connections status
  *
  */
-class StatusDialog : public QDialog
-{
-Q_OBJECT
+class StatusDialog : public QDialog {
+    Q_OBJECT
 
 public:
-  /**
-   * Constructor.
-   */
-  StatusDialog(QWidget *aParent,
-		    MController& aController );
-  /** destructor */
-  ~StatusDialog();
+    /**
+     * Constructor.
+     */
+    StatusDialog(QWidget *aParent,
+                 MController& aController );
+    /** destructor */
+    ~StatusDialog();
 
 private slots:
-  void addButtonClicked() ;
+    void addButtonClicked() ;
 signals:
-  void error(MController::CAErrorSituation aError,
-	     const QString& aExplanation) ;
+    void error(MController::CAErrorSituation aError,
+               const QString& aExplanation) ;
 private:
-  Ui_statusDialog ui ; 
-  MController& iController ;
-  ConnectionListingModel* iListingModel ; 
+    Ui_statusDialog ui ;
+    MController& iController ;
+    ConnectionListingModel* iListingModel ;
 };
 
 #endif
