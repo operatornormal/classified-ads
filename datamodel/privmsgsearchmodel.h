@@ -100,7 +100,12 @@ public slots:
     void doUpdateDataOnIdle() ;
 private:// methods
     void performSearch() ;
-    void updateSenderAndSubjectOfMsg(PrivateMessageListItem& aItem) ;
+    /**
+     * Updates single private message from database, e.g. tries
+     * to open encryption and everything
+     * @return true on success
+     */
+    bool updateSenderAndSubjectOfMsg(PrivateMessageListItem& aItem) ;
 
 private: // data
     Model& iModel ;
