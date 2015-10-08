@@ -29,7 +29,7 @@ CLEAN_CMD ?= rm -f
 all:	$(translations)
 
 .po.mo:
-	msgfmt $*.po -o $*.mo
+	$(MSGFMT_PATH)msgfmt $*.po -o $*.mo
 
 clean:
 	$(CLEAN_CMD) $(translations)

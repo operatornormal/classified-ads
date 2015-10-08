@@ -30,6 +30,8 @@ CreateDirectory "$INSTDIR\fi\LC_MESSAGES"
 file /oname=$INSTDIR\fi\LC_MESSAGES\classified-ads.mo ..\po\fi.mo
 CreateDirectory "$INSTDIR\sv\LC_MESSAGES"
 file /oname=$INSTDIR\sv\LC_MESSAGES\classified-ads.mo ..\po\sv.mo
+CreateDirectory "$INSTDIR\da\LC_MESSAGES"
+file /oname=$INSTDIR\da\LC_MESSAGES\classified-ads.mo ..\po\da.mo
 file /oname=qt_ca.qm ..\release\translations\qt_ca.qm
 file /oname=qt_cs.qm ..\release\translations\qt_cs.qm
 file /oname=qt_de.qm ..\release\translations\qt_de.qm
@@ -148,10 +150,13 @@ delete "$INSTDIR\libiconv-2.dll"
 delete "$INSTDIR\libintl-8.dll"
 delete "$INSTDIR\fi\LC_MESSAGES\classified-ads.mo"
 delete "$INSTDIR\sv\LC_MESSAGES\classified-ads.mo"
+delete "$INSTDIR\da\LC_MESSAGES\classified-ads.mo"
 RMDIR "$INSTDIR\sv\LC_MESSAGES"
 RMDIR "$INSTDIR\sv"
 RMDIR "$INSTDIR\fi\LC_MESSAGES"
 RMDIR "$INSTDIR\fi"
+RMDIR "$INSTDIR\da\LC_MESSAGES"
+RMDIR "$INSTDIR\da"
 RMDIR "$INSTDIR\bearer"
 RMDIR "$INSTDIR\iconengines"
 RMDIR "$INSTDIR\imageformats"
