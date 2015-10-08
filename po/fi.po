@@ -421,7 +421,7 @@ msgstr "Kaivellaan kohdetta verkon syövereistä.."
 #: controller.cpp:430
 msgctxt "Controller|"
 msgid "E&xit"
-msgstr "Sulje"
+msgstr "&Sulje"
 
 # Menu item tooltip-text used in "File" menu entry and when this particular item is selected, application will close
 #: controller.cpp:432
@@ -433,7 +433,7 @@ msgstr "Sulje sovellus"
 #: controller.cpp:434
 msgctxt "Controller|"
 msgid "&About"
-msgstr "Tietoja"
+msgstr "&Tietoja"
 
 # Tooltip-text of menu item text used in "File" menu and when this particular item is selected, application will show a dialog telling why this application is and how to use it
 #: controller.cpp:435
@@ -481,7 +481,7 @@ msgstr "Pysyvästi poistaa tämänhetkisen valitun profiilin"
 #: controller.cpp:446
 msgctxt "Controller|"
 msgid "&Select another profile"
-msgstr "Valitse käyttöön toinen profiilii"
+msgstr "&Valitse käyttöön toinen profiilii"
 
 # Tooltip-text for a menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to enter password of another profile that user will use next
 #: controller.cpp:447
@@ -511,13 +511,13 @@ msgstr "Verkko-yhteydet.."
 #: controller.cpp:454
 msgctxt "Controller|"
 msgid "Search.."
-msgstr "Etsi.."
+msgstr "&Etsi.."
 
 # Menu bar title text for "File" menu. 
 #: controller.cpp:471
 msgctxt "Controller|"
 msgid "&File"
-msgstr "Tiedosto"
+msgstr "&Tiedosto"
 
 # Password dialog prompt.
 #: controller.cpp:516

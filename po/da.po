@@ -444,7 +444,7 @@ msgstr "Afslut programmet"
 #: controller.cpp:434
 msgctxt "Controller|"
 msgid "&About"
-msgstr "%Om"
+msgstr "&Om"
 
 # Tooltip-text of menu item text used in "File" menu and when this particular item is selected, application will show a dialog telling why this application is and how to use it
 #: controller.cpp:435
@@ -480,7 +480,7 @@ msgstr "Laver en helt ny brugerprofil"
 #: controller.cpp:443
 msgctxt "Controller|"
 msgid "&Delete current profile"
-msgstr "%Slet nuværende profil"
+msgstr "&Slet nuværende profil"
 
 # Tooltip-text for a menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to confirm deletion of currently open profile
 #: controller.cpp:444
