@@ -1,6 +1,7 @@
 classified-ads (0.09-1) unstable; urgency=medium
 
   * New upstream version.
+  * Noticed translations in copyright file. Closes: #801147
 
  -- Antti Järvinen <antti.jarvinen@katiska.org>  Sat, 10 Oct 2015 15:58:24 +0300
 

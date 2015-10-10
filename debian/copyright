@@ -18,6 +18,10 @@ Files: classified-ads.spec
 Copyright: 2014 Tuomas Haarala <tuoppi@hieno.net>
 License: LGPL-2.1+
 
+Files: po/da.po
+Copyright: 2015 Joe Hansen <joedalton2@yahoo.dk>
+License: LGPL-2.1+
+
 License: LGPL-2.1+
  Classified Ads is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
