@@ -1,5 +1,5 @@
 Name:		classified-ads
-Version:	0.08
+Version:	0.09
 Release:	1%{?dist}
 Summary:	Classified ads is a program for posting ads online
 
@@ -44,8 +44,14 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/classified-ads.deskt
 %dir %{_datadir}/locale/sv
 %dir %{_datadir}/locale/sv/LC_MESSAGES/
 %{_datadir}/locale/sv/LC_MESSAGES/classified-ads.mo
+%dir %{_datadir}/locale/da
+%dir %{_datadir}/locale/da/LC_MESSAGES/
+%{_datadir}/locale/da/LC_MESSAGES/classified-ads.mo
 %license LICENSE
 %changelog
+* Sat Oct 10 2015 Antti Jarvinen <antti.jarvinen@katiska.org> - 0.09-1
+- Fixes to serious networking bugs
+- Translation additions
 * Mon Sep 28 2015 Antti Jarvinen <antti.jarvinen@katiska.org> - 0.08-1
 - Links against qt5 instead of qt4
 - Translation system is gnu gettext instead of qm files of Qt.
