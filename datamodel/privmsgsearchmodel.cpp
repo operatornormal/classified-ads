@@ -284,7 +284,7 @@ QVariant PrivateMessageSearchModel::headerData ( int section, Qt::Orientation or
 
 }
 
-void PrivateMessageSearchModel::updateSenderAndSubjectOfMsg(PrivateMessageListItem& aItem) {
+bool PrivateMessageSearchModel::updateSenderAndSubjectOfMsg(PrivateMessageListItem& aItem) {
     PrivMessage* msg ( iModel.privateMessageModel().messageByFingerPrint(aItem.iMessageHash));
     if ( msg ) {
         aItem.iSenderName = msg->iSenderName ;
@@ -307,6 +307,11 @@ void PrivateMessageSearchModel::updateSenderAndSubjectOfMsg(PrivateMessageListIt
         }
 
         delete msg ;
+        return true ; 
+    } else {
+        // we have got a message but could not open it via datamodel
+        // so the message is somehow faulty. 
+        return false ; 
     }
 }
 
@@ -314,22 +319,32 @@ void PrivateMessageSearchModel::updateSenderAndSubjectOfMsg(PrivateMessageListIt
 void   PrivateMessageSearchModel::doUpdateDataOnIdle() {
     LOG_STR("PrivateMessageSearchModel::doUpdateDataOnIdle") ;
     int indexUpdated(-1) ;
+    bool updateSuccess ( false ) ; 
     iModel.lock() ;
     for ( int i ( 0 ) ; i < iPrivateMessages.size() ; i++ ) {
         if ( iPrivateMessages.at(i).iSenderHash == KNullHash ) {
             indexUpdated = i ;
             PrivateMessageListItem& item ( iPrivateMessages[i] ) ;
-            updateSenderAndSubjectOfMsg(item) ;
+            updateSuccess = updateSenderAndSubjectOfMsg(item) ;
             break ; // out of loop, e.g. do only one
         }
     }
     iModel.unlock() ;
     if ( indexUpdated > -1 ) {
-        // so, if we updated something, give UI a clue
-        emit dataChanged(createIndex(indexUpdated,0),
-                         createIndex(indexUpdated,3) ) ;
-        // and re-schedule self to check if there is more
-        // messages to handle
+        if ( updateSuccess ) {
+            // so, if we updated something, give UI a clue
+            emit dataChanged(createIndex(indexUpdated,0),
+                             createIndex(indexUpdated,3) ) ;
+            // and re-schedule self to check if there is more
+            // messages to handle
+        } else {
+            // update was not success, lets remove the message
+            beginRemoveRows(QModelIndex(), indexUpdated,indexUpdated);
+            iModel.lock() ;
+            iPrivateMessages.removeAt(indexUpdated) ; 
+            iModel.unlock() ;
+            endRemoveRows() ; 
+        }
         QTimer::singleShot(0, this, SLOT(doUpdateDataOnIdle()));
     }
 }

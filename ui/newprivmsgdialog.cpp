@@ -89,43 +89,47 @@ void NewPrivMessageDialog::okButtonClicked() {
                            tr("Recipient addr is not valid")) ;
     } else {
         QLOG_STR("Privmsg msg.iRecipient = " + msg.iRecipient.toString() ) ;
-        if ( iReferencesMsg != KNullHash ) {
-            msg.iReplyToMsg =  iReferencesMsg  ;
-        } else {
-            msg.iReplyToMsg = KNullHash ;
-        }
-        if ( iReferencesCa != KNullHash ) {
-            msg.iReplyToCa =  iReferencesCa  ;
-        } else {
-            msg.iReplyToCa = KNullHash ;
-        }
-        QList<Hash>* attachmentRecipients = new QList<Hash>() ;
-
-        attachmentRecipients->append(iSelectedProfile.iFingerPrint) ; // self
-        attachmentRecipients->append(msg.iRecipient) ; // recipient
-
-        foreach (const MetadataQueryDialog::MetadataResultSet& attachmentFile ,
-                 iFilesAboutToBeAttached ) {
-            Hash attachmentHash = publishBinaryAttachment(attachmentFile,
-                                  false,
-                                  attachmentRecipients ) ;
-            if ( attachmentHash != KNullHash ) {
-                msg.iAttachedFiles.append(attachmentHash) ;
-            }
-        }
-        delete attachmentRecipients ;
-        attachmentRecipients = NULL ;
-        iController->model().lock() ;
-
-        if ( iRecipientsNode == KNullHash ) {
-            iRecipientsNode =  tryFindRecipientNode(msg.iRecipient) ;
-        }
-
         quint32 dummy  ;
+        QByteArray dummyRecipientKey ;
         if (
+            iController->model().contentEncryptionModel().PublicKey(msg.iRecipient,
+                    dummyRecipientKey,
+                    &dummy )) {
+            if ( iReferencesMsg != KNullHash ) {
+                msg.iReplyToMsg =  iReferencesMsg  ;
+            } else {
+                msg.iReplyToMsg = KNullHash ;
+            }
+            if ( iReferencesCa != KNullHash ) {
+                msg.iReplyToCa =  iReferencesCa  ;
+            } else {
+                msg.iReplyToCa = KNullHash ;
+            }
+            QList<Hash>* attachmentRecipients = new QList<Hash>() ;
+
+            attachmentRecipients->append(iSelectedProfile.iFingerPrint) ; // self
+            attachmentRecipients->append(msg.iRecipient) ; // recipient
+
+            foreach (const MetadataQueryDialog::MetadataResultSet& attachmentFile ,
+                     iFilesAboutToBeAttached ) {
+                Hash attachmentHash = publishBinaryAttachment(attachmentFile,
+                                      false,
+                                      attachmentRecipients ) ;
+                if ( attachmentHash != KNullHash ) {
+                    msg.iAttachedFiles.append(attachmentHash) ;
+                }
+            }
+            delete attachmentRecipients ;
+            attachmentRecipients = NULL ;
+            iController->model().lock() ;
+
+            if ( iRecipientsNode == KNullHash ) {
+                iRecipientsNode =  tryFindRecipientNode(msg.iRecipient) ;
+            }
+
             iController->model().contentEncryptionModel().PublicKey(iSelectedProfile.iFingerPrint,
                     msg.iProfileKey,
-                    &dummy )) {
+                    &dummy ) ;
             iController->model().privateMessageModel().publishPrivMessage(msg,
                     iRecipientsNode) ;
             iSearchModel.newMsgReceived(msg) ;
