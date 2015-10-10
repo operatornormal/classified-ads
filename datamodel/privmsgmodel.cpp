@@ -181,6 +181,10 @@ PrivMessage* PrivMessageModel::messageByFingerPrint(const Hash& aFingerPrint) {
                     plainTextPrivMessageData ) ) {
                 LOG_STR2("message: %s", qPrintable(QString(plainTextPrivMessageData)));
                 ret = retval->fromJSon(plainTextPrivMessageData,*iController) ;
+            } else {
+                delete retval ;
+                retval = NULL ;
+                ret = false ; 
             }
 
             if ( ret )  {

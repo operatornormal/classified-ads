@@ -93,12 +93,20 @@ NetworkListener::~NetworkListener() {
 
 bool NetworkListener::startListen(bool aIpv6) {
     if ( aIpv6 ) {
-        if (!listen (  QHostAddress::AnyIPv6, iModel->nodeModel().listenPortOfThisNode() )) {
-            QLOG_STR("Socket listen v6: " + errorString()) ;
+#if QT_VERSION >= 0x050000
+        // in qt5.x ::Any means both v4+v6. 
+        if (!listen (  QHostAddress::Any, iModel->nodeModel().listenPortOfThisNode() )) {
+            QLOG_STR("Socket listen v6+v4: " + errorString()) ;
             return false ;
         }
+#else
+        // at least in linux qt4 binding to AnyIpv6 gives you also Ipv4.
+        if(!listen (  QHostAddress::AnyIPv6, iModel->nodeModel().listenPortOfThisNode() )) {
+            QLOG_STR("Socket listen v4+v6: " + errorString()) ;
+            return false ;
+        }
+#endif
     } else {
-
         if(!listen (  QHostAddress::Any, iModel->nodeModel().listenPortOfThisNode() )) {
             QLOG_STR("Socket listen v4: " + errorString()) ;
             return false ;
@@ -109,7 +117,12 @@ bool NetworkListener::startListen(bool aIpv6) {
     return true ;
 }
 
-void NetworkListener::incomingConnection (int aSocketDescriptor ) {
+#if QT_VERSION >= 0x050000
+void NetworkListener::incomingConnection ( qintptr handle ) {
+    const int aSocketDescriptor ( handle ) ; 
+#else
+void NetworkListener::incomingConnection ( int aSocketDescriptor ) {
+#endif
     LOG_STR2("NetworkListener::incomingConnection desc = %d", aSocketDescriptor);
     if ( iCanAccept ) {
         QThread* t = new QThread();

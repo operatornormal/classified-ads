@@ -92,7 +92,11 @@ public:
      */
     void figureOutLocalAddresses() ;
 protected:
+#if QT_VERSION >= 0x050000
+    virtual void incomingConnection(qintptr handle);
+#else
     void incomingConnection (int aSocketDescriptor ) ;
+#endif
 signals:
     void error(QTcpSocket::SocketError socketError);
     /**
