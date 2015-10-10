@@ -1,3 +1,9 @@
+classified-ads (0.09-1) unstable; urgency=medium
+
+  * New upstream version.
+
+ -- Antti Järvinen <antti.jarvinen@katiska.org>  Sat, 10 Oct 2015 15:58:24 +0300
+
 classified-ads (0.08-1) unstable; urgency=low
 
   * New upstream release. Closes: #794395
