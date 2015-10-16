@@ -37,16 +37,9 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/classified-ads.deskt
 %{_datadir}/app-install/icons/turt-transparent-128x128.png
 %{_mandir}/man1/classified-ads.1.gz
 %{_datadir}/appdata/classified-ads.appdata.xml
-%dir %{_datadir}/locale/
-%dir %{_datadir}/locale/fi
-%dir %{_datadir}/locale/fi/LC_MESSAGES/
-%{_datadir}/locale/fi/LC_MESSAGES/classified-ads.mo
-%dir %{_datadir}/locale/sv
-%dir %{_datadir}/locale/sv/LC_MESSAGES/
-%{_datadir}/locale/sv/LC_MESSAGES/classified-ads.mo
-%dir %{_datadir}/locale/da
-%dir %{_datadir}/locale/da/LC_MESSAGES/
-%{_datadir}/locale/da/LC_MESSAGES/classified-ads.mo
+%lang(fi)/usr/*/locale/fi/LC_MESSAGES/%{name}.mo
+%lang(sv)/usr/*/locale/sv/LC_MESSAGES/%{name}.mo
+%lang(da)/usr/*/locale/da/LC_MESSAGES/%{name}.mo
 %license LICENSE
 %changelog
 * Sat Oct 10 2015 Antti Jarvinen <antti.jarvinen@katiska.org> - 0.09-1
