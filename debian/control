@@ -18,6 +18,7 @@ Vcs-Browser: https://github.com/operatornormal/classified-ads
 Package: classified-ads
 Architecture: any
 Depends: libqt5sql5-sqlite, ${misc:Depends}, ${shlibs:Depends}
+Suggests: qttranslations5-l10n
 Description: Program for displaying classified advertisement items
  Classified ads is an attempt to re-produce parts of the functionality
  that went away when usenet news ceased to exist. This attempt tries to
