@@ -38,6 +38,15 @@ Here are briefly the steps for setting up dev env for windows:
      $ make install
     after this the libraries needed at runtime libiconv-2.dll and libintl-8.dll 
     are at \msys32\usr\local\bin\
+5.1 get lib opus, e.g. get
+  http://downloads.xiph.org/releases/opus/opus-1.1.2.tar.gz
+  and un-tar it into some directory, I used one directory up from 
+  classified ads source code and the .pro -file is now set up like this. 
+  Then using same method as with openssl e.g. from MSYS shell
+      $ export PATH=$PATH:/c/qt/Qt5.5.0/Tools/mingw492_32/bin
+      $ configure --prefix=`pwd`/binary
+      $ make
+      $ make install
 6. Get classified ads, preferably from  https://github.com/operatornormal/classified-ads/archive/master.zip
     unzip, possibly adjust directories in file classified-ads.pro so that all libraries listed
     above are found from their paths. All library compilation was done inside msys shell
@@ -68,6 +77,7 @@ C:\foobar>dir
 21.09.2015  22:10    <DIRECTORY>       libiconv-1.14
 15.09.2015  20:33    <DIRECTORY>       miniupnpc-1.9
 15.09.2015  20:24    <DIRECTORY>       openssl-1.0.2d
+04.03.2016  16:43    <DIRECTORY>       opus-1.1.2
 22.09.2015  00:00             2 750 windows-setup.txt
 
 and programs are compiled in place, gettext and libiconv are also installed
