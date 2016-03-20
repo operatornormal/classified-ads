@@ -3,9 +3,9 @@
 # This is auto-generated from .ts file.
 msgid ""
 msgstr ""
-"Project-Id-Version: classified-ads 0.08\n"
+"Project-Id-Version: classified-ads 0.10\n"
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
-"POT-Creation-Date: 2015-08-31 23:30+0300\n"
+"POT-Creation-Date: 2016-03-14 21:30+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,6 +45,18 @@ msgstr ""
 #: ui/attachmentlistdialog.cpp:167
 msgctxt "AttachmentListDialog|"
 msgid "File open error"
+msgstr ""
+
+# Error message text displayed when audio output fails immediately due to format conflict. 
+#: call/audioplayer.cpp:64
+msgctxt "AudioPlayer|"
+msgid "raw audio format not supported by backend, cannot play audio."
+msgstr ""
+
+# Error message text shown in dialog when audio output is not possible. Possible reason could be missing soundcard or other disastrous failure. 
+#: call/audioplayer.cpp:82
+msgctxt "AudioPlayer|"
+msgid "Could not initialize audio player."
 msgstr ""
 
 # Title text in a listing view where list of shared files are listed. This particular text gives text for column, where "name or fingerprint of file" is listed. Fingerprint in practice means SHA1 digest. 
@@ -384,266 +396,266 @@ msgid "Publicly trusted"
 msgstr ""
 
 # Error message that is displayed when SSL key generation failed. Text is displayed in a dialog, after user dismisses the dialog, whole application will exit.
-#: datamodel/contentencryptionmodel.cpp:86
+#: datamodel/contentencryptionmodel.cpp:88
 msgctxt "ContentEncryptionModel|"
 msgid "SSL key generation went wrong, calling exit.."
 msgstr ""
 
 # Error message that is displayed when x509 certificate generation failed. Text is displayed in a dialog, after user dismisses the dialog, whole application will exit.
-#: datamodel/contentencryptionmodel.cpp:94
+#: datamodel/contentencryptionmodel.cpp:96
 msgctxt "ContentEncryptionModel|"
 msgid "x509 cert generation went wrong, calling exit.."
 msgstr ""
 
 # Error message that is displayed when RSA private key could not be saved to database. This is rather fatal error, the operator profile that user tried to create will be un-usable. 
-#: datamodel/contentencryptionmodel.cpp:192
-#: datamodel/contentencryptionmodel.cpp:290
+#: datamodel/contentencryptionmodel.cpp:194
+#: datamodel/contentencryptionmodel.cpp:292
 msgctxt "ContentEncryptionModel|"
 msgid "RSA Private key key saving went wrong"
 msgstr ""
 
 # Error message text. This is displayed in situation where user tried to access content that he does not have encryption key for. This may appear frequently during normal operation and is no fatal error, only telling user that he is not going to see the content he was trying to access. 
-#: datamodel/contentencryptionmodel.cpp:637
+#: datamodel/contentencryptionmodel.cpp:639
 msgctxt "ContentEncryptionModel|"
 msgid "No suitable de-cryption key found"
 msgstr ""
 
 # Window title text for whole application. 
-#: controller.cpp:103
+#: controller.cpp:109
 msgctxt "Controller|"
 msgid "Classified ads"
 msgstr ""
 
 # Prompt text for password dialog
-#: controller.cpp:135
+#: controller.cpp:141
 msgctxt "Controller|"
 msgid "Enter password for protection of your messages:"
 msgstr ""
 
 # Dialog text for a wait dialog (a progress-bar like thing will be shown next to this text and user is supposed to sit down and wait a moment..)
-#: controller.cpp:405
+#: controller.cpp:432
 msgctxt "Controller|"
 msgid "Fetching item from network.."
 msgstr ""
 
 # Menu item text used in "File" menu item and when this particular item is selected, application will close
-#: controller.cpp:430
+#: controller.cpp:485
 msgctxt "Controller|"
 msgid "E&xit"
 msgstr ""
 
 # Menu item tooltip-text used in "File" menu entry and when this particular item is selected, application will close
-#: controller.cpp:432
+#: controller.cpp:487
 msgctxt "Controller|"
 msgid "Exit the application"
 msgstr ""
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a dialog telling why this application is and how to use it
-#: controller.cpp:434
+#: controller.cpp:489
 msgctxt "Controller|"
 msgid "&About"
 msgstr ""
 
 # Tooltip-text of menu item text used in "File" menu and when this particular item is selected, application will show a dialog telling why this application is and how to use it
-#: controller.cpp:435
+#: controller.cpp:490
 msgctxt "Controller|"
 msgid "Show the application's About box"
 msgstr ""
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to change her password
-#: controller.cpp:437
+#: controller.cpp:492
 msgctxt "Controller|"
 msgid "&Change password"
 msgstr ""
 
 # Tooltip-item for a menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to change her password
-#: controller.cpp:438
+#: controller.cpp:493
 msgctxt "Controller|"
 msgid "Change password of current profile"
 msgstr ""
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to enter password for a newly-created user profile
-#: controller.cpp:440
+#: controller.cpp:495
 msgctxt "Controller|"
 msgid "Create &new profile"
 msgstr ""
 
 # Tooltip-text for a menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to enter password for a newly-created user profile
-#: controller.cpp:441
+#: controller.cpp:496
 msgctxt "Controller|"
 msgid "Makes a brand new user profile"
 msgstr ""
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to confirm deletion of currently open operator profile
-#: controller.cpp:443
+#: controller.cpp:498
 msgctxt "Controller|"
 msgid "&Delete current profile"
 msgstr ""
 
 # Tooltip-text for a menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to confirm deletion of currently open profile
-#: controller.cpp:444
+#: controller.cpp:499
 msgctxt "Controller|"
 msgid "Deletes currently open profile"
 msgstr ""
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to enter password of another profile that user will use next
-#: controller.cpp:446
+#: controller.cpp:501
 msgctxt "Controller|"
 msgid "&Select another profile"
 msgstr ""
 
 # Tooltip-text for a menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to enter password of another profile that user will use next
-#: controller.cpp:447
+#: controller.cpp:502
 msgctxt "Controller|"
 msgid "If you have multitude of profiles"
 msgstr ""
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a settings-dialog 
-#: controller.cpp:449
+#: controller.cpp:504
 msgctxt "Controller|"
 msgid "Settings.."
 msgstr ""
 
 # Tooltip-text for a menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to enter password of another profile that user will use next
-#: controller.cpp:450
+#: controller.cpp:505
 msgctxt "Controller|"
 msgid "Node-wide settings.."
 msgstr ""
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a dialog detailing network connectivity of the node
-#: controller.cpp:452
+#: controller.cpp:507
 msgctxt "Controller|"
 msgid "Network status.."
 msgstr ""
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a search-dialog
-#: controller.cpp:454
+#: controller.cpp:509
 msgctxt "Controller|"
 msgid "Search.."
 msgstr ""
 
 # Menu bar title text for "File" menu. 
-#: controller.cpp:471
+#: controller.cpp:526
 msgctxt "Controller|"
 msgid "&File"
 msgstr ""
 
 # Password dialog prompt.
-#: controller.cpp:516
+#: controller.cpp:571
 msgctxt "Controller|"
 msgid "Enter new password:"
 msgstr ""
 
 # Password dialog prompt. In this case the password dialog is not used for giving initial password or change password but instead password is typed for the reason of selection of another operator profile to be used. 
-#: controller.cpp:544 controller.cpp:653
+#: controller.cpp:599 controller.cpp:708
 msgctxt "Controller|"
 msgid "Activate another profile with password"
 msgstr ""
 
 # Error message shown in dialog in situation where user tried to delete the last (one and only) operator profile in machine. There needs to be at least one profile and this error message is shown if user tries to get around that limitation. 
-#: controller.cpp:638
+#: controller.cpp:693
 msgctxt "Controller|"
 msgid "Can't delete only profile."
 msgstr ""
 
 # Text shown in title of confirmation dialog. 
-#: controller.cpp:642
+#: controller.cpp:697
 msgctxt "Controller|"
 msgid "Permanently discard profile?"
 msgstr ""
 
 # Text shown inside a confirmation dialog. Dialog will have buttons OK and Cancel and this is the question.
-#: controller.cpp:643
+#: controller.cpp:698
 msgctxt "Controller|"
 msgid "There will be NO way to access content of this profile later"
 msgstr ""
 
 # Error message that is shown in a dialog in situation where previously stored encryption keys of the node could not be accessed. Rather fatal error, will render node un-usable. 
-#: controller.cpp:706
+#: controller.cpp:761
 msgctxt "Controller|"
 msgid "Cant load node cert or key cert"
 msgstr ""
 
 # Error message dialog title text for a dialog that is shown in a dialog in situation where something bad happened during a filesystem file operation. Actual explanation of the error is shown inside the dialog whose title text this is.  
-#: controller.cpp:711
+#: controller.cpp:766
 msgctxt "Controller|"
 msgid "File error"
 msgstr ""
 
 # Error message dialog title text for a dialog that is shown in a dialog in situation where something bad happened during database operation. Actual explanation of the error is shown inside the dialog whose title text this is.  
-#: controller.cpp:716
+#: controller.cpp:771
 msgctxt "Controller|"
 msgid "Database error"
 msgstr ""
 
 # Error message dialog title text for a dialog that is shown in a dialog in situation where something bad happened during a operation inside crypto-module. Actual explanation of the error is shown inside the dialog whose title text this is.  
-#: controller.cpp:722 controller.cpp:732
+#: controller.cpp:777 controller.cpp:787
 msgctxt "Controller|"
 msgid "Cryptographic module"
 msgstr ""
 
 # Error message dialog title text for a dialog that is shown in a dialog in situation where something bad happened during operation inside database module. Actual explanation of the error is shown inside the dialog whose title text this is.  
-#: controller.cpp:727
+#: controller.cpp:782
 msgctxt "Controller|"
 msgid "Database module"
 msgstr ""
 
 # Error message dialog title text for a dialog that is shown in a dialog in situation when password supplied by user was not good for any purpose. Actual explanation of the error is shown inside the dialog whose title text this is.  
-#: controller.cpp:733
+#: controller.cpp:788
 msgctxt "Controller|"
 msgid "Bad password"
 msgstr ""
 
 # Error message text inside a dialog when user had requested for an item to be opened but program could not find the requested item.   
-#: controller.cpp:949
+#: controller.cpp:1004
 msgctxt "Controller|"
 msgid "Could not find item from network.."
 msgstr ""
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies SHA1 digest of the file.
-#: controller.cpp:1062
+#: controller.cpp:1117
 msgctxt "Controller|"
 msgid "SHA1: "
 msgstr ""
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies mime-type of the file
-#: controller.cpp:1067
+#: controller.cpp:1122
 msgctxt "Controller|"
 msgid "Mime-Type: "
 msgstr ""
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that gives longer explanation of the file
-#: controller.cpp:1073
+#: controller.cpp:1128
 msgctxt "Controller|"
 msgid "Description: "
 msgstr ""
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies name of publisher of the file (in practice, who uploaded the file into classified ads)
-#: controller.cpp:1079
+#: controller.cpp:1134
 msgctxt "Controller|"
 msgid "Publisher: "
 msgstr ""
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies name of the person (or organization) that owns (in copyright sense) the file or its contents. 
-#: controller.cpp:1085
+#: controller.cpp:1140
 msgctxt "Controller|"
 msgid "Content owner: "
 msgstr ""
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies the license of the file
-#: controller.cpp:1091
+#: controller.cpp:1146
 msgctxt "Controller|"
 msgid "License: "
 msgstr ""
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies file name
-#: controller.cpp:1097
+#: controller.cpp:1152
 msgctxt "Controller|"
 msgid "Name: "
 msgstr ""
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies file date
-#: controller.cpp:1104
+#: controller.cpp:1159
 msgctxt "Controller|"
 msgid "Date: "
 msgstr ""
@@ -691,139 +703,139 @@ msgid "Operator addr is not valid"
 msgstr ""
 
 # Tab text. In "main window" of classified ads UI there a are 4 or 5 tabs, normally "Classified ads"; "My profile", "Contacts", "Private messages" and maybe something else. This is the text of the first tab. 
-#: FrontWidget.cpp:93
+#: FrontWidget.cpp:95
 msgctxt "FrontWidget|"
 msgid "Classified ads"
 msgstr ""
 
 # Tab text. In "main window" of classified ads UI there a are 4 or 5 tabs, normally "Classified ads"; "My profile", "Contacts", "Private messages" and maybe something else. This is the text of the 2nd tab. 
-#: FrontWidget.cpp:94
+#: FrontWidget.cpp:96
 msgctxt "FrontWidget|"
 msgid "My profile"
 msgstr ""
 
 # Tab text. In "main window" of classified ads UI there a are 4 or 5 tabs, normally "Classified ads"; "My profile", "Contacts", "Private messages" and maybe something else. This is the text of the 3rd tab. 
-#: FrontWidget.cpp:95
+#: FrontWidget.cpp:97
 msgctxt "FrontWidget|"
 msgid "Contacts"
 msgstr ""
 
 # Tab text. In "main window" of classified ads UI there a are 4 or 5 tabs, normally "Classified ads"; "My profile", "Contacts", "Private messages" and maybe something else. This is the text of the 4th tab. 
-#: FrontWidget.cpp:96
+#: FrontWidget.cpp:98
 msgctxt "FrontWidget|"
 msgid "Private messages"
 msgstr ""
 
 # Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, a dialog will appear asking which file to share
-#: FrontWidget.cpp:155
+#: FrontWidget.cpp:160
 msgctxt "FrontWidget|"
 msgid "Add shared file.."
 msgstr ""
 
 # Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, the selected file in the listing view will no longer be shared
-#: FrontWidget.cpp:156
+#: FrontWidget.cpp:161
 msgctxt "FrontWidget|"
 msgid "Stop advertising selected shared file"
 msgstr ""
 
 # Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, the selected file in the listing view will be saved to filesystem
-#: FrontWidget.cpp:157
+#: FrontWidget.cpp:162
 msgctxt "FrontWidget|"
 msgid "Save file to disk.."
 msgstr ""
 
 # Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, information dialog about selected file will be shown
-#: FrontWidget.cpp:158
+#: FrontWidget.cpp:163
 msgctxt "FrontWidget|"
 msgid "View file information.."
 msgstr ""
 
 # Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, SHA digest of the selected file will be copied to clipboard. 
-#: FrontWidget.cpp:159
+#: FrontWidget.cpp:164
 msgctxt "FrontWidget|"
 msgid "Copy file address (SHA1) to clipboard.."
 msgstr ""
 
 # Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, an editor will be displayed prompting user to enter text that will then be published  for other users to see. 
-#: FrontWidget.cpp:160
+#: FrontWidget.cpp:165
 msgctxt "FrontWidget|"
 msgid "Edit+publish new text document.."
 msgstr ""
 
 # Dialog title text for "file open" dialog
-#: FrontWidget.cpp:348
+#: FrontWidget.cpp:353
 msgctxt "FrontWidget|"
 msgid "Open File"
 msgstr ""
 
 # Text for filter field of file selection dialog
-#: FrontWidget.cpp:350 FrontWidget.cpp:880
+#: FrontWidget.cpp:355 FrontWidget.cpp:885
 msgctxt "FrontWidget|"
 msgid "Files (*.*)"
 msgstr ""
 
 # Error dialog title text. Actual error message will be shown inside dialog whose title is this text. 
-#: FrontWidget.cpp:354 FrontWidget.cpp:1180 FrontWidget.cpp:1322
+#: FrontWidget.cpp:359 FrontWidget.cpp:1185 FrontWidget.cpp:1328
 msgctxt "FrontWidget|"
 msgid "Error"
 msgstr ""
 
 # Error dialog content text. Shown when image file that user selected could not be opened (maybe because file permission problem or maybe image format issue or ..)
-#: FrontWidget.cpp:355
+#: FrontWidget.cpp:360
 msgctxt "FrontWidget|"
 msgid "Can't load image"
 msgstr ""
 
 # Error dialog title text. This dialog is shown when user  tries to comment another operator but required operator data is missing from local storage. 
-#: FrontWidget.cpp:621 FrontWidget.cpp:761
+#: FrontWidget.cpp:626 FrontWidget.cpp:766
 msgctxt "FrontWidget|"
 msgid "Profile not in database"
 msgstr ""
 
 # Error dialog content text. This dialog is shown when user  tries to comment another operator but required operator data is missing from local storage. 
-#: FrontWidget.cpp:622 FrontWidget.cpp:762
+#: FrontWidget.cpp:627 FrontWidget.cpp:767
 msgctxt "FrontWidget|"
 msgid "Try viewing profile first to obtain data"
 msgstr ""
 
 # File selection title text. Prompts user to select a file for publish purpose. 
-#: FrontWidget.cpp:878
+#: FrontWidget.cpp:883
 msgctxt "FrontWidget|"
 msgid "Select file to be published"
 msgstr ""
 
 # Error text shown in dialog. Shown in situation where user selected a file that really exceeds size limit (of 2MB)
-#: FrontWidget.cpp:885
+#: FrontWidget.cpp:890
 msgctxt "FrontWidget|"
 msgid "File way too big"
 msgstr ""
 
 # Error text shown in dialog. Shown in situation where user selected a file that slightly exceeds size limit (of 2MB)
-#: FrontWidget.cpp:893
+#: FrontWidget.cpp:898
 msgctxt "FrontWidget|"
 msgid "File too big"
 msgstr ""
 
 # Error text shown in dialog. Shown in situation where user selected a file that could for some reason not be opened
-#: FrontWidget.cpp:937 FrontWidget.cpp:1181
+#: FrontWidget.cpp:942 FrontWidget.cpp:1186
 msgctxt "FrontWidget|"
 msgid "File open error"
 msgstr ""
 
 # Part of filter text field in file selection dialog. If for instance user tries to open PNG files, then the text in filter field will be "PNG files (*.png)" and this word is the 2nd word in the phrase. 
-#: FrontWidget.cpp:1162 FrontWidget.cpp:1168
+#: FrontWidget.cpp:1167 FrontWidget.cpp:1173
 msgctxt "FrontWidget|"
 msgid "files"
 msgstr ""
 
 # File selection dialog title text. Dialog prompts user to select location+name for an file to be exported into filesystem.
-#: FrontWidget.cpp:1171
+#: FrontWidget.cpp:1176
 msgctxt "FrontWidget|"
 msgid "Choose file name for saving"
 msgstr ""
 
 # Text shown in placeholder for operators image in situation where user has not yet selected any image. In practice it prompts user to insert image by clicking at the text. 
-#: FrontWidget.cpp:1231
+#: FrontWidget.cpp:1236
 msgctxt "FrontWidget|"
 msgid ""
 "\n"
@@ -836,13 +848,13 @@ msgid ""
 msgstr ""
 
 # Error message dialog content text shown when user tried to access article, that was not stored in local database
-#: FrontWidget.cpp:1323
+#: FrontWidget.cpp:1329
 msgctxt "FrontWidget|"
 msgid "Article not found from local storage"
 msgstr ""
 
 # Tool-tip text. Shown on top of operators address when user hovers mouse on top of the address field. The  %1 will be replaced by nickname of an operator who trusts this particular operator. The %2 will be replaced by SHA1 digest of the operator who trusts the operator whose SHA1 is under mouse cursor.  
-#: FrontWidget.cpp:1349 FrontWidget.cpp:1897
+#: FrontWidget.cpp:1355 FrontWidget.cpp:1903
 #, qt-format
 msgctxt "FrontWidget|"
 msgid ""
@@ -851,13 +863,13 @@ msgid ""
 msgstr ""
 
 # Tool tip text. Shown when user howers mouse on top of operators nickname field. In code a date-string will be concatenated to this string, so in practice in the UI it will read "Time of last update 31 aug 2015" or similar. 
-#: FrontWidget.cpp:1386
+#: FrontWidget.cpp:1392
 msgctxt "FrontWidget|"
 msgid "Time of last update "
 msgstr ""
 
 # Text for image placeholder, shown in situation where another operator has not selected any image for her.This text is shown place of the missing image. 
-#: FrontWidget.cpp:1394
+#: FrontWidget.cpp:1400
 msgctxt "FrontWidget|"
 msgid ""
 "\n"
@@ -869,110 +881,110 @@ msgid ""
 msgstr ""
 
 # Context menu item text. Context-menu is related to frequent-contacts column-view. 
-#: FrontWidget.cpp:1488
+#: FrontWidget.cpp:1494
 msgctxt "FrontWidget|"
 msgid "Edit contact.."
 msgstr ""
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a private message to operator who sent the classified ad currently on display
-#: FrontWidget.cpp:1528
+#: FrontWidget.cpp:1534
 msgctxt "FrontWidget|"
 msgid "&Reply to sender"
 msgstr ""
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a reply to classified ad currently on display
-#: FrontWidget.cpp:1529
+#: FrontWidget.cpp:1535
 msgctxt "FrontWidget|"
 msgid "Reply to &forum"
 msgstr ""
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a new classified ad.
-#: FrontWidget.cpp:1530
+#: FrontWidget.cpp:1536
 msgctxt "FrontWidget|"
 msgid "&Post new ad"
 msgstr ""
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a public comment about operator who sent the classified ad currently on display
-#: FrontWidget.cpp:1531
+#: FrontWidget.cpp:1537
 msgctxt "FrontWidget|"
 msgid "&Public comment"
 msgstr ""
 
 # Push button text. Pushing the button will switch to view detailing operator who sent the classified ad currently on display
-#: FrontWidget.cpp:1532
+#: FrontWidget.cpp:1538
 msgctxt "FrontWidget|"
 msgid "&View profile"
 msgstr ""
 
 # Push button text. Pushing the button will open a a listing of files that are attached to classified ad currently on display
-#: FrontWidget.cpp:1533 FrontWidget.cpp:1671
+#: FrontWidget.cpp:1539 FrontWidget.cpp:1677
 msgctxt "FrontWidget|"
 msgid "Attachments.."
 msgstr ""
 
 # Push button text. Pushing the button will open an editor prompting user to add to her contact-list the operator who sent the classified ad currently on display
-#: FrontWidget.cpp:1593
+#: FrontWidget.cpp:1599
 msgctxt "FrontWidget|"
 msgid "Add selected operator to contacts.."
 msgstr ""
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a private message to operator who sent the private message currently on display
-#: FrontWidget.cpp:1667
+#: FrontWidget.cpp:1673
 msgctxt "FrontWidget|"
 msgid "&Reply"
 msgstr ""
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a private message to some operator. 
-#: FrontWidget.cpp:1668
+#: FrontWidget.cpp:1674
 msgctxt "FrontWidget|"
 msgid "&New message"
 msgstr ""
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a public comment about operator who sent the private message currently on display
-#: FrontWidget.cpp:1669
+#: FrontWidget.cpp:1675
 msgctxt "FrontWidget|"
 msgid "&Send public comment to sender"
 msgstr ""
 
 # Push button text. Pushing the button will open view that will show details of operator, who sent the private message currently on display. 
-#: FrontWidget.cpp:1670
+#: FrontWidget.cpp:1676
 msgctxt "FrontWidget|"
 msgid "&View profile of peer"
 msgstr ""
 
 # Context menu item text. Appears in "message listing view" when user right-clicks on messages view. When selected, the operator who sent the message that is selected is added to contacts. 
-#: FrontWidget.cpp:1705
+#: FrontWidget.cpp:1711
 msgctxt "FrontWidget|"
 msgid "Add selected to contacts.."
 msgstr ""
 
 # Text field label. Label tells who sent particular classified ad. 
-#: FrontWidget.cpp:1907 FrontWidget.cpp:1909 FrontWidget.cpp:1973
-#: FrontWidget.cpp:1975
+#: FrontWidget.cpp:1913 FrontWidget.cpp:1915 FrontWidget.cpp:1979
+#: FrontWidget.cpp:1981
 msgctxt "FrontWidget|"
 msgid "From:"
 msgstr ""
 
 # Text field label. Label tells subject of classified ads. 
-#: FrontWidget.cpp:1911 FrontWidget.cpp:1978
+#: FrontWidget.cpp:1917 FrontWidget.cpp:1984
 msgctxt "FrontWidget|"
 msgid "Subject:"
 msgstr ""
 
 # Text field label. Label tells whom a private message was sent to. 
-#: FrontWidget.cpp:1970
+#: FrontWidget.cpp:1976
 msgctxt "FrontWidget|"
 msgid "To:"
 msgstr ""
 
 # Error dialog content text. Shown in situation when user clicked on a link that contained SHA1 digest that was not valid. 
-#: FrontWidget.cpp:2282
+#: FrontWidget.cpp:2288
 msgctxt "FrontWidget|"
 msgid "Invalid SHA1 in URL"
 msgstr ""
 
 # Error dialog content text. Shown in situation when user clicked on a link that was not correctly formatted. 
-#: FrontWidget.cpp:2309
+#: FrontWidget.cpp:2315
 msgctxt "FrontWidget|"
 msgid "Invalid URL"
 msgstr ""
@@ -990,7 +1002,7 @@ msgid "DNS lookup failure"
 msgstr ""
 
 # Error dialog title text. Actual error message will be shown inside the dialog. 
-#: ui/newprivmsgdialog.cpp:88 ui/newprivmsgdialog.cpp:133
+#: ui/newprivmsgdialog.cpp:88 ui/newprivmsgdialog.cpp:138
 msgctxt "NewPrivMessageDialog|"
 msgid "Error"
 msgstr ""
@@ -1002,7 +1014,7 @@ msgid "Recipient addr is not valid"
 msgstr ""
 
 # Error dialog content text. Dialog is shown when user tries to send a message to operator, whose encryption keys are present in local storage. 
-#: ui/newprivmsgdialog.cpp:134
+#: ui/newprivmsgdialog.cpp:139
 msgctxt "NewPrivMessageDialog|"
 msgid "Recipient encryption key not found from storage"
 msgstr ""
@@ -1038,13 +1050,13 @@ msgid "x509 cert generation went wrong, calling exit.."
 msgstr ""
 
 # Error message text. Will be shown in error message dialog in case when SSL certificate of the node could not be loaded from storage. After user dismisses the dialog, the application will close.
-#: datamodel/nodemodel.cpp:1594
+#: datamodel/nodemodel.cpp:1596
 msgctxt "NodeModel|"
 msgid "Cant load SSL cert"
 msgstr ""
 
 # Error message text. Will be shown in error message dialog in case when SSL key of the node could not be retrieved from local storage. After user dismisses the dialog, the application will close.
-#: datamodel/nodemodel.cpp:1624
+#: datamodel/nodemodel.cpp:1626
 msgctxt "NodeModel|"
 msgid "Cant load SSL key"
 msgstr ""
@@ -1140,19 +1152,19 @@ msgid "Save attachment to disk.."
 msgstr ""
 
 # Error dialog title text
-#: ui/profilecommentdisplay.cpp:90
+#: ui/profilecommentdisplay.cpp:92
 msgctxt "ProfileCommentDisplay|"
 msgid "Error"
 msgstr ""
 
 # Error dialog content text. Shown after user tried to access a profile comment and the comment could not be found
-#: ui/profilecommentdisplay.cpp:91
+#: ui/profilecommentdisplay.cpp:93
 msgctxt "ProfileCommentDisplay|"
 msgid "Article not found from local storage"
 msgstr ""
 
 # Text field label text. The text field whose label this is will show number how many attachements there are in the comment. 
-#: ui/profilecommentitemdelegate.cpp:91
+#: ui/profilecommentitemdelegate.cpp:93
 msgctxt "ProfileCommentItemDelegate|"
 msgid "Attachments: "
 msgstr ""
@@ -1191,6 +1203,18 @@ msgstr ""
 #: datamodel/profilereaderslistingmodel.cpp:174
 msgctxt "ProfileReadersListingModel|"
 msgid "Name or fingerprint of reader"
+msgstr ""
+
+# Error message text, displayed in dialog if audio hardware does not support the format. Should be rare occasion or then gross error like missing soundcard.
+#: call/ringtoneplayer.cpp:77
+msgctxt "RingtonePlayer|"
+msgid "raw audio format not supported by backend, cannot play audio."
+msgstr ""
+
+# Error message text shown in dialog if audio output API returned error in initialization. Should be rare error, or missing audio hardware .. or audio subsystem configuration error. 
+#: call/ringtoneplayer.cpp:93
+msgctxt "RingtonePlayer|"
+msgid "Could not initialize audio player."
 msgstr ""
 
 # Context menu item text. This context menu is shown when user right-clicks on top of search-results. This menu-item opens the currently-selected item from search results. 
@@ -1489,6 +1513,166 @@ msgctxt "TextEdit|"
 msgid "File way too big"
 msgstr ""
 
+# Button text for "incoming call" dialog. When user hits the button, call is answered. 
+#: net/voicecallengine.cpp:519
+msgctxt "VoiceCallEngine|"
+msgid "Accept"
+msgstr ""
+
+# Button text for "incoming call" dialog. When user hits the button, incoming call is rejected. 
+#: net/voicecallengine.cpp:527
+msgctxt "VoiceCallEngine|"
+msgid "Reject"
+msgstr ""
+
+# Button text for "ongoing call" dialog. When button is hit, call is closed. 
+#: net/voicecallengine.cpp:529
+msgctxt "VoiceCallEngine|"
+msgid "Close"
+msgstr ""
+
+# Tooltip text. Shown in listing of ongoing calls. This tooltip explains "operator address" column of the display. The text explained is SHA1-digest or operator name if known. 
+#: net/voicecallengine.cpp:545
+msgctxt "VoiceCallEngine|"
+msgid "Actual network address (SHA1) of the peer operator"
+msgstr ""
+
+# Tooltip text for list display that lists ongoing voice calls. The text explained is (IP) address of the remote node of the voice call participant. 
+#: net/voicecallengine.cpp:548
+msgctxt "VoiceCallEngine|"
+msgid "Network address of the remote node"
+msgstr ""
+
+# Column header text for display that lists ongoing calls. This gives header text for column that shows name of the call participant
+#: net/voicecallengine.cpp:558
+msgctxt "VoiceCallEngine|"
+msgid "Operator"
+msgstr ""
+
+# Column header text for display that lists ongoing calls. This gives header text for column that shows network address of the call participant
+#: net/voicecallengine.cpp:561
+msgctxt "VoiceCallEngine|"
+msgid "Node address"
+msgstr ""
+
+# Column header text for display that lists ongoing calls. This gives header text for column that shows state of the call (like open, closed, ringing etc)
+#: net/voicecallengine.cpp:564
+msgctxt "VoiceCallEngine|"
+msgid "Call status"
+msgstr ""
+
+# Column header text for display that lists ongoing calls. This gives header text for column containing buttons for accepting, rejecting and ending a call. 
+#: net/voicecallengine.cpp:567
+msgctxt "VoiceCallEngine|"
+msgid "Controls"
+msgstr ""
+
+# Column header text for display that lists ongoing calls. This gives header text for column that shows name column containing button for ending an ongoing call. 
+#: net/voicecallengine.cpp:570
+msgctxt "VoiceCallEngine|"
+msgid "Ending"
+msgstr ""
+
+# Call status text. When making a new outgoing call, this is status for new call that is not answered yet. 
+#: net/voicecallengine.cpp:607
+msgctxt "VoiceCallEngine|"
+msgid "Initializing"
+msgstr ""
+
+# Call status text. When receiving a new incoming call, this is status for new call that is not answered yet.
+#: net/voicecallengine.cpp:610
+msgctxt "VoiceCallEngine|"
+msgid "Incoming"
+msgstr ""
+
+# Call status text. When voice call is in progress, this is the status.
+#: net/voicecallengine.cpp:613
+msgctxt "VoiceCallEngine|"
+msgid "Open"
+msgstr ""
+
+# Call status text. When voice call is marked to be closed, this is its status.
+#: net/voicecallengine.cpp:616
+msgctxt "VoiceCallEngine|"
+msgid "Closing"
+msgstr ""
+
+# Call status text. When voice call is closed, this is the status text.
+#: net/voicecallengine.cpp:619
+msgctxt "VoiceCallEngine|"
+msgid "Closed"
+msgstr ""
+
+# Call status text. When voice call attempt ends in error, this is text displayed.
+#: net/voicecallengine.cpp:622
+msgctxt "VoiceCallEngine|"
+msgid "Error"
+msgstr ""
+
+# Call status text. When there is no voice call to display, this text may be displayed instead. 
+#: net/voicecallengine.cpp:625
+msgctxt "VoiceCallEngine|"
+msgid "No call"
+msgstr ""
+
+# Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "general purpose" excuse, when no detailed reason is know.
+#: net/voicecallengine.cpp:780
+msgctxt "VoiceCallEngine|"
+msgid "Audio call is not possible"
+msgstr ""
+
+# Tooltip text for button that initiates a new call. This gives an excuse why button is not dimmed and call is possible. 
+#: net/voicecallengine.cpp:786
+msgctxt "VoiceCallEngine|"
+msgid "Audio call is possible"
+msgstr ""
+
+# Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "SHA1 digest of operator is not known"
+#: net/voicecallengine.cpp:793
+msgctxt "VoiceCallEngine|"
+msgid "Audio call is not possible: operator address unknown"
+msgstr ""
+
+# Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "operators profile not found (from local database)"
+#: net/voicecallengine.cpp:799
+msgctxt "VoiceCallEngine|"
+msgid "Audio call is not possible: operator profile not found"
+msgstr ""
+
+# Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "there is no network address included in node information of the profile"
+#: net/voicecallengine.cpp:802
+msgctxt "VoiceCallEngine|"
+msgid "Audio call is not possible: operator has no node information in profile"
+msgstr ""
+
+# Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "there is no (ipv4) network connection to node"
+#: net/voicecallengine.cpp:821
+#, qt-format
+msgctxt "VoiceCallEngine|"
+msgid "Audio call is not possible: operators IPv4 address %1 not connected"
+msgstr ""
+
+# Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "there is no (ipv6) network connection to node"
+#: net/voicecallengine.cpp:828
+#, qt-format
+msgctxt "VoiceCallEngine|"
+msgid "Audio call is not possible: operators IPv6 address %1 not connected"
+msgstr ""
+
+# Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is protocol mismatch. 
+#: net/voicecallengine.cpp:839
+msgctxt "VoiceCallEngine|"
+msgid ""
+"Audio call is not possible: local node has no IPv6 address, operator has "
+"only IPv6 addr"
+msgstr ""
+
+# Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "operator does not publish network address of his node"
+#: net/voicecallengine.cpp:841
+msgctxt "VoiceCallEngine|"
+msgid "Audio call is not possible: operator does not publish network address"
+msgstr ""
+
 # Dialog title text for "about" dialog.
 #: ui/aboutDialog.ui:26
 msgctxt "aboutDialog|"
@@ -1644,6 +1828,30 @@ msgctxt "attachmentListDialog|"
 msgid "List of attached files"
 msgstr ""
 
+# Dialog title text for call status dialog.
+#: ui/callStatusDialog.ui:26
+msgctxt "callStatusDialog|"
+msgid "Call status"
+msgstr ""
+
+# Text in call status dialog for slider that shows audio volume of microphone
+#: ui/callStatusDialog.ui:49
+msgctxt "callStatusDialog|"
+msgid "Input level"
+msgstr ""
+
+# Title in call status dialog a column-list that lists ongoing calls
+#: ui/callStatusDialog.ui:65
+msgctxt "callStatusDialog|"
+msgid "Audio calls"
+msgstr ""
+
+# Text in call status dialog for slider that shows audio volume of speaker 
+#: ui/callStatusDialog.ui:90
+msgctxt "callStatusDialog|"
+msgid "Output level"
+msgstr ""
+
 # Dialog title text. Purpose of the dialog is to let user change properties of a frequent contact in contact-list. 
 #: ui/editContact.ui:26
 msgctxt "editContactDialog|"
@@ -1725,7 +1933,7 @@ msgid "My profile"
 msgstr ""
 
 # Text field label in "operators profile" tab. The field in questions shows SHA1-digest e.g. the real address of the operator. 
-#: frontWidget.ui:177 frontWidget.ui:932
+#: frontWidget.ui:177 frontWidget.ui:937
 msgctxt "frontWidget|"
 msgid "Profile address"
 msgstr ""
@@ -1851,7 +2059,7 @@ msgid "Shared files"
 msgstr ""
 
 # Title text inside "my profile" tab. Title text is for a list of comments made by other users regarding operators profile.
-#: frontWidget.ui:461 frontWidget.ui:892
+#: frontWidget.ui:461 frontWidget.ui:897
 msgctxt "frontWidget|"
 msgid "Latest comments"
 msgstr ""
@@ -1929,20 +2137,26 @@ msgctxt "frontWidget|"
 msgid "Send message to operator"
 msgstr ""
 
-# Button text inside "defails of operator profile" tab. When the button is clicked, dialog listing readers of the (private) profile. 
+# Button text in "operators details" view. Pressing the button initiates a new voice call to operator. 
 #: frontWidget.ui:879
+msgctxt "frontWidget|"
+msgid "Audio call"
+msgstr ""
+
+# Button text inside "defails of operator profile" tab. When the button is clicked, dialog listing readers of the (private) profile. 
+#: frontWidget.ui:884
 msgctxt "frontWidget|"
 msgid "View readers"
 msgstr ""
 
 # Button text inside "defails of operator profile" tab. When the button is clicked, a dialog is opened, dialog prompts user to enter a comment about the operator. 
-#: frontWidget.ui:927
+#: frontWidget.ui:932
 msgctxt "frontWidget|"
 msgid "Comment"
 msgstr ""
 
 # Button text inside "defails of operator profile" tab. When the button is clicked, the operator whose data is on display is added into contact-list. 
-#: frontWidget.ui:959
+#: frontWidget.ui:964
 msgctxt "frontWidget|"
 msgid "Add to contacts"
 msgstr ""
@@ -2381,6 +2595,66 @@ msgstr ""
 #: ui/settingsDialog.ui:274
 msgctxt "settingsDialog|"
 msgid "Nr of profile comments to keep"
+msgstr ""
+
+# Label for combo-box where user can choose between voice call ringtones. 
+#: ui/settingsDialog.ui:316
+msgctxt "settingsDialog|"
+msgid "Ringtone"
+msgstr ""
+
+# Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is performed with a bow.
+#: ui/settingsDialog.ui:324
+msgctxt "settingsDialog|"
+msgid "Bow"
+msgstr ""
+
+# Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is electrical.
+#: ui/settingsDialog.ui:329
+msgctxt "settingsDialog|"
+msgid "Electrical"
+msgstr ""
+
+# Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is performed in acoustic manner
+#: ui/settingsDialog.ui:334
+msgctxt "settingsDialog|"
+msgid "Acoustic"
+msgstr ""
+
+# Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is only a beep
+#: ui/settingsDialog.ui:339
+msgctxt "settingsDialog|"
+msgid "Beep"
+msgstr ""
+
+# Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is silent
+#: ui/settingsDialog.ui:344
+msgctxt "settingsDialog|"
+msgid "Silence"
+msgstr ""
+
+# Combox-box label text. Combo-box is for selecting which audio calls to accept, selections are like "all ; no calls at all ; from some operators ; .."
+#: ui/settingsDialog.ui:356
+msgctxt "settingsDialog|"
+msgid "Accept voice calls"
+msgstr ""
+
+# Combobox item text for selecting which audio calls to accept. Selecting this item lets all calls in. 
+#: ui/settingsDialog.ui:364
+msgctxt "settingsDialog|"
+msgid "All"
+msgstr ""
+
+# Combobox item text for selecting which audio calls to accept. Selecting this item lets in calls from trusted operators.
+#: ui/settingsDialog.ui:369
+msgctxt "settingsDialog|"
+msgid "From trusted operators"
+msgstr ""
+
+# Combobox item text for selecting which audio calls to accept. Selecting this item rejects all calls. 
+#: ui/settingsDialog.ui:374
+msgctxt "settingsDialog|"
+msgid "Accept no voice calls"
 msgstr ""
 
 # Dialog title text for a dialog that shows network connectivity details. 

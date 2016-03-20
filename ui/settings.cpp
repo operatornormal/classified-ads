@@ -47,7 +47,12 @@ SettingsDialog::SettingsDialog(QWidget *aParent,
     ui.nrAdsEdit->setValue ( iController.model().classifiedAdsModel().getMaxRowsToKeep() );
     ui.nrCommenstEdit->setValue ( iController.model().profileCommentModel().getMaxRowsToKeep() );
     ui.dnsNameEdit->setText( iController.getNode().DNSAddr()) ;
+    ui.ringtoneComboBox->setCurrentIndex(
+        (int)(iController.model().getRingtoneSetting())) ;
+    ui.callAcceptanceComboBox->setCurrentIndex(
+        (int)(iController.model().getCallAcceptanceSetting())) ;
     adjustSize() ;
+    connect (this, SIGNAL(rejected()), this, SLOT(deleteLater())) ;
 }
 
 SettingsDialog::~SettingsDialog() {
@@ -66,6 +71,10 @@ void SettingsDialog::okButtonClicked() {
     iController.model().classifiedAdsModel().setMaxRowsToKeep(ui.nrAdsEdit->value (  ));
     iController.model().profileCommentModel().setMaxRowsToKeep(ui.nrCommenstEdit->value (  )) ;
     iController.getNode().setDNSAddr(ui.dnsNameEdit->text( ) ) ;
+    iController.model().setRingtoneSetting(
+        (Model::RingtoneSetting)(ui.ringtoneComboBox->currentIndex())) ;
+    iController.model().setCallAcceptanceSetting(
+        (Model::CallAcceptanceSetting)(ui.callAcceptanceComboBox->currentIndex())) ;
     close() ;
     this->deleteLater() ;
 }

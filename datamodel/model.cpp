@@ -316,6 +316,7 @@ bool Model::openDB() {
             QLOG_STR("Cleaned away faulty comments " + QString::number(query.numRowsAffected () )) ;
         }
     }
+    createTablesV2() ; 
     return isDbOpen ;
 }
 
@@ -592,6 +593,41 @@ bool Model::createTables() {
     return ret;
 }
 
+// method check datastore version. if is 1, upgrades to version 2.
+bool Model::createTablesV2() {
+
+    QSqlQuery query;
+    bool ret ;
+    // don't pick up the same item again if less than 10 minutes passed
+    ret = query.prepare ("select datastore_version from settings" ) ;
+    ret = query.exec() ;
+
+    if ( !ret ) {
+        QLOG_STR("select datastore_version from settings: " + query.lastError().text());
+        emit error(MController::DbTransactionError, query.lastError().text()) ;
+    } else {
+        if ( query.next() && !query.isNull(0) ) {
+            int datastoreVersion ( query.value(0).toInt() ) ;
+            if ( datastoreVersion == 1 ) {
+                // upgrade datastore to version 2
+                QSqlQuery q;
+                ret = q.exec("alter table settings add column ringtone int not null default 0") ; 
+                if ( ret ) {
+                    QSqlQuery q3;
+                    ret = q3.exec("alter table settings add column call_acceptance int not null default 0") ; 
+                }
+                if ( ret ) {
+                    QSqlQuery q2;
+                    q2.exec("update settings set datastore_version = 2") ; 
+                } else {
+                    QLOG_STR("alter table settings: " + query.lastError().text());
+                    emit error(MController::DbTransactionError, query.lastError().text()) ;
+                }
+            }
+        }
+    }
+    return ret ; 
+}
 
 void Model::initPseudoRandom() {
     SSL_load_error_strings();
@@ -771,7 +807,8 @@ void Model::connectionStateChanged(Connection::ConnectionState aState,
         foreach ( const Connection *c, *iConnections ) {
             if ( c ) {
                 if ( c != aConnection &&
-                        aConnection->getPeerHash() == c->getPeerHash() ) {
+                     c->connectionState() == Connection::Open &&
+                     aConnection->getPeerHash() == c->getPeerHash() ) {
                     LOG_STR("Double connection to same node detected") ;
                     aConnection->iNeedsToRun = false ;
                     break ;
@@ -810,7 +847,9 @@ void Model::addItemToSend(const Hash& aDestinationNode,
     for(int i  = iConnections->size()-1 ; i >= 0 ; i-- ) {
         c = iConnections->value(i) ;
         nodeOfConnection = c->node() ;
-        if (nodeOfConnection && ( nodeOfConnection->nodeFingerPrint() == aDestinationNode ) ) {
+        if (c->connectionState() == Connection::Open &&
+            nodeOfConnection && 
+            ( nodeOfConnection->nodeFingerPrint() == aDestinationNode ) ) {
             // yes.
             c->iNextProtocolItemToSend.append(aBytesToSend) ;
             return ; // work done, get out
@@ -1277,15 +1316,12 @@ void Model::timerEvent(QTimerEvent*
     //
     // continue with database housekeeping
     //
-    QWaitCondition waitCondition;
-    QMutex mutex;
-    mutex.lock();
-    waitCondition.wait(&mutex, 50);// give other threads a chance..
+
+    QThread::yieldCurrentThread ();
     lock() ;
     iNodeModel->truncateDataTableToMaxRows() ;
     unlock() ;
-
-    waitCondition.wait(&mutex, 50);// give other threads a chance..
+    QThread::yieldCurrentThread ();
     lock() ;
     // looks like profiles (or more specifically, public keys) are
     // inserted from multitude of places ; with profile model
@@ -1294,22 +1330,25 @@ void Model::timerEvent(QTimerEvent*
     // and then go to work
     iProfileModel->truncateDataTableToMaxRows() ;
     unlock() ;
-
-    waitCondition.wait(&mutex, 50);// give other threads a chance..
+    QThread::yieldCurrentThread ();
     lock() ;
     iCaModel->truncateDataTableToMaxRows() ;
     unlock() ;
-
-    waitCondition.wait(&mutex, 50);// give other threads a chance..
+    QThread::yieldCurrentThread ();
     lock() ;
     iPrivMsgModel->truncateDataTableToMaxRows() ;
     unlock() ;
-
-    waitCondition.wait(&mutex, 50);// give other threads a chance..
+    QThread::yieldCurrentThread ();
     lock() ;
     iBinaryFileModel->truncateDataTableToMaxRows() ;
     unlock() ;
-    mutex.unlock() ;
+    QThread::yieldCurrentThread ();
+    lock() ;
+    iProfileCommentModel->updateDbTableRowCount() ;
+    // and then go to work
+    iProfileModel->truncateDataTableToMaxRows() ;
+    unlock() ;
+    QThread::yieldCurrentThread ();
 
     // then check out for local network addresses:
     if ( (iTimeOfLastNetworkAddrCheck + (120*60)) < // every 120 minutes
@@ -1322,4 +1361,62 @@ void Model::timerEvent(QTimerEvent*
     LOG_STR2( "timerEvent Timer ID: %d out" , event->timerId());
 }
 
+
+Model::RingtoneSetting Model::getRingtoneSetting() {
+    RingtoneSetting retval ( BowRingTone ) ; 
+    QSqlQuery query;
+    bool ret ;
+    
+    ret = query.prepare ("select ringtone from settings" ) ;
+    ret = query.exec() ;
+
+    if ( !ret ) {
+        QLOG_STR("select ringtone from settings: " + query.lastError().text());
+        emit error(MController::DbTransactionError, query.lastError().text()) ;
+    } else {
+        if ( query.next() && !query.isNull(0) ) {
+            retval = (Model::RingtoneSetting)(query.value(0).toInt());
+        }
+    }
+    return retval ; 
+}
+
+void Model::setRingtoneSetting(Model::RingtoneSetting aRingTone) {
+    QSqlQuery query;
+    bool ret ( query.prepare ("update settings set ringtone = :r" ) ) ;
+    if ( ret ) {
+        query.bindValue(":r", aRingTone) ;
+        query.exec() ;
+    }
+}
+
+
+
+Model::CallAcceptanceSetting Model::getCallAcceptanceSetting() {
+    CallAcceptanceSetting retval ( AcceptAllCalls ) ; 
+    QSqlQuery query;
+    bool ret ;
+    
+    ret = query.prepare ("select call_acceptance from settings" ) ;
+    ret = query.exec() ;
+
+    if ( !ret ) {
+        QLOG_STR("select call acceptance from settings: " + query.lastError().text());
+        emit error(MController::DbTransactionError, query.lastError().text()) ;
+    } else {
+        if ( query.next() && !query.isNull(0) ) {
+            retval = (Model::CallAcceptanceSetting)(query.value(0).toInt());
+        }
+    }
+    return retval ; 
+}
+
+void Model::setCallAcceptanceSetting(Model::CallAcceptanceSetting aAcceptance) {
+    QSqlQuery query;
+    bool ret ( query.prepare ("update settings set call_acceptance = :a" ) ) ;
+    if ( ret ) {
+        query.bindValue(":a", aAcceptance) ;
+        query.exec() ;
+    }
+}
 

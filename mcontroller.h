@@ -30,6 +30,8 @@ class NetworkListener ;
 class NetworkConnectorEngine ;
 class NetworkRequestExecutor;
 class BinaryFile ;
+class VoiceCallEngine ; 
+class MVoiceCallEngine ; 
 
 /**
  * @brief Pure-virtual interface class for controller.
@@ -64,7 +66,8 @@ public:
         ViewProfileDetails, /**< User wants to view details of profile */
         ViewCa, /**< User wants to view classified ad */
         ViewProfileComment, /**< User wants to view profile comment */
-        DisplayProgressDialog /**< puts wait dialog on screen */
+        DisplayProgressDialog, /**< puts wait dialog on screen */
+        VoiceCallToNode /**< User wants voice call to remote node */
     } ;
 
     /**
@@ -90,11 +93,13 @@ public:
      *        concerning item is not found from local storage,
      *        try to fetch it from given node ; is KNullHash,
      *        then just do fetch using normal algorithm.
+     * @param aAdditionalInformation possible explanation or other info
      * @return none
      */
     virtual void userInterfaceAction ( CAUserInterfaceRequest aRequest,
                                        const Hash& aHashConcerned = KNullHash,
-                                       const Hash& aFetchFromNode = KNullHash) = 0 ;
+                                       const Hash& aFetchFromNode = KNullHash,
+                                       const QString* aAdditionalInformation = NULL ) = 0 ;
 
     virtual void hideUI() = 0 ;
     /**
@@ -173,6 +178,21 @@ public slots:
      * method that puts dialog or similar on display, about a published file
      */
     virtual void displayFileInfoOnUi(const BinaryFile& aFileMetadata) = 0 ;
+    /**
+     * Method for getting voice call engine. If there is no engine
+     * prior to call, one will be constructed
+     * @return engine instance
+     */
+    virtual VoiceCallEngine* voiceCallEngine() = 0 ; 
+
+    /**
+     * Method for getting voice call engine interface. If there is no engine
+     * prior to call, one will be constructed. The instance is the same
+     * that is returned via @ref voiceCallEngine method. 
+     * 
+     * @return engine instance, possibly a mock-up for testing purposes
+     */
+    virtual MVoiceCallEngine* voiceCallEngineInterface() = 0 ; 
 } ;
 #endif
 

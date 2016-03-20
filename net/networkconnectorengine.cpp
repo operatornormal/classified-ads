@@ -189,6 +189,8 @@ void NetworkConnectorEngine::spawnNewConnection(const QHostAddress& aAddr,const 
     connect(c, SIGNAL(blackListNetworkAddr(QHostAddress ) ),
             this, SLOT(blackListNetworkAddr(QHostAddress ) ),
             Qt::QueuedConnection ) ;
+    connect(c, SIGNAL(connectionAttemptFailed(const Hash&) ),
+            networkListener, SLOT(connectionAttemptFailed(const Hash&) ) ) ;
     c->moveToThread(t) ;
     t->start();
     LOG_STR("NetworkConnectorEngine::spawnNewConnection out") ;

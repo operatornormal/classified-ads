@@ -31,6 +31,7 @@ class PublishingEngine ;
 class RetrievalEngine ;
 class QMainWindow ;
 class QMenu ;
+class VoiceCallEngine ; 
 
 /**
  * @brief Class for keeping app state.
@@ -77,11 +78,13 @@ public:
      *        concerning item is not found from local storage,
      *        try to fetch it from given node ; is KNullHash,
      *        then just do fetch using normal algorithm.
+     * @param aAdditionalInformation possible explanation or other info
      * @return none
      */
     virtual void userInterfaceAction ( CAUserInterfaceRequest aRequest,
                                        const Hash& aHashConcerned = KNullHash,
-                                       const Hash& aFetchFromNode = KNullHash)  ;
+                                       const Hash& aFetchFromNode = KNullHash,
+                                       const QString* aAdditionalInformation = NULL)  ;
     /**
      * method for hiding UI
      */
@@ -225,6 +228,18 @@ public slots:
      */
     virtual void displayFileInfoOnUi(const BinaryFile& aFileMetadata) ;
     /**
+     * Method for getting voice call engine, if there is any.
+     * From MController interface. 
+     * @return engine or null
+     */
+    virtual VoiceCallEngine* voiceCallEngine()  ; 
+    /**
+     * Method for getting voice call engine, if there is any.
+     * From MController interface. 
+     * @return engine or mockup. In normal runtime this just calls @ref voiceCallEngine. 
+     */
+    virtual MVoiceCallEngine* voiceCallEngineInterface()  ; 
+    /**
      * method for sending a poll around network regarding possible
      * update for a profile and possible addition of comments about
      * given profile.
@@ -298,6 +313,14 @@ private:
      * profile hash<->display_name mapping
      */
     QMap<Hash,QString> iHashDisplaynameMapping ;
+    /**
+     * Currently there is support for one voice call at time
+     */
+    VoiceCallEngine* iVoiceCallEngine ; 
+    /**
+     * Flag for destructor. If this is on, don't allocate more objects
+     */
+    bool iInsideDestructor ; 
 } ;
 #endif
 

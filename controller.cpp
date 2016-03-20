@@ -53,6 +53,8 @@
 #include "datamodel/profilecomment.h"
 #include "datamodel/trusttreemodel.h"
 #include "datamodel/binaryfile.h"
+#include "net/voicecallengine.h"
+#include "datamodel/voicecall.h"
 
 static const char *KPrivateDataContactsSection = "contacts" ;
 static const char *KPrivateDataContactsCache = "contactsCache" ;
@@ -77,7 +79,9 @@ Controller::Controller(QApplication &app) : iWin(NULL),
     iListener(NULL),
     iNetEngine(NULL),
     iPubEngine(NULL),
-    iRetrievalEngine(NULL) {
+    iRetrievalEngine(NULL),
+    iVoiceCallEngine (NULL),
+    iInsideDestructor(false) {
     LOG_STR("Controller::Controller in") ;
 #ifndef WIN32
     int pid ;
@@ -99,6 +103,8 @@ Controller::Controller(QApplication &app) : iWin(NULL),
     qRegisterMetaType<Hash>("Hash");
     qRegisterMetaType<ProtocolItemType>("ProtocolItemType");
     qRegisterMetaType<QHostAddress>("QHostAddress");
+    qRegisterMetaType<VoiceCallEngine::CallState>("VoiceCallEngine::CallState");
+    qRegisterMetaType<QVector<int> >("QVector<int>"); // used by dataChanged
     iWin = new QMainWindow(NULL) ;
     iWin->setWindowTitle(tr("Classified ads")) ;
     // somehow Qt should calculate size from widgets. it gets too small vertical..
@@ -184,6 +190,14 @@ Controller::Controller(QApplication &app) : iWin(NULL),
                         const Hash  )),
                 Qt::QueuedConnection )  ) ;
     assert(
+        connect(iListener,
+                SIGNAL(  nodeConnectionAttemptStatus(Connection::ConnectionState ,
+                         const Hash  ) ),
+                iCurrentWidget,
+                SLOT( nodeConnectionAttemptStatus(Connection::ConnectionState ,
+                        const Hash  )),
+                Qt::QueuedConnection )  ) ;
+    assert(
         connect(iRetrievalEngine,
                 SIGNAL(   notifyOfContentNotReceived(const Hash& ,
                           const ProtocolItemType  ) ),
@@ -194,6 +208,10 @@ Controller::Controller(QApplication &app) : iWin(NULL),
     // after signals are connected, start publishing and retrieval
     iPubEngine->start() ;
     iRetrievalEngine->start() ;
+    // instantiate voice call engine from UI thread, otherwise
+    // some transient connection-related thread will do it and 
+    // problems start appearing after the thread finishes..
+    this->voiceCallEngine() ; 
     /*
     // debug thing:
     iModel->classifiedAdsModel().reIndexAllAdsIntoFTS() ;
@@ -205,6 +223,11 @@ Controller::Controller(QApplication &app) : iWin(NULL),
 
 Controller::~Controller() {
     LOG_STR("Controller::~Controller") ;
+    iInsideDestructor = true ; 
+    if ( iVoiceCallEngine ) {
+        delete iVoiceCallEngine ; 
+        iVoiceCallEngine = NULL ; // call status dialog, if open, will ask..
+    }
     if ( iListener ) {
         iListener->stopAccepting() ;
     }
@@ -259,10 +282,13 @@ Controller::~Controller() {
     // now safe to delete listener (and net engine)
     LOG_STR("Controller::~Controller connections closed") ;
     delete iNetEngine ; // will delete also connections opened by net engine
+    iNetEngine = NULL ; 
     LOG_STR("Controller::~Controller netengine deleted") ;
     delete iListener ; // will delete also connections received by listener
+    iListener = NULL ; 
     LOG_STR("Controller::~Controller listener deleted") ;
     delete iModel ;
+    iModel = NULL ; 
     LOG_STR("Controller::~Controller datamodel") ;
     delete iNode ;
     if ( iFileMenu ) {
@@ -303,7 +329,8 @@ Controller::~Controller() {
 
 void Controller::userInterfaceAction ( CAUserInterfaceRequest aRequest,
                                        const Hash& aHashConcerned ,
-                                       const Hash& aFetchFromNode ) {
+                                       const Hash& aFetchFromNode ,
+                                       const QString* aAdditionalInformation ) {
     LOG_STR2("Controller::userInterfaceAction %d", aRequest) ;
 
     if ( aRequest == ViewProfileDetails ) {
@@ -408,6 +435,34 @@ void Controller::userInterfaceAction ( CAUserInterfaceRequest aRequest,
         connect(this,SIGNAL(waitDialogToBeDismissed()),
                 waitDialog,SLOT(reject())) ;
         waitDialog->exec() ;
+    } else if ( aRequest == VoiceCallToNode && iNode != NULL ) {
+        QLOG_STR("Voice call request to node " +
+                 aHashConcerned.toString() ) ;
+        // here let voice call engine handle all the logic:
+        if ( !iVoiceCallEngine ) {
+            this->voiceCallEngine() ; // has side effect of instantiating one
+        }
+        VoiceCall callData;
+        callData.iCallId = rand() ; 
+        callData.iTimeOfCallAttempt = QDateTime::currentDateTimeUtc().toTime_t() ;
+        callData.iOkToProceed = true ; 
+        quint32 dummyTimeStamp ; 
+        iModel->lock() ; QLOG_STR("unlock " + QString(__FILE__) + " "+ QString::number(__LINE__));
+        iModel->contentEncryptionModel().PublicKey(iProfileHash,
+                                                   callData.iOriginatingOperatorKey,
+                                                   &dummyTimeStamp) ; 
+
+        callData.iOriginatingNode = iNode->nodeFingerPrint() ;
+        callData.iDestinationNode = iModel->nodeModel().nodeByHash(aHashConcerned)->nodeFingerPrint(); 
+        if ( aAdditionalInformation ) {
+            callData.iPeerOperatorNick = *aAdditionalInformation ; 
+            QLOG_STR("Peer nick was set to " + callData.iPeerOperatorNick ) ; 
+        }
+        iVoiceCallEngine->insertCallStatusData(callData,
+                                               iNode->nodeFingerPrint() ) ; 
+        iModel->unlock() ; QLOG_STR("unlock " + QString(__FILE__) + " "+ QString::number(__LINE__));
+        callData.iOriginatingNode = KNullHash ; // or it gets deleted
+        // calldata destructor will delete callData.iDestinationNode
     } else {
         LOG_STR2("Unhandled user interface request %d", aRequest) ;
     }
@@ -1122,4 +1177,32 @@ void Controller::sendProfileUpdateQuery(const Hash& aProfileFingerPrint,
     req.iTimeStampOfItem = iModel->profileModel().getLastProfileUpdateTime (aProfileFingerPrint) ;
     iModel->addNetworkRequest(req) ;
     iModel->unlock() ;
+}
+
+VoiceCallEngine* Controller::voiceCallEngine() {
+    if ( !iVoiceCallEngine && iInsideDestructor == false ) {
+        iVoiceCallEngine = new VoiceCallEngine(*this,
+                                               *iModel) ; 
+        assert(
+            connect(iVoiceCallEngine,
+                    SIGNAL(   callStateChanged(quint32,
+                                               VoiceCallEngine::CallState) ),
+                    iCurrentWidget,
+                    SLOT(    callStateChanged(quint32,
+                                              VoiceCallEngine::CallState) ),
+                    Qt::QueuedConnection )  ) ;
+        assert(
+            connect(iListener,
+                    SIGNAL(  nodeConnectionAttemptStatus(Connection::ConnectionState ,
+                                                         const Hash  ) ),
+                    iVoiceCallEngine,
+                    SLOT( nodeConnectionAttemptStatus(Connection::ConnectionState ,
+                                                      const Hash  )),
+                    Qt::QueuedConnection )  ) ;
+    }
+    return iVoiceCallEngine ;
+} 
+
+MVoiceCallEngine* Controller::voiceCallEngineInterface() {
+    return this->voiceCallEngine() ; 
 }

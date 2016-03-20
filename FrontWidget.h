@@ -33,6 +33,7 @@
 #include <QHeaderView>
 #include "datamodel/contactlistingmodel.h"
 #include "datamodel/profilecommentlistingmodel.h"
+#include "net/voicecallengine.h" // for VoiceCallEngine::CallState
 
 class Profile ;
 class BinaryFileListingModel ;
@@ -225,6 +226,24 @@ public slots:
      * actions
      */
     void updateFileSelectionActions() ;
+    /** 
+     * when connection is attempted, @ref NetworkListener will
+     * emit the status (failed or success) of the connection,
+     * emitted signal is connected here, among other places
+     */
+    void nodeConnectionAttemptStatus(Connection::ConnectionState aStatus,
+                                     const Hash aHashOfAttemptedNode );
+    /**
+     * Slot that is hit when user wants to make a new voice call to
+     * operator
+     */
+    void voiceCallButtonPressed() ; 
+    /**
+     * Slot that is hit when call status changes. This is signal/slot
+     * equivalent of call status observer. 
+     */
+    void callStateChanged(quint32 aCallId, 
+                          VoiceCallEngine::CallState aState) ; 
 signals:
     void error(MController::CAErrorSituation aError,
                const QString& aExplanation) ;
@@ -285,6 +304,7 @@ private: // methods
     void setCaDocumentSize() ;
     void setPrivMsgSize() ;
     void doShowFileMetadata(const Hash& aBinaryFileFingerPrint) ;
+    void setVoiceCallButtonStatus() ;
 private:
     Ui::frontWidget ui ;
     Controller* iController ;

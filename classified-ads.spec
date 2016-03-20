@@ -8,9 +8,9 @@ License:	LGPLv2
 URL:		http://katiska.org/classified_ads/
 Source0:	https://github.com/operatornormal/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Source1:	https://github.com/operatornormal/classified-ads/blob/graphics/preprocessed.tar.gz?raw=true#/%{name}-graphics-%{version}.tar.gz
-BuildRequires:	qt5-qtbase-devel
+BuildRequires:	qt5-qtbase-devel, qt5-qtmultimedia-devel
 BuildRequires:	openssl-devel, libnatpmp-devel, miniupnpc-devel, gettext
-BuildRequires:	libappstream-glib, desktop-file-utils
+BuildRequires:	libappstream-glib, desktop-file-utils, opus-devel
 %description
 Classified ads is an attempt to re-produce parts of the functionality
 that went away when Usenet news ceased to exist. This attempt tries to

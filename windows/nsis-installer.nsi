@@ -49,6 +49,7 @@ CreateDirectory "$INSTDIR\imageformats"
 CreateDirectory "$INSTDIR\printsupport"
 CreateDirectory "$INSTDIR\platforms"
 CreateDirectory "$INSTDIR\sqldrivers"
+CreateDirectory "$INSTDIR\audio"
 file /oname=miniupnpc.dll ..\..\miniupnpc-1.9\miniupnpc.dll
 CreateShortCut "$SMPROGRAMS\Classified-ads\Classified-ads.lnk" "$INSTDIR\Classified-ads.exe"
 file /oname=D3Dcompiler_41.dll deps\D3Dcompiler_41.dll
@@ -57,8 +58,10 @@ file /oname=libGLESV2.dll deps\libGLESV2.dll
 file /oname=libgcc_s_dw2-1.dll deps\libgcc_s_dw2-1.dll
 file /oname=libstdc++-6.dll deps\libstdc++-6.dll
 file /oname=libwinpthread-1.dll deps\libwinpthread-1.dll
+file /oname=opengl32sw.dll deps\opengl32sw.dll
 file /oname=Qt5Core.dll deps\Qt5Core.dll
 file /oname=Qt5Gui.dll deps\Qt5Gui.dll
+file /oname=Qt5Multimedia.dll deps\Qt5Multimedia.dll
 file /oname=Qt5Network.dll deps\Qt5Network.dll
 file /oname=Qt5PrintSupport.dll deps\Qt5PrintSupport.dll
 file /oname=Qt5Sql.dll deps\Qt5Sql.dll
@@ -82,6 +85,7 @@ file /oname=imageformats\qwebp.dll ..\release\imageformats\qwebp.dll
 file /oname=platforms\qwindows.dll ..\release\platforms\qwindows.dll
 file /oname=printsupport\windowsprintersupport.dll ..\release\printsupport\windowsprintersupport.dll
 file /oname=sqldrivers\qsqlite.dll ..\release\sqldrivers\qsqlite.dll
+file /oname=audio\qtaudio_windows.dll ..\release\audio\qtaudio_windows.dll
 file /oname=libeay32.dll ..\release\libeay32.dll
 file /oname=ssleay32.dll ..\release\ssleay32.dll
 file /oname=libiconv-2.dll ..\release\libiconv-2.dll
@@ -117,6 +121,8 @@ delete "$INSTDIR\libGLESV2.dll"
 delete "$INSTDIR\libgcc_s_dw2-1.dll"
 delete "$INSTDIR\libstdc++-6.dll"
 delete "$INSTDIR\libwinpthread-1.dll"
+delete "$INSTDIR\opengl32sw.dll"
+delete "$INSTDIR\Qt5Multimedia.dll"
 delete "$INSTDIR\Qt5Core.dll"
 delete "$INSTDIR\Qt5Gui.dll"
 delete "$INSTDIR\Qt5Network.dll"
@@ -143,6 +149,7 @@ delete "$INSTDIR\imageformats\qwebp.dll"
 delete "$INSTDIR\platforms\qwindows.dll"
 delete "$INSTDIR\printsupport\windowsprintersupport.dll"
 delete "$INSTDIR\sqldrivers\qsqlite.dll"
+delete "$INSTDIR\audio\qtaudio_windows.dll"
 delete "$INSTDIR\libeay32.dll"
 delete "$INSTDIR\ssleay32.dll"
 delete "$INSTDIR\miniupnpc.dll"
@@ -163,6 +170,7 @@ RMDIR "$INSTDIR\imageformats"
 RMDIR "$INSTDIR\printsupport"
 RMDIR "$INSTDIR\platforms"
 RMDIR "$INSTDIR\sqldrivers"
+RMDIR "$INSTDIR\audio"
 RMDIR "$INSTDIR"
 DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\Classified-ads"
 DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Classified-ads"
