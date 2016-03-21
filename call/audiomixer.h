@@ -23,6 +23,8 @@
 
 #include <QObject>
 #include <QByteArray>
+#include <QQueue>
+
 class Model ; 
 
 /**
