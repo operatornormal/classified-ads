@@ -23,6 +23,7 @@
 #include "../log.h"
 #include <QCoreApplication>
 #include "../datamodel/model.h"
+#include <limits>
 
 AudioPlayer::AudioPlayer(Model& aModel ,
                          int aFrequency ,

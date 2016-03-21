@@ -24,6 +24,7 @@
 #include <QSysInfo>
 #include "../log.h"
 #include "../datamodel/model.h"
+#include <limits>
 
 /** how long time is recorded into each packet */
 const int KProcessPacketSizeMilliSec ( 60 ) ; 
