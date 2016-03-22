@@ -17,6 +17,7 @@ that went away when Usenet news ceased to exist. This attempt tries to
 fix the problem of disappearing news-servers so that there is no servers
 required and no service providers needed; data storage is implemented
 inside client applications that users are running.
+%define debug_package %{nil}
 %prep
 %setup -q -a 1
 
