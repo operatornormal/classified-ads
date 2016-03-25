@@ -86,6 +86,25 @@ int main(int argc, char *argv[]) {
         QLOG_STR( "WSAStartup() success");
     }
 #endif
+#if !(defined(WIN32)||defined(Q_OS_OSX))
+#if QT_VERSION >= 0x050000
+    QString platform ( QGuiApplication::platformName() ) ;
+    bool have_xcb ( platform.compare("xcb") == 0 || platform.length()==0) ;
+    QLOG_STR("Platform: " + QGuiApplication::platformName() + 
+        " len = " + 
+             QString::number(platform.length())) ; 
+    bool have_display ( getenv("DISPLAY") != NULL  ) ;
+    bool have_wayland ( getenv("WAYLAND_DISPLAY") != NULL ) ;
+    if ( have_xcb && ( 
+		       have_display==false &&
+		       have_wayland==false ) ) {
+      // so, we have "xcb" that is normal linux. and we have no $DISPLAY
+      // nor $WAYLAND_DISPLAY -> this spells some problems..
+      fprintf(stderr,"No $DISPLAY/WAYLAND_DISPLAY enviroment variable set, cant continue\n") ;
+      return 0 ; 
+    } 
+#endif // qt version
+#endif // check of $DISPLAY or $WAYLAND_DISPLAY
     app = new QApplication (argc, argv);
 
     CATranslator caTranslator;
