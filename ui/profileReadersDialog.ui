@@ -63,7 +63,7 @@
         </size>
        </property>
        <property name="text">
-        <string>Add seleted to list of readers</string>
+        <string>Add selected to list of readers</string>
        </property>
       </widget>
      </item>
