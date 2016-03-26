@@ -48,6 +48,7 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/classified-ads.deskt
 %lang(fi)/usr/*/locale/fi/LC_MESSAGES/%{name}.mo
 %lang(sv)/usr/*/locale/sv/LC_MESSAGES/%{name}.mo
 %lang(da)/usr/*/locale/da/LC_MESSAGES/%{name}.mo
+%lang(uk)/usr/*/locale/uk/LC_MESSAGES/%{name}.mo
 %license LICENSE
 %changelog
 * Sat Oct 10 2015 Antti Jarvinen <antti.jarvinen@katiska.org> - 0.09-1

@@ -20,7 +20,7 @@
 
 # If adding a new translation, list it here. Also see the list 
 # in "install" target.
-translations = fi.mo sv.mo da.mo
+translations = fi.mo sv.mo da.mo uk.mo
 
 .SUFFIXES: .mo .po
 
@@ -41,3 +41,5 @@ install:	all
 	$(DESTDIR)/usr/share/locale/sv/LC_MESSAGES/classified-ads.mo
 	install -m 644 -D -T da.mo \
 	$(DESTDIR)/usr/share/locale/da/LC_MESSAGES/classified-ads.mo
+	install -m 644 -D -T uk.mo \
+	$(DESTDIR)/usr/share/locale/uk/LC_MESSAGES/classified-ads.mo
