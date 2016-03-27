@@ -1,5 +1,5 @@
 Name:		classified-ads
-Version:	0.09
+Version:	0.10
 Release:	1%{?dist}
 Summary:	Classified ads is a program for posting ads online
 
@@ -8,15 +8,15 @@ License:	LGPLv2
 URL:		http://katiska.org/classified_ads/
 Source0:	https://github.com/operatornormal/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Source1:	https://github.com/operatornormal/classified-ads/blob/graphics/preprocessed.tar.gz?raw=true#/%{name}-graphics-%{version}.tar.gz
-BuildRequires: qt5-qtbase-devel
-BuildRequires: qt5-qtmultimedia-devel
-BuildRequires: openssl-devel
-BuildRequires: libnatpmp-devel
-BuildRequires: miniupnpc-devel
-BuildRequires: gettext
-BuildRequires: libappstream-glib
-BuildRequires: desktop-file-utils
-BuildRequires: opus-devel
+BuildRequires:	qt5-qtbase-devel
+BuildRequires:	qt5-qtmultimedia-devel
+BuildRequires:	openssl-devel
+BuildRequires:	libnatpmp-devel
+BuildRequires:	miniupnpc-devel
+BuildRequires:	gettext
+BuildRequires:	libappstream-glib
+BuildRequires:	desktop-file-utils
+BuildRequires:	opus-devel
 
 %description
 Classified ads is an attempt to re-produce parts of the functionality
@@ -36,21 +36,20 @@ make %{?_smp_mflags}
 INSTALL_ROOT=%{buildroot} make install DESTDIR=%{buildroot}
 appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/classified-ads.appdata.xml
 desktop-file-validate %{buildroot}/%{_datadir}/applications/classified-ads.desktop
-%files
+%find_lang %{name}
+%files -f %{name}.lang
 %doc README.TXT
 %{_bindir}/classified-ads
 %{_datadir}/applications/classified-ads.desktop
 %dir %{_datadir}/app-install
 %dir %{_datadir}/app-install/icons
 %{_datadir}/app-install/icons/turt-transparent-128x128.png
-%{_mandir}/man1/classified-ads.1.gz
+%{_mandir}/man1/classified-ads.1.*
 %{_datadir}/appdata/classified-ads.appdata.xml
-%lang(fi)/usr/*/locale/fi/LC_MESSAGES/%{name}.mo
-%lang(sv)/usr/*/locale/sv/LC_MESSAGES/%{name}.mo
-%lang(da)/usr/*/locale/da/LC_MESSAGES/%{name}.mo
-%lang(uk)/usr/*/locale/uk/LC_MESSAGES/%{name}.mo
 %license LICENSE
 %changelog
+* Sun Mar 27 2016 Antti Jarvinen <antti.jarvinen@katiska.org> - 0.10-1
+- New upstream version: audio capabilities and translation additions
 * Sat Oct 10 2015 Antti Jarvinen <antti.jarvinen@katiska.org> - 0.09-1
 - Fixes to serious networking bugs
 - Translation additions
