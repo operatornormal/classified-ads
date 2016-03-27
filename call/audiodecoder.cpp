@@ -19,7 +19,6 @@
 */
 
 #include "audiodecoder.h"
-#include <QDebug>
 #include "../log.h"
 
 const int KDecodedBufferSize ( 1024 * 6 ) ; 
@@ -53,7 +52,8 @@ AudioDecoder::~AudioDecoder() {
 
 void AudioDecoder::frameReceived(quint32 aCallId,
                                  quint32 aSeqNo,
-                                 const QByteArray& aAudioData) {
+                                 const QByteArray& aAudioData,
+                                 Hash aOriginatingNode ) {
     if ( iDecoder && aAudioData.size() ) {
         int frameSize = ( iSampleRate / 1000 ) * 60 ;
         QLOG_STR( "Number of frames in packet " + QString::number(frameSize) )  ; 
@@ -70,7 +70,10 @@ void AudioDecoder::frameReceived(quint32 aCallId,
             // this is not queued connection, will be processed
             // synchronously by mixer. note that in this
             // stage datamodel lock is *on*. 
-            emit frameDecoded(aCallId,aSeqNo,iDecodedData.mid(0,resultLen*iNumChannels*sizeof(float))) ; 
+            emit frameDecoded(aCallId,
+                              aSeqNo,
+                              iDecodedData.mid(0,resultLen*iNumChannels*sizeof(float)),
+                              aOriginatingNode ) ; 
         }
     }
 }

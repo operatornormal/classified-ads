@@ -18,6 +18,38 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
+/**
+ * @mainpage Classified ads
+ *
+ * Classified ads is internet communications program that works
+ * in distributed manner, requiring and supporting no concept of
+ * "server". Classified ads supports
+ *  - Concept of operator, that is identified by encryption key and
+ *    can contain also other data like real name that human being
+ *    operating the profile wants to publish.
+ *  - Making some data available to listed operators only, this is
+ *    done by marking a operator profile private. 
+ *  - Sending and receiving 
+ *   -# Public messages, that are called "classified ads" due to 
+ *      classification that they carry,
+ *   -# Private messages between operators,
+ *   -# Comments regarding operators, readable by group that see
+ *      profile of the commented operator.
+ *  - Basic word-based search functions.
+ *  - Voice calls between operator nodes. 
+ *
+ * For more information see http://katiska.org/classified-ads/. In
+ * order to use classified ads in meaningful manner, user needs to
+ * have the operated instance of this program to connect to some other
+ * program instance over some network. Classified ads tries to do
+ * that automatically but it may be necessary to ask for network address
+ * of node operated by a friend to get connected and started.
+ *
+ * Classified ads is released under LGPL license. 
+ *
+ * \copyright Antti Järvinen and others 2013-2016. 
+ */
+
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 #include <QtGui>

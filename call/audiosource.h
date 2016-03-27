@@ -97,8 +97,12 @@ signals:
      *        floats in range [-1,1]
      * @param aSeqNo sequence number of the captured frame, it will
      *        sequentially increase as time passes 
+     * @param aVolumeLevel calculated average volume level
+     *        of frame ; will be used by audio mixer
      */
-    void frameCaptured(const QByteArray& aFrame,quint32 aSeqNo) ;
+    void frameCaptured(const QByteArray& aFrame,
+                       quint32 aSeqNo,
+                       float aVolumeLevel) ;
     /**
      * This is actually average audio volume, in range [0,1] 
      */

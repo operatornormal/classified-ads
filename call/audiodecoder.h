@@ -23,6 +23,7 @@
 
 #include <QObject>
 #include <opus/opus.h> // for data types
+#include "../util/hash.h"
 
 /**
  * @brief class for de-compressing audio received from network
@@ -52,14 +53,16 @@ signals:
      */
 void frameDecoded(quint32 aCallId,
                   quint32 aSeqNo,
-                  const QByteArray& aEncodedData) ;
+                  const QByteArray& aEncodedData,
+                  Hash  aOriginatingNode ) ;
 public slots: 
 /**
  *  Received audio frames to be de-coded are connected to this slot.
  */
 void frameReceived(quint32 aCallId,
                    quint32 aSeqNo,
-                   const QByteArray& aAudioData) ;  
+                   const QByteArray& aAudioData,
+                   Hash aOriginatingNode ) ;  
 private: // members
     OpusDecoder* iDecoder ; 
     QByteArray iDecodedData ; 

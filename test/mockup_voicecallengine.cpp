@@ -46,7 +46,7 @@ void MockUpVoiceCallEngine::insertCallData(quint32 aCallId,
                                            quint32 aSeqNo,
                                            PayloadType aPayloadType,
                                            const QByteArray& aPayload,
-                                           const Hash& aSendingNode) {
+                                           Hash& aSendingNode) {
     QLOG_STR("MockUpVoiceCallEngine::insertCallData " + 
              QString::number(aCallId )) ; 
     iCallIdOfReceivedRtData = aCallId ; 

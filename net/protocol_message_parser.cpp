@@ -1288,8 +1288,9 @@ bool ProtocolMessageParser::parseVoiceCall( const QByteArray& aQueryBytes,
                                     // verify ok
                                     VoiceCallEngine* eng (iController.voiceCallEngine()) ;
                                     if ( eng ) {
+                                        Hash nodeHash ( aConnection.getPeerHash() ) ; 
                                         eng->insertCallStatusData(callData,
-                                                                  aConnection.getPeerHash());
+                                                                  nodeHash );
                                     }
                                     retval = true ;
                                 }
@@ -1300,8 +1301,9 @@ bool ProtocolMessageParser::parseVoiceCall( const QByteArray& aQueryBytes,
                             iModel.lock() ;
                             VoiceCallEngine* eng (iController.voiceCallEngine()) ;
                             if ( eng ) {
+                                Hash nodeHash ( aConnection.getPeerHash() ) ; 
                                 eng->insertCallStatusData(callData,
-                                                          aConnection.getPeerHash());
+                                                          nodeHash);
                                 
                             }
                             iModel.unlock() ;
@@ -1330,8 +1332,9 @@ bool ProtocolMessageParser::parseVoiceCall( const QByteArray& aQueryBytes,
                                 // verify ok
                                 VoiceCallEngine* eng (iController.voiceCallEngine()) ;
                                 if ( eng ) {
+                                    Hash nodeHash ( aConnection.getPeerHash() ) ; 
                                     eng->insertCallStatusData(callData,
-                                                              aConnection.getPeerHash());
+                                                              nodeHash);
                                 }                                
                                 retval = true ;
                             }
@@ -1343,8 +1346,9 @@ bool ProtocolMessageParser::parseVoiceCall( const QByteArray& aQueryBytes,
                     iModel.lock() ;
                     VoiceCallEngine* eng (iController.voiceCallEngine()) ;
                     if ( eng ) {
+                        Hash nodeHash ( aConnection.getPeerHash() ) ; 
                         eng->insertCallStatusData(callData,
-                                                  aConnection.getPeerHash());
+                                                  nodeHash);
                     }
                     iModel.unlock() ;
                     retval = true ;
@@ -1407,11 +1411,12 @@ bool  ProtocolMessageParser::parseCallRtData( const QByteArray& aQueryBytes,
             QByteArray payload ( aQueryBytes.mid(pos, sizeOfPayload) ) ; 
             VoiceCallEngine* eng (iController.voiceCallEngine()) ;
             if ( eng ) {
+                Hash nodeHash( aConnection.getPeerHash() ) ; 
                 eng->insertCallData(callId,
                                     seqNo,
                                     VoiceCallEngine::Audio,
                                     payload,
-                                    aConnection.getPeerHash());
+                                    nodeHash);
             }
 	    // with call data insert return value is not checked,
 	    // data either went there or it did not, if we got this

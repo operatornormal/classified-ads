@@ -103,7 +103,7 @@ public:
                                 quint32 aSeqNo,
                                 PayloadType aPayloadType,
                                 const QByteArray& aPayload,
-                                const Hash& aSendingNode) = 0 ; 
+                                Hash& aSendingNode) = 0 ; 
 
     /**
      * Method for reception of call status data. This is called

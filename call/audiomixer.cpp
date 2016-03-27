@@ -50,21 +50,44 @@ AudioMixer::~AudioMixer() {
 
 // when this is called,  datamodel is locked
 void AudioMixer::insertCapturedAudioFrame ( const QByteArray& aFrame,
-        quint32 aSeqNo ) {
+        quint32 aSeqNo,
+        float aVolumeLevel ) {
     doInsertAudioFrame (  aFrame,
                           true,
                           aSeqNo,
-                          0 );
+                          0 ,
+                          aVolumeLevel,
+                          KNullHash );
 }
 
 // when this is called,  datamodel is locked
 void AudioMixer::insertReceivedAudioFrame ( quint32 aCallId,
         quint32 aSeqNo,
-        const QByteArray& aFrame ) {
+        const QByteArray& aFrame,
+        Hash aOriginatingNode ) {
+    // audio frames coming from remote nodes have no average
+    // volume level calculated so lets do it here:
+    float* samples((float *)( aFrame.data() )) ;
+    float value ( 0.0f ) ;
+    float volumeSum ( 0.0f ) ;
+    int numberOfSamples = aFrame.size() / sizeof(float) ;
+    numberOfSamples-- ;
+    for ( ; numberOfSamples >= 0 ; numberOfSamples-- ) {
+        value = samples[numberOfSamples] ;
+        // in float presentation the samples need to have
+        // numerical value between [-1,1] so lets scale the
+        // values ;
+        volumeSum = volumeSum + qAbs( value ) ;
+    }
+    numberOfSamples = aFrame.size() / sizeof(float) ;
+    float volumeLevel ( volumeSum/(float)numberOfSamples ) ;
+
     doInsertAudioFrame (  aFrame,
                           false,
                           aSeqNo,
-                          aCallId );
+                          aCallId,
+                          volumeLevel,
+                          aOriginatingNode );
 }
 
 
@@ -73,13 +96,15 @@ void AudioMixer::insertReceivedAudioFrame ( quint32 aCallId,
 void AudioMixer::doInsertAudioFrame ( const QByteArray& aFrame,
                                       bool aIsLocallyCaptured,
                                       quint32 aSeqNo,
-                                      quint32 aCallId ) {
+                                      quint32 aCallId,
+                                      float aVolumeLevel,
+                                      Hash &aOriginatingNode ) {
     bool inserted ( false ) ;
     int indexFound ( -1 ) ;
 
     for ( int i = iStreams.size()-1 ; i >= 0 ; i-- ) {
-        AudioFrameMetadata& s ( iStreams[i] ) ;
-        if ( s.iCallId == aCallId ||
+        const AudioFrameMetadata& s ( iStreams[i] ) ;
+        if ( s.iNode == aOriginatingNode ||
                 ( ( s.iIsLocallyCaptured == aIsLocallyCaptured ) &&
                   aIsLocallyCaptured == true )) {
             indexFound = i ;
@@ -99,6 +124,7 @@ void AudioMixer::doInsertAudioFrame ( const QByteArray& aFrame,
                 f.iCallId = aCallId  ;
                 f.iSeqNo = aSeqNo ;
                 f.iFrame.append ( aFrame ) ;
+                f.iVolumeLevel = aVolumeLevel ;
                 f.iIsLocallyCaptured = aIsLocallyCaptured ;
                 if ( metaData.iMaxSeqSeen == 0 ||
                         ( metaData.iMaxSeqSeen + 1 ) == aSeqNo ) {
@@ -158,9 +184,11 @@ void AudioMixer::doInsertAudioFrame ( const QByteArray& aFrame,
 
 void AudioMixer::insertStream (quint32 aCallId,
                                quint32 aStartingSeq,
-                               bool aIsLocallyCaptured) {
+                               bool aIsLocallyCaptured,
+                               const Hash& aOriginatingNode) {
     QLOG_STR("AudioMixer::insertStream " + QString::number(aCallId) +
-             " local " + QString::number(aIsLocallyCaptured) ) ;
+             " local " + QString::number(aIsLocallyCaptured) +
+             " node " + aOriginatingNode.toString() ) ;
     for ( int i = iStreams.size()-1 ; i >= 0 ; i-- ) {
         AudioFrameMetadata& s ( iStreams[i] ) ;
         if ( s.iCallId == aCallId &&
@@ -174,6 +202,14 @@ void AudioMixer::insertStream (quint32 aCallId,
     newStream.iStartingSeq = aStartingSeq ;
     newStream.iMaxSeqSeen = aStartingSeq ;
     newStream.iIsLocallyCaptured = aIsLocallyCaptured ;
+    newStream.iNode = aOriginatingNode ;
+    QLOG_STR("Appending stream to mixer callid = " +
+             QString::number(newStream.iCallId) +
+             " local cap = "  +
+             QString::number(newStream.iIsLocallyCaptured) +
+             " hash of orig node = " +
+             newStream.iNode.toString()) ;
+
     iStreams.append(newStream) ;
     // add queue for voice data
     QQueue<AudioFrame> buf ;
@@ -213,23 +249,29 @@ void AudioMixer::removeStream (quint32 aCallId) {
 // to networked remote parties
 void AudioMixer::tryMixFrames(quint32 aCallId,
                               quint32 aSeqNo) {
-    QLOG_STR("tryMixFrames, sizes = " +
-             QString::number( iIndexesToMixForLocalSpeaker.size()) + " " +
-             QString::number( iIndexesToMixForRemoteOutput.size())) ;
     // lets see, we have several options for our mode of work..
     if ( ( iIndexesToMixForLocalSpeaker.size() == 1 &&
             iIndexesToMixForRemoteOutput.size() == 1 ) ) {
         // in this case we have single call and there is no need to mix
+
         while( iAudioDataBuffer[iIndexesToMixForLocalSpeaker[0]].size()) {
             AudioFrame frame ( iAudioDataBuffer[iIndexesToMixForLocalSpeaker[0]].dequeue()) ;
             emit frameReadyForLocalSpeaker( frame.iFrame ) ;
         }
         while( iAudioDataBuffer[iIndexesToMixForRemoteOutput[0]].size()) {
             AudioFrame frame ( iAudioDataBuffer[iIndexesToMixForRemoteOutput[0]].dequeue()) ;
-            emit frameReadyForRemoteSend(
-                aCallId,
-                aSeqNo,
-                frame.iFrame ) ;
+            if ( iStreams.size() > 0 ) {
+                emit frameReadyForRemoteSend(
+                    aCallId,
+                    aSeqNo,
+                    frame.iFrame,
+                    // here: we have 2 streams, one is local capture
+                    // and it has iNode value 0. This is the stream
+                    // that we're taking from. So the destination address
+                    // actually is found from the stream, that we're
+                    // not handling here, e.g. "for local speaker":
+                    iStreams[iIndexesToMixForLocalSpeaker[0]].iNode ) ;
+            }
         }
     } else {
         // then non-trivial cases where mixing actually happens, previous case just
@@ -254,84 +296,95 @@ void AudioMixer::tryMixFrames(quint32 aCallId,
             for ( int qIndex = 0 ; qIndex < packetsToMixFromEachQueue ; qIndex++ ) {
                 // first mix for remote outputs because every stream gets mixed
                 // to every remote output
-                QByteArray bytesMixedForRemoteOutput ;
-                bool bytesWereMixedForRemoteOutput ( false ) ;
-                quint32 callId ( 0 ) ;
                 quint32 seqNo ( 0 ) ;
                 bool callIdIsSet ( false ) ;
+                int indexOfQueueWithHighestVolume ( -1 ) ;
+                int indexOfQueueWith2ndHighestVolume ( -1 ) ;
+                float highestVolumeSeen ( -100.0f ) ;
+                float secondHighestVolumeSeen ( -100.0f ) ;
+
                 int streamCountToRemoteOutput ( iAudioDataBuffer.size() ) ;
                 if (  streamCountToRemoteOutput ) {
+                    // find queue with highest volume:
                     for ( int i = 0 ; i < streamCountToRemoteOutput ; i++ ) {
                         QQueue<AudioFrame>& queueToTry ( iAudioDataBuffer[i] ) ;
                         if ( queueToTry.size() ) {
                             AudioFrame& frame ( queueToTry.head() ) ;
                             if ( frame.iIsLocallyCaptured ) {
-                                callId = frame.iCallId ;
                                 seqNo = frame.iSeqNo ;
                                 callIdIsSet = true ;
                             }
-                            if ( bytesMixedForRemoteOutput.size() < frame.iFrame.size() ) {
-                                bytesMixedForRemoteOutput.fill(0,frame.iFrame.size()) ;
+                            if ( frame.iVolumeLevel > highestVolumeSeen ) {
+                                highestVolumeSeen = frame.iVolumeLevel ;
+                                indexOfQueueWithHighestVolume = i ;
                             }
-                            // here happens the mixing: simple addition
-                            float* mixedBytes ( (float *)(bytesMixedForRemoteOutput.data()));
-                            const float* sourceBytes ( ( const float *)frame.iFrame.constData()) ;
-                            int samplesInFrame = frame.iFrame.size() / sizeof(float) ;
-                            for ( int j = 0 ; j < samplesInFrame ; j++ ) {
-                                if ( bytesWereMixedForRemoteOutput == false ) {
-                                    mixedBytes[j] = sourceBytes[j] ;
-                                } else {
-                                    mixedBytes[j] = mixedBytes[j] + sourceBytes[j] ;
-                                }
-                            }
-                            bytesWereMixedForRemoteOutput = true ;
                         }
                     }
-                    if ( bytesWereMixedForRemoteOutput && callIdIsSet ) {
-                        clip(bytesMixedForRemoteOutput) ;
-                        emit frameReadyForRemoteSend(
-                            callId, // use callid of locally captured stream
-                            seqNo,
-                            bytesMixedForRemoteOutput ) ;
+                    // find queue with 2nd highest volume:
+                    for ( int i = 0 ; i < streamCountToRemoteOutput ; i++ ) {
+                        QQueue<AudioFrame>& queueToTry ( iAudioDataBuffer[i] ) ;
+                        if ( queueToTry.size() ) {
+                            AudioFrame& frame ( queueToTry.head() ) ;
+                            if ( frame.iVolumeLevel >= secondHighestVolumeSeen &&
+                                    frame.iVolumeLevel <= highestVolumeSeen &&
+                                    i != indexOfQueueWithHighestVolume ) {
+                                secondHighestVolumeSeen = frame.iVolumeLevel ;
+                                indexOfQueueWith2ndHighestVolume = i ;
+                            }
+                        }
                     }
-                } // end of loop mixing for remote outputs
+                } // end of loop finding noisiest queues
+                QLOG_STR("Loudest frame indexes " +
+                         QString::number(indexOfQueueWithHighestVolume) +
+                         " " + QString::number(indexOfQueueWith2ndHighestVolume) ) ;
+                if ( callIdIsSet &&
+                        indexOfQueueWithHighestVolume >= 0 &&
+                        indexOfQueueWith2ndHighestVolume >= 0 ) {
+                    // now, do no mixing. Instead copy the queue with max volume
+                    // to everybody but not to originator. originator in turn gets
+                    // contents of the 2nd noisiest queue. this prevents very frustrating
+                    // echoes ; here nobody should hear echo of own voice.
 
-                // if found nothing from local queue got mixed, don't
-                // go on with other streams either:
-                if ( callIdIsSet ) {
-                    // proceed with local outputs:
-                    const int streamCountToLocalSpeaker ( iAudioDataBuffer.size() ) ;
-                    bool bytesWereMixedForLocalSpeaker ( false ) ;
-                    if ( iAudioDataBuffer.size() ) {
-                        QByteArray outputStreamMixed ;
-                        for ( int i = 0 ; i < streamCountToLocalSpeaker ; i++ ) {
-                            QQueue<AudioFrame>& queueToTry ( iAudioDataBuffer[i] ) ;
-                            if ( queueToTry.size() ) {
-                                AudioFrame& frame ( queueToTry.head() ) ;
-                                if ( !frame.iIsLocallyCaptured ) {
-                                    if ( outputStreamMixed.size() < frame.iFrame.size() ) {
-                                        outputStreamMixed.fill(0,frame.iFrame.size()) ;
-                                    }
-                                    // here happens the mixing: simple addition
-                                    float* mixedBytes ( (float *)(outputStreamMixed.data()));
-                                    const float* sourceBytes ( ( const float *)frame.iFrame.constData()) ;
-                                    int samplesInFrame = frame.iFrame.size() / sizeof(float) ;
-                                    for ( int j = 0 ; j < samplesInFrame ; j++ ) {
-                                        if ( bytesWereMixedForLocalSpeaker == false ) {
-                                            mixedBytes[j] = sourceBytes[j] ;
-                                        } else {
-                                            mixedBytes[j] = mixedBytes[j] + sourceBytes[j] ;
-                                        }
-                                    }
-                                    bytesWereMixedForLocalSpeaker = true ;
-                                }
+                    QQueue<AudioFrame> & loudestQueue ( iAudioDataBuffer[indexOfQueueWithHighestVolume] ) ;
+                    QQueue<AudioFrame> & secondLoudestQueue ( iAudioDataBuffer[indexOfQueueWith2ndHighestVolume] ) ;
+                    AudioFrame& loudestFrame ( loudestQueue.head() ) ;
+                    AudioFrame& secondLoudestFrame (secondLoudestQueue.head() );
+                    Hash& originOfLoudestFrame (iStreams[indexOfQueueWithHighestVolume].iNode) ;
+                    Hash& originOf2ndLoudestFrame (iStreams[indexOfQueueWith2ndHighestVolume].iNode) ;
+
+                    foreach ( const AudioFrameMetadata& stream , iStreams ) {
+                        // first check if we have stream of local output:
+                        if ( stream.iIsLocallyCaptured ) {
+                            // if it is us that is the loudest, then take 2nd:
+                            if ( originOfLoudestFrame == KNullHash ) {
+                                // it was me making loudest noise:
+                                emit frameReadyForLocalSpeaker(secondLoudestFrame.iFrame) ;
+                            } else {
+                                // normally copy to local speaker the loudest
+                                // speaker:
+                                emit frameReadyForLocalSpeaker(loudestFrame.iFrame) ;
                             }
+                        } else {
+                            // was not locally captured
+                            Hash fingerPrintOfStream ( stream.iNode ) ;
+                            if ( stream.iNode != originOfLoudestFrame ) {
+                                emit( frameReadyForRemoteSend(stream.iCallId,
+                                                              seqNo,
+                                                              loudestFrame.iFrame,
+                                                              fingerPrintOfStream ) ) ;
+                            } else if ( stream.iNode != originOf2ndLoudestFrame ) {
+                                emit( frameReadyForRemoteSend(stream.iCallId,
+                                                              seqNo,
+                                                              secondLoudestFrame.iFrame,
+                                                              fingerPrintOfStream ) ) ;
+                            } else {
+                                QLOG_STR("Audiomixer: Frame was not sent anywhere??") ;
+                            }
+
                         }
-                        if ( bytesWereMixedForLocalSpeaker ) {
-                            clip ( outputStreamMixed ) ;
-                            emit frameReadyForLocalSpeaker( outputStreamMixed ) ;
-                        }
-                    } // end loop mixing for local speaker
+                    }
+
+
 
                     // now both local and remote mixing done: remove one
                     // frame from each queue
@@ -348,20 +401,6 @@ void AudioMixer::tryMixFrames(quint32 aCallId,
     return ;
 }
 
-// right now this clips. this could also compress but can't
-// decide which is worse.
-void AudioMixer::clip(QByteArray& aBuffer) {
-    int numberOfSamples = aBuffer.size() / sizeof(float) ;
-    float* sampleData ( (float *)(aBuffer.data()) ) ;
-    for ( int i = 0 ; i < numberOfSamples ; i++ ) {
-        if ( sampleData[i] > 1.0f ) {
-            sampleData[i] = 1.0f ;
-        }
-        if ( sampleData[i] < -1.0f ) {
-            sampleData[i] = -1.0f ;
-        }
-    }
-}
 
 void AudioMixer::configureMixedStreams() {
     iIndexesToMixForLocalSpeaker.clear() ;
@@ -370,14 +409,18 @@ void AudioMixer::configureMixedStreams() {
     // trivial cases first..
     if ( iStreams.size() == 1 && iStreams[0].iIsLocallyCaptured ) {
         iIndexesToMixForRemoteOutput.append(0) ;
-        QLOG_STR("Mixing for remote node " + QString::number(iStreams[0].iCallId) +
-                 " is locally captured " + QString::number(iStreams[0].iIsLocallyCaptured)) ;
+        QLOG_STR("Case 1 Mixing for remote node " + QString::number(iStreams[0].iCallId) +
+                 " is locally captured " + QString::number(iStreams[0].iIsLocallyCaptured) +
+                 " node addr " +
+                 iStreams[0].iNode.toString()) ;
     }
     // another trivial
     if ( iStreams.size() == 1 && iStreams[0].iIsLocallyCaptured == false ) {
         iIndexesToMixForLocalSpeaker.append(0) ;
-        QLOG_STR("Mixing for local speaker " + QString::number(iStreams[0].iCallId) +
-                 " is locally captured " + QString::number(iStreams[0].iIsLocallyCaptured)) ;
+        QLOG_STR("Case 2 Mixing for local speaker " + QString::number(iStreams[0].iCallId) +
+                 " is locally captured " + QString::number(iStreams[0].iIsLocallyCaptured)+
+                 " node addr " +
+                 iStreams[0].iNode.toString()) ;
     }
     // then 1-1 cases, e.g. 2 streams and one is local
     if ( iStreams.size() == 2 &&
@@ -385,20 +428,28 @@ void AudioMixer::configureMixedStreams() {
             iStreams[1].iIsLocallyCaptured == true ) {
         iIndexesToMixForLocalSpeaker.append(0) ;
         iIndexesToMixForRemoteOutput.append(1) ;
-        QLOG_STR("Mixing for local speaker " + QString::number(iStreams[0].iCallId) +
-                 " is locally captured " + QString::number(iStreams[0].iIsLocallyCaptured)) ;
+        QLOG_STR("Case 3 Mixing for local speaker " + QString::number(iStreams[0].iCallId) +
+                 " is locally captured " + QString::number(iStreams[0].iIsLocallyCaptured)+
+                 " node addr " +
+                 iStreams[0].iNode.toString()) ;
         QLOG_STR("Mixing for remote node " + QString::number(iStreams[1].iCallId) +
-                 " is locally captured " + QString::number(iStreams[1].iIsLocallyCaptured)) ;
+                 " is locally captured " + QString::number(iStreams[1].iIsLocallyCaptured)+
+                 " node addr " +
+                 iStreams[1].iNode.toString()) ;
     }
     if ( iStreams.size() == 2 &&
             iStreams[0].iIsLocallyCaptured == true &&
             iStreams[1].iIsLocallyCaptured == false ) {
         iIndexesToMixForLocalSpeaker.append(1) ;
         iIndexesToMixForRemoteOutput.append(0) ;
-        QLOG_STR("Mixing for local speaker " + QString::number(iStreams[1].iCallId) +
-                 " is locally captured " + QString::number(iStreams[1].iIsLocallyCaptured)) ;
+        QLOG_STR("Case 4 Mixing for local speaker " + QString::number(iStreams[1].iCallId) +
+                 " is locally captured " + QString::number(iStreams[1].iIsLocallyCaptured)+
+                 " node addr " +
+                 iStreams[1].iNode.toString()) ;
         QLOG_STR("Mixing for remote node " + QString::number(iStreams[0].iCallId) +
-                 " is locally captured " + QString::number(iStreams[0].iIsLocallyCaptured)) ;
+                 " is locally captured " + QString::number(iStreams[0].iIsLocallyCaptured)+
+                 " node addr " +
+                 iStreams[0].iNode.toString()) ;
     }
     // then non-trivial cases. there are more than 2 streams.
     if ( iStreams.size() > 2 ) {

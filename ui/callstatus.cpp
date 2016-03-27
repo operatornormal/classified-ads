@@ -81,10 +81,10 @@ void CallStatusDialog::callStatusChanged(quint32 /*aCallId*/,
 
 void  CallStatusDialog::audioInputLevel(float aInputLevel) {
     // slider range is 0-100 integer
-    ui.inputLevelSlider->setValue(aInputLevel*100) ;
+    ui.inputLevelSlider->setValue(aInputLevel*100*2) ;
 }
 
 void  CallStatusDialog::audioOutputLevel(float aOutputLevel) {
     // slider range is 0-100 integer
-    ui.outputLevelSlider->setValue(aOutputLevel*100) ;
+    ui.outputLevelSlider->setValue(aOutputLevel*100*2) ;
 }

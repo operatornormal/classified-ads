@@ -137,10 +137,12 @@ void AudioSource::processCapturedAudio() {
                 convertedSamples[numberOfSamples] = value ; 
                 volumeSum = volumeSum + qAbs( value ) ; 
             }
+            float volumeLevel ( volumeSum/(float)(capturedFrame.size() / sizeof(qint16) ) ) ;
             emit frameCaptured(audioDataAsFloats, 
-                               iSeqNo++) ; 
+                               iSeqNo++,
+                               volumeLevel) ; 
             iAudioBuffer.remove(0,frameSize); 
-            emit audioMaxLevel(volumeSum/(float)(capturedFrame.size() / sizeof(qint16) )) ; 
+            emit audioMaxLevel(volumeLevel) ; 
         }
     } else if( iAudioInput ) {
         if ( iAudioInput->state() == QAudio::ActiveState ||

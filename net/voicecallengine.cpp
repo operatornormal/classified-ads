@@ -29,7 +29,6 @@
 #include "../call/audiomixer.h"
 #include "../call/audioplayer.h"
 #include "../call/audiosource.h"
-#include "../call/audioencoder.h"
 #include "../call/ringtoneplayer.h"
 #include <assert.h>
 #include "../datamodel/profilemodel.h" // for getting operator profile data
@@ -43,7 +42,6 @@ VoiceCallEngine::VoiceCallEngine(MController& aController,
     iController(aController),
     iModel(aModel),
     iMixer(NULL),
-    iEncoder(NULL),
     iAudioSource(NULL),
     iAudioPlayer(NULL)  {
     connect (this, SIGNAL(startProcessCallData()),
@@ -54,7 +52,6 @@ VoiceCallEngine::VoiceCallEngine(MController& aController,
 VoiceCallEngine::~VoiceCallEngine() {
     delete iAudioSource ;
     delete iMixer ;
-    delete iEncoder ;
     delete iAudioPlayer ;
 }
 
@@ -76,10 +73,9 @@ void VoiceCallEngine::insertCallData(quint32 aCallId,
                                      quint32 aSeqNo,
                                      VoiceCallEngine::PayloadType aPayloadType,
                                      const QByteArray& aPayload,
-                                     const Hash& aSendingNode )  {
+                                     Hash& aSendingNode )  {
     switch ( aPayloadType ) {
     case VoiceCallEngine::Audio: {
-        QLOG_STR("lock " + QString(__FILE__) + " "+ QString::number(__LINE__));
         iModel.lock() ;
         // here process audio data
         for ( int i = iOnGoingCalls.size() -1 ; i >= 0 ; i-- ) {
@@ -90,12 +86,12 @@ void VoiceCallEngine::insertCallData(quint32 aCallId,
                     peerHash == aSendingNode ) {
                 call.iDecoder->frameReceived(aCallId,
                                              aSeqNo,
-                                             aPayload) ;
+                                             aPayload,
+                                             aSendingNode ) ;
                 break ; // out of the loop
             }
         }
         iModel.unlock() ;
-        QLOG_STR("unlock " + QString(__FILE__) + " "+ QString::number(__LINE__));
     }
     break ;
     case Control:
@@ -120,7 +116,6 @@ void VoiceCallEngine::insertCallStatusData(const VoiceCall& aCallStatus,
 }
 
 void VoiceCallEngine::processCallData() {
-    QLOG_STR("lock " + QString(__FILE__) + " "+ QString::number(__LINE__));
     iModel.lock() ;
     while (iCallDataPendingProcessing.size() ) {
         QPair<VoiceCall, Hash> queueEntry ( iCallDataPendingProcessing.takeAt(0)) ;
@@ -196,7 +191,6 @@ void VoiceCallEngine::processCallData() {
         }
     }
     iModel.unlock() ;
-    QLOG_STR("unlock " + QString(__FILE__) + " "+ QString::number(__LINE__));
 }
 
 bool VoiceCallEngine::addCallToMixer(const VoiceCallExtension& aCall) {
@@ -206,12 +200,14 @@ bool VoiceCallEngine::addCallToMixer(const VoiceCallExtension& aCall) {
             // local capture as one stream into the mixer
             iMixer->insertStream(aCall.iCallId,
                                  iAudioSource->getCurrentSeqNo(),
-                                 true ) ;
+                                 true,
+                                 KNullHash ) ; // locally captured should have KNullHash as node
         }
         // always add the remote stream into the mixer
         iMixer->insertStream(aCall.iCallId,
                              0,
-                             false ) ;
+                             false,
+                             callPeerFingerPrint(aCall) ) ;
     }
     return true ;
 }
@@ -307,7 +303,6 @@ VoiceCallEngine::CallState VoiceCallEngine::callStatus(quint32 aCallId) const {
 
 void VoiceCallEngine::closeCall(quint32 aCallId) {
     QLOG_STR("VoiceCallEngine::closeCall " + QString::number(aCallId)) ;
-    QLOG_STR("lock " + QString(__FILE__) + " "+ QString::number(__LINE__));
     iModel.lock() ;
     for ( int i = iOnGoingCalls.size() -1 ; i >= 0 ; i-- ) {
         VoiceCallEngine::VoiceCallExtension& call ( iOnGoingCalls[i] ) ;
@@ -320,7 +315,6 @@ void VoiceCallEngine::closeCall(quint32 aCallId) {
         }
     }
     iModel.unlock() ;
-    QLOG_STR("unlock " + QString(__FILE__) + " "+ QString::number(__LINE__));
 }
 
 void VoiceCallEngine::sendCallStatusUpdateToRemote(const VoiceCall& aCall,
@@ -341,7 +335,6 @@ void VoiceCallEngine::sendCallStatusUpdateToRemote(const VoiceCall& aCall,
 
 void VoiceCallEngine::acceptCall(quint32 aCallId) {
     QLOG_STR("VoiceCallEngine::acceptCall " + QString::number(aCallId)) ;
-    QLOG_STR("lock " + QString(__FILE__) + " "+ QString::number(__LINE__));
     iModel.lock()  ;
     for ( int i = iOnGoingCalls.size() -1 ; i >= 0 ; i-- ) {
         VoiceCallEngine::VoiceCallExtension& call ( iOnGoingCalls[i] ) ;
@@ -365,7 +358,6 @@ void VoiceCallEngine::acceptCall(quint32 aCallId) {
         }
     }
     iModel.unlock() ;
-    QLOG_STR("unlock " + QString(__FILE__) + " "+ QString::number(__LINE__));
 }
 
 void VoiceCallEngine::sendCallStatusUpdates(quint32 aCallId,
@@ -378,7 +370,6 @@ void VoiceCallEngine::sendCallStatusUpdates(quint32 aCallId,
 
 void VoiceCallEngine::nodeConnectionAttemptStatus(Connection::ConnectionState aStatus,
         const Hash aHashOfAttemptedNode ) {
-    QLOG_STR("lock " + QString(__FILE__) + " "+ QString::number(__LINE__));
     iModel.lock()  ;
     // check connectivity again because sometimes there are double
     // connections, one connects, another fails but is reported here
@@ -400,7 +391,6 @@ void VoiceCallEngine::nodeConnectionAttemptStatus(Connection::ConnectionState aS
         }
     }
     iModel.unlock() ;
-    QLOG_STR("unlock " + QString(__FILE__) + " "+ QString::number(__LINE__));
 }
 
 Hash VoiceCallEngine::callPeerFingerPrint(const VoiceCall& aCall) const {
@@ -664,21 +654,22 @@ bool VoiceCallEngine::setupLocalAudioCapture(VoiceCallExtension& aCall) {
                  QString::number(aCall.iCallId) ) ;
         if ( iMixer == NULL ) {
             iMixer = new AudioMixer(iModel) ;
-        }
-        if ( iEncoder == NULL ) {
-            iEncoder = new AudioEncoder() ;
             assert (
-                connect ( iMixer, SIGNAL(frameReadyForRemoteSend(quint32,quint32,const QByteArray&)),
-                          iEncoder, SLOT(frameReady(quint32,quint32,const QByteArray&))));
-            assert (
-                connect ( iEncoder, SIGNAL(frameEncoded(quint32,quint32,const QByteArray&)),
-                          this, SLOT(audioFrameEncoded(quint32,quint32,const QByteArray&)))) ;
+                connect ( iMixer, SIGNAL(frameReadyForRemoteSend(quint32,
+                                         quint32 ,
+                                         const QByteArray& ,
+                                         Hash  )),
+                          this, SLOT(frameReady(quint32,
+                                                quint32 ,
+                                                const QByteArray& ,
+                                                Hash  )))) ;
         }
+
         if ( iAudioSource == NULL ) {
             iAudioSource = new AudioSource(iModel) ;
             assert (
-                connect ( iAudioSource, SIGNAL(frameCaptured(const QByteArray&,quint32)),
-                          iMixer, SLOT(insertCapturedAudioFrame(const QByteArray&, quint32)))) ;
+                connect ( iAudioSource, SIGNAL(frameCaptured(const QByteArray&,quint32,float)),
+                          iMixer, SLOT(insertCapturedAudioFrame(const QByteArray&, quint32,float)))) ;
             connect(iAudioSource, SIGNAL(audioMaxLevel(float)),
                     this, SLOT(setInputLevel(float))) ;
 
@@ -693,14 +684,13 @@ bool VoiceCallEngine::setupLocalAudioCapture(VoiceCallExtension& aCall) {
         }
         QLOG_STR("Tearing down local audio capture: audiosource gone" ) ;
         // ending call
-        if ( iEncoder ) {
-            iEncoder->deleteLater() ;
-            iEncoder = NULL ;
-        }
-        QLOG_STR("Tearing down local audio capture: encoder gone" ) ;
         if ( aCall.iDecoder ) {
             aCall.iDecoder->deleteLater() ;
             aCall.iDecoder = NULL ;
+        }
+        if ( aCall.iEncoder ) {
+            aCall.iEncoder->deleteLater() ;
+            aCall.iEncoder = NULL ;
         }
         QLOG_STR("Tearing down local audio capture: decoder gone" ) ;
     }
@@ -713,14 +703,30 @@ bool VoiceCallEngine::setupAudioOutput(VoiceCallExtension& aCall) {
     if( aCall.iOkToProceed ) {
         if ( iMixer == NULL ) {
             iMixer = new AudioMixer(iModel) ;
+            assert (
+                connect ( iMixer, SIGNAL(frameReadyForRemoteSend(quint32,
+                                         quint32 ,
+                                         const QByteArray& ,
+                                         Hash  )),
+                          this, SLOT(frameReady(quint32,
+                                                quint32 ,
+                                                const QByteArray& ,
+                                                Hash  )))) ;
         }
         if ( aCall.iDecoder == NULL ) {
             aCall.iDecoder = new AudioDecoder ( ) ;
             assert (
-                connect(aCall.iDecoder, SIGNAL(frameDecoded(quint32,quint32,const QByteArray&)),
+                connect(aCall.iDecoder, SIGNAL(frameDecoded(quint32,quint32,const QByteArray&,Hash)),
                         iMixer,SLOT(insertReceivedAudioFrame ( quint32 ,
                                     quint32 ,
-                                    const QByteArray&) ) )) ;
+                                    const QByteArray&,
+                                    Hash  ) ) )) ;
+        }
+        if ( aCall.iEncoder == NULL ) {
+            aCall.iEncoder = new AudioEncoder() ;
+            assert (
+                connect ( aCall.iEncoder, SIGNAL(frameEncoded(quint32,quint32,const QByteArray&,Hash)),
+                          this, SLOT(audioFrameEncoded(quint32,quint32,const QByteArray&,Hash)))) ;
         }
         if ( iAudioPlayer == NULL ) {
             iAudioPlayer = new AudioPlayer(iModel) ;
@@ -746,31 +752,59 @@ bool VoiceCallEngine::setupAudioOutput(VoiceCallExtension& aCall) {
 
 // this is a synchronously connected slot and it is called so
 // that datamodel lock is on.
-void VoiceCallEngine::audioFrameEncoded ( quint32 
+void VoiceCallEngine::audioFrameEncoded ( quint32
 #ifdef DEBUG
-                                          aCallId
+        aCallId
 #endif
-                                          ,
-                                          quint32 aSeqNo,
-                                          const QByteArray& aEncodedVoice ) {
+        ,
+        quint32 aSeqNo,
+        const QByteArray& aEncodedVoice,
+        Hash aForNode ) {
 
     bool frameSent ( false ) ;
     if ( aEncodedVoice.size() ) {
         foreach ( const VoiceCallExtension& call, iOnGoingCalls ) {
             const Hash peerHash ( callPeerFingerPrint(call ) ) ;
-            QByteArray* bytesToSendToThisNode = new QByteArray() ;
-            bytesToSendToThisNode->append( ProtocolMessageFormatter::voiceCallRtData( call.iCallId, aSeqNo, VoiceCallEngine::Audio,  aEncodedVoice ) ) ;
-            iModel.addItemToSend(peerHash,
-                                 bytesToSendToThisNode) ;
-            // model takes ownership of bytesToSendToThisNode, it
-            // will be free'd after it has been sent
-            frameSent = true ;
+            if ( peerHash == aForNode ) {
+                QByteArray* bytesToSendToThisNode = new QByteArray() ;
+                bytesToSendToThisNode->append( ProtocolMessageFormatter::voiceCallRtData( call.iCallId, aSeqNo, VoiceCallEngine::Audio, aEncodedVoice ) ) ;
+                iModel.addItemToSend(peerHash,
+                                     bytesToSendToThisNode) ;
+                // model takes ownership of bytesToSendToThisNode, it
+                // will be free'd after it has been sent
+                frameSent = true ;
+                break ;
+            }
         }
     }
     if ( frameSent == false ) {
         QLOG_STR("Frame was not sent to any remote node?? callid = " +
                  QString::number(aCallId)) ;
     }
+    return ;
+}
+
+
+// this is a synchronously connected slot and it is called so
+// that datamodel lock is on.
+void VoiceCallEngine::frameReady ( quint32 aCallId ,
+                                   quint32 aSeqNo,
+                                   const QByteArray& aRawAudio,
+                                   Hash aForNode ) {
+    if ( aRawAudio.size() ) {
+        foreach ( const VoiceCallExtension& call, iOnGoingCalls ) {
+            const Hash peerHash ( callPeerFingerPrint(call ) ) ;
+            if ( peerHash == aForNode ) {
+                if ( call.iEncoder ) {
+                    call.iEncoder->frameReady( aCallId,
+                                               aSeqNo,
+                                               aRawAudio,
+                                               aForNode ) ;
+                }
+            }
+        }
+    }
+
     return ;
 }
 

@@ -23,6 +23,7 @@
 
 #include <QObject>
 #include <opus/opus.h> // for data types
+#include "../util/hash.h"
 
 /**
  * @brief class for compressing audio to be sent over network
@@ -53,10 +54,13 @@ signals:
      * @param aSeqNo sequence number of frame inside stream
      * @param aEncodedData raw opus frame, as it comes out
      *        from opus library call opus_encode_float().
+     * @param aForNode fingerprint of node supposed to receive
+     *        the frame
      */
 void frameEncoded(quint32 aCallId,
                   quint32 aSeqNo,
-                  const QByteArray& aEncodedData) ;
+                  const QByteArray& aEncodedData,
+                  Hash aForNode ) ;
 public slots: 
     /**
      * Input to encoder cames in via this method.  
@@ -66,10 +70,13 @@ public slots:
      * @param aAudioData raw, unpacked audio samples. The
      *        byte-array must contain an array of floats
      *        in [-1,1] range. 
+     * @param aForNode fingerprint of node supposed to receive
+     *        the frame
      */
 void frameReady(quint32 aCallId,
                 quint32 aSeqNo,
-                const QByteArray& aAudioData) ;  
+                const QByteArray& aAudioData,
+                Hash aForNode ) ;  
 private: // members
     OpusEncoder *iEncoder ; 
     unsigned char *iEncodedData ; 

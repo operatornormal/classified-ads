@@ -27,6 +27,7 @@
 #include "../datamodel/model.h"
 #include "../datamodel/voicecall.h"
 #include "../call/audiodecoder.h"
+#include "../call/audioencoder.h"
 #include "mvoicecallengine.h"
 
 class AudioMixer ;
@@ -95,7 +96,7 @@ public:
                                 quint32 aSeqNo,
                                 PayloadType aPayloadType,
                                 const QByteArray& aPayload,
-                                const Hash& aSendingNode) ;
+                                Hash& aSendingNode) ;
 
     /**
      * Method for reception of call status data. This is called
@@ -197,7 +198,26 @@ public slots:
      */
     void audioFrameEncoded ( quint32 aCallId,
                              quint32 aSeqNo,
-                             const QByteArray& aEncodedVoice ) ;
+                             const QByteArray& aEncodedVoice,
+                             Hash aForNode ) ;
+
+    /**
+     * This slot is called when mixer when audio frame is ready to be sent.
+     * In practice audio mixer emits a singal to this slot once for
+     * each node that is connected to same call.
+     *
+     * @param aCallId is identifier of the call where this frame
+     *        belongs to
+     * @param aSeqNo sequence number of packets in stream
+     * @param aRawAudio is non-encoded audio frame, as array of floats
+     * @param aForNode specifies the node that will receive this
+     *                 particular audio frame.
+     */
+    void frameReady ( quint32 aCallId,
+                      quint32 aSeqNo,
+                      const QByteArray& aRawAudio,
+                      Hash aForNode ) ;
+
     /**
      * slot that is called for call status data processing. reason for
      * this slot is that we want to process status data in UI thread
@@ -290,13 +310,18 @@ private: // data
     public:
         /** constructor that is given a voicecall in */
         VoiceCallExtension(const VoiceCall& aInitialData) :
-            iDecoder(NULL) {
+            iDecoder(NULL),
+            iEncoder(NULL) {
             fromJSon(aInitialData.asJSon()) ;
         }
         ~VoiceCallExtension() {
             if ( iDecoder ) {
                 iDecoder->deleteLater() ;
                 iDecoder = NULL ;
+            }
+            if ( iEncoder ) {
+                iEncoder->deleteLater() ;
+                iEncoder = NULL ;
             }
         }
         /** Call state like "incoming", "open" */
@@ -311,6 +336,12 @@ private: // data
          * own audio decoder
          */
         AudioDecoder* iDecoder;
+        /**
+         * Each node may have different stream coming out from
+         * mixer, this separate audio encoder for each
+         * connection
+         */
+        AudioEncoder* iEncoder;
     } ;
     MController& iController ; /**< application controller */
     Model &iModel ; /**< persistent storage */
@@ -323,12 +354,6 @@ private: // data
      * additional stream
      */
     AudioMixer* iMixer ;
-    /**
-     * Each node that we have call with will receive identical
-     * audio e.g. the mixer output. For this reason only one
-     * audio encoder is needed
-     */
-    AudioEncoder* iEncoder;
     AudioSource* iAudioSource;
     AudioPlayer* iAudioPlayer;
     QList<QPair<VoiceCall, Hash> > iCallDataPendingProcessing ;

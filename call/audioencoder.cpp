@@ -20,6 +20,7 @@
 
 #include "audioencoder.h"
 #include "../log.h"
+#include "../util/hash.h"
 
 const int KOutputBufferSize ( 2048 ) ; 
 
@@ -58,7 +59,8 @@ AudioEncoder::~AudioEncoder() {
 // encoder and that encodes for all remote outputs. 
 void AudioEncoder::frameReady(quint32 aCallId,
                               quint32 aSeqNo,
-                              const QByteArray& aAudioData) {
+                              const QByteArray& aAudioData,
+                              Hash aForNode ) {
     if ( iEncodedData && iEncoder ) {
         int frameSize = (aAudioData.size()/
                          iNumChannels)/
@@ -101,7 +103,7 @@ void AudioEncoder::frameReady(quint32 aCallId,
             QLOG_STR("Opus encoded data len " + QString::number(resultLen)) ;
             QByteArray encodedData((const char *)iEncodedData,
                                    resultLen ) ; 
-            emit frameEncoded(aCallId,aSeqNo,encodedData) ; 
+            emit frameEncoded(aCallId,aSeqNo,encodedData,aForNode ) ; 
         }
     }
 }
