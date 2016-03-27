@@ -1,7 +1,7 @@
 Compiling:
- You need 5, libnatmpm, openssl and miniupnpc . The debian control file is 
-made for qt5 but program compiles with qt4 also, then add libmagick and
-libqjson into dependencies.  
+ You need qt5, libnatmpm, openssl, miniupnpc and opus. The debian control 
+file is made for qt5 but program compiles with qt4 also. In qt4-case add 
+libmagick and libqjson into dependencies.  
 So, using your favourite package-manager
 install 
  qtbase5-dev-tools
@@ -11,6 +11,7 @@ install
  dpkg-dev (if going to build with dpkg-buildpackage)
  libgcrypt11-dev (if going to build with dpkg-buildpackage, it checks for this)
  libqt5sql5-sqlite (is needed at runtime, not compile time)
+ libopus-dev
  imagemagick (alternatively download 
  https://github.com/operatornormal/classified-ads/blob/graphics/preprocessed.tar.gz?raw=true 
  and unpack that into same directory with the sources and skip the 
