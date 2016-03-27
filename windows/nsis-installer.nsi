@@ -33,7 +33,7 @@ file /oname=$INSTDIR\sv\LC_MESSAGES\classified-ads.mo ..\po\sv.mo
 CreateDirectory "$INSTDIR\da\LC_MESSAGES"
 file /oname=$INSTDIR\da\LC_MESSAGES\classified-ads.mo ..\po\da.mo
 CreateDirectory "$INSTDIR\uk\LC_MESSAGES"
-file /oname=$INSTDIR\uk\LC_MESSAGES\classified-ads.mo ..\uk\uk.mo
+file /oname=$INSTDIR\uk\LC_MESSAGES\classified-ads.mo ..\po\uk.mo
 file /oname=qt_ca.qm ..\release\translations\qt_ca.qm
 file /oname=qt_cs.qm ..\release\translations\qt_cs.qm
 file /oname=qt_de.qm ..\release\translations\qt_de.qm
