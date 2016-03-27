@@ -8,7 +8,7 @@
 # define name of installer
 outFile "Classified-ads-Win32.exe"
 !define MUI_ICON "turt-transparent-128x128.ico"
-!define VERSION "0.09" 
+!define VERSION "0.10rc1" 
 # ask to be admin in order to create start menu shortcuts to all users
 RequestExecutionLevel admin
 Name "Classified ads ${VERSION}" 
