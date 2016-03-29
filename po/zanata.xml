@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<config xmlns="http://zanata.org/namespace/config/">
-  <url>https://fedora.zanata.org/</url>
-  <project>classified-ads</project>
-  <project-version>0.10rc1</project-version>
-  <project-type>gettext</project-type>
-  <locale>fi</locale>
-  <locale>da</locale>
-</config>
