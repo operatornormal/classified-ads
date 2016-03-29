@@ -385,14 +385,27 @@ void NetworkListener::figureOutLocalAddresses() {
             int loopCount = 0 ;
             initnatpmp(&natpmp,forcegw,gateway);
             sendnewportmappingrequest(&natpmp, NATPMP_PROTOCOL_TCP, iModel->nodeModel().listenPortOfThisNode(), iModel->nodeModel().listenPortOfThisNode(),INT_MAX-1);
+            int select_retval ( -1 ) ;
             do {
                 fd_set fds;
                 struct timeval timeout;
                 FD_ZERO(&fds);
                 FD_SET(natpmp.s, &fds);
                 getnatpmprequesttimeout(&natpmp, &timeout);
-                select(FD_SETSIZE, &fds, NULL, NULL, &timeout);
-                r = readnatpmpresponseorretry(&natpmp, &response);
+                select_retval = select(FD_SETSIZE, &fds, NULL, NULL, &timeout);
+                if ( select_retval == -1 ) {
+                    QLOG_STR("natpmp wait select error = " + 
+                             QString::number(select_retval)) ;
+                    r = NATPMP_ERR_CANNOTGETGATEWAY ; 
+                    break ; // out of the loop 
+                } else if ( select_retval ) {
+                    r = readnatpmpresponseorretry(&natpmp, &response);
+                } else {
+                    // no data within timeout:
+                    QLOG_STR("natpmp wait timeout reached") ;
+                    r = NATPMP_ERR_CANNOTGETGATEWAY ; 
+                    break ; // out of the loop 
+                }
             } while(r==NATPMP_TRYAGAIN && ++loopCount < 100 );
             if(r>=0) {
                 printf("Mapped public port %hu protocol %s to local port %hu "
