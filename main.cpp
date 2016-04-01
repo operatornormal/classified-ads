@@ -26,6 +26,7 @@
 #include <QHostAddress> // for Q_IPV6ADDR
 #include <QApplication>
 #include "util/catranslator.h"
+#include <QRegExpValidator>
 
 QApplication* app ; /**< The qt application, we need to have 1 instance */
 Controller* c ; /** Application controller, here as static for signal handlers */
@@ -68,6 +69,7 @@ void sigUSR2handler(int) {
     LOG_STR("SIGUSR2 trapped..") ;
     if ( c != NULL ) {
         c->showUI() ;
+        c->checkForSharedMemoryContents() ; 
     }
 }
 #endif
@@ -105,6 +107,7 @@ int main(int argc, char *argv[]) {
     } 
 #endif // qt version
 #endif // check of $DISPLAY or $WAYLAND_DISPLAY
+
     app = new QApplication (argc, argv);
 
     CATranslator caTranslator;
@@ -148,7 +151,27 @@ int main(int argc, char *argv[]) {
     signal(SIGUSR1,sigUSR1handler);
     signal(SIGUSR2,sigUSR2handler);
 #endif
-    int retval = app->exec() ;
+
+    // check for possible command line arguments relevant to 
+    // us:
+    QRegExp rx("^(caprofile|caad|cacomment|cablob)://[a-fA-F0-9]{40}$");
+    QRegExpValidator validator (rx);
+    for ( int i = 1 ; i < argc ; i++ ) {
+        QString argumentCandidate(argv[i] );
+        int position ( 0 ) ; 
+        if ( validator.validate(argumentCandidate,position) == QValidator::Acceptable ) {
+            QUrl commandLineUrl ( argumentCandidate ) ;
+            QLOG_STR("scheme " + commandLineUrl.scheme() ) ; 
+            QLOG_STR("host " + commandLineUrl.host() ) ; 
+            c->addObjectToOpen(commandLineUrl) ; 
+            break ; // out of the loop, process only one
+        }
+    }
+    int retval ( 0 ) ; 
+    if ( c->init() ) { // 2nd stage of constructor
+        retval = app->exec() ;
+    }
+    QLOG_STR("deleting controller") ; 
     delete c ;
     delete app ;
     return retval ;

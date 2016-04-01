@@ -54,6 +54,7 @@
 #define CONTROLLER_H
 #include <QtGui>
 #include <QBoxLayout>
+#include <QUrl>
 #include "mcontroller.h"
 #include "net/protocol.h" // for ProtocolItemType
 #include "datamodel/netrequestexecutor.h"
@@ -64,7 +65,7 @@ class RetrievalEngine ;
 class QMainWindow ;
 class QMenu ;
 class VoiceCallEngine ; 
-
+class QSharedMemory ; 
 /**
  * @brief Class for keeping app state.
  *
@@ -79,13 +80,24 @@ class Controller : public MController {
 public:
 
     /**
-     * constructor
+     * constructor. see also method @init. 
      */
     Controller(QApplication& app) ;
     /**
      * Destructor
      */
     ~Controller() ;
+
+    /**
+     * Constructor extras. Constructor may fail but there is no way to 
+     * communicate that. Design is now so that constructor only allocates
+     * memory and initializes member variables, this method here, @init 
+     * contains constructor logic and it may fail.
+     * 
+     * @return true if initialization is ok
+     */
+    bool init() ;
+
     /**
      * method that starts actions regarding content fetch from
      * network
@@ -161,6 +173,25 @@ public: // methods
      * method for getting datamodel
      */
     virtual Model &model() const  ;
+    /**
+     * method for setting an URL to open. Url is opened only
+     * if it is of classified-ads URL scheme, currently
+     * supported protocols are caprofile, caad, cacomment and cablob
+     * and if URL scheme is not among those, this method does
+     * no thing. Host part contains hash of object, other parts
+     * are ignored.
+     *
+     * @param aClassifiedAdsObject object to bring visible to user
+     */
+    void addObjectToOpen(QUrl aClassifiedAdsObject) ;
+    /**
+     * method called if old instance of this program is signaled
+     * from new instace, calling for this instance to bring
+     * itself to front, and, in this method, to check if 
+     * there is object mentioned in shared memory segment
+     * that needs to be displayed
+     */
+    void checkForSharedMemoryContents() ; 
 signals:
     void userProfileSelected(const Hash& aProfile) ;
     /** used for signalling possible wait dialog about dismissal */
@@ -294,6 +325,8 @@ private:
     void createMenus(); /**< menus here */
     int createPidFile(); /** leave a mark to filesystem about instance */
     void deletePidFile(); /** remove mark from filesystem about instance */
+private slots:
+    void checkForObjectToOpen(const Hash& aIgnored) ; /** processing of method addObjectToOpen */
 private:
     QMainWindow* iWin ;
     FrontWidget* iCurrentWidget ; /**< normally points to "frontwidget" instance */
@@ -353,6 +386,15 @@ private:
      * Flag for destructor. If this is on, don't allocate more objects
      */
     bool iInsideDestructor ; 
+    /**
+     * pending object to open 
+     */
+    QUrl iObjectToOpen ; 
+    /**
+     * Shared memory block for receiving iObjectToOpen from 
+     * external process. 
+     */
+    QSharedMemory* iSharedMemory ; 
 } ;
 #endif
 

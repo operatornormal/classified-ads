@@ -25,6 +25,7 @@
 #include <QMessageBox>
 #include <QProgressDialog>
 #include <QErrorMessage>
+#include <QSharedMemory>
 #include "controller.h"
 #include "FrontWidget.h"
 #include "log.h"
@@ -81,21 +82,64 @@ Controller::Controller(QApplication &app) : iWin(NULL),
     iPubEngine(NULL),
     iRetrievalEngine(NULL),
     iVoiceCallEngine (NULL),
-    iInsideDestructor(false) {
-    LOG_STR("Controller::Controller in") ;
+    iInsideDestructor(false),
+    iSharedMemory(NULL) {
+    LOG_STR("Controller::Controller constructor out") ;
+}
+
+bool Controller::init() {
+    QLOG_STR("Controller::init in") ; 
 #ifndef WIN32
     int pid ;
     if ( ( pid =  createPidFile() ) != -1 ) {
+        // there is old instance, if we have url to open, put it into shared memory 
+        // segment before signaling the previously opened instance:
+        if (  ( iSharedMemory = new QSharedMemory("classified-ads-"
+                                                  + QString::number(pid))) != NULL ) {
+
+            if( iSharedMemory->attach() == true &&
+                iSharedMemory->constData() != NULL &&
+                iSharedMemory->size() >= 1024 &&
+                iObjectToOpen.scheme().length() > 0 ) {
+                strcpy((char *)(iSharedMemory->data()),
+                       iObjectToOpen.toString().toUtf8().constData()) ;
+            } else {
+                if (iSharedMemory->constData() != NULL &&
+                    iSharedMemory->size() >= 1024 &&
+                    iObjectToOpen.scheme().length() == 0 ) {
+                    // there is shared memory segment but nothing in iObjectToOpen
+                    // so null-terminate the shared memory segment contents
+                    char* d ( (char *)(iSharedMemory->data())) ; 
+                    *d = '\0' ; 
+                }
+            }
+        } else {
+            return false ; 
+        }
         LOG_STR2("Signaling old instance %d", pid) ;
         if ( kill(pid, SIGUSR2) != -1 ) {
             // was success
             kill(getpid(), SIGINT) ; // then signal this instance to go away..
-            return    ;
+            LOG_STR("Instance signaled ") ;
+            return  false   ;
         } else {
             // the process did not exist..
             LOG_STR("But process was not there?") ;
             deletePidFile() ;
             createPidFile() ;
+        }
+    } else {
+        // createPidFile() returned -1 meaning that the
+        // process was not there: create a shared memory segment:
+        if ( iSharedMemory == NULL ) {
+            iSharedMemory = new QSharedMemory("classified-ads-"
+                                              + QString::number(getpid())) ; 
+        }
+        if ( iSharedMemory ) {
+            if( iSharedMemory->attach() == false ) {
+            // 1 kb and some extra
+                iSharedMemory->create(1024,QSharedMemory::ReadWrite) ;
+            }
         }
     }
 #endif
@@ -205,6 +249,12 @@ Controller::Controller(QApplication &app) : iWin(NULL),
                 SLOT(    notifyOfContentNotReceived(const Hash& ,
                          const ProtocolItemType  )),
                 Qt::QueuedConnection )  ) ;
+    assert(
+        connect(this,
+                SIGNAL(userProfileSelected(const Hash&)),
+                this,
+                SLOT(    checkForObjectToOpen(const Hash&)),
+                Qt::QueuedConnection));
     // after signals are connected, start publishing and retrieval
     iPubEngine->start() ;
     iRetrievalEngine->start() ;
@@ -218,7 +268,8 @@ Controller::Controller(QApplication &app) : iWin(NULL),
     iModel->profileModel().reIndexAllProfilesIntoFTS() ;
     iModel->profileCommentModel().reIndexAllCommentsIntoFTS() ;
     */
-    LOG_STR("Controller::Controller out") ;
+    QLOG_STR("Controller::init out") ; 
+    return true ; 
 }
 
 Controller::~Controller() {
@@ -261,33 +312,35 @@ Controller::~Controller() {
     // .. connections reference iListener.
     // so in order to prevent random crash at closing, lets first get rid
     // of connections, only after that delete iListener ;
-    iModel->closeAllConnections(false) ;
-    // after all connections have been instructed to close themselves,
-    // wait for some time to give them time to do so..
-    unsigned char waitCounter ( 0 ) ;
-    while (  ( waitCounter < 60 && iModel->getConnections().count() > 0 ) ||
-             ( waitCounter < 2 ) ) {
-        ++waitCounter ;
-        QLOG_STR("Waitcounter " + QString::number(waitCounter) +
-                 " conn count " + QString::number( iModel->getConnections().count() ) ) ;
-        QWaitCondition waitCondition;
-        QMutex mutex;
-        mutex.lock() ; // waitCondition needs a mutex initially locked
-        waitCondition.wait(&mutex, 500);// give other threads a chance..
-        mutex.unlock() ;
-        QThread::yieldCurrentThread ();
-        QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents) ;
+    if ( iModel ) {
+        iModel->closeAllConnections(false) ;
+        // after all connections have been instructed to close themselves,
+        // wait for some time to give them time to do so..
+        unsigned char waitCounter ( 0 ) ;
+        while (  ( waitCounter < 60 && iModel->getConnections().count() > 0 ) ||
+                 ( waitCounter < 2 ) ) {
+            ++waitCounter ;
+            QLOG_STR("Waitcounter " + QString::number(waitCounter) +
+                     " conn count " + QString::number( iModel->getConnections().count() ) ) ;
+            QWaitCondition waitCondition;
+            QMutex mutex;
+            mutex.lock() ; // waitCondition needs a mutex initially locked
+            waitCondition.wait(&mutex, 500);// give other threads a chance..
+            mutex.unlock() ;
+            QThread::yieldCurrentThread ();
+            QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents) ;
+        }
+        iModel->closeAllConnections(true) ; // forcefully delete the remaining
+        // now safe to delete listener (and net engine)
+        LOG_STR("Controller::~Controller connections closed") ;
+        delete iNetEngine ; // will delete also connections opened by net engine
+        iNetEngine = NULL ; 
+        LOG_STR("Controller::~Controller netengine deleted") ;
+        delete iListener ; // will delete also connections received by listener
+        iListener = NULL ; 
+        LOG_STR("Controller::~Controller listener deleted") ;
+        delete iModel ;
     }
-    iModel->closeAllConnections(true) ; // forcefully delete the remaining
-    // now safe to delete listener (and net engine)
-    LOG_STR("Controller::~Controller connections closed") ;
-    delete iNetEngine ; // will delete also connections opened by net engine
-    iNetEngine = NULL ; 
-    LOG_STR("Controller::~Controller netengine deleted") ;
-    delete iListener ; // will delete also connections received by listener
-    iListener = NULL ; 
-    LOG_STR("Controller::~Controller listener deleted") ;
-    delete iModel ;
     iModel = NULL ; 
     LOG_STR("Controller::~Controller datamodel") ;
     delete iNode ;
@@ -324,6 +377,10 @@ Controller::~Controller() {
     if ( iWin ) {
         delete iWin ;
         iWin = NULL ;
+    }
+    if ( iSharedMemory ) {
+        iSharedMemory->detach() ; 
+        delete iSharedMemory ; 
     }
 }
 
@@ -789,7 +846,6 @@ void Controller::handleError(MController::CAErrorSituation aError,
         QLOG_STR("DbTransactionError " + aExplanation ) ;
         break ;
     }
-    return ;
 }
 
 Node& Controller::getNode() const {
@@ -1205,4 +1261,38 @@ VoiceCallEngine* Controller::voiceCallEngine() {
 
 MVoiceCallEngine* Controller::voiceCallEngineInterface() {
     return this->voiceCallEngine() ; 
+}
+
+void Controller::addObjectToOpen(QUrl aClassifiedAdsObject) {
+    iObjectToOpen = aClassifiedAdsObject ; 
+}
+
+void Controller::checkForObjectToOpen(const Hash& /* aIgnored */) {
+    if ( iObjectToOpen.scheme().length() > 0 && iCurrentWidget ) {
+        iCurrentWidget->linkActivated(iObjectToOpen.toString()) ; 
+    }
+    iObjectToOpen.setScheme("") ; 
+}
+
+void Controller::checkForSharedMemoryContents() {
+    if (iSharedMemory &&
+        iSharedMemory->constData() != NULL &&
+        iSharedMemory->size() >= 1024 ) {
+        QString urlStr ( QString::fromUtf8 ( reinterpret_cast<const char *>(iSharedMemory->constData()) ) ) ; 
+        QLOG_STR("checkForSharedMemoryContents content = " + 
+                 urlStr) ; 
+        QUrl url (urlStr) ;
+        if ( url.scheme() == "caprofile" ||
+                url.scheme() == "caad" ||
+                url.scheme() == "cacomment" ||
+                url.scheme() == "cablob"  ) {
+            if ( iProfileHash == KNullHash ) {
+                // there is no profile in use
+                addObjectToOpen(url) ; // <- goes into wait list
+            } else {
+                iObjectToOpen = url ; 
+                emit userProfileSelected(iProfileHash) ; 
+            }
+        }
+    }
 }
