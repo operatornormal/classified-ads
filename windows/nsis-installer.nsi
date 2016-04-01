@@ -34,6 +34,8 @@ CreateDirectory "$INSTDIR\da\LC_MESSAGES"
 file /oname=$INSTDIR\da\LC_MESSAGES\classified-ads.mo ..\po\da.mo
 CreateDirectory "$INSTDIR\uk\LC_MESSAGES"
 file /oname=$INSTDIR\uk\LC_MESSAGES\classified-ads.mo ..\po\uk.mo
+CreateDirectory "$INSTDIR\de\LC_MESSAGES"
+file /oname=$INSTDIR\de\LC_MESSAGES\classified-ads.mo ..\po\de.mo
 file /oname=qt_ca.qm ..\release\translations\qt_ca.qm
 file /oname=qt_cs.qm ..\release\translations\qt_cs.qm
 file /oname=qt_de.qm ..\release\translations\qt_de.qm
@@ -161,6 +163,7 @@ delete "$INSTDIR\fi\LC_MESSAGES\classified-ads.mo"
 delete "$INSTDIR\sv\LC_MESSAGES\classified-ads.mo"
 delete "$INSTDIR\da\LC_MESSAGES\classified-ads.mo"
 delete "$INSTDIR\uk\LC_MESSAGES\classified-ads.mo"
+delete "$INSTDIR\de\LC_MESSAGES\classified-ads.mo"
 RMDIR "$INSTDIR\sv\LC_MESSAGES"
 RMDIR "$INSTDIR\sv"
 RMDIR "$INSTDIR\fi\LC_MESSAGES"
@@ -169,6 +172,8 @@ RMDIR "$INSTDIR\da\LC_MESSAGES"
 RMDIR "$INSTDIR\da"
 RMDIR "$INSTDIR\uk\LC_MESSAGES"
 RMDIR "$INSTDIR\uk"
+RMDIR "$INSTDIR\de\LC_MESSAGES"
+RMDIR "$INSTDIR\de"
 RMDIR "$INSTDIR\bearer"
 RMDIR "$INSTDIR\iconengines"
 RMDIR "$INSTDIR\imageformats"
