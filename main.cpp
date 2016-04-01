@@ -69,7 +69,7 @@ void sigUSR2handler(int) {
     LOG_STR("SIGUSR2 trapped..") ;
     if ( c != NULL ) {
         c->showUI() ;
-        c->checkForSharedMemoryContents() ; 
+        c->checkForSharedMemoryContents() ;
     }
 }
 #endif
@@ -92,19 +92,19 @@ int main(int argc, char *argv[]) {
 #if QT_VERSION >= 0x050000
     QString platform ( QGuiApplication::platformName() ) ;
     bool have_xcb ( platform.compare("xcb") == 0 || platform.length()==0) ;
-    QLOG_STR("Platform: " + QGuiApplication::platformName() + 
-        " len = " + 
-             QString::number(platform.length())) ; 
+    QLOG_STR("Platform: " + QGuiApplication::platformName() +
+             " len = " +
+             QString::number(platform.length())) ;
     bool have_display ( getenv("DISPLAY") != NULL  ) ;
     bool have_wayland ( getenv("WAYLAND_DISPLAY") != NULL ) ;
-    if ( have_xcb && ( 
-		       have_display==false &&
-		       have_wayland==false ) ) {
-      // so, we have "xcb" that is normal linux. and we have no $DISPLAY
-      // nor $WAYLAND_DISPLAY -> this spells some problems..
-      fprintf(stderr,"No $DISPLAY/WAYLAND_DISPLAY enviroment variable set, cant continue\n") ;
-      return 0 ; 
-    } 
+    if ( have_xcb && (
+                have_display==false &&
+                have_wayland==false ) ) {
+        // so, we have "xcb" that is normal linux. and we have no $DISPLAY
+        // nor $WAYLAND_DISPLAY -> this spells some problems..
+        fprintf(stderr,"No $DISPLAY/WAYLAND_DISPLAY enviroment variable set, cant continue\n") ;
+        return 0 ;
+    }
 #endif // qt version
 #endif // check of $DISPLAY or $WAYLAND_DISPLAY
 
@@ -152,26 +152,26 @@ int main(int argc, char *argv[]) {
     signal(SIGUSR2,sigUSR2handler);
 #endif
 
-    // check for possible command line arguments relevant to 
+    // check for possible command line arguments relevant to
     // us:
     QRegExp rx("^(caprofile|caad|cacomment|cablob)://[a-fA-F0-9]{40}$");
     QRegExpValidator validator (rx);
     for ( int i = 1 ; i < argc ; i++ ) {
         QString argumentCandidate(argv[i] );
-        int position ( 0 ) ; 
+        int position ( 0 ) ;
         if ( validator.validate(argumentCandidate,position) == QValidator::Acceptable ) {
             QUrl commandLineUrl ( argumentCandidate ) ;
-            QLOG_STR("scheme " + commandLineUrl.scheme() ) ; 
-            QLOG_STR("host " + commandLineUrl.host() ) ; 
-            c->addObjectToOpen(commandLineUrl) ; 
+            QLOG_STR("scheme " + commandLineUrl.scheme() ) ;
+            QLOG_STR("host " + commandLineUrl.host() ) ;
+            c->addObjectToOpen(commandLineUrl) ;
             break ; // out of the loop, process only one
         }
     }
-    int retval ( 0 ) ; 
+    int retval ( 0 ) ;
     if ( c->init() ) { // 2nd stage of constructor
         retval = app->exec() ;
     }
-    QLOG_STR("deleting controller") ; 
+    QLOG_STR("deleting controller") ;
     delete c ;
     delete app ;
     return retval ;
