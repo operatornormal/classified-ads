@@ -28,15 +28,15 @@
  *    can contain also other data like real name that human being
  *    operating the profile wants to publish.
  *  - Making some data available to listed operators only, this is
- *    done by marking a operator profile private. 
- *  - Sending and receiving 
- *   -# Public messages, that are called "classified ads" due to 
+ *    done by marking a operator profile private.
+ *  - Sending and receiving
+ *   -# Public messages, that are called "classified ads" due to
  *      classification that they carry,
  *   -# Private messages between operators,
  *   -# Comments regarding operators, readable by group that see
  *      profile of the commented operator.
  *  - Basic word-based search functions.
- *  - Voice calls between operator nodes. 
+ *  - Voice calls between operator nodes.
  *
  * For more information see http://katiska.org/classified-ads/. In
  * order to use classified ads in meaningful manner, user needs to
@@ -45,9 +45,9 @@
  * that automatically but it may be necessary to ask for network address
  * of node operated by a friend to get connected and started.
  *
- * Classified ads is released under LGPL license. 
+ * Classified ads is released under LGPL license.
  *
- * \copyright Antti Järvinen and others 2013-2016. 
+ * \copyright Antti Järvinen and others 2013-2016.
  */
 
 #ifndef CONTROLLER_H
@@ -64,8 +64,11 @@ class PublishingEngine ;
 class RetrievalEngine ;
 class QMainWindow ;
 class QMenu ;
-class VoiceCallEngine ; 
-class QSharedMemory ; 
+class VoiceCallEngine ;
+class QSharedMemory ;
+#ifdef WIN32
+class QLocalServer ;
+#endif
 /**
  * @brief Class for keeping app state.
  *
@@ -80,7 +83,7 @@ class Controller : public MController {
 public:
 
     /**
-     * constructor. see also method @init. 
+     * constructor. see also method @init.
      */
     Controller(QApplication& app) ;
     /**
@@ -89,11 +92,11 @@ public:
     ~Controller() ;
 
     /**
-     * Constructor extras. Constructor may fail but there is no way to 
+     * Constructor extras. Constructor may fail but there is no way to
      * communicate that. Design is now so that constructor only allocates
-     * memory and initializes member variables, this method here, @init 
+     * memory and initializes member variables, this method here, @init
      * contains constructor logic and it may fail.
-     * 
+     *
      * @return true if initialization is ok
      */
     bool init() ;
@@ -187,11 +190,11 @@ public: // methods
     /**
      * method called if old instance of this program is signaled
      * from new instace, calling for this instance to bring
-     * itself to front, and, in this method, to check if 
+     * itself to front, and, in this method, to check if
      * there is object mentioned in shared memory segment
      * that needs to be displayed
      */
-    void checkForSharedMemoryContents() ; 
+    void checkForSharedMemoryContents() ;
 signals:
     void userProfileSelected(const Hash& aProfile) ;
     /** used for signalling possible wait dialog about dismissal */
@@ -292,16 +295,16 @@ public slots:
     virtual void displayFileInfoOnUi(const BinaryFile& aFileMetadata) ;
     /**
      * Method for getting voice call engine, if there is any.
-     * From MController interface. 
+     * From MController interface.
      * @return engine or null
      */
-    virtual VoiceCallEngine* voiceCallEngine()  ; 
+    virtual VoiceCallEngine* voiceCallEngine()  ;
     /**
      * Method for getting voice call engine, if there is any.
-     * From MController interface. 
-     * @return engine or mockup. In normal runtime this just calls @ref voiceCallEngine. 
+     * From MController interface.
+     * @return engine or mockup. In normal runtime this just calls @ref voiceCallEngine.
      */
-    virtual MVoiceCallEngine* voiceCallEngineInterface()  ; 
+    virtual MVoiceCallEngine* voiceCallEngineInterface()  ;
     /**
      * method for sending a poll around network regarding possible
      * update for a profile and possible addition of comments about
@@ -321,10 +324,18 @@ public slots:
      */
     void sendProfileUpdateQuery(const Hash& aProfileFingerPrint,
                                 const Hash& aProfileNodeFingerPrint = KNullHash ) ;
+#ifdef WIN32
+    void newInstanceConnected() ; /**< WIN32 IPC callback */
+#endif
 private:
     void createMenus(); /**< menus here */
-    int createPidFile(); /** leave a mark to filesystem about instance */
-    void deletePidFile(); /** remove mark from filesystem about instance */
+    int createPidFile(); /**< leave a mark to filesystem about instance */
+    void deletePidFile(); /**< remove mark from filesystem about instance */
+    /**
+     * creates and possibly populates a shared memory segment
+     * for IPC needs
+     */
+    bool createSharedMemSegment(QString& aSegmentName);
 private slots:
     void checkForObjectToOpen(const Hash& aIgnored) ; /** processing of method addObjectToOpen */
 private:
@@ -381,20 +392,23 @@ private:
     /**
      * Currently there is support for one voice call at time
      */
-    VoiceCallEngine* iVoiceCallEngine ; 
+    VoiceCallEngine* iVoiceCallEngine ;
     /**
      * Flag for destructor. If this is on, don't allocate more objects
      */
-    bool iInsideDestructor ; 
+    bool iInsideDestructor ;
     /**
-     * pending object to open 
+     * pending object to open
      */
-    QUrl iObjectToOpen ; 
+    QUrl iObjectToOpen ;
     /**
-     * Shared memory block for receiving iObjectToOpen from 
-     * external process. 
+     * Shared memory block for receiving iObjectToOpen from
+     * external process.
      */
-    QSharedMemory* iSharedMemory ; 
+    QSharedMemory* iSharedMemory ;
+#ifdef WIN32
+    QLocalServer* iLocalServer ; /**< In WIN32 use named pipe for IPC */
+#endif
 } ;
 #endif
 
