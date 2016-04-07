@@ -8,7 +8,7 @@
 # define name of installer
 outFile "Classified-ads-Win32.exe"
 !define MUI_ICON "turt-transparent-128x128.ico"
-!define VERSION "0.10rc1" 
+!define VERSION "0.10" 
 # ask to be admin in order to create start menu shortcuts to all users
 RequestExecutionLevel admin
 Name "Classified ads ${VERSION}" 
@@ -97,7 +97,40 @@ file /oname=libintl-8.dll ..\release\libintl-8.dll
 file /oname=LICENSE ..\LICENSE
 WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Classified-ads" "DisplayName" "Classified-ads (remove only)"
 WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Classified-ads" "UninstallString" "$INSTDIR\Uninstall.exe"
+DetailPrint "Register Classified Ad profile URI Handler"
+DeleteRegKey HKCR "caprofile"
+WriteRegStr HKCR "caprofile" "" "URL:caprofile"
+WriteRegStr HKCR "caprofile" "URL Protocol" ""
+WriteRegStr HKCR "caprofile\DefaultIcon" "" "$INSTDIR\classified-ads.exe"
+WriteRegStr HKCR "caprofile\shell" "" ""
+WriteRegStr HKCR "caprofile\shell\Open" "" ""
+WriteRegStr HKCR "caprofile\shell\Open\command" "" "$INSTDIR\classified-ads.exe %l"
+DetailPrint "Register Classified Ad ad URI Handler"
+DeleteRegKey HKCR "caad"
+WriteRegStr HKCR "caad" "" "URL:caad"
+WriteRegStr HKCR "caad" "URL Protocol" ""
+WriteRegStr HKCR "caad\DefaultIcon" "" "$INSTDIR\classified-ads.exe"
+WriteRegStr HKCR "caad\shell" "" ""
+WriteRegStr HKCR "caad\shell\Open" "" ""
+WriteRegStr HKCR "caad\shell\Open\command" "" "$INSTDIR\classified-ads.exe %l"
+DetailPrint "Register Classified Ad comment URI Handler"
+DeleteRegKey HKCR "cacomment"
+WriteRegStr HKCR "cacomment" "" "URL:cacomment"
+WriteRegStr HKCR "cacomment" "URL Protocol" ""
+WriteRegStr HKCR "cacomment\DefaultIcon" "" "$INSTDIR\classified-ads.exe"
+WriteRegStr HKCR "cacomment\shell" "" ""
+WriteRegStr HKCR "cacomment\shell\Open" "" ""
+WriteRegStr HKCR "cacomment\shell\Open\command" "" "$INSTDIR\classified-ads.exe %l"
+DetailPrint "Register Classified Ad blob URI Handler"
+DeleteRegKey HKCR "cablob"
+WriteRegStr HKCR "cablob" "" "URL:cablob"
+WriteRegStr HKCR "cablob" "URL Protocol" ""
+WriteRegStr HKCR "cablob\DefaultIcon" "" "$INSTDIR\classified-ads.exe"
+WriteRegStr HKCR "cablob\shell" "" ""
+WriteRegStr HKCR "cablob\shell\Open" "" ""
+WriteRegStr HKCR "cablob\shell\Open\command" "" "$INSTDIR\classified-ads.exe %l"
 sectionEnd
+#
 # uninstaller section start
 section "uninstall"
 SetShellVarContext all
@@ -184,5 +217,11 @@ RMDIR "$INSTDIR\audio"
 RMDIR "$INSTDIR"
 DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\Classified-ads"
 DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Classified-ads"
+DetailPrint "De-Register Classified Ad URI Handlers"
+DeleteRegKey HKCR "caprofile"
+DeleteRegKey HKCR "caad"
+DeleteRegKey HKCR "cacomment"
+DeleteRegKey HKCR "cablob"
 # uninstaller section end
 sectionEnd 
+ 

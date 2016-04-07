@@ -154,7 +154,7 @@ int main(int argc, char *argv[]) {
 
     // check for possible command line arguments relevant to
     // us:
-    QRegExp rx("^(caprofile|caad|cacomment|cablob)://[a-fA-F0-9]{40}$");
+    QRegExp rx("^(caprofile|caad|cacomment|cablob)://[a-fA-F0-9]{40}/{0,1}$");
     QRegExpValidator validator (rx);
     for ( int i = 1 ; i < argc ; i++ ) {
         QString argumentCandidate(argv[i] );
