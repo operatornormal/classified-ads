@@ -48,7 +48,7 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/classified-ads.deskt
 %{_datadir}/appdata/classified-ads.appdata.xml
 %license LICENSE
 %changelog
-* Sun Mar 27 2016 Antti Jarvinen <antti.jarvinen@katiska.org> - 0.10-1
+* Fri Apr 8 2016 Antti Jarvinen <antti.jarvinen@katiska.org> - 0.10-1
 - New upstream version: audio capabilities and translation additions
 * Sat Oct 10 2015 Antti Jarvinen <antti.jarvinen@katiska.org> - 0.09-1
 - Fixes to serious networking bugs
