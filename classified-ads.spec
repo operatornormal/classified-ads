@@ -37,6 +37,7 @@ INSTALL_ROOT=%{buildroot} make install DESTDIR=%{buildroot}
 appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/classified-ads.appdata.xml
 desktop-file-validate %{buildroot}/%{_datadir}/applications/classified-ads.desktop
 %find_lang %{name}
+
 %files -f %{name}.lang
 %doc README.TXT
 %{_bindir}/classified-ads
@@ -47,6 +48,7 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/classified-ads.deskt
 %{_mandir}/man1/classified-ads.1.*
 %{_datadir}/appdata/classified-ads.appdata.xml
 %license LICENSE
+
 %changelog
 * Fri Apr 8 2016 Antti Jarvinen <antti.jarvinen@katiska.org> - 0.10-1
 - New upstream version: audio capabilities and translation additions
