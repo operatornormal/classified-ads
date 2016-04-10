@@ -28,11 +28,11 @@ inside client applications that users are running.
 %setup -q -a 1
 
 %build
-qmake-qt5 
-make %make_build
+qmake-qt5 QMAKE_STRIP=echo
+%make_build
 
 %install
-%make_install
+%make_install INSTALL_ROOT=%{buildroot}
 appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/classified-ads.appdata.xml
 desktop-file-validate %{buildroot}/%{_datadir}/applications/classified-ads.desktop
 %find_lang %{name}

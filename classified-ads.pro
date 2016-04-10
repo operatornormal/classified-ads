@@ -35,6 +35,8 @@ message("debug build, no hardening")
 QMAKE_CXXFLAGS += -DDEBUG
 win32.CONFIG += console
 }
+QMAKE_CXXFLAGS += $$(RPM_OPT_FLAGS)
+QMAKE_LFLAGS   += $$(RPM_LD_FLAGS)
 CODECFORTR = UTF-8
 CODECFORSRC = UTF-8
 QMAKE_EXTRA_TARGETS += translations_compile
