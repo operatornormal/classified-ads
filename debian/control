@@ -9,7 +9,9 @@ Build-Depends: debhelper (>= 9),
                qtbase5-dev,
                libssl-dev,
                qt5-qmake,
-               imagemagick
+               imagemagick,
+               qtmultimedia5-dev,
+               libopus-dev
 Standards-Version: 3.9.6
 Homepage: http://katiska.org/classified-ads/
 Vcs-Git: git://github.com/operatornormal/classified-ads.git -b debian
@@ -31,3 +33,4 @@ Description: Program for displaying classified advertisement items
   * Binary attachments to posts.
   * Providing basic data of operators
   * Basic searching of content based on words.
+  * Audio negotiations between operators.
