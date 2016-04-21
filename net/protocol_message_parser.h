@@ -162,6 +162,28 @@ private: // private methods for doing the actual work
      */
     bool  parseSearchResults( const QByteArray& aQueryBytes,
                               const Connection& aConnection) ;
+    /**
+     * Method for parsing voice call status data. This parses
+     * call status, not call realtime (audio) data. 
+     *
+     * @param aQueryBytes serialized call-status data
+     * @param aConnection is connection of the node who sent the request
+     * @return true if things went all right.
+     */
+    bool  parseVoiceCall( const QByteArray& aQueryBytes,
+                          const Connection& aConnection) ;
+
+    /**
+     * Method for parsing voice call data. This parses actual 
+     * data stream like audio, not call control data. 
+     *
+     * @param aQueryBytes serialized call data
+     * @param aConnection is connection of the node whose operator
+     * made a statement. 
+     * @return true if things went all right.
+     */
+    bool  parseCallRtData( const QByteArray& aQueryBytes,
+                           const Connection& aConnection) ;
 private:
     MController &iController ;
     MModelProtocolInterface &iModel ;

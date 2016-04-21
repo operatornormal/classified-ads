@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>855</width>
-    <height>932</height>
+    <height>950</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -872,6 +872,11 @@ Image</string>
            <widget class="QPushButton" name="profileDetailsSendMsgButton">
             <property name="text">
              <string>Send message to operator</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="profileDetailsVoiceCallButton">
+            <property name="text">
+             <string>Audio call</string>
             </property>
            </widget>
            <widget class="QPushButton" name="profileDetailsReadersButton">

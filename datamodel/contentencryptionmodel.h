@@ -225,6 +225,11 @@ public:
      */
     Hash hashOfPublicKey(const QByteArray& aPemBytes) ;
 
+    /**
+     * method for getting (pseudo) random bytes
+     */
+    QByteArray randomBytes(int aNumberOfBytes) ;
+
 signals:
     /**
      * this is not method but signal ; if in error, get emit()ted

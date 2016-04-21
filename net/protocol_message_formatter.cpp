@@ -32,6 +32,9 @@
 #include "../log.h"
 #include "../datamodel/const.h"
 #include "../datamodel/searchmodel.h"
+#include "../datamodel/voicecall.h"
+#include "../datamodel/model.h"
+#include "../datamodel/contentencryptionmodel.h"
 
 QByteArray ProtocolMessageFormatter::nodeGreeting(const Node& aNode) {
     QByteArray retval ;
@@ -562,6 +565,72 @@ QByteArray ProtocolMessageFormatter::searchResultsSend(const QList<SearchModel::
         retval.clear() ;
     }
     return retval ;
+}
+
+QByteArray ProtocolMessageFormatter::voiceCall(const VoiceCall& aCall,
+        MController& aController,
+        const Hash& aSelectedProfile,
+        bool aDoSign ) {
+    QByteArray retval ;
+    if ( aCall.iOkToProceed ) {
+        retval.append((const char *)&KVoiceCallStart, sizeof(unsigned char)) ;
+    } else {
+        retval.append((const char *)&KVoiceCallEnd, sizeof(unsigned char)) ;
+    }
+    const QByteArray resultBytes ( aCall.asJSon() ) ;
+    if ( resultBytes.size() > 0 ) {
+        quint32 sizeNetworkBO ( htonl(resultBytes.size()) ) ;
+        retval.append((const char *)(&sizeNetworkBO), sizeof(quint32)) ;
+        retval.append(resultBytes) ;
+        QByteArray signature ;
+        if ( aDoSign ) {
+            if ( aController.model().contentEncryptionModel().sign(
+                        aSelectedProfile,
+                        resultBytes,
+                        signature ) == 0 ) {
+                // 0 is success
+                quint32 signatureSizeNetworkBO ( htonl(signature.size()) ) ;
+                retval.append((const char *)(&signatureSizeNetworkBO), sizeof(quint32)) ;
+                retval.append(signature) ;
+            } else {
+                QLOG_STR("ERROR: Voice call signing failed") ;
+                retval.clear() ;
+            }
+        } else {
+            // put in a zero-size signature
+            quint32 signatureSizeNetworkBO ( 0 ) ;
+            retval.append((const char *)(&signatureSizeNetworkBO), sizeof(quint32)) ;
+        }
+    } else {
+        retval.clear() ;
+    }
+    return retval ;
+}
+
+QByteArray ProtocolMessageFormatter::voiceCallRtData(quint32 aCallId,
+                                                     quint32 aSeqNo,
+                                                     VoiceCallEngine::PayloadType aPayloadType,
+                                                     const QByteArray& aPayload ) {
+    QByteArray retval ;
+
+    switch ( aPayloadType ) {
+    case VoiceCallEngine::Audio: {
+        retval.append((const char *)&KRealtimeData, sizeof(unsigned char)) ;
+        retval.append((const char *)&KRTDataAudioSubtype, sizeof(unsigned char)) ;
+        quint32 callIdNetworkBO ( htonl(aCallId ) ) ; 
+        retval.append((const char *)(&callIdNetworkBO), sizeof(quint32)) ; 
+        quint32 seqNoNetworkBO ( htonl(aSeqNo ) ) ; 
+        retval.append((const char *)(&seqNoNetworkBO), sizeof(quint32)) ; 
+        quint32 payloadSizeNetworkBO ( htonl(aPayload.size() ) ) ; 
+        retval.append((const char *)(&payloadSizeNetworkBO), sizeof(quint32)) ;
+        retval.append(aPayload) ; 
+        }
+        break ; 
+    default:
+        // do not append anything, zero-size requests are not processed
+        break ; 
+    }
+    return retval ; 
 }
 
 QByteArray ProtocolMessageFormatter::profileCommentPublish(const Hash& aContentHash,

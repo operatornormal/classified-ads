@@ -24,6 +24,7 @@
 #include "mockup_controller.h"
 #include "mockup_model.h"
 #include "mockup_nodemodel.h"
+#include "mockup_voicecallengine.h"
 #include "../datamodel/model.h"
 #include "../datamodel/contentencryptionmodel.h"
 #include "../log.h"
@@ -87,6 +88,14 @@ private slots:
     void tryJSonParseWithCompress() ;
     void tryJSonParseFailure() ;
     void tryJSonSerialize() ;
+    /**
+     * Voice call rt-data format+parse test 
+     */
+    void tryCallDataParse() ; 
+    /**
+     * Voice call status format+parse test 
+     */
+    void tryCallStatusDataParse() ; 
     void tryDeletingController() ;
 private:
     Hash iHashOfPrivateKey ;
@@ -744,6 +753,72 @@ void TestClassifiedAds::tryJSonSerialize() {
     m.insert("stringKey", "stringValue") ; 
     QByteArray serialized ( JSonWrapper::serialize(QVariant(m).toMap())) ; 
     QVERIFY(serialized.indexOf("stringValue") > 1) ; 
+}
+
+// call rt data parse
+void TestClassifiedAds::tryCallDataParse() {
+
+    MockUpModel* m = new MockUpModel(iController) ;
+    ProtocolMessageParser* p = new ProtocolMessageParser(*iController,*m) ;
+
+
+    Connection* c = new Connection(1,
+                                   *this,
+                                   iController->model(),
+                                   *iController) ;
+
+    QByteArray rtDataBytes;
+    QByteArray callData ;
+    callData.append("zap!") ; 
+    rtDataBytes.append(ProtocolMessageFormatter::voiceCallRtData(51,
+                                                                 8,
+                                                                 MVoiceCallEngine::Audio,
+                                                                 callData)) ;
+    p->parseMessage(rtDataBytes,*c) ;
+
+    QVERIFY( iController->voiceCallEngineMockUp()->iCallIdOfReceivedRtData == 51 &&
+        iController->voiceCallEngineMockUp()->iCalldata == callData ) ;
+
+    delete c;
+    delete p ;
+    delete m ;
+
+}
+
+// call rt data parse
+void TestClassifiedAds::tryCallStatusDataParse() {
+
+    MockUpModel* m = new MockUpModel(iController) ;
+    ProtocolMessageParser* p = new ProtocolMessageParser(*iController,*m) ;
+
+
+    Connection* c = new Connection(1,
+                                   *this,
+                                   iController->model(),
+                                   *iController) ;
+
+    VoiceCall callStatus ; 
+    callStatus.iCallId = 81 ;
+    callStatus.iOriginatingNode = Hash ( 51,52,53,54,55) ;
+    callStatus.iDestinationNode = Hash ( 61,62,63,65,65) ; 
+    iController->model().contentEncryptionModel().PrivateKey(iHashOfPrivateKey,
+                                                             callStatus.iOriginatingOperatorKey  );
+    callStatus.iOkToProceed = true ;
+    callStatus.iTimeOfCallAttempt = 18 ; 
+                                                                     
+    QByteArray callData ;
+    callData.append(ProtocolMessageFormatter::voiceCall(callStatus,
+                                                        *iController,
+                                                        iHashOfPrivateKey,
+                                                        false)) ;
+    p->parseMessage(callData,*c) ;
+
+    QVERIFY( iController->voiceCallEngineMockUp()->iCallId == 81 ) ;
+
+    delete c;
+    delete p ;
+    delete m ;
+
 }
 
 void TestClassifiedAds::tryCompression() {

@@ -3,6 +3,10 @@
     <file>ui/rightarrow.png</file>
     <file>ui/leftarrow.png</file>
     <file>ui/turt558.png</file>
+    <file>ui/bow.rawopus</file>
+    <file>ui/electrical.rawopus</file>
+    <file>ui/acoustic.rawopus</file>
+    <file>ui/beep.rawopus</file>
   </qresource>
 <qresource prefix="/">
   <file>images/logo32.png</file>

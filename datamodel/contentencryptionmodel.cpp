@@ -43,6 +43,8 @@
 #include <openssl/err.h>
 #include <QSqlQuery>
 #include <QSqlError>
+#include <openssl/rand.h>
+
 static const char *KJSonEncryptedMessageEkElement = "ek" ;
 static const char *KJSonEncryptedMessageIvElement = "iv" ;
 
@@ -898,3 +900,11 @@ Hash ContentEncryptionModel::hashOfPublicKey(const QByteArray& aPemBytes) {
     return retval ;
 }
 
+
+QByteArray ContentEncryptionModel::randomBytes(int aNumberOfBytes) {
+    unsigned char* bytes = new unsigned char[aNumberOfBytes+1] ; 
+    RAND_bytes(bytes, aNumberOfBytes) ; 
+    QByteArray retval((const char *)bytes,aNumberOfBytes) ;
+    delete bytes ;
+    return retval ; 
+}

@@ -49,6 +49,32 @@ class Model : public MModelProtocolInterface {
     Q_OBJECT
 
 public:
+    // public enums
+    /**
+     * Enumeration for ringtone settings. Numbering of
+     * the enum must exactly follow indexing of 
+     * items in ringToneComboxBox in settings UI
+     * dialog. 
+     */
+    enum RingtoneSetting {
+        BowRingTone = 0,
+        ElectricalRingTone = 1,
+        AcousticRingTone = 2,
+        BeepRingTone = 3 ,
+        NoRingTone = 4 
+    } ; 
+    /**
+     * Enumeration for call acceptance settings. Numbering of
+     * the enum must exactly follow indexing of 
+     * items in callAcceptanceComboBox in settings UI
+     * dialog. 
+     */
+    enum CallAcceptanceSetting {
+        AcceptAllCalls = 0,
+        AcceptCallsFromTrusted = 1,
+        AcceptNoCalls = 2
+    } ; 
+    // methods
     Model(MController *aMController) ;
     ~Model() ;
     ContentEncryptionModel& contentEncryptionModel() const ; /**< method for getting content-encryption-specific datamodel */
@@ -175,6 +201,25 @@ public:
      *         move to next.
      */
     PublishItem addNodeToPublishedItem(const Hash& aContentHash,const Hash& aNodeHash) ;
+    /**
+     * getter method for users ringtone-setting
+     */
+    Model::RingtoneSetting getRingtoneSetting() ; 
+    /**
+     * getter method for users ringtone-setting
+     */
+    void setRingtoneSetting(Model::RingtoneSetting aRingTone) ;
+
+    /**
+     * getter method for users call-acceptance-setting
+     */
+    Model::CallAcceptanceSetting getCallAcceptanceSetting() ; 
+    /**
+     * getter method for users call-acceptance-setting
+     */
+    void setCallAcceptanceSetting(Model::CallAcceptanceSetting aAcceptance) ;
+
+
 public slots:
     /**
      * notification of content received
@@ -197,6 +242,8 @@ private:
     QSqlError lastError();
     // 1st-time initialization methods ahead
     bool createTables() ;
+    // additions to first version of tables
+    bool createTablesV2() ;
     void initPseudoRandom() ; /**< just calls srand() */
 signals:
     void error(MController::CAErrorSituation aError,

@@ -28,11 +28,13 @@
 #include <unistd.h> // for getpid() 
 #include <signal.h>
 #include "../datamodel/binaryfile.h"
+#include "mockup_voicecallengine.h"
 
 MockUpController::MockUpController() :
     iNode(NULL),
     iModel(NULL),
-    iListener(NULL) {
+    iListener(NULL),
+    iCallEngine(NULL) {
     LOG_STR("MockUpController::Controller in\n") ;
     qRegisterMetaType<MController::CAErrorSituation>("MController::CAErrorSituation");
     iModel = new Model(this);
@@ -41,6 +43,7 @@ MockUpController::MockUpController() :
     iListener = new  NetworkListener (this, iModel) ;
     // network listener enumerates network interfaces and sets
     // possible ipv6 addr into iNode() ->
+    iCallEngine = new MockUpVoiceCallEngine ; 
     LOG_STR("MockUpController::Controller out\n") ;
 }
 
@@ -54,11 +57,13 @@ MockUpController::~MockUpController() {
     delete iListener ; // will delete also connections received by listener
     delete iModel ;
     delete iNode ;
+    delete iCallEngine ; 
 }
 
 void MockUpController::userInterfaceAction ( CAUserInterfaceRequest aRequest,
-        const Hash& aHashConcerned,
-        const Hash& aFetchFromNode ) {
+                                             const Hash& aHashConcerned,
+                                             const Hash& aFetchFromNode,
+                                             const QString* /*aAdditionalInformation*/ ) {
     LOG_STR2("MockUpController::userInterfaceAction %d\n", (int) aRequest) ;
 }
 
@@ -155,4 +160,8 @@ void MockUpController::offerDisplayNameForProfile(const Hash& aProfileFingerPrin
 
 void MockUpController::displayFileInfoOnUi(const BinaryFile& aFileMetadata) {
     QLOG_STR("displayFileInfoOnUi file = " + aFileMetadata.iFileName) ;
+}
+
+MVoiceCallEngine* MockUpController::voiceCallEngineInterface() {
+    return iCallEngine ; 
 }

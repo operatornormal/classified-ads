@@ -48,9 +48,11 @@
 #include "ui/newtextdocument.h"
 #include "ui/editcontact.h"
 #include "ui/metadataQuery.h" // for query dialog
+#include "ui/callstatus.h"
 
 static const QString internalNameOfProfileTab("profileTabNamed") ;
 static const QString internalNameOfCommentDialog("caCommentDlgNamed") ;
+static const QString internalNameOfCallStatusDialog("caCallStatDlgNamed") ;
 
 FrontWidget::FrontWidget(Controller* aController,
                          QMainWindow& aParent):
@@ -112,7 +114,10 @@ FrontWidget::FrontWidget(Controller* aController,
             SIGNAL(clicked()),
             this,
             SLOT(performAdsSearchClicked())) ;
-
+    connect(ui.profileDetailsVoiceCallButton,
+            SIGNAL(clicked()),
+            this,
+            SLOT(voiceCallButtonPressed())) ;
     // add profile text editors to slot that enables "publish" button
     // when user edits the profile:
     connect(ui.profileNickNameEdit,
@@ -1283,6 +1288,7 @@ void FrontWidget::showDetailsOfProfile(const Hash& aFingerPrint) {
         ui.profileDetailsSendMsgButton->setEnabled(false) ;
     }
     updateFileSelectionActions();
+    setVoiceCallButtonStatus() ;
 }
 
 void   FrontWidget::showClassifiedAd(const CA& ca) {
@@ -1383,7 +1389,7 @@ void FrontWidget::updateUiFromViewedProfile() {
         QDateTime d ;
         d.setTime_t(iViewedProfile->iTimeOfPublish) ;
         ui.timeOfLastUpdateValue->setText(d.toString(Qt::SystemLocaleShortDate)) ;
-        QString toolTipText ( tr("Time of last update ") + d.toString(Qt::SystemLocaleShortDate) ) ;
+        QString toolTipText ( tr("Time of last update ") + " " + d.toString(Qt::SystemLocaleShortDate) ) ;
         ui.profileDetailsNickNameValue->setToolTip(toolTipText) ;
         ui.profileDetailsGreetingValue->setToolTip(toolTipText) ;
         if ( !( iViewedProfile->iProfilePicture.isNull()) ) {
@@ -2320,5 +2326,104 @@ void FrontWidget::doShowFileMetadata(const Hash& aBinaryFileFingerPrint) {
     if ( metadata ) {
         iController->displayFileInfoOnUi(*metadata) ;
         delete metadata ;
+    }
+}
+
+// the "voice call" button needs to be enabled/disabled depending
+// whether we have connection to operators node available or not. 
+// for this reason we have here connetion status observer. 
+void FrontWidget::nodeConnectionAttemptStatus(Connection::ConnectionState aStatus,
+        const Hash aHashOfAttemptedNode ) {
+    if ( iViewedProfile &&
+         iViewedProfile->iNodeOfProfile &&
+         iViewedProfile->iNodeOfProfile->nodeFingerPrint() == aHashOfAttemptedNode ) {
+        LOG_STR2("FrontWidget::nodeConnectionAttemptStatus %d in", aStatus) ;
+        LOG_STR2("FrontWidget::nodeConnectionAttemptStatus %s ", qPrintable(aHashOfAttemptedNode.toString())) ;
+        if ( aStatus == Connection::Open ) {
+            setVoiceCallButtonStatus() ;
+        } else {
+            if  ( iController->model().nodeModel().isNodeAlreadyConnected(aHashOfAttemptedNode) == false ) {
+                // was one and only remaining open connection to given node
+                setVoiceCallButtonStatus() ;
+            }
+        }
+    }
+}
+
+void FrontWidget::setVoiceCallButtonStatus() {
+    bool buttonStatus ( false ) ; 
+    if ( iViewedProfile &&
+         iViewedProfile->iNodeOfProfile ) {
+        Hash fpOfNodeOfViewedProfile ( iViewedProfile->iNodeOfProfile->nodeFingerPrint() ) ; 
+        if ( fpOfNodeOfViewedProfile != KNullHash ) {
+            iController->model().lock() ;
+        
+            const QList <Connection *>& connectionList( iController->model().getConnections() ) ;
+            foreach ( const Connection* c, connectionList ) {
+                if ( c->getPeerHash() == fpOfNodeOfViewedProfile ) {
+                    if ( c->connectionState() == Connection::Open ) {
+                        buttonStatus = true ; 
+                    }
+                    break ; 
+                }
+            }
+            iController->model().unlock() ;
+        }
+    }
+    ui.profileDetailsVoiceCallButton->setEnabled(buttonStatus) ; 
+    if ( iViewedProfile ) {
+        VoiceCallEngine* eng ( iController->voiceCallEngine() ) ;
+        Hash profileNode = KNullHash ; 
+        if ( iViewedProfile->iNodeOfProfile ) {
+            profileNode = iViewedProfile->iNodeOfProfile->nodeFingerPrint() ; 
+        }
+        if ( eng ) {
+            ui.profileDetailsVoiceCallButton->setToolTip(eng->excuseForCallCreation(iViewedProfile->iFingerPrint, profileNode)) ;
+        }
+    }
+}
+
+void FrontWidget::voiceCallButtonPressed() {
+    if ( iViewedProfile &&
+         iViewedProfile->iNodeOfProfile ) {
+        Hash fpOfNodeOfViewedProfile ( iViewedProfile->iNodeOfProfile->nodeFingerPrint() ) ; 
+        if ( fpOfNodeOfViewedProfile != KNullHash ) {
+            QString operatorNick ; 
+            operatorNick = iViewedProfile->displayName() ; 
+            iController->userInterfaceAction(MController::VoiceCallToNode,
+                                             fpOfNodeOfViewedProfile,
+                                             KNullHash,
+                                             &operatorNick ) ;
+        }
+    }
+}
+
+void FrontWidget::callStateChanged(quint32 aCallId, 
+                                   VoiceCallEngine::CallState aState) {
+    QLOG_STR("FrontWidget::callStateChanged " + 
+             QString::number(aState)) ; 
+    // if there is any call state activity, make sure there
+    // is call state dialog on display
+    if ( aState != VoiceCallEngine::Closed ) {
+
+        CallStatusDialog* dialog = this->findChild<CallStatusDialog*>(internalNameOfCallStatusDialog) ;
+        if ( !dialog ) {
+
+            dialog = new
+                CallStatusDialog(this,
+                                 *iController) ;
+
+            dialog->setObjectName(internalNameOfCallStatusDialog) ;
+            connect(dialog,
+                    SIGNAL(  error(MController::CAErrorSituation,
+                                   const QString&) ),
+                    iController,
+                    SLOT(handleError(MController::CAErrorSituation,
+                                     const QString&)),
+                    Qt::QueuedConnection ) ;
+            // and inject initial state:
+            dialog->callStatusChanged(aCallId,aState) ; 
+        }
+        dialog->show() ;
     }
 }

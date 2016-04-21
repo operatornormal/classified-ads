@@ -1,5 +1,5 @@
 /*                                      -*-C++-*-
-    Classified Ads is Copyright (c) Antti Jarvinen 2013.
+    Classified Ads is Copyright (c) Antti Jarvinen 2015.
 
     This file is part of Classified Ads.
 

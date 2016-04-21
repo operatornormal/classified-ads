@@ -25,6 +25,11 @@
 #include <QMessageBox>
 #include <QProgressDialog>
 #include <QErrorMessage>
+#include <QSharedMemory>
+#ifdef WIN32
+#include <QLocalServer>
+#include <QLocalSocket>
+#endif
 #include "controller.h"
 #include "FrontWidget.h"
 #include "log.h"
@@ -53,6 +58,8 @@
 #include "datamodel/profilecomment.h"
 #include "datamodel/trusttreemodel.h"
 #include "datamodel/binaryfile.h"
+#include "net/voicecallengine.h"
+#include "datamodel/voicecall.h"
 
 static const char *KPrivateDataContactsSection = "contacts" ;
 static const char *KPrivateDataContactsCache = "contactsCache" ;
@@ -77,21 +84,94 @@ Controller::Controller(QApplication &app) : iWin(NULL),
     iListener(NULL),
     iNetEngine(NULL),
     iPubEngine(NULL),
-    iRetrievalEngine(NULL) {
-    LOG_STR("Controller::Controller in") ;
+    iRetrievalEngine(NULL),
+    iVoiceCallEngine (NULL),
+    iInsideDestructor(false),
+    iSharedMemory(NULL)
+#ifdef WIN32
+    ,iLocalServer(NULL)
+#endif
+
+{
+    LOG_STR("Controller::Controller constructor out") ;
+}
+
+bool Controller::init() {
+    QLOG_STR("Controller::init in") ;
 #ifndef WIN32
     int pid ;
     if ( ( pid =  createPidFile() ) != -1 ) {
+        // there is old instance, if we have url to open, put it into shared memory
+        QString sharedMemName ( QString("classified-ads-")
+                                + QString::number(pid) ) ;
+        if ( createSharedMemSegment(sharedMemName) == false ) {
+            return false ;
+        }
+        // segment before signaling the previously opened instance:
         LOG_STR2("Signaling old instance %d", pid) ;
         if ( kill(pid, SIGUSR2) != -1 ) {
             // was success
             kill(getpid(), SIGINT) ; // then signal this instance to go away..
-            return    ;
+            LOG_STR("Instance signaled ") ;
+            return  false   ;
         } else {
             // the process did not exist..
             LOG_STR("But process was not there?") ;
             deletePidFile() ;
             createPidFile() ;
+        }
+    } else {
+        // createPidFile() returned -1 meaning that the
+        // process was not there: create a shared memory segment:
+        if ( iSharedMemory == NULL ) {
+            QString sharedMemOwnName ( QString("classified-ads-")
+                                       + QString::number(getpid()) ) ;
+            iSharedMemory = new QSharedMemory(sharedMemOwnName) ;
+        }
+        if ( iSharedMemory ) {
+            if( iSharedMemory->attach() == false ) {
+                // 1 kb and some extra
+                iSharedMemory->create(1024,QSharedMemory::ReadWrite) ;
+                QLOG_STR("Created shared mem 1kb, is attached = " + 
+                         QString::number(iSharedMemory->isAttached())) ; 
+            }
+        }
+    }
+#else
+    // in WIN32 try to check existence of previous instance
+    // by using a local server.
+    const QString KLocalServerName("classifiedads") ;
+    QString sharedMemSegmentName("classified-ads") ;
+    QString segmentName("classified-ads") ;
+    createSharedMemSegment(sharedMemSegmentName) ;
+
+    QLocalSocket s ;
+    s.connectToServer(KLocalServerName) ;
+    if ( s.waitForConnected(2000) == true ) {
+        s.close() ;
+        QLOG_STR("Exiting because there is old instace has been signaled") ;
+
+        return false ; // job done
+    } else {
+        switch ( s.error() ) {
+        case QLocalSocket::PeerClosedError:
+            // ok, looks like the server is actually  there:
+            QLOG_STR("Exiting because there is old instace that closed connection") ;
+            return false ;
+            break ;
+        default:
+            QLOG_STR("Not exiting due to old instance, starting own local server") ;
+            iLocalServer = new QLocalServer(this) ;
+            if ( iLocalServer ) {
+                if ( iLocalServer->listen(KLocalServerName) ) {
+                    connect(iLocalServer,
+                            SIGNAL(newConnection()),
+                            this,
+                            SLOT(newInstanceConnected())) ;
+                    QLOG_STR("Local server listen ok") ;
+                }
+            }
+            break ;
         }
     }
 #endif
@@ -99,6 +179,8 @@ Controller::Controller(QApplication &app) : iWin(NULL),
     qRegisterMetaType<Hash>("Hash");
     qRegisterMetaType<ProtocolItemType>("ProtocolItemType");
     qRegisterMetaType<QHostAddress>("QHostAddress");
+    qRegisterMetaType<VoiceCallEngine::CallState>("VoiceCallEngine::CallState");
+    qRegisterMetaType<QVector<int> >("QVector<int>"); // used by dataChanged
     iWin = new QMainWindow(NULL) ;
     iWin->setWindowTitle(tr("Classified ads")) ;
     // somehow Qt should calculate size from widgets. it gets too small vertical..
@@ -184,6 +266,14 @@ Controller::Controller(QApplication &app) : iWin(NULL),
                         const Hash  )),
                 Qt::QueuedConnection )  ) ;
     assert(
+        connect(iListener,
+                SIGNAL(  nodeConnectionAttemptStatus(Connection::ConnectionState ,
+                         const Hash  ) ),
+                iCurrentWidget,
+                SLOT( nodeConnectionAttemptStatus(Connection::ConnectionState ,
+                        const Hash  )),
+                Qt::QueuedConnection )  ) ;
+    assert(
         connect(iRetrievalEngine,
                 SIGNAL(   notifyOfContentNotReceived(const Hash& ,
                           const ProtocolItemType  ) ),
@@ -191,20 +281,79 @@ Controller::Controller(QApplication &app) : iWin(NULL),
                 SLOT(    notifyOfContentNotReceived(const Hash& ,
                          const ProtocolItemType  )),
                 Qt::QueuedConnection )  ) ;
+    assert(
+        connect(this,
+                SIGNAL(userProfileSelected(const Hash&)),
+                this,
+                SLOT(    checkForObjectToOpen(const Hash&)),
+                Qt::QueuedConnection));
     // after signals are connected, start publishing and retrieval
     iPubEngine->start() ;
     iRetrievalEngine->start() ;
+    // instantiate voice call engine from UI thread, otherwise
+    // some transient connection-related thread will do it and
+    // problems start appearing after the thread finishes..
+    this->voiceCallEngine() ;
     /*
     // debug thing:
     iModel->classifiedAdsModel().reIndexAllAdsIntoFTS() ;
     iModel->profileModel().reIndexAllProfilesIntoFTS() ;
     iModel->profileCommentModel().reIndexAllCommentsIntoFTS() ;
     */
-    LOG_STR("Controller::Controller out") ;
+    QLOG_STR("Controller::init out") ;
+    return true ;
+}
+
+bool Controller::createSharedMemSegment(QString& aSegmentName) {
+    if (  ( iSharedMemory = new QSharedMemory(aSegmentName)) != NULL ) {
+
+        if ( iSharedMemory->attach() == false ) {
+            iSharedMemory->create(1024,QSharedMemory::ReadWrite)  ;
+        }
+        if( iSharedMemory->isAttached() == true &&
+                iSharedMemory->constData() != NULL &&
+                iSharedMemory->size() >= 1024 &&
+                iObjectToOpen.scheme().length() > 0 ) {
+            iSharedMemory->lock();
+            strcpy((char *)(iSharedMemory->data()),
+                   iObjectToOpen.toString().toUtf8().constData()) ;
+            iSharedMemory->unlock();
+            QLOG_STR("Copied to shared mem bytes " + aSegmentName + " " +
+                     QString::number(strlen((char *)(iSharedMemory->data()))) ) ;
+        } else {
+            if (iSharedMemory->isAttached() == true &&
+                    iSharedMemory->constData() != NULL &&
+                    iSharedMemory->size() >= 1024 &&
+                    iObjectToOpen.scheme().length() == 0 ) {
+                // there is shared memory segment but nothing in iObjectToOpen
+                // so null-terminate the shared memory segment contents
+                iSharedMemory->lock();
+                char* d ( (char *)(iSharedMemory->data())) ;
+                iSharedMemory->unlock();
+                *d = '\0' ;
+                QLOG_STR("Constructed shared mem segment " + aSegmentName ) ;
+            }
+        }
+        return true ;
+    } else {
+        QLOG_STR("Could not construct shared mem segment " + aSegmentName ) ;
+        return false ;
+    }
 }
 
 Controller::~Controller() {
     LOG_STR("Controller::~Controller") ;
+    iInsideDestructor = true ;
+#ifdef WIN32
+    if ( iLocalServer ) {
+        iLocalServer->close() ;
+        delete iLocalServer ;
+    }
+#endif
+    if ( iVoiceCallEngine ) {
+        delete iVoiceCallEngine ;
+        iVoiceCallEngine = NULL ; // call status dialog, if open, will ask..
+    }
     if ( iListener ) {
         iListener->stopAccepting() ;
     }
@@ -238,31 +387,36 @@ Controller::~Controller() {
     // .. connections reference iListener.
     // so in order to prevent random crash at closing, lets first get rid
     // of connections, only after that delete iListener ;
-    iModel->closeAllConnections(false) ;
-    // after all connections have been instructed to close themselves,
-    // wait for some time to give them time to do so..
-    unsigned char waitCounter ( 0 ) ;
-    while (  ( waitCounter < 60 && iModel->getConnections().count() > 0 ) ||
-             ( waitCounter < 2 ) ) {
-        ++waitCounter ;
-        QLOG_STR("Waitcounter " + QString::number(waitCounter) +
-                 " conn count " + QString::number( iModel->getConnections().count() ) ) ;
-        QWaitCondition waitCondition;
-        QMutex mutex;
-        mutex.lock() ; // waitCondition needs a mutex initially locked
-        waitCondition.wait(&mutex, 500);// give other threads a chance..
-        mutex.unlock() ;
-        QThread::yieldCurrentThread ();
-        QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents) ;
+    if ( iModel ) {
+        iModel->closeAllConnections(false) ;
+        // after all connections have been instructed to close themselves,
+        // wait for some time to give them time to do so..
+        unsigned char waitCounter ( 0 ) ;
+        while (  ( waitCounter < 60 && iModel->getConnections().count() > 0 ) ||
+                 ( waitCounter < 2 ) ) {
+            ++waitCounter ;
+            QLOG_STR("Waitcounter " + QString::number(waitCounter) +
+                     " conn count " + QString::number( iModel->getConnections().count() ) ) ;
+            QWaitCondition waitCondition;
+            QMutex mutex;
+            mutex.lock() ; // waitCondition needs a mutex initially locked
+            waitCondition.wait(&mutex, 500);// give other threads a chance..
+            mutex.unlock() ;
+            QThread::yieldCurrentThread ();
+            QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents) ;
+        }
+        iModel->closeAllConnections(true) ; // forcefully delete the remaining
+        // now safe to delete listener (and net engine)
+        LOG_STR("Controller::~Controller connections closed") ;
+        delete iNetEngine ; // will delete also connections opened by net engine
+        iNetEngine = NULL ;
+        LOG_STR("Controller::~Controller netengine deleted") ;
+        delete iListener ; // will delete also connections received by listener
+        iListener = NULL ;
+        LOG_STR("Controller::~Controller listener deleted") ;
+        delete iModel ;
     }
-    iModel->closeAllConnections(true) ; // forcefully delete the remaining
-    // now safe to delete listener (and net engine)
-    LOG_STR("Controller::~Controller connections closed") ;
-    delete iNetEngine ; // will delete also connections opened by net engine
-    LOG_STR("Controller::~Controller netengine deleted") ;
-    delete iListener ; // will delete also connections received by listener
-    LOG_STR("Controller::~Controller listener deleted") ;
-    delete iModel ;
+    iModel = NULL ;
     LOG_STR("Controller::~Controller datamodel") ;
     delete iNode ;
     if ( iFileMenu ) {
@@ -299,11 +453,16 @@ Controller::~Controller() {
         delete iWin ;
         iWin = NULL ;
     }
+    if ( iSharedMemory ) {
+        iSharedMemory->detach() ;
+        delete iSharedMemory ;
+    }
 }
 
 void Controller::userInterfaceAction ( CAUserInterfaceRequest aRequest,
                                        const Hash& aHashConcerned ,
-                                       const Hash& aFetchFromNode ) {
+                                       const Hash& aFetchFromNode ,
+                                       const QString* aAdditionalInformation ) {
     LOG_STR2("Controller::userInterfaceAction %d", aRequest) ;
 
     if ( aRequest == ViewProfileDetails ) {
@@ -408,6 +567,36 @@ void Controller::userInterfaceAction ( CAUserInterfaceRequest aRequest,
         connect(this,SIGNAL(waitDialogToBeDismissed()),
                 waitDialog,SLOT(reject())) ;
         waitDialog->exec() ;
+    } else if ( aRequest == VoiceCallToNode && iNode != NULL ) {
+        QLOG_STR("Voice call request to node " +
+                 aHashConcerned.toString() ) ;
+        // here let voice call engine handle all the logic:
+        if ( !iVoiceCallEngine ) {
+            this->voiceCallEngine() ; // has side effect of instantiating one
+        }
+        VoiceCall callData;
+        callData.iCallId = rand() ;
+        callData.iTimeOfCallAttempt = QDateTime::currentDateTimeUtc().toTime_t() ;
+        callData.iOkToProceed = true ;
+        quint32 dummyTimeStamp ;
+        iModel->lock() ;
+        QLOG_STR("unlock " + QString(__FILE__) + " "+ QString::number(__LINE__));
+        iModel->contentEncryptionModel().PublicKey(iProfileHash,
+                callData.iOriginatingOperatorKey,
+                &dummyTimeStamp) ;
+
+        callData.iOriginatingNode = iNode->nodeFingerPrint() ;
+        callData.iDestinationNode = iModel->nodeModel().nodeByHash(aHashConcerned)->nodeFingerPrint();
+        if ( aAdditionalInformation ) {
+            callData.iPeerOperatorNick = *aAdditionalInformation ;
+            QLOG_STR("Peer nick was set to " + callData.iPeerOperatorNick ) ;
+        }
+        iVoiceCallEngine->insertCallStatusData(callData,
+                                               iNode->nodeFingerPrint() ) ;
+        iModel->unlock() ;
+        QLOG_STR("unlock " + QString(__FILE__) + " "+ QString::number(__LINE__));
+        callData.iOriginatingNode = KNullHash ; // or it gets deleted
+        // calldata destructor will delete callData.iDestinationNode
     } else {
         LOG_STR2("Unhandled user interface request %d", aRequest) ;
     }
@@ -734,7 +923,6 @@ void Controller::handleError(MController::CAErrorSituation aError,
         QLOG_STR("DbTransactionError " + aExplanation ) ;
         break ;
     }
-    return ;
 }
 
 Node& Controller::getNode() const {
@@ -1123,3 +1311,92 @@ void Controller::sendProfileUpdateQuery(const Hash& aProfileFingerPrint,
     iModel->addNetworkRequest(req) ;
     iModel->unlock() ;
 }
+
+VoiceCallEngine* Controller::voiceCallEngine() {
+    if ( !iVoiceCallEngine && iInsideDestructor == false ) {
+        iVoiceCallEngine = new VoiceCallEngine(*this,
+                                               *iModel) ;
+        assert(
+            connect(iVoiceCallEngine,
+                    SIGNAL(   callStateChanged(quint32,
+                                               VoiceCallEngine::CallState) ),
+                    iCurrentWidget,
+                    SLOT(    callStateChanged(quint32,
+                                              VoiceCallEngine::CallState) ),
+                    Qt::QueuedConnection )  ) ;
+        assert(
+            connect(iListener,
+                    SIGNAL(  nodeConnectionAttemptStatus(Connection::ConnectionState ,
+                             const Hash  ) ),
+                    iVoiceCallEngine,
+                    SLOT( nodeConnectionAttemptStatus(Connection::ConnectionState ,
+                            const Hash  )),
+                    Qt::QueuedConnection )  ) ;
+    }
+    return iVoiceCallEngine ;
+}
+
+MVoiceCallEngine* Controller::voiceCallEngineInterface() {
+    return this->voiceCallEngine() ;
+}
+
+void Controller::addObjectToOpen(QUrl aClassifiedAdsObject) {
+    iObjectToOpen = aClassifiedAdsObject ;
+}
+
+void Controller::checkForObjectToOpen(const Hash& /* aIgnored */) {
+    if ( iObjectToOpen.scheme().length() > 0 && iCurrentWidget ) {
+        iCurrentWidget->linkActivated(iObjectToOpen.toString()) ;
+    }
+    iObjectToOpen.setScheme("") ;
+}
+
+void Controller::checkForSharedMemoryContents() {
+    if ( iSharedMemory ) {
+        iSharedMemory->lock();
+    }
+    if (iSharedMemory &&
+            iSharedMemory->constData() != NULL &&
+            iSharedMemory->size() >= 1024 ) {
+        QString urlStr ( QString::fromUtf8 ( reinterpret_cast<const char *>(iSharedMemory->constData()) ) ) ;
+        QLOG_STR("checkForSharedMemoryContents content = " +
+                 urlStr) ;
+        QUrl url (urlStr) ;
+        if ( url.scheme() == "caprofile" ||
+                url.scheme() == "caad" ||
+                url.scheme() == "cacomment" ||
+                url.scheme() == "cablob"  ) {
+            if ( iProfileHash == KNullHash ) {
+                // there is no profile in use
+                addObjectToOpen(url) ; // <- goes into wait list
+            } else {
+                iObjectToOpen = url ;
+                emit userProfileSelected(iProfileHash) ;
+            }
+        }
+    } else {
+        QLOG_STR("checkForSharedMemoryContents foud no content") ;
+    }
+    if ( iSharedMemory ) {
+        iSharedMemory->unlock();
+    }
+}
+
+#ifdef WIN32
+// WIN32 IPC callback
+void Controller::newInstanceConnected() {
+    QLOG_STR("Controller::newInstanceConnected ") ;
+    QLocalSocket *clientConnection = iLocalServer->nextPendingConnection();
+    if ( clientConnection ) {
+        connect(clientConnection, SIGNAL(disconnected()),
+                clientConnection, SLOT(deleteLater()));
+
+        clientConnection->flush();
+        clientConnection->disconnectFromServer();
+    }
+    checkForSharedMemoryContents() ;
+    if ( iCurrentWidget ) {
+        iCurrentWidget->activateWindow() ;
+    }
+}
+#endif

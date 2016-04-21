@@ -1470,7 +1470,8 @@ bool NodeModel::isNodeAlreadyConnected(const Node& aNode) const {
     for ( int i = currentConnections.size()-1 ; i >= 0 ; i-- ) {
         // and don't connect to already-connected nodes
         nodeOfConnection = currentConnections.value(i)->node() ;
-        if ( nodeOfConnection ) {
+        if ( nodeOfConnection && 
+             currentConnections.value(i)->connectionState() == Connection::Open ) {
             if ( nodeOfConnection->nodeFingerPrint() == aNode.nodeFingerPrint() ) {
                 return true ; // was already connected
             }
@@ -1504,7 +1505,8 @@ bool NodeModel::isNodeAlreadyConnected(const Hash& aHash) const {
     for ( int i = currentConnections.size()-1 ; i >= 0 ; i-- ) {
         // and don't connect to already-connected nodes
         nodeOfConnection = currentConnections.value(i)->node() ;
-        if ( nodeOfConnection ) {
+        if ( nodeOfConnection  &&
+            currentConnections.value(i)->connectionState() == Connection::Open) {
             if ( nodeOfConnection->nodeFingerPrint() == aHash ) {
                 return true ; // was already connected
             }
@@ -1676,6 +1678,10 @@ void NodeModel::offerNodeToRecentlyFailedList(const Hash& aFailedNodeHash) {
     if ( !seen ) {
         QPair<Hash,unsigned> newItem ( aFailedNodeHash, QDateTime::currentDateTimeUtc().toTime_t() ) ;
         iRecentlyFailedNodes.append(newItem) ;
+        QLOG_STR("Failed node " + aFailedNodeHash.toString() +
+                 " time " + QString::number(newItem.second)) ;
+        iHotAddresses.clear() ; // causes re-fetch, without the failed node
+
     }
 }
 
@@ -1697,6 +1703,9 @@ void NodeModel::timerEvent(QTimerEvent*  /* event */ ) {
     // remove all nodes that have been more than 10 minutes on the list
     for ( int i = iRecentlyFailedNodes.size()-1 ; i >= 0 ; i-- ) {
         if ( iRecentlyFailedNodes[i].second < time10MinAgo ) {
+        QLOG_STR("Removing failed node " + iRecentlyFailedNodes[i].first.toString() +
+                 " time " +  QString::number(iRecentlyFailedNodes[i].second) + 
+                 " because " +  QString::number(time10MinAgo) ) ;
             iRecentlyFailedNodes.removeAt(i) ;
         }
     }
