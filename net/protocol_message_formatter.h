@@ -26,9 +26,11 @@
 #include <QByteArray>
 #include <QPair>
 #include "../datamodel/searchmodel.h"
+#include "voicecallengine.h" // for payload type
 
 class Connection ;
 class Node ;
+class VoiceCall ; // from datamodel 
 
 /**
  * @brief This class produces items sent to peers over network.
@@ -274,6 +276,34 @@ public:
      */
     static QByteArray searchResultsSend(const QList<SearchModel::SearchResultItem>& aResults,
                                         quint32 aSearchId) ;
+
+    /**
+     * Method for formatting voice call status object 
+     * @param aCall is the call status object
+     * @param aController is application controller instance
+     * @param aSelectedProfile is hash of the profile who will sign
+     *        the serialized object
+     * @param aDoSign if set to true, normal signature will be added.
+     *        If false, zero-len signature will be used. 
+     * @return serialized bytes of call status
+     */
+    static QByteArray voiceCall(const VoiceCall& aCall,
+                                MController& aController,
+                                const Hash& aSelectedProfile,
+                                bool aDoSign = true ) ;
+    /**
+     * Method for formatting voice call real-time data like audio
+     *
+     * @param aCallId call (stream) identifier
+     * @param aSeqNo sequence number of payload in stream
+     * @param aPayloadType type payload
+     * @param aPayload actual payload bytes to send, like call audio
+     * @return serialized bytes of call status
+     */
+    static QByteArray voiceCallRtData(quint32 aCallId,
+                                      quint32 aSeqNo,
+                                      VoiceCallEngine::PayloadType aPayloadType,
+                                      const QByteArray& aPayload ) ;
 
 private:
     /**

@@ -133,12 +133,11 @@ void NewPrivMessageDialog::okButtonClicked() {
             iController->model().privateMessageModel().publishPrivMessage(msg,
                     iRecipientsNode) ;
             iSearchModel.newMsgReceived(msg) ;
+            iController->model().unlock() ;
         } else {
             QMessageBox::about(this, tr("Error"),
                                tr("Recipient encryption key not found from storage")) ;
         }
-        iController->model().unlock() ;
-
         close() ;
         this->deleteLater() ;
     }

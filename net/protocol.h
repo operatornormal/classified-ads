@@ -109,14 +109,39 @@ static const unsigned char KSearchRequest (121) ;
  */
 static const unsigned char KSearchResults (122) ;
 /**
+ * send as request to open audio channel to operators node
+ */
+static const unsigned char KVoiceCallStart (123) ;
+/**
+ * send as indication about closing of audio channel to operators node
+ */
+static const unsigned char KVoiceCallEnd (124) ;
+/**
+ * This is used to send rt-data inside ssl socket. Typically RT data 
+ * would belong to UDP packet but sometimes UDP won't work while
+ * TCP does. Use-case for this is voice call audio packets but there
+ * may be other types also ; the data anyway contains a sub-type,
+ * for instance for sending separate audio, chat messages or even
+ * moving pictures. 
+ */
+static const unsigned char KRealtimeData (125) ;
+/**
  * Protocol constants for future use
  */
-static const unsigned char KFutureUse1 (123) ;
-static const unsigned char KFutureUse2 (124) ;
-static const unsigned char KFutureUse3 (125) ;
 static const unsigned char KFutureUse4 (126) ;
 static const unsigned char KFutureUse5 (127) ;
 static const unsigned char KFutureUse6 (128) ;
+
+
+/**
+ * next thing is rt-data subtypes. First audio. 
+ */
+static const unsigned char KRTDataAudioSubtype (1) ;
+/**
+ * Call control real-time data packet subtype
+ */
+static const unsigned char KRTDataControlSubtype (2) ;
+
 /**
  * this enum lists possible items that we send over socket
  * from one node to another. These get serialized into bitstream
@@ -147,7 +172,9 @@ enum ProtocolItemType {
     UserProfileCommentsForProfile=22, /**< request to queue profile comments commenting given profile */
     RequestForProfilePoll=23, /**< UI request regarding profile update poll */
     RequestForProfileComment=24, /**< UI request regarding individual comment */
-    RequestForSearchSend=25 /**< UI request about network search */
+    RequestForSearchSend=25, /**< UI request about network search */
+    RequestForVoiceCallStart=26,/**< node<->node audio control start */
+    RequestForVoiceCallEnd=27 /**< node<->node audio control stop */
 };
 /**
  * @brief send-queue item.

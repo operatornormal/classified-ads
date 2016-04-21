@@ -30,6 +30,7 @@ class QSslSocket ;
 class QByteArray ;
 class MController ;
 class Model ;
+class QSslError ; 
 
 /**
  * @brief Class that represents a network connection.
@@ -197,7 +198,15 @@ public:
      *         got called. 
      */
     bool forciblyCloseSocket() ;
+    /**
+     * method for checking if connection is in private (non-routable) ipv4-addr
+     * space like 192.168.. network
+     */
+    bool isInPrivateAddrSpace() const ;
 public slots:
+    /** 
+     * Called when socket is encrypted and ready to transmit
+     */
     void socketReady() ;
     /**
      * this class is a kind of a thread, we need to have run ; note
@@ -208,14 +217,32 @@ public slots:
      */
     void run() ;
     /**
-     * method for checking if connection is in private (non-routable) ipv4-addr
-     * space like 192.168.. network
+     * Connected from QSslSocket. Called when bytes have been written
      */
-    bool isInPrivateAddrSpace() const ;
+    void encryptedBytesWritten ( qint64 written ) ; 
+    /**
+     * Connected from QSslSocket. Called on handshake errors
+     */
+    void sslErrors ( const QList<QSslError> & errors ) ; 
+    /**
+     * Connected from QSslSocket::error. Called on error
+     */
+    void socketError ( QAbstractSocket::SocketError socketError ) ; 
+    /**
+     * Connected from QSslSocket. Called on close
+     */
+    void disconnected () ; 
+    /**
+     * Connected from QSslSocket. Called when bytes are available
+     */
+    void readyRead () ; 
 signals:
     void error(QTcpSocket::SocketError socketError);
     void finished() ;
     void blackListNetworkAddr(QHostAddress aAddr) ;
+    /** Emitted when outgoing connectio fails. Used for keeping count on
+     * nodes not to try immediately again */
+    void connectionAttemptFailed(const Hash& aNodeHash) ;
 protected:
     void performRead() ;
     void readLoop() ; /**< called from run() */
@@ -233,6 +260,14 @@ protected:
      * to that peer ; and then adds it to send queue
      */
     void checkForBucketFill() ;
+    /**
+     * method that tries to flush pending output, if platform supports
+     */
+    void flushSocket() ; 
+    /**
+     * method that sets up signals/slots of socket
+     */
+    void setupSocketSignals() ; 
 public:// these are public because datamodel access these, via lock()
     /**
      * many things going on inside classified ads are about
@@ -267,6 +302,7 @@ public:
    */
   static const unsigned iMinutesBetweenBucketFill = 30  ; 
 protected: // these are not public
+    void msleep(int aMilliSeconds) ; /**< stops execution for some time */
     ConnectionState iConnectionState /**< closed/open etc. */ ;
     /** received data is sent to @ref ConnectionObserver */
     ConnectionObserver &iObserver ;
@@ -340,5 +376,18 @@ protected: // these are not public
     unsigned long iBytesOut ;
     /** storage for peeraddress */
     QHostAddress iPeerAddress ;
+    /** 
+     * indication if write operation has been started but is
+     * not yet complete
+     */
+    int iBytesPendingWrite ; 
+    /**
+     * How many milliseconds to sleep between send operations
+     */
+    int iSleepBetweenSendOperations ; 
+    /**
+     * hash of peering node
+     */
+    Hash iPeerHash;
 } ;
 #endif

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>658</height>
+    <height>536</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -301,6 +301,79 @@
          <property name="singleStep">
           <number>1000</number>
          </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="ringtoneLabel">
+         <property name="text">
+          <string>Ringtone</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="ringtoneComboBox">
+         <item>
+          <property name="text">
+           <string>Bow</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Electrical</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Acoustic</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Beep</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Silence</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="callAcceptanceLayout">
+       <item>
+        <widget class="QLabel" name="callAcceptanceLabel">
+         <property name="text">
+          <string>Accept voice calls</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="callAcceptanceComboBox">
+         <item>
+          <property name="text">
+           <string>All</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>From trusted operators</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Accept no voice calls</string>
+          </property>
+         </item>
         </widget>
        </item>
       </layout>

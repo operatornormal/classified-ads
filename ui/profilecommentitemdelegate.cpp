@@ -31,7 +31,9 @@
 // so thanks Serge :)
 
 ProfileCommentItemDelegate::ProfileCommentItemDelegate(ProfileCommentListingModel& aListingModel,
-        const QWidget& aDrawableWidget) :
+                                                       const QWidget& aDrawableWidget,
+                                                       QObject* aParent ) :
+    QStyledItemDelegate(aParent),
     iListingModel(aListingModel) ,
     iDrawableWidget(aDrawableWidget) {
     // empty, just initialize the listing model

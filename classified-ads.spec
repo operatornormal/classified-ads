@@ -1,5 +1,5 @@
 Name:		classified-ads
-Version:	0.09
+Version:	0.10
 Release:	1%{?dist}
 Summary:	Classified ads is a program for posting ads online
 
@@ -9,8 +9,15 @@ URL:		http://katiska.org/classified_ads/
 Source0:	https://github.com/operatornormal/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Source1:	https://github.com/operatornormal/classified-ads/blob/graphics/preprocessed.tar.gz?raw=true#/%{name}-graphics-%{version}.tar.gz
 BuildRequires:	qt5-qtbase-devel
-BuildRequires:	openssl-devel, libnatpmp-devel, miniupnpc-devel, gettext
-BuildRequires:	libappstream-glib, desktop-file-utils
+BuildRequires:	qt5-qtmultimedia-devel
+BuildRequires:	openssl-devel
+BuildRequires:	libnatpmp-devel
+BuildRequires:	miniupnpc-devel
+BuildRequires:	gettext
+BuildRequires:	libappstream-glib
+BuildRequires:	desktop-file-utils
+BuildRequires:	opus-devel
+
 %description
 Classified ads is an attempt to re-produce parts of the functionality
 that went away when Usenet news ceased to exist. This attempt tries to
@@ -21,62 +28,79 @@ inside client applications that users are running.
 %setup -q -a 1
 
 %build
-qmake-qt5 
-make %{?_smp_mflags}
+qmake-qt5 QMAKE_STRIP=echo
+%make_build
 
 %install
-INSTALL_ROOT=%{buildroot} make install DESTDIR=%{buildroot}
+%make_install INSTALL_ROOT=%{buildroot}
 appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/classified-ads.appdata.xml
 desktop-file-validate %{buildroot}/%{_datadir}/applications/classified-ads.desktop
-%files
+%find_lang %{name}
+
+%post
+/usr/bin/update-desktop-database &> /dev/null || :
+/bin/touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
+
+%postun
+/usr/bin/update-desktop-database &> /dev/null || :
+if [ $1 -eq 0 ] ; then
+    /bin/touch --no-create %{_datadir}/icons/hicolor &>/dev/null
+    /usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
+fi
+
+%posttrans
+/usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
+
+%files -f %{name}.lang
 %doc README.TXT
 %{_bindir}/classified-ads
 %{_datadir}/applications/classified-ads.desktop
 %dir %{_datadir}/app-install
 %dir %{_datadir}/app-install/icons
 %{_datadir}/app-install/icons/turt-transparent-128x128.png
-%{_mandir}/man1/classified-ads.1.gz
+%{_mandir}/man1/classified-ads.1.*
 %{_datadir}/appdata/classified-ads.appdata.xml
-%dir %{_datadir}/locale/
-%dir %{_datadir}/locale/fi
-%dir %{_datadir}/locale/fi/LC_MESSAGES/
-%{_datadir}/locale/fi/LC_MESSAGES/classified-ads.mo
-%dir %{_datadir}/locale/sv
-%dir %{_datadir}/locale/sv/LC_MESSAGES/
-%{_datadir}/locale/sv/LC_MESSAGES/classified-ads.mo
-%dir %{_datadir}/locale/da
-%dir %{_datadir}/locale/da/LC_MESSAGES/
-%{_datadir}/locale/da/LC_MESSAGES/classified-ads.mo
 %license LICENSE
+
 %changelog
+* Fri Apr 8 2016 Antti Jarvinen <antti.jarvinen@katiska.org> - 0.10-1
+- New upstream version: audio capabilities and translation additions
+
 * Sat Oct 10 2015 Antti Jarvinen <antti.jarvinen@katiska.org> - 0.09-1
 - Fixes to serious networking bugs
 - Translation additions
+
 * Mon Sep 28 2015 Antti Jarvinen <antti.jarvinen@katiska.org> - 0.08-1
 - Links against qt5 instead of qt4
 - Translation system is gnu gettext instead of qm files of Qt.
 - Better tracking of changing local network addresses
 - Numerous small bugfixes, mostly in networking code
+
 * Sun Apr 12 2015 Antti Jarvinen <classified-ads.questions@katiska.org> - 0.07-1
 - Removed intermediate PNG files into separate tarball
 - Included code to generate intermediate PNG files manually
+
 * Mon Apr 6 2015 Antti Jarvinen <classified-ads.questions@katiska.org> - 0.06-1
 - Included original high-res bitmaps in different format, conversion routines.
 - Fixed potential SIGSEGV appearing in debug build
 - Code indented + typos fixed
+
 * Wed Mar 25 2015 Antti Jarvinen <classified-ads.questions@katiska.org> - 0.05-1
 - spec-file changes due to review comments.
 - tagged a new version to allow building of latest version.
 - added copyright notice to FrontWidget.cpp.
 - included LGPL_EXCEPTION.txt from Nokia alongside sources.
+
 * Tue Mar 17 2015 Antti Jarvinen <classified-ads.questions@katiska.org> - 0.04-2
 - Changed packaging to happen in more civilized way.
   Lot of changes into spec file. 
 - Package name has changed classified_ads -> classified-ads.
 - Added appdata, re-wrote the small manpage in less personal tone. 
+
 * Sat Mar 14 2015 Antti Jarvinen <classified-ads.questions@katiska.org> - 0.04-1
 - License change GPL->LGPL due to OpenSSL license incompatibility.
 - Minor UI changes as some bitmaps removed due to licensing issues
+
 * Tue Feb 24 2015 Antti Jarvinen <classified-ads.questions@katiska.org> - 0.03-1
 - Rpm build fixes for fedora linux
 - Slower connection attempts to unreachable nodes
@@ -100,5 +124,6 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/classified-ads.deskt
 - Error messages for some file operations
 - Fix for situation where published private profile breaks every node in network
 - Require c++ compiler for compilation of c++, when building rpm.
+
 * Wed Dec 31 2014 Tuomas Haarala <tuoppi@hieno.net> - 0.01-1
 - initial spec file scribbled together

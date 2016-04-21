@@ -1,5 +1,5 @@
 #
-# Classified Ads is Copyright (c) Antti Järvinen 2013.
+# Classified Ads is Copyright (c) Antti Järvinen 2013-2016.
 #
 # This file is part of Classified Ads.
 #
@@ -17,7 +17,7 @@
 # License along with Classified Ads; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #
-QT     += core network sql
+QT     += core network sql multimedia
 greaterThan(QT_MAJOR_VERSION, 4) {
     QT += widgets printsupport
 } 
@@ -35,6 +35,8 @@ message("debug build, no hardening")
 QMAKE_CXXFLAGS += -DDEBUG
 win32.CONFIG += console
 }
+QMAKE_CXXFLAGS += $$(RPM_OPT_FLAGS)
+QMAKE_LFLAGS   += $$(RPM_LD_FLAGS)
 CODECFORTR = UTF-8
 CODECFORSRC = UTF-8
 QMAKE_EXTRA_TARGETS += translations_compile
@@ -73,7 +75,10 @@ HEADERS = mcontroller.h controller.h FrontWidget.h net/node.h util/hash.h \
 	ui/aboutdialog.h textedit/textedit.h datamodel/searchmodel.h \
 	ui/searchdisplay.h ui/insertlinkdialog.h ui/newtextdocument.h \
 	datamodel/trusttreemodel.h ui/metadataQuery.h util/jsonwrapper.h \
-        util/catranslator.h
+        util/catranslator.h datamodel/voicecall.h net/voicecallengine.h \
+        ui/callstatus.h ui/callbuttondelegate.h net/mvoicecallengine.h \
+        call/audiosource.h call/audiomixer.h call/audioplayer.h \
+        call/audioencoder.h call/audiodecoder.h call/ringtoneplayer.h
 SOURCES = main.cpp controller.cpp FrontWidget.cpp net/node.cpp util/hash.cpp \
 	net/connection.cpp datamodel/model.cpp \
         net/networklistener.cpp net/protocol_message_formatter.cpp \
@@ -101,14 +106,18 @@ SOURCES = main.cpp controller.cpp FrontWidget.cpp net/node.cpp util/hash.cpp \
         ui/aboutdialog.cpp textedit/textedit.cpp datamodel/searchmodel.cpp \
 	ui/searchdisplay.cpp ui/insertlinkdialog.cpp ui/newtextdocument.cpp \
 	datamodel/trusttreemodel.cpp ui/metadataQuery.cpp \
-        util/jsonwrapper.cpp util/catranslator.cpp
+        util/jsonwrapper.cpp util/catranslator.cpp datamodel/voicecall.cpp \
+        net/voicecallengine.cpp ui/callstatus.cpp ui/callbuttondelegate.cpp \
+        call/audiosource.cpp call/audiomixer.cpp \
+        call/audioplayer.cpp call/audioencoder.cpp call/audiodecoder.cpp \
+        call/ringtoneplayer.cpp
 FORMS = frontWidget.ui ui/profileReadersDialog.ui ui/passwordDialog.ui \
 	ui/newClassifiedAd.ui 	ui/newPrivMsg.ui ui/editContact.ui \
         ui/newProfileComment.ui ui/profileCommentDisplay.ui \
         ui/attachmentListDialog.ui ui/settingsDialog.ui \
 	ui/statusDialog.ui ui/manualConnectionDialog.ui \
 	ui/aboutDialog.ui ui/searchDisplay.ui ui/insertLink.ui \
-        ui/newTextDocument.ui ui/metadataQuery.ui
+        ui/newTextDocument.ui ui/metadataQuery.ui ui/callStatusDialog.ui
 RESOURCES     = ui_resources.qrc
 TRANSLATIONS  = classified_ads_fi.ts \
                 classified_ads_sv.ts
@@ -116,7 +125,7 @@ unix:LIBS = -lssl -lcrypto -lnatpmp -lminiupnpc
 lessThan(QT_MAJOR_VERSION, 5) {
      unix:LIBS +=  -lqjson -lmagic
 } 
-
+LIBS += -lopus
 # following line is needed for fedora linux, natpnp needs miniupnpc
 unix:INCLUDEPATH += /usr/include/miniupnpc
 win32:LIBS += "-L..\openssl-1.0.2d"
@@ -125,6 +134,7 @@ win32:LIBS += "-lssl"
 win32:LIBS += "..\miniupnpc-1.9\miniupnpc.lib" 
 win32:LIBS += "-L\msys32\usr\local\lib"
 win32:LIBS += "-lintl"
+win32:LIBS += "-L..\opus-1.1.2\binary\lib"
 lessThan(QT_MAJOR_VERSION, 5) {
     win32:LIBS += "-L" 
     win32:LIBS += "..\qjson-master\build\src"
@@ -134,6 +144,7 @@ win32:LIBS += "-lWs2_32" "-lGdi32" "-lIphlpapi"
 win32:INCLUDEPATH += "..\openssl-1.0.2d\include"
 win32:INCLUDEPATH += "..\miniupnpc-1.9"
 win32:INCLUDEPATH += "\msys32\usr\local\include"
+win32:INCLUDEPATH += "..\opus-1.1.2\binary\include"
 lessThan(QT_MAJOR_VERSION, 5) {
     win32:INCLUDEPATH += "..\qjson-master\include"
 }

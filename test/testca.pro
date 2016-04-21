@@ -18,7 +18,8 @@ SOURCES = testca.cpp ../util/hash.cpp mockup_controller.cpp \
            ../datamodel/searchmodel.cpp \
            ../datamodel/datamodelbase.cpp \
            ../datamodel/profilecomment.cpp ../datamodel/trusttreemodel.cpp \
-           ../util/jsonwrapper.cpp
+           ../util/jsonwrapper.cpp mockup_voicecallengine.cpp \
+           ../datamodel/voicecall.cpp
 HEADERS = ../util/hash.h ../mcontroller.h mockup_controller.h \
 	   ../datamodel/model.h ../datamodel/nodemodel.h \
 	   ../datamodel/contentencryptionmodel.h ../net/networklistener.h \
@@ -40,7 +41,8 @@ HEADERS = ../util/hash.h ../mcontroller.h mockup_controller.h \
            ../datamodel/searchmodel.h \
            ../datamodel/datamodelbase.h \
            ../datamodel/profilecomment.h ../datamodel/trusttreemodel.h \
-           ../util/jsonwrapper.h
+           ../util/jsonwrapper.h mockup_voicecallengine.h \
+           ../net/mvoicecallengine.h ../datamodel/voicecall.h
 CONFIG  += debug
 greaterThan(QT_MAJOR_VERSION, 4) {
     QT += widgets

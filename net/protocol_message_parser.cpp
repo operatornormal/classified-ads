@@ -38,6 +38,10 @@
 #include "../datamodel/profilecommentmodel.h"
 #include "../datamodel/searchmodel.h"
 #include "protocol_message_formatter.h"
+#include "../datamodel/voicecall.h"
+#include "../net/mvoicecallengine.h"
+#include "../datamodel/model.h"
+#include "../datamodel/contentencryptionmodel.h"
 
 ProtocolMessageParser::ProtocolMessageParser(MController &aController,
         MModelProtocolInterface &aModel) :
@@ -102,9 +106,15 @@ bool ProtocolMessageParser::parseMessage(const QByteArray& aGoodFood,
     case KSearchResults:
         return parseSearchResults(aGoodFood,aConnection ) ;
         break ;
-    case KFutureUse1:
-    case KFutureUse2:
-    case KFutureUse3:
+    case KVoiceCallStart:
+        return parseVoiceCall(aGoodFood,aConnection ) ;
+        break ;
+    case KVoiceCallEnd:
+        return parseVoiceCall(aGoodFood,aConnection ) ;
+        break ;
+    case KRealtimeData:
+        return parseCallRtData( aGoodFood, aConnection) ;
+        break ;
     case KFutureUse4:
     case KFutureUse5:
     case KFutureUse6:
@@ -1205,3 +1215,220 @@ bool ProtocolMessageParser::parseSearchResults( const QByteArray& aQueryBytes,
     return retval ;
 }
 
+
+bool ProtocolMessageParser::parseVoiceCall( const QByteArray& aQueryBytes,
+        const Connection&  aConnection  ) {
+    bool retval = false ;
+    QLOG_STR("ProtocolMessageParser::parseVoiceCall in " + QString::number(aQueryBytes.size())) ;
+    int pos ( 1 ) ; // set to 1 to immediately skip the protocol identifier as it
+    // has been checked already
+
+    unsigned len = (unsigned)(aQueryBytes.size()) ;
+    quint32 jsonLen ( 0 ) ;
+    if ( uintFromPosition ( aQueryBytes,
+                            pos,
+                            &jsonLen ) == false ) {
+        return false ;
+    }
+    pos += sizeof(quint32) ;
+    if ( len > (jsonLen + sizeof(unsigned char) + sizeof(quint32)) ) {
+        QByteArray voiceCallDataBytes ( aQueryBytes.mid(pos, jsonLen) ) ;
+        VoiceCall callData ;
+        if ( callData.fromJSon(voiceCallDataBytes) ) {
+            QLOG_STR("Metadata parsed, len was " + 
+                     QString::number(len)) ;
+            // call data was parsed ok, obtain key from there
+            // and check that signature was made using the same
+            // key that is inside.
+            QLOG_STR("Before obtaining siglen pos = " + 
+                     QString::number(pos)) ; 
+            QLOG_STR("Before obtaining adding jsonLen = " + 
+                     QString::number(jsonLen)) ; 
+            pos += jsonLen ;
+            QLOG_STR("Before obtaining new pos = " + 
+                     QString::number(pos)) ; 
+            quint32 signatureLen ( 0 ) ;
+            if ( uintFromPosition ( aQueryBytes,
+                                    pos,
+                                    &signatureLen ) == false ) {
+                return false ;
+            }
+            pos += sizeof(quint32) ;
+            QLOG_STR("Voice call jsonLen = " + QString::number(jsonLen)) ;
+            QLOG_STR("Voice call sigLen = " + QString::number(signatureLen)) ;
+            if ( len == (jsonLen + sizeof(unsigned char) + sizeof(quint32) +
+                         signatureLen + sizeof(quint32) ) ) {
+                if ( signatureLen > 0 ) {
+                    QByteArray signatureBytes ( aQueryBytes.mid(pos, signatureLen) ) ;
+
+                    // here we are either in the destination node or in the
+                    // originating node. try decide which key to verify against: orig or dest
+                    if (    callData.iOriginatingNode ==
+                            iController.getNode().nodeFingerPrint() ) {
+                        // we're the originating node. try verify against destination
+                        // key because that's who signed the message
+                        if ( callData.iDestinationOperatorKey.size() > 0 ) {
+                            const Hash hashOfDestinationKey ( iController.model().contentEncryptionModel().
+                                                              hashOfPublicKey(callData.iDestinationOperatorKey) ) ;
+                            if ( hashOfDestinationKey != KNullHash ) {
+                                QByteArray dummy ;
+                                iModel.lock() ;
+                                if ( iController.model().contentEncryptionModel().PublicKey(hashOfDestinationKey, dummy) == false ) {
+                                    iController.model().contentEncryptionModel().insertOrUpdatePublicKey(callData.iDestinationOperatorKey,
+                                            hashOfDestinationKey) ;
+                                }
+                                if ( iController.model().contentEncryptionModel().verify(hashOfDestinationKey,
+                                        voiceCallDataBytes,
+                                        signatureBytes,
+                                        NULL,
+                                        false ) == false ) {
+                                    QLOG_STR("Voice call data signature verify failed") ;
+                                    retval = false ;
+                                } else {
+                                    // verify ok
+                                    VoiceCallEngine* eng (iController.voiceCallEngine()) ;
+                                    if ( eng ) {
+                                        Hash nodeHash ( aConnection.getPeerHash() ) ; 
+                                        eng->insertCallStatusData(callData,
+                                                                  nodeHash );
+                                    }
+                                    retval = true ;
+                                }
+                                iModel.unlock() ;
+                            }
+                        } else {
+                            // there were no key JSon so can't verify: proceed anyway
+                            iModel.lock() ;
+                            VoiceCallEngine* eng (iController.voiceCallEngine()) ;
+                            if ( eng ) {
+                                Hash nodeHash ( aConnection.getPeerHash() ) ; 
+                                eng->insertCallStatusData(callData,
+                                                          nodeHash);
+                                
+                            }
+                            iModel.unlock() ;
+                            retval = true ; 
+                        }
+                    } else {
+                        // we're the destination node. try verify against originating
+                        // key because that's who signed the message
+                        if ( callData.iOriginatingOperatorKey.size() > 0 ) {
+                            iModel.lock() ;
+                            const Hash hashOfOriginatingKey ( iController.model().contentEncryptionModel().
+                                                              hashOfPublicKey(callData.iOriginatingOperatorKey) ) ;
+                            QByteArray dummy ;
+                            if ( iController.model().contentEncryptionModel().PublicKey(hashOfOriginatingKey, dummy) == false ) {
+                                iController.model().contentEncryptionModel().insertOrUpdatePublicKey(callData.iOriginatingOperatorKey,
+                                        hashOfOriginatingKey) ;
+                            }
+                            if ( iController.model().contentEncryptionModel().verify(hashOfOriginatingKey,
+                                    voiceCallDataBytes,
+                                    signatureBytes,
+                                    NULL,
+                                    false ) == false ) {
+                                QLOG_STR("Voice call data signature verify failed, for originating") ;
+                                retval = false ;
+                            } else {
+                                // verify ok
+                                VoiceCallEngine* eng (iController.voiceCallEngine()) ;
+                                if ( eng ) {
+                                    Hash nodeHash ( aConnection.getPeerHash() ) ; 
+                                    eng->insertCallStatusData(callData,
+                                                              nodeHash);
+                                }                                
+                                retval = true ;
+                            }
+                            iModel.unlock() ;                        
+                        }
+                    }
+                } else {
+                    // there is no signature, just insert the DTO
+                    iModel.lock() ;
+                    VoiceCallEngine* eng (iController.voiceCallEngine()) ;
+                    if ( eng ) {
+                        Hash nodeHash ( aConnection.getPeerHash() ) ; 
+                        eng->insertCallStatusData(callData,
+                                                  nodeHash);
+                    }
+                    iModel.unlock() ;
+                    retval = true ;
+                }
+            } else {
+                QLOG_STR("Voice call protocol item size with signature does not match!!") ;
+            }
+        } else {
+            QLOG_STR("VoiceCall metadata not parsed") ;
+        }
+    } else {
+        QLOG_STR("Voice call protocol item size does not match!!") ;
+    }
+    return retval ;
+}
+
+
+bool  ProtocolMessageParser::parseCallRtData( const QByteArray& aQueryBytes,
+                                              const Connection& aConnection) {
+    bool retval = false ; 
+    // network packet size is max 2 megabytes so cast to 
+    // unsigned should be fairly safe
+    unsigned dataLen ( static_cast<unsigned>(aQueryBytes.size())) ; 
+    if ( dataLen > (sizeof(unsigned char) * 2 + // type+subtype
+                    sizeof(quint32) * 3 + // callid+seqno+payload size
+                    sizeof(unsigned char ) ) ) { // at least 1 byte of payload
+        int pos ( 0 ) ; 
+        pos ++ ; // skip type
+        unsigned char subtype ( aQueryBytes[pos] ) ;
+        switch ( subtype ) {
+        case KRTDataAudioSubtype:   {
+            pos ++ ; // skip over subtype
+            quint32 callId ; 
+            if ( uintFromPosition ( aQueryBytes,
+                                    pos,
+                                    &callId ) == false ) {
+                return false ;
+            } else {
+                pos += sizeof(quint32) ; 
+            }
+            quint32 seqNo ; 
+            if ( uintFromPosition ( aQueryBytes,
+                                    pos,
+                                    &seqNo ) == false ) {
+                return false ;
+            } else {
+                pos += sizeof(quint32) ; 
+            }
+            quint32 sizeOfPayload; 
+            if ( uintFromPosition ( aQueryBytes,
+                                    pos,
+                                    &sizeOfPayload ) == false ) {
+                return false ;
+            } else {
+                pos += sizeof(quint32) ; 
+            }
+            if ( pos + sizeOfPayload != dataLen ) {
+                return false ; 
+            }
+            QByteArray payload ( aQueryBytes.mid(pos, sizeOfPayload) ) ; 
+            VoiceCallEngine* eng (iController.voiceCallEngine()) ;
+            if ( eng ) {
+                Hash nodeHash( aConnection.getPeerHash() ) ; 
+                eng->insertCallData(callId,
+                                    seqNo,
+                                    VoiceCallEngine::Audio,
+                                    payload,
+                                    nodeHash);
+            }
+	    // with call data insert return value is not checked,
+	    // data either went there or it did not, if we got this
+	    // far it is declared a success:
+	    retval = true ; 
+        }
+            break ; 
+        default:
+            break ; 
+            retval = true ; 
+        }
+
+    }
+    return retval ; 
+}

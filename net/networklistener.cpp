@@ -38,15 +38,15 @@
 #include "upnpcommands.h"
 #ifndef WIN32
 // Difficult issue here. Miniupnp and natpmp share some codebase
-// and a common header "declspec.h" that contains common definitions. 
+// and a common header "declspec.h" that contains common definitions.
 // Different linux distributions package these 2 packages sometimes
-// from same original version, sometimes from different, 
-// sometimes declspec.h is inclduded twice, etc. 
+// from same original version, sometimes from different,
+// sometimes declspec.h is inclduded twice, etc.
 #if defined(MINIUPNP_LIBSPEC) && !defined(LIBSPEC)
 #define LIBSPEC MINIUPNP_LIBSPEC
 #endif
 // hopefully LIBSPEC is now ok, continue to include natpmp
-// header. 
+// header.
 #include "natpmp.h"
 #endif
 #include <errno.h>
@@ -62,7 +62,7 @@ NetworkListener::NetworkListener(MController *aController,
     iParser = new ProtocolMessageParser(*iController,*iModel) ;
     setMaxPendingConnections(50) ;
     qRegisterMetaType<Connection::ConnectionState>("Connection::ConnectionState");
-    
+
     // Set Internet Access Point
     QNetworkConfigurationManager manager;
     const bool canStartIAP = (manager.capabilities()
@@ -70,7 +70,7 @@ NetworkListener::NetworkListener(MController *aController,
     // Is there default access point, use it
     iConnectionConfig = manager.defaultConfiguration();
     if (!iConnectionConfig.isValid() || (!canStartIAP && iConnectionConfig.state() != QNetworkConfiguration::Active)) {
-        QLOG_STR("Can't open network access point??") ; 
+        QLOG_STR("Can't open network access point??") ;
     }
 
     iNetworkSession = new QNetworkSession(iConnectionConfig, this);
@@ -80,8 +80,8 @@ NetworkListener::NetworkListener(MController *aController,
     figureOutLocalAddresses() ;
     connect ( iNetworkSession,
               SIGNAL(stateChanged ( QNetworkSession::State ) ),
-              this, 
-              SLOT(networkStateChanged( QNetworkSession::State ))) ; 
+              this,
+              SLOT(networkStateChanged( QNetworkSession::State ))) ;
 }
 
 NetworkListener::~NetworkListener() {
@@ -94,7 +94,7 @@ NetworkListener::~NetworkListener() {
 bool NetworkListener::startListen(bool aIpv6) {
     if ( aIpv6 ) {
 #if QT_VERSION >= 0x050000
-        // in qt5.x ::Any means both v4+v6. 
+        // in qt5.x ::Any means both v4+v6.
         if (!listen (  QHostAddress::Any, iModel->nodeModel().listenPortOfThisNode() )) {
             QLOG_STR("Socket listen v6+v4: " + errorString()) ;
             return false ;
@@ -119,7 +119,7 @@ bool NetworkListener::startListen(bool aIpv6) {
 
 #if QT_VERSION >= 0x050000
 void NetworkListener::incomingConnection ( qintptr handle ) {
-    const int aSocketDescriptor ( handle ) ; 
+    const int aSocketDescriptor ( handle ) ;
 #else
 void NetworkListener::incomingConnection ( int aSocketDescriptor ) {
 #endif
@@ -194,13 +194,14 @@ void NetworkListener::connectionClosed(Connection *aDeletee) {
         emit nodeConnectionAttemptStatus(aDeletee->connectionState(),
                                          hashOfClosedConnection ) ;
     }
-    if ( ( aDeletee->connectionState() == Connection::Initial ||
-            aDeletee->connectionState() == Connection::Error ) &&
-            aDeletee->fingerPrintOfNodeAttempted() != KNullHash ) {
-        iModel->nodeModel().offerNodeToRecentlyFailedList(aDeletee->fingerPrintOfNodeAttempted()) ;
-    }
     iModel->unlock() ;
     LOG_STR("NetworkListener::connectionClosed out, releasing lock..") ;
+}
+
+void NetworkListener::connectionAttemptFailed(const Hash& aNodeHash) {
+    iModel->lock() ; 
+    iModel->nodeModel().offerNodeToRecentlyFailedList(aNodeHash) ;
+    iModel->unlock() ; 
 }
 
 void NetworkListener::connectionReady(Connection *aBusinessEntity) {
@@ -258,6 +259,17 @@ void NetworkListener::figureOutLocalAddresses() {
             // miniupnpc at least version v1.23 (found in ubuntu 14.04)
             // that has ipv6+error arguments in upnpDiscover
 #if defined(MINIUPNPC_API_VERSION) || defined(UPNPDISCOVER_MEMORY_ERROR)
+#if MINIUPNPC_API_VERSION >= 14
+            const unsigned char ttl ( 2 ) ;
+            struct UPNPDev *upnp_dev = upnpDiscover(
+                                           2000    , // time to wait (milliseconds)
+                                           NULL , // multicast interface (or null defaults to 239.255.255.250)
+                                           NULL , // path to minissdpd socket (or null defaults to /var/run/minissdpd.sock)
+                                           0       , // source port to use (or zero defaults to port 1900)
+                                           0       , // 0==IPv4, 1==IPv6
+                                           ttl     , // constant 2 ttl
+                                           &error  ); // error condition
+#else // miniupnpc api older than 14 has no ttl
             struct UPNPDev *upnp_dev = upnpDiscover(
                                            2000    , // time to wait (milliseconds)
                                            NULL , // multicast interface (or null defaults to 239.255.255.250)
@@ -265,6 +277,7 @@ void NetworkListener::figureOutLocalAddresses() {
                                            0       , // source port to use (or zero defaults to port 1900)
                                            0       , // 0==IPv4, 1==IPv6
                                            &error  ); // error condition
+#endif // end of miniupnpc api version >= 14
 #else
             // ancient upnpc in wheezy has  no API_VERSION defined
             // and the api, indeed, is different
@@ -356,8 +369,8 @@ void NetworkListener::figureOutLocalAddresses() {
                         }
                     }
                 }
-		freeUPNPDevlist(upnp_dev) ; 
-		upnp_dev = NULL ; 
+                freeUPNPDevlist(upnp_dev) ;
+                upnp_dev = NULL ;
             }
         }
         if ( !globalIpv4AddrSeen ) {
@@ -372,14 +385,27 @@ void NetworkListener::figureOutLocalAddresses() {
             int loopCount = 0 ;
             initnatpmp(&natpmp,forcegw,gateway);
             sendnewportmappingrequest(&natpmp, NATPMP_PROTOCOL_TCP, iModel->nodeModel().listenPortOfThisNode(), iModel->nodeModel().listenPortOfThisNode(),INT_MAX-1);
+            int select_retval ( -1 ) ;
             do {
                 fd_set fds;
                 struct timeval timeout;
                 FD_ZERO(&fds);
                 FD_SET(natpmp.s, &fds);
                 getnatpmprequesttimeout(&natpmp, &timeout);
-                select(FD_SETSIZE, &fds, NULL, NULL, &timeout);
-                r = readnatpmpresponseorretry(&natpmp, &response);
+                select_retval = select(FD_SETSIZE, &fds, NULL, NULL, &timeout);
+                if ( select_retval == -1 ) {
+                    QLOG_STR("natpmp wait select error = " + 
+                             QString::number(select_retval)) ;
+                    r = NATPMP_ERR_CANNOTGETGATEWAY ; 
+                    break ; // out of the loop 
+                } else if ( select_retval ) {
+                    r = readnatpmpresponseorretry(&natpmp, &response);
+                } else {
+                    // no data within timeout:
+                    QLOG_STR("natpmp wait timeout reached") ;
+                    r = NATPMP_ERR_CANNOTGETGATEWAY ; 
+                    break ; // out of the loop 
+                }
             } while(r==NATPMP_TRYAGAIN && ++loopCount < 100 );
             if(r>=0) {
                 printf("Mapped public port %hu protocol %s to local port %hu "
@@ -569,8 +595,8 @@ void NetworkListener::stopAccepting() {
 void NetworkListener::networkStateChanged( QNetworkSession::State aState ) {
     QLOG_STR("NetworkListener::networkStateChanged " + QString::number(aState));
     if ( aState == QNetworkSession::Connected ) {
-      iModel->lock() ;
-      this->figureOutLocalAddresses() ;
-      iModel->unlock() ;      
+        iModel->lock() ;
+        this->figureOutLocalAddresses() ;
+        iModel->unlock() ;
     }
 }

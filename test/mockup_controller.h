@@ -24,6 +24,7 @@
 #include <QBoxLayout>
 #include "../mcontroller.h"
 #include "mockup_model.h"
+class MockUpVoiceCallEngine ; 
 
 /**
  * @brief Controller for testing purposes only. Not included in real binary.
@@ -52,7 +53,8 @@ public:
      */
     virtual void userInterfaceAction ( CAUserInterfaceRequest aRequest,
                                        const Hash& aHashConcerned = KNullHash,
-                                       const Hash& aFetchFromNode = KNullHash ) ;
+                                       const Hash& aFetchFromNode = KNullHash,
+                                       const QString* aAdditionalInformation = NULL ) ;
     /**
      * method for hiding UI
      */
@@ -114,12 +116,31 @@ public slots:
      * method that puts dialog or similar on display, about a published file
      */
     virtual void displayFileInfoOnUi(const BinaryFile& aFileMetadata)  ;
+    /**
+     * Method for getting voice call engine. This particular implementation
+     * will return NULL always
+     * @return NULL
+     */
+    virtual VoiceCallEngine* voiceCallEngine() { return NULL ; } 
+
+    /**
+     * Method that returns a mock-up of the voice call engine. 
+     * Used for testing the call protocol parts
+     */
+    virtual MVoiceCallEngine* voiceCallEngineInterface() ; 
+    /**
+     * Getter-method for real voice call engine mock-up. After call data
+     * methods have been called, state of this mocku-up is checked so
+     * we can determine the success of test cases
+     */
+    MockUpVoiceCallEngine* voiceCallEngineMockUp() { return iCallEngine; } 
 private:
     Node *iNode ; /**< our network presence object, there is single instance */
     Model *iModel ; /**< data storage animal */
     NetworkListener *iListener ; /**< Incoming connections handler, for ipv4 */
     QString iContentPasswd ;
     Hash iProfileHash ;
+    MockUpVoiceCallEngine *iCallEngine ; 
 } ;
 #endif
 

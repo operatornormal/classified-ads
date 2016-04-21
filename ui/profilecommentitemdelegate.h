@@ -38,9 +38,11 @@ public:
      * @param aDrawableWidget is the container where these items will
      *        be drawn. It is passed here because we want to query
      *        its dimensions at runtime.
+     * @param aParent possible parent item
      */
     ProfileCommentItemDelegate(ProfileCommentListingModel& aListingModel,
-                               const QWidget& aDrawableWidget) ;
+                               const QWidget& aDrawableWidget,
+                               QObject* aParent = NULL ) ;
     /** destructor */
     ~ProfileCommentItemDelegate() ;
 protected:

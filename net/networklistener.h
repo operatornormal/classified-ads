@@ -112,6 +112,12 @@ private slots:
     void broadCastReceived() ;
     void threadIsDeleted() ;
     void networkStateChanged( QNetworkSession::State aState ) ; 
+    /**
+     * This slot is used to communicate situation where connection-attempt
+     * to node fails
+     * @param aNodeHash fingerprint of failed node
+     */
+    void connectionAttemptFailed(const Hash& aNodeHash) ;
 private: // data
     MController *iController ;
     Model *iModel ;

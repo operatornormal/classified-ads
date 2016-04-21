@@ -33,6 +33,19 @@
     </message>
 </context>
 <context>
+    <name>AudioPlayer</name>
+    <message>
+        <location filename="call/audioplayer.cpp" line="64"/>
+        <source>raw audio format not supported by backend, cannot play audio.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="call/audioplayer.cpp" line="82"/>
+        <source>Could not initialize audio player.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>BinaryFileListingModel</name>
     <message>
         <location filename="datamodel/binaryfilelistingmodel.cpp" line="173"/>
@@ -332,23 +345,23 @@
 <context>
     <name>ContentEncryptionModel</name>
     <message>
-        <location filename="datamodel/contentencryptionmodel.cpp" line="86"/>
+        <location filename="datamodel/contentencryptionmodel.cpp" line="88"/>
         <source>SSL key generation went wrong, calling exit..</source>
         <translation>Kunde inte generera SSL-nyckel, utgående..</translation>
     </message>
     <message>
-        <location filename="datamodel/contentencryptionmodel.cpp" line="94"/>
+        <location filename="datamodel/contentencryptionmodel.cpp" line="96"/>
         <source>x509 cert generation went wrong, calling exit..</source>
         <translation>Kunde inte generera x509-cert, utgående..</translation>
     </message>
     <message>
-        <location filename="datamodel/contentencryptionmodel.cpp" line="192"/>
-        <location filename="datamodel/contentencryptionmodel.cpp" line="290"/>
+        <location filename="datamodel/contentencryptionmodel.cpp" line="194"/>
+        <location filename="datamodel/contentencryptionmodel.cpp" line="292"/>
         <source>RSA Private key key saving went wrong</source>
         <translation>Kunde inte persist RSA-nyckel</translation>
     </message>
     <message>
-        <location filename="datamodel/contentencryptionmodel.cpp" line="637"/>
+        <location filename="datamodel/contentencryptionmodel.cpp" line="639"/>
         <source>No suitable de-cryption key found</source>
         <translation>Hemlig nyckel för kryptering finns inte</translation>
     </message>
@@ -356,204 +369,204 @@
 <context>
     <name>Controller</name>
     <message>
-        <location filename="controller.cpp" line="103"/>
+        <location filename="controller.cpp" line="109"/>
         <source>Classified ads</source>
         <translation>Annonser</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="135"/>
+        <location filename="controller.cpp" line="141"/>
         <source>Enter password for protection of your messages:</source>
         <translation>Ge ett lösenord: </translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="405"/>
+        <location filename="controller.cpp" line="432"/>
         <source>Fetching item from network..</source>
         <translation>Hämtning objektet..</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="430"/>
+        <location filename="controller.cpp" line="485"/>
         <source>E&amp;xit</source>
         <translation>Stänga</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="432"/>
+        <location filename="controller.cpp" line="487"/>
         <source>Exit the application</source>
         <translation>Stänga av program</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="434"/>
+        <location filename="controller.cpp" line="489"/>
         <source>&amp;About</source>
         <translation>Om &amp;annonser</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="435"/>
+        <location filename="controller.cpp" line="490"/>
         <source>Show the application&apos;s About box</source>
         <translation>Visa information av den här program</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="437"/>
+        <location filename="controller.cpp" line="492"/>
         <source>&amp;Change password</source>
         <translation>Förändra din lösenord</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="438"/>
+        <location filename="controller.cpp" line="493"/>
         <source>Change password of current profile</source>
         <translation>Förändra lösenorden av vald profil</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="440"/>
+        <location filename="controller.cpp" line="495"/>
         <source>Create &amp;new profile</source>
         <translation>Skapa en &amp;ny profil</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="441"/>
+        <location filename="controller.cpp" line="496"/>
         <source>Makes a brand new user profile</source>
         <translation>Skapar en ny profil för operator</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="443"/>
+        <location filename="controller.cpp" line="498"/>
         <source>&amp;Delete current profile</source>
         <translation>Radera vald profil</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="444"/>
+        <location filename="controller.cpp" line="499"/>
         <source>Deletes currently open profile</source>
         <translation>Ska glömma allt om vald profil</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="446"/>
+        <location filename="controller.cpp" line="501"/>
         <source>&amp;Select another profile</source>
         <translation>Välja en annan profil</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="447"/>
+        <location filename="controller.cpp" line="502"/>
         <source>If you have multitude of profiles</source>
         <translation>Om du har flera profiler</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="449"/>
+        <location filename="controller.cpp" line="504"/>
         <source>Settings..</source>
         <translation>Inställningar..</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="450"/>
+        <location filename="controller.cpp" line="505"/>
         <source>Node-wide settings..</source>
         <translation>Inställningar av nod</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="452"/>
+        <location filename="controller.cpp" line="507"/>
         <source>Network status..</source>
         <translation>Status av nätverket..</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="454"/>
+        <location filename="controller.cpp" line="509"/>
         <source>Search..</source>
         <translation>Sök..</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="471"/>
+        <location filename="controller.cpp" line="526"/>
         <source>&amp;File</source>
         <translation>&amp;Filer</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="516"/>
+        <location filename="controller.cpp" line="571"/>
         <source>Enter new password:</source>
         <translation>Ge ett lösenord:</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="544"/>
-        <location filename="controller.cpp" line="653"/>
+        <location filename="controller.cpp" line="599"/>
+        <location filename="controller.cpp" line="708"/>
         <source>Activate another profile with password</source>
         <translation>Välja en annan profil med en lösenord</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="638"/>
+        <location filename="controller.cpp" line="693"/>
         <source>Can&apos;t delete only profile.</source>
         <translation>Man kan inte radera den sista profil</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="642"/>
+        <location filename="controller.cpp" line="697"/>
         <source>Permanently discard profile?</source>
         <translation>Radera profil?</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="643"/>
+        <location filename="controller.cpp" line="698"/>
         <source>There will be NO way to access content of this profile later</source>
         <translation>Det finns INTE en metod för att visa den här profil senare</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="706"/>
+        <location filename="controller.cpp" line="761"/>
         <source>Cant load node cert or key cert</source>
         <translation>Kan inte ladda smycken för din nod</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="711"/>
+        <location filename="controller.cpp" line="766"/>
         <source>File error</source>
         <translation>Fel med filen</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="716"/>
+        <location filename="controller.cpp" line="771"/>
         <source>Database error</source>
         <translation>Fel med databas</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="722"/>
-        <location filename="controller.cpp" line="732"/>
+        <location filename="controller.cpp" line="777"/>
+        <location filename="controller.cpp" line="787"/>
         <source>Cryptographic module</source>
         <translation>Fel med kryptering</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="727"/>
+        <location filename="controller.cpp" line="782"/>
         <source>Database module</source>
         <translation>Fel med databas</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="733"/>
+        <location filename="controller.cpp" line="788"/>
         <source>Bad password</source>
         <translation>Fel lösenord</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="949"/>
+        <location filename="controller.cpp" line="1004"/>
         <source>Could not find item from network..</source>
         <translation>Kunde inte hitta objektet från nätverket</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="1062"/>
+        <location filename="controller.cpp" line="1117"/>
         <source>SHA1: </source>
         <translation>SHA1:</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="1067"/>
+        <location filename="controller.cpp" line="1122"/>
         <source>Mime-Type: </source>
         <translation>Mime-Type:</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="1073"/>
+        <location filename="controller.cpp" line="1128"/>
         <source>Description: </source>
         <translation>Beskrivning: </translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="1079"/>
+        <location filename="controller.cpp" line="1134"/>
         <source>Publisher: </source>
         <translation>Förläggare: </translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="1085"/>
+        <location filename="controller.cpp" line="1140"/>
         <source>Content owner: </source>
         <translation>Innehållsägare: </translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="1091"/>
+        <location filename="controller.cpp" line="1146"/>
         <source>License: </source>
         <translation>Licens: </translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="1097"/>
+        <location filename="controller.cpp" line="1152"/>
         <source>Name: </source>
         <translation>Namn: </translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="1104"/>
+        <location filename="controller.cpp" line="1159"/>
         <source>Date: </source>
         <translation>Datum: </translation>
     </message>
@@ -605,124 +618,124 @@
 <context>
     <name>FrontWidget</name>
     <message>
-        <location filename="FrontWidget.cpp" line="93"/>
+        <location filename="FrontWidget.cpp" line="95"/>
         <source>Classified ads</source>
         <translation>Annonser</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="94"/>
+        <location filename="FrontWidget.cpp" line="96"/>
         <source>My profile</source>
         <translation>Egen profil</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="95"/>
+        <location filename="FrontWidget.cpp" line="97"/>
         <source>Contacts</source>
         <translation>Kontakter</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="96"/>
+        <location filename="FrontWidget.cpp" line="98"/>
         <source>Private messages</source>
         <translation>Privat korrespondens</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="155"/>
+        <location filename="FrontWidget.cpp" line="160"/>
         <source>Add shared file..</source>
         <translation>Addera en fil til nätverk..</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="156"/>
+        <location filename="FrontWidget.cpp" line="161"/>
         <source>Stop advertising selected shared file</source>
         <translation>Sluta annonsera den markerade filen</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="157"/>
+        <location filename="FrontWidget.cpp" line="162"/>
         <source>Save file to disk..</source>
         <translation>Spara filen till disk..</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="158"/>
+        <location filename="FrontWidget.cpp" line="163"/>
         <source>View file information..</source>
         <translation>Visa beskrivning av filen..</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="159"/>
+        <location filename="FrontWidget.cpp" line="164"/>
         <source>Copy file address (SHA1) to clipboard..</source>
         <translation>Kopiera SHA1 till urklipp..</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="160"/>
+        <location filename="FrontWidget.cpp" line="165"/>
         <source>Edit+publish new text document..</source>
         <translation>Skapa+publicera en ny dokument..</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="348"/>
+        <location filename="FrontWidget.cpp" line="353"/>
         <source>Open File</source>
         <translation>Öppna filen</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="350"/>
-        <location filename="FrontWidget.cpp" line="880"/>
+        <location filename="FrontWidget.cpp" line="355"/>
+        <location filename="FrontWidget.cpp" line="885"/>
         <source>Files (*.*)</source>
         <translation>Alla typer (*.*)</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="354"/>
-        <location filename="FrontWidget.cpp" line="1180"/>
-        <location filename="FrontWidget.cpp" line="1322"/>
+        <location filename="FrontWidget.cpp" line="359"/>
+        <location filename="FrontWidget.cpp" line="1185"/>
+        <location filename="FrontWidget.cpp" line="1328"/>
         <source>Error</source>
         <translation>Fel</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="355"/>
+        <location filename="FrontWidget.cpp" line="360"/>
         <source>Can&apos;t load image</source>
         <translation>Kan inte ladda en bild</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="621"/>
-        <location filename="FrontWidget.cpp" line="761"/>
+        <location filename="FrontWidget.cpp" line="626"/>
+        <location filename="FrontWidget.cpp" line="766"/>
         <source>Profile not in database</source>
         <translation>Profil finns inte i lokal databas</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="622"/>
-        <location filename="FrontWidget.cpp" line="762"/>
+        <location filename="FrontWidget.cpp" line="627"/>
+        <location filename="FrontWidget.cpp" line="767"/>
         <source>Try viewing profile first to obtain data</source>
         <translation>Du kan försöka att se profil först för att hämta data</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="878"/>
+        <location filename="FrontWidget.cpp" line="883"/>
         <source>Select file to be published</source>
         <translation>Välja filen du vill ha publicerad</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="885"/>
+        <location filename="FrontWidget.cpp" line="890"/>
         <source>File way too big</source>
         <translation>Filen är alldeles för stor</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="893"/>
+        <location filename="FrontWidget.cpp" line="898"/>
         <source>File too big</source>
         <translation>Filen är för stor</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="937"/>
-        <location filename="FrontWidget.cpp" line="1181"/>
+        <location filename="FrontWidget.cpp" line="942"/>
+        <location filename="FrontWidget.cpp" line="1186"/>
         <source>File open error</source>
         <translation>Fel med öppningen av filen</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1162"/>
-        <location filename="FrontWidget.cpp" line="1168"/>
+        <location filename="FrontWidget.cpp" line="1167"/>
+        <location filename="FrontWidget.cpp" line="1173"/>
         <source>files</source>
         <translation>filer</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1171"/>
+        <location filename="FrontWidget.cpp" line="1176"/>
         <source>Choose file name for saving</source>
         <translation>Välj ett namn for din fil</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1231"/>
+        <location filename="FrontWidget.cpp" line="1236"/>
         <source>
 
 
@@ -740,25 +753,25 @@ en bild
 </translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1323"/>
+        <location filename="FrontWidget.cpp" line="1329"/>
         <source>Article not found from local storage</source>
         <translation>Annons kunde inte hittas i local databas</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1349"/>
-        <location filename="FrontWidget.cpp" line="1897"/>
+        <location filename="FrontWidget.cpp" line="1355"/>
+        <location filename="FrontWidget.cpp" line="1903"/>
         <source>Trusted by %1
 SHA1 %2</source>
         <translation>Betrodd av %1
 SHA1 %2</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1386"/>
+        <location filename="FrontWidget.cpp" line="1392"/>
         <source>Time of last update </source>
         <translation>Tid av senaste ändring</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1394"/>
+        <location filename="FrontWidget.cpp" line="1400"/>
         <source>
 
 
@@ -775,97 +788,97 @@ Valts)
 </translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1488"/>
+        <location filename="FrontWidget.cpp" line="1494"/>
         <source>Edit contact..</source>
         <translation>Redigera kontakt</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1528"/>
+        <location filename="FrontWidget.cpp" line="1534"/>
         <source>&amp;Reply to sender</source>
         <translation>Svara avsändaren</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1529"/>
+        <location filename="FrontWidget.cpp" line="1535"/>
         <source>Reply to &amp;forum</source>
         <translation>Svara på &amp;forumet</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1530"/>
+        <location filename="FrontWidget.cpp" line="1536"/>
         <source>&amp;Post new ad</source>
         <translation>Ska&amp;pa en ny annons</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1531"/>
+        <location filename="FrontWidget.cpp" line="1537"/>
         <source>&amp;Public comment</source>
         <translation>&amp;Publik kommentar</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1532"/>
+        <location filename="FrontWidget.cpp" line="1538"/>
         <source>&amp;View profile</source>
         <translation>&amp;Visa profilen</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1533"/>
-        <location filename="FrontWidget.cpp" line="1671"/>
+        <location filename="FrontWidget.cpp" line="1539"/>
+        <location filename="FrontWidget.cpp" line="1677"/>
         <source>Attachments..</source>
         <translation>Bilagor..</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1593"/>
+        <location filename="FrontWidget.cpp" line="1599"/>
         <source>Add selected operator to contacts..</source>
         <translation>Lägga operator till din kontakter</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1667"/>
+        <location filename="FrontWidget.cpp" line="1673"/>
         <source>&amp;Reply</source>
         <translation>Svara</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1668"/>
+        <location filename="FrontWidget.cpp" line="1674"/>
         <source>&amp;New message</source>
         <translation>Skapa en ny brev</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1669"/>
+        <location filename="FrontWidget.cpp" line="1675"/>
         <source>&amp;Send public comment to sender</source>
         <translation>Skicka en publik kommentar om profilen </translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1670"/>
+        <location filename="FrontWidget.cpp" line="1676"/>
         <source>&amp;View profile of peer</source>
         <translation>&amp;Visa profilen</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1705"/>
+        <location filename="FrontWidget.cpp" line="1711"/>
         <source>Add selected to contacts..</source>
         <translation>Lägga till din kontakter..</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1907"/>
-        <location filename="FrontWidget.cpp" line="1909"/>
-        <location filename="FrontWidget.cpp" line="1973"/>
-        <location filename="FrontWidget.cpp" line="1975"/>
+        <location filename="FrontWidget.cpp" line="1913"/>
+        <location filename="FrontWidget.cpp" line="1915"/>
+        <location filename="FrontWidget.cpp" line="1979"/>
+        <location filename="FrontWidget.cpp" line="1981"/>
         <source>From:</source>
         <translation>Från:</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1911"/>
-        <location filename="FrontWidget.cpp" line="1978"/>
+        <location filename="FrontWidget.cpp" line="1917"/>
+        <location filename="FrontWidget.cpp" line="1984"/>
         <source>Subject:</source>
         <translation>Rubrik:</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1970"/>
+        <location filename="FrontWidget.cpp" line="1976"/>
         <source>To:</source>
         <translation>Mottagare:</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="2282"/>
+        <location filename="FrontWidget.cpp" line="2288"/>
         <source>Invalid SHA1 in URL</source>
         <translation>SHA1 i URL är inte giltig</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="2309"/>
+        <location filename="FrontWidget.cpp" line="2315"/>
         <source>Invalid URL</source>
         <translation>URL är inte giltig</translation>
     </message>
@@ -890,7 +903,7 @@ Valts)
     <name>NewPrivMessageDialog</name>
     <message>
         <location filename="ui/newprivmsgdialog.cpp" line="88"/>
-        <location filename="ui/newprivmsgdialog.cpp" line="133"/>
+        <location filename="ui/newprivmsgdialog.cpp" line="138"/>
         <source>Error</source>
         <translation>Fel</translation>
     </message>
@@ -900,7 +913,7 @@ Valts)
         <translation>Adressen av mottagaren är inte giltig</translation>
     </message>
     <message>
-        <location filename="ui/newprivmsgdialog.cpp" line="134"/>
+        <location filename="ui/newprivmsgdialog.cpp" line="139"/>
         <source>Recipient encryption key not found from storage</source>
         <translation>Kryptering-nyckel för mottagaren kunde inte hittas i lokal databas</translation>
     </message>
@@ -937,12 +950,12 @@ Valts)
         <translation>Kunde inte skapa x509-nyckel, utgående..</translation>
     </message>
     <message>
-        <location filename="datamodel/nodemodel.cpp" line="1594"/>
+        <location filename="datamodel/nodemodel.cpp" line="1596"/>
         <source>Cant load SSL cert</source>
         <translation>Kunde inte ladda SSL-nyckkel</translation>
     </message>
     <message>
-        <location filename="datamodel/nodemodel.cpp" line="1624"/>
+        <location filename="datamodel/nodemodel.cpp" line="1626"/>
         <source>Cant load SSL key</source>
         <translation>Kunde inte ladda SSL-nyckel </translation>
     </message>
@@ -1031,12 +1044,12 @@ Betrodd av %2</translation>
         <translation>Spara filen till disk..</translation>
     </message>
     <message>
-        <location filename="ui/profilecommentdisplay.cpp" line="90"/>
+        <location filename="ui/profilecommentdisplay.cpp" line="92"/>
         <source>Error</source>
         <translation>Fel</translation>
     </message>
     <message>
-        <location filename="ui/profilecommentdisplay.cpp" line="91"/>
+        <location filename="ui/profilecommentdisplay.cpp" line="93"/>
         <source>Article not found from local storage</source>
         <translation>Annons kunde inte hittas i lokal databas</translation>
     </message>
@@ -1044,7 +1057,7 @@ Betrodd av %2</translation>
 <context>
     <name>ProfileCommentItemDelegate</name>
     <message>
-        <location filename="ui/profilecommentitemdelegate.cpp" line="91"/>
+        <location filename="ui/profilecommentitemdelegate.cpp" line="93"/>
         <source>Attachments: </source>
         <translation>Tilläggade filer:</translation>
     </message>
@@ -1089,6 +1102,19 @@ Betrodd av %2</translation>
         <location filename="datamodel/profilereaderslistingmodel.cpp" line="174"/>
         <source>Name or fingerprint of reader</source>
         <translation>Namn eller SHA1 kontrollsumm av läsaren </translation>
+    </message>
+</context>
+<context>
+    <name>RingtonePlayer</name>
+    <message>
+        <location filename="call/ringtoneplayer.cpp" line="77"/>
+        <source>raw audio format not supported by backend, cannot play audio.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="call/ringtoneplayer.cpp" line="93"/>
+        <source>Could not initialize audio player.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1348,6 +1374,139 @@ Do you want to save your changes?</source>
     </message>
 </context>
 <context>
+    <name>VoiceCallEngine</name>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="519"/>
+        <source>Accept</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="527"/>
+        <source>Reject</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="529"/>
+        <source>Close</source>
+        <translation type="unfinished">Stäng</translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="545"/>
+        <source>Actual network address (SHA1) of the peer operator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="548"/>
+        <source>Network address of the remote node</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="558"/>
+        <source>Operator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="561"/>
+        <source>Node address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="564"/>
+        <source>Call status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="567"/>
+        <source>Controls</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="570"/>
+        <source>Ending</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="607"/>
+        <source>Initializing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="610"/>
+        <source>Incoming</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="613"/>
+        <source>Open</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="616"/>
+        <source>Closing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="619"/>
+        <source>Closed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="622"/>
+        <source>Error</source>
+        <translation type="unfinished">Fel</translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="625"/>
+        <source>No call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="780"/>
+        <source>Audio call is not possible</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="786"/>
+        <source>Audio call is possible</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="793"/>
+        <source>Audio call is not possible: operator address unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="799"/>
+        <source>Audio call is not possible: operator profile not found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="802"/>
+        <source>Audio call is not possible: operator has no node information in profile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="821"/>
+        <source>Audio call is not possible: operators IPv4 address %1 not connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="828"/>
+        <source>Audio call is not possible: operators IPv6 address %1 not connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="839"/>
+        <source>Audio call is not possible: local node has no IPv6 address, operator has only IPv6 addr</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="841"/>
+        <source>Audio call is not possible: operator does not publish network address</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>aboutDialog</name>
     <message>
         <location filename="ui/aboutDialog.ui" line="26"/>
@@ -1395,6 +1554,29 @@ p, li { white-space: pre-wrap; }
         <location filename="ui/attachmentListDialog.ui" line="26"/>
         <source>List of attached files</source>
         <translation>Listan av bilagor</translation>
+    </message>
+</context>
+<context>
+    <name>callStatusDialog</name>
+    <message>
+        <location filename="ui/callStatusDialog.ui" line="26"/>
+        <source>Call status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/callStatusDialog.ui" line="49"/>
+        <source>Input level</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/callStatusDialog.ui" line="65"/>
+        <source>Audio calls</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/callStatusDialog.ui" line="90"/>
+        <source>Output level</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1469,7 +1651,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="frontWidget.ui" line="177"/>
-        <location filename="frontWidget.ui" line="932"/>
+        <location filename="frontWidget.ui" line="937"/>
         <source>Profile address</source>
         <translation>Adress av profil</translation>
     </message>
@@ -1585,7 +1767,7 @@ en bild</translation>
     </message>
     <message>
         <location filename="frontWidget.ui" line="461"/>
-        <location filename="frontWidget.ui" line="892"/>
+        <location filename="frontWidget.ui" line="897"/>
         <source>Latest comments</source>
         <translation>Senaste kommentarer</translation>
     </message>
@@ -1646,16 +1828,21 @@ en bild</translation>
     </message>
     <message>
         <location filename="frontWidget.ui" line="879"/>
+        <source>Audio call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="frontWidget.ui" line="884"/>
         <source>View readers</source>
         <translation>Läsarna av profilen</translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="927"/>
+        <location filename="frontWidget.ui" line="932"/>
         <source>Comment</source>
         <translation>Skicka en kommentar</translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="959"/>
+        <location filename="frontWidget.ui" line="964"/>
         <source>Add to contacts</source>
         <translation>Lägga till din kontakter</translation>
     </message>
@@ -2052,6 +2239,56 @@ en bild</translation>
         <location filename="ui/settingsDialog.ui" line="274"/>
         <source>Nr of profile comments to keep</source>
         <translation>Antal kommentarer</translation>
+    </message>
+    <message>
+        <location filename="ui/settingsDialog.ui" line="316"/>
+        <source>Ringtone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/settingsDialog.ui" line="324"/>
+        <source>Bow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/settingsDialog.ui" line="329"/>
+        <source>Electrical</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/settingsDialog.ui" line="334"/>
+        <source>Acoustic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/settingsDialog.ui" line="339"/>
+        <source>Beep</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/settingsDialog.ui" line="344"/>
+        <source>Silence</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/settingsDialog.ui" line="356"/>
+        <source>Accept voice calls</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/settingsDialog.ui" line="364"/>
+        <source>All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/settingsDialog.ui" line="369"/>
+        <source>From trusted operators</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ui/settingsDialog.ui" line="374"/>
+        <source>Accept no voice calls</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

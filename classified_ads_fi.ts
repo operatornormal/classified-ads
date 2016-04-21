@@ -37,6 +37,21 @@
     </message>
 </context>
 <context>
+    <name>AudioPlayer</name>
+    <message>
+        <location filename="call/audioplayer.cpp" line="64"/>
+        <source>raw audio format not supported by backend, cannot play audio.</source>
+        <translatorcomment>Error message text displayed when audio output fails immediately due to format conflict. </translatorcomment>
+        <translation>Ääniformaatti ei ole tuettu, ääniä ei voi soittaa.</translation>
+    </message>
+    <message>
+        <location filename="call/audioplayer.cpp" line="82"/>
+        <source>Could not initialize audio player.</source>
+        <translatorcomment>Error message text shown in dialog when audio output is not possible. Possible reason could be missing soundcard or other disastrous failure. </translatorcomment>
+        <translation>Äänitoistimen alustus epäonnistui.</translation>
+    </message>
+</context>
+<context>
     <name>BinaryFileListingModel</name>
     <message>
         <location filename="datamodel/binaryfilelistingmodel.cpp" line="173"/>
@@ -392,26 +407,26 @@
 <context>
     <name>ContentEncryptionModel</name>
     <message>
-        <location filename="datamodel/contentencryptionmodel.cpp" line="86"/>
+        <location filename="datamodel/contentencryptionmodel.cpp" line="88"/>
         <source>SSL key generation went wrong, calling exit..</source>
         <translatorcomment>Error message that is displayed when SSL key generation failed. Text is displayed in a dialog, after user dismisses the dialog, whole application will exit.</translatorcomment>
         <translation>SSL-avaimen rakentaminen epäonnistui, pakko poistua..</translation>
     </message>
     <message>
-        <location filename="datamodel/contentencryptionmodel.cpp" line="94"/>
+        <location filename="datamodel/contentencryptionmodel.cpp" line="96"/>
         <source>x509 cert generation went wrong, calling exit..</source>
         <translatorcomment>Error message that is displayed when x509 certificate generation failed. Text is displayed in a dialog, after user dismisses the dialog, whole application will exit.</translatorcomment>
         <translation>x509-sertifikaatin rakentaminen epäonnistui, pakko poistua..</translation>
     </message>
     <message>
-        <location filename="datamodel/contentencryptionmodel.cpp" line="192"/>
-        <location filename="datamodel/contentencryptionmodel.cpp" line="290"/>
+        <location filename="datamodel/contentencryptionmodel.cpp" line="194"/>
+        <location filename="datamodel/contentencryptionmodel.cpp" line="292"/>
         <source>RSA Private key key saving went wrong</source>
         <translatorcomment>Error message that is displayed when RSA private key could not be saved to database. This is rather fatal error, the operator profile that user tried to create will be un-usable. </translatorcomment>
         <translation>Salaisen RSA-avaimen tallettaminen epäonnistui</translation>
     </message>
     <message>
-        <location filename="datamodel/contentencryptionmodel.cpp" line="637"/>
+        <location filename="datamodel/contentencryptionmodel.cpp" line="639"/>
         <source>No suitable de-cryption key found</source>
         <translatorcomment>Error message text. This is displayed in situation where user tried to access content that he does not have encryption key for. This may appear frequently during normal operation and is no fatal error, only telling user that he is not going to see the content he was trying to access. </translatorcomment>
         <translation>Avaamiseen sopivaa salausavainta ei ole käytettävissä</translation>
@@ -420,243 +435,243 @@
 <context>
     <name>Controller</name>
     <message>
-        <location filename="controller.cpp" line="103"/>
+        <location filename="controller.cpp" line="109"/>
         <source>Classified ads</source>
         <translatorcomment>Window title text for whole application. </translatorcomment>
         <translation>Luokitellut ilmoitukset</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="135"/>
+        <location filename="controller.cpp" line="141"/>
         <source>Enter password for protection of your messages:</source>
         <translatorcomment>Prompt text for password dialog</translatorcomment>
         <translation>Anna salasana viestiesi sisällön turvaamiseksi</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="405"/>
+        <location filename="controller.cpp" line="432"/>
         <source>Fetching item from network..</source>
         <translatorcomment>Dialog text for a wait dialog (a progress-bar like thing will be shown next to this text and user is supposed to sit down and wait a moment..)</translatorcomment>
         <translation>Kaivellaan kohdetta verkon syövereistä..</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="430"/>
+        <location filename="controller.cpp" line="485"/>
         <source>E&amp;xit</source>
         <translatorcomment>Menu item text used in &quot;File&quot; menu item and when this particular item is selected, application will close</translatorcomment>
         <translation>Sulje</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="432"/>
+        <location filename="controller.cpp" line="487"/>
         <source>Exit the application</source>
         <translatorcomment>Menu item tooltip-text used in &quot;File&quot; menu entry and when this particular item is selected, application will close</translatorcomment>
         <translation>Sulje sovellus</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="434"/>
+        <location filename="controller.cpp" line="489"/>
         <source>&amp;About</source>
         <translatorcomment>Menu item text used in &quot;File&quot; menu and when this particular item is selected, application will show a dialog telling why this application is and how to use it</translatorcomment>
         <translation>Tietoja</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="435"/>
+        <location filename="controller.cpp" line="490"/>
         <source>Show the application&apos;s About box</source>
         <translatorcomment>Tooltip-text of menu item text used in &quot;File&quot; menu and when this particular item is selected, application will show a dialog telling why this application is and how to use it</translatorcomment>
         <translation>Esitä selvitys sovelluksen tarkoituksesta</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="437"/>
+        <location filename="controller.cpp" line="492"/>
         <source>&amp;Change password</source>
         <translatorcomment>Menu item text used in &quot;File&quot; menu and when this particular item is selected, application will show a dialog prompting user to change her password</translatorcomment>
         <translation>Vaihda salasana</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="438"/>
+        <location filename="controller.cpp" line="493"/>
         <source>Change password of current profile</source>
         <translatorcomment>Tooltip-item for a menu item text used in &quot;File&quot; menu and when this particular item is selected, application will show a dialog prompting user to change her password</translatorcomment>
         <translation>Valitse valitulle operaattori-profiilille uusi salasana</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="440"/>
+        <location filename="controller.cpp" line="495"/>
         <source>Create &amp;new profile</source>
         <translatorcomment>Menu item text used in &quot;File&quot; menu and when this particular item is selected, application will show a dialog prompting user to enter password for a newly-created user profile</translatorcomment>
         <translation>Luo uusi profiili</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="441"/>
+        <location filename="controller.cpp" line="496"/>
         <source>Makes a brand new user profile</source>
         <translatorcomment>Tooltip-text for a menu item text used in &quot;File&quot; menu and when this particular item is selected, application will show a dialog prompting user to enter password for a newly-created user profile</translatorcomment>
         <translation>Luo  operaattorille uuden profiilin</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="443"/>
+        <location filename="controller.cpp" line="498"/>
         <source>&amp;Delete current profile</source>
         <translatorcomment>Menu item text used in &quot;File&quot; menu and when this particular item is selected, application will show a dialog prompting user to confirm deletion of currently open operator profile</translatorcomment>
         <translation>Poista valittu profiili</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="444"/>
+        <location filename="controller.cpp" line="499"/>
         <source>Deletes currently open profile</source>
         <translatorcomment>Tooltip-text for a menu item text used in &quot;File&quot; menu and when this particular item is selected, application will show a dialog prompting user to confirm deletion of currently open profile</translatorcomment>
         <translation>Pysyvästi poistaa tämänhetkisen valitun profiilin</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="446"/>
+        <location filename="controller.cpp" line="501"/>
         <source>&amp;Select another profile</source>
         <translatorcomment>Menu item text used in &quot;File&quot; menu and when this particular item is selected, application will show a dialog prompting user to enter password of another profile that user will use next</translatorcomment>
         <translation>Valitse käyttöön toinen profiilii</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="447"/>
+        <location filename="controller.cpp" line="502"/>
         <source>If you have multitude of profiles</source>
         <translatorcomment>Tooltip-text for a menu item text used in &quot;File&quot; menu and when this particular item is selected, application will show a dialog prompting user to enter password of another profile that user will use next</translatorcomment>
         <translation>Jos olet luonnut useamman profiilin, voit tästä valita toisen</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="449"/>
+        <location filename="controller.cpp" line="504"/>
         <source>Settings..</source>
         <translatorcomment>Menu item text used in &quot;File&quot; menu and when this particular item is selected, application will show a settings-dialog </translatorcomment>
         <translation>Asetukset..</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="450"/>
+        <location filename="controller.cpp" line="505"/>
         <source>Node-wide settings..</source>
         <translatorcomment>Tooltip-text for a menu item text used in &quot;File&quot; menu and when this particular item is selected, application will show a dialog prompting user to enter password of another profile that user will use next</translatorcomment>
         <translation>Solmun asetukset..</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="452"/>
+        <location filename="controller.cpp" line="507"/>
         <source>Network status..</source>
         <translatorcomment>Menu item text used in &quot;File&quot; menu and when this particular item is selected, application will show a dialog detailing network connectivity of the node</translatorcomment>
         <translation>Verkko-yhteydet..</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="454"/>
+        <location filename="controller.cpp" line="509"/>
         <source>Search..</source>
         <translatorcomment>Menu item text used in &quot;File&quot; menu and when this particular item is selected, application will show a search-dialog</translatorcomment>
         <translation>Etsi..</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="471"/>
+        <location filename="controller.cpp" line="526"/>
         <source>&amp;File</source>
         <translatorcomment>Menu bar title text for &quot;File&quot; menu. </translatorcomment>
         <translation>Tiedosto</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="516"/>
+        <location filename="controller.cpp" line="571"/>
         <source>Enter new password:</source>
         <translatorcomment>Password dialog prompt.</translatorcomment>
         <translation>Anna uusi salasana:</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="544"/>
-        <location filename="controller.cpp" line="653"/>
+        <location filename="controller.cpp" line="599"/>
+        <location filename="controller.cpp" line="708"/>
         <source>Activate another profile with password</source>
         <translatorcomment>Password dialog prompt. In this case the password dialog is not used for giving initial password or change password but instead password is typed for the reason of selection of another operator profile to be used. </translatorcomment>
         <translation>Valitse uusi profiili antamalla haluamasi profiilin salasana</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="638"/>
+        <location filename="controller.cpp" line="693"/>
         <source>Can&apos;t delete only profile.</source>
         <translatorcomment>Error message shown in dialog in situation where user tried to delete the last (one and only) operator profile in machine. There needs to be at least one profile and this error message is shown if user tries to get around that limitation. </translatorcomment>
         <translation>Viimeistä jäljellä olevaa profiilia ei voi poistaa.</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="642"/>
+        <location filename="controller.cpp" line="697"/>
         <source>Permanently discard profile?</source>
         <translatorcomment>Text shown in title of confirmation dialog. </translatorcomment>
         <translation>Poistetaanko profiili lopullisesti?</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="643"/>
+        <location filename="controller.cpp" line="698"/>
         <source>There will be NO way to access content of this profile later</source>
         <translatorcomment>Text shown inside a confirmation dialog. Dialog will have buttons OK and Cancel and this is the question.</translatorcomment>
         <translation>Tämän profiilin viestejä tai muuta sisältöä ei ole mahdollista nähdä enää</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="706"/>
+        <location filename="controller.cpp" line="761"/>
         <source>Cant load node cert or key cert</source>
         <translatorcomment>Error message that is shown in a dialog in situation where previously stored encryption keys of the node could not be accessed. Rather fatal error, will render node un-usable. </translatorcomment>
         <translation>Solmun salausavaimen tai sertifikaatin lataaminen ei onnistunut</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="711"/>
+        <location filename="controller.cpp" line="766"/>
         <source>File error</source>
         <translatorcomment>Error message dialog title text for a dialog that is shown in a dialog in situation where something bad happened during a filesystem file operation. Actual explanation of the error is shown inside the dialog whose title text this is.  </translatorcomment>
         <translation>Tiedostokäsittelyyn liittyvä virhe</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="716"/>
+        <location filename="controller.cpp" line="771"/>
         <source>Database error</source>
         <translatorcomment>Error message dialog title text for a dialog that is shown in a dialog in situation where something bad happened during database operation. Actual explanation of the error is shown inside the dialog whose title text this is.  </translatorcomment>
         <translation>Tietokantavirhe</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="722"/>
-        <location filename="controller.cpp" line="732"/>
+        <location filename="controller.cpp" line="777"/>
+        <location filename="controller.cpp" line="787"/>
         <source>Cryptographic module</source>
         <translatorcomment>Error message dialog title text for a dialog that is shown in a dialog in situation where something bad happened during a operation inside crypto-module. Actual explanation of the error is shown inside the dialog whose title text this is.  </translatorcomment>
         <translation>Salausjärjestelmän virhe</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="727"/>
+        <location filename="controller.cpp" line="782"/>
         <source>Database module</source>
         <translatorcomment>Error message dialog title text for a dialog that is shown in a dialog in situation where something bad happened during operation inside database module. Actual explanation of the error is shown inside the dialog whose title text this is.  </translatorcomment>
         <translation>Tietokannan vikatila</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="733"/>
+        <location filename="controller.cpp" line="788"/>
         <source>Bad password</source>
         <translatorcomment>Error message dialog title text for a dialog that is shown in a dialog in situation when password supplied by user was not good for any purpose. Actual explanation of the error is shown inside the dialog whose title text this is.  </translatorcomment>
         <translation>Kelpaamaton salasana</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="949"/>
+        <location filename="controller.cpp" line="1004"/>
         <source>Could not find item from network..</source>
         <translatorcomment>Error message text inside a dialog when user had requested for an item to be opened but program could not find the requested item.   </translatorcomment>
         <translation>Haluttua kohdetta ei verkosta löytynyt..</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="1062"/>
+        <location filename="controller.cpp" line="1117"/>
         <source>SHA1: </source>
         <translatorcomment>Text field explanation text. Part of &quot;file details&quot; dialog. This text gives explanation of field that specifies SHA1 digest of the file.</translatorcomment>
         <translation>SHA1:</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="1067"/>
+        <location filename="controller.cpp" line="1122"/>
         <source>Mime-Type: </source>
         <translatorcomment>Text field explanation text. Part of &quot;file details&quot; dialog. This text gives explanation of field that specifies mime-type of the file</translatorcomment>
         <translation>Mime-Tyyppi:</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="1073"/>
+        <location filename="controller.cpp" line="1128"/>
         <source>Description: </source>
         <translatorcomment>Text field explanation text. Part of &quot;file details&quot; dialog. This text gives explanation of field that gives longer explanation of the file</translatorcomment>
         <translation>Kuvaus:</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="1079"/>
+        <location filename="controller.cpp" line="1134"/>
         <source>Publisher: </source>
         <translatorcomment>Text field explanation text. Part of &quot;file details&quot; dialog. This text gives explanation of field that specifies name of publisher of the file (in practice, who uploaded the file into classified ads)</translatorcomment>
         <translation>Julkaisija:</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="1085"/>
+        <location filename="controller.cpp" line="1140"/>
         <source>Content owner: </source>
         <translatorcomment>Text field explanation text. Part of &quot;file details&quot; dialog. This text gives explanation of field that specifies name of the person (or organization) that owns (in copyright sense) the file or its contents. </translatorcomment>
         <translation>Sisällön omistaja:</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="1091"/>
+        <location filename="controller.cpp" line="1146"/>
         <source>License: </source>
         <translatorcomment>Text field explanation text. Part of &quot;file details&quot; dialog. This text gives explanation of field that specifies the license of the file</translatorcomment>
         <translation>Lisenssi:</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="1097"/>
+        <location filename="controller.cpp" line="1152"/>
         <source>Name: </source>
         <translatorcomment>Text field explanation text. Part of &quot;file details&quot; dialog. This text gives explanation of field that specifies file name</translatorcomment>
         <translation>Nimi:</translation>
     </message>
     <message>
-        <location filename="controller.cpp" line="1104"/>
+        <location filename="controller.cpp" line="1159"/>
         <source>Date: </source>
         <translatorcomment>Text field explanation text. Part of &quot;file details&quot; dialog. This text gives explanation of field that specifies file date</translatorcomment>
         <translation>Päivämäärä:</translation>
@@ -716,146 +731,146 @@
 <context>
     <name>FrontWidget</name>
     <message>
-        <location filename="FrontWidget.cpp" line="93"/>
+        <location filename="FrontWidget.cpp" line="95"/>
         <source>Classified ads</source>
         <translatorcomment>Tab text. In &quot;main window&quot; of classified ads UI there a are 4 or 5 tabs, normally &quot;Classified ads&quot;; &quot;My profile&quot;, &quot;Contacts&quot;, &quot;Private messages&quot; and maybe something else. This is the text of the first tab. </translatorcomment>
         <translation>Luokitellut ilmoitukset</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="94"/>
+        <location filename="FrontWidget.cpp" line="96"/>
         <source>My profile</source>
         <translatorcomment>Tab text. In &quot;main window&quot; of classified ads UI there a are 4 or 5 tabs, normally &quot;Classified ads&quot;; &quot;My profile&quot;, &quot;Contacts&quot;, &quot;Private messages&quot; and maybe something else. This is the text of the 2nd tab. </translatorcomment>
         <translation>Oma profiili</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="95"/>
+        <location filename="FrontWidget.cpp" line="97"/>
         <source>Contacts</source>
         <translatorcomment>Tab text. In &quot;main window&quot; of classified ads UI there a are 4 or 5 tabs, normally &quot;Classified ads&quot;; &quot;My profile&quot;, &quot;Contacts&quot;, &quot;Private messages&quot; and maybe something else. This is the text of the 3rd tab. </translatorcomment>
         <translation>Osoitekirja</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="96"/>
+        <location filename="FrontWidget.cpp" line="98"/>
         <source>Private messages</source>
         <translatorcomment>Tab text. In &quot;main window&quot; of classified ads UI there a are 4 or 5 tabs, normally &quot;Classified ads&quot;; &quot;My profile&quot;, &quot;Contacts&quot;, &quot;Private messages&quot; and maybe something else. This is the text of the 4th tab. </translatorcomment>
         <translation>Yksityiset viestit</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="155"/>
+        <location filename="FrontWidget.cpp" line="160"/>
         <source>Add shared file..</source>
         <translatorcomment>Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, a dialog will appear asking which file to share</translatorcomment>
         <translation>Lisää tiedosto jakoon</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="156"/>
+        <location filename="FrontWidget.cpp" line="161"/>
         <source>Stop advertising selected shared file</source>
         <translatorcomment>Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, the selected file in the listing view will no longer be shared</translatorcomment>
         <translation>Lakkaa mainostamasta valittua jaettua tiedostoa</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="157"/>
+        <location filename="FrontWidget.cpp" line="162"/>
         <source>Save file to disk..</source>
         <translatorcomment>Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, the selected file in the listing view will be saved to filesystem</translatorcomment>
         <translation>Tallenna tiedosto tiedostojärjestelmälle</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="158"/>
+        <location filename="FrontWidget.cpp" line="163"/>
         <source>View file information..</source>
         <translatorcomment>Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, information dialog about selected file will be shown</translatorcomment>
         <translation>Tarkastele tiedoston ominaisuuksia..</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="159"/>
+        <location filename="FrontWidget.cpp" line="164"/>
         <source>Copy file address (SHA1) to clipboard..</source>
         <translatorcomment>Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, SHA digest of the selected file will be copied to clipboard. </translatorcomment>
         <translation>Kopioi tiedoston osoite (SHA1) leikepöydälle..</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="160"/>
+        <location filename="FrontWidget.cpp" line="165"/>
         <source>Edit+publish new text document..</source>
         <translatorcomment>Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, an editor will be displayed prompting user to enter text that will then be published  for other users to see. </translatorcomment>
         <translation>Muokkaa ja julkaise uusi tekstidokumentti..</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="348"/>
+        <location filename="FrontWidget.cpp" line="353"/>
         <source>Open File</source>
         <translatorcomment>Dialog title text for &quot;file open&quot; dialog</translatorcomment>
         <translation>Avaa tiedosto</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="350"/>
-        <location filename="FrontWidget.cpp" line="880"/>
+        <location filename="FrontWidget.cpp" line="355"/>
+        <location filename="FrontWidget.cpp" line="885"/>
         <source>Files (*.*)</source>
         <translatorcomment>Text for filter field of file selection dialog</translatorcomment>
         <translation>Kaikki tiedostot (*.*)</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="354"/>
-        <location filename="FrontWidget.cpp" line="1180"/>
-        <location filename="FrontWidget.cpp" line="1322"/>
+        <location filename="FrontWidget.cpp" line="359"/>
+        <location filename="FrontWidget.cpp" line="1185"/>
+        <location filename="FrontWidget.cpp" line="1328"/>
         <source>Error</source>
         <translatorcomment>Error dialog title text. Actual error message will be shown inside dialog whose title is this text. </translatorcomment>
         <translation>Vikaa..</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="355"/>
+        <location filename="FrontWidget.cpp" line="360"/>
         <source>Can&apos;t load image</source>
         <translatorcomment>Error dialog content text. Shown when image file that user selected could not be opened (maybe because file permission problem or maybe image format issue or ..)</translatorcomment>
         <translation>Kuvan avaaminen ei onnistu</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="621"/>
-        <location filename="FrontWidget.cpp" line="761"/>
+        <location filename="FrontWidget.cpp" line="626"/>
+        <location filename="FrontWidget.cpp" line="766"/>
         <source>Profile not in database</source>
         <translatorcomment>Error dialog title text. This dialog is shown when user  tries to comment another operator but required operator data is missing from local storage. </translatorcomment>
         <translation>Profiilia ei tietovarastosta löydy</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="622"/>
-        <location filename="FrontWidget.cpp" line="762"/>
+        <location filename="FrontWidget.cpp" line="627"/>
+        <location filename="FrontWidget.cpp" line="767"/>
         <source>Try viewing profile first to obtain data</source>
         <translatorcomment>Error dialog content text. This dialog is shown when user  tries to comment another operator but required operator data is missing from local storage. </translatorcomment>
         <translation>Yritä valita profiili katseltavaksi ensin, yritä sitten uudelleen</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="878"/>
+        <location filename="FrontWidget.cpp" line="883"/>
         <source>Select file to be published</source>
         <translatorcomment>File selection title text. Prompts user to select a file for publish purpose. </translatorcomment>
         <translation>Valitse julkaistava tiedosto</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="885"/>
+        <location filename="FrontWidget.cpp" line="890"/>
         <source>File way too big</source>
         <translatorcomment>Error text shown in dialog. Shown in situation where user selected a file that really exceeds size limit (of 2MB)</translatorcomment>
         <translation>Tiedosto on aivan liian suuri</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="893"/>
+        <location filename="FrontWidget.cpp" line="898"/>
         <source>File too big</source>
         <translatorcomment>Error text shown in dialog. Shown in situation where user selected a file that slightly exceeds size limit (of 2MB)</translatorcomment>
         <translation>Tiedosto on liian suuri</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="937"/>
-        <location filename="FrontWidget.cpp" line="1181"/>
+        <location filename="FrontWidget.cpp" line="942"/>
+        <location filename="FrontWidget.cpp" line="1186"/>
         <source>File open error</source>
         <translatorcomment>Error text shown in dialog. Shown in situation where user selected a file that could for some reason not be opened</translatorcomment>
         <translation>Ongelma tiedoston avaamisessa</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1162"/>
-        <location filename="FrontWidget.cpp" line="1168"/>
+        <location filename="FrontWidget.cpp" line="1167"/>
+        <location filename="FrontWidget.cpp" line="1173"/>
         <source>files</source>
         <translatorcomment>Part of filter text field in file selection dialog. If for instance user tries to open PNG files, then the text in filter field will be &quot;PNG files (*.png)&quot; and this word is the 2nd word in the phrase. </translatorcomment>
         <translation>kaikki tiedostot</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1171"/>
+        <location filename="FrontWidget.cpp" line="1176"/>
         <source>Choose file name for saving</source>
         <translatorcomment>File selection dialog title text. Dialog prompts user to select location+name for an file to be exported into filesystem.</translatorcomment>
         <translation>Valitse nimi tallennettavalle tiedostolle</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1231"/>
+        <location filename="FrontWidget.cpp" line="1236"/>
         <source>
 
 
@@ -874,14 +889,14 @@ Kuva
 </translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1323"/>
+        <location filename="FrontWidget.cpp" line="1329"/>
         <source>Article not found from local storage</source>
         <translatorcomment>Error message dialog content text shown when user tried to access article, that was not stored in local database</translatorcomment>
         <translation>Artikkelia ei paikallisesta tietokannasta löydy</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1349"/>
-        <location filename="FrontWidget.cpp" line="1897"/>
+        <location filename="FrontWidget.cpp" line="1355"/>
+        <location filename="FrontWidget.cpp" line="1903"/>
         <source>Trusted by %1
 SHA1 %2</source>
         <translatorcomment>Tool-tip text. Shown on top of operators address when user hovers mouse on top of the address field. The  %1 will be replaced by nickname of an operator who trusts this particular operator. The %2 will be replaced by SHA1 digest of the operator who trusts the operator whose SHA1 is under mouse cursor.  </translatorcomment>
@@ -889,13 +904,13 @@ SHA1 %2</source>
 SHA1 %2</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1386"/>
+        <location filename="FrontWidget.cpp" line="1392"/>
         <source>Time of last update </source>
         <translatorcomment>Tool tip text. Shown when user howers mouse on top of operators nickname field. In code a date-string will be concatenated to this string, so in practice in the UI it will read &quot;Time of last update 31 aug 2015&quot; or similar. </translatorcomment>
         <translation>Viimeinen päivitysajankohta</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1394"/>
+        <location filename="FrontWidget.cpp" line="1400"/>
         <source>
 
 
@@ -913,114 +928,114 @@ Valittuna)
 </translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1488"/>
+        <location filename="FrontWidget.cpp" line="1494"/>
         <source>Edit contact..</source>
         <translatorcomment>Context menu item text. Context-menu is related to frequent-contacts column-view. </translatorcomment>
         <translation>Muokkaa profiilin tietoja </translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1528"/>
+        <location filename="FrontWidget.cpp" line="1534"/>
         <source>&amp;Reply to sender</source>
         <translatorcomment>Push button text. Pushing the button will open an editor prompting user to edit+send a private message to operator who sent the classified ad currently on display</translatorcomment>
         <translation>Vastaa lähettäjälle</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1529"/>
+        <location filename="FrontWidget.cpp" line="1535"/>
         <source>Reply to &amp;forum</source>
         <translatorcomment>Push button text. Pushing the button will open an editor prompting user to edit+send a reply to classified ad currently on display</translatorcomment>
         <translation>Vastaa foorumille</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1530"/>
+        <location filename="FrontWidget.cpp" line="1536"/>
         <source>&amp;Post new ad</source>
         <translatorcomment>Push button text. Pushing the button will open an editor prompting user to edit+send a new classified ad.</translatorcomment>
         <translation>Uusi ilmoitus</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1531"/>
+        <location filename="FrontWidget.cpp" line="1537"/>
         <source>&amp;Public comment</source>
         <translatorcomment>Push button text. Pushing the button will open an editor prompting user to edit+send a public comment about operator who sent the classified ad currently on display</translatorcomment>
         <translation>Uusi kommentti</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1532"/>
+        <location filename="FrontWidget.cpp" line="1538"/>
         <source>&amp;View profile</source>
         <translatorcomment>Push button text. Pushing the button will switch to view detailing operator who sent the classified ad currently on display</translatorcomment>
         <translation>Katsele profiilia</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1533"/>
-        <location filename="FrontWidget.cpp" line="1671"/>
+        <location filename="FrontWidget.cpp" line="1539"/>
+        <location filename="FrontWidget.cpp" line="1677"/>
         <source>Attachments..</source>
         <translatorcomment>Push button text. Pushing the button will open a a listing of files that are attached to classified ad currently on display</translatorcomment>
         <translation>Liitetiedostot..</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1593"/>
+        <location filename="FrontWidget.cpp" line="1599"/>
         <source>Add selected operator to contacts..</source>
         <translatorcomment>Push button text. Pushing the button will open an editor prompting user to add to her contact-list the operator who sent the classified ad currently on display</translatorcomment>
         <translation>Lisää valittu operaattori osoitekirjaan..</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1667"/>
+        <location filename="FrontWidget.cpp" line="1673"/>
         <source>&amp;Reply</source>
         <translatorcomment>Push button text. Pushing the button will open an editor prompting user to edit+send a private message to operator who sent the private message currently on display</translatorcomment>
         <translation>Vastaa</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1668"/>
+        <location filename="FrontWidget.cpp" line="1674"/>
         <source>&amp;New message</source>
         <translatorcomment>Push button text. Pushing the button will open an editor prompting user to edit+send a private message to some operator. </translatorcomment>
         <translation>Uusi viesti</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1669"/>
+        <location filename="FrontWidget.cpp" line="1675"/>
         <source>&amp;Send public comment to sender</source>
         <translatorcomment>Push button text. Pushing the button will open an editor prompting user to edit+send a public comment about operator who sent the private message currently on display</translatorcomment>
         <translation>Esitä julkinen kommentti lähettäjästä</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1670"/>
+        <location filename="FrontWidget.cpp" line="1676"/>
         <source>&amp;View profile of peer</source>
         <translatorcomment>Push button text. Pushing the button will open view that will show details of operator, who sent the private message currently on display. </translatorcomment>
         <translation>Näytä viesti-osapuolen profiili</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1705"/>
+        <location filename="FrontWidget.cpp" line="1711"/>
         <source>Add selected to contacts..</source>
         <translatorcomment>Context menu item text. Appears in &quot;message listing view&quot; when user right-clicks on messages view. When selected, the operator who sent the message that is selected is added to contacts. </translatorcomment>
         <translation>Lisää valittu osoitekirjaan</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1907"/>
-        <location filename="FrontWidget.cpp" line="1909"/>
-        <location filename="FrontWidget.cpp" line="1973"/>
-        <location filename="FrontWidget.cpp" line="1975"/>
+        <location filename="FrontWidget.cpp" line="1913"/>
+        <location filename="FrontWidget.cpp" line="1915"/>
+        <location filename="FrontWidget.cpp" line="1979"/>
+        <location filename="FrontWidget.cpp" line="1981"/>
         <source>From:</source>
         <translatorcomment>Text field label. Label tells who sent particular classified ad. </translatorcomment>
         <translation>Keneltä:</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1911"/>
-        <location filename="FrontWidget.cpp" line="1978"/>
+        <location filename="FrontWidget.cpp" line="1917"/>
+        <location filename="FrontWidget.cpp" line="1984"/>
         <source>Subject:</source>
         <translatorcomment>Text field label. Label tells subject of classified ads. </translatorcomment>
         <translation>Aihe:</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="1970"/>
+        <location filename="FrontWidget.cpp" line="1976"/>
         <source>To:</source>
         <translatorcomment>Text field label. Label tells whom a private message was sent to. </translatorcomment>
         <translation>Kenelle:</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="2282"/>
+        <location filename="FrontWidget.cpp" line="2288"/>
         <source>Invalid SHA1 in URL</source>
         <translatorcomment>Error dialog content text. Shown in situation when user clicked on a link that contained SHA1 digest that was not valid. </translatorcomment>
         <translation>Viallinen SHA1-tiiviste URLissa</translation>
     </message>
     <message>
-        <location filename="FrontWidget.cpp" line="2309"/>
+        <location filename="FrontWidget.cpp" line="2315"/>
         <source>Invalid URL</source>
         <translatorcomment>Error dialog content text. Shown in situation when user clicked on a link that was not correctly formatted. </translatorcomment>
         <translation>Viallinen URL</translation>
@@ -1048,7 +1063,7 @@ Valittuna)
     <name>NewPrivMessageDialog</name>
     <message>
         <location filename="ui/newprivmsgdialog.cpp" line="88"/>
-        <location filename="ui/newprivmsgdialog.cpp" line="133"/>
+        <location filename="ui/newprivmsgdialog.cpp" line="138"/>
         <source>Error</source>
         <translatorcomment>Error dialog title text. Actual error message will be shown inside the dialog. </translatorcomment>
         <translation>Vikaa</translation>
@@ -1060,7 +1075,7 @@ Valittuna)
         <translation>Vastaanottajan osoite ei ole kelvollinen</translation>
     </message>
     <message>
-        <location filename="ui/newprivmsgdialog.cpp" line="134"/>
+        <location filename="ui/newprivmsgdialog.cpp" line="139"/>
         <source>Recipient encryption key not found from storage</source>
         <translatorcomment>Error dialog content text. Dialog is shown when user tries to send a message to operator, whose encryption keys are present in local storage. </translatorcomment>
         <translation>Vastaanottajan salausavainta ei paikallisesta tietokannasta löydy</translation>
@@ -1103,13 +1118,13 @@ Valittuna)
         <translation>x509-sertifikaatin luonti epäonnistui, poistutaan..</translation>
     </message>
     <message>
-        <location filename="datamodel/nodemodel.cpp" line="1594"/>
+        <location filename="datamodel/nodemodel.cpp" line="1596"/>
         <source>Cant load SSL cert</source>
         <translatorcomment>Error message text. Will be shown in error message dialog in case when SSL certificate of the node could not be loaded from storage. After user dismisses the dialog, the application will close.</translatorcomment>
         <translation>SSL-sertifikaatin lataaminen ei onnistu</translation>
     </message>
     <message>
-        <location filename="datamodel/nodemodel.cpp" line="1624"/>
+        <location filename="datamodel/nodemodel.cpp" line="1626"/>
         <source>Cant load SSL key</source>
         <translatorcomment>Error message text. Will be shown in error message dialog in case when SSL key of the node could not be retrieved from local storage. After user dismisses the dialog, the application will close.</translatorcomment>
         <translation>SSL-avaimen lataaminen ei onnistu</translation>
@@ -1213,13 +1228,13 @@ johon luottaa %2</translation>
         <translation>Tallenna liite tiedostojärjestelmälle..</translation>
     </message>
     <message>
-        <location filename="ui/profilecommentdisplay.cpp" line="90"/>
+        <location filename="ui/profilecommentdisplay.cpp" line="92"/>
         <source>Error</source>
         <translatorcomment>Error dialog title text</translatorcomment>
         <translation>Vikaa</translation>
     </message>
     <message>
-        <location filename="ui/profilecommentdisplay.cpp" line="91"/>
+        <location filename="ui/profilecommentdisplay.cpp" line="93"/>
         <source>Article not found from local storage</source>
         <translatorcomment>Error dialog content text. Shown after user tried to access a profile comment and the comment could not be found</translatorcomment>
         <translation>Kommenttia ei paikallisesta tietokannasta löydy</translation>
@@ -1228,7 +1243,7 @@ johon luottaa %2</translation>
 <context>
     <name>ProfileCommentItemDelegate</name>
     <message>
-        <location filename="ui/profilecommentitemdelegate.cpp" line="91"/>
+        <location filename="ui/profilecommentitemdelegate.cpp" line="93"/>
         <source>Attachments: </source>
         <translatorcomment>Text field label text. The text field whose label this is will show number how many attachements there are in the comment. </translatorcomment>
         <translation>Liitteet: </translation>
@@ -1280,6 +1295,21 @@ johon luottaa %2</translation>
         <source>Name or fingerprint of reader</source>
         <translatorcomment>Column view column title text. The column view lists readers (operators) of another profile. </translatorcomment>
         <translation>Lukijan nimi tai SHA1-tiiviste</translation>
+    </message>
+</context>
+<context>
+    <name>RingtonePlayer</name>
+    <message>
+        <location filename="call/ringtoneplayer.cpp" line="77"/>
+        <source>raw audio format not supported by backend, cannot play audio.</source>
+        <translatorcomment>Error message text, displayed in dialog if audio hardware does not support the format. Should be rare occasion or then gross error like missing soundcard.</translatorcomment>
+        <translation>Ääniformaatti ei ole tuettu, ääniä ei voi soittaa.</translation>
+    </message>
+    <message>
+        <location filename="call/ringtoneplayer.cpp" line="93"/>
+        <source>Could not initialize audio player.</source>
+        <translatorcomment>Error message text shown in dialog if audio output API returned error in initialization. Should be rare error, or missing audio hardware .. or audio subsystem configuration error. </translatorcomment>
+        <translation>Äänitoistimen alustus epäonnistui.</translation>
     </message>
 </context>
 <context>
@@ -1588,6 +1618,165 @@ Do you want to save your changes?</source>
     </message>
 </context>
 <context>
+    <name>VoiceCallEngine</name>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="519"/>
+        <source>Accept</source>
+        <translatorcomment>Button text for &quot;incoming call&quot; dialog. When user hits the button, call is answered. </translatorcomment>
+        <translation>Vastaa</translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="527"/>
+        <source>Reject</source>
+        <translatorcomment>Button text for &quot;incoming call&quot; dialog. When user hits the button, incoming call is rejected. </translatorcomment>
+        <translation>Hylkää</translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="529"/>
+        <source>Close</source>
+        <translatorcomment>Button text for &quot;ongoing call&quot; dialog. When button is hit, call is closed. </translatorcomment>
+        <translation>Sulje</translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="545"/>
+        <source>Actual network address (SHA1) of the peer operator</source>
+        <translatorcomment>Tooltip text. Shown in listing of ongoing calls. This tooltip explains &quot;operator address&quot; column of the display. The text explained is SHA1-digest or operator name if known. </translatorcomment>
+        <translation>Osapuolen profiilin SHA1-tiiviste</translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="548"/>
+        <source>Network address of the remote node</source>
+        <translatorcomment>Tooltip text for list display that lists ongoing voice calls. The text explained is (IP) address of the remote node of the voice call participant. </translatorcomment>
+        <translation>Osapuolen käyttämän solmun verkko-osoite</translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="558"/>
+        <source>Operator</source>
+        <translatorcomment>Column header text for display that lists ongoing calls. This gives header text for column that shows name of the call participant</translatorcomment>
+        <translation>Operaattori</translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="561"/>
+        <source>Node address</source>
+        <translatorcomment>Column header text for display that lists ongoing calls. This gives header text for column that shows network address of the call participant</translatorcomment>
+        <translation>Verkko-osoite</translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="564"/>
+        <source>Call status</source>
+        <translatorcomment>Column header text for display that lists ongoing calls. This gives header text for column that shows state of the call (like open, closed, ringing etc)</translatorcomment>
+        <translation>Puhelun tila</translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="567"/>
+        <source>Controls</source>
+        <translatorcomment>Column header text for display that lists ongoing calls. This gives header text for column containing buttons for accepting, rejecting and ending a call. </translatorcomment>
+        <translation>Hallinta</translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="570"/>
+        <source>Ending</source>
+        <translatorcomment>Column header text for display that lists ongoing calls. This gives header text for column that shows name column containing button for ending an ongoing call. </translatorcomment>
+        <translation>Päättäminen</translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="607"/>
+        <source>Initializing</source>
+        <translatorcomment>Call status text. When making a new outgoing call, this is status for new call that is not answered yet. </translatorcomment>
+        <translation>Alustetaan</translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="610"/>
+        <source>Incoming</source>
+        <translatorcomment>Call status text. When receiving a new incoming call, this is status for new call that is not answered yet.</translatorcomment>
+        <translation>Saapuva</translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="613"/>
+        <source>Open</source>
+        <translatorcomment>Call status text. When voice call is in progress, this is the status.</translatorcomment>
+        <translation>Avoinna</translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="616"/>
+        <source>Closing</source>
+        <translatorcomment>Call status text. When voice call is marked to be closed, this is its status.</translatorcomment>
+        <translation>Suljetaan</translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="619"/>
+        <source>Closed</source>
+        <translatorcomment>Call status text. When voice call is closed, this is the status text.</translatorcomment>
+        <translation>Suljettu</translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="622"/>
+        <source>Error</source>
+        <translatorcomment>Call status text. When voice call attempt ends in error, this is text displayed.</translatorcomment>
+        <translation>Virhe</translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="625"/>
+        <source>No call</source>
+        <translatorcomment>Call status text. When there is no voice call to display, this text may be displayed instead. </translatorcomment>
+        <translation>Ei puhelua</translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="780"/>
+        <source>Audio call is not possible</source>
+        <translatorcomment>Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is &quot;general purpose&quot; excuse, when no detailed reason is know.</translatorcomment>
+        <translation>Puhelu ei ole mahdollinen</translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="786"/>
+        <source>Audio call is possible</source>
+        <translatorcomment>Tooltip text for button that initiates a new call. This gives an excuse why button is not dimmed and call is possible. </translatorcomment>
+        <translation>Puhelu on mahdollinen</translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="793"/>
+        <source>Audio call is not possible: operator address unknown</source>
+        <translatorcomment>Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is &quot;SHA1 digest of operator is not known&quot;</translatorcomment>
+        <translation>Puhelu ei ole mahdollinen: operaattorin SHA1-tiiviste on tuntematon</translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="799"/>
+        <source>Audio call is not possible: operator profile not found</source>
+        <translatorcomment>Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is &quot;operators profile not found (from local database)&quot;</translatorcomment>
+        <translation>Puhelu ei ole mahdollinen: operaattorin profiilia ei löydy</translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="802"/>
+        <source>Audio call is not possible: operator has no node information in profile</source>
+        <translatorcomment>Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is &quot;there is no network address included in node information of the profile&quot;</translatorcomment>
+        <translation>Puhelu ei ole mahdollinen: operaattorin solmusta puuttuu verkko-osoite</translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="821"/>
+        <source>Audio call is not possible: operators IPv4 address %1 not connected</source>
+        <translatorcomment>Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is &quot;there is no (ipv4) network connection to node&quot;</translatorcomment>
+        <translation>Puhelu ei ole mahdollinen: operaattorin solmun IPv4-verkko-osoitteeseen %1 ei ole yhteyttä</translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="828"/>
+        <source>Audio call is not possible: operators IPv6 address %1 not connected</source>
+        <translatorcomment>Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is &quot;there is no (ipv6) network connection to node&quot;</translatorcomment>
+        <translation>Puhelu ei ole mahdollinen: operaattorin solmun IPv6-verkko-osoitteeseen %1 ei ole yhteyttä </translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="839"/>
+        <source>Audio call is not possible: local node has no IPv6 address, operator has only IPv6 addr</source>
+        <translatorcomment>Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is protocol mismatch. </translatorcomment>
+        <translation>Puhelu ei ole mahdollinen: paikallisella solmulla ei ole IPv6-osoitetta, operaattorilla on vain IPv6</translation>
+    </message>
+    <message>
+        <location filename="net/voicecallengine.cpp" line="841"/>
+        <source>Audio call is not possible: operator does not publish network address</source>
+        <translatorcomment>Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is &quot;operator does not publish network address of his node&quot;</translatorcomment>
+        <translation>Puhelu ei ole mahdollinen: operaattori ei julkaise verkko-osoitettaan</translation>
+    </message>
+</context>
+<context>
     <name>aboutDialog</name>
     <message>
         <location filename="ui/aboutDialog.ui" line="26"/>
@@ -1643,6 +1832,33 @@ p, li { white-space: pre-wrap; }
         <source>List of attached files</source>
         <translatorcomment>Dialog title text. Dialog in question produces list of file attachments. </translatorcomment>
         <translation>Liitetiedostoluettelo</translation>
+    </message>
+</context>
+<context>
+    <name>callStatusDialog</name>
+    <message>
+        <location filename="ui/callStatusDialog.ui" line="26"/>
+        <source>Call status</source>
+        <translatorcomment>Dialog title text for call status dialog.</translatorcomment>
+        <translation>Puhelun tila</translation>
+    </message>
+    <message>
+        <location filename="ui/callStatusDialog.ui" line="49"/>
+        <source>Input level</source>
+        <translatorcomment>Text in call status dialog for slider that shows audio volume of microphone</translatorcomment>
+        <translation>Mikrofonin äänenvoimakkuus</translation>
+    </message>
+    <message>
+        <location filename="ui/callStatusDialog.ui" line="65"/>
+        <source>Audio calls</source>
+        <translatorcomment>Title in call status dialog a column-list that lists ongoing calls</translatorcomment>
+        <translation>Puhelut</translation>
+    </message>
+    <message>
+        <location filename="ui/callStatusDialog.ui" line="90"/>
+        <source>Output level</source>
+        <translatorcomment>Text in call status dialog for slider that shows audio volume of speaker </translatorcomment>
+        <translation>Toistettava äänenvoimakkuus</translation>
     </message>
 </context>
 <context>
@@ -1730,7 +1946,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="frontWidget.ui" line="177"/>
-        <location filename="frontWidget.ui" line="932"/>
+        <location filename="frontWidget.ui" line="937"/>
         <source>Profile address</source>
         <translatorcomment>Text field label in &quot;operators profile&quot; tab. The field in questions shows SHA1-digest e.g. the real address of the operator. </translatorcomment>
         <translation>Profiilin osoite</translation>
@@ -1866,7 +2082,7 @@ Kuva</translation>
     </message>
     <message>
         <location filename="frontWidget.ui" line="461"/>
-        <location filename="frontWidget.ui" line="892"/>
+        <location filename="frontWidget.ui" line="897"/>
         <source>Latest comments</source>
         <translatorcomment>Title text inside &quot;my profile&quot; tab. Title text is for a list of comments made by other users regarding operators profile.</translatorcomment>
         <translation>Viimeisimmät kommentit</translation>
@@ -1939,18 +2155,24 @@ Kuva</translation>
     </message>
     <message>
         <location filename="frontWidget.ui" line="879"/>
+        <source>Audio call</source>
+        <translatorcomment>Button text in &quot;operators details&quot; view. Pressing the button initiates a new voice call to operator. </translatorcomment>
+        <translation>Puhelu</translation>
+    </message>
+    <message>
+        <location filename="frontWidget.ui" line="884"/>
         <source>View readers</source>
         <translatorcomment>Button text inside &quot;defails of operator profile&quot; tab. When the button is clicked, dialog listing readers of the (private) profile. </translatorcomment>
         <translation>Lukijat</translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="927"/>
+        <location filename="frontWidget.ui" line="932"/>
         <source>Comment</source>
         <translatorcomment>Button text inside &quot;defails of operator profile&quot; tab. When the button is clicked, a dialog is opened, dialog prompts user to enter a comment about the operator. </translatorcomment>
         <translation>Kommentti</translation>
     </message>
     <message>
-        <location filename="frontWidget.ui" line="959"/>
+        <location filename="frontWidget.ui" line="964"/>
         <source>Add to contacts</source>
         <translatorcomment>Button text inside &quot;defails of operator profile&quot; tab. When the button is clicked, the operator whose data is on display is added into contact-list. </translatorcomment>
         <translation>Lisää osoitekirjaan</translation>
@@ -2394,7 +2616,7 @@ Kuva</translation>
         <location filename="ui/settingsDialog.ui" line="154"/>
         <source>Nr of private messages to keep</source>
         <translatorcomment>Text field label for input field inside &quot;settings&quot; dialog. The numerical input field whose label this is has maximum number of private messages to keep in storage. </translatorcomment>
-        <translation>Yksityistien viestien määrä</translation>
+        <translation>Yksityisten viestien määrä</translation>
     </message>
     <message>
         <location filename="ui/settingsDialog.ui" line="193"/>
@@ -2419,6 +2641,66 @@ Kuva</translation>
         <source>Nr of profile comments to keep</source>
         <translatorcomment>Text field label for input field inside &quot;settings&quot; dialog. The numerical input field whose label this is has maximum number of comments regarding operators to keep in storage.</translatorcomment>
         <translation>Kommenttien määrä</translation>
+    </message>
+    <message>
+        <location filename="ui/settingsDialog.ui" line="316"/>
+        <source>Ringtone</source>
+        <translatorcomment>Label for combo-box where user can choose between voice call ringtones. </translatorcomment>
+        <translation>Puhelun hälytysääni</translation>
+    </message>
+    <message>
+        <location filename="ui/settingsDialog.ui" line="324"/>
+        <source>Bow</source>
+        <translatorcomment>Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is performed with a bow.</translatorcomment>
+        <translation>Jousella</translation>
+    </message>
+    <message>
+        <location filename="ui/settingsDialog.ui" line="329"/>
+        <source>Electrical</source>
+        <translatorcomment>Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is electrical.</translatorcomment>
+        <translation>Sähköisesti</translation>
+    </message>
+    <message>
+        <location filename="ui/settingsDialog.ui" line="334"/>
+        <source>Acoustic</source>
+        <translatorcomment>Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is performed in acoustic manner</translatorcomment>
+        <translation>Akustisesti</translation>
+    </message>
+    <message>
+        <location filename="ui/settingsDialog.ui" line="339"/>
+        <source>Beep</source>
+        <translatorcomment>Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is only a beep</translatorcomment>
+        <translation>Piippaus</translation>
+    </message>
+    <message>
+        <location filename="ui/settingsDialog.ui" line="344"/>
+        <source>Silence</source>
+        <translatorcomment>Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is silent</translatorcomment>
+        <translation>Hiljaisuus</translation>
+    </message>
+    <message>
+        <location filename="ui/settingsDialog.ui" line="356"/>
+        <source>Accept voice calls</source>
+        <translatorcomment>Combox-box label text. Combo-box is for selecting which audio calls to accept, selections are like &quot;all ; no calls at all ; from some operators ; ..&quot;</translatorcomment>
+        <translation>Hyväksy puhelut</translation>
+    </message>
+    <message>
+        <location filename="ui/settingsDialog.ui" line="364"/>
+        <source>All</source>
+        <translatorcomment>Combobox item text for selecting which audio calls to accept. Selecting this item lets all calls in. </translatorcomment>
+        <translation>Kaikki</translation>
+    </message>
+    <message>
+        <location filename="ui/settingsDialog.ui" line="369"/>
+        <source>From trusted operators</source>
+        <translatorcomment>Combobox item text for selecting which audio calls to accept. Selecting this item lets in calls from trusted operators.</translatorcomment>
+        <translation>Vain luotetuilta operaattoreilta</translation>
+    </message>
+    <message>
+        <location filename="ui/settingsDialog.ui" line="374"/>
+        <source>Accept no voice calls</source>
+        <translatorcomment>Combobox item text for selecting which audio calls to accept. Selecting this item rejects all calls. </translatorcomment>
+        <translation>Ei ainuttakaan</translation>
     </message>
 </context>
 <context>
