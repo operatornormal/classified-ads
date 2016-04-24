@@ -1286,7 +1286,7 @@ bool ProtocolMessageParser::parseVoiceCall( const QByteArray& aQueryBytes,
                                     retval = false ;
                                 } else {
                                     // verify ok
-                                    VoiceCallEngine* eng (iController.voiceCallEngine()) ;
+                                    MVoiceCallEngine* eng (iController.voiceCallEngineInterface()) ;
                                     if ( eng ) {
                                         Hash nodeHash ( aConnection.getPeerHash() ) ; 
                                         eng->insertCallStatusData(callData,
@@ -1299,7 +1299,7 @@ bool ProtocolMessageParser::parseVoiceCall( const QByteArray& aQueryBytes,
                         } else {
                             // there were no key JSon so can't verify: proceed anyway
                             iModel.lock() ;
-                            VoiceCallEngine* eng (iController.voiceCallEngine()) ;
+                            MVoiceCallEngine* eng (iController.voiceCallEngineInterface()) ;
                             if ( eng ) {
                                 Hash nodeHash ( aConnection.getPeerHash() ) ; 
                                 eng->insertCallStatusData(callData,
@@ -1330,7 +1330,7 @@ bool ProtocolMessageParser::parseVoiceCall( const QByteArray& aQueryBytes,
                                 retval = false ;
                             } else {
                                 // verify ok
-                                VoiceCallEngine* eng (iController.voiceCallEngine()) ;
+                                MVoiceCallEngine* eng (iController.voiceCallEngineInterface()) ;
                                 if ( eng ) {
                                     Hash nodeHash ( aConnection.getPeerHash() ) ; 
                                     eng->insertCallStatusData(callData,
@@ -1344,7 +1344,7 @@ bool ProtocolMessageParser::parseVoiceCall( const QByteArray& aQueryBytes,
                 } else {
                     // there is no signature, just insert the DTO
                     iModel.lock() ;
-                    VoiceCallEngine* eng (iController.voiceCallEngine()) ;
+                    MVoiceCallEngine* eng (iController.voiceCallEngineInterface()) ;
                     if ( eng ) {
                         Hash nodeHash ( aConnection.getPeerHash() ) ; 
                         eng->insertCallStatusData(callData,
@@ -1409,7 +1409,7 @@ bool  ProtocolMessageParser::parseCallRtData( const QByteArray& aQueryBytes,
                 return false ; 
             }
             QByteArray payload ( aQueryBytes.mid(pos, sizeOfPayload) ) ; 
-            VoiceCallEngine* eng (iController.voiceCallEngine()) ;
+            MVoiceCallEngine* eng (iController.voiceCallEngineInterface()) ;
             if ( eng ) {
                 Hash nodeHash( aConnection.getPeerHash() ) ; 
                 eng->insertCallData(callId,
