@@ -15,7 +15,6 @@ include
    intended for others to see.
  * Performing of (word-based) searches of content posted into the system.
  * Doing voip calls between operators in the network.
- * Performing word-searches over content posted on network. 
 
 Server-less means that system has completely distributed design, each 
 node in the network implements a "mini-server" that serves other users
