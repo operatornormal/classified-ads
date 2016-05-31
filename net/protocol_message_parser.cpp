@@ -42,6 +42,7 @@
 #include "../net/mvoicecallengine.h"
 #include "../datamodel/model.h"
 #include "../datamodel/contentencryptionmodel.h"
+#include <limits> // std::numeric_limits
 
 ProtocolMessageParser::ProtocolMessageParser(MController &aController,
         MModelProtocolInterface &aModel) :
@@ -1011,9 +1012,12 @@ bool ProtocolMessageParser::parseRequestForObjectsAroundHash(const QByteArray& a
 
 bool ProtocolMessageParser::parseAdsClassifiedAtHash( const QByteArray& aQueryBytes,
         const Connection &aConnection) {
-    if (aQueryBytes.size() != sizeof(unsigned char) +
-            ( 7  * sizeof (quint32) ) ) {
-        // message contains identifier and a hash and 2 timestamps. so the size is fixed.
+    if (!(aQueryBytes.size() != sizeof(unsigned char) +
+          ( 7  * sizeof (quint32) ) ) ||
+        (aQueryBytes.size() != sizeof(unsigned char) +
+         ( 5  * sizeof (quint32) ) )
+        ) {
+        // message contains identifier and a hash and 0 or 2 timestamps. so the size is fixed.
         return false ;
     } else {
         Hash* hashObtained = new Hash() ;
@@ -1023,20 +1027,22 @@ bool ProtocolMessageParser::parseAdsClassifiedAtHash( const QByteArray& aQueryBy
             delete hashObtained ;
             return false ;
         }
-        quint32 startTsHostBo ;
-        quint32 endTsHostBo ;
-
-        if ( uintFromPosition( aQueryBytes,
-                               sizeof(unsigned char)+(sizeof(quint32)*5),
-                               &startTsHostBo) == false ) {
-            delete hashObtained ;
-            return false ;
-        }
-        if ( uintFromPosition( aQueryBytes,
-                               sizeof(unsigned char)+(sizeof(quint32)*6),
-                               &endTsHostBo) == false ) {
-            delete hashObtained ;
-            return false ;
+        quint32 startTsHostBo ( 0 ) ;
+        quint32 endTsHostBo ( std::numeric_limits<quint32>::max() ) ;
+        if ( aQueryBytes.size() > (int)((sizeof(unsigned char) +
+                                         ( 5  * sizeof (quint32) ))) ) {
+            if ( uintFromPosition( aQueryBytes,
+                                   sizeof(unsigned char)+(sizeof(quint32)*5),
+                                   &startTsHostBo) == false ) {
+                delete hashObtained ;
+                return false ;
+            }
+            if ( uintFromPosition( aQueryBytes,
+                                   sizeof(unsigned char)+(sizeof(quint32)*6),
+                                   &endTsHostBo) == false ) {
+                delete hashObtained ;
+                return false ;
+            }
         }
         struct NetworkRequestExecutor::NetworkRequestQueueItem classifiedRequest ;
         classifiedRequest.iDestinationNode = aConnection.node()->nodeFingerPrint() ;
