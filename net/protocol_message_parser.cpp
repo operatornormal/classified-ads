@@ -1012,10 +1012,11 @@ bool ProtocolMessageParser::parseRequestForObjectsAroundHash(const QByteArray& a
 
 bool ProtocolMessageParser::parseAdsClassifiedAtHash( const QByteArray& aQueryBytes,
         const Connection &aConnection) {
-    if (!(aQueryBytes.size() != sizeof(unsigned char) +
-          ( 7  * sizeof (quint32) ) ) ||
-        (aQueryBytes.size() != sizeof(unsigned char) +
-         ( 5  * sizeof (quint32) ) )
+    if (!((aQueryBytes.size() == sizeof(unsigned char) +
+           ( 7  * sizeof (quint32) ) ) ||
+          (aQueryBytes.size() == sizeof(unsigned char) +
+           ( 5  * sizeof (quint32) ) )
+            )
         ) {
         // message contains identifier and a hash and 0 or 2 timestamps. so the size is fixed.
         return false ;
