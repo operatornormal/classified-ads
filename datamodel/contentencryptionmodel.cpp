@@ -307,7 +307,7 @@ int ContentEncryptionModel::sign(const Hash& aSigningKey,
                                  const QByteArray* aOptionalMetadata) {
     int retval = -1 ;
     LOG_STR2("ContentEncryptionModel::sign in, bytesToSign=%d", aData.length());
-    EVP_MD_CTX     md_ctx;
+    EVP_MD_CTX     *md_ctx = EVP_MD_CTX_create();
     unsigned sig_len;
     unsigned char sig_buf [4096];
     int err ;
@@ -320,15 +320,15 @@ int ContentEncryptionModel::sign(const Hash& aSigningKey,
             // taken from openssl examples by Eric Young & Sampo Kellomaki
             /* Do the signature */
 
-            EVP_SignInit   (&md_ctx, EVP_sha1());
-            EVP_SignUpdate (&md_ctx, aData.data(), aData.length());
+            EVP_SignInit   (md_ctx, EVP_sha1());
+            EVP_SignUpdate (md_ctx, aData.data(), aData.length());
             if ( aOptionalMetadata ) {
-                EVP_SignUpdate (&md_ctx,
+                EVP_SignUpdate (md_ctx,
                                 aOptionalMetadata->data(),
                                 aOptionalMetadata->length());
             }
             sig_len = sizeof(sig_buf);
-            err = EVP_SignFinal (&md_ctx, sig_buf, &sig_len, keyToUse);
+            err = EVP_SignFinal (md_ctx, sig_buf, &sig_len, keyToUse);
 
             if (err != 1) {
                 QString errmsg(ERR_reason_error_string(ERR_get_error())) ;
@@ -343,6 +343,7 @@ int ContentEncryptionModel::sign(const Hash& aSigningKey,
             EVP_PKEY_free (keyToUse);
         }
     }
+    EVP_MD_CTX_destroy(md_ctx);
     return retval ;
 }
 
@@ -385,18 +386,18 @@ bool  ContentEncryptionModel::doVerify(const QByteArray& aPemBytesOfSigningKey,
         EVP_PKEY *keyToUse = PublicKeyFromPem(aPemBytesOfSigningKey)  ;
         if ( keyToUse ) {
 
-            EVP_MD_CTX     md_ctx;
+            EVP_MD_CTX     *md_ctx ( EVP_MD_CTX_create() ) ;
             int err ;
             /* Verify the signature */
 
-            EVP_VerifyInit   (&md_ctx, EVP_sha1());
-            EVP_VerifyUpdate (&md_ctx, aDataToVerify.data(), aDataToVerify.length());
+            EVP_VerifyInit   (md_ctx, EVP_sha1());
+            EVP_VerifyUpdate (md_ctx, aDataToVerify.data(), aDataToVerify.length());
             if ( aOptionalMetadata ) {
-                EVP_VerifyUpdate (&md_ctx,
+                EVP_VerifyUpdate (md_ctx,
                                   aOptionalMetadata->data(),
                                   aOptionalMetadata->length());
             }
-            err = EVP_VerifyFinal (&md_ctx,
+            err = EVP_VerifyFinal (md_ctx,
                                    (const unsigned char *) aSignatureToVerify.data(),
                                    aSignatureToVerify.length(),
                                    keyToUse);
@@ -410,6 +411,7 @@ bool  ContentEncryptionModel::doVerify(const QByteArray& aPemBytesOfSigningKey,
                 retval = true ; // ahem
             }
             EVP_PKEY_free (keyToUse);
+            EVP_MD_CTX_destroy(md_ctx);
         }
     }
     return retval ;
@@ -421,7 +423,7 @@ bool ContentEncryptionModel::encrypt(const QList<Hash> aRecipients,
     // significant parts of code here is stolen from openssl wiki.
     bool retval (false) ;
     // for SealInit
-    EVP_CIPHER_CTX ctx;
+    EVP_CIPHER_CTX *ctx (EVP_CIPHER_CTX_new());
     unsigned char **ek = NULL ;
     int *ekl(NULL);
     unsigned char *iv ( (unsigned char *) malloc ( EVP_CIPHER_iv_length(EVP_aes_256_cbc() ) ) );
@@ -430,7 +432,7 @@ bool ContentEncryptionModel::encrypt(const QList<Hash> aRecipients,
     QMap<QString,QVariant> resultJSon ;
 
     if ( aRecipients.size() > 0 && aPlainText.length() > 0 && iv ) {
-        EVP_CIPHER_CTX_init(&ctx);
+        EVP_CIPHER_CTX_init(ctx);
         pubk =( EVP_PKEY ** )  malloc (sizeof(EVP_PKEY *)*aRecipients.size()) ;
 
         if ( pubk ) {
@@ -459,7 +461,7 @@ bool ContentEncryptionModel::encrypt(const QList<Hash> aRecipients,
                         }
                     }
                     if ( alloc_failure == false ) {
-                        if (!EVP_SealInit(&ctx, EVP_aes_256_cbc(), ek, ekl, iv, pubk, nr_of_valid_pubkeys)) {
+                        if (!EVP_SealInit(ctx, EVP_aes_256_cbc(), ek, ekl, iv, pubk, nr_of_valid_pubkeys)) {
                             QString errmsg(ERR_reason_error_string(ERR_get_error())) ;
                             emit error(MController::ContentEncryptionError, errmsg) ;
                         } else {
@@ -496,7 +498,7 @@ bool ContentEncryptionModel::encrypt(const QList<Hash> aRecipients,
                             while ( pos < aPlainText.size() ) {
                                 QByteArray fourKiloByte ( aPlainText.mid(pos,FOUR_KBYTES)) ;
                                 LOG_STR2("FourKByteLen: %d",fourKiloByte.length());
-                                if (!EVP_SealUpdate(&ctx,
+                                if (!EVP_SealUpdate(ctx,
                                                     buffer_out,
                                                     &len_out,
                                                     (const unsigned char*)fourKiloByte.data(),
@@ -515,7 +517,7 @@ bool ContentEncryptionModel::encrypt(const QList<Hash> aRecipients,
                             }
 
                             if ( failure == false ) {
-                                if (!EVP_SealFinal(&ctx, buffer_out, &len_out)) {
+                                if (!EVP_SealFinal(ctx, buffer_out, &len_out)) {
                                     QString errmsg(ERR_reason_error_string(ERR_get_error())) ;
                                     emit error(MController::ContentEncryptionError, errmsg) ;
                                 } else  {
@@ -542,7 +544,8 @@ bool ContentEncryptionModel::encrypt(const QList<Hash> aRecipients,
             free(pubk) ;
         } // if pubk was mallocated ok
         free(iv) ;
-        EVP_CIPHER_CTX_cleanup(&ctx);
+        EVP_CIPHER_CTX_cleanup(ctx);
+        EVP_CIPHER_CTX_free(ctx);
     }
 
     LOG_STR2("Res = %s", qPrintable(QString(aResultingCipherText)));
@@ -578,16 +581,16 @@ bool ContentEncryptionModel::decrypt(const QByteArray& aCipherText,
                     if ( myPrivateKey ) {
                         pemBytes.clear() ;
                         // de-cryption context
-                        EVP_CIPHER_CTX ctx;
+                        EVP_CIPHER_CTX *ctx ( EVP_CIPHER_CTX_new() );
                         // try out each key in array that is in the encrypted document,
                         // if one of those would happen to be for ours.. ..
                         bool keyFound ( false ) ;
                         foreach( QVariant keyVariant, encryptionKeyList) {
                             LOG_STR("Trying private key..") ;
                             const QByteArray key ( QByteArray::fromBase64 (keyVariant.toByteArray()) ) ;
-                            EVP_CIPHER_CTX_init(&ctx);
+                            EVP_CIPHER_CTX_init(ctx);
 
-                            if (EVP_OpenInit(&ctx,
+                            if (EVP_OpenInit(ctx,
                                              EVP_aes_256_cbc(),
                                              (const unsigned char *)(key.constData()),
                                              key.length(),
@@ -598,8 +601,8 @@ bool ContentEncryptionModel::decrypt(const QByteArray& aCipherText,
                                 break ; // out from foreach-loop
                             } else {
                                 // key not found, cleanup context and try again with next key:
-                                EVP_CIPHER_CTX_cleanup(&ctx);
-                                EVP_CIPHER_CTX_init(&ctx);
+                                EVP_CIPHER_CTX_cleanup(ctx);
+                                EVP_CIPHER_CTX_init(ctx);
                             }
                         } // foreach key
                         if ( keyFound ) {
@@ -608,7 +611,7 @@ bool ContentEncryptionModel::decrypt(const QByteArray& aCipherText,
                             int len_out ( 0 ) ;
                             unsigned char* plainTextPtr = (unsigned char*)malloc(aCipherText.length()-metaDataLen) ;
                             if ( plainTextPtr ) {
-                                if (!EVP_OpenUpdate(&ctx,
+                                if (!EVP_OpenUpdate(ctx,
                                                     plainTextPtr,
                                                     &len_out,
                                                     (const unsigned char *)(aCipherText.mid(sizeof(quint32)+metaDataLen).constData()),
@@ -621,7 +624,7 @@ bool ContentEncryptionModel::decrypt(const QByteArray& aCipherText,
                                     if ( len_out > 0 ) {
                                         aResultingPlainText.append((const char *)plainTextPtr,len_out) ;
                                     }
-                                    if ( !EVP_OpenFinal(&ctx, plainTextPtr, &len_out) ) {
+                                    if ( !EVP_OpenFinal(ctx, plainTextPtr, &len_out) ) {
                                         QString errmsg(ERR_reason_error_string(ERR_get_error())) ;
                                         emit error(MController::ContentEncryptionError, errmsg) ;
                                     }  else {
@@ -642,7 +645,8 @@ bool ContentEncryptionModel::decrypt(const QByteArray& aCipherText,
                             LOG_STR("Decrypt: key not found") ;
                             retval = false ;
                         }
-                        EVP_CIPHER_CTX_cleanup(&ctx);
+                        EVP_CIPHER_CTX_cleanup(ctx);
+                        EVP_CIPHER_CTX_free(ctx);
                         EVP_PKEY_free(myPrivateKey) ;
                     }
                 }
