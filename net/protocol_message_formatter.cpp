@@ -178,8 +178,8 @@ QByteArray ProtocolMessageFormatter::requestForClassifiedAd(const Hash& aHash) {
 }
 
 QByteArray ProtocolMessageFormatter::requestForAdsClassified(const Hash& aHashOfClassification,
-        const quint32 /* aStartingTimestamp  */,
-        const quint32 /* aEndingTimestamp */) {
+        const quint32  aStartingTimestamp  ,
+        const quint32  aEndingTimestamp ) {
     QByteArray retval ;
     unsigned char ch ( KAdsClassifiedAtHash ) ;
     retval.append((const char *)&ch, 1) ;
@@ -188,7 +188,10 @@ QByteArray ProtocolMessageFormatter::requestForAdsClassified(const Hash& aHashOf
         quint32 hashNumberNetworkByteOrder (htonl(aHashOfClassification.iHash160bits[i])) ;
         retval.append((const char *)(&hashNumberNetworkByteOrder), sizeof(quint32)) ;
     }
-
+    const quint32  startingTimestampNetworkBO(htonl(aStartingTimestamp)) ;
+    const quint32  endingTimestampNetworkBO(htonl(aEndingTimestamp)) ;
+    retval.append((const char *)(&startingTimestampNetworkBO), sizeof(quint32)) ;
+    retval.append((const char *)(&endingTimestampNetworkBO), sizeof(quint32)) ;
     return retval ;
 }
 
