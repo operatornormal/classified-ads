@@ -2,8 +2,9 @@ classified-ads (0.11-1) unstable; urgency=medium
 
   * New upstream version. Closes: #828268
   * Standards version bump to 3.9.8
+  * Additions to copyright-file
 
- -- Antti Järvinen <antti.jarvinen@katiska.org>  Sun, 03 Jul 2016 16:13:55 +0300
+-- Antti Järvinen <antti.jarvinen@katiska.org>  Sun, 03 Jul 2016 16:13:55 +0300
 
 classified-ads (0.10-1) unstable; urgency=medium
 
