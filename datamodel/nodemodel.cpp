@@ -1,7 +1,7 @@
-/*     -*-C++-*- -*-coding: utf-8-unix;-*-
-       Classified Ads is Copyright (c) Antti Järvinen 2013.
+/*  -*-C++-*- -*-coding: utf-8-unix;-*-
+    Classified Ads is Copyright (c) Antti Järvinen 2013-2016.
 
-       This file is part of Classified Ads.
+    This file is part of Classified Ads.
 
     Classified Ads is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -103,20 +103,31 @@ bool NodeModel::openOrCreateSSLCertificate() {
     } else {
         LOG_STR("No ssl cert in place, generating") ;
 
-        EVP_PKEY * pkey;
+        EVP_PKEY * pkey(NULL);
+
+
         pkey = EVP_PKEY_new();
-        RSA * rsa;
-        if ( ( rsa = RSA_generate_key(
-                         2048,   /* number of bits for the key - 2048 is a sensible value */
-                         RSA_F4, /* exponent - RSA_F4 is defined as 0x10001L */
-                         NULL,   /* callback - can be NULL if we aren't displaying progress */
-                         NULL    /* callback argument - not needed in this case */
-                     ) ) == NULL ) {
+        RSA * rsa (NULL);
+        BIGNUM          *bne ( NULL );
+        int ret = 0 ; 
+        bne = BN_new();
+        unsigned long   e = RSA_F4;
+        ret = BN_set_word(bne,e);
+        rsa = RSA_new() ; 
+        
+        if ( rsa != NULL &&
+             ( ret = RSA_generate_key_ex(rsa,
+                                         2048, 
+                                         bne, 
+                                         NULL 
+                   ) ) != 1 ) {
             QString errmsg(tr("SSL key generation went wrong, calling exit..")) ;
             emit error(MController::OwnCertNotFound, errmsg) ;
+            RSA_free(rsa) ; 
+            BN_free(bne) ; 
             return false ;
         }
-        EVP_PKEY_assign_RSA(pkey, rsa);
+        EVP_PKEY_assign_RSA(pkey, rsa); // after this point rsa can't be free'd
         X509 * x509;
         x509 = X509_new();
         if ( x509 == NULL ) {
@@ -182,6 +193,8 @@ bool NodeModel::openOrCreateSSLCertificate() {
             X509_free(x509) ;
             BIO_free(pri) ;
             BIO_free(pub) ;
+            // rsa i associated with x509, no need to free()
+            // bne is associated with RSA, no need to free()
             return false ;
         }
 
@@ -213,7 +226,6 @@ bool NodeModel::openOrCreateSSLCertificate() {
         QByteArray priKeyBytes(pri_key,pri_len) ;
         free(pub_key) ;
         free(pri_key) ;
-
         saveSslCertToDb(pubKeyBytes) ;
         saveSslKeyToDb(priKeyBytes) ;
     }

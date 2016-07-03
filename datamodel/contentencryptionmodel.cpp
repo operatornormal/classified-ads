@@ -76,20 +76,28 @@ Hash ContentEncryptionModel::generateKeyPair() {
 
     LOG_STR("ContentEncryptionModel::generateKeyPair in") ;
 
-    EVP_PKEY * pkey;
+    EVP_PKEY * pkey (NULL);
     pkey = EVP_PKEY_new();
-    RSA * rsa;
-    if ((rsa = RSA_generate_key(
-                   2048,   /* number of bits for the key - 2048 is a sensible value */
-                   RSA_F4, /* exponent - RSA_F4 is defined as 0x10001L */
-                   NULL,   /* callback - can be NULL if we aren't displaying progress */
-                   NULL    /* callback argument - not needed in this case */
-               ) ) == NULL ) {
+    RSA * rsa (NULL) ;
+    BIGNUM          *bne ( NULL );
+    int ret = 0 ; 
+    bne = BN_new();
+    unsigned long   e = RSA_F4;
+    ret = BN_set_word(bne,e);
+    rsa = RSA_new() ; 
+
+    if ((ret = RSA_generate_key_ex(rsa,
+                                   2048,   
+                                   bne,
+                                   NULL    
+             ) ) != 1 ) {
         QString errmsg(tr("SSL key generation went wrong, calling exit..")) ;
         emit error(MController::ContentEncryptionError, errmsg) ;
+        BN_free(bne) ; 
+        RSA_free(rsa) ; 
         return retval ;
     }
-    EVP_PKEY_assign_RSA(pkey, rsa);
+    EVP_PKEY_assign_RSA(pkey, rsa); // after this point rsa can't be free'd
     X509 * x509;
     x509 = X509_new();
     if ( x509 == NULL ) {
