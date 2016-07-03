@@ -1794,7 +1794,7 @@ msgstr ""
 "Klicken\n"
 "um\n"
 "Bild\n"
-"hinzuzufügen\n"
+"hinzuzufügen"
 
 #: frontWidget.ui:425 frontWidget.ui:845
 msgctxt "frontWidget|"
