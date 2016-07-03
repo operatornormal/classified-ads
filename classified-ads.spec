@@ -1,5 +1,5 @@
 Name:		classified-ads
-Version:	0.10
+Version:	0.11
 Release:	1%{?dist}
 Summary:	Classified ads is a program for posting ads online
 
@@ -63,6 +63,9 @@ fi
 %license LICENSE
 
 %changelog
+* Sun Jul 3 2016 Antti Jarvinen <antti.jarvinen@katiska.org> - 0.11-1
+- New upstream version: bugfixes and support for OpenSSL 1.1 API
+
 * Fri Apr 8 2016 Antti Jarvinen <antti.jarvinen@katiska.org> - 0.10-1
 - New upstream version: audio capabilities and translation additions
 
