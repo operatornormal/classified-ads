@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: classified-ads 0.10\n"
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
-"PO-Revision-Date: 2016-03-30 11:20-0400\n"
+"PO-Revision-Date: 2016-06-09 11:31-0400\n"
 "Last-Translator: FloH. <postfuerflo@gmail.com>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Zanata 3.8.2\n"
+"X-Generator: Zanata 3.8.4\n"
 "X-Language: fi_FI\n"
 "X-Qt-Contexts: true\n"
 
@@ -292,7 +292,7 @@ msgstr "Bytes raus"
 #: datamodel/connectionlistingmodel.cpp:176
 msgctxt "ConnectionListingModel|"
 msgid "Open time"
-msgstr ""
+msgstr "Uhrzeit der Verbindungsherstullung"
 
 #: datamodel/contactlistingmodel.cpp:73
 msgctxt "ContactListingModel|"
@@ -310,6 +310,7 @@ msgid "Actual network address (SHA1) of the contact"
 msgstr "Netzwerkadresse (SHA1) des Kontakts"
 
 #: datamodel/contactlistingmodel.cpp:101
+#, fuzzy
 msgctxt "ContactListingModel|"
 msgid "Locally given nickname ; user may set her own nickname himself"
 msgstr "Lokaler Spitzname. Benutzer kann seinen eigenen Spitznamen wählen"
@@ -318,6 +319,8 @@ msgstr "Lokaler Spitzname. Benutzer kann seinen eigenen Spitznamen wählen"
 msgctxt "ContactListingModel|"
 msgid "Public statement if this operator to be trusted in transactions"
 msgstr ""
+"Öffentlicher Hinweis ob dieser Benutzer bei Transaktionen als zuverlässig "
+"gilt."
 
 #: datamodel/contactlistingmodel.cpp:114
 msgctxt "ContactListingModel|"
@@ -327,7 +330,7 @@ msgstr "Adresse"
 #: datamodel/contactlistingmodel.cpp:117
 msgctxt "ContactListingModel|"
 msgid "Nickname"
-msgstr "Spitzname"
+msgstr "Name"
 
 #: datamodel/contactlistingmodel.cpp:120
 msgctxt "ContactListingModel|"
@@ -383,7 +386,7 @@ msgstr "Anwendung beenden"
 #: controller.cpp:489
 msgctxt "Controller|"
 msgid "&About"
-msgstr "&About"
+msgstr "Ü&ber"
 
 #: controller.cpp:490
 msgctxt "Controller|"
@@ -401,13 +404,11 @@ msgid "Change password of current profile"
 msgstr "Passwort des aktuellen Benutzerprofils ändern"
 
 #: controller.cpp:495
-#, fuzzy
 msgctxt "Controller|"
 msgid "Create &new profile"
-msgstr "Neues Benutzerprofil anlegen"
+msgstr "&Neues Benutzerprofil erstellen"
 
 #: controller.cpp:496
-#, fuzzy
 msgctxt "Controller|"
 msgid "Makes a brand new user profile"
 msgstr "Erstellt einen neuen Benutzer"
@@ -415,7 +416,7 @@ msgstr "Erstellt einen neuen Benutzer"
 #: controller.cpp:498
 msgctxt "Controller|"
 msgid "&Delete current profile"
-msgstr "Aktuelles Benutzerprofil löschen"
+msgstr "&Aktuelles Benutzerprofil löschen"
 
 #: controller.cpp:499
 msgctxt "Controller|"
@@ -435,7 +436,7 @@ msgstr "Es besteht eine Vielzahl an Profilen"
 #: controller.cpp:504
 msgctxt "Controller|"
 msgid "Settings.."
-msgstr "Einstellungen"
+msgstr "&Einstellungen"
 
 #: controller.cpp:505
 msgctxt "Controller|"
@@ -450,7 +451,7 @@ msgstr "Netzwerkstatus"
 #: controller.cpp:509
 msgctxt "Controller|"
 msgid "Search.."
-msgstr "Suche.."
+msgstr "Suche..."
 
 #: controller.cpp:526
 msgctxt "Controller|"
@@ -641,12 +642,12 @@ msgstr "Dateiort (SHA1) in Zwischenablage kopieren"
 #: FrontWidget.cpp:165
 msgctxt "FrontWidget|"
 msgid "Edit+publish new text document.."
-msgstr ""
+msgstr "Neues Textdokument bearbeiten und veröffentlichen"
 
 #: FrontWidget.cpp:353
 msgctxt "FrontWidget|"
 msgid "Open File"
-msgstr ""
+msgstr "Datei öffnen"
 
 #: FrontWidget.cpp:355 FrontWidget.cpp:885
 msgctxt "FrontWidget|"
@@ -725,7 +726,7 @@ msgstr ""
 #: FrontWidget.cpp:1329
 msgctxt "FrontWidget|"
 msgid "Article not found from local storage"
-msgstr ""
+msgstr "Artikel nicht in lokaler Datenbank gefunden"
 
 #: FrontWidget.cpp:1355 FrontWidget.cpp:1903
 #, qt-format
@@ -740,7 +741,7 @@ msgstr ""
 #: FrontWidget.cpp:1392
 msgctxt "FrontWidget|"
 msgid "Time of last update "
-msgstr "Zeit der letzten Aktualisierung"
+msgstr "Datum der letzten Aktualisierung"
 
 #: FrontWidget.cpp:1400
 msgctxt "FrontWidget|"
@@ -797,7 +798,7 @@ msgstr "Anhänge.."
 #: FrontWidget.cpp:1599
 msgctxt "FrontWidget|"
 msgid "Add selected operator to contacts.."
-msgstr ""
+msgstr "Ausgewählten Benutzer zu Kontakten hinzufügen"
 
 #: FrontWidget.cpp:1673
 msgctxt "FrontWidget|"
@@ -812,17 +813,17 @@ msgstr "&Neue Nachricht"
 #: FrontWidget.cpp:1675
 msgctxt "FrontWidget|"
 msgid "&Send public comment to sender"
-msgstr ""
+msgstr "&Sende öffentlichen Kommentar zum Absender"
 
 #: FrontWidget.cpp:1676
 msgctxt "FrontWidget|"
 msgid "&View profile of peer"
-msgstr ""
+msgstr "Profil &ansehen"
 
 #: FrontWidget.cpp:1711
 msgctxt "FrontWidget|"
 msgid "Add selected to contacts.."
-msgstr ""
+msgstr "Ausgewählte zu Kontakten hinzufügen"
 
 #: FrontWidget.cpp:1913 FrontWidget.cpp:1915 FrontWidget.cpp:1979
 #: FrontWidget.cpp:1981
@@ -883,7 +884,7 @@ msgstr "Fehler"
 #: ui/newprofilecommentdialog.cpp:90
 msgctxt "NewProfileCommentDialog|"
 msgid "Commented profile addr is not valid"
-msgstr ""
+msgstr "Kommentiertes Benutzerprofil ist nicht gültig"
 
 #: ui/newprofilecommentdialog.cpp:127
 msgctxt "NewProfileCommentDialog|"
@@ -1010,7 +1011,7 @@ msgstr "Anhänge:"
 #: datamodel/profilecommentlistingmodel.cpp:219
 msgctxt "ProfileCommentListingModel|"
 msgid "Sender"
-msgstr "Sender"
+msgstr "Absender"
 
 #: datamodel/profilecommentlistingmodel.cpp:222
 msgctxt "ProfileCommentListingModel|"
@@ -1026,6 +1027,8 @@ msgstr "Betreff"
 msgctxt "ProfileCommentModel|"
 msgid "Profile related to comment not found from database"
 msgstr ""
+"Mit Kommentar verbundenes Profil konnte in der Datenbank nicht gefunden "
+"werden"
 
 #: ui/profilereadersdialog.cpp:73
 msgctxt "ProfileReadersDialog|"
@@ -1041,6 +1044,8 @@ msgstr "Name oder Fingerabdruck des Lesers"
 msgctxt "RingtonePlayer|"
 msgid "raw audio format not supported by backend, cannot play audio."
 msgstr ""
+"Tondateien können nicht abgespielt werden. raw-Audioformat wird nicht "
+"unterstützt."
 
 #: call/ringtoneplayer.cpp:93
 msgctxt "RingtonePlayer|"
@@ -1120,17 +1125,17 @@ msgstr "&Wiederholen"
 #: textedit/textedit.cpp:261
 msgctxt "TextEdit|"
 msgid "Cu&t"
-msgstr "Ausschneiden &x"
+msgstr "&Ausschneiden"
 
 #: textedit/textedit.cpp:267
 msgctxt "TextEdit|"
 msgid "&Copy"
-msgstr "Kopieren &c"
+msgstr "&Kopieren"
 
 #: textedit/textedit.cpp:273
 msgctxt "TextEdit|"
 msgid "&Paste"
-msgstr "Einfügen &v"
+msgstr "&Einfügen"
 
 #: textedit/textedit.cpp:283
 msgctxt "TextEdit|"
@@ -1150,7 +1155,7 @@ msgstr "F&ormat"
 #: textedit/textedit.cpp:298
 msgctxt "TextEdit|"
 msgid "&Bold"
-msgstr "Fe&tt"
+msgstr "&Fett"
 
 #: textedit/textedit.cpp:310
 msgctxt "TextEdit|"
@@ -1165,7 +1170,7 @@ msgstr "&Unterstrichen"
 #: textedit/textedit.cpp:341 textedit/textedit.cpp:347
 msgctxt "TextEdit|"
 msgid "&Left"
-msgstr "&Links"
+msgstr "&Linksbündig"
 
 #: textedit/textedit.cpp:342 textedit/textedit.cpp:346
 msgctxt "TextEdit|"
@@ -1175,12 +1180,12 @@ msgstr "&Zentriert"
 #: textedit/textedit.cpp:343 textedit/textedit.cpp:345
 msgctxt "TextEdit|"
 msgid "&Right"
-msgstr "&Rechts"
+msgstr "&Rechtsbündig"
 
 #: textedit/textedit.cpp:349
 msgctxt "TextEdit|"
 msgid "&Justify"
-msgstr ""
+msgstr "&Blocksatz"
 
 #: textedit/textedit.cpp:376
 msgctxt "TextEdit|"
@@ -1193,44 +1198,46 @@ msgid "Standard"
 msgstr "Standard"
 
 #: textedit/textedit.cpp:384
+#, fuzzy
 msgctxt "TextEdit|"
 msgid "Bullet List (Disc)"
-msgstr ""
+msgstr "Aufzählungsliste (Punkt)"
 
 #: textedit/textedit.cpp:385
+#, fuzzy
 msgctxt "TextEdit|"
 msgid "Bullet List (Circle)"
-msgstr ""
+msgstr "Aufzählungsliste (Kreis)"
 
 #: textedit/textedit.cpp:386
 msgctxt "TextEdit|"
 msgid "Bullet List (Square)"
-msgstr ""
+msgstr "Aufzählungsliste (Quadrat)"
 
 #: textedit/textedit.cpp:387
 msgctxt "TextEdit|"
 msgid "Ordered List (Decimal)"
-msgstr ""
+msgstr "Nummerierte Liste (Dezimal)"
 
 #: textedit/textedit.cpp:388
 msgctxt "TextEdit|"
 msgid "Ordered List (Alpha lower)"
-msgstr ""
+msgstr "Nummerierte Liste ( a, b, c , ...)"
 
 #: textedit/textedit.cpp:389
 msgctxt "TextEdit|"
 msgid "Ordered List (Alpha upper)"
-msgstr ""
+msgstr "Nummerierte Liste ( A, B, C, ...)"
 
 #: textedit/textedit.cpp:390
 msgctxt "TextEdit|"
 msgid "Ordered List (Roman lower)"
-msgstr ""
+msgstr "Nummerierte Liste (i, ii, iii, ...)"
 
 #: textedit/textedit.cpp:391
 msgctxt "TextEdit|"
 msgid "Ordered List (Roman upper)"
-msgstr ""
+msgstr "Nummerierte Liste (I, II, III, ...)"
 
 #: textedit/textedit.cpp:442
 msgctxt "TextEdit|"
@@ -1312,7 +1319,7 @@ msgstr "Schließen"
 #: net/voicecallengine.cpp:551
 msgctxt "VoiceCallEngine|"
 msgid "Actual network address (SHA1) of the peer operator"
-msgstr "Actual network address (SHA1) of the peer operator"
+msgstr "Netzwerkadresse des  (SHA1) des Peers"
 
 #: net/voicecallengine.cpp:554
 msgctxt "VoiceCallEngine|"
@@ -1322,37 +1329,37 @@ msgstr "Netzwerkadresse des entfernten Netzknotens"
 #: net/voicecallengine.cpp:564
 msgctxt "VoiceCallEngine|"
 msgid "Operator"
-msgstr ""
+msgstr "Benutzer"
 
 #: net/voicecallengine.cpp:567
 msgctxt "VoiceCallEngine|"
 msgid "Node address"
-msgstr ""
+msgstr "Adresse des Netzwerkknotens"
 
 #: net/voicecallengine.cpp:570
 msgctxt "VoiceCallEngine|"
 msgid "Call status"
-msgstr ""
+msgstr "Anruf-Status"
 
 #: net/voicecallengine.cpp:573
 msgctxt "VoiceCallEngine|"
 msgid "Controls"
-msgstr ""
+msgstr "Steuerung"
 
 #: net/voicecallengine.cpp:576
 msgctxt "VoiceCallEngine|"
 msgid "Ending"
-msgstr ""
+msgstr "Beenden"
 
 #: net/voicecallengine.cpp:613
 msgctxt "VoiceCallEngine|"
 msgid "Initializing"
-msgstr ""
+msgstr "Initialisierung"
 
 #: net/voicecallengine.cpp:616
 msgctxt "VoiceCallEngine|"
 msgid "Incoming"
-msgstr ""
+msgstr "Eingehend"
 
 #: net/voicecallengine.cpp:619
 msgctxt "VoiceCallEngine|"
@@ -1392,30 +1399,37 @@ msgstr "Sprachanruf möglich"
 #: net/voicecallengine.cpp:847
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible: operator address unknown"
-msgstr ""
+msgstr "Sprachanruf nicht möglich: Unbekannte Benutzeradresse"
 
 #: net/voicecallengine.cpp:853
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible: operator profile not found"
-msgstr ""
+msgstr "Sprachanruf nicht möglich: Benutzerprofil nicht gefunden"
 
 #: net/voicecallengine.cpp:856
+#, fuzzy
 msgctxt "VoiceCallEngine|"
 msgid ""
 "Audio call is not possible: operator has no node information in profile"
 msgstr ""
+"Sprachanruf nicht moeglich. Nutzer hat keine Netzknoten-Information in "
+"seinem Profil"
 
 #: net/voicecallengine.cpp:875
 #, qt-format
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible: operators IPv4 address %1 not connected"
 msgstr ""
+"Sprachanruf nicht möglich: Benutzer ist nicht mit  einer IPv4 Adresse %1 "
+"verbunden"
 
 #: net/voicecallengine.cpp:882
 #, qt-format
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible: operators IPv6 address %1 not connected"
 msgstr ""
+"Sprachanruf nicht möglich: Benutzer ist nicht mit  einer IPv6 Adresse %1 "
+"verbunden"
 
 #: net/voicecallengine.cpp:893
 msgctxt "VoiceCallEngine|"
@@ -1423,11 +1437,15 @@ msgid ""
 "Audio call is not possible: local node has no IPv6 address, operator has "
 "only IPv6 addr"
 msgstr ""
+"Sprachanruf nicht möglich: Lokaler Knoten besitzt kein IPv6 Adresse,  der "
+"Benutzer hingegen ausschließlich eine IPv6 Adresse."
 
 #: net/voicecallengine.cpp:895
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible: operator does not publish network address"
 msgstr ""
+"Sprachanruf nicht möglich: Benutzer veröffentlicht seine Netzwerkadresse "
+"nicht"
 
 #: ui/aboutDialog.ui:26
 msgctxt "aboutDialog|"
@@ -1437,7 +1455,7 @@ msgstr "Über Classified Ads - Kleinanzeigen"
 #: ui/aboutDialog.ui:100
 msgctxt "aboutDialog|"
 msgid " Classified ads is a program for online communications"
-msgstr ""
+msgstr "Kleinanzeigen ist ein Programm zur Online-Kommunikation"
 
 #: ui/aboutDialog.ui:163
 #, fuzzy
@@ -1576,7 +1594,7 @@ msgstr ""
 #: ui/attachmentListDialog.ui:26
 msgctxt "attachmentListDialog|"
 msgid "List of attached files"
-msgstr ""
+msgstr "Liste der angehängten Dateien"
 
 #: ui/callStatusDialog.ui:26
 msgctxt "callStatusDialog|"
@@ -1586,7 +1604,7 @@ msgstr "Anrufstatus"
 #: ui/callStatusDialog.ui:49
 msgctxt "callStatusDialog|"
 msgid "Input level"
-msgstr ""
+msgstr "Eingangspegel"
 
 #: ui/callStatusDialog.ui:65
 msgctxt "callStatusDialog|"
@@ -1606,24 +1624,28 @@ msgstr "Einen Kontakt bearbeiten"
 #: ui/editContact.ui:39
 msgctxt "editContactDialog|"
 msgid "Address (SHA1) of contact"
-msgstr ""
+msgstr "Adresse (SHA1) des Kontakts"
 
 #: ui/editContact.ui:53
 msgctxt "editContactDialog|"
 msgid "Local nickname"
-msgstr "Spitzname"
+msgstr "Lokaler Nick"
 
 #: ui/editContact.ui:65
+#, fuzzy
 msgctxt "editContactDialog|"
 msgid ""
 "<html><head/><body><p>Settings some trusted is public information to readers"
 " of your profile</p></body></html>"
 msgstr ""
+"<html><head/><body><p>Jemandem das Vertrauen aussprechen ist eine öffentlich"
+" Information die Betrachter ihres Profils einsehen können</p></body></html>"
 
 #: ui/editContact.ui:68
+#, fuzzy
 msgctxt "editContactDialog|"
 msgid "This contact is to be publicly trusted in transactions"
-msgstr ""
+msgstr "Dieser Benutzer gilt als zuverlässig bei Transaktionen"
 
 #: frontWidget.ui:14
 msgctxt "frontWidget|"
@@ -1638,12 +1660,12 @@ msgstr "Kleinanzeigen"
 #: frontWidget.ui:67
 msgctxt "frontWidget|"
 msgid "Search for classified ads about"
-msgstr ""
+msgstr "Suche Kleinanzeigen in folgenden Kategorien"
 
 #: frontWidget.ui:74
 msgctxt "frontWidget|"
 msgid "Perform"
-msgstr ""
+msgstr "Ausführen"
 
 #: frontWidget.ui:97
 msgctxt "frontWidget|"
@@ -1703,42 +1725,44 @@ msgstr "Stadt/Land"
 #: frontWidget.ui:273
 msgctxt "frontWidget|"
 msgid "BTC address"
-msgstr "BTC-Adresse"
+msgstr "Bitcoin-Adresse"
 
 #: frontWidget.ui:280
 msgctxt "frontWidget|"
 msgid "If you wish to receive payments via BTC, include your BTC address too."
 msgstr ""
+"Wenn Sie Zahlungen per Bitcoin erhalten wollen, bitte auch die Bitcoin-"
+"Adresse eintragen"
 
 #: frontWidget.ui:287 frontWidget.ui:799
 msgctxt "frontWidget|"
 msgid "State of the world"
-msgstr ""
+msgstr "Zustand der Welt"
 
 #: frontWidget.ui:294
 msgctxt "frontWidget|"
 msgid "Longer explanation about state of the world"
-msgstr ""
+msgstr "Ausführlichere Erklärung über den Zustand der Welt"
 
 #: frontWidget.ui:301
 msgctxt "frontWidget|"
 msgid "Profile is private"
-msgstr ""
+msgstr "nichtöffentliches Profil"
 
 #: frontWidget.ui:308
 msgctxt "frontWidget|"
 msgid "Readers of profile"
-msgstr ""
+msgstr "Betrachter des Profils"
 
 #: frontWidget.ui:315
 msgctxt "frontWidget|"
 msgid "None of the fields is mandatory"
-msgstr ""
+msgstr "Keines der Felder ist verpflichtend"
 
 #: frontWidget.ui:322
 msgctxt "frontWidget|"
 msgid "Time of last update"
-msgstr ""
+msgstr "Datum der letzten Aktualisierung"
 
 #: frontWidget.ui:342
 msgctxt "frontWidget|"
@@ -1748,12 +1772,12 @@ msgstr "Veröffentlichen"
 #: frontWidget.ui:355
 msgctxt "frontWidget|"
 msgid "Revert changes"
-msgstr "Änderungen rückgängig"
+msgstr "Änderungen zurücksetzen"
 
 #: frontWidget.ui:369
 msgctxt "frontWidget|"
 msgid "Details of operator profile:"
-msgstr ""
+msgstr "Benutzerprofil-Details"
 
 #: frontWidget.ui:401
 msgctxt "frontWidget|"
@@ -1765,6 +1789,12 @@ msgid ""
 "Add\n"
 "Image"
 msgstr ""
+"\n"
+"\n"
+"Klicken\n"
+"um\n"
+"Bild\n"
+"hinzuzufügen\n"
 
 #: frontWidget.ui:425 frontWidget.ui:845
 msgctxt "frontWidget|"
@@ -1819,7 +1849,7 @@ msgstr "Stadt/Land"
 #: frontWidget.ui:767
 msgctxt "frontWidget|"
 msgid "BTC Addr"
-msgstr ""
+msgstr "Bitcoin-Adresse"
 
 #: frontWidget.ui:829
 msgctxt "frontWidget|"
@@ -1843,7 +1873,7 @@ msgstr ""
 #: frontWidget.ui:874
 msgctxt "frontWidget|"
 msgid "Send message to operator"
-msgstr ""
+msgstr "Nachricht an Benutzer senden"
 
 #: frontWidget.ui:879
 msgctxt "frontWidget|"
@@ -1853,7 +1883,7 @@ msgstr "Sprachanruf"
 #: frontWidget.ui:884
 msgctxt "frontWidget|"
 msgid "View readers"
-msgstr ""
+msgstr "Betrachter ansehen"
 
 #: frontWidget.ui:932
 msgctxt "frontWidget|"
@@ -1883,7 +1913,7 @@ msgstr ""
 #: ui/manualConnectionDialog.ui:26
 msgctxt "manualConnectionDialog|"
 msgid "Manually add node to connection queue"
-msgstr ""
+msgstr "Netzknoten manuell zur Liste hinzufügen"
 
 #: ui/manualConnectionDialog.ui:48
 msgctxt "manualConnectionDialog|"
@@ -1893,7 +1923,7 @@ msgstr ""
 #: ui/manualConnectionDialog.ui:78
 msgctxt "manualConnectionDialog|"
 msgid "Remote node network address"
-msgstr ""
+msgstr "Entfernte Netzwerkknoten-Adresse"
 
 #: ui/manualConnectionDialog.ui:91
 msgctxt "manualConnectionDialog|"
@@ -1918,7 +1948,7 @@ msgstr ""
 #: ui/metadataQuery.ui:111
 msgctxt "metadataQuery|"
 msgid "License of use:"
-msgstr ""
+msgstr "Lizenz:"
 
 #: ui/metadataQuery.ui:122
 msgctxt "metadataQuery|"
@@ -1983,12 +2013,12 @@ msgstr "Dateibeschreibung"
 #: ui/metadataQuery.ui:218
 msgctxt "metadataQuery|"
 msgid "Enter information regarding file before publish:"
-msgstr ""
+msgstr "Vor der Veröffentlichung bitte Informationen zur Datei angeben"
 
 #: ui/newClassifiedAd.ui:26
 msgctxt "newCaDialog|"
 msgid "Post a new classified ad"
-msgstr ""
+msgstr "Neue Anzeige verfassen"
 
 #: ui/newClassifiedAd.ui:47
 msgctxt "newCaDialog|"
@@ -2058,7 +2088,7 @@ msgstr "Betreff"
 #: ui/newProfileComment.ui:53
 msgctxt "newProfileCommentDialog|"
 msgid "Commented profile"
-msgstr ""
+msgstr "Kommentiertes Profil"
 
 #: ui/newProfileComment.ui:89
 msgctxt "newProfileCommentDialog|"
@@ -2068,12 +2098,12 @@ msgstr "Anhänge:"
 #: ui/newProfileComment.ui:109
 msgctxt "newProfileCommentDialog|"
 msgid "Attach"
-msgstr ""
+msgstr "Anhängen"
 
 #: ui/newTextDocument.ui:26
 msgctxt "newTextDocumentDialog|"
 msgid "Edit and publish a new text document"
-msgstr ""
+msgstr "Neues Textdokument bearbeiten und veröffentlichen"
 
 #: ui/newTextDocument.ui:39
 msgctxt "newTextDocumentDialog|"
@@ -2093,22 +2123,22 @@ msgstr "Anhängen"
 #: ui/profileCommentDisplay.ui:26
 msgctxt "profileCommentDisplay|"
 msgid "Comments regarding operator"
-msgstr ""
+msgstr "Kommentare über BenutzerIn"
 
 #: ui/profileReadersDialog.ui:26
 msgctxt "profileReadersDialog|"
 msgid "Profile readers list"
-msgstr ""
+msgstr "Profilbetrachter anzeigen"
 
 #: ui/profileReadersDialog.ui:37
 msgctxt "profileReadersDialog|"
 msgid "Search for profiles to add"
-msgstr ""
+msgstr "Suche Profile zum Hinzufügen"
 
 #: ui/profileReadersDialog.ui:44
 msgctxt "profileReadersDialog|"
 msgid "First 100 matching profiles:"
-msgstr ""
+msgstr "Erste 100 passende Profile"
 
 #: ui/profileReadersDialog.ui:66
 msgctxt "profileReadersDialog|"
@@ -2123,89 +2153,95 @@ msgstr ""
 #: ui/profileReadersDialog.ui:90
 msgctxt "profileReadersDialog|"
 msgid "Close"
-msgstr ""
+msgstr "Schließen"
 
 #: ui/profileReadersDialog.ui:109
 msgctxt "profileReadersDialog|"
 msgid "Remove selected"
-msgstr ""
+msgstr "Ausgewählte entfernen"
 
 #: ui/searchDisplay.ui:26
 msgctxt "searchDisplay|"
 msgid "Search data storage"
-msgstr ""
+msgstr "Datenspeicher durchsuchen"
 
 #: ui/searchDisplay.ui:60
 msgctxt "searchDisplay|"
 msgid "Words:"
-msgstr ""
+msgstr "Worte:"
 
 #: ui/searchDisplay.ui:70
 msgctxt "searchDisplay|"
 msgid "Search"
-msgstr ""
+msgstr "Suche"
 
 #: ui/searchDisplay.ui:87
 msgctxt "searchDisplay|"
 msgid "Network search"
-msgstr ""
+msgstr "Netzwerk-Suche"
 
 #: ui/searchDisplay.ui:101
 msgctxt "searchDisplay|"
 msgid "Search ads"
-msgstr ""
+msgstr "Suche Kleinanzeigen"
 
 #: ui/searchDisplay.ui:111
 msgctxt "searchDisplay|"
 msgid "Search profiles"
-msgstr ""
+msgstr "Suche Profile"
 
 #: ui/searchDisplay.ui:121
 msgctxt "searchDisplay|"
 msgid "Search comments"
-msgstr ""
+msgstr "Suche Kommentare"
 
 #: ui/settingsDialog.ui:26
 msgctxt "settingsDialog|"
 msgid "Node settings"
-msgstr ""
+msgstr "Netzknoten-Einstellungen"
 
 #: ui/settingsDialog.ui:39
+#, fuzzy
 msgctxt "settingsDialog|"
 msgid "TCP listen port"
-msgstr ""
+msgstr "TCP Port eingehende Verbindungen"
 
 #: ui/settingsDialog.ui:58
 msgctxt "settingsDialog|"
 msgid "Incoming TCP listen port. Change requires node restart. "
 msgstr ""
+"TCP Port eingehende Verbindungen. Änderungen erfordern Neustart des "
+"Netzknotens"
 
 #: ui/settingsDialog.ui:84
 msgctxt "settingsDialog|"
 msgid "DNS name of node"
-msgstr ""
+msgstr "DNS Name des Netzknotens"
 
 #: ui/settingsDialog.ui:91
+#, fuzzy
 msgctxt "settingsDialog|"
 msgid ""
 "If you have permanent DNS name for your machine, you may type it here to be "
 "used to reference your node"
 msgstr ""
+"Wenn ihr Rechner einen permanenten DNS Eintrag besitzt, kann dieser hier "
+"eingetragen werden um ihren Netzknoten zu referenzieren"
 
 #: ui/settingsDialog.ui:103
 msgctxt "settingsDialog|"
 msgid "Data store limits:"
-msgstr ""
+msgstr "Maximaler Speicherumfang"
 
 #: ui/settingsDialog.ui:115
 msgctxt "settingsDialog|"
 msgid "Nr of profiles to keep"
-msgstr ""
+msgstr "Anzahl der zu behaltenden Profile"
 
 #: ui/settingsDialog.ui:154
 msgctxt "settingsDialog|"
 msgid "Nr of private messages to keep"
-msgstr ""
+msgstr "Anzahl der zu behaltenden privaten Nachrichten"
 
 #: ui/settingsDialog.ui:193
 msgctxt "settingsDialog|"
@@ -2215,7 +2251,7 @@ msgstr ""
 #: ui/settingsDialog.ui:232
 msgctxt "settingsDialog|"
 msgid "Nr of CAs to keep"
-msgstr ""
+msgstr "Anzahl der zu behaltenden CAs"
 
 #: ui/settingsDialog.ui:251
 msgctxt "settingsDialog|"
@@ -2227,7 +2263,7 @@ msgstr ""
 #: ui/settingsDialog.ui:274
 msgctxt "settingsDialog|"
 msgid "Nr of profile comments to keep"
-msgstr ""
+msgstr "Anzahl der zu Kommentare"
 
 #: ui/settingsDialog.ui:316
 msgctxt "settingsDialog|"
@@ -2237,12 +2273,12 @@ msgstr "Klingelton"
 #: ui/settingsDialog.ui:324
 msgctxt "settingsDialog|"
 msgid "Bow"
-msgstr ""
+msgstr "Bogen"
 
 #: ui/settingsDialog.ui:329
 msgctxt "settingsDialog|"
 msgid "Electrical"
-msgstr ""
+msgstr "Elektro"
 
 #: ui/settingsDialog.ui:334
 msgctxt "settingsDialog|"
@@ -2273,7 +2309,7 @@ msgstr "Alles"
 #: ui/settingsDialog.ui:369
 msgctxt "settingsDialog|"
 msgid "From trusted operators"
-msgstr ""
+msgstr "Von zuverlässigen Benutzern"
 
 #: ui/settingsDialog.ui:374
 msgctxt "settingsDialog|"
@@ -2307,17 +2343,17 @@ msgstr "IPv6"
 #: ui/statusDialog.ui:113
 msgctxt "statusDialog|"
 msgid "TCP port currently used"
-msgstr "TCP port currently used"
+msgstr "TCP Port in Benutzung"
 
 #: ui/statusDialog.ui:151
 msgctxt "statusDialog|"
 msgid "Currently open connections"
-msgstr "Currently open connections"
+msgstr "Aktuell bestehende Verbindungen"
 
 #: ui/statusDialog.ui:195
 msgctxt "statusDialog|"
 msgid "Manually add connection"
-msgstr ""
+msgstr "Verbindung manuell hinzufügen"
 
 #: ui/statusDialog.ui:202
 msgctxt "statusDialog|"

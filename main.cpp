@@ -102,7 +102,7 @@ int main(int argc, char *argv[]) {
                 have_wayland==false ) ) {
         // so, we have "xcb" that is normal linux. and we have no $DISPLAY
         // nor $WAYLAND_DISPLAY -> this spells some problems..
-        fprintf(stderr,"No $DISPLAY/WAYLAND_DISPLAY enviroment variable set, cant continue\n") ;
+        fprintf(stderr,"No $DISPLAY/WAYLAND_DISPLAY environment variable set, cant continue\n") ;
         return 0 ;
     }
 #endif // qt version
