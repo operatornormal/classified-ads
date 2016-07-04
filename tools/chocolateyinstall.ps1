@@ -3,7 +3,7 @@ $ErrorActionPreference = 'Stop'; # stop on all errors
 $packageName = 'classified-ads' 
 $toolsDir = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 
-$url = 'https://github.com/operatornormal/classified-ads/raw/fbc222df590a3a7ea2014620ac54e87c79ba96e6/Classified-ads-Win32.exe' # download url
+$url = 'https://github.com/operatornormal/classified-ads/raw/df67d1b7dfff90916e3e1e527bbef404c806b290/Classified-ads-Win32.exe' # download url
 
 $packageArgs = @{
   packageName   = $packageName
@@ -15,7 +15,7 @@ $packageArgs = @{
   silentArgs    = "/S" 
   validExitCodes= @(0, 3010, 1641)
   registryUninstallerKey = 'classified-ads' #ensure this is the value in the registry
-  checksum      = 'ec7c825f6121a1268f904510bd67b028230e2f00'
+  checksum      = '75963c8923e8c8949f217dee17cbc393a5700eb1'
   checksumType  = 'sha1' #default is md5, can also be sha1
 }
 
