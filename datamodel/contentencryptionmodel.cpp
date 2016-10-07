@@ -914,9 +914,18 @@ Hash ContentEncryptionModel::hashOfPublicKey(const QByteArray& aPemBytes) {
 
 
 QByteArray ContentEncryptionModel::randomBytes(int aNumberOfBytes) {
-    unsigned char* bytes = new unsigned char[aNumberOfBytes+1] ; 
-    RAND_bytes(bytes, aNumberOfBytes) ; 
-    QByteArray retval((const char *)bytes,aNumberOfBytes) ;
-    delete bytes ;
-    return retval ; 
+    unsigned char* bytes = reinterpret_cast<unsigned char*>( malloc(aNumberOfBytes+1) ); 
+    if ( bytes ) {
+        RAND_bytes(bytes, aNumberOfBytes) ; 
+        QByteArray retval((const char *)bytes,aNumberOfBytes) ;
+        free(bytes) ;
+        return retval ; 
+    } else {
+        // memory allocation failed and random bytes would have
+        // been needed: terminate, we're in deep trouble
+        exit(1) ; 
+        // keep compiler happy, this line
+        // should not be reached
+        return QByteArray('0',aNumberOfBytes) ; 
+    }
 }
