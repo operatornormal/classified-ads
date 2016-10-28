@@ -29,7 +29,8 @@
 #include <QRegExpValidator>
 
 QApplication* app ; /**< The qt application, we need to have 1 instance */
-Controller* c ; /** Application controller, here as static for signal handlers */
+Controller* controllerInstance ; /**< Application controller,
+                                    here as static for signal handlers */
 /** ipv6 addr with all bits zero, to denote an invalid addr */
 Q_IPV6ADDR KNullIpv6Addr ( QHostAddress("::0").toIPv6Address () ) ;
 /**
@@ -56,8 +57,8 @@ void sigINThandler(int) {
  */
 void sigUSR1handler(int) {
     LOG_STR("SIGUSR1 trapped..") ;
-    if ( c != NULL ) {
-        c->hideUI() ;
+    if ( controllerInstance != NULL ) {
+        controllerInstance->hideUI() ;
     }
 }
 
@@ -67,9 +68,9 @@ void sigUSR1handler(int) {
  */
 void sigUSR2handler(int) {
     LOG_STR("SIGUSR2 trapped..") ;
-    if ( c != NULL ) {
-        c->showUI() ;
-        c->checkForSharedMemoryContents() ;
+    if ( controllerInstance != NULL ) {
+        controllerInstance->showUI() ;
+        controllerInstance->checkForSharedMemoryContents() ;
     }
 }
 #endif
@@ -135,7 +136,7 @@ int main(int argc, char *argv[]) {
     app->installTranslator(&caTranslator);
 
     // controller will actually start launching the application
-    c = new Controller(*app) ;
+    controllerInstance = new Controller(*app) ;
 #if QT_VERSION < 0x050000
     // without this qt4+qjson does not handle utf-8 well ; every
     // byte in multi-byte unicode-sequences appears as separate
@@ -163,16 +164,16 @@ int main(int argc, char *argv[]) {
             QUrl commandLineUrl ( argumentCandidate ) ;
             QLOG_STR("scheme " + commandLineUrl.scheme() ) ;
             QLOG_STR("host " + commandLineUrl.host() ) ;
-            c->addObjectToOpen(commandLineUrl) ;
+            controllerInstance->addObjectToOpen(commandLineUrl) ;
             break ; // out of the loop, process only one
         }
     }
     int retval ( 0 ) ;
-    if ( c->init() ) { // 2nd stage of constructor
+    if ( controllerInstance->init() ) { // 2nd stage of constructor
         retval = app->exec() ;
     }
     QLOG_STR("deleting controller") ;
-    delete c ;
+    delete controllerInstance ;
     delete app ;
     return retval ;
 }

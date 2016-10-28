@@ -179,7 +179,7 @@ void NewClassifiedAdDialog::okButtonClicked() {
         iController->model().unlock() ;
     }
     Hash hashOfClassification ;
-    hashOfClassification.fromString(reinterpret_cast<const unsigned char*>(ad.iGroup.toLatin1().constData())) ;
+    hashOfClassification.fromString(reinterpret_cast<const unsigned char*>(ad.iGroup.toUtf8().constData())) ;
     iController->model().lock() ;
     iCAListingModel.newCaReceived(ad) ;
     iController->model().unlock() ;

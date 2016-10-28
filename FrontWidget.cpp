@@ -38,7 +38,9 @@
 #include "datamodel/contentencryptionmodel.h"
 #include "datamodel/camodel.h"
 #include "datamodel/ca.h"
+#include "datamodel/tclprogram.h"
 #include "datamodel/trusttreemodel.h"
+#include "datamodel/tclmodel.h"
 #include "ui/profilereadersdialog.h"
 #include "ui/newclassifiedaddialog.h"
 #include "ui/newprivmsgdialog.h"
@@ -1173,18 +1175,45 @@ void FrontWidget::openBinaryFile(const Hash& aFingerPrint,
                 suffix = filenameSuffix + " "+tr("files")+" (*."+filenameSuffix+")" ;
             }
         }
-        QString fileName = QFileDialog::getSaveFileName(this, tr("Choose file name for saving"),
-                           metadata->iFileName,
-                           suffix);
-        if ( fileName.length() > 0 ) {
-            QFile f ( fileName ) ;
-            if ( f.open(QIODevice::WriteOnly) ) {
-                f.write(fileData) ;
-                f.close() ;
-            } else {
-                QMessageBox::about(this,tr("Error"),
-                                   tr("File open error"));
+        bool saveToFile = true ;
+        if (  metadata->iFileName.length()> 0 &&
+                ( suffix.toLower() == "tcl" ||
+                  ( metadata->iMimeType.contains("/x-tcl" ) )) ) {
+            QMessageBox::StandardButton reply;
+            reply = QMessageBox::question(this, tr("Save location"),
+                                          tr("Save to TCL app library instead of regular file?"),
+                                          QMessageBox::Yes|QMessageBox::No);
+            if (reply == QMessageBox::Yes) {
+                saveToFile = false ;
             }
+        }
+        if ( saveToFile ) {
+            QString fileName = QFileDialog::getSaveFileName(this, tr("Choose file name for saving"),
+                               metadata->iFileName,
+                               suffix);
+            if ( fileName.length() > 0 ) {
+                QFile f ( fileName ) ;
+                if ( f.open(QIODevice::WriteOnly) ) {
+                    f.write(fileData) ;
+                    f.close() ;
+                } else {
+                    QMessageBox::about(this,tr("Error"),
+                                       tr("File open error"));
+                }
+            }
+        } else {
+            // do not save to file, save to TCL library:
+            TclProgram p ;
+            p.setProgramText(fileData) ;
+            if ( metadata->iDescription.length() > 0 ) {
+                p.setProgramName(metadata->iDescription) ;
+            } else {
+                p.setProgramName(metadata->iFileName) ;
+            }
+            p.iTimeOfPublish = metadata->iTimeOfPublish ;
+            iController->model().lock() ;
+            iController->model().tclModel().locallyStoreTclProgram(p) ;
+            iController->model().unlock() ;
         }
     }
     delete metadata ;
@@ -1311,7 +1340,7 @@ void   FrontWidget::showClassifiedAd(const CA& ca) {
             ui.caWhereComboBox->setEditText(ca.iInComboBoxText) ;
         }
         Hash groupFingerPrint ;
-        groupFingerPrint.calculate(ca.iGroup.toUtf8()) ;
+        groupFingerPrint.calculate(ca.iGroup.toUtf8().constData()) ;
         iCaListingModel.setClassification(groupFingerPrint) ;
         // then perform (perfectly linear?) search ; no hopping or jumping at all:
         QModelIndexList matchingArticles =
@@ -1761,11 +1790,11 @@ QString FrontWidget::selectedClassification(const QComboBox& aAboutCombo,
         // same string appears inside tr() in datamodel/camodel.cpp
         retval.append( "Any country" ) ;
     } else {
-        // if not the "Any country", then just take the literal 
+        // if not the "Any country", then just take the literal
         // string value, regardless of index
         retval.append( aWhereCombo.currentText() ) ;
     }
-  
+
     return retval ;
 }
 
@@ -2330,13 +2359,13 @@ void FrontWidget::doShowFileMetadata(const Hash& aBinaryFileFingerPrint) {
 }
 
 // the "voice call" button needs to be enabled/disabled depending
-// whether we have connection to operators node available or not. 
-// for this reason we have here connetion status observer. 
+// whether we have connection to operators node available or not.
+// for this reason we have here connetion status observer.
 void FrontWidget::nodeConnectionAttemptStatus(Connection::ConnectionState aStatus,
         const Hash aHashOfAttemptedNode ) {
     if ( iViewedProfile &&
-         iViewedProfile->iNodeOfProfile &&
-         iViewedProfile->iNodeOfProfile->nodeFingerPrint() == aHashOfAttemptedNode ) {
+            iViewedProfile->iNodeOfProfile &&
+            iViewedProfile->iNodeOfProfile->nodeFingerPrint() == aHashOfAttemptedNode ) {
         LOG_STR2("FrontWidget::nodeConnectionAttemptStatus %d in", aStatus) ;
         LOG_STR2("FrontWidget::nodeConnectionAttemptStatus %s ", qPrintable(aHashOfAttemptedNode.toString())) ;
         if ( aStatus == Connection::Open ) {
@@ -2351,31 +2380,31 @@ void FrontWidget::nodeConnectionAttemptStatus(Connection::ConnectionState aStatu
 }
 
 void FrontWidget::setVoiceCallButtonStatus() {
-    bool buttonStatus ( false ) ; 
+    bool buttonStatus ( false ) ;
     if ( iViewedProfile &&
-         iViewedProfile->iNodeOfProfile ) {
-        Hash fpOfNodeOfViewedProfile ( iViewedProfile->iNodeOfProfile->nodeFingerPrint() ) ; 
+            iViewedProfile->iNodeOfProfile ) {
+        Hash fpOfNodeOfViewedProfile ( iViewedProfile->iNodeOfProfile->nodeFingerPrint() ) ;
         if ( fpOfNodeOfViewedProfile != KNullHash ) {
             iController->model().lock() ;
-        
+
             const QList <Connection *>& connectionList( iController->model().getConnections() ) ;
             foreach ( const Connection* c, connectionList ) {
                 if ( c->getPeerHash() == fpOfNodeOfViewedProfile ) {
                     if ( c->connectionState() == Connection::Open ) {
-                        buttonStatus = true ; 
+                        buttonStatus = true ;
                     }
-                    break ; 
+                    break ;
                 }
             }
             iController->model().unlock() ;
         }
     }
-    ui.profileDetailsVoiceCallButton->setEnabled(buttonStatus) ; 
+    ui.profileDetailsVoiceCallButton->setEnabled(buttonStatus) ;
     if ( iViewedProfile ) {
         VoiceCallEngine* eng ( iController->voiceCallEngine() ) ;
-        Hash profileNode = KNullHash ; 
+        Hash profileNode = KNullHash ;
         if ( iViewedProfile->iNodeOfProfile ) {
-            profileNode = iViewedProfile->iNodeOfProfile->nodeFingerPrint() ; 
+            profileNode = iViewedProfile->iNodeOfProfile->nodeFingerPrint() ;
         }
         if ( eng ) {
             ui.profileDetailsVoiceCallButton->setToolTip(eng->excuseForCallCreation(iViewedProfile->iFingerPrint, profileNode)) ;
@@ -2385,11 +2414,11 @@ void FrontWidget::setVoiceCallButtonStatus() {
 
 void FrontWidget::voiceCallButtonPressed() {
     if ( iViewedProfile &&
-         iViewedProfile->iNodeOfProfile ) {
-        Hash fpOfNodeOfViewedProfile ( iViewedProfile->iNodeOfProfile->nodeFingerPrint() ) ; 
+            iViewedProfile->iNodeOfProfile ) {
+        Hash fpOfNodeOfViewedProfile ( iViewedProfile->iNodeOfProfile->nodeFingerPrint() ) ;
         if ( fpOfNodeOfViewedProfile != KNullHash ) {
-            QString operatorNick ; 
-            operatorNick = iViewedProfile->displayName() ; 
+            QString operatorNick ;
+            operatorNick = iViewedProfile->displayName() ;
             iController->userInterfaceAction(MController::VoiceCallToNode,
                                              fpOfNodeOfViewedProfile,
                                              KNullHash,
@@ -2398,10 +2427,10 @@ void FrontWidget::voiceCallButtonPressed() {
     }
 }
 
-void FrontWidget::callStateChanged(quint32 aCallId, 
+void FrontWidget::callStateChanged(quint32 aCallId,
                                    VoiceCallEngine::CallState aState) {
-    QLOG_STR("FrontWidget::callStateChanged " + 
-             QString::number(aState)) ; 
+    QLOG_STR("FrontWidget::callStateChanged " +
+             QString::number(aState)) ;
     // if there is any call state activity, make sure there
     // is call state dialog on display
     if ( aState != VoiceCallEngine::Closed ) {
@@ -2410,8 +2439,8 @@ void FrontWidget::callStateChanged(quint32 aCallId,
         if ( !dialog ) {
 
             dialog = new
-                CallStatusDialog(this,
-                                 *iController) ;
+            CallStatusDialog(this,
+                             *iController) ;
 
             dialog->setObjectName(internalNameOfCallStatusDialog) ;
             connect(dialog,
@@ -2422,7 +2451,7 @@ void FrontWidget::callStateChanged(quint32 aCallId,
                                      const QString&)),
                     Qt::QueuedConnection ) ;
             // and inject initial state:
-            dialog->callStatusChanged(aCallId,aState) ; 
+            dialog->callStatusChanged(aCallId,aState) ;
         }
         dialog->show() ;
     }

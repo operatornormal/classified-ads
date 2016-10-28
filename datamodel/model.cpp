@@ -1,21 +1,21 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-       Classified Ads is Copyright (c) Antti Järvinen 2013.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2016.
 
-       This file is part of Classified Ads.
+  This file is part of Classified Ads.
 
-    Classified Ads is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  Classified Ads is free software; you can redistribute it and/or
+  modify it under the terms of the GNU Lesser General Public
+  License as published by the Free Software Foundation; either
+  version 2.1 of the License, or (at your option) any later version.
 
-    Classified Ads is distributed in the hope that it will be useful,
-       but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Classified Ads is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with Classified Ads; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+  You should have received a copy of the GNU Lesser General Public
+  License along with Classified Ads; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include "model.h"
@@ -55,6 +55,7 @@
 #include <windows.h>
 #include <Wincrypt.h>
 #endif
+#include "tclmodel.h"
 
 Model::Model(MController *aController) : iController(aController),
     iMutex(NULL) ,
@@ -71,7 +72,8 @@ Model::Model(MController *aController) : iController(aController),
     iProfileCommentModel(NULL),
     iSearchModel(NULL),
     iTrustTreeModel(NULL),
-    iTimeOfLastNetworkAddrCheck(QDateTime::currentDateTimeUtc().toTime_t()) {
+    iTimeOfLastNetworkAddrCheck(QDateTime::currentDateTimeUtc().toTime_t()),
+    iTclModel(NULL) {
     LOG_STR("Model::Model()") ;
     connect(this,
             SIGNAL(  error(MController::CAErrorSituation,
@@ -102,6 +104,7 @@ Model::Model(MController *aController) : iController(aController),
     iTrustTreeModel = new TrustTreeModel(aController, *this ) ;
     iProfileCommentModel = new ProfileCommentModel(aController, *this) ;
     iNetReqExecutor->setInterval(1000); // start is called by controller
+    iTclModel = new TclModel(aController, *this) ;
 
     connect(iBinaryFileModel,
             SIGNAL( contentReceived(const Hash& ,
@@ -232,6 +235,7 @@ Model::~Model() {
     delete iBinaryFileModel ;
     delete iSearchModel ;
     delete iTrustTreeModel ;
+    delete iTclModel ;
     delete iCaModel ;
     delete iContentEncryptionModel ;
     iDb.close();
@@ -316,7 +320,8 @@ bool Model::openDB() {
             QLOG_STR("Cleaned away faulty comments " + QString::number(query.numRowsAffected () )) ;
         }
     }
-    createTablesV2() ; 
+    createTablesV2() ;
+    createTablesV3() ;
     return isDbOpen ;
 }
 
@@ -598,7 +603,6 @@ bool Model::createTablesV2() {
 
     QSqlQuery query;
     bool ret ;
-    // don't pick up the same item again if less than 10 minutes passed
     ret = query.prepare ("select datastore_version from settings" ) ;
     ret = query.exec() ;
 
@@ -611,14 +615,14 @@ bool Model::createTablesV2() {
             if ( datastoreVersion == 1 ) {
                 // upgrade datastore to version 2
                 QSqlQuery q;
-                ret = q.exec("alter table settings add column ringtone int not null default 0") ; 
+                ret = q.exec("alter table settings add column ringtone int not null default 0") ;
                 if ( ret ) {
                     QSqlQuery q3;
-                    ret = q3.exec("alter table settings add column call_acceptance int not null default 0") ; 
+                    ret = q3.exec("alter table settings add column call_acceptance int not null default 0") ;
                 }
                 if ( ret ) {
                     QSqlQuery q2;
-                    q2.exec("update settings set datastore_version = 2") ; 
+                    q2.exec("update settings set datastore_version = 2") ;
                 } else {
                     QLOG_STR("alter table settings: " + query.lastError().text());
                     emit error(MController::DbTransactionError, query.lastError().text()) ;
@@ -626,7 +630,47 @@ bool Model::createTablesV2() {
             }
         }
     }
-    return ret ; 
+    return ret ;
+}
+
+// method check datastore version. if is 2, upgrades to version 3.
+bool Model::createTablesV3() {
+
+    QSqlQuery query;
+    bool ret ;
+    ret = query.prepare ("select datastore_version from settings" ) ;
+    ret = query.exec() ;
+
+    if ( !ret ) {
+        QLOG_STR("select datastore_version from settings: " + query.lastError().text());
+        emit error(MController::DbTransactionError, query.lastError().text()) ;
+    } else {
+        if ( query.next() && !query.isNull(0) ) {
+            int datastoreVersion ( query.value(0).toInt() ) ;
+            if ( datastoreVersion == 2 ) {
+                // upgrade datastore to version 3
+                QSqlQuery q;
+                ret = q.exec("create table tclprogs "
+                             "(hash1 unsigned int not null,"
+                             "hash2 unsigned int not null,"
+                             "hash3 unsigned int not null,"
+                             "hash4 unsigned int not null,"
+                             "hash5 unsigned int not null,"
+                             "prog_name varchar(256) not null,"
+                             "prog_text blob not null,"
+                             "prog_settings blob,"
+                             "time_modified unsigned int not null)") ;
+                if ( ret ) {
+                    QSqlQuery q2;
+                    q2.exec("update settings set datastore_version = 3") ;
+                } else {
+                    QLOG_STR("alter table settings: " + query.lastError().text());
+                    emit error(MController::DbTransactionError, query.lastError().text()) ;
+                }
+            }
+        }
+    }
+    return ret ;
 }
 
 void Model::initPseudoRandom() {
@@ -807,8 +851,8 @@ void Model::connectionStateChanged(Connection::ConnectionState aState,
         foreach ( const Connection *c, *iConnections ) {
             if ( c ) {
                 if ( c != aConnection &&
-                     c->connectionState() == Connection::Open &&
-                     aConnection->getPeerHash() == c->getPeerHash() ) {
+                        c->connectionState() == Connection::Open &&
+                        aConnection->getPeerHash() == c->getPeerHash() ) {
                     LOG_STR("Double connection to same node detected") ;
                     aConnection->iNeedsToRun = false ;
                     break ;
@@ -848,8 +892,8 @@ void Model::addItemToSend(const Hash& aDestinationNode,
         c = iConnections->value(i) ;
         nodeOfConnection = c->node() ;
         if (c->connectionState() == Connection::Open &&
-            nodeOfConnection && 
-            ( nodeOfConnection->nodeFingerPrint() == aDestinationNode ) ) {
+                nodeOfConnection &&
+                ( nodeOfConnection->nodeFingerPrint() == aDestinationNode ) ) {
             // yes.
             c->iNextProtocolItemToSend.append(aBytesToSend) ;
             return ; // work done, get out
@@ -891,6 +935,11 @@ SearchModel* Model::searchModel() const {
 TrustTreeModel* Model::trustTreeModel() const {
     return iTrustTreeModel ;
 }
+
+TclModel& Model::tclModel() const {
+    return *iTclModel ;
+}
+
 NetworkRequestExecutor* Model::getNetReqExecutor() {
     return iNetReqExecutor ;
 }
@@ -1363,10 +1412,10 @@ void Model::timerEvent(QTimerEvent*
 
 
 Model::RingtoneSetting Model::getRingtoneSetting() {
-    RingtoneSetting retval ( BowRingTone ) ; 
+    RingtoneSetting retval ( BowRingTone ) ;
     QSqlQuery query;
     bool ret ;
-    
+
     ret = query.prepare ("select ringtone from settings" ) ;
     ret = query.exec() ;
 
@@ -1378,7 +1427,7 @@ Model::RingtoneSetting Model::getRingtoneSetting() {
             retval = (Model::RingtoneSetting)(query.value(0).toInt());
         }
     }
-    return retval ; 
+    return retval ;
 }
 
 void Model::setRingtoneSetting(Model::RingtoneSetting aRingTone) {
@@ -1393,10 +1442,10 @@ void Model::setRingtoneSetting(Model::RingtoneSetting aRingTone) {
 
 
 Model::CallAcceptanceSetting Model::getCallAcceptanceSetting() {
-    CallAcceptanceSetting retval ( AcceptAllCalls ) ; 
+    CallAcceptanceSetting retval ( AcceptAllCalls ) ;
     QSqlQuery query;
     bool ret ;
-    
+
     ret = query.prepare ("select call_acceptance from settings" ) ;
     ret = query.exec() ;
 
@@ -1408,7 +1457,7 @@ Model::CallAcceptanceSetting Model::getCallAcceptanceSetting() {
             retval = (Model::CallAcceptanceSetting)(query.value(0).toInt());
         }
     }
-    return retval ; 
+    return retval ;
 }
 
 void Model::setCallAcceptanceSetting(Model::CallAcceptanceSetting aAcceptance) {
@@ -1419,4 +1468,5 @@ void Model::setCallAcceptanceSetting(Model::CallAcceptanceSetting aAcceptance) {
         query.exec() ;
     }
 }
+
 

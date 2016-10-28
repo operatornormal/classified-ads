@@ -210,6 +210,11 @@ public slots:
     virtual void displaySettings() ; /**< Slot for displaying node settings */
     virtual void displayStatus() ; /**< Slot for displaying network status */
     virtual void displaySearch() ; /**< Slot for displaying search dialog */
+
+    /* tcl-related UI slots */
+    virtual void displayTclProgs() ; /**< Slot for displaying TCL library */
+    virtual void displayTclConsole() ; /**< Slot for displaying TCL console */
+
     /**
      * Method for handling errors inside application.
      * @param aError Reason for error call, from error enum above
@@ -306,6 +311,18 @@ public slots:
      */
     virtual MVoiceCallEngine* voiceCallEngineInterface()  ;
     /**
+     * Method for getting tcl wrapper instance. If there is no instance
+     * one will be created.
+     * From @ref MController interface. 
+     */
+    virtual TclWrapper &tclWrapper() ;
+
+    /**
+     * Method for getting front-widget, to be used as parent of dialogs
+     * spawned from non-ui threads. From MController interface. 
+     */
+    virtual QWidget *frontWidget() ; 
+    /**
      * method for sending a poll around network regarding possible
      * update for a profile and possible addition of comments about
      * given profile.
@@ -353,6 +370,9 @@ private:
     QAction *iDisplaySettingsAct;
     QAction *iDisplayStatusAct;
     QAction *iDisplaySearchAct;
+    QMenu *iTclMenu;
+    QAction *iTclLibraryAct; /**< Menu item for opening tcl lib dialog */
+    QAction *iTclConsoleAct; /**< Menu item for opening tcl console dialog */
     Node *iNode ; /**< our network presence object, there is single instance */
     Model *iModel ; /**< data storage animal */
     NetworkListener *iListener ; /**< Incoming connections handler, for ipv4 */
@@ -409,6 +429,7 @@ private:
 #ifdef WIN32
     QLocalServer* iLocalServer ; /**< In WIN32 use named pipe for IPC */
 #endif
+    TclWrapper* iTclWrapper ; /**< wraps TCL interpreter */
 } ;
 #endif
 

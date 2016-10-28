@@ -109,22 +109,22 @@ bool NodeModel::openOrCreateSSLCertificate() {
         pkey = EVP_PKEY_new();
         RSA * rsa (NULL);
         BIGNUM          *bne ( NULL );
-        int ret = 0 ; 
+        int ret = 0 ;
         bne = BN_new();
         unsigned long   e = RSA_F4;
         ret = BN_set_word(bne,e);
-        rsa = RSA_new() ; 
-        
+        rsa = RSA_new() ;
+
         if ( rsa != NULL &&
-             ( ret = RSA_generate_key_ex(rsa,
-                                         2048, 
-                                         bne, 
-                                         NULL 
-                   ) ) != 1 ) {
+                ( ret = RSA_generate_key_ex(rsa,
+                                            2048,
+                                            bne,
+                                            NULL
+                                           ) ) != 1 ) {
             QString errmsg(tr("SSL key generation went wrong, calling exit..")) ;
             emit error(MController::OwnCertNotFound, errmsg) ;
-            RSA_free(rsa) ; 
-            BN_free(bne) ; 
+            RSA_free(rsa) ;
+            BN_free(bne) ;
             return false ;
         }
         EVP_PKEY_assign_RSA(pkey, rsa); // after this point rsa can't be free'd
@@ -826,6 +826,40 @@ QList<Node *>* NodeModel::getNodesAfterHash(const Hash& aHash,
             }
         }
     }
+    // still got less nodes than expected: return any connected nodes
+    int nodesMissing ( aMaxNodes - retval->size() ) ;
+    if ( (unsigned)(retval->size()) < aMaxNodes ) {
+        const bool hasIpv6 =
+            !Connection::Ipv6AddressesEqual(iController->getNode().ipv6Addr(),
+                                            KNullIpv6Addr) ;
+        const QList<Connection *>& openConnections ( iModel.getConnections());
+        foreach ( const Connection *connection, openConnections ) {
+            if ( connection->node() ) {
+                const Node* connectedNode ( connection->node() ) ;
+                if ( connectedNode->ipv4Addr() ||
+                        (
+                            !Connection::Ipv6AddressesEqual(connectedNode->ipv6Addr(),
+                                    KNullIpv6Addr) && hasIpv6
+                        )
+                   ) {
+                    Node* n = new Node (connectedNode->nodeFingerPrint(), connectedNode->port()) ;
+                    n->setIpv6Addr(connectedNode->ipv6Addr()) ;
+                    n->setIpv4Addr(connectedNode->ipv4Addr()) ;
+                    n->setGoodNodeListTime(connectedNode->goodNodeListTime()) ;
+                    // is connected now:
+                    n->setLastConnectTime(QDateTime::currentDateTimeUtc().toTime_t()) ;
+                    n->setCanReceiveIncoming(connectedNode->canReceiveIncoming()) ;
+                    n->setDNSAddr(connectedNode->DNSAddr())  ;
+                    n->setTORAddr(connectedNode->TORAddr())  ;
+                    retval->append(n) ;
+
+                }
+                if ( --nodesMissing < 0 ) {
+                    break ;
+                }
+            }
+        }
+    }
     return retval ;
 }
 
@@ -1297,11 +1331,10 @@ void NodeModel::retrieveListOfHotConnections() {
 
 
             if (  hashOfRetrievedNode != *iFingerPrintOfThisNode  ) { // don't connect to self
-                const Node* nodeOfConnection = NULL ;
                 bool alreadyConnected = false ;
                 for ( int i = iModel.getConnections().size()-1 ; i >= 0 ; i-- ) {
                     // and don't connect to already-connected nodes
-                    nodeOfConnection = iModel.getConnections().value(i)->node() ;
+                    const Node* nodeOfConnection = iModel.getConnections().value(i)->node() ;
                     if ( nodeOfConnection &&
                             ( nodeOfConnection->nodeFingerPrint() == hashOfRetrievedNode  ) ) {
                         QLOG_STR("Hot: Was already connected " + hashOfRetrievedNode.toString()) ;
@@ -1478,12 +1511,11 @@ bool NodeModel::isNodeAlreadyConnected(const Node& aNode) const {
     }
 
     const QList <Connection *>& currentConnections ( iModel.getConnections() ) ;
-    Node* nodeOfConnection ( NULL ) ;
     for ( int i = currentConnections.size()-1 ; i >= 0 ; i-- ) {
         // and don't connect to already-connected nodes
-        nodeOfConnection = currentConnections.value(i)->node() ;
-        if ( nodeOfConnection && 
-             currentConnections.value(i)->connectionState() == Connection::Open ) {
+        const Node* nodeOfConnection ( currentConnections.value(i)->node() );
+        if ( nodeOfConnection &&
+                currentConnections.value(i)->connectionState() == Connection::Open ) {
             if ( nodeOfConnection->nodeFingerPrint() == aNode.nodeFingerPrint() ) {
                 return true ; // was already connected
             }
@@ -1513,12 +1545,11 @@ bool NodeModel::isNodeAlreadyConnected(const Hash& aHash) const {
     }
 
     const QList <Connection *>& currentConnections ( iModel.getConnections() ) ;
-    Node* nodeOfConnection ( NULL ) ;
     for ( int i = currentConnections.size()-1 ; i >= 0 ; i-- ) {
         // and don't connect to already-connected nodes
-        nodeOfConnection = currentConnections.value(i)->node() ;
+        const Node* nodeOfConnection( currentConnections.value(i)->node() ) ;
         if ( nodeOfConnection  &&
-            currentConnections.value(i)->connectionState() == Connection::Open) {
+                currentConnections.value(i)->connectionState() == Connection::Open) {
             if ( nodeOfConnection->nodeFingerPrint() == aHash ) {
                 return true ; // was already connected
             }
@@ -1715,9 +1746,9 @@ void NodeModel::timerEvent(QTimerEvent*  /* event */ ) {
     // remove all nodes that have been more than 10 minutes on the list
     for ( int i = iRecentlyFailedNodes.size()-1 ; i >= 0 ; i-- ) {
         if ( iRecentlyFailedNodes[i].second < time10MinAgo ) {
-        QLOG_STR("Removing failed node " + iRecentlyFailedNodes[i].first.toString() +
-                 " time " +  QString::number(iRecentlyFailedNodes[i].second) + 
-                 " because " +  QString::number(time10MinAgo) ) ;
+            QLOG_STR("Removing failed node " + iRecentlyFailedNodes[i].first.toString() +
+                     " time " +  QString::number(iRecentlyFailedNodes[i].second) +
+                     " because " +  QString::number(time10MinAgo) ) ;
             iRecentlyFailedNodes.removeAt(i) ;
         }
     }

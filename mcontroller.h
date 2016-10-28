@@ -24,14 +24,18 @@
 #include "util/hash.h" // Hash
 #include "datamodel/netrequestexecutor.h"
 
+#define CLASSIFIED_ADS_VERSION "0.11"
+
 class Node ;
 class Model ;
 class NetworkListener ;
 class NetworkConnectorEngine ;
 class NetworkRequestExecutor;
 class BinaryFile ;
-class VoiceCallEngine ; 
-class MVoiceCallEngine ; 
+class VoiceCallEngine ;
+class MVoiceCallEngine ;
+class TclWrapper ;
+class QWidget ;
 
 /**
  * @brief Pure-virtual interface class for controller.
@@ -55,7 +59,8 @@ public:
         BadPassword, /**< Could not open encryption keys with given pwd */
         DbTransactionError, /**< something went foul with db */
         ContentEncryptionError, /**< something went foul with content encryption interface */
-        FileOperationError /**< Error related to binary files */
+        FileOperationError, /**< Error related to binary files */
+        TCLEvalError /**< Error related to TCL evaluation */
     } ;
 
     /**
@@ -183,16 +188,28 @@ public slots:
      * prior to call, one will be constructed
      * @return engine instance
      */
-    virtual VoiceCallEngine* voiceCallEngine() = 0 ; 
+    virtual VoiceCallEngine* voiceCallEngine() = 0 ;
 
     /**
      * Method for getting voice call engine interface. If there is no engine
      * prior to call, one will be constructed. The instance is the same
-     * that is returned via @ref voiceCallEngine method. 
-     * 
+     * that is returned via @ref voiceCallEngine method.
+     *
      * @return engine instance, possibly a mock-up for testing purposes
      */
-    virtual MVoiceCallEngine* voiceCallEngineInterface() = 0 ; 
+    virtual MVoiceCallEngine* voiceCallEngineInterface() = 0 ;
+
+    /**
+     * Method for getting tcl wrapper instance. If there is no instance
+     * one will be created
+     */
+    virtual TclWrapper &tclWrapper() = 0 ;
+
+    /**
+     * Method for getting front-widget, to be used as parent of dialogs
+     * spawned from non-ui threads
+     */
+    virtual QWidget *frontWidget() = 0 ;
 } ;
 #endif
 

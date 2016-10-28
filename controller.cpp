@@ -1,21 +1,21 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-    Classified Ads is Copyright (c) Antti Järvinen 2013.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2016.
 
-    This file is part of Classified Ads.
+  This file is part of Classified Ads.
 
-    Classified Ads is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  Classified Ads is free software; you can redistribute it and/or
+  modify it under the terms of the GNU Lesser General Public
+  License as published by the Free Software Foundation; either
+  version 2.1 of the License, or (at your option) any later version.
 
-    Classified Ads is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Classified Ads is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with Classified Ads; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+  You should have received a copy of the GNU Lesser General Public
+  License along with Classified Ads; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include <QtGui>
@@ -60,6 +60,8 @@
 #include "datamodel/binaryfile.h"
 #include "net/voicecallengine.h"
 #include "datamodel/voicecall.h"
+#include "ui/tclPrograms.h"
+#include "tcl/tclWrapper.h"
 
 static const char *KPrivateDataContactsSection = "contacts" ;
 static const char *KPrivateDataContactsCache = "contactsCache" ;
@@ -79,6 +81,9 @@ Controller::Controller(QApplication &app) : iWin(NULL),
     iDisplaySettingsAct(NULL),
     iDisplayStatusAct(NULL),
     iDisplaySearchAct(NULL),
+    iTclMenu(NULL),
+    iTclLibraryAct(NULL),
+    iTclConsoleAct(NULL),
     iNode(NULL),
     iModel(NULL),
     iListener(NULL),
@@ -87,12 +92,11 @@ Controller::Controller(QApplication &app) : iWin(NULL),
     iRetrievalEngine(NULL),
     iVoiceCallEngine (NULL),
     iInsideDestructor(false),
-    iSharedMemory(NULL)
+    iSharedMemory(NULL),
 #ifdef WIN32
-    ,iLocalServer(NULL)
+    iLocalServer(NULL)
 #endif
-
-{
+    iTclWrapper(NULL) {
     LOG_STR("Controller::Controller constructor out") ;
 }
 
@@ -132,8 +136,8 @@ bool Controller::init() {
             if( iSharedMemory->attach() == false ) {
                 // 1 kb and some extra
                 iSharedMemory->create(1024,QSharedMemory::ReadWrite) ;
-                QLOG_STR("Created shared mem 1kb, is attached = " + 
-                         QString::number(iSharedMemory->isAttached())) ; 
+                QLOG_STR("Created shared mem 1kb, is attached = " +
+                         QString::number(iSharedMemory->isAttached())) ;
             }
         }
     }
@@ -344,6 +348,10 @@ bool Controller::createSharedMemSegment(QString& aSegmentName) {
 Controller::~Controller() {
     LOG_STR("Controller::~Controller") ;
     iInsideDestructor = true ;
+    if ( iTclWrapper ) {
+        iTclWrapper->stopScript(true) ; // deletes self
+        iTclWrapper = NULL ;
+    }
 #ifdef WIN32
     if ( iLocalServer ) {
         iLocalServer->close() ;
@@ -448,6 +456,15 @@ Controller::~Controller() {
     }
     if ( iDisplaySearchAct ) {
         delete iDisplaySearchAct ;
+    }
+    if ( iTclMenu ) {
+        delete iTclMenu;
+    }
+    if ( iTclLibraryAct ) {
+        delete iTclLibraryAct ;
+    }
+    if ( iTclConsoleAct ) {
+        delete iTclConsoleAct ;
     }
     if ( iWin ) {
         delete iWin ;
@@ -616,6 +633,7 @@ void Controller::showUI() {
 }
 
 void Controller::createMenus() {
+    // first "file" menu:
     iExitAct = new QAction(tr("E&xit"), this);
     iExitAct->setShortcuts(QKeySequence::Quit);
     iExitAct->setStatusTip(tr("Exit the application"));
@@ -669,6 +687,17 @@ void Controller::createMenus() {
     iPwdChangeAct->setDisabled(true) ; // enable when profile is open
     iProfileDeleteAct->setDisabled(true) ; // enable when profile is open
     iFileMenu->addAction(iExitAct);
+
+    // menu-items related to TCL interpreter
+    iTclMenu = iWin->menuBar()->addMenu(tr("&TCL Programs"));
+    iTclLibraryAct = new QAction(tr("&Local library"), this);
+    iTclLibraryAct->setStatusTip(tr("Locally stored TCL programs"));
+    connect(iTclLibraryAct, SIGNAL(triggered()), this, SLOT(displayTclProgs()));
+    iTclMenu->addAction(iTclLibraryAct) ;
+    iTclConsoleAct = new QAction(tr("TCL &Console"), this);
+    iTclConsoleAct->setStatusTip(tr("Display interpreter console"));
+    connect(iTclConsoleAct, SIGNAL(triggered()), this, SLOT(displayTclConsole()));
+    iTclMenu->addAction(iTclConsoleAct) ;
 }
 
 void Controller::exitApp() {
@@ -815,6 +844,57 @@ void Controller::displaySearch() {
     }
 }
 
+/** Slot for displaying TCL library */
+void Controller::displayTclProgs() {
+    QLOG_STR("Controller::displayTclProgs") ;
+
+    const QString dlgName ("classified_ads_tclprogs_dialog") ;
+    TclProgramsDialog *dialog = iWin->findChild<TclProgramsDialog *>(dlgName) ;
+    if ( dialog == NULL ) {
+        dialog = new TclProgramsDialog(iWin, *this) ;
+        dialog->setObjectName(dlgName) ;
+        connect(dialog,
+                SIGNAL(  error(MController::CAErrorSituation,
+                               const QString&) ),
+                this,
+                SLOT(handleError(MController::CAErrorSituation,
+                                 const QString&)),
+                Qt::QueuedConnection ) ;
+        dialog->show() ;
+        // also connect tcl eval signal from dialog to wrapper
+        tclWrapper() ;// ensure there is interpreter inside wrapper
+        if ( iTclWrapper ) {
+            connect(dialog, SIGNAL(evalScript(QString,QString*)),
+                    iTclWrapper, SLOT(evalScript(QString,QString*)),
+                    Qt::QueuedConnection) ;
+            connect(iTclWrapper, SIGNAL(started()),
+                    dialog, SLOT(tclProgramStarted()),
+                    Qt::QueuedConnection) ;
+            connect(iTclWrapper, SIGNAL(finished()),
+                    dialog, SLOT(tclProgramStopped()),
+                    Qt::QueuedConnection) ;
+#if QT_VERSION < 0x050000
+            // qt5 has no terminated signal in QThread
+            // but if on older qt connect that anyway
+            connect(iTclWrapper, SIGNAL(terminated()),
+                    dialog, SLOT(tclProgramStopped()),
+                    Qt::QueuedConnection) ;
+#endif
+            if ( iTclWrapper->isRunning() ) {
+                dialog->tclProgramStarted() ;
+            }
+        }
+    } else {
+        dialog->setFocus(Qt::MenuBarFocusReason) ;
+    }
+}
+
+/** Slot for displaying TCL console */
+void Controller::displayTclConsole() {
+    QLOG_STR("Controller::displayTclConsole") ;
+    tclWrapper().showConsole() ;
+}
+
 
 // Initiates UI sequence for deleting profile
 void Controller::deleteProfile() {
@@ -920,6 +1000,11 @@ void Controller::handleError(MController::CAErrorSituation aError,
     case BadPassword :
         QMessageBox::about(iWin,tr("Cryptographic module"),
                            tr("Bad password"));
+        QLOG_STR("DbTransactionError " + aExplanation ) ;
+        break ;
+    case TCLEvalError :
+        QMessageBox::about(iWin,tr("TCL Interpreter"),
+                           aExplanation);
         QLOG_STR("DbTransactionError " + aExplanation ) ;
         break ;
     }
@@ -1064,6 +1149,11 @@ void Controller::notifyOfContentReceived(const Hash& aHashOfContent,
         iModel->trustTreeModel()->contentReceived(aHashOfContent,
                 aTypeOfReceivedContent) ;
     }
+
+    if ( iTclWrapper ) {
+        iTclWrapper->notifyOfContentReceived(aHashOfContent,
+                                             aTypeOfReceivedContent) ;
+    }
 }
 
 void Controller::notifyOfContentReceived(const Hash& aHashOfContent,
@@ -1119,6 +1209,11 @@ void Controller::notifyOfContentReceived(const Hash& aHashOfContent,
     }
     iRetrievalEngine->notifyOfContentReceived(aHashOfContent,
             aTypeOfReceivedContent) ;
+
+    if ( iTclWrapper ) {
+        iTclWrapper->notifyOfContentReceived(aHashOfContent,
+                                             aTypeOfReceivedContent) ;
+    }
 }
 void Controller::notifyOfContentNotReceived(const Hash& aHashOfContent,
         const ProtocolItemType
@@ -1400,3 +1495,22 @@ void Controller::newInstanceConnected() {
     }
 }
 #endif
+
+TclWrapper & Controller::tclWrapper() {
+    if ( iTclWrapper == NULL ) {
+        QLOG_STR("Controller::tclWrapper instantiates new") ;
+        iTclWrapper = new TclWrapper(*iModel,*this) ;
+        connect(iTclWrapper,
+                SIGNAL(  error(MController::CAErrorSituation,
+                               const QString&) ),
+                this,
+                SLOT(handleError(MController::CAErrorSituation,
+                                 const QString&)),
+                Qt::QueuedConnection ) ;
+    }
+    return *iTclWrapper ;
+}
+
+QWidget* Controller::frontWidget() {
+    return iCurrentWidget ;
+}

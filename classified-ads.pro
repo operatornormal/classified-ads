@@ -78,7 +78,10 @@ HEADERS = mcontroller.h controller.h FrontWidget.h net/node.h util/hash.h \
         util/catranslator.h datamodel/voicecall.h net/voicecallengine.h \
         ui/callstatus.h ui/callbuttondelegate.h net/mvoicecallengine.h \
         call/audiosource.h call/audiomixer.h call/audioplayer.h \
-        call/audioencoder.h call/audiodecoder.h call/ringtoneplayer.h
+        call/audioencoder.h call/audiodecoder.h call/ringtoneplayer.h \
+        ui/tclPrograms.h ui/tclConsole.h tcl/tclWrapper.h \
+        datamodel/tclprogram.h datamodel/tclmodel.h tcl/tclCallbacks.h \
+        tcl/tclUtil.h
 SOURCES = main.cpp controller.cpp FrontWidget.cpp net/node.cpp util/hash.cpp \
 	net/connection.cpp datamodel/model.cpp \
         net/networklistener.cpp net/protocol_message_formatter.cpp \
@@ -110,18 +113,21 @@ SOURCES = main.cpp controller.cpp FrontWidget.cpp net/node.cpp util/hash.cpp \
         net/voicecallengine.cpp ui/callstatus.cpp ui/callbuttondelegate.cpp \
         call/audiosource.cpp call/audiomixer.cpp \
         call/audioplayer.cpp call/audioencoder.cpp call/audiodecoder.cpp \
-        call/ringtoneplayer.cpp
+        call/ringtoneplayer.cpp ui/tclPrograms.cpp ui/tclConsole.cpp \
+        tcl/tclWrapper.cpp datamodel/tclprogram.cpp datamodel/tclmodel.cpp \
+        tcl/tclCallbacks.cpp tcl/tclUtil.cpp
 FORMS = frontWidget.ui ui/profileReadersDialog.ui ui/passwordDialog.ui \
 	ui/newClassifiedAd.ui 	ui/newPrivMsg.ui ui/editContact.ui \
         ui/newProfileComment.ui ui/profileCommentDisplay.ui \
         ui/attachmentListDialog.ui ui/settingsDialog.ui \
 	ui/statusDialog.ui ui/manualConnectionDialog.ui \
 	ui/aboutDialog.ui ui/searchDisplay.ui ui/insertLink.ui \
-        ui/newTextDocument.ui ui/metadataQuery.ui ui/callStatusDialog.ui
+        ui/newTextDocument.ui ui/metadataQuery.ui ui/callStatusDialog.ui \
+        ui/tclPrograms.ui ui/tclConsole.ui
 RESOURCES     = ui_resources.qrc
 TRANSLATIONS  = classified_ads_fi.ts \
                 classified_ads_sv.ts
-unix:LIBS = -lssl -lcrypto -lnatpmp -lminiupnpc 
+unix:LIBS = -lssl -lcrypto -lnatpmp -lminiupnpc -ltcl -ltk
 lessThan(QT_MAJOR_VERSION, 5) {
      unix:LIBS +=  -lqjson -lmagic
 } 
@@ -148,6 +154,14 @@ win32:INCLUDEPATH += "..\opus-1.1.2\binary\include"
 lessThan(QT_MAJOR_VERSION, 5) {
     win32:INCLUDEPATH += "..\qjson-master\include"
 }
+unix {
+        TCL_VERSION = $$system(echo \'puts $tcl_version;exit 0\' | tclsh)
+        message(Tcl version $$TCL_VERSION)
+} 
+win32 {
+        TCL_VERSION = 8.6
+}
+INCLUDEPATH += /usr/include/tcl$$TCL_VERSION
 target.path = /usr/bin
 desktopfiles.path = /usr/share/applications
 desktopfiles.files = ui/classified-ads.desktop

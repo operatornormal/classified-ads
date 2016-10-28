@@ -94,7 +94,7 @@ Hash::Hash(const QSslCertificate& aSslCert) {
 }
 
 void Hash::fromString(const unsigned char* aBuf) {
-    if ( strlen((const char*)aBuf) == 8*5) {
+    if ( aBuf && strlen((const char*)aBuf) == 8*5) {
         unsigned int b1,b2,b3,b4,b5 ; // to make compiler happy
         char str1[9] = {0} ;
         strncpy(str1,(const char*)&(aBuf[8*0]), 8) ;
