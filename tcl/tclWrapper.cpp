@@ -268,6 +268,10 @@ void TclWrapper::notifyInterpreterOfContentReceived(Tcl_Interp* aInterp) {
         case UserProfileCommentsForProfile:
             protocolItemType = "profile-comment" ;
             break ;
+        case DbRecord:
+        case DbRecordPublish:
+            protocolItemType = "dbrecord" ;
+            break ;
         default:
             QLOG_STR("Unhandled protocol item type in TclWrapper::notifyInterpreterOfContentReceived " + QString::number(item.second)) ;
         }
