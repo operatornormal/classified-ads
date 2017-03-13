@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2016.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
 
   This file is part of Classified Ads.
 
@@ -30,6 +30,12 @@
 #include "../datamodel/binaryfilemodel.h"
 #include "../datamodel/binaryfile.h"
 #include "../datamodel/contentencryptionmodel.h"
+#include "../datamodel/cadbrecord.h"
+#include "../datamodel/cadbrecordmodel.h"
+#include "../datamodel/tclprogram.h"
+#include "../datamodel/tclmodel.h"
+#include "../tcl/tclWrapper.h"
+#include "../ui/dialogbase.h"
 #include "../log.h"
 #include "tclUtil.h"
 #include <QCoreApplication>
@@ -77,10 +83,23 @@ const char * KTCLTrustList = "trustList" ;
 const char * KTCLForceNoEncryption = "forceNoEncryption" ;
 const char * KTCLFileRecipients = "fileRecipients" ;
 
+const char * KTCLDbRecordId = "recordId" ;
+const char * KTCLDbRecordCollectionId = "collectionId" ;
+const char * KTCLDbRecordSenderId = "senderId" ;
+const char * KTCLDbRecordSearchPhrase = "searchPhrase" ;
+const char * KTCLDbRecordSearchNumber = "searchNumber" ;
+const char * KTCLDbRecordSearchNumberLessThan = "searchNumberLessThan" ;
+const char * KTCLDbRecordSearchNumberMoreThan = "searchNumberMoreThan" ;
+const char * KTCLDbRecordData = "data" ;
+const char * KTCLDbRecordIsSigVerified = "isSignatureVerified" ;
+const char * KTCLDbRecordRecipients = "recordRecipients" ;
+const char * KTCLDbRecordEncrypted = "encrypted" ;
+
 extern const char *KTCLCommandPublishFile ;
 extern const char *KTCLCommandPublishProfile ;
 extern const char *KTCLCommandPublishProfileComment ;
 extern const char *KTCLCommandPublishClassifiedAd ;
+extern const char *KTCLCommandPublishDbRecord ;
 
 TclCallbacks::TclCallbacks(Model& aModel,
                            MController& aController)
@@ -803,6 +822,11 @@ int TclCallbacks::publishItemCmdImpl(ClientData  aCData , Tcl_Interp *aInterp, i
                             KTCLCommandPublishClassifiedAd,
                             strlen(KTCLCommandPublishClassifiedAd)) == 0 )  {
             return publishClassifiedAdCmdImpl( aCData , aInterp, aObjc, aObjv) ;
+        } else if ( cmdLen > 0 &&
+                    strncmp(commandName,
+                            KTCLCommandPublishDbRecord,
+                            strlen(KTCLCommandPublishDbRecord)) == 0 )  {
+            return publishDbRecordCmdImpl( aCData , aInterp, aObjc, aObjv) ;
         } else {
             Tcl_AppendResult(aInterp, "unknown command", NULL);
             return TCL_ERROR ;
@@ -1248,4 +1272,438 @@ int TclCallbacks::publishClassifiedAdCmdImpl(ClientData /* aCData */, Tcl_Interp
         Tcl_AppendResult(aInterp, "Usage: publishClassifiedAd ad ( as dictionary )", NULL);
     }
     return retval ;
+}
+
+
+int TclCallbacks::publishDbRecordCmdImpl(ClientData /* aCData */, Tcl_Interp *aInterp, int aObjc, Tcl_Obj *const aObjv[]) {
+
+    if ( aObjc > 1 ) {
+        Tcl_DictSearch searchPtr  ;
+        int done(false) ;
+        Tcl_Obj* key (NULL) ;
+        Tcl_Obj* value (NULL) ;
+
+        if (Tcl_DictObjFirst(aInterp, aObjv[1], &searchPtr,
+                             &key, &value, &done) != TCL_OK) {
+            return TCL_ERROR;
+        } else { // aObjv[1] was a dictionary
+            CaDbRecord r ; 
+            QList<Hash> recordRecipientList ;
+            do {
+                // both key and value have been set
+                if ( key && value ) {
+                    int argumentStrLen (0) ;
+                    QString keyStr ( Tcl_GetStringFromObj(key, &argumentStrLen) ) ;
+                    QLOG_STR("Found key at publishDbRecordCmdImpl " + keyStr) ;
+                    if ( keyStr == KTCLDbRecordId ) {
+                        r.iRecordId.fromString(reinterpret_cast<const unsigned char *>(Tcl_GetStringFromObj(value,&argumentStrLen))) ; 
+                        if ( r.iRecordId == KNullHash ) {
+                            QLOG_STR("Got null record id - record will be published as new") ;
+                        }
+                            
+                    } else if ( keyStr == KTCLDbRecordCollectionId ) {
+                        r.iCollectionId.fromString(reinterpret_cast<const unsigned char *>(Tcl_GetStringFromObj(value,&argumentStrLen))) ; 
+                        if ( r.iRecordId == KNullHash ) {
+                            QLOG_STR("Got null record id - record will be published as new") ;
+                        }
+                            
+                    } else if ( keyStr == KTCLDbRecordSearchPhrase ) {
+                        r.iSearchPhrase = QString::fromUtf8 (
+                            reinterpret_cast<const char *>(Tcl_GetStringFromObj(value,&argumentStrLen)) ) ;
+                    } else if ( keyStr == KTCLDbRecordSearchNumber ) {
+
+                        Tcl_WideInt intFromObj ( 0 ) ;
+                        if ( Tcl_GetWideIntFromObj(aInterp, value, &intFromObj) == TCL_OK ) {
+                            r.iSearchNumber = intFromObj ;
+                        } else {
+                            Tcl_AppendResult(aInterp, "Invalid search number", NULL);
+                            return TCL_ERROR ;
+                        }
+                    } else if ( keyStr == KTCLDbRecordEncrypted ) {
+                        int intFromObj ( 0 ) ;
+                        if ( Tcl_GetIntFromObj(aInterp, value, &intFromObj) == TCL_OK ) {
+                            r.iIsEncrypted = intFromObj == 0 ? false : true ;
+                        }
+                    } else if ( keyStr == KTCLDbRecordRecipients ) {
+                        // in case of recipient list the object in the dictionary
+                        // is a list
+                        int listLen ( 0 ) ;
+                        if ( Tcl_ListObjLength(aInterp,value,&listLen) == TCL_OK ) {
+                            for ( int i = 0 ; i < listLen ; i++ ) {
+                                Tcl_Obj *objPtrPtr ;
+                                if ( Tcl_ListObjIndex(aInterp, value, i, &objPtrPtr ) == TCL_OK ) {
+                                    Hash recipientHash ;
+                                    recipientHash.fromString (
+                                        reinterpret_cast<const unsigned char *>(Tcl_GetStringFromObj(objPtrPtr,&argumentStrLen)) ) ;
+                                    if ( recipientHash != KNullHash ) {
+                                        recordRecipientList.append ( recipientHash ) ;
+                                        QLOG_STR("Record recipient " + recipientHash.toString()) ;
+                                    }
+                                } else {
+                                    return TCL_ERROR ;
+                                }
+                            }
+                        } else {
+                            return TCL_ERROR ;
+                        }
+                    } else if ( keyStr == KTCLDbRecordData ) {
+                        unsigned char* bytes (NULL);
+                        int length ;
+                        if ( ( bytes = Tcl_GetByteArrayFromObj(value, &length) ) != NULL &&
+                             length > 0 ) {
+                            r.iData.append(reinterpret_cast<const char *>(bytes), length) ;
+                        } 
+                    }
+                }
+                Tcl_DictObjNext(&searchPtr, &key, &value, &done) ;
+            } while ( !done ) ;
+
+
+            iController.model().lock() ;
+
+            QString errorString ;
+            errorString =
+                iController.model().caDbRecordModel()
+                ->publishDbRecord(r,
+                                  &recordRecipientList ) ; 
+            if ( errorString.isEmpty() ) {
+                iController.model().unlock() ;
+                // on success db record get assigned an id. 
+                // return it to calling TCL program. Note that
+                // aObjv[1] can't be modified, TCL considers
+                // it a shared object. 
+                Tcl_AppendResult(aInterp, r.iRecordId.toString().toUtf8().constData(), NULL);
+                return TCL_OK ;
+            } else {
+                Tcl_AppendResult(aInterp, errorString.toUtf8().constData(), NULL);
+                iController.model().unlock() ;
+                return TCL_ERROR ;
+            }
+        }
+    } else {
+        Tcl_AppendResult(aInterp, "Usage: publishFile file ( as dictionary )", NULL);
+    }
+    return TCL_ERROR ;
+}
+// here expect a dictionary. if there is key that belongs to 
+// db record, treat it as "and" search term and return records
+// that satisfy the conditions. Also send search to remote nodes
+// that will then respond in async way.
+int TclCallbacks::getDbRecordCmdImpl(ClientData /* aCData */, Tcl_Interp *aInterp, int aObjc, Tcl_Obj *const aObjv[]) {
+    if ( aObjc > 1 ) {
+        Tcl_DictSearch searchPtr  ;
+        int done(false) ;
+        Tcl_Obj* key (NULL) ;
+        Tcl_Obj* value (NULL) ;
+        CaDbRecord searchObj ; // object whose members will be used in
+                               // search if they differ from detaults
+        qint64 searchNumberLessThan (std::numeric_limits<qint64>::min());
+        qint64 searchNumberMoreThan (std::numeric_limits<qint64>::max());
+        if (Tcl_DictObjFirst(aInterp, aObjv[1], &searchPtr,
+                             &key, &value, &done) != TCL_OK) {
+            return TCL_ERROR;
+        } else { // aObjv[1] was a dictionary
+            QList<Hash> recordRecipientList ;
+            do {
+                // both key and value have been set
+                if ( key && value ) {
+                    int argumentStrLen (0) ;
+                    QString keyStr ( Tcl_GetStringFromObj(key, &argumentStrLen) ) ;
+                    QLOG_STR("Found key at getDbRecordCmdImpl " + keyStr) ;
+                    if ( keyStr == KTCLDbRecordId ) {
+                        searchObj.iRecordId.fromString(reinterpret_cast<const unsigned char *>(Tcl_GetStringFromObj(value,&argumentStrLen))) ; 
+                        if ( searchObj.iRecordId == KNullHash ) {
+                            QLOG_STR("Got null record id - not included in search") ;
+                        }
+                            
+                    } else if ( keyStr == KTCLDbRecordCollectionId ) {
+                        searchObj.iCollectionId.fromString(reinterpret_cast<const unsigned char *>(Tcl_GetStringFromObj(value,&argumentStrLen))) ; 
+                        if ( searchObj.iCollectionId == KNullHash ) {
+                            QLOG_STR("Got null collection hash - can't retrieve") ;
+                        }
+                            
+                    } else if ( keyStr == KTCLDbRecordSearchPhrase ) {
+                        searchObj.iSearchPhrase = QString::fromUtf8 (
+                            reinterpret_cast<const char *>(Tcl_GetStringFromObj(value,&argumentStrLen)) ) ;
+                    } else if ( keyStr == KTCLDbRecordSearchNumber ) {
+
+                        Tcl_WideInt intFromObj ( 0 ) ;
+                        if ( Tcl_GetWideIntFromObj(aInterp, value, &intFromObj) == TCL_OK ) {
+                            searchNumberMoreThan = searchNumberLessThan = intFromObj ;
+                        } else {
+                            Tcl_AppendResult(aInterp, "Invalid search number", NULL);
+                            return TCL_ERROR ;
+                        }
+                    } else { 
+                        if ( keyStr == KTCLDbRecordSearchNumberLessThan ) {
+
+                            Tcl_WideInt intFromObj ( 0 ) ;
+                            if ( Tcl_GetWideIntFromObj(aInterp, value, &intFromObj) == TCL_OK ) {
+                                searchNumberLessThan = intFromObj ;
+                            } else {
+                                Tcl_AppendResult(aInterp, "Invalid less-than search number", NULL);
+                                return TCL_ERROR ;
+                            }
+
+                        }
+                        if ( keyStr == KTCLDbRecordSearchNumberMoreThan ) {
+                            Tcl_WideInt intFromObj ( 0 ) ;
+                            if ( Tcl_GetWideIntFromObj(aInterp, value, &intFromObj) == TCL_OK ) {
+                                searchNumberMoreThan = intFromObj ;
+                            } else {
+                                Tcl_AppendResult(aInterp, "Invalid more-than search number", NULL);
+                                return TCL_ERROR ;
+                            }
+                        }
+                        
+                    }
+                }
+                Tcl_DictObjNext(&searchPtr, &key, &value, &done) ;
+            } while ( !done ) ;
+
+
+            iController.model().lock() ;
+
+            QList<CaDbRecord *> resultSet =
+                iController.model().caDbRecordModel()
+                ->searchRecords(searchObj.iCollectionId,
+                                searchObj.iRecordId,
+                                0, // modified after
+                                std::numeric_limits<quint32>::max(),// modified before
+                                searchNumberMoreThan ,
+                                searchNumberLessThan,
+                                searchObj.iSearchPhrase, 
+                                searchObj.iSenderHash ) ;
+            iController.model().unlock() ;
+            Tcl_Obj* resultList ( Tcl_NewListObj(0, NULL) );
+
+            while ( resultSet.size() > 0 ) {
+                CaDbRecord * resultItem (resultSet.takeAt(0)) ; 
+                Tcl_Obj* resultAsTclObj =  Tcl_NewDictObj() ;
+
+                // record id
+                Tcl_Obj* key = Tcl_NewStringObj(KTCLDbRecordId, -1) ;
+                Tcl_Obj* value = Tcl_NewStringObj(resultItem->iRecordId.toString().toUtf8().constData(), KHashStringLen) ;
+                Tcl_DictObjPut(aInterp,
+                               resultAsTclObj,
+                               key,
+                               value) ;
+                // collection id
+                key = Tcl_NewStringObj(KTCLDbRecordCollectionId, -1) ;
+                value = Tcl_NewStringObj(resultItem->iCollectionId.toString().toUtf8().constData(), KHashStringLen) ;
+                Tcl_DictObjPut(aInterp,
+                               resultAsTclObj,
+                               key,
+                               value) ;
+                // collection id
+                key = Tcl_NewStringObj(KTCLDbRecordSenderId, -1) ;
+                value = Tcl_NewStringObj(resultItem->iSenderHash.toString().toUtf8().constData(), KHashStringLen) ;
+                Tcl_DictObjPut(aInterp,
+                               resultAsTclObj,
+                               key,
+                               value) ;
+
+                // search number
+                if ( resultItem->iSearchNumber != std::numeric_limits<qint64>::min() ) {
+                    key = Tcl_NewStringObj(KTCLDbRecordSearchNumber, -1) ;
+                    value = Tcl_NewWideIntObj(resultItem->iSearchNumber) ;
+                    Tcl_DictObjPut(aInterp,
+                                   resultAsTclObj,
+                                   key,
+                                   value) ;
+                }
+                // search phrase
+                if ( resultItem->iSearchPhrase.isEmpty() == false ) {
+                    key = Tcl_NewStringObj(KTCLDbRecordSearchPhrase, -1) ;
+                    value = Tcl_NewStringObj(resultItem->iSearchPhrase.toUtf8().constData(),-1) ;
+                    Tcl_DictObjPut(aInterp,
+                                   resultAsTclObj,
+                                   key,
+                                   value) ;
+                }
+                // time of publish
+                key = Tcl_NewStringObj(KTCLTimeOfPublish, -1) ;
+                value = Tcl_NewLongObj(resultItem->iTimeOfPublish) ;
+                Tcl_DictObjPut(aInterp,
+                               resultAsTclObj,
+                               key,
+                               value) ;
+                // is encrypted
+                key = Tcl_NewStringObj(KTCLDbRecordEncrypted, -1) ;
+                value = Tcl_NewIntObj(resultItem->iIsEncrypted ? 1 : 0 ) ;
+                Tcl_DictObjPut(aInterp,
+                               resultAsTclObj,
+                               key,
+                               value) ;
+                // is verified
+                key = Tcl_NewStringObj(KTCLDbRecordIsSigVerified, -1) ;
+                value = Tcl_NewIntObj(resultItem->iIsSignatureVerified ? 1 : 0 ) ;
+                Tcl_DictObjPut(aInterp,
+                               resultAsTclObj,
+                               key,
+                               value) ;
+
+                // actual record data
+                key = Tcl_NewStringObj(KTCLDbRecordData,-1) ;
+                value = Tcl_NewByteArrayObj(
+                    reinterpret_cast<const unsigned char *>(resultItem->iData.constData()),
+                    resultItem->iData.size() ) ;
+                Tcl_DictObjPut(aInterp,
+                               resultAsTclObj,
+                               key,
+                               value) ;
+
+                Tcl_ListObjAppendElement(aInterp,
+                                         resultList,
+                                         resultAsTclObj) ;
+                delete resultItem ; 
+            }
+            Tcl_SetObjResult(aInterp, resultList);
+            return TCL_OK ; 
+        }
+    } else {
+        Tcl_AppendResult(aInterp, "Usage: getDbRecord ...", NULL);
+    }
+    return TCL_ERROR ;
+}
+
+int TclCallbacks::storeTCLProgLocalDataImpl(ClientData /*aCData*/, Tcl_Interp *aInterp, int aObjc, Tcl_Obj* const aObjv[]) {
+    if ( aObjc > 1 ) {
+        QByteArray fileContent ; 
+        unsigned char* bytes (NULL);
+        int length ;
+        if ( ( bytes = Tcl_GetByteArrayFromObj(aObjv[1], &length) ) != NULL ) {
+            fileContent.append(reinterpret_cast<const char *>(bytes), length) ;
+        } else {
+            Tcl_AppendResult(aInterp, "Could not get file content?", NULL);
+            return TCL_ERROR ;
+        }
+        iController.model().lock() ;
+        TclProgram p ;
+        const QString programText (iController.tclWrapper()
+                                   .currentProgram( )) ; 
+        p.setProgramText(programText) ; 
+        QString errorMessage (
+            iController.model()
+            .tclModel()
+            .storeTCLProgLocalData(p.iFingerPrint,
+                                   fileContent) );
+        iController.model().unlock() ;
+        if ( errorMessage.isEmpty() ) {
+            return TCL_OK ; 
+        } else {
+            Tcl_AppendResult(aInterp, errorMessage.toUtf8().constData(), NULL);
+            return TCL_ERROR ; 
+        }
+    } else {
+        Tcl_AppendResult(aInterp, "Usage: storeLocalData data", NULL);
+    } 
+    return TCL_ERROR ; 
+}
+
+int TclCallbacks::retrieveTCLProgLocalDataImpl(ClientData /*aCData*/, Tcl_Interp *aInterp, int /*aObjc*/, Tcl_Obj* const /*aObjv*/[]) {
+    iController.model().lock() ;
+    TclProgram p ;
+    p.setProgramText(iController.tclWrapper()
+                     .currentProgram( )) ; 
+    const QByteArray fileContent =
+        iController.model()
+        .tclModel()
+        .retrieveTCLProgLocalData(p.iFingerPrint) ; 
+    iController.model().unlock() ;
+    Tcl_Obj* result = Tcl_NewByteArrayObj(
+        reinterpret_cast<const unsigned char *>(fileContent.constData()),
+        fileContent.size() ) ;
+    Tcl_SetObjResult(aInterp, result);
+    return TCL_OK ; 
+}
+
+int TclCallbacks::saveFileImpl(ClientData /*aCData*/, Tcl_Interp *aInterp, int aObjc, Tcl_Obj* const aObjv[]) {
+    QByteArray* fileContent = new QByteArray() ; 
+    QString errorMessage ; 
+    if ( aObjc > 1 && fileContent != NULL ) {
+        QString fileName ; 
+        unsigned char* bytes (NULL);
+        int length ;
+        if ( ( bytes = Tcl_GetByteArrayFromObj(aObjv[1], &length) ) != NULL ) {
+            fileContent->append(reinterpret_cast<const char *>(bytes), length) ;
+        } else {
+            Tcl_AppendResult(aInterp, "Could not get file content?", NULL);
+            delete fileContent ; 
+            return TCL_ERROR ;
+        }
+        if ( aObjc > 2 ) {
+            int argumentStrLen (0) ;
+            fileName = QString::fromUtf8 (
+                reinterpret_cast<const char *>(Tcl_GetStringFromObj(aObjv[2],&argumentStrLen)) ) ;
+        }
+        QLOG_STR("Starting to save file fro tcl prog") ; 
+        bool successInGettingFileName ; 
+        fileName = 
+            iController.getFileName(successInGettingFileName,
+                                    true,
+                                    fileName.length() > 0 ?
+                                    fileName : 
+                                    QString::null ) ;
+        if ( successInGettingFileName && fileName.length() > 0 ) {
+            QFile f ( fileName ) ;
+            if ( f.open(QIODevice::WriteOnly) ) {
+                f.write(*fileContent) ; 
+                f.close() ; 
+                QLOG_STR("File saved") ; 
+            } else {
+                errorMessage = f.errorString() ; 
+            }
+        } else {
+            Tcl_AppendResult(aInterp, "Cancelled", NULL);
+        }
+        delete fileContent ; 
+    }
+    if ( errorMessage.isEmpty() ) {
+        return TCL_OK ; 
+    } else {
+        Tcl_AppendResult(aInterp, errorMessage.toUtf8().constData(), NULL);
+        return TCL_ERROR ; 
+    }
+}
+
+int TclCallbacks::openFileImpl(ClientData /*aCData*/, Tcl_Interp *aInterp, int aObjc, Tcl_Obj* const aObjv[]) {
+    QByteArray* fileContent = new QByteArray() ; 
+    QString errorMessage ; 
+    QString fileName ; 
+
+    if ( aObjc > 1 ) {
+        int argumentStrLen (0) ;
+        fileName = QString::fromUtf8 (
+            reinterpret_cast<const char *>(Tcl_GetStringFromObj(aObjv[1],&argumentStrLen)) ) ;
+    }
+    QLOG_STR("Starting to open file from tcl prog") ; 
+    bool successInGettingFileName ; 
+    fileName = 
+        iController.getFileName(successInGettingFileName,
+                                false,
+                                fileName.length() > 0 ?
+                                fileName : 
+                                QString::null ) ;
+    if ( successInGettingFileName && fileName.length() > 0 ) {
+        QFile f ( fileName ) ;
+        if ( f.open(QIODevice::ReadOnly) ) {
+            fileContent->append(f.read(f.size())) ;
+            f.close() ; 
+            QLOG_STR("File opened") ; 
+        } else {
+            errorMessage = f.errorString() ; 
+        }
+    } else {
+        Tcl_AppendResult(aInterp, "Cancelled", NULL);
+        delete fileContent ; 
+        return TCL_ERROR ; 
+    }
+
+    Tcl_Obj* result = Tcl_NewByteArrayObj(
+        reinterpret_cast<const unsigned char *>(fileContent->constData()),
+        fileContent->size() ) ;
+    Tcl_SetObjResult(aInterp, result);
+    delete fileContent ; 
+    return TCL_OK ; 
 }

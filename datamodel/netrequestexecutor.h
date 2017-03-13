@@ -109,7 +109,8 @@ private:
      */
     void processRequestForNodesAroundHash(NetworkRequestQueueItem& entry) ;
     /**
-     * method for publishing a profile+ad+binary file+profile comment
+     * method for publishing a profile+ad+binary file+profile comment +
+     * db record
      */
     void processRequestForContentPublish(NetworkRequestQueueItem& entry) ;
     /**

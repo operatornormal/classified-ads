@@ -1,21 +1,21 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-    Classified Ads is Copyright (c) Antti Järvinen 2013.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
 
-    This file is part of Classified Ads.
+  This file is part of Classified Ads.
 
-    Classified Ads is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  Classified Ads is free software; you can redistribute it and/or
+  modify it under the terms of the GNU Lesser General Public
+  License as published by the Free Software Foundation; either
+  version 2.1 of the License, or (at your option) any later version.
 
-    Classified Ads is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Classified Ads is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with Classified Ads; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+  You should have received a copy of the GNU Lesser General Public
+  License along with Classified Ads; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 #ifdef WIN32
 #define NOMINMAX
@@ -42,6 +42,8 @@
 #include "../net/mvoicecallengine.h"
 #include "../datamodel/model.h"
 #include "../datamodel/contentencryptionmodel.h"
+#include "../datamodel/cadbrecord.h"
+#include "../datamodel/cadbrecordmodel.h"
 #include <limits> // std::numeric_limits
 
 ProtocolMessageParser::ProtocolMessageParser(MController &aController,
@@ -116,6 +118,13 @@ bool ProtocolMessageParser::parseMessage(const QByteArray& aGoodFood,
     case KRealtimeData:
         return parseCallRtData( aGoodFood, aConnection) ;
         break ;
+    case KDbRecordPublish: 
+    case KDbRecordSend:
+        return parseDbRecord(aGoodFood, aConnection) ;
+        break ; 
+    case KDbRecordSearch:
+        return parseDbRecordSearchTerms(aGoodFood, aConnection) ;
+        break ; 
     case KFutureUse4:
     case KFutureUse5:
     case KFutureUse6:
@@ -1439,3 +1448,269 @@ bool  ProtocolMessageParser::parseCallRtData( const QByteArray& aQueryBytes,
     }
     return retval ; 
 }
+
+bool  ProtocolMessageParser::parseDbRecord( const QByteArray& aBytes,
+                                            const Connection& aConnection) {
+    bool retval ( false ) ; 
+    int pos ( 0 ) ; 
+    if ( (unsigned)(aBytes.length()) < 
+         sizeof(char) + // type
+         sizeof(quint32)*3*Hash::KNumberOfIntsInHash + // hash * 3
+         sizeof(quint32) + // search string len
+         sizeof(quint32) + // search number len
+         sizeof(quint32) + // datalen
+         sizeof(quint32) + // signaturelen
+         sizeof(quint32) + // timestamp
+         sizeof(quint32) ){// flags  
+        return false ; // record must be too short
+    } 
+
+    // is either KDbRecordPublish or KDbRecordSend
+    const unsigned char recordType ( aBytes[pos] ) ; 
+    pos++ ; // record type skip
+    CaDbRecord r ; 
+    QList<quint32> bangPath ;
+    if ( recordType == KDbRecordPublish ) {
+        // publish has bangpath, send has not
+
+        quint32 bangpath1(0) ;//these variables un-used in case of comment send
+        quint32 bangpath2(0) ;
+        quint32 bangpath3(0) ;
+        quint32 bangpath4(0) ;
+        quint32 bangpath5(0) ;
+
+        // read bangpath values from content
+        if (!uintFromPosition(aBytes,
+                              pos,
+                              &bangpath1) ) return false ;
+        pos += sizeof(quint32) ; // skip first bangpath ;
+        if (!uintFromPosition(aBytes,
+                              pos,
+                              &bangpath2) )  return false ;
+        pos += sizeof(quint32) ; // skip 2nd bangpath ;
+        if (!uintFromPosition(aBytes,
+                              pos,
+                              &bangpath3) )  return false ;
+        pos += sizeof(quint32) ; // skip 3rd bangpath ;
+        if (!uintFromPosition(aBytes,
+                              pos,
+                              &bangpath4) )  return false ;
+        pos += sizeof(quint32) ; // skip 4th bangpath ;
+        if (!uintFromPosition(aBytes,
+                              pos,
+                              &bangpath5) )  return false ;
+        pos += sizeof(quint32) ; // skip last bangpath ;
+
+        if ( bangpath1 > 0 ) {
+            bangPath.append(bangpath1) ;
+        }
+        if ( bangpath2 > 0 ) {
+            bangPath.append(bangpath2) ;
+        }
+        if ( bangpath3 > 0 ) {
+            bangPath.append(bangpath3) ;
+        }
+        if ( bangpath4 > 0 ) {
+            bangPath.append(bangpath4) ;
+        }
+        if ( bangpath5 > 0 ) {
+            bangPath.append(bangpath5) ;
+        }
+        // if bangpath is not yet full,
+        if ( bangPath.size() < 5 ) {
+            // then append the host where we got this content:
+            bangPath.append(aConnection.node()->nodeFingerPrint().iHash160bits[4] ) ;
+            LOG_STR2("Appending to bangpath low-order bits %u",
+                     aConnection.node()->nodeFingerPrint().iHash160bits[4]) ;
+        }
+    }
+
+    if ( hashFromPosition(aBytes,
+                          pos,
+                          &r.iRecordId ) == false ) {
+        return false ;
+    }
+    pos += sizeof(quint32)*Hash::KNumberOfIntsInHash ; // skip over hash of record id
+
+    if ( hashFromPosition(aBytes,
+                          pos,
+                          &r.iCollectionId ) == false ) {
+        return false ;
+    }
+    if ( r.iCollectionId == KNullHash ) {
+        return false ; // can't be
+    }
+    pos += sizeof(quint32)*Hash::KNumberOfIntsInHash ; // skip over hash of collection id
+
+    if ( hashFromPosition(aBytes,
+                          pos,
+                          &r.iSenderHash ) == false ) {
+        return false ;
+    }
+    pos += sizeof(quint32)*Hash::KNumberOfIntsInHash ; // skip over hash of sender
+
+    // next is searchphrase, that begins with len, followed by optional content
+    quint32 sizeOfSearchPhrase; 
+    if ( uintFromPosition ( aBytes,
+                            pos,
+                            &sizeOfSearchPhrase ) == false ) {
+        return false ;
+    } else {
+        pos += sizeof(quint32) ; 
+    }
+    if ( pos + sizeOfSearchPhrase > (unsigned)( aBytes.size()) ) {
+        return false ; 
+    }
+    if ( sizeOfSearchPhrase > 0 ) { // there were searchPhrase
+        r.iSearchPhrase = QString::fromUtf8(aBytes.mid(pos, sizeOfSearchPhrase)) ;
+        pos += sizeOfSearchPhrase ; 
+    }
+    // next is searchnumber, that begins with len, followed by optional content
+    quint32 sizeOfSearchNumber; 
+    if ( uintFromPosition ( aBytes,
+                            pos,
+                            &sizeOfSearchNumber ) == false ) {
+        return false ;
+    } else {
+        pos += sizeof(quint32) ; 
+    }
+    if ( pos + sizeOfSearchNumber > (unsigned)( aBytes.size()) ) {
+        return false ; 
+    }
+    if ( sizeOfSearchNumber > 0 ) { // there were searchNumber
+        QString searchNumberStr ( QString::fromUtf8(aBytes.mid(pos, sizeOfSearchNumber)));
+        bool ok ( false ) ; 
+        r.iSearchNumber = searchNumberStr.toLongLong(&ok) ; 
+        pos += sizeOfSearchNumber ; 
+        if ( !ok ) {
+            r.iSearchNumber = std::numeric_limits<qint64>::min() ; // "not there" value
+        }
+    }
+    // next is data. it too may have zero len
+    quint32 sizeOfData; 
+    if ( uintFromPosition ( aBytes,
+                            pos,
+                            &sizeOfData ) == false ) {
+        return false ;
+    } else {
+        pos += sizeof(quint32) ; 
+    }
+    if ( pos + sizeOfData > (unsigned)( aBytes.size()) ) {
+        return false ; 
+    }
+    if ( sizeOfData > 0 ) { // data identified from record
+        r.iData = aBytes.mid(pos, sizeOfData);
+        pos += sizeOfData ; 
+    }
+    // next is signature. it should always have positive len
+    quint32 sizeOfSig; 
+    if ( uintFromPosition ( aBytes,
+                            pos,
+                            &sizeOfSig ) == false ) {
+        return false ;
+    } else {
+        pos += sizeof(quint32) ; 
+    }
+    if ( sizeOfSig < 1 ) {
+        return false ; // no signature
+    }
+    r.iSignature = aBytes.mid(pos, sizeOfSig) ; 
+    pos += sizeOfSig ; 
+    // then time of publish
+    if ( uintFromPosition ( aBytes,
+                            pos,
+                            &r.iTimeOfPublish ) == false ) {
+        return false ;
+    } else {
+        pos += sizeof(quint32) ; 
+    }
+    // then flags
+    quint32 flags ; 
+    if ( uintFromPosition ( aBytes,
+                            pos,
+                            &flags ) == false ) {
+        return false ;
+    } else {
+        pos += sizeof(quint32) ; 
+    }
+    if ( flags & 1 ) {
+        r.iIsEncrypted = true ; 
+    } else {
+        r.iIsEncrypted = false; 
+    }
+    // got this far, record is ok syntactically. then ask datamodel opinion:
+    iModel.lock() ;
+    Hash nodeFingerPrint ( KNullHash ) ; 
+    if ( aConnection.node() ) {
+        nodeFingerPrint = aConnection.node()->nodeFingerPrint() ; 
+    }
+    if ( recordType == KDbRecordPublish ) {
+    retval =
+        iModel.caDbRecordModel()->publishedCaDbRecordReceived(r,
+                                                              r.iSignature,
+                                                              bangPath,
+                                                              nodeFingerPrint) ; 
+    } else {
+        retval = 
+        iModel.caDbRecordModel()->sentCaDbRecordReceived(r,
+                                                         r.iSignature,
+                                                         nodeFingerPrint ) ;
+    }
+    iModel.unlock() ;    
+    return retval ; 
+}
+
+// db record search
+bool  ProtocolMessageParser::parseDbRecordSearchTerms( 
+    const QByteArray& aBytes,
+    Connection& aConnection) {
+    bool retval ( false ) ; 
+    int pos ( 1 ) ;  // immediately skip over type at pos 0 
+
+    quint32 searchJsonSize ( 0 ) ; 
+    if ( uintFromPosition ( aBytes,
+                            pos,
+                            &searchJsonSize ) == false ) {
+        return false ;
+    } else {
+        pos += sizeof(quint32) ; 
+    }
+
+    if ( searchJsonSize == aBytes.size() - (
+             sizeof(unsigned char) + 
+             sizeof(quint32))) {
+        CaDbRecord::SearchTerms searchTerms ; 
+        if(searchTerms.fromJSon(aBytes.mid(pos, searchJsonSize))) {
+            // perform the search and place results into 
+            // send queue to be sent "normally" via send queue
+            // in datamodel.
+            iModel.lock() ;    
+            QList<CaDbRecord *> resultSet ( 
+                iModel
+                .caDbRecordModel()
+                ->searchRecords(searchTerms.iFromCollection,
+                                searchTerms.iById,
+                                searchTerms.iModifiedAfter ,
+                                searchTerms.iModifiedBefore,
+                                searchTerms.iByHavingNumberMoreThan,
+                                searchTerms.iByHavingNumberLessThan,
+                                searchTerms.iBySearchPhrase,
+                                searchTerms.iBySender,
+                                true ) ) ;
+            while(resultSet.size()) {
+                CaDbRecord *r ( resultSet.takeFirst() ) ;
+                SendQueueItem qItem ; 
+                qItem.iItemType = DbRecord ; 
+                qItem.iHash = r->iRecordId ; 
+                aConnection.iSendQueue.append(qItem) ; 
+                delete r ; 
+            }
+            iModel.unlock() ;    
+            retval = true ; 
+        }
+    }
+
+    return retval ;
+}
+
+

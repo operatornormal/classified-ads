@@ -1,21 +1,21 @@
-/*                                      -*-C++-*-
-    Classified Ads is Copyright (c) Antti Jarvinen 2013.
+/*     -*-C++-*- -*-coding: utf-8-unix;-*-
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
 
-    This file is part of Classified Ads.
+  This file is part of Classified Ads.
 
-    Classified Ads is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  Classified Ads is free software; you can redistribute it and/or
+  modify it under the terms of the GNU Lesser General Public
+  License as published by the Free Software Foundation; either
+  version 2.1 of the License, or (at your option) any later version.
 
-    Classified Ads is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Classified Ads is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with Classified Ads; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+  You should have received a copy of the GNU Lesser General Public
+  License along with Classified Ads; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 
@@ -31,6 +31,7 @@
 class Connection ;
 class Node ;
 class VoiceCall ; // from datamodel 
+class CaDbRecord ; 
 
 /**
  * @brief This class produces items sent to peers over network.
@@ -234,6 +235,7 @@ public:
                                             const Hash& aProfileCommented,
                                             quint32 aTimeStamp,
                                             quint32 aFlags ) ;
+
     /**
      * separate send-formatter for profile comment as they're
      * quite different from rest of the content.
@@ -244,6 +246,20 @@ public:
                                          const Hash& aProfileCommented,
                                          quint32 aTimeStamp,
                                          quint32 aFlags ) ;
+    /**
+     * Method that constructs byte-stream from db record for publish purpose. 
+     * @param aRecord is the record 
+     * @param aBangPath short list of nodes where the record
+     *         came to us, will be included in byte-stream 
+     */
+    static QByteArray dbRecordPublish(const CaDbRecord& aRecord,
+                                      const QList<quint32>& aBangPath) ;
+    /**
+     * Method that constructs byte-stream from db record for send purpose. 
+     * @param aRecord is the record 
+     */
+    static QByteArray dbRecordSend(const CaDbRecord& aRecord) ;
+
     /**
      * this is almost same as @ProtocolMessageFormatter.contentPublish
      * but is reply to another node regarding request of content,
@@ -272,10 +288,16 @@ public:
                                  const Hash& aSearchIdentifier) ;
 
     /**
-     * method for formatting a network search results
+     * method for formatting network search results
      */
     static QByteArray searchResultsSend(const QList<SearchModel::SearchResultItem>& aResults,
                                         quint32 aSearchId) ;
+
+    /**
+     * method for serializing a database search so that
+     * it can be sent to other nodes
+     */
+    static QByteArray dbSearchTerms(const CaDbRecord::SearchTerms aSearchTerms) ;
 
     /**
      * Method for formatting voice call status object 
@@ -335,6 +357,19 @@ private:
             quint32 aTimeStamp,
             quint32 aFlags,
             bool aIsPublish) ;
+
+    /**
+     * Workhorse-method that constructs byte-stream based on db record
+     * publish- or send-operation. 
+     * @param aRecord is the record 
+     * @param aBangPath short list of nodes where the record
+     *         came to us, will be included in byte-stream 
+     * @param aIsPublish is set to false if record is merely sent.
+     *        If false, aBangPath is ignored and may be empty.
+     */
+    static QByteArray doDbRecordPublishOrSend(const CaDbRecord& aRecord,
+                                              const QList<quint32>& aBangPath,
+                                              bool aIsPublish ) ;
 } ;
 
 #endif

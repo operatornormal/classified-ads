@@ -1,21 +1,21 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-    Classified Ads is Copyright (c) Antti Järvinen 2013.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
 
-    This file is part of Classified Ads.
+  This file is part of Classified Ads.
 
-    Classified Ads is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  Classified Ads is free software; you can redistribute it and/or
+  modify it under the terms of the GNU Lesser General Public
+  License as published by the Free Software Foundation; either
+  version 2.1 of the License, or (at your option) any later version.
 
-    Classified Ads is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Classified Ads is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with Classified Ads; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+  You should have received a copy of the GNU Lesser General Public
+  License along with Classified Ads; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include <QtTest/QtTest>
@@ -38,11 +38,19 @@
 #include "../datamodel/ca.h"
 #include "../datamodel/profilemodel.h"
 #include "../datamodel/profile.h"
+#include "../datamodel/tclprogram.h"
+#include "../datamodel/tclmodel.h"
 #include "../datamodel/trusttreemodel.h"
 #include "../util/jsonwrapper.h"
+#include "../datamodel/cadbrecord.h"
+#include "../datamodel/cadbrecordmodel.h"
+#include "../tcl/tclWrapper.h"
+#include <unistd.h>
 
 Q_IPV6ADDR KNullIpv6Addr ( QHostAddress("::0").toIPv6Address () ) ;
 Hash KNullHash ;
+MController* controllerInstanceEx ; /**< Application controller,
+                                       here as static for signal handlers */
 /**
  * This class includes test cases for those functionalities
  * that can be automatically tested
@@ -96,6 +104,24 @@ private slots:
      * Voice call status format+parse test 
      */
     void tryCallStatusDataParse() ; 
+    /**
+     * db record publish via TCL test
+     */
+    void tryDbRecordPublishViaTCL() ; 
+    /**
+     * db record publish via TCL test, encrypted variation
+     */
+    void tryEncryptedDbRecordPublish() ; 
+    /**
+     * db record network send/parse operation test
+     */
+    void tryDbRecordParse()  ;
+    /**
+     * test for local storage of tcl programs
+     */
+    void tryTCLLocalStorage() ; 
+    void tryDbRecordSearchCompare();
+    void tryDbRecordSearchParse();
     void tryDeletingController() ;
 private:
     Hash iHashOfPrivateKey ;
@@ -821,6 +847,294 @@ void TestClassifiedAds::tryCallStatusDataParse() {
 
 }
 
+// this is a complex test case that runs a lot of functionality:
+// this will try to publish a db record using TCL interface so
+// it will test-drive both db publish methods and the whole TCL
+// chain that is rather complex itself. to verify the publish operation
+// it will then try db record search to assert that the published
+// record is found in repository
+void TestClassifiedAds::tryDbRecordPublishViaTCL() {
+    MockUpModel* m = new MockUpModel(iController) ;
+    QString tclProg = "dict set r collectionId [ calculateSHA1 foobar-collection ]\n"
+        "dict set r searchPhrase {chicken is a bird}\n"
+        "dict set r searchNumber 552\n"
+        "dict set r data {crocodile is distant relative of chicken}\n"
+        "dict set r encrypted 0\n" 
+        "set newRecordId [ publishDbRecord $r ]\n" 
+        "exit\n" ; 
+    
+    iController->tclWrapper().evalScript(tclProg) ; 
+    QThread::yieldCurrentThread ();
+    QLOG_STR("Enter sleep\n") ; 
+    sleep(2) ;
+    QLOG_STR("sleep end\n") ; 
+    iController->tclWrapper().stopScript() ; 
+    QCoreApplication::processEvents() ; 
+    QLOG_STR("Enter sleep\n") ; 
+    sleep(2) ;
+    QLOG_STR("sleep end\n") ; 
+    // if things went all right, we now should have a record in the database
+    // so lets check it out:
+
+
+    Hash collection ;
+    collection.calculate("foobar-collection") ; 
+    QString searchPhrase = "bird" ; 
+    QList<CaDbRecord *> recordsFound ( 
+        m->caDbRecordModel()->searchRecords(collection,
+                                            KNullHash, // record id, but we don't know
+                                            1, std::numeric_limits<quint32>::max()-1,
+                                            -3, 1000,
+                                            searchPhrase )) ;  
+    bool isRecordFound ( false ) ; 
+    foreach ( const CaDbRecord * recordFound,
+              recordsFound ) {
+        if ( recordFound->iSearchNumber == 552 ) {
+            isRecordFound = true ; 
+            QVERIFY(recordFound->iData == QByteArray("crocodile is distant relative of chicken") ) ; 
+            QVERIFY(recordFound->iSearchPhrase == "chicken is a bird" ) ;
+            QLOG_STR("recordFound->iSenderHash 0 " + 
+                     QString::number(recordFound->iSenderHash.iHash160bits[0])) ; 
+            QLOG_STR("profile in use 0 " + 
+                     QString::number(iController->profileInUse().iHash160bits[0])) ; 
+            QVERIFY(recordFound->iSenderHash == iController->profileInUse() ) ;                 
+            QVERIFY(recordFound->iIsSignatureVerified == true ) ; 
+        }
+    }
+    while ( recordsFound.size() > 0 ) {
+        CaDbRecord* recordToDelete = recordsFound.takeAt(0) ; 
+        delete recordToDelete ; 
+    }
+    QVERIFY ( isRecordFound == true ) ; 
+    delete m ; 
+}
+
+
+void TestClassifiedAds::tryEncryptedDbRecordPublish() {
+    MockUpModel* m = new MockUpModel(iController) ;
+    QString tclProg = 
+        QString("dict set r collectionId [ calculateSHA1 foobar-collection ]\n"
+                "dict set r searchPhrase {bird is serious animal}\n"
+                "dict set r searchNumber 553\n"
+                "dict set r data {crocodile lives in Nile}\n"
+                "dict set r encrypted 1\n" 
+                "set recipientList [ list %1 ]\n"
+                "dict set r recordRecipients $recipientList\n"
+                "set newRecordId [ publishDbRecord $r ]\n" 
+                "exit\n")
+        .arg(iController->profileInUse().toString()) ; 
+    
+    iController->tclWrapper().evalScript(tclProg) ; 
+    QThread::yieldCurrentThread ();
+    QLOG_STR("Enter sleep\n") ; 
+    sleep(2) ;
+    QLOG_STR("sleep end\n") ; 
+    iController->tclWrapper().stopScript() ; 
+    QCoreApplication::processEvents() ; 
+    QLOG_STR("Enter sleep\n") ; 
+    sleep(2) ;
+    QLOG_STR("sleep end\n") ; 
+    // if things went all right, we now should have a record in the database
+    // so lets check it out:
+
+
+    Hash collection ;
+    collection.calculate("foobar-collection") ; 
+    QString searchPhrase = "bird" ; 
+    QList<CaDbRecord *> recordsFound ( 
+        m->caDbRecordModel()->searchRecords(collection,
+                                            KNullHash, // record id, but we don't know
+                                            1, std::numeric_limits<quint32>::max()-1,
+                                            553, 553,
+                                            searchPhrase )) ;  
+    bool isRecordFound ( false ) ; 
+    foreach ( const CaDbRecord * recordFound,
+              recordsFound ) {
+        if ( recordFound->iSearchNumber == 553 ) {
+            isRecordFound = true ; 
+            QVERIFY(recordFound->iData == QByteArray("crocodile lives in Nile") ) ; 
+            QVERIFY(recordFound->iSearchPhrase == "bird is serious animal" ) ;
+            QLOG_STR("recordFound->iSenderHash 0 " + 
+                     QString::number(recordFound->iSenderHash.iHash160bits[0])) ; 
+            QLOG_STR("profile in use 0 " + 
+                     QString::number(iController->profileInUse().iHash160bits[0])) ; 
+            QVERIFY(recordFound->iSenderHash == iController->profileInUse() ) ;                 
+            QVERIFY(recordFound->iIsSignatureVerified == true ) ; 
+        }
+    }
+    while ( recordsFound.size() > 0 ) {
+        CaDbRecord* recordToDelete = recordsFound.takeAt(0) ; 
+        delete recordToDelete ; 
+    }
+    QVERIFY ( isRecordFound == true ) ; 
+    delete m ; 
+}
+
+
+// test method for checking compatibility of database record/parse
+// methods in networking interface code and checking that the 
+// transferred record is all right. 
+void TestClassifiedAds::tryDbRecordParse() {
+    // here utilize db record send instead of publish because there
+    // is another (larger) test case for publish 
+    MockUpModel* m = new MockUpModel(iController) ;
+    ProtocolMessageParser* p = new ProtocolMessageParser(*iController,*m) ;
+
+
+    Connection* c = new Connection(1,
+                                   *this,
+                                   iController->model(),
+                                   *iController) ;
+
+    const QByteArray unCompressedData ("el data grande") ; 
+    CaDbRecord r ; 
+    r.iRecordId = Hash(4,3,2,1,1) ; 
+    r.iCollectionId.calculate(QByteArray("record collection, elvis anyone?")); 
+    r.iSearchPhrase = "The king has entered the building" ; 
+    r.iSearchNumber = 3 ; // carefully selected with random source
+    r.iIsEncrypted = false ; 
+    r.iTimeOfPublish = 25 ; // not at epoch but a testable time anyway
+    r.iData = qCompress(unCompressedData) ; 
+    r.iSenderHash = iController->profileInUse() ; 
+    QByteArray digitalSignature; 
+    QString additionalMetaDataStringToSign( // see similar code in verify method of cadbrecordmodel.cpp
+        r.iRecordId.toString() + 
+        r.iCollectionId.toString() + 
+        r.iSenderHash.toString() ) ; 
+    QByteArray additionalMetaDataBytesToSign( additionalMetaDataStringToSign.toUtf8()) ; 
+    if ( iController->model()
+         .contentEncryptionModel()
+         .sign(iController->profileInUse(), 
+               r.iData, 
+               digitalSignature,
+               &additionalMetaDataBytesToSign ) == 0 ) {
+        r.iSignature = digitalSignature ; 
+        QList<quint32> bangPath ; 
+        bangPath.append(1) ; 
+        
+        QByteArray bytesOfRecord ( 
+            ProtocolMessageFormatter::dbRecordSend(r) ) ;
+        p->parseMessage(bytesOfRecord,*c) ;
+
+        QList<CaDbRecord *> recordsFound ( m->caDbRecordModel()->searchRecords(KNullHash, 
+                                                                               r.iRecordId)) ; 
+        bool isRecordFound ( false ) ; 
+        foreach ( const CaDbRecord * recordFound,
+                  recordsFound ) {
+            if ( recordFound->iRecordId == r.iRecordId ) {
+                isRecordFound = true ; 
+                QVERIFY(recordFound->iCollectionId == r.iCollectionId ) ; 
+                QVERIFY(recordFound->iSearchPhrase == r.iSearchPhrase ) ; 
+                QVERIFY(recordFound->iSearchNumber == r.iSearchNumber ) ;                 
+                QVERIFY(recordFound->iTimeOfPublish == r.iTimeOfPublish ) ; 
+                QVERIFY(recordFound->iData == unCompressedData ) ;                 
+                QVERIFY(recordFound->iIsSignatureVerified == true ) ; 
+            }
+        }
+        while ( recordsFound.size() > 0 ) {
+            CaDbRecord* recordToDelete = recordsFound.takeAt(0) ; 
+            delete recordToDelete ; 
+        }
+        QVERIFY ( isRecordFound == true ) ; 
+    } else {
+        QLOG_STR("Sign of record failed") ; 
+        QVERIFY ( 1 == 2 ) ; 
+    }
+    delete c;
+    delete p ;
+    delete m ;
+}
+
+void TestClassifiedAds::tryTCLLocalStorage() {
+
+    MockUpModel* m = new MockUpModel(iController) ;
+    
+    QString tclProg = 
+        QString("dict set r key1 value1\n" // dictionary value 1
+                "dict set r key2 value2\n" // dictionary value 2
+                "storeLocalData $r\n"      // store dict into local storage
+                "puts {storeLocalData done}\n"      // store dict into local storage
+                "set r2 [ retrieveLocalData ]\n" // get it back
+                "puts {retrieveLocalData done}\n"      // store dict into local storage
+                "set numberOfKeys [ llength [ dict keys $r2 ] ]\n"  // count keys
+                "storeLocalData $numberOfKeys\n" // save number of keys (==2) into storage
+                "exit\n") ;                      // and get out
+    TclProgram p ; 
+    p.setProgramName("unit test prog") ; 
+    p.setProgramText(tclProg) ; 
+    m->tclModel().locallyStoreTclProgram(p) ; 
+    iController->tclWrapper().evalScript(tclProg) ; 
+    QThread::yieldCurrentThread ();
+    QLOG_STR("Enter sleep\n") ; 
+    sleep(2) ;
+    QLOG_STR("sleep end\n") ; 
+    iController->tclWrapper().stopScript() ; 
+    QByteArray storageContent ( 
+        m->tclModel().retrieveTCLProgLocalData(p.iFingerPrint)) ;
+    QString storageAsString (storageContent) ;  
+    QVERIFY( storageAsString == "2" ) ; 
+}
+
+void TestClassifiedAds::tryDbRecordSearchCompare() {
+    CaDbRecord::SearchTerms specific ; 
+    CaDbRecord::SearchTerms small ; 
+    CaDbRecord::SearchTerms medium ; 
+    CaDbRecord::SearchTerms large ; 
+    specific.iById = Hash ( 8,8,7,7,1 ) ; 
+    small.iModifiedAfter = 0 ;
+    small.iModifiedBefore = 1 ; 
+    small.iByHavingNumberMoreThan = 2 ; 
+    small.iByHavingNumberLessThan = 3 ; 
+    small.iBySearchPhrase = QString::null;
+    medium = small ;
+    medium.iBySearchPhrase = "king" ; 
+    large = small ; 
+    large.iBySearchPhrase = "the king has left the building" ;
+    QVERIFY((specific < small) == false ) ; 
+    QVERIFY(small < medium) ; 
+    QVERIFY(medium < large ) ; 
+    QVERIFY((specific == large) == false ) ; 
+}
+
+void TestClassifiedAds::tryDbRecordSearchParse() {
+    MockUpModel* m = new MockUpModel(iController) ;
+    ProtocolMessageParser* p = new ProtocolMessageParser(*iController,*m) ;
+
+    Connection* c = new Connection(1,
+                                   *this,
+                                   iController->model(),
+                                   *iController) ;
+
+    CaDbRecord::SearchTerms t ; 
+    t.iFromCollection = KNullHash ; 
+    t.iById = Hash(4,3,2,1,1) ; // used in previous test case, is found
+    t.iModifiedAfter = 0 ; 
+    t.iModifiedBefore = std::numeric_limits<quint32>::max();
+    t.iByHavingNumberMoreThan = std::numeric_limits<qint64>::min(); 
+    t.iByHavingNumberLessThan = std::numeric_limits<qint64>::max();
+    t.iBySearchPhrase = QString::null ; 
+    t.iBySender = KNullHash ; 
+
+    QByteArray bytesOfRecord ( 
+        ProtocolMessageFormatter::dbSearchTerms(t) ) ;
+    p->parseMessage(bytesOfRecord,*c) ;
+
+    // now the connection should have record in send queue.
+    bool recordFound = false ; 
+    foreach ( const SendQueueItem& i, 
+              c->iSendQueue ) {
+        if ( i.iHash == t.iById &&
+             i.iItemType == DbRecord ) {
+            recordFound = true ; 
+        }
+    }
+    delete c;
+    delete p ;
+    delete m ;
+    QVERIFY(recordFound == true) ; 
+}
+
+
 void TestClassifiedAds::tryCompression() {
     QByteArray tdata = QString("Here is a string with unique content").toUtf8();
     QByteArray cdata (qCompress(tdata)) ;
@@ -836,6 +1150,7 @@ void TestClassifiedAds::tryDeletingController() {
 
 void TestClassifiedAds::tryCreatingController() {
     iController = new MockUpController() ;
+    controllerInstanceEx = iController ; 
     iController->setContentKeyPasswd("salasana") ;
     QVERIFY(iController != NULL ) ;
 

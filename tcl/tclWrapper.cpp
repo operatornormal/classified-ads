@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2016.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
 
   This file is part of Classified Ads.
 
@@ -36,7 +36,7 @@
 #include <tk/tk.h>
 #include "tclCallbacks.h"
 
-extern Controller* controllerInstance ;
+extern MController* controllerInstanceEx ;
 Tcl_ChannelType stdOutChannel ;
 Tcl_ChannelType stdErrChannel ;
 const char *KStdOutChannelName = "stdout" ;
@@ -46,6 +46,12 @@ const char *KTCLCommandPublishFile = "publishFile" ;
 const char *KTCLCommandPublishProfile = "publishProfile" ;
 const char *KTCLCommandPublishProfileComment = "publishProfileComment" ;
 const char *KTCLCommandPublishClassifiedAd = "publishClassifiedAd" ;
+const char *KTCLCommandPublishDbRecord = "publishDbRecord" ;
+const char *KTCLCommandSHA1 = "calculateSHA1" ;
+const char *KTCLCommandStore = "storeLocalData" ; 
+const char *KTCLCommandRetrieve = "retrieveLocalData" ; 
+const char *KTCLCommandOpen = "openFileSystemFile" ; 
+const char *KTCLCommandSave = "saveFileSystemFile" ; 
 
 TclWrapper::TclWrapper(Model& aModel,
                        MController& aController)
@@ -134,7 +140,7 @@ void TclWrapper::run() {
                                 if ( evalResult == TCL_OK ) {
                                     emit consoleOutput("OK") ;
                                 } else {
-                                    QString errorMessage ( Tcl_GetStringResult(safeInterp)  ) ;
+                                    QString errorMessage ( QString::fromUtf8( Tcl_GetStringResult(safeInterp))  ) ;
                                     QLOG_STR(errorMessage) ;
                                     emit consoleOutput(errorMessage) ;
                                 }
@@ -377,28 +383,46 @@ bool TclWrapper::initExtensions(Tcl_Interp* aInterp) {
     const char* safeInterpCStr ( Tcl_GetVar2(iInterp,"safeInterp",NULL,0 ) ) ;
     Tcl_Interp* safeInterp ( Tcl_GetSlave(aInterp, safeInterpCStr ) ) ;
     if ( safeInterp ) {
+        Tcl_SetVar(safeInterp,"profileInUse",
+                   iController.profileInUse().toString().toUtf8().constData(), -1) ;
+        Tcl_SetVar(safeInterp,"caVersion",
+                   CLASSIFIED_ADS_VERSION, -1) ;
         if (( Tcl_CreateObjCommand(safeInterp, "listProfiles",
                                    listItemsCmd, NULL, NULL) == NULL ) ||
-                (Tcl_CreateObjCommand(safeInterp, "listAds",
-                                      listItemsCmd, NULL, NULL) == NULL ) ||
-                (Tcl_CreateObjCommand(safeInterp, "listComments",
-                                      listItemsCmd, NULL, NULL) == NULL ) ||
-                (Tcl_CreateObjCommand(safeInterp, "getProfile",
-                                      getProfileCmd, NULL, NULL) == NULL ) ||
-                (Tcl_CreateObjCommand(safeInterp, "getClassifiedAd",
-                                      getClassifiedAdCmd, NULL, NULL) == NULL ) ||
-                (Tcl_CreateObjCommand(safeInterp, "getProfileComment",
-                                      getProfileCommentCmd, NULL, NULL) == NULL ) ||
-                (Tcl_CreateObjCommand(safeInterp, "getBinaryFile",
-                                      getBinaryFileCmd, NULL, NULL) == NULL ) ||
-                (Tcl_CreateObjCommand(safeInterp, KTCLCommandPublishFile,
+            (Tcl_CreateObjCommand(safeInterp, "listAds",
+                                  listItemsCmd, NULL, NULL) == NULL ) ||
+            (Tcl_CreateObjCommand(safeInterp, "listComments",
+                                  listItemsCmd, NULL, NULL) == NULL ) ||
+            (Tcl_CreateObjCommand(safeInterp, "getProfile",
+                                  getProfileCmd, NULL, NULL) == NULL ) ||
+            (Tcl_CreateObjCommand(safeInterp, "getClassifiedAd",
+                                  getClassifiedAdCmd, NULL, NULL) == NULL ) ||
+            (Tcl_CreateObjCommand(safeInterp, "getProfileComment",
+                                  getProfileCommentCmd, NULL, NULL) == NULL ) ||
+            (Tcl_CreateObjCommand(safeInterp, "getBinaryFile",
+                                  getBinaryFileCmd, NULL, NULL) == NULL ) ||
+            (Tcl_CreateObjCommand(safeInterp, "getDbRecord",
+                                  getDbRecordCmd, NULL, NULL) == NULL ) ||
+            (Tcl_CreateObjCommand(safeInterp, KTCLCommandPublishFile,
+                                  publishItemCmd, NULL, NULL) == NULL )||
+            (Tcl_CreateObjCommand(safeInterp, KTCLCommandPublishProfile,
                                       publishItemCmd, NULL, NULL) == NULL )||
-                (Tcl_CreateObjCommand(safeInterp, KTCLCommandPublishProfile,
-                                      publishItemCmd, NULL, NULL) == NULL )||
-                (Tcl_CreateObjCommand(safeInterp, KTCLCommandPublishProfileComment,
-                                      publishItemCmd, NULL, NULL) == NULL )||
-                (Tcl_CreateObjCommand(safeInterp, KTCLCommandPublishClassifiedAd,
-                                      publishItemCmd, NULL, NULL) == NULL )) {
+            (Tcl_CreateObjCommand(safeInterp, KTCLCommandPublishProfileComment,
+                                  publishItemCmd, NULL, NULL) == NULL )||
+            (Tcl_CreateObjCommand(safeInterp, KTCLCommandPublishClassifiedAd,
+                                  publishItemCmd, NULL, NULL) == NULL )||
+            (Tcl_CreateObjCommand(safeInterp, KTCLCommandSHA1,
+                                  sha1Cmd, NULL, NULL) == NULL )||
+            (Tcl_CreateObjCommand(safeInterp, KTCLCommandStore,
+                                  storeTCLProgLocalDataCmd, NULL, NULL) == NULL )||
+            (Tcl_CreateObjCommand(safeInterp, KTCLCommandRetrieve,
+                                  retrieveTCLProgLocalDataCmd, NULL, NULL) == NULL )||
+            (Tcl_CreateObjCommand(safeInterp, KTCLCommandOpen,
+                                  openFileCmd, NULL, NULL) == NULL )||
+            (Tcl_CreateObjCommand(safeInterp, KTCLCommandSave,
+                                  saveFileCmd, NULL, NULL) == NULL )||
+            (Tcl_CreateObjCommand(safeInterp, KTCLCommandPublishDbRecord,
+                                  publishItemCmd, NULL, NULL) == NULL )) {            
             QLOG_STR("Could not create command listProfiles") ;
             return false ;
         } else {
@@ -462,11 +486,20 @@ bool TclWrapper::initExtensions(Tcl_Interp* aInterp) {
             // if there are errors in event loop, forward them to stderr,
             // in a way suggested by hypnotoad at #tcl:
             Tcl_EvalEx(safeInterp, "proc bgerror message { puts stderr $message ; puts  $::errorInfo }",-1, TCL_EVAL_GLOBAL) ;
-            // create empty procedure for receicing notifications
+            // create empty procedure for receiving notifications
             // about datamodel content changes
             Tcl_EvalEx(safeInterp,
                        "proc dataItemChanged { itemHash itemType } {\n"
                        "}\n",-1, TCL_EVAL_GLOBAL) ;
+            // set (useful) variables
+            Tcl_SetVar(safeInterp, 
+                       "::systemLocale",
+                       QLocale::system().name().toUtf8().constData(),
+                       0) ; 
+            Tcl_SetVar(safeInterp, 
+                       "::classifiedAdsVersion",
+                       CLASSIFIED_ADS_VERSION,
+                       0) ; 
         }
     } else {
         QLOG_STR("Could not find slave interpreter") ;
@@ -496,32 +529,32 @@ bool TclWrapper::initProgram(Tcl_Interp* aInterp) {
 
 // static method
 int TclWrapper::listItemsCmd(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj *const aObjv[]) {
-    return controllerInstance->tclWrapper()
-           .iTclCallbacks->listItemsCmdImpl(aCData,
-                                            aInterp,
-                                            aObjc,
-                                            aObjv) ;
+    return controllerInstanceEx->tclWrapper()
+        .iTclCallbacks->listItemsCmdImpl(aCData,
+                                         aInterp,
+                                         aObjc,
+                                         aObjv) ;
 }
 
 
 // static method
 int TclWrapper::getProfileCmd(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj *const aObjv[]) {
-    return controllerInstance->tclWrapper()
-           .iTclCallbacks->getProfileCmdImpl(aCData,
-                   aInterp,
-                   aObjc,
-                   aObjv) ;
+    return controllerInstanceEx->tclWrapper()
+        .iTclCallbacks->getProfileCmdImpl(aCData,
+                                          aInterp,
+                                          aObjc,
+                                          aObjv) ;
 }
 
 // static method for getting an ad. called by interpreter that does not
 // know about object instances, just forwards the call to non-static
 // method via global controller instance
 int TclWrapper::getClassifiedAdCmd(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj *const aObjv[]) {
-    return controllerInstance->tclWrapper()
-           .iTclCallbacks->getClassifiedAdCmdImpl(aCData,
-                   aInterp,
-                   aObjc,
-                   aObjv) ;
+    return controllerInstanceEx->tclWrapper()
+        .iTclCallbacks->getClassifiedAdCmdImpl(aCData,
+                                               aInterp,
+                                               aObjc,
+                                               aObjv) ;
 }
 
 
@@ -529,33 +562,91 @@ int TclWrapper::getClassifiedAdCmd(ClientData aCData, Tcl_Interp *aInterp, int a
 //     * static method for getting one profile comment
 
 int TclWrapper::getProfileCommentCmd(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj *const aObjv[]) {
-    return controllerInstance->tclWrapper()
-           .iTclCallbacks->getProfileCommentCmdImpl(aCData,
-                   aInterp,
-                   aObjc,
-                   aObjv) ;
+    return controllerInstanceEx->tclWrapper()
+        .iTclCallbacks->getProfileCommentCmdImpl(aCData,
+                                                 aInterp,
+                                                 aObjc,
+                                                 aObjv) ;
 }
 
 
 int TclWrapper::getBinaryFileCmd(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj *const aObjv[]) {
-    return controllerInstance->tclWrapper()
-           .iTclCallbacks->getBinaryFileCmdImpl(aCData,
-                   aInterp,
-                   aObjc,
-                   aObjv) ;
+    return controllerInstanceEx->tclWrapper()
+        .iTclCallbacks->getBinaryFileCmdImpl(aCData,
+                                             aInterp,
+                                             aObjc,
+                                             aObjv) ;
 }
 
 // static method
 int TclWrapper::publishItemCmd(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj *const aObjv[]) {
-    return controllerInstance->tclWrapper()
-           .iTclCallbacks->publishItemCmdImpl(aCData,
-                   aInterp,
-                   aObjc,
-                   aObjv) ;
+    return controllerInstanceEx->tclWrapper()
+        .iTclCallbacks->publishItemCmdImpl(aCData,
+                                           aInterp,
+                                           aObjc,
+                                           aObjv) ;
+}
+
+// static method
+int TclWrapper::sha1Cmd(ClientData /* aCData */, Tcl_Interp *aInterp, int aObjc, Tcl_Obj *const aObjv[]) {
+    if ( aObjc != 2 ) {
+        Tcl_AppendResult(aInterp, "Usage: calculateSHA1 string", NULL);
+        return TCL_ERROR ; 
+    }
+    unsigned char* bytes (NULL);
+    QByteArray b ; 
+    int length ;
+    if ( ( bytes = Tcl_GetByteArrayFromObj(aObjv[1], &length) ) != NULL &&
+         length > 0 ) {
+        b.append(reinterpret_cast<const char *>(bytes), length) ;
+    } else {
+        Tcl_AppendResult(aInterp, "Could not get string content?", NULL);
+        return TCL_ERROR ;
+    }    
+    Hash h ; 
+    h.calculate(b) ; 
+    Tcl_AppendResult(aInterp, h.toString().toUtf8().constData(), NULL);
+    return TCL_OK ;
+}
+// static method
+int TclWrapper::storeTCLProgLocalDataCmd(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj *const aObjv[]) {
+    return controllerInstanceEx->tclWrapper()
+        .iTclCallbacks->storeTCLProgLocalDataImpl(aCData,
+                                                  aInterp,
+                                                  aObjc,
+                                                  aObjv) ;
+}
+
+// static method
+int TclWrapper::retrieveTCLProgLocalDataCmd(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj *const aObjv[]) {
+    QLOG_STR("TclWrapper::retrieveTCLProgLocalDataCmd in") ; 
+    return controllerInstanceEx->tclWrapper()
+        .iTclCallbacks->retrieveTCLProgLocalDataImpl(aCData,
+                                                     aInterp,
+                                                     aObjc,
+                                                     aObjv) ;
+}
+
+// static method
+int TclWrapper::openFileCmd(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj *const aObjv[]) {
+    QLOG_STR("TclWrapper::openFileCmd in") ; 
+    return controllerInstanceEx->tclWrapper()
+        .iTclCallbacks->openFileImpl(aCData,
+                                     aInterp,
+                                     aObjc,
+                                     aObjv) ;
+}
+// static method
+int TclWrapper::saveFileCmd(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj *const aObjv[]) {
+    QLOG_STR("TclWrapper::saveFileCmd in") ; 
+    return controllerInstanceEx->tclWrapper()
+        .iTclCallbacks->saveFileImpl(aCData,
+                                     aInterp,
+                                     aObjc,
+                                     aObjv) ;
 }
 
 
-// channel procedure for closing output channel of safe intepr
 int TclWrapper::closeProc(
     ClientData /* aInstanceData */,
     Tcl_Interp * /* aInterp */ ) {
@@ -563,6 +654,7 @@ int TclWrapper::closeProc(
     QLOG_STR("TclWrapper::closeProc") ;
     return 0 ;
 }
+
 /**
  * this method may be used to write data to tcl interpreter.
  */
@@ -602,10 +694,10 @@ int TclWrapper::outputProc(
     const char *aBuf,
     int aToWrite,
     int *  aErrorCodePtr ) {
-    return controllerInstance->tclWrapper().outputProcImpl(aInstanceData,
-            aBuf,
-            aToWrite,
-            aErrorCodePtr) ;
+    return controllerInstanceEx->tclWrapper().outputProcImpl(aInstanceData,
+                                                             aBuf,
+                                                             aToWrite,
+                                                             aErrorCodePtr) ;
 }
 
 void TclWrapper::watchProc(
@@ -620,4 +712,12 @@ int TclWrapper::getHandleProc(
     ClientData * /* aHandlePtr */) {
     QLOG_STR("TclWrapper::getHandleProc") ;
     return TCL_ERROR ; // no meaningful "handle" concept here
+}
+
+int TclWrapper::getDbRecordCmd(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj *const aObjv[]) {
+    return controllerInstanceEx->tclWrapper()
+        .iTclCallbacks->getDbRecordCmdImpl(aCData,
+                                           aInterp,
+                                           aObjc,
+                                           aObjv); 
 }

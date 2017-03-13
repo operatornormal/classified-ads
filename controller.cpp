@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2016.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
 
   This file is part of Classified Ads.
 
@@ -30,6 +30,7 @@
 #include <QLocalServer>
 #include <QLocalSocket>
 #endif
+#include <QFileDialog>
 #include "controller.h"
 #include "FrontWidget.h"
 #include "log.h"
@@ -40,6 +41,7 @@
 #include "net/networkconnectorengine.h"
 #include "net/publishingengine.h"
 #include "net/retrievalengine.h"
+#include "net/dbretrievalengine.h"
 #ifndef WIN32
 #include <unistd.h> // for getpid() 
 #endif
@@ -90,13 +92,16 @@ Controller::Controller(QApplication &app) : iWin(NULL),
     iNetEngine(NULL),
     iPubEngine(NULL),
     iRetrievalEngine(NULL),
+    iDbRetrievalEngine(NULL),
     iVoiceCallEngine (NULL),
     iInsideDestructor(false),
     iSharedMemory(NULL),
 #ifdef WIN32
     iLocalServer(NULL)
 #endif
-    iTclWrapper(NULL) {
+    iTclWrapper(NULL),
+    iGetFileNameDialog(NULL),
+    iGetFileNameSemaphore(1) {
     LOG_STR("Controller::Controller constructor out") ;
 }
 
@@ -234,6 +239,9 @@ bool Controller::init() {
     iRetrievalEngine = new RetrievalEngine (this, *iModel) ;
     iRetrievalEngine->setInterval(5000); // every 5 seconds
 
+    iDbRetrievalEngine = new DbRecordRetrievalEngine (this, *iModel) ;
+    iDbRetrievalEngine->setInterval(5000); // every 5 seconds
+
     // network listener is also connection status observer so lets
     // have it to signal the pub-engine when connections are opened/closed
     // (also the failed ones that are usually of no interest)
@@ -258,6 +266,14 @@ bool Controller::init() {
                 SIGNAL(  nodeConnectionAttemptStatus(Connection::ConnectionState ,
                          const Hash  ) ),
                 iRetrievalEngine,
+                SLOT( nodeConnectionAttemptStatus(Connection::ConnectionState ,
+                        const Hash  )),
+                Qt::QueuedConnection )  ) ;
+    assert(
+        connect(iListener,
+                SIGNAL(  nodeConnectionAttemptStatus(Connection::ConnectionState ,
+                         const Hash  ) ),
+                iDbRetrievalEngine,
                 SLOT( nodeConnectionAttemptStatus(Connection::ConnectionState ,
                         const Hash  )),
                 Qt::QueuedConnection )  ) ;
@@ -294,10 +310,14 @@ bool Controller::init() {
     // after signals are connected, start publishing and retrieval
     iPubEngine->start() ;
     iRetrievalEngine->start() ;
+    iDbRetrievalEngine->start() ;
     // instantiate voice call engine from UI thread, otherwise
     // some transient connection-related thread will do it and
     // problems start appearing after the thread finishes..
     this->voiceCallEngine() ;
+    connect(this, SIGNAL(startGettingFileName(QString,bool)),
+            this, SLOT(getFileNameSlot(QString,bool)),
+            Qt::QueuedConnection) ; 
     /*
     // debug thing:
     iModel->classifiedAdsModel().reIndexAllAdsIntoFTS() ;
@@ -348,6 +368,19 @@ bool Controller::createSharedMemSegment(QString& aSegmentName) {
 Controller::~Controller() {
     LOG_STR("Controller::~Controller") ;
     iInsideDestructor = true ;
+    if ( iGetFileNameDialog ) {
+        iGetFileNameDialog->reject() ; 
+        QWaitCondition waitCondition;
+        QMutex mutex;
+        mutex.lock() ; // waitCondition needs a mutex initially locked
+        waitCondition.wait(&mutex, 100);// let file selection call stack
+                // collapse or it will return to deleted tcl interpreter
+        mutex.unlock() ;
+    }
+    if (  iGetFileNameDialog ) {
+        delete iGetFileNameDialog ; 
+        iGetFileNameDialog = NULL ; 
+    }
     if ( iTclWrapper ) {
         iTclWrapper->stopScript(true) ; // deletes self
         iTclWrapper = NULL ;
@@ -376,10 +409,14 @@ Controller::~Controller() {
     }
     LOG_STR("Controller::~Controller 1 pubengine gone") ;
     if ( iRetrievalEngine ) {
-        iRetrievalEngine->iNeedsToRun = false ;
         iRetrievalEngine->stop() ;
         delete iRetrievalEngine ;
         iRetrievalEngine = NULL ;
+    }
+    if ( iDbRetrievalEngine ) {
+        iDbRetrievalEngine->stop() ;
+        delete iDbRetrievalEngine ;
+        iDbRetrievalEngine = NULL ;
     }
     if ( iNetEngine ) {
 #ifndef WIN32
@@ -1144,6 +1181,11 @@ void Controller::notifyOfContentReceived(const Hash& aHashOfContent,
     }
     iRetrievalEngine->notifyOfContentReceived(aHashOfContent,
             aTypeOfReceivedContent) ;
+    // offer db records to db retrieval engine
+    if ( aTypeOfReceivedContent == DbRecord ) {
+        iDbRetrievalEngine->notifyOfContentReceived(aHashOfContent,
+                                                    aTypeOfReceivedContent) ;
+    }
     // offer profiles to trust list
     if ( aTypeOfReceivedContent == UserProfile ) {
         iModel->trustTreeModel()->contentReceived(aHashOfContent,
@@ -1209,6 +1251,8 @@ void Controller::notifyOfContentReceived(const Hash& aHashOfContent,
     }
     iRetrievalEngine->notifyOfContentReceived(aHashOfContent,
             aTypeOfReceivedContent) ;
+    iDbRetrievalEngine->notifyOfContentReceived(aHashOfContent,
+            aTypeOfReceivedContent) ;
 
     if ( iTclWrapper ) {
         iTclWrapper->notifyOfContentReceived(aHashOfContent,
@@ -1241,6 +1285,13 @@ void Controller::startRetrievingContent(NetworkRequestExecutor::NetworkRequestQu
                                       aIsBackgroundDl) ;
     iHashOfObjectBeingWaitedFor = aReq.iRequestedItem ;
     iTypeOfObjectBeingWaitedFor = aTypeOfExpectedObject ;
+}
+
+
+void Controller::startRetrievingContent( CaDbRecord::SearchTerms aSearchTerms ) {
+    if ( iDbRetrievalEngine ) {
+        iDbRetrievalEngine->startRetrieving(aSearchTerms) ; 
+    }
 }
 
 void Controller::storePrivateDataOfSelectedProfile(bool aPublishTrustListToo) {
@@ -1501,16 +1552,81 @@ TclWrapper & Controller::tclWrapper() {
         QLOG_STR("Controller::tclWrapper instantiates new") ;
         iTclWrapper = new TclWrapper(*iModel,*this) ;
         connect(iTclWrapper,
-                SIGNAL(  error(MController::CAErrorSituation,
-                               const QString&) ),
+                SIGNAL(error(MController::CAErrorSituation,
+                             const QString&) ),
                 this,
                 SLOT(handleError(MController::CAErrorSituation,
                                  const QString&)),
                 Qt::QueuedConnection ) ;
+        if ( iDbRetrievalEngine ) {
+            assert(
+                connect(iTclWrapper,
+                        SIGNAL(finished()),
+                        iDbRetrievalEngine,
+                        SLOT(stopRetrieving()),
+                        Qt::QueuedConnection )) ;
+        } else {
+            QLOG_STR("TCL Wrapper instantiated by retrieval engine missing?");
+        }
     }
     return *iTclWrapper ;
 }
 
 QWidget* Controller::frontWidget() {
     return iCurrentWidget ;
+}
+
+
+QString Controller::getFileName(bool& aSuccess,
+                                bool aIsSaveFile , 
+                                QString aSuggestedFileName ) {
+    if ( iGetFileNameDialog || iGetFileNameSemaphore.available() == 0 ) {
+        aSuccess = false ; 
+        return QString::null ; 
+    }
+    iGetFileNameResult = QString::null ; 
+    iGetFileNameSuccess = false ; 
+    // lock mutex once
+    QLOG_STR("iGetFileNameMutex.acquire") ; 
+    iGetFileNameSemaphore.acquire(1) ; 
+    // go to UI thread:
+    QLOG_STR("emit getFileNameSignal") ; 
+    emit startGettingFileName(aSuggestedFileName, aIsSaveFile) ; 
+    // stop here until UI thread calls iGetFileNameMutex.release
+    QLOG_STR("iGetFileNameMutex.acquire 2") ; 
+    iGetFileNameSemaphore.acquire(1) ; 
+    QLOG_STR("iGetFileNameMutex.release") ; 
+    iGetFileNameSemaphore.release(1) ; 
+    aSuccess = iGetFileNameSuccess ; 
+    return iGetFileNameResult ; 
+}
+
+// this will be executed in UI thread, called from getFileName
+// method via queued connection
+void Controller::getFileNameSlot(QString aSuggestedFileName,bool aIsSaveFile) {
+    QLOG_STR("getFileNameSlot in") ; 
+    if ( ( iGetFileNameDialog = new QFileDialog() ) != NULL ) {
+
+        if ( aIsSaveFile ) {
+            iGetFileNameDialog->setFileMode(QFileDialog::AnyFile);
+            iGetFileNameDialog->setAcceptMode(QFileDialog::AcceptSave) ; 
+        } else {
+            iGetFileNameDialog->setFileMode(QFileDialog::ExistingFile);
+            iGetFileNameDialog->setAcceptMode(QFileDialog::AcceptOpen) ;
+        }
+        if ( aSuggestedFileName.length() > 0 ) {
+            iGetFileNameDialog->setNameFilter(aSuggestedFileName);
+        }
+        QStringList fileNames;
+        if (iGetFileNameDialog->exec() && iGetFileNameDialog )
+            fileNames = iGetFileNameDialog->selectedFiles();
+        if ( fileNames.count() > 0 ) {
+            iGetFileNameResult = fileNames.at(0) ; 
+            iGetFileNameSuccess = true ;
+        }
+        delete iGetFileNameDialog ; 
+    }
+    iGetFileNameDialog = NULL ; 
+    iGetFileNameSemaphore.release(1) ; 
+    QLOG_STR("getFileNameSlot out") ; 
 }

@@ -1,5 +1,5 @@
 #
-# Classified Ads is Copyright (c) Antti Järvinen 2013-2016.
+# Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
 #
 # This file is part of Classified Ads.
 #
@@ -81,7 +81,8 @@ HEADERS = mcontroller.h controller.h FrontWidget.h net/node.h util/hash.h \
         call/audioencoder.h call/audiodecoder.h call/ringtoneplayer.h \
         ui/tclPrograms.h ui/tclConsole.h tcl/tclWrapper.h \
         datamodel/tclprogram.h datamodel/tclmodel.h tcl/tclCallbacks.h \
-        tcl/tclUtil.h
+        tcl/tclUtil.h datamodel/cadbrecord.h datamodel/cadbrecordmodel.h \
+        net/dbretrievalengine.h
 SOURCES = main.cpp controller.cpp FrontWidget.cpp net/node.cpp util/hash.cpp \
 	net/connection.cpp datamodel/model.cpp \
         net/networklistener.cpp net/protocol_message_formatter.cpp \
@@ -115,7 +116,8 @@ SOURCES = main.cpp controller.cpp FrontWidget.cpp net/node.cpp util/hash.cpp \
         call/audioplayer.cpp call/audioencoder.cpp call/audiodecoder.cpp \
         call/ringtoneplayer.cpp ui/tclPrograms.cpp ui/tclConsole.cpp \
         tcl/tclWrapper.cpp datamodel/tclprogram.cpp datamodel/tclmodel.cpp \
-        tcl/tclCallbacks.cpp tcl/tclUtil.cpp
+        tcl/tclCallbacks.cpp tcl/tclUtil.cpp  datamodel/cadbrecord.cpp \
+        datamodel/cadbrecordmodel.cpp net/dbretrievalengine.cpp
 FORMS = frontWidget.ui ui/profileReadersDialog.ui ui/passwordDialog.ui \
 	ui/newClassifiedAd.ui 	ui/newPrivMsg.ui ui/editContact.ui \
         ui/newProfileComment.ui ui/profileCommentDisplay.ui \

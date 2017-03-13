@@ -1,5 +1,5 @@
 /*    -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2016.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
 
   This file is part of Classified Ads.
 
@@ -77,6 +77,26 @@ public:
      *         and value is fingerprint of the program
      */
     QMap<QString, Hash> getListOfTclPrograms() ;
+
+    /**
+     * TCL programs may store data locally, key to the data is
+     * hash of the tcl program itself and the data is a
+     * byte-array. Previous contents are overwritten. 
+     * 
+     * @param aProgram identifies the program
+     * @param aData is databytes
+     * @return empty string on success
+     */
+    QString storeTCLProgLocalData(const Hash& aProgram,
+                                  const QByteArray& aData) ; 
+
+    /**
+     * Method for retrieving local data of a tcl program
+     * @param aProgram identifies the program
+     * 
+     * @return data or empty
+     */
+    QByteArray retrieveTCLProgLocalData(const Hash& aProgram) ;
 
 signals:
     void error(MController::CAErrorSituation aError,

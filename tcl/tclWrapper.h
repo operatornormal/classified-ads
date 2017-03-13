@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2016.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
 
   This file is part of Classified Ads.
 
@@ -69,6 +69,10 @@ public:
      */
     void stopScript(bool aDeleteLater = false ) ;
     void setScript(const QString& aScript) ; /**< TCL to evaluate, called before start */
+    /**
+     * Returns the script currently being evaluated
+     */
+    const QString& currentProgram() const { return iTCLScript ; } ;
     void showConsole() ; /**< Displays TCL interpreter console dialog */
     /**
      * method for receiving notifications about data item
@@ -186,6 +190,23 @@ private: // methods
      */
     static int getBinaryFileCmd(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj *const aObjv[]) ;
 
+    /**
+     * static method for getting db record
+     * @param aObjv should contain dictionary expressing the search
+     *              conditions. Same dictionary keys are used that are 
+     *              in use when db record is published from TCL app.
+     * @return If db records satisfying the conditions were found from
+     *         local storage, they're returned synchronously as return
+     *         value to this call, using Tcl_SetObjResult mechanism. 
+     *         Search is sent to remote nodes also and as remote nodes
+     *         return search results, new db records may be added to 
+     *         database and TCL app running may receive notifications
+     *         later concerning db records originally queries but
+     *         arriving later. 
+     * @param return TCL_OK if ok, the actual TCL object returned is a TCL dictionary.
+     */
+    static int getDbRecordCmd(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj *const aObjv[]) ;
+
 
     /**
      * Tcl extension method for publishing an item. This will be
@@ -201,7 +222,30 @@ private: // methods
      * @return TCL_OK on success.
      */
     static int publishItemCmd(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj *const aObjv[]) ;
-
+    /**
+     * method for calculating SHA1 over a string, callable from TCL
+     */
+    static int sha1Cmd(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj *const aObjv[]) ;
+    /**
+     * method for storing locally a bytearray from TCL
+     */
+    static int storeTCLProgLocalDataCmd(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj *const aObjv[]) ;
+    /**
+     * method for retrieving a data-blob previously stored using @ref storeTCLProgLocalData.
+     */
+    static int retrieveTCLProgLocalDataCmd(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj *const aObjv[]) ;
+    /**
+     * callback-method for saving a file to local filesystem from 
+     * tcl program. Method will open file selection dialog so user can always
+     * cancel operation. 
+     */
+    static int saveFileCmd(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj *const aObjv[]) ;
+    /**
+     * Callback-method for reading a file from local filesystem.
+     * Method will open file selection dialog so user can always
+     * cancel operation. 
+     */
+    static int openFileCmd(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj *const aObjv[]) ;
     /**
      * tcl channel procedures
      */

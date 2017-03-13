@@ -29,6 +29,8 @@
 #include <QRegExpValidator>
 
 QApplication* app ; /**< The qt application, we need to have 1 instance */
+MController* controllerInstanceEx ; /**< Application controller,
+                                     used in test suite+tcl wrapper */
 Controller* controllerInstance ; /**< Application controller,
                                     here as static for signal handlers */
 /** ipv6 addr with all bits zero, to denote an invalid addr */
@@ -137,6 +139,7 @@ int main(int argc, char *argv[]) {
 
     // controller will actually start launching the application
     controllerInstance = new Controller(*app) ;
+    controllerInstanceEx = controllerInstance ;  
 #if QT_VERSION < 0x050000
     // without this qt4+qjson does not handle utf-8 well ; every
     // byte in multi-byte unicode-sequences appears as separate

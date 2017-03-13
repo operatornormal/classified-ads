@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2016.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
 
   This file is part of Classified Ads.
 
@@ -58,6 +58,23 @@ public: // methods, called from tclWrapper.h static methods
     int getBinaryFileCmdImpl(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj *const aObjv[]) ;
 
     /**
+     * @brief non-static method for db record
+     * @param aObjv should contain dictionary expressing the search
+     *              conditions. Same dictionary keys are used that are 
+     *              in use when db record is published from TCL app.
+     * @return If db records satisfying the conditions were found from
+     *         local storage, they're returned synchronously as return
+     *         value to this call, using Tcl_SetObjResult mechanism. 
+     *         Search is sent to remote nodes also and as remote nodes
+     *         return search results, new db records may be added to 
+     *         database and TCL app running may receive notifications
+     *         later concerning db records originally queries but
+     *         arriving later. 
+     * @param return TCL_OK if ok, the actual TCL object returned is a TCL dictionary.
+     */
+    int getDbRecordCmdImpl(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj *const aObjv[]) ;
+
+    /**
      * non-static method for getting profile comment
      */
     int getProfileCommentCmdImpl(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj *const aObjv[]) ;
@@ -97,6 +114,59 @@ public: // methods, called from tclWrapper.h static methods
      */
     int publishItemCmdImpl(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj* const aObjv[]) ;
 
+    /**
+     * Tcl extension method for storing a blob of data in local storage 
+     *
+     * This is the non-static-version, see also @ref TclWrapper::storeTCLProgLocalDataCmd.
+     * In practice this calls @ref TclModel::storeTCLProgLocalData.
+     *
+     * @param aCData clientdata from tcl interpreter. Not used.
+     * @param aInterp pointer to calling TCL interpreter
+     * @param aObjc number of items in array aObjv
+     * @param aObjv command arguments. First is name of the command
+     *        itself, 2nd is the data to be stored
+     * @return TCL_OK on success.
+     */
+    int storeTCLProgLocalDataImpl(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj* const aObjv[]) ;
+    /**
+     * Tcl extension method for retrieving back a blob previously stored using
+     * @ref storeTCLProgLocalDataImpl. 
+     *
+     * This is the non-static-version, see also @ref TclWrapper::retrieveTCLProgLocalDataCmd.
+     * In practice this calls @ref TclModel::retrieveTCLProgLocalData.
+     *
+     * @param aCData clientdata from tcl interpreter. Not used.
+     * @param aInterp pointer to calling TCL interpreter
+     * @param aObjc number of items in array aObjv
+     * @param aObjv command arguments.
+     * @return TCL_OK on success.
+     */
+    int retrieveTCLProgLocalDataImpl(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj* const aObjv[]) ;
+
+    /**
+     * Tcl extension method for saving a file into filesystem. User gets
+     * to choose file name
+     *
+     * @param aCData clientdata from tcl interpreter. Not used.
+     * @param aInterp pointer to calling TCL interpreter
+     * @param aObjc number of items in array aObjv
+     * @param aObjv command arguments.
+     * @return TCL_OK on success.
+     */
+    int saveFileImpl(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj* const aObjv[]) ;
+
+    /**
+     * Tcl extension method for returning contents of a file system file
+     * to interpreter. User gets to choose which file to read. 
+     *
+     * @param aCData clientdata from tcl interpreter. Not used.
+     * @param aInterp pointer to calling TCL interpreter
+     * @param aObjc number of items in array aObjv
+     * @param aObjv command arguments.
+     * @return TCL_OK on success.
+     */
+    int openFileImpl(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj* const aObjv[]) ;
+
 private: // methods
     /**
      * work-horse method for publishing a profile comment. See method
@@ -118,6 +188,10 @@ private: // methods
      * non-static method for publishing a classified ad
      */
     int publishClassifiedAdCmdImpl(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj *const aObjv[]) ;
+    /**
+     * non-static method for publishing a db record
+     */
+    int publishDbRecordCmdImpl(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj *const aObjv[]) ;
 
 private: // variables
     Model& iModel ; /**< datamodel reference */

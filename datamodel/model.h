@@ -86,6 +86,7 @@ public:
     virtual PrivMessageModel& privateMessageModel() const ; /**< method for getting the priv msg datamodel */
     virtual ProfileCommentModel& profileCommentModel() const ; /**< method for getting the comment datamodel */
     virtual SearchModel* searchModel() const ; /**< method for getting the full text search datamodel */
+    virtual CaDbRecordModel* caDbRecordModel() const ; /**< method for getting distributed database model part */
     virtual TrustTreeModel* trustTreeModel() const ; /**< method for getting the trust tree datamodel */
     virtual TclModel& tclModel() const ; /**< method for getting the storage of TCL programs */
     /**
@@ -115,7 +116,8 @@ public:
                        QByteArray* aBytesToSend) ;
 
     /**
-     * Currently open connections.
+     * Currently open connections. Caller does not own the returned list
+     * and should not try adding/removing items from it. 
      */
     const QList <Connection *>& getConnections() const ;
     /**
@@ -253,6 +255,8 @@ private:
     bool createTablesV2() ;
     // additions to 2nd version of tables
     bool createTablesV3() ;
+    // additions to 3rd version of tables
+    bool createTablesV4() ;
     void initPseudoRandom() ; /**< just calls srand() */
 signals:
     void error(MController::CAErrorSituation aError,
@@ -277,6 +281,7 @@ private:
     PrivMessageModel* iPrivMsgModel ; /**< storage of private messages */
     ProfileCommentModel* iProfileCommentModel ; /**< comments data storage */
     SearchModel* iSearchModel ; /**< full text search model part */
+    CaDbRecordModel* iCaDbRecordModel ;/**< distributed general-purpose database */
     TrustTreeModel *iTrustTreeModel ; /**< trust list handling model */
     time_t iTimeOfLastNetworkAddrCheck ; /**< timestamp of local addr update */
     TclModel* iTclModel ; /**< TCL scripts storage */

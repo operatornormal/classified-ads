@@ -1,21 +1,21 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-       Classified Ads is Copyright (c) Antti Järvinen 2013.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2016.
 
-    This file is part of Classified Ads.
+  This file is part of Classified Ads.
 
-    Classified Ads is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  Classified Ads is free software; you can redistribute it and/or
+  modify it under the terms of the GNU Lesser General Public
+  License as published by the Free Software Foundation; either
+  version 2.1 of the License, or (at your option) any later version.
 
-    Classified Ads is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Classified Ads is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with Classified Ads; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+  You should have received a copy of the GNU Lesser General Public
+  License along with Classified Ads; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 #ifdef WIN32
 #define NOMINMAX
@@ -35,6 +35,7 @@
 #include "../datamodel/voicecall.h"
 #include "../datamodel/model.h"
 #include "../datamodel/contentencryptionmodel.h"
+#include "../datamodel/cadbrecord.h"
 
 QByteArray ProtocolMessageFormatter::nodeGreeting(const Node& aNode) {
     QByteArray retval ;
@@ -570,6 +571,20 @@ QByteArray ProtocolMessageFormatter::searchResultsSend(const QList<SearchModel::
     return retval ;
 }
 
+QByteArray ProtocolMessageFormatter::dbSearchTerms(const CaDbRecord::SearchTerms aSearchTerms) {
+    QByteArray retval ;
+    retval.append((const char *)&KDbRecordSearch, sizeof(unsigned char)) ;
+    const QByteArray resultBytes ( aSearchTerms.asJSon() ) ;
+    if ( resultBytes.size() > 0 ) {
+        quint32 sizeNetworkBO ( htonl(resultBytes.size()) ) ;
+        retval.append((const char *)(&sizeNetworkBO), sizeof(quint32)) ;
+        retval.append(resultBytes) ;
+    } else {
+        retval.clear() ;
+    }
+    return retval ;
+}
+
 QByteArray ProtocolMessageFormatter::voiceCall(const VoiceCall& aCall,
         MController& aController,
         const Hash& aSelectedProfile,
@@ -763,3 +778,120 @@ QByteArray ProtocolMessageFormatter::doCommentSendOrPublish(const Hash& aContent
 }
 
 
+QByteArray ProtocolMessageFormatter::dbRecordPublish(const CaDbRecord& aRecord,
+                                                     const QList<quint32>& aBangPath) {
+    return doDbRecordPublishOrSend(aRecord,aBangPath, true) ; 
+}
+QByteArray ProtocolMessageFormatter::dbRecordSend(const CaDbRecord& aRecord) {
+    QList<quint32> dummyBand ; 
+    return doDbRecordPublishOrSend(aRecord,dummyBand, false) ; 
+}
+
+QByteArray ProtocolMessageFormatter::doDbRecordPublishOrSend(const CaDbRecord& aRecord,
+                                                             const QList<quint32>& aBangPath,
+                                                             bool aIsPublish ) {
+
+
+    unsigned char ch ( aIsPublish ? KDbRecordPublish : KDbRecordSend ) ;
+    QByteArray retval ;
+    retval.append((const char *)&ch, 1) ;
+
+    if ( aIsPublish ) { // if in send-mode, just omit bangpath
+        quint32 bPathNumberNetworkByteorder ;
+
+        if ( aBangPath.size() >= 1 ) {
+            bPathNumberNetworkByteorder = htonl(aBangPath[0]);
+        } else {
+            bPathNumberNetworkByteorder = 0 ;
+        }
+        retval.append((const char *)(&bPathNumberNetworkByteorder), sizeof(quint32)) ;
+        if ( aBangPath.size() >= 2 ) {
+            bPathNumberNetworkByteorder = htonl(aBangPath[1]);
+        } else {
+            bPathNumberNetworkByteorder = 0 ;
+        }
+        retval.append((const char *)(&bPathNumberNetworkByteorder), sizeof(quint32)) ;
+        if ( aBangPath.size() >= 3 ) {
+            bPathNumberNetworkByteorder = htonl(aBangPath[2]);
+        } else {
+            bPathNumberNetworkByteorder = 0 ;
+        }
+        retval.append((const char *)(&bPathNumberNetworkByteorder), sizeof(quint32)) ;
+        if ( aBangPath.size() >= 4 ) {
+            bPathNumberNetworkByteorder = htonl(aBangPath[3]);
+        } else {
+            bPathNumberNetworkByteorder = 0 ;
+        }
+        retval.append((const char *)(&bPathNumberNetworkByteorder), sizeof(quint32)) ;
+        if ( aBangPath.size() >= 5 ) {
+            bPathNumberNetworkByteorder = htonl(aBangPath[4]);
+        } else {
+            bPathNumberNetworkByteorder = 0 ;
+        }
+        retval.append((const char *)(&bPathNumberNetworkByteorder), sizeof(quint32)) ;
+    }
+    // now has 5 numbers as bangpath, then put hash of content
+    for ( int i = 0 ; i < Hash::KNumberOfIntsInHash ; i++ ) {
+        quint32 hashBitsNetworkBO ( htonl( aRecord.iRecordId.iHash160bits[i] ) ) ;
+        retval.append((const char *)(&hashBitsNetworkBO), sizeof(quint32)) ;
+    }
+    // then put hash of collection
+    for ( int i = 0 ; i < Hash::KNumberOfIntsInHash ; i++ ) {
+        quint32 hashBitsNetworkBO ( htonl( aRecord.iCollectionId.iHash160bits[i] ) ) ;
+        retval.append((const char *)(&hashBitsNetworkBO), sizeof(quint32)) ;
+    }
+    // then put hash of sender
+    for ( int i = 0 ; i < Hash::KNumberOfIntsInHash ; i++ ) {
+        quint32 hashBitsNetworkBO ( htonl( aRecord.iSenderHash.iHash160bits[i] ) ) ;
+        retval.append((const char *)(&hashBitsNetworkBO), sizeof(quint32)) ;
+    }
+    // then len of searchphrase.. lets first have the phrase in Utf8
+    const QByteArray searchPhraseUtf8 ( aRecord.iSearchPhrase.toUtf8() ) ;
+    const quint32 searchPhraseUtf8Len(searchPhraseUtf8.length()) ;
+    const quint32 searchPhraseUtf8LenNetworkBO(htonl(searchPhraseUtf8Len)) ;
+    retval.append((const char *)(&searchPhraseUtf8LenNetworkBO), sizeof(quint32)) ;
+    if ( searchPhraseUtf8Len > 0 ) {
+        retval.append(searchPhraseUtf8) ; 
+    }
+    // searchnumber is a bit problematic, as it is 64 bit signed. 
+    // there is not only byte-order issue, in theory there could 
+    // be platforms where the sign-bit is some funny location. 
+    // lets do performance-sub-optimal way by printing the number
+    // into a string and putting that into byte-stream. 
+    const QByteArray searchNumberUtf8 ( QString::number(aRecord.iSearchNumber ).toUtf8() ) ;
+    const quint32 searchNumberUtf8Len(searchNumberUtf8.length()) ;
+    const quint32 searchNumberUtf8LenNetworkBO(htonl(searchNumberUtf8Len)) ;
+    retval.append((const char *)(&searchNumberUtf8LenNetworkBO), sizeof(quint32)) ;
+    if ( searchNumberUtf8Len > 0 ) {
+        retval.append(searchNumberUtf8) ; 
+    }
+
+    // then actual record data. it may have zero len
+    const quint32 dataLen(aRecord.iData.length()) ;
+    const quint32 dataLenNetworkBO(htonl(dataLen)) ;
+    retval.append((const char *)(&dataLenNetworkBO), sizeof(quint32)) ;
+    if ( dataLen > 0 ) {
+        retval.append(aRecord.iData) ; 
+    }
+    // then signature data. should not have zero len
+    const quint32 signatureLen(aRecord.iSignature.length()) ;
+    if ( signatureLen == 0 ) {
+        QLOG_STR("Trying to publish record with no signature!!") ; 
+        return QByteArray() ; 
+    }
+    const quint32 signatureLenNetworkBO(htonl(signatureLen)) ;
+    retval.append((const char *)(&signatureLenNetworkBO), sizeof(quint32)) ;
+    if ( signatureLen > 0 ) {
+        retval.append(aRecord.iSignature) ; 
+    }
+
+    // time of publish
+    quint32 timestampNetworkBO ( htonl( aRecord.iTimeOfPublish ) ) ;
+    retval.append((const char *)&timestampNetworkBO, sizeof(quint32))  ;
+
+    // flags. currently includes only encryption bit. 
+    quint32 flags ( htonl( aRecord.iIsEncrypted ? 1 : 0 ) ) ;
+    retval.append((const char *)&flags, sizeof(quint32))  ;
+
+    return retval ; 
+}

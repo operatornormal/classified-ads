@@ -1,21 +1,21 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-    Classified Ads is Copyright (c) Antti Järvinen 2013.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
 
-    This file is part of Classified Ads.
+  This file is part of Classified Ads.
 
-    Classified Ads is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  Classified Ads is free software; you can redistribute it and/or
+  modify it under the terms of the GNU Lesser General Public
+  License as published by the Free Software Foundation; either
+  version 2.1 of the License, or (at your option) any later version.
 
-    Classified Ads is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Classified Ads is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with Classified Ads; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+  You should have received a copy of the GNU Lesser General Public
+  License along with Classified Ads; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #ifndef M_CONTROLLER_H
@@ -23,6 +23,7 @@
 #include <QObject>
 #include "util/hash.h" // Hash
 #include "datamodel/netrequestexecutor.h"
+#include "datamodel/cadbrecord.h" // for CaDbRecord::SearchTerms
 
 #define CLASSIFIED_ADS_VERSION "0.11"
 
@@ -76,16 +77,25 @@ public:
     } ;
 
     /**
-     * method that starts actions regarding content fetch from
+     * Method that starts actions regarding content fetch from
      * network
      * @param aReq specifies the content,at least iRequestType and
      *             iRequestedItem need to be there
      * @param aIsBackgroundDl is true if the retrieval may be
      *        queued into background as a low-priority item
+     * @param aTypeOfExpectedObject What kind of object is expected, 
+     *        possible values include ClassifiedAd, BinaryBlob and UserProfile
+     *        from @ref ProtocolItemType. 
      */
     virtual void startRetrievingContent(NetworkRequestExecutor::NetworkRequestQueueItem aReq,
                                         bool aIsBackgroundDl,
                                         ProtocolItemType aTypeOfExpectedObject ) = 0 ;
+    /**
+     * Variant of "start fetch" method that starts fetch of db records.
+     * @param aSearchTerms Database query that fetched record should
+     *        satisfy
+     */
+    virtual void startRetrievingContent( CaDbRecord::SearchTerms aSearchTerms ) = 0 ;
 
     /**
      * Method for requesting different things to take place in UI.
@@ -210,6 +220,27 @@ public slots:
      * spawned from non-ui threads
      */
     virtual QWidget *frontWidget() = 0 ;
+    /**
+     * Method for getting file name. Method displays file selection
+     * dialog and returns the selected file.  Idea of this method is 
+     * that it may be called from background threads and it will
+     * display the dialog in UI thread, then report results back.
+     * This is a blocking method that will suspend execution of the
+     * calling thread for the duration while user is doing the selection. 
+     *
+     * @param aSuccess is set to true if operation ends all right. 
+     * @param aIsSaveFile if set to true, "file save" dialog is
+     *        shown, otherwise "file open" dialog.
+     * @param aSuggestedFileName file name (pattern). If given empty,
+     *        any file is suggested in dialog, if "*.jpg" is given, then
+     *        dialog shall suggest only files with .jpg ending and
+     *        if "foobar.txt" is given, then dialog will suggest literal
+     *        file name "foobar.txt". 
+     * @return file system file name or empty if aSuccess is set to false. 
+     */
+    virtual QString getFileName(bool& aSuccess,
+                                bool aIsSaveFile = false , 
+                                QString aSuggestedFileName = QString()) = 0 ;
 } ;
 #endif
 

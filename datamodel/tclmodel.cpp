@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2016.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
 
   This file is part of Classified Ads.
 
@@ -53,6 +53,8 @@ Hash TclModel::locallyStoreTclProgram(const TclProgram& aProgram,
 
     TclProgram possiblyExistingProgam ( tclProgramByFingerPrint ( aPreviousFingerPrint ) ) ;
     bool ret(false) ;
+    QLOG_STR("Storing TCL program with hash " + 
+             aProgram.iFingerPrint.toString()) ; 
     if ( aPreviousFingerPrint != KNullHash &&
             possiblyExistingProgam.iFingerPrint != KNullHash ) {
         // there is previous version of the same program
@@ -148,8 +150,8 @@ TclProgram TclModel::tclProgramByFingerPrint(const Hash& aFingerPrint) {
             retval.iFingerPrint = aFingerPrint ;
             retval.iTimeOfPublish = query.value(3).toUInt() ;
             retval.setProgramName(query.value(0).toString()) ;
-            const QByteArray programtTextCompressed ( query.value(1).toByteArray() );
-            retval.setProgramText(qUncompress(programtTextCompressed)) ;
+            const QByteArray programTextCompressed ( query.value(1).toByteArray() );
+            retval.setProgramText(qUncompress(programTextCompressed)) ;
         }
     }
     return retval ;
@@ -200,4 +202,69 @@ bool TclModel::discardTclProgram(const Hash& aFingerPrint) {
     }
     QLOG_STR("TclModel::discardTclProgram " + QString::number(ret)) ;
     return ret ;
+}
+
+QString TclModel::storeTCLProgLocalData(const Hash& aProgram,
+                                        const QByteArray& aData) {
+    QLOG_STR("About to store data len =" + QString::number(aData.size())) ;  
+    QLOG_STR("Storing TCL program data, prog hash = " + 
+             aProgram.toString()) ; 
+    // check if program is there:
+    TclProgram  prog = tclProgramByFingerPrint(aProgram)  ;
+    if ( prog.iFingerPrint == KNullHash ) {
+        return "No program found" ;
+    } else {
+        QSqlQuery query;
+        bool ret ;
+        ret = query.prepare ("update tclprogs set prog_data = :d where hash1=:hash1 and hash2=:hash2 and "
+                             "hash3=:hash3 and hash4=:hash4 and hash5=:hash5" ) ;
+        if ( ret ) {
+            query.bindValue(":hash1", aProgram.iHash160bits[0]);
+            query.bindValue(":hash2", aProgram.iHash160bits[1]);
+            query.bindValue(":hash3", aProgram.iHash160bits[2]);
+            query.bindValue(":hash4", aProgram.iHash160bits[3]);
+            query.bindValue(":hash5", aProgram.iHash160bits[4]);
+           QLOG_STR("About to store data " + 
+                     QString(aData)) ; 
+            if ( aData.size() > 0 ) {
+                QByteArray programDataCompressed (qCompress(aData)) ;
+                query.bindValue(":d", programDataCompressed);
+            } else {
+                query.bindValue(":d", QString()); // null value
+            }
+            ret = query.exec() ;
+        }
+        QLOG_STR("TclModel::storeTCLProgLocalData " + QString::number(ret)) ;
+        if ( ret == false ) {
+            return query.lastError().text();
+        } 
+    }
+    return QString::null ; 
+}
+
+QByteArray TclModel::retrieveTCLProgLocalData(const Hash& aProgram) {
+    QByteArray retval ; 
+    QSqlQuery query;
+    bool ret ;
+    QLOG_STR("Retrieving TCL program data, prog hash = " + 
+             aProgram.toString()) ; 
+    ret = query.prepare ("select prog_data from tclprogs where hash1 = :hash1 and hash2 = :hash2 and hash3 = :hash3 and hash4 = :hash4 and hash5 = :hash5" ) ;
+    if ( ret ) {
+        query.bindValue(":hash1", aProgram.iHash160bits[0]);
+        query.bindValue(":hash2", aProgram.iHash160bits[1]);
+        query.bindValue(":hash3", aProgram.iHash160bits[2]);
+        query.bindValue(":hash4", aProgram.iHash160bits[3]);
+        query.bindValue(":hash5", aProgram.iHash160bits[4]);
+    }
+    ret = query.exec() ;
+    if ( !ret ) {
+        QLOG_STR(query.lastError().text() + " "+ __FILE__ + QString::number(__LINE__)) ;
+        emit error(MController::DbTransactionError, query.lastError().text()) ;
+    } else {
+        if ( query.next() && !query.isNull(0) ) {
+            const QByteArray programDataCompressed ( query.value(0).toByteArray() );
+            retval.append(qUncompress(programDataCompressed)) ;
+        }
+    }
+    return retval ;
 }

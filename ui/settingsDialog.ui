@@ -306,6 +306,39 @@
       </layout>
      </item>
      <item>
+      <layout class="QHBoxLayout" name="nrOfDbRecordsLayout">
+       <item>
+        <widget class="QLabel" name="nrDbRecordsToKeepLabel">
+         <property name="text">
+          <string>Nr of db records to keep</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="nrDbRecordsEdit">
+         <property name="maximumSize">
+          <size>
+           <width>100</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+         <property name="minimum">
+          <number>1000</number>
+         </property>
+         <property name="maximum">
+          <number>1000000</number>
+         </property>
+         <property name="singleStep">
+          <number>1000</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <property name="topMargin">
         <number>0</number>

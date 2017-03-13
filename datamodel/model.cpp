@@ -47,6 +47,7 @@
 #include "privmsgmodel.h"
 #include "profilecommentmodel.h"
 #include "searchmodel.h"
+#include "cadbrecordmodel.h"
 #include "trusttreemodel.h"
 #include <QMutex>
 #include <QTimerEvent>
@@ -71,6 +72,7 @@ Model::Model(MController *aController) : iController(aController),
     iPrivMsgModel(NULL),
     iProfileCommentModel(NULL),
     iSearchModel(NULL),
+    iCaDbRecordModel(NULL),
     iTrustTreeModel(NULL),
     iTimeOfLastNetworkAddrCheck(QDateTime::currentDateTimeUtc().toTime_t()),
     iTclModel(NULL) {
@@ -101,6 +103,8 @@ Model::Model(MController *aController) : iController(aController),
     iPrivMsgModel = new PrivMessageModel(aController, *this) ;
     iSearchModel = new SearchModel(*this,*iController) ;
     iSearchModel->setObjectName("CA SearchModel") ;
+    iCaDbRecordModel = new CaDbRecordModel(aController,
+                                           *this);
     iTrustTreeModel = new TrustTreeModel(aController, *this ) ;
     iProfileCommentModel = new ProfileCommentModel(aController, *this) ;
     iNetReqExecutor->setInterval(1000); // start is called by controller
@@ -233,6 +237,7 @@ Model::~Model() {
     delete iProfileModel ;
     delete iNetReqQueue ;
     delete iBinaryFileModel ;
+    delete iCaDbRecordModel ; 
     delete iSearchModel ;
     delete iTrustTreeModel ;
     delete iTclModel ;
@@ -320,8 +325,16 @@ bool Model::openDB() {
             QLOG_STR("Cleaned away faulty comments " + QString::number(query.numRowsAffected () )) ;
         }
     }
-    createTablesV2() ;
-    createTablesV3() ;
+
+    if ( isDbOpen ) {
+        createTablesV2() ;
+        createTablesV3() ;
+        createTablesV4() ;
+        QSqlQuery versionQuery("select sqlite_version()") ;
+        if ( versionQuery.exec() && versionQuery.next() ) {
+            QLOG_STR("Sqlite version " + versionQuery.value(0).toString()) ; 
+        }
+    }
     return isDbOpen ;
 }
 
@@ -619,14 +632,15 @@ bool Model::createTablesV2() {
                 if ( ret ) {
                     QSqlQuery q3;
                     ret = q3.exec("alter table settings add column call_acceptance int not null default 0") ;
+                    if ( !ret ) {
+                        QLOG_STR("alter table settings: " + q3.lastError().text());
+                        emit error(MController::DbTransactionError, q3.lastError().text()) ;
+                    }
                 }
                 if ( ret ) {
                     QSqlQuery q2;
                     q2.exec("update settings set datastore_version = 2") ;
-                } else {
-                    QLOG_STR("alter table settings: " + query.lastError().text());
-                    emit error(MController::DbTransactionError, query.lastError().text()) ;
-                }
+                } 
             }
         }
     }
@@ -664,14 +678,112 @@ bool Model::createTablesV3() {
                     QSqlQuery q2;
                     q2.exec("update settings set datastore_version = 3") ;
                 } else {
-                    QLOG_STR("alter table settings: " + query.lastError().text());
-                    emit error(MController::DbTransactionError, query.lastError().text()) ;
+                    QLOG_STR("alter table settings: " + q.lastError().text());
+                    emit error(MController::DbTransactionError, q.lastError().text()) ;
                 }
             }
         }
     }
     return ret ;
 }
+
+bool Model::createTablesV4() {
+    QLOG_STR("createTablesV4 in") ; 
+    QSqlQuery query;
+    bool ret ;
+    ret = query.prepare ("select datastore_version from settings" ) ;
+    ret = query.exec() ;
+
+    if ( !ret ) {
+        QLOG_STR("select datastore_version from settings: " + query.lastError().text());
+        emit error(MController::DbTransactionError, query.lastError().text()) ;
+    } else {
+        if ( query.next() && !query.isNull(0) ) {
+            int datastoreVersion ( query.value(0).toInt() ) ;
+            if ( datastoreVersion == 3 ) {
+                // upgrade datastore to version 4
+                QSqlQuery q;
+                ret = q.exec("create table dbrecord ( hash1 unsigned int not null,"
+                             "hash2 unsigned int not null,"
+                             "hash3 unsigned int not null,"
+                             "hash4 unsigned int not null,"
+                             "hash5 unsigned int not null,"
+                             "collection_hash1 unsigned int not null,"
+                             "collection_hash2 unsigned int not null,"
+                             "collection_hash3 unsigned int not null,"
+                             "collection_hash4 unsigned int not null,"
+                             "collection_hash5 unsigned int not null,"
+                             "sender_hash1 unsigned int not null,"
+                             "sender_hash2 unsigned int not null,"
+                             "sender_hash3 unsigned int not null,"
+                             "sender_hash4 unsigned int not null,"
+                             "sender_hash5 unsigned int not null,"
+                             "time_last_reference unsigned int not null,"
+                             "signature varchar(1024) not null,"
+                             "time_of_publish unsigned int not null,"
+                             "data blob," 
+                             "recvd_from  unsigned int not null,"
+                             "searchstring varchar(4096)," 
+                             "searchnumber bigint,"
+                             "isencrypted tinyint not null," 
+                             "issignatureverified tinyint not null);") ;// will store boolean value
+                if (!ret ) {
+                    QLOG_STR("create table dbrecord: " + q.lastError().text());
+                    emit error(MController::DbTransactionError, q.lastError().text()) ;
+                } 
+                if ( ret && SearchModel::queryIfFTSSupported() ) {
+                    QSqlQuery ftsQ ;
+                    ret = ftsQ.exec("create virtual table dbrecord_search using fts3(searchstring)") ;
+                    if (!ret) {
+                        QLOG_STR("FTS3 table dbrecord_search creation: " + ftsQ.lastError().text()) ;
+                        return false ;
+                    } else {
+                        QSqlQuery ftsQ2 ;
+                        ret = ftsQ2.exec("CREATE TRIGGER dbrecord_search_del BEFORE DELETE ON dbrecord BEGIN"
+                                         "  DELETE FROM dbrecord_search WHERE docid=old.hash1;"
+                                         "END;") ;
+                        if (!ret) {
+                            QLOG_STR("CREATE TRIGGER dbrecord_search_del: " + ftsQ2.lastError().text());
+                            emit error(MController::DbTransactionError, ftsQ2.lastError().text()) ;
+                        }
+                        
+                    }
+                } else {
+                    QLOG_STR("FTS was not supported") ;
+                }
+                if ( ret ) {
+                    QSqlQuery q3;
+                    ret = q3.exec("alter table settings add column dbrecord_maxrows int not null default 1000") ;
+                    if (!ret) {
+                        QLOG_STR("add dbrecord_maxrows: " + q3.lastError().text()) ;
+                        emit error(MController::DbTransactionError, q3.lastError().text()) ;
+                        return false ;
+                    }
+                    QSqlQuery q4;
+                    ret = q4.exec("update settings set dbrecord_maxrows = 100000") ;
+                    if (!ret) {
+                        QLOG_STR("update dbrecord_maxrows: " + q4.lastError().text()) ;
+                        emit error(MController::DbTransactionError, q4.lastError().text()) ;
+                        return false ;
+                    }
+                    QSqlQuery q5;
+                    ret = q5.exec("alter table tclprogs add column prog_data blob") ;
+                    if (!ret) {
+                        QLOG_STR("alter table tclprogs: " + q5.lastError().text()) ;
+                        emit error(MController::DbTransactionError, q5.lastError().text()) ;
+                        return false ;
+                    }
+                }
+                if ( ret ) {
+                    QSqlQuery q2;
+                    q2.exec("update settings set datastore_version = 4") ;
+                } 
+            }
+        }
+    }
+    return ret ;
+}
+
 
 void Model::initPseudoRandom() {
     SSL_load_error_strings();
@@ -931,6 +1043,9 @@ ProfileCommentModel& Model::profileCommentModel() const {
 }
 SearchModel* Model::searchModel() const {
     return iSearchModel ;
+}
+CaDbRecordModel* Model::caDbRecordModel() const {
+    return iCaDbRecordModel ;
 }
 TrustTreeModel* Model::trustTreeModel() const {
     return iTrustTreeModel ;
@@ -1398,7 +1513,14 @@ void Model::timerEvent(QTimerEvent*
     iProfileModel->truncateDataTableToMaxRows() ;
     unlock() ;
     QThread::yieldCurrentThread ();
-
+    lock() ;
+    iCaDbRecordModel->truncateDataTableToMaxRows() ;
+    unlock() ;
+    QThread::yieldCurrentThread ();
+    lock() ;
+    QSqlQuery vacuumQuery ; 
+    vacuumQuery.exec("vacuum") ;
+    unlock() ;
     // then check out for local network addresses:
     if ( (iTimeOfLastNetworkAddrCheck + (120*60)) < // every 120 minutes
             QDateTime::currentDateTimeUtc().toTime_t()) {
