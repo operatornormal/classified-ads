@@ -130,6 +130,7 @@ RESOURCES     = ui_resources.qrc
 TRANSLATIONS  = classified_ads_fi.ts \
                 classified_ads_sv.ts
 unix:LIBS = -lssl -lcrypto -lnatpmp -lminiupnpc -ltcl -ltk
+win32:LIBS+=-ltcl86 -ltk86
 lessThan(QT_MAJOR_VERSION, 5) {
      unix:LIBS +=  -lqjson -lmagic
 } 
@@ -143,6 +144,7 @@ win32:LIBS += "..\miniupnpc-1.9\miniupnpc.lib"
 win32:LIBS += "-L\msys32\usr\local\lib"
 win32:LIBS += "-lintl"
 win32:LIBS += "-L..\opus-1.1.2\binary\lib"
+win32:LIBS += "-L\msys32\opt\tcl\lib"
 lessThan(QT_MAJOR_VERSION, 5) {
     win32:LIBS += "-L" 
     win32:LIBS += "..\qjson-master\build\src"
@@ -153,6 +155,7 @@ win32:INCLUDEPATH += "..\openssl-1.0.2d\include"
 win32:INCLUDEPATH += "..\miniupnpc-1.9"
 win32:INCLUDEPATH += "\msys32\usr\local\include"
 win32:INCLUDEPATH += "..\opus-1.1.2\binary\include"
+win32:INCLUDEPATH += "\msys32\opt\tcl\include"
 lessThan(QT_MAJOR_VERSION, 5) {
     win32:INCLUDEPATH += "..\qjson-master\include"
 }

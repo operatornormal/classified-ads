@@ -97,7 +97,7 @@ Controller::Controller(QApplication &app) : iWin(NULL),
     iInsideDestructor(false),
     iSharedMemory(NULL),
 #ifdef WIN32
-    iLocalServer(NULL)
+    iLocalServer(NULL),
 #endif
     iTclWrapper(NULL),
     iGetFileNameDialog(NULL),

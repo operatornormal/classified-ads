@@ -1,21 +1,21 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-    Classified Ads is Copyright (c) Antti Järvinen 2013.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
 
-    This file is part of Classified Ads.
+  This file is part of Classified Ads.
 
-    Classified Ads is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  Classified Ads is free software; you can redistribute it and/or
+  modify it under the terms of the GNU Lesser General Public
+  License as published by the Free Software Foundation; either
+  version 2.1 of the License, or (at your option) any later version.
 
-    Classified Ads is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Classified Ads is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with Classified Ads; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+  You should have received a copy of the GNU Lesser General Public
+  License along with Classified Ads; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 #ifdef WIN32
 #include <winsock2.h>
@@ -112,7 +112,35 @@ int main(int argc, char *argv[]) {
 #endif // check of $DISPLAY or $WAYLAND_DISPLAY
 
     app = new QApplication (argc, argv);
-
+#ifdef WIN32
+    // In windows it is necessary to tell TCL where
+    // its runtime resides:
+    if ( getenv("TCL_LIBRARY") == NULL  ) {
+      // TCL library variable is not set, set:
+      QString tclLib ( "TCL_LIBRARY=" +
+		       QCoreApplication::applicationDirPath() +
+		       "/tcl8.6") ; 
+      QLOG_STR("Setting TCL library to " + tclLib) ; 
+      putenv(tclLib.toUtf8().constData()) ; 
+    }
+    QString tclLibValue ; 
+    if ( getenv("TCLLIBPATH") != NULL  ) {
+      char *tclLibEnvValue ( getenv("TCLLIBPATH") ) ; 
+      tclLibValue.append(QString ( tclLibEnvValue ) ) ; 
+    } 
+    if ( tclLibValue.toLower().contains("tk8") == false ) {
+      // tk is not mentioned in library path, put it there
+      if ( tclLibValue.isEmpty() == false ) {
+	tclLibValue.append(" ") ; // separating whitespace
+      }
+      QString tclLibSetCmd  ( "TCLLIBPATH=" +
+			      tclLibValue + 
+			      QCoreApplication::applicationDirPath() +
+			      "/tk8.6") ; 
+      QLOG_STR("Setting TCLLIBPATH to " + tclLibSetCmd) ; 
+      putenv(tclLibSetCmd.toUtf8().constData()) ; 
+    }
+#endif
     CATranslator caTranslator;
 
     if ( caTranslator.load( "qt_" + QLocale::system().name()) == false )  {

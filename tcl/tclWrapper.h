@@ -307,7 +307,7 @@ private: // these are not public
     TclConsoleDialog* iConsole ;
     QQueue<QString> iScriptQueue ;
     QString iMainWindowTitle ;
-    QQueue<QPair<Hash, ProtocolItemType>> iAddedDataModelItems ;
+    QQueue<QPair<Hash, ProtocolItemType> > iAddedDataModelItems ;
     TclCallbacks* iTclCallbacks ;
 } ;
 #endif
