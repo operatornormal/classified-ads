@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: classified-ads 0.10\n"
+"Project-Id-Version: classified-ads 0.12\n"
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2017-03-21 20:48+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -24,6 +24,18 @@ msgstr ""
 #: ui/attachmentlistdialog.cpp:151 ui/attachmentlistdialog.cpp:153
 msgctxt "AttachmentListDialog|"
 msgid "files"
+msgstr ""
+
+# Appears as dialog title where text asks if user wants to save into "application library" or into local file
+#: ui/attachmentlistdialog.cpp:162
+msgctxt "AttachmentListDialog|"
+msgid "Save location"
+msgstr ""
+
+# Dialog text regarding TCL app save location
+#: ui/attachmentlistdialog.cpp:163
+msgctxt "AttachmentListDialog|"
+msgid "Save to TCL app library instead of regular file?"
 msgstr ""
 
 # Dialog title text for dialog asking user to give a name to file for purpose of saving it to filesystem. 
@@ -537,6 +549,36 @@ msgctxt "Controller|"
 msgid "&File"
 msgstr ""
 
+# Menu title. Menu contains menu-items related to TCL-programs.
+#: controller.cpp:729
+msgctxt "Controller|"
+msgid "&TCL Programs"
+msgstr ""
+
+# Menu item from menu of TCL-related items. Selecting this menu item opens library of TCL programs. 
+#: controller.cpp:730
+msgctxt "Controller|"
+msgid "&Local library"
+msgstr ""
+
+# Tooltip-text for menu item that opens local TCL program library.
+#: controller.cpp:731
+msgctxt "Controller|"
+msgid "Locally stored TCL programs"
+msgstr ""
+
+# Difficult to translate: after selecting this menu-item you can write ad-hoc TCL programs to TCL interpreter that may be already executing existing program or is empty. Practically gives TCL command line access to possibly running interpreter.
+#: controller.cpp:734
+msgctxt "Controller|"
+msgid "TCL &Console"
+msgstr ""
+
+# Tooltip for menu-item that displays dialog where you can type in ad-hoc TCL-programs.
+#: controller.cpp:735
+msgctxt "Controller|"
+msgid "Display interpreter console"
+msgstr ""
+
 # Password dialog prompt.
 #: controller.cpp:571
 msgctxt "Controller|"
@@ -601,6 +643,12 @@ msgstr ""
 #: controller.cpp:788
 msgctxt "Controller|"
 msgid "Bad password"
+msgstr ""
+
+# Dialog title for error dialog that displays error message originating from TCL-interpereter. 
+#: controller.cpp:1043
+msgctxt "Controller|"
+msgid "TCL Interpreter"
 msgstr ""
 
 # Error message text inside a dialog when user had requested for an item to be opened but program could not find the requested item.   
@@ -823,6 +871,18 @@ msgstr ""
 #: FrontWidget.cpp:1167 FrontWidget.cpp:1173
 msgctxt "FrontWidget|"
 msgid "files"
+msgstr ""
+
+# Dialog title for dialog that asks whether user wants to save TCL program into local library or into filesystem file
+#: FrontWidget.cpp:1183
+msgctxt "FrontWidget|"
+msgid "Save location"
+msgstr ""
+
+# Dialog text in question dialog asking if user wants to save TCL app into local library or into filesystem file
+#: FrontWidget.cpp:1184
+msgctxt "FrontWidget|"
+msgid "Save to TCL app library instead of regular file?"
 msgstr ""
 
 # File selection dialog title text. Dialog prompts user to select location+name for an file to be exported into filesystem.
@@ -1097,6 +1157,12 @@ msgctxt "PasswordDialog|"
 msgid "OK"
 msgstr ""
 
+# Check-box item text. If check-box is selected, password is shown in text editor, if not selected then "hidden text" editor is used that does not show the word being typed. 
+#: ui/passwordDialog.ui:68
+msgctxt "PasswordDialog|"
+msgid "Show password"
+msgstr ""
+
 # Tooltip text. Shown when user hovers mouse cursor on top of message sender name. First %1 will be replaced with nickname of the operator whose message is hovered, %2 will be replaced by nickname of operator who has expressed positive trust towards the operator who sent the message. 
 #: datamodel/privmsgsearchmodel.cpp:110
 #, qt-format
@@ -1218,6 +1284,49 @@ msgstr ""
 #: ui/searchdisplay.cpp:62
 msgctxt "SearchDisplay|"
 msgid "Open.."
+msgstr ""
+
+# Button text. When button is pressed, TCL program is started. 
+#: ui/tclPrograms.cpp:42
+msgctxt "TclProgramsDialog|"
+msgid "Evaluate"
+msgstr ""
+
+# Button text. If button is pressed, TCL program being executed is stopped.
+#: ui/tclPrograms.cpp:43
+msgctxt "TclProgramsDialog|"
+msgid "Stop program"
+msgstr ""
+
+# Button text for button that permanently removes TCL program from local library
+#: ui/tclPrograms.cpp:49
+msgctxt "TclProgramsDialog|"
+msgid "Delete program"
+msgstr ""
+
+# Dialog title for dialog that asks user to type in name of TCL program. 
+#: ui/tclPrograms.cpp:99
+msgctxt "TclProgramsDialog|"
+msgid "TCL Program name"
+msgstr ""
+
+# Text-input label text. Text input will contain name of TCL program. 
+#: ui/tclPrograms.cpp:100
+msgctxt "TclProgramsDialog|"
+msgid "Name:"
+msgstr ""
+
+# Dialog title text for situation where user is about to delete a TCL program. Dialog includes question and yes+no buttons. 
+#: ui/tclPrograms.cpp:140
+msgctxt "TclProgramsDialog|"
+msgid "Deletion confirmation"
+msgstr ""
+
+# Dialog text from deletion-confirmation dialog
+#: ui/tclPrograms.cpp:141
+#, qt-format
+msgctxt "TclProgramsDialog|"
+msgid "Permanently delete program %1?"
 msgstr ""
 
 # Menu title text. This is the help menu. 
@@ -2595,6 +2704,12 @@ msgctxt "settingsDialog|"
 msgid "Nr of profile comments to keep"
 msgstr ""
 
+# Settings dialog text for item that tells how many records of distributed database to keep
+#: ui/settingsDialog.ui:313
+msgctxt "settingsDialog|"
+msgid "Nr of db records to keep"
+msgstr ""
+
 # Label for combo-box where user can choose between voice call ringtones. 
 #: ui/settingsDialog.ui:316
 msgctxt "settingsDialog|"
@@ -2703,4 +2818,52 @@ msgstr ""
 #: ui/statusDialog.ui:202
 msgctxt "statusDialog|"
 msgid "Close"
+msgstr ""
+
+# Dialog title text for dialog that displays TCL interpreter console.
+#: ui/tclConsole.ui:26
+msgctxt "tclConsoleDialog|"
+msgid "TCL Interpreter console"
+msgstr ""
+
+# Button text for button that runs TCL commands that user has typed
+#: ui/tclConsole.ui:51
+msgctxt "tclConsoleDialog|"
+msgid "Evaluate"
+msgstr ""
+
+# Button text for button that closes TCL interpreter window. Not the interpreter but only the console dialog.  
+#: ui/tclConsole.ui:58
+msgctxt "tclConsoleDialog|"
+msgid "Close"
+msgstr ""
+
+# label for text field that shows TCL interpreter output
+#: ui/tclConsole.ui:69
+msgctxt "tclConsoleDialog|"
+msgid "Interpreter output"
+msgstr ""
+
+# label for text field that shows TCL interpreter input
+#: ui/tclConsole.ui:79
+msgctxt "tclConsoleDialog|"
+msgid "Command input"
+msgstr ""
+
+# Dialog title text for dialog that lists stored TCL programs
+#: ui/tclPrograms.ui:26
+msgctxt "tclProgramsDialog|"
+msgid "TCL programs"
+msgstr ""
+
+# Label for list-item that lists stored TCL programs.
+#: ui/tclPrograms.ui:48
+msgctxt "tclProgramsDialog|"
+msgid "Stored programs"
+msgstr ""
+
+# Label for text item that shows program text of locally stored TCL program
+#: ui/tclPrograms.ui:68
+msgctxt "tclProgramsDialog|"
+msgid "Program code"
 msgstr ""

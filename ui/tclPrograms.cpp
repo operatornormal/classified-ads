@@ -46,7 +46,7 @@ TclProgramsDialog::TclProgramsDialog(QWidget *aParent,
     ui.buttonBox->addButton(iEvalButton, QDialogButtonBox::ActionRole);
     connect (iEvalButton, SIGNAL(clicked()), this, SLOT(evalButtonPressed())) ;
 
-    iDeleteButton = new QPushButton("Delete program", this) ;
+    iDeleteButton = new QPushButton(tr("Delete program"), this) ;
     ui.buttonBox->addButton(iDeleteButton, QDialogButtonBox::ActionRole);
     connect (iDeleteButton, SIGNAL(clicked()), this, SLOT(discardButtonPressed())) ;
 
