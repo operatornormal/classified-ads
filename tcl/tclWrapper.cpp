@@ -508,6 +508,8 @@ bool TclWrapper::initExtensions(Tcl_Interp* aInterp) {
                        "::classifiedAdsVersion",
                        CLASSIFIED_ADS_VERSION,
                        0) ; 
+            // and finally set keyboard input focus
+            Tcl_EvalEx(safeInterp, "focus .", -1, TCL_EVAL_GLOBAL) ; 
         }
     } else {
         QLOG_STR("Could not find slave interpreter") ;
