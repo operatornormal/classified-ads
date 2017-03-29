@@ -31,7 +31,7 @@ proc game_init {} {
     canvas .c -width [ expr $::area_max_x * 3 ] -height [ expr $::area_max_y * 3 ]
     pack .c
     frame .f
-    button .f.b -text {Stop stop} -command exit
+    button .f.b -text {Stop stop} -command button_procedure
     pack .f.b -side right -padx 10
     set ::game_speed 300
     scale .f.s -orient horizontal -showvalue false -label Speed -variable ::game_speed -from 100 -to 500
@@ -43,6 +43,9 @@ proc game_init {} {
     # initialize worm at beginning
     set ::wurm_dir up
     set ::color_counter 0
+    set ::color_increment 1
+    # on-off -switch here, if game is on or not
+    set ::wurm_moves 1
 }
 # function that draws frontside of the worm
 proc display_worm_head { pos_x pos_y } {
@@ -50,26 +53,33 @@ proc display_worm_head { pos_x pos_y } {
     set actual_y [ expr $pos_y * 3 ]
     set tag [ format {%d_%d} $pos_x $pos_y ]
     set wurm_color [ format "\#%02X%02X%02X" $::color_counter 167 50 ]
-    incr ::color_counter
-    if { $::color_counter > 255 } {
-        set ::color_counter 0 
+    set ::color_counter [ expr $::color_counter + $::color_increment ]
+    if { $::color_counter > 254 } {
+        set ::color_increment -1 
+    }
+    if { $::color_counter < 1 } {
+        set ::color_increment 1
     }
     .c create rectangle $actual_x $actual_y [ expr $actual_x + 3 ] [ expr $actual_y + 3 ] -outline $wurm_color -fill $wurm_color -tag $tag
     # last item in list always head, first item then the tail
-    lappend ::wurm_tail $tag
-    incr ::worm_extension_counter 
-    if { $::worm_extension_counter > $::worm_extension_speed } {
-        # do not remove tail, reset counter:
-        set ::worm_extension_counter 0
-        puts {counter reset}
+    if { [ lsearch $::wurm_tail $tag ] == -1 } {
+        lappend ::wurm_tail $tag
+        incr ::worm_extension_counter 
+        if { $::worm_extension_counter > $::worm_extension_speed } {
+            # do not remove tail, reset counter:
+            set ::worm_extension_counter 0
+        } else {
+            # retrieve item:
+            set tail_item [ lindex $::wurm_tail 0 ]
+            # remove item frontmost item:
+            set ::wurm_tail [ lreplace $::wurm_tail 0 0 ]
+            # un-draw the tail:
+            .c delete [ .c find withtag $tail_item ]
+        }
     } else {
-        # retrieve item:
-        set tail_item [ lindex $::wurm_tail 0 ]
-        # remove item frontmost item:
-        set ::wurm_tail [ lreplace $::wurm_tail 0 0 ]
-        # un-draw the tail:
-        puts [ format {deleting item with tag %s counter %d list %s } $tail_item $::worm_extension_counter [ .c find withtag $tail_item ] ]
-        .c delete [ .c find withtag $tail_item ]
+        # game over, worm eats its own tail
+        set ::wurm_moves 0 
+        .f.b configure -text {Restart}
     }
 }
 # non-slithering version
@@ -104,6 +114,17 @@ proc advance_worm {} {
     set ::wurm_len [ format {Len %d} [ llength $::wurm_tail ] ]
 }
 
+proc button_procedure {} {
+    if { $::wurm_moves == 0 } {
+        set ::wurm_moves 1
+        .c delete "all"
+        worm_init
+        .f.b configure -text {Stop stop}
+    } else {
+        exit
+    } 
+}
+
 proc worm_init {} {
     # keep the animal in a list so we know where it is:
     set ::wurm_tail [ list ]
@@ -126,8 +147,10 @@ proc keys_init {} {
 
 # game is played here:
 proc game_loop {} {
-    advance_worm
-    display_worm_head $::wurm_x $::wurm_y 
+    if { $::wurm_moves == 1 } {
+        advance_worm
+        display_worm_head $::wurm_x $::wurm_y 
+    }
     after $::game_speed game_loop
 }
 
