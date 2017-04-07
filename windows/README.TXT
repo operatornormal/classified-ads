@@ -71,7 +71,11 @@ After classified ads is compiled you need to copy
 C:\msys32\opt\tcl\bin\tcl86.dll
 C:\msys32\opt\tcl\bin\tk86.dll
 C:\msys32\opt\tcl\bin\zlib1.dll
-into same directory with classified-ads.exe. Copy TCL and Tk runtime 
+into same directory with classified-ads.exe. If classified-ads.exe does not
+exists yet (see last steps of this README.TXT) then simply create directories
+"debug" and "release" under directory where classified ads source
+code will be unpacked ; build process will produce the binary into
+those directories, depending on debug/release setting. Copy TCL and Tk runtime 
 files into path relative to classified-ads.exe ; Tcl library needs to be
 found from sub-directory tcl8.6 and tk library (usually found from 
 c:\msys32\opt\tcl\lib\tk8.6) needs to be copied to directory tk8.6
@@ -88,7 +92,9 @@ existing TCL library path ; if there is existing TCL installation that
 sets TCL_LIBRARY or TCLLIBPATH it may or may not interfere with TCL
 installation bundled classified ads. If Classified ads starts using
 wrong TCL runtime, it may be necessary to unset TCL_LIBRARY and TCLLIBPATH 
-first. 
+first. Also copy from tcl/lib directory contents of directory "tcl8" 
+into same directory where directories tcl8.6 and tcl8.6 reside, same
+directory where classified-ads.exe is found. 
 
 6. Get classified ads, preferably from  https://github.com/operatornormal/classified-ads/archive/master.zip
     unzip, possibly adjust directories in file classified-ads.pro so that all libraries listed

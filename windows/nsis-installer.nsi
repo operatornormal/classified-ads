@@ -129,6 +129,12 @@ CreateDirectory "$INSTDIR\tk8.6"
 CreateDirectory "$INSTDIR\tk8.6\images"
 CreateDirectory "$INSTDIR\tk8.6\msgs"
 CreateDirectory "$INSTDIR\tk8.6\ttk"
+CreateDirectory "$INSTDIR\tcl8"
+CreateDirectory "$INSTDIR\tcl8\8.4"
+CreateDirectory "$INSTDIR\tcl8\8.4\platform"
+CreateDirectory "$INSTDIR\tcl8\8.5"
+CreateDirectory "$INSTDIR\tcl8\8.6"
+CreateDirectory "$INSTDIR\tcl8\8.6\tdbc"
 # and files
 file /oname=$INSTDIR\tcl8.6\auto.tcl ..\release\tcl8.6\auto.tcl
 file /oname=$INSTDIR\tcl8.6\clock.tcl ..\release\tcl8.6\clock.tcl
@@ -1040,6 +1046,12 @@ file /oname=$INSTDIR\tk8.6\xmfbox.tcl ..\release\tk8.6\xmfbox.tcl
 file /oname=$INSTDIR\zlib1.dll ..\release\zlib1.dll
 file /oname=$INSTDIR\tcl86.dll ..\release\tcl86.dll
 file /oname=$INSTDIR\tk86.dll ..\release\tk86.dll
+file /oname=$INSTDIR\tcl8\8.4\platform\shell-1.1.4.tm ..\release\tcl8\8.4\platform\shell-1.1.4.tm 
+file /oname=$INSTDIR\tcl8\8.4\platform-1.0.14.tm ..\release\tcl8\8.4\platform-1.0.14.tm 
+file /oname=$INSTDIR\tcl8\8.5\msgcat-1.6.0.tm ..\release\tcl8\8.5\msgcat-1.6.0.tm
+file /oname=$INSTDIR\tcl8\8.5\tcltest-2.4.0.tm ..\release\tcl8\8.5\tcltest-2.4.0.tm
+file /oname=$INSTDIR\tcl8\8.6\http-2.8.9.tm ..\release\tcl8\8.6\http-2.8.9.tm
+file /oname=$INSTDIR\tcl8\8.6\tdbc\sqlite3-1.0.4.tm ..\release\tcl8\8.6\tdbc\sqlite3-1.0.4.tm
 # end of TCL-related files and directories
 WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Classified-ads" "DisplayName" "Classified-ads (remove only)"
 WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Classified-ads" "UninstallString" "$INSTDIR\Uninstall.exe"
@@ -2074,6 +2086,12 @@ delete "$INSTDIR\tk8.6\xmfbox.tcl"
 delete "$INSTDIR\zlib1.dll"
 delete "$INSTDIR\tcl86.dll"
 delete "$INSTDIR\tk86.dll"
+delete "$INSTDIR\tcl8\8.4\platform\shell-1.1.4.tm"
+delete "$INSTDIR\tcl8\8.4\platform-1.0.14.tm"
+delete "$INSTDIR\tcl8\8.5\msgcat-1.6.0.tm"
+delete "$INSTDIR\tcl8\8.5\tcltest-2.4.0.tm"
+delete "$INSTDIR\tcl8\8.6\http-2.8.9.tm"
+delete "$INSTDIR\tcl8\8.6\tdbc\sqlite3-1.0.4.tm"
 # then directories
 RMDIR "$INSTDIR\tk8.6\images"
 RMDIR "$INSTDIR\tk8.6\msgs"
@@ -2106,6 +2124,12 @@ RMDIR "$INSTDIR\tcl8.6\http1.0"
 RMDIR "$INSTDIR\tcl8.6\msgs"
 RMDIR "$INSTDIR\tcl8.6\opt0.4"
 RMDIR "$INSTDIR\tcl8.6"
+RMDIR "$INSTDIR\tcl8\8.6\tdbc"
+RMDIR "$INSTDIR\tcl8\8.6"
+RMDIR "$INSTDIR\tcl8\8.4\platform"
+RMDIR "$INSTDIR\tcl8\8.4"
+RMDIR "$INSTDIR\tcl8\8.5"
+RMDIR "$INSTDIR\tcl8"
 # end of removal of TCL-related files
 RMDIR "$INSTDIR"
 DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\Classified-ads"
