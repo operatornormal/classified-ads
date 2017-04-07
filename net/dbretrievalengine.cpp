@@ -25,6 +25,11 @@
 #include "connection.h"
 #include "protocol_message_formatter.h"
 
+/**
+ * How often to repeat query to connected nodes to keep db up-to-date
+ */
+static const int KNetworkQueryRepeatIntervalSeconds ( 15 * 60 ) ;
+ 
 DbRecordRetrievalEngine::DbRecordRetrievalEngine(Controller* aController,
                                                  Model& aModel) :
     QTimer(aController),
@@ -41,9 +46,9 @@ DbRecordRetrievalEngine::~DbRecordRetrievalEngine() {
 
 
 // very simple algorithm here: for each newly-connected node
-// send every query that we have in stock. query.second contains
+// send every query that we have in stock. query.iListOfNodes contains
 // book-keeping about nodes that already have been sent the
-// query that is kept in query.first. 
+// query that is kept in query.iTerms. 
 void DbRecordRetrievalEngine::run() {
     if ( iNowRunning == false ) {
         iNowRunning = true ;
@@ -54,15 +59,35 @@ void DbRecordRetrievalEngine::run() {
             for ( int i = iSearchTerms.size()-1 ; i >= 0 ; i-- ) {
                 DlQueueItem& query ( iSearchTerms[i] ) ; 
                 foreach ( const Hash& connectedNode, iNodesSuccessfullyConnected ) {
-                    if ( query.second.contains(connectedNode) == false ) {
-                        sendQueryToNode(query.first, 
+                    if ( query.iListOfNodes.contains(connectedNode) == false ) {
+                        sendQueryToNode(query.iTerms, 
                                         connectedNode) ; 
-                        query.second.append(connectedNode) ; 
+                        query.iListOfNodes.append(connectedNode) ; 
+                        query.iTimeOfLastRefresh = QDateTime::currentDateTimeUtc() ; 
                     }
                 }
             }
         } // if ( iSearchTerms.size() > 0 ) 
         iNodesSuccessfullyConnected.clear() ; 
+
+        // 2nd stage: if there are queries where iTimeOfLastRefresh 
+        // is long time ago, repeat the queries
+        for ( int i = iSearchTerms.size()-1 ; i >= 0 ; i-- ) {
+            DlQueueItem& query ( iSearchTerms[i] ) ; 
+            QDateTime currentTime ( QDateTime::currentDateTimeUtc() ) ; 
+            QLOG_STR("Repeating db query because time is up") ; 
+            if ( query.iTimeOfLastRefresh.secsTo(currentTime) >
+                 KNetworkQueryRepeatIntervalSeconds ) {
+                // query needs to be repeated
+                foreach ( const Hash& connectedNode, query.iListOfNodes) {
+                    if ( iModel.nodeModel().isNodeAlreadyConnected(connectedNode) ) {
+                        sendQueryToNode(query.iTerms, 
+                                        connectedNode) ; 
+                    }
+                }
+                query.iTimeOfLastRefresh = QDateTime::currentDateTimeUtc() ; 
+            }
+        }
         iModel.unlock() ;
         iNowRunning = false ;
     }
@@ -107,13 +132,15 @@ void DbRecordRetrievalEngine::startRetrieving(CaDbRecord::SearchTerms aSearchTer
     // -> spamming the network with smaller query makes no
     // sense if broader query is already underway
     foreach ( const DlQueueItem& oldQuery, iSearchTerms) {
-        if ( aSearchTerms < oldQuery.first ) {
+        if ( aSearchTerms < oldQuery.iTerms ) {
             return ; // proceed no further
         }
     }
-    DlQueueItem dlQueueItem ( aSearchTerms, 
-                              QList<Hash>() ) ; 
 
+    DlQueueItem dlQueueItem ; 
+    dlQueueItem.iTerms = aSearchTerms ; 
+    dlQueueItem.iTimeOfLastRefresh = QDateTime::currentDateTimeUtc() ; 
+    
     // as new content is added, add also candidate nodes to connection
     // wishlist:
     QList<Node *>* nodesToTry =
@@ -131,7 +158,7 @@ void DbRecordRetrievalEngine::startRetrieving(CaDbRecord::SearchTerms aSearchTer
                 sendQueryToNode(aSearchTerms, 
                                 connectCandidate->nodeFingerPrint()) ; 
                 // mark this node to list of nodes already spammed with this query:
-                dlQueueItem.second.append(connectCandidate->nodeFingerPrint()) ; 
+                dlQueueItem.iListOfNodes.append(connectCandidate->nodeFingerPrint()) ; 
                 delete connectCandidate ; 
             } else {
                 // node was not already connected, put it into wishlist
@@ -158,7 +185,7 @@ void DbRecordRetrievalEngine::notifyOfContentReceived(const Hash& aHashOfContent
     if ( aTypeOfReceivedContent == DbRecord ) {
         iModel.lock() ;
         for ( int i = iSearchTerms.size()-1 ; i >= 0 ; i-- ) {
-            if ( iSearchTerms[i].first.iById == aHashOfContent ) {
+            if ( iSearchTerms[i].iTerms.iById == aHashOfContent ) {
                 iSearchTerms.removeAt(i) ; 
             }
         }

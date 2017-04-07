@@ -106,7 +106,14 @@ private: // data
     QList<Hash> iNodesSuccessfullyConnected ;
     QList<Hash> iNodesFailurefullyConnected ;
     /** Type definition for download queue items. See @ref iSearchTerms */
-    typedef QPair<CaDbRecord::SearchTerms, QList<Hash>> DlQueueItem ;  
+    typedef struct DlQueueItemStruct {
+        /** search conditions */
+        CaDbRecord::SearchTerms iTerms ; 
+        /** nodes that have been sent the conditions */
+        QList<Hash> iListOfNodes ; 
+        /** last time when any node on iListOfNodes got query */
+        QDateTime iTimeOfLastRefresh ; 
+    } DlQueueItem ; 
     /**
      * List of records to try retrieve. In pair inside the list
      * the "first" item is actual search condidtions, 
