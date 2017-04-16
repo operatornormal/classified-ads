@@ -345,7 +345,7 @@ Tcl_Interp* TclWrapper::initInterpreter() {
                                    "wm title . $windowTitleStr\n"
                                    "set w .safeTkFrame\n"
                                    "frame $w -container 1;\n"
-                                   "pack .safeTkFrame\n"
+                                   "pack .safeTkFrame -fill both -expand yes\n"
                                    "set topLevelWindowId [winfo id $w]\n") ;
             errorCode = Tcl_EvalEx(retval,initialization.toUtf8().constData() ,-1, TCL_EVAL_GLOBAL) ;
             QLOG_STR("Tk init " + QString::number(errorCode)) ;
