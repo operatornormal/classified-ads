@@ -688,7 +688,7 @@ int TclWrapper::outputProcImpl(
     int * /* aErrorCodePtr */) {
     if ( aToWrite > 0 ) {
         if ( *aBuf == '\n' ) {
-            QString output ( iStdOutBuffer ) ;
+            QString output ( QString::fromUtf8(iStdOutBuffer) ) ;
             QLOG_STR("TclWrapper::stdout " + output) ;
             emit consoleOutput(output) ; // signal usually connected to console dlg
             iStdOutBuffer.clear() ;
