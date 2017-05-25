@@ -211,8 +211,16 @@ private: // methods
                                   const QByteArray& aSignature,
                                   quint32 aReceivedFrom ) ; 
 
+    /**
+     * method for checking if db record is in db already.
+     * @param aRecord is the record to check
+     * @param aResult gets set to true/false as result
+     * @param aTimestampOfOldRecord if aResult get set to true,
+     *        this gets set to timestamp of previously persisted record
+     */
     QString isRecordNew(const CaDbRecord &aRecord,
-                        bool* aResult ) ; 
+                        bool* aResult,
+                        quint32* aTimestampOfOldRecord = NULL ) ; 
 
     /**
      * method tries to verify record. if verification

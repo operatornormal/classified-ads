@@ -1303,8 +1303,8 @@ int TclCallbacks::publishDbRecordCmdImpl(ClientData /* aCData */, Tcl_Interp *aI
                             
                     } else if ( keyStr == KTCLDbRecordCollectionId ) {
                         r.iCollectionId.fromString(reinterpret_cast<const unsigned char *>(Tcl_GetStringFromObj(value,&argumentStrLen))) ; 
-                        if ( r.iRecordId == KNullHash ) {
-                            QLOG_STR("Got null record id - record will be published as new") ;
+                        if ( r.iCollectionId == KNullHash ) {
+                            QLOG_STR("Got null collection id - can not continue publish") ;
                         }
                             
                     } else if ( keyStr == KTCLDbRecordSearchPhrase ) {

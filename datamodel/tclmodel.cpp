@@ -233,6 +233,9 @@ QString TclModel::storeTCLProgLocalData(const Hash& aProgram,
                 query.bindValue(":d", QString()); // null value
             }
             ret = query.exec() ;
+            if ( query.numRowsAffected() == 0 ) {
+                return ("Data not saved, is program stored?") ; 
+            }
         }
         QLOG_STR("TclModel::storeTCLProgLocalData " + QString::number(ret)) ;
         if ( ret == false ) {

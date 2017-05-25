@@ -60,6 +60,9 @@ QString CaDbRecordModel::publishDbRecord(CaDbRecord& aRecord,
                                          const QList<Hash>* aRecordReaders) {
     LOG_STR("CaDbRecordModel::publishDbRecord() collection = " + 
             aRecord.iCollectionId.toString() ) ;
+    if ( aRecord.iCollectionId == KNullHash ) {
+        return "Collection is mandatory" ; 
+    }
     aRecord.iTimeOfPublish = QDateTime::currentDateTimeUtc().toTime_t() ;
     aRecord.iSenderHash = iController->profileInUse() ; 
     if ( aRecord.iData.size() > 0 ) {
@@ -477,7 +480,15 @@ bool CaDbRecordModel::doHandlepublishedOrSentRecord(CaDbRecord& aRecord,
     // ok, lets see .. if we have this particular record already in storage
     bool isRecordNew ( false ) ; 
     bool publicKeyWasFound ( false ) ; 
-    this->isRecordNew(aRecord, &isRecordNew) ; 
+    quint32 timeOfPrevRecord ( 0 ) ; 
+    this->isRecordNew(aRecord, &isRecordNew,&timeOfPrevRecord) ; 
+    // it is possible that we already have a more recent version
+    // of the record:
+    if ( isRecordNew == false &&
+         timeOfPrevRecord >= aRecord.iTimeOfPublish ) {
+        // already got the record, or more recent record.
+        return true ; 
+    }
     // ok, lets see .. should we verify first.
     // first, if we have profile, we can verify.
 
@@ -724,7 +735,8 @@ QString CaDbRecordModel::persistDbRecordIntoDb(const CaDbRecord &aRecord,
 
 
 QString CaDbRecordModel::isRecordNew(const CaDbRecord &aRecord,
-                                     bool* aResult ) {
+                                     bool* aResult,
+                                     quint32* aTimestampOfOldRecord ) {
     if ( aResult == NULL ) {
         return "No pointer?" ;
     }
@@ -759,9 +771,17 @@ QString CaDbRecordModel::isRecordNew(const CaDbRecord &aRecord,
         return query.lastError().text() ; 
     } else {
         if ( query.next() && !query.isNull(0) ) {
-            quint32 maxTimeOfPublish ( query.value(1).toInt() ) ; 
-            if ( query.value(0).toInt() == 0 && aRecord.iTimeOfPublish > maxTimeOfPublish ) {
+            if ( query.value(0).toInt() == 0 ) {
                 *aResult = true ; // it was not in db already 
+                if ( aTimestampOfOldRecord ) { 
+                    *aTimestampOfOldRecord = 0 ; 
+                }
+            } else {
+                if ( aTimestampOfOldRecord &&
+                     !query.isNull(1)) {
+                    quint32 maxTimeOfPublish ( query.value(1).toUInt() ) ; 
+                    *aTimestampOfOldRecord = maxTimeOfPublish ; 
+                }
             }
         }
     }
