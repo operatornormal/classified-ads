@@ -56,6 +56,7 @@ const char *KTCLCommandStore = "storeLocalData" ;
 const char *KTCLCommandRetrieve = "retrieveLocalData" ; 
 const char *KTCLCommandOpen = "openFileSystemFile" ; 
 const char *KTCLCommandSave = "saveFileSystemFile" ; 
+const char *KTCLCommandIsProfileTrusted = "isProfileTrusted" ; 
 
 TclWrapper::TclWrapper(Model& aModel,
                        MController& aController)
@@ -429,6 +430,8 @@ bool TclWrapper::initExtensions(Tcl_Interp* aInterp) {
                                   openFileCmd, NULL, NULL) == NULL )||
             (Tcl_CreateObjCommand(safeInterp, KTCLCommandSave,
                                   saveFileCmd, NULL, NULL) == NULL )||
+            (Tcl_CreateObjCommand(safeInterp, KTCLCommandIsProfileTrusted,
+                                  isProfileTrustedCmd, NULL, NULL) == NULL )||
             (Tcl_CreateObjCommand(safeInterp, KTCLCommandPublishDbRecord,
                                   publishItemCmd, NULL, NULL) == NULL )) {            
             QLOG_STR("Could not create command listProfiles") ;
@@ -654,6 +657,15 @@ int TclWrapper::saveFileCmd(ClientData aCData, Tcl_Interp *aInterp, int aObjc, T
                                      aInterp,
                                      aObjc,
                                      aObjv) ;
+}
+// static method
+int TclWrapper::isProfileTrustedCmd(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj *const aObjv[]) {
+    QLOG_STR("TclWrapper::isProfileTrustedCmd in") ; 
+    return controllerInstanceEx->tclWrapper()
+        .iTclCallbacks->isProfileTrustedImpl(aCData,
+                                             aInterp,
+                                             aObjc,
+                                             aObjv) ;
 }
 
 

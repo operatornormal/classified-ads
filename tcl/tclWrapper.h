@@ -247,6 +247,10 @@ private: // methods
      */
     static int openFileCmd(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj *const aObjv[]) ;
     /**
+     * Callback-method for checking profile in trust-tree. 
+     */
+    static int isProfileTrustedCmd(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj *const aObjv[]) ;
+    /**
      * tcl channel procedures
      */
     static int closeProc(

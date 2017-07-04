@@ -32,6 +32,7 @@
 #include "../datamodel/contentencryptionmodel.h"
 #include "../datamodel/cadbrecord.h"
 #include "../datamodel/cadbrecordmodel.h"
+#include "../datamodel/trusttreemodel.h"
 #include "../datamodel/tclprogram.h"
 #include "../datamodel/tclmodel.h"
 #include "../tcl/tclWrapper.h"
@@ -1706,4 +1707,38 @@ int TclCallbacks::openFileImpl(ClientData /*aCData*/, Tcl_Interp *aInterp, int a
     Tcl_SetObjResult(aInterp, result);
     delete fileContent ; 
     return TCL_OK ; 
+}
+
+// non-static version of profile trust status getter.
+int TclCallbacks::isProfileTrustedImpl(ClientData /* aCData */, Tcl_Interp *aInterp, int aObjc, Tcl_Obj *const aObjv[]) {
+    int argumentStrLen (0) ;
+    // normally aObjc = 2, as first argument is command itself,
+    // and 2nd argument is the search term
+    if ( aObjc > 1 ) {
+        const unsigned char *argumentStr(
+            reinterpret_cast<const unsigned char *>( Tcl_GetStringFromObj(aObjv[1], &argumentStrLen))) ;
+        QLOG_STR("TclCallbacks::isProfileTrustedImpl in " + QString::number(aObjc)) ;
+        if ( argumentStrLen == KHashStringLen ) { // search term is hash and that is 40
+            Hash searchTerm ;
+            searchTerm.fromString( argumentStr ) ;
+            if ( searchTerm != KNullHash ) {
+                iModel.lock() ;
+                bool result ( iModel.trustTreeModel()->
+                              isProfileTrusted(searchTerm,NULL,NULL) ) ;
+                iModel.unlock() ;
+
+                Tcl_Obj* resultAsTclObj =  Tcl_NewBooleanObj(result) ;
+                Tcl_SetObjResult(aInterp, resultAsTclObj);
+                return TCL_OK ;
+
+            } else {
+                Tcl_AppendResult(aInterp, "Invalid 40-character input, not parseable as hash", NULL);
+            }
+        } else {
+            Tcl_AppendResult(aInterp, "Argument string length not 40", NULL);
+        }
+    } else {
+        Tcl_AppendResult(aInterp, "Usage: isProfileTrusted fingerprint", NULL);
+    }
+    return TCL_ERROR ;
 }

@@ -144,6 +144,17 @@ public: // methods, called from tclWrapper.h static methods
     int retrieveTCLProgLocalDataImpl(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj* const aObjv[]) ;
 
     /**
+     * Tcl extension method for checking operator from trust-tree
+     *
+     * @param aCData clientdata from tcl interpreter. Not used.
+     * @param aInterp pointer to calling TCL interpreter
+     * @param aObjc number of items in array aObjv
+     * @param aObjv command arguments.
+     * @return TCL_OK on success.
+     */
+    int isProfileTrustedImpl(ClientData aCData, Tcl_Interp *aInterp, int aObjc, Tcl_Obj* const aObjv[]) ;
+
+    /**
      * Tcl extension method for saving a file into filesystem. User gets
      * to choose file name
      *
