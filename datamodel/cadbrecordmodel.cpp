@@ -428,10 +428,15 @@ QList<CaDbRecord *> CaDbRecordModel::searchRecords(const Hash& aFromCollection,
     // if user asked something else than "by id" and her
     // query went un-answered, give query to dht query engine
     // and do this only if it was user-originated query ;
-    // if serving publish or search from remote node, 
-    // then don't initiate further actions..
+    // also if user did not specify record id at all, give
+    // query to retrieval engine - it has logic to prune away
+    // overlapping queries so spamming the engine is no problem
     if ( aForPublish == false &&
-         ! ( aById != KNullHash && resultSet.size() != 0 ) ) {
+         (
+             ( aById != KNullHash && resultSet.size() == 0 ) ||
+               aById == KNullHash 
+         )         
+       ) {
         CaDbRecord::SearchTerms terms ;
         terms.iFromCollection = aFromCollection; 
         terms.iById = aById ; 
