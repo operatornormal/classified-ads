@@ -1398,8 +1398,11 @@ int TclCallbacks::getDbRecordCmdImpl(ClientData /* aCData */, Tcl_Interp *aInter
         Tcl_Obj* value (NULL) ;
         CaDbRecord searchObj ; // object whose members will be used in
                                // search if they differ from detaults
-        qint64 searchNumberLessThan (std::numeric_limits<qint64>::min());
-        qint64 searchNumberMoreThan (std::numeric_limits<qint64>::max());
+        // if it is less than "max" then everything will be included.
+        // user can limit the search below
+        qint64 searchNumberLessThan (std::numeric_limits<qint64>::max());
+        // if it is more than "min" then everything will be included
+        qint64 searchNumberMoreThan (std::numeric_limits<qint64>::min());
         if (Tcl_DictObjFirst(aInterp, aObjv[1], &searchPtr,
                              &key, &value, &done) != TCL_OK) {
             return TCL_ERROR;

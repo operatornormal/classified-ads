@@ -504,7 +504,6 @@ bool CaDbRecordModel::doHandlepublishedOrSentRecord(CaDbRecord& aRecord,
     // but verified, compared new one that is new but one that we
     // can't verify
 
-
     QByteArray dummy ;
     if (! iController->model().contentEncryptionModel().PublicKey (aRecord.iSenderHash,
                                                                    dummy) ) {
@@ -521,11 +520,12 @@ bool CaDbRecordModel::doHandlepublishedOrSentRecord(CaDbRecord& aRecord,
         QList<QPair<Hash, Hash> > recordsToUpdateDueToGoodSignature ;     
         if ( tryVerifyRecord(aRecord,
                              aSignature,
-                             recordsToUpdateDueToGoodSignature)  == false  ) {
+                             recordsToUpdateDueToGoodSignature) ) {
             aRecord.iIsSignatureVerified = true ; 
         } else {
             // great, we should have been able to verify, verification
             // failed -> record is bad
+            QLOG_STR("Verification failed, returning false") ; 
             return false ;
         }
     } else {
@@ -681,7 +681,7 @@ QString CaDbRecordModel::persistDbRecordIntoDb(const CaDbRecord &aRecord,
                                 "searchstring = :searchstring,"
                                 "searchnumber = :searchnumber,"
                                 "recvd_from = :recvd_from,"
-                                "isencrypted = :isencrypted"
+                                "isencrypted = :isencrypted "
                                 "where hash1=:hash1 and hash2=:hash2 and "
                                 "hash3=:hash3 and hash4=:hash4 and hash5=:hash5 and "
                                 "sender_hash1 = :sender_hash1 and "
