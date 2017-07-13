@@ -145,7 +145,7 @@ QString CaDbRecordModel::publishDbRecord(CaDbRecord& aRecord,
         Hash ownNodeHash ( iController->getNode().nodeFingerPrint() ) ; 
         QString errorMessage = 
             this->persistDbRecordIntoDb(aRecord,
-                                        &isRecordNew,
+                                        isRecordNew,
                                         digitalSignature,
                                         ownNodeHash.iHash160bits[4]) ; 
         if ( errorMessage.length() > 0 ) {
@@ -540,7 +540,7 @@ bool CaDbRecordModel::doHandlepublishedOrSentRecord(CaDbRecord& aRecord,
     // available
     QString persistErrorMessage (
         persistDbRecordIntoDb(aRecord,
-                              &isRecordNew,
+                              isRecordNew,
                               aSignature,
                               aFromNode.iHash160bits[4]) ) ; 
     if ( persistErrorMessage.isEmpty() ) {
@@ -618,24 +618,13 @@ void CaDbRecordModel::fillBucket(QList<SendQueueItem>& aSendQueue,
 }
 
 QString CaDbRecordModel::persistDbRecordIntoDb(const CaDbRecord &aRecord,
-                                               bool* aIsKnownToBeNew,
+                                               bool aIsNew,
                                                const QByteArray& aSignature,
                                                quint32 aReceivedFrom ) {
-    bool isNew (false) ; 
-    if ( aIsKnownToBeNew ) {
-        isNew = *aIsKnownToBeNew ; 
-    } else {
-        QString errorMessage (
-            this->isRecordNew(aRecord,
-                              &isNew )) ; 
-        if ( errorMessage.length() > 0 ) {
-            return errorMessage ; 
-        }
-    }
     bool retval (false); 
     QSqlQuery query;
-    QLOG_STR("CaDbRecordModel::persistDbRecordIntoDb is new = " + QString::number(isNew)) ; 
-    if ( isNew ) {
+    QLOG_STR("CaDbRecordModel::persistDbRecordIntoDb is new = " + QString::number(aIsNew)) ; 
+    if ( aIsNew ) {
         // record is new, prepare an insert-statement
         retval = query.prepare ("insert into dbrecord "
                                 "(hash1,hash2,hash3,hash4,hash5,"
@@ -733,7 +722,7 @@ QString CaDbRecordModel::persistDbRecordIntoDb(const CaDbRecord &aRecord,
         return query.lastError().text() ; 
     } else {
         QLOG_STR("query.exec == true") ; 
-        updateFTS(aRecord,isNew) ; 
+        updateFTS(aRecord,aIsNew) ; 
         return QString::null ; // as a sign of success, return empty string
     }
 }

@@ -207,7 +207,7 @@ private: // methods
                                        bool aWasPublish);
     
     QString persistDbRecordIntoDb(const CaDbRecord &aRecord,
-                                  bool* aIsKnownToBeNew,
+                                  bool aIsNew,
                                   const QByteArray& aSignature,
                                   quint32 aReceivedFrom ) ; 
 
