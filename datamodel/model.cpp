@@ -215,6 +215,17 @@ Model::Model(MController *aController) : iController(aController),
                                          const ProtocolItemType)),
             Qt::QueuedConnection) ;
 
+    connect(iCaDbRecordModel,
+            SIGNAL( contentReceived(const Hash& ,
+                                    const Hash& ,
+                                    const ProtocolItemType ) ),
+            iController,
+            SLOT(notifyOfContentReceived(const Hash& ,
+                                         const Hash& ,
+                                         const ProtocolItemType)),
+            Qt::QueuedConnection) ;
+
+
     iTimerId = startTimer(60000*10);  // 10-minute timer
 }
 

@@ -255,8 +255,8 @@ signals:
                const QString& aExplanation) ;
     /** emitted when new record is received */
     void contentReceived(const Hash& aHashOfContent,
-                         const Hash& aHashOfRecipientProfile,
-                         const ProtocolItemType aTypeOfReceivdContent) ;
+                         const Hash& aHashOfCollection,
+                         const ProtocolItemType aTypeOfReceivedContent) ;
 private: // member variables:
     MController *iController  ;
     const MModelProtocolInterface& iModel ;

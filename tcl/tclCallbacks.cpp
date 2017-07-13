@@ -1499,7 +1499,7 @@ int TclCallbacks::getDbRecordCmdImpl(ClientData /* aCData */, Tcl_Interp *aInter
                                resultAsTclObj,
                                key,
                                value) ;
-                // collection id
+                // record sender id, the profile SHA1 in practice
                 key = Tcl_NewStringObj(KTCLDbRecordSenderId, -1) ;
                 value = Tcl_NewStringObj(resultItem->iSenderHash.toString().toUtf8().constData(), KHashStringLen) ;
                 Tcl_DictObjPut(aInterp,
