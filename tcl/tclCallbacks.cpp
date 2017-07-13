@@ -1426,6 +1426,11 @@ int TclCallbacks::getDbRecordCmdImpl(ClientData /* aCData */, Tcl_Interp *aInter
                             QLOG_STR("Got null collection hash - can't retrieve") ;
                         }
                             
+                    } else if ( keyStr == KTCLDbRecordSenderId ) {
+                        searchObj.iSenderHash.fromString(reinterpret_cast<const unsigned char *>(Tcl_GetStringFromObj(value,&argumentStrLen))) ; 
+                        if ( searchObj.iSenderHash == KNullHash ) {
+                            QLOG_STR("Got null sender hash - extra records will be retrieved") ;
+                        }
                     } else if ( keyStr == KTCLDbRecordSearchPhrase ) {
                         searchObj.iSearchPhrase = QString::fromUtf8 (
                             reinterpret_cast<const char *>(Tcl_GetStringFromObj(value,&argumentStrLen)) ) ;
