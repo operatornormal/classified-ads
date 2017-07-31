@@ -585,7 +585,8 @@ void CaDbRecordModel::fillBucket(QList<SendQueueItem>& aSendQueue,
         }
         query.bindValue(":last_connect_time", aLastMutualConnectTime);
         query.bindValue(":lowbits_of_requester", aForNode.iHash160bits[4]);
-        query.bindValue(":curr_time", QDateTime::currentDateTimeUtc().toTime_t());
+        // allow 5 minutes clock skew between nodes
+        query.bindValue(":curr_time", QDateTime::currentDateTimeUtc().addSecs(5*60).toTime_t());
     }
     ret = query.exec() ;
     if ( !ret ) {
