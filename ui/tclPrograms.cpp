@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2015-2016.
+  Classified Ads is Copyright (c) Antti Järvinen 2015-2017.
 
   This file is part of Classified Ads.
 
@@ -34,7 +34,9 @@ TclProgramsDialog::TclProgramsDialog(QWidget *aParent,
     : QDialog(aParent),
       iController(aController),
       iProgramListingModel(0,1), // 0 rows, 1 column
-      iEvalButton(NULL) {
+      iEvalButton(NULL),
+      iIsProgramSaved(false),
+      iIsProgramRunning(false) {
     ui.setupUi(this) ;
 
     connect (this, SIGNAL(rejected()), this, SLOT(deleteLater())) ;
@@ -69,6 +71,10 @@ TclProgramsDialog::TclProgramsDialog(QWidget *aParent,
     ui.listView->setModel(&iProgramListingModel) ;
     connect( ui.listView,SIGNAL( activated(const QModelIndex &) ),
              this, SLOT( programInListActivated(const QModelIndex &) ) ) ;
+    connect (ui.commandInputEdit, SIGNAL(modificationChanged ( bool )),
+             this, SLOT(editorModificationChanged ( bool ))) ;
+    iEvalButton->setEnabled(false) ; 
+    ui.buttonBox->button(QDialogButtonBox::Save)->setEnabled(false) ; 
 }
 
 TclProgramsDialog::~TclProgramsDialog() {
@@ -130,6 +136,11 @@ void TclProgramsDialog::saveButtonPressed() {
         }
         iFingerPrintOfCurrentProgram = savedProgramFingerPrint ;
         iNameOfCurrentProgram = name ;
+        iEvalButton->setEnabled(ui.commandInputEdit->toPlainText().length() > 0) ; 
+        ui.buttonBox->button(QDialogButtonBox::Save)->setEnabled(false) ; 
+        iIsProgramSaved = true ; 
+        ui.commandInputEdit->document()->setModified(false) ; 
+        QLOG_STR("iIsProgramSaved = true ") ; 
     }
 }
 
@@ -179,12 +190,17 @@ void TclProgramsDialog::tclProgramStarted() {
     if ( iEvalButton ) {
         iEvalButton->setText(iEvalButtonStopText) ;
     }
+    iIsProgramRunning = true ; 
 }
 
 void TclProgramsDialog::tclProgramStopped() {
     QLOG_STR("TclProgramsDialog::tclProgramStopped") ;
     if ( iEvalButton ) {
         iEvalButton->setText(iEvalButtonStartText) ;
+    }
+    iIsProgramRunning = false ; 
+    if ( !iIsProgramSaved ) {
+        iEvalButton->setEnabled(false) ; 
     }
 }
 
@@ -208,5 +224,30 @@ void TclProgramsDialog::programInListActivated(const QModelIndex &aIndex) {
         if ( p.iFingerPrint != KNullHash ) {
             ui.commandInputEdit->document()->setPlainText(p.programText()) ;
         }
+        iEvalButton->setEnabled(ui.commandInputEdit->toPlainText().length() > 0) ; 
+        ui.buttonBox->button(QDialogButtonBox::Save)->setEnabled(false) ; 
+        iIsProgramSaved = true ; 
+        ui.commandInputEdit->document()->setModified(false) ; 
+        QLOG_STR("iIsProgramSaved = true 2") ; 
+    }
+}
+
+void TclProgramsDialog::editorModificationChanged ( bool aChanged ) {
+    QLOG_STR("TclProgramsDialog::editorModificationChanged "+ 
+             QString::number(aChanged) + " " +
+             QString::number(iIsProgramSaved)) ;
+    if ( !aChanged && !iIsProgramSaved ) {
+        iIsProgramSaved = true ; 
+        QLOG_STR("iIsProgramSaved = true 3") ; 
+        iEvalButton->setEnabled(ui.commandInputEdit->toPlainText().length() > 0) ; 
+        ui.buttonBox->button(QDialogButtonBox::Save)->setEnabled(false) ; 
+    } 
+    if ( aChanged && iIsProgramSaved ) {
+        iIsProgramSaved = false ; 
+        QLOG_STR("iIsProgramSaved = false ") ; 
+        if ( !iIsProgramRunning ) {
+            iEvalButton->setEnabled(false) ; 
+        }
+        ui.buttonBox->button(QDialogButtonBox::Save)->setEnabled(true) ; 
     }
 }

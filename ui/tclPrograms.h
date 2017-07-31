@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2015-2016.
+  Classified Ads is Copyright (c) Antti Järvinen 2015-2017.
 
   This file is part of Classified Ads.
 
@@ -74,7 +74,10 @@ private slots:
      * slot for signaling focus changes on program list
      */
     void programInListActivated(const QModelIndex & aIndex) ;
-
+    /**
+     * Slot called when user edits code in editor
+     */
+    void editorModificationChanged ( bool aChanged );
 signals:
     void error(MController::CAErrorSituation aError,
                const QString& aExplanation) ;
@@ -92,6 +95,8 @@ private:
     QString iEvalButtonStopText ; /**< button text when program running */
     QString iNameOfCurrentProgram ;
     Hash iFingerPrintOfCurrentProgram ;
+    bool iIsProgramSaved ; /**< true if program is saved to local storage */
+    bool iIsProgramRunning ; /**< true if program is being interpreted */
 };
 
 #endif
