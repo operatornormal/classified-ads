@@ -45,7 +45,11 @@ const static      QPair<QHostAddress, int> nodeNormalNats3 =
 /** non-routable address space that some ISP's seem to offer */
 static const QPair<QHostAddress, int> nodeRfc6598 
     ( QHostAddress::parseSubnet("100.64.0.0/10") );
-
+/** ipv6 non-routable address spaces */
+static const QPair<QHostAddress, int> rfc3879 
+    ( QHostAddress::parseSubnet("fec0::/10") ); 
+static const QPair<QHostAddress, int> rfc4193
+    ( QHostAddress::parseSubnet("fc00::/7") );
 
 Node::Node(const Hash &aNodeFingerPrint,
            const int aListenPort) :
@@ -222,6 +226,10 @@ bool Node::setIpAddrWithChecks(const QHostAddress& aAddress) {
                 } else if ( ipv6String.toLower().startsWith("::") ) {
                     // address starting with all-zeroes, must
                     // not be globally routing, no?
+                } else if ( aAddress.isInSubnet(rfc3879) ) {
+                    QLOG_STR("Not using rfc3879 private address space") ;
+                } else if ( aAddress.isInSubnet(rfc4193) ) {
+                    QLOG_STR("Not using rfc4193 unique local address space") ;
                 } else if ( ipv6String.toLower().startsWith("2001:0:") ) {
                     // this is a teredo address and it seems to me that
                     // there is more non-functional teredo addresses

@@ -1382,7 +1382,7 @@ int TclCallbacks::publishDbRecordCmdImpl(ClientData /* aCData */, Tcl_Interp *aI
             }
         }
     } else {
-        Tcl_AppendResult(aInterp, "Usage: publishFile file ( as dictionary )", NULL);
+        Tcl_AppendResult(aInterp, "Usage: publishDbRecord record ( as dictionary )", NULL);
     }
     return TCL_ERROR ;
 }
