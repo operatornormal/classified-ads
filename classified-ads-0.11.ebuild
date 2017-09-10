@@ -1,6 +1,5 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 PLOCALES="en fi sv da uk"
@@ -9,7 +8,8 @@ inherit qmake-utils virtualx l10n
 
 DESCRIPTION="Program for displaying classified advertisement items"
 HOMEPAGE="http://katiska.org/classified-ads/"
-SRC_URI="https://github.com/operatornormal/classified-ads/archive/${PV}.tar.gz -> classified-ads-${PV}.tar.gz \
+SRC_URI="https://github.com/operatornormal/classified-ads/archive/${PV}.tar.gz \
+		-> classified-ads-${PV}.tar.gz \
 	https://github.com/operatornormal/classified-ads/blob/graphics/preprocessed.tar.gz?raw=true \
 		-> classified-ads-graphics-${PV}.tar.gz"
 
@@ -30,7 +30,6 @@ RDEPEND="dev-libs/openssl:0
 		dev-qt/qtwidgets:5
 		dev-qt/qtsql:5[sqlite]
 		dev-qt/qtmultimedia:5[widgets]
-		dev-qt/qt-mobility[multimedia]
 		dev-qt/qtprintsupport:5
 		media-libs/opus
 		virtual/libintl"
@@ -61,14 +60,14 @@ src_configure() {
 src_compile() {
 	emake
 	if use doc; then
-		pushd doc >> /dev/null || die
+		pushd doc > /dev/null || die
 		doxygen || die
-		popd >> /dev/null || die
+		popd > /dev/null || die
 	fi
 	if use test; then
-		pushd test >> /dev/null || die
+		pushd test > /dev/null || die
 		emake
-		popd >> /dev/null || die
+		popd > /dev/null || die
 	fi
 }
 
