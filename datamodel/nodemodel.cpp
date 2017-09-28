@@ -548,8 +548,12 @@ Node* NodeModel::nodeByHash(const Hash& aHash) {
     LOG_STR("NodeModel::nodeByHash in ") ;
     Node *retval = NULL ;
     QSqlQuery query;
-    bool ret = query.prepare("select hash1,hash2,hash3,hash4,hash5,listenport,last_conn_time,does_listen,ipv4addr,ipv6addr1,ipv6addr2,ipv6addr3,ipv6addr4,last_nodelist_time,last_mutual_conn_time from node where hash1 = :hash1") ;
+    bool ret = query.prepare("select hash1,hash2,hash3,hash4,hash5,listenport,last_conn_time,does_listen,ipv4addr,ipv6addr1,ipv6addr2,ipv6addr3,ipv6addr4,last_nodelist_time,last_mutual_conn_time from node where hash1 = :hash1 and hash2 = :hash2 and hash3 = :hash3 and hash4 = :hash4 and hash5 = :hash5") ;
     query.bindValue(":hash1", aHash.iHash160bits[0]);
+    query.bindValue(":hash2", aHash.iHash160bits[1]);
+    query.bindValue(":hash3", aHash.iHash160bits[2]);
+    query.bindValue(":hash4", aHash.iHash160bits[3]);
+    query.bindValue(":hash5", aHash.iHash160bits[4]);
     if ( ret && (ret = query.exec() ) == true && query.next()  ) {
         quint32 hash1 = query.value(0).toUInt() ;
         quint32 hash2 = query.value(1).toUInt() ;
