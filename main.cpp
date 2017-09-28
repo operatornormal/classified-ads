@@ -112,6 +112,9 @@ int main(int argc, char *argv[]) {
 #endif // check of $DISPLAY or $WAYLAND_DISPLAY
 
     app = new QApplication (argc, argv);
+#ifdef DEBUG
+    QLoggingCategory::setFilterRules("*.debug=true");
+#endif
 #ifdef WIN32
     // In windows it is necessary to tell TCL where
     // its runtime resides:

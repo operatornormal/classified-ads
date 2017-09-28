@@ -76,6 +76,10 @@ NodeModel::NodeModel(MController *aController,
             Qt::QueuedConnection ) ;
     openOrCreateSSLCertificate() ; // this method emit possible errors itself
     iTimerId = startTimer(20000*2) ; // 2-minute timer
+    QSqlQuery duplicateDeletiaQuery ; 
+    if ( ! duplicateDeletiaQuery.exec("delete from node where rowid not in ( select max(rowid) from node group by hash1,hash2,hash3,hash4,hash5 )") ) {
+        QLOG_STR(duplicateDeletiaQuery.lastError().text() + " "+ __FILE__ + QString::number(__LINE__)) ;
+    }
 }
 
 NodeModel::~NodeModel() {
