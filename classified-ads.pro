@@ -82,7 +82,7 @@ HEADERS = mcontroller.h controller.h FrontWidget.h net/node.h util/hash.h \
         ui/tclPrograms.h ui/tclConsole.h tcl/tclWrapper.h \
         datamodel/tclprogram.h datamodel/tclmodel.h tcl/tclCallbacks.h \
         tcl/tclUtil.h datamodel/cadbrecord.h datamodel/cadbrecordmodel.h \
-        net/dbretrievalengine.h
+        net/dbretrievalengine.h util/ungzip.h
 SOURCES = main.cpp controller.cpp FrontWidget.cpp net/node.cpp util/hash.cpp \
 	net/connection.cpp datamodel/model.cpp \
         net/networklistener.cpp net/protocol_message_formatter.cpp \
@@ -117,7 +117,8 @@ SOURCES = main.cpp controller.cpp FrontWidget.cpp net/node.cpp util/hash.cpp \
         call/ringtoneplayer.cpp ui/tclPrograms.cpp ui/tclConsole.cpp \
         tcl/tclWrapper.cpp datamodel/tclprogram.cpp datamodel/tclmodel.cpp \
         tcl/tclCallbacks.cpp tcl/tclUtil.cpp  datamodel/cadbrecord.cpp \
-        datamodel/cadbrecordmodel.cpp net/dbretrievalengine.cpp
+        datamodel/cadbrecordmodel.cpp net/dbretrievalengine.cpp \
+        util/ungzip.cpp
 FORMS = frontWidget.ui ui/profileReadersDialog.ui ui/passwordDialog.ui \
 	ui/newClassifiedAd.ui 	ui/newPrivMsg.ui ui/editContact.ui \
         ui/newProfileComment.ui ui/profileCommentDisplay.ui \
@@ -129,7 +130,7 @@ FORMS = frontWidget.ui ui/profileReadersDialog.ui ui/passwordDialog.ui \
 RESOURCES     = ui_resources.qrc
 TRANSLATIONS  = classified_ads_fi.ts \
                 classified_ads_sv.ts
-unix:LIBS = -lssl -lcrypto -lnatpmp -lminiupnpc -ltcl -ltk
+unix:LIBS = -lssl -lcrypto -lnatpmp -lminiupnpc -ltcl -ltk -lz
 win32:LIBS+=-ltcl86 -ltk86
 lessThan(QT_MAJOR_VERSION, 5) {
      unix:LIBS +=  -lqjson -lmagic
@@ -180,10 +181,14 @@ desktopicons.files = ui/turt-transparent-128x128.png
 desktopicons.path = /usr/share/app-install/icons/
 manpages.path = /usr/share/man/man1
 manpages.files = classified-ads.1
+# note this example file path appears also in file tclmodel.cpp
+examplefiles.path = /usr/share/doc/classified-ads/examples
+examplefiles.files = doc/sysinfo.tcl doc/luikero.tcl doc/calendar.tcl
 INSTALLS += target \
         desktopfiles \
         desktopicons \
         appdata
 unix:INSTALLS += manpages
 unix:INSTALLS += appdata
+unix:INSTALLS += examplefiles
 RC_FILE=classified-ads.rc

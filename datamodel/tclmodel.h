@@ -102,6 +102,14 @@ signals:
     void error(MController::CAErrorSituation aError,
                const QString& aExplanation) ;
 
+private: //methods
+    /**
+     * Method that scans directory /usr/share/doc/classified-ads/examples
+     * for files ending *.tcl and installs them into database table
+     * of tcl programs. This is done only if db table is empty, as it
+     * is during first install. 
+     */
+    void installExamplePrograms() ; 
 private: // member variables:
     MController& iController  ;
     const MModelProtocolInterface& iModel ;

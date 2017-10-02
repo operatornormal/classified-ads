@@ -1069,6 +1069,10 @@ bool NodeModel::nodeGreetingReceived(Node& aNode,
         aNode.setLastConnectTime(QDateTime::currentDateTimeUtc().toTime_t()) ;
         removeNodeFromRecentlyFailedList(aNode.nodeFingerPrint()) ;
     }
+    if ( aNode.lastConnectTime() > QDateTime::currentDateTimeUtc().addSecs(5*60).toTime_t() ) {
+        QLOG_STR("Received node whose last connect time is in future -> discarding") ; 
+        return true ; 
+    }
     if ( previousEntry ) {
         previousConnectTime= previousEntry->lastConnectTime() ;
         // ok, we had previous information, now we have new ; what
@@ -1120,48 +1124,54 @@ bool NodeModel::nodeGreetingReceived(Node& aNode,
 }
 
 bool NodeModel::updateNodeLastConnectTimeInDb(Node& aNode) {
-    QSqlQuery query;
+    bool ret ( true ) ; 
+    if ( aNode.lastConnectTime() < QDateTime::currentDateTimeUtc().addSecs(5*60).toTime_t() ) {
+        QSqlQuery query; 
 
-    bool ret = query.prepare("update node set last_conn_time=:last_conn_time,time_last_reference=:time_last_reference where hash1=:hash1 and hash2=:hash2 and hash3=:hash3 and hash4=:hash4 and hash5=:hash5") ;
-    if ( ret ) {
-        query.bindValue(":hash1", aNode.nodeFingerPrint().iHash160bits[0]);
-        query.bindValue(":hash2", aNode.nodeFingerPrint().iHash160bits[1]);
-        query.bindValue(":hash3", aNode.nodeFingerPrint().iHash160bits[2]);
-        query.bindValue(":hash4", aNode.nodeFingerPrint().iHash160bits[3]);
-        query.bindValue(":hash5", aNode.nodeFingerPrint().iHash160bits[4]);
+        ret = query.prepare("update node set last_conn_time=:last_conn_time,time_last_reference=:time_last_reference where hash1=:hash1 and hash2=:hash2 and hash3=:hash3 and hash4=:hash4 and hash5=:hash5") ;
+        if ( ret ) {
+            query.bindValue(":hash1", aNode.nodeFingerPrint().iHash160bits[0]);
+            query.bindValue(":hash2", aNode.nodeFingerPrint().iHash160bits[1]);
+            query.bindValue(":hash3", aNode.nodeFingerPrint().iHash160bits[2]);
+            query.bindValue(":hash4", aNode.nodeFingerPrint().iHash160bits[3]);
+            query.bindValue(":hash5", aNode.nodeFingerPrint().iHash160bits[4]);
 
-        query.bindValue(":last_conn_time", (quint32)(aNode.lastConnectTime()));
-        query.bindValue(":time_last_reference", (quint32)(aNode.lastConnectTime()));
-        ret = query.exec() ;
-    }
-    if ( !ret ) {
-        QLOG_STR(query.lastError().text() + " "+ __FILE__ + QString::number(__LINE__)) ;
-        emit error(MController::DbTransactionError, query.lastError().text()) ;
+            query.bindValue(":last_conn_time", (quint32)(aNode.lastConnectTime()));
+            query.bindValue(":time_last_reference", (quint32)(aNode.lastConnectTime()));
+            ret = query.exec() ;
+        }
+        if ( !ret ) {
+            QLOG_STR(query.lastError().text() + " "+ __FILE__ + QString::number(__LINE__)) ;
+            emit error(MController::DbTransactionError, query.lastError().text()) ;
+        }
     }
     return ret ;
 }
 
 bool NodeModel::updateNodeLastMutualConnectTimeInDb(const Hash& aNodeFp,
-        quint32 aTime ) {
-    QSqlQuery query;
+                                                    quint32 aTime ) {
+    bool ret ( true ) ;
+    if ( aTime < QDateTime::currentDateTimeUtc().addSecs(5*60).toTime_t() ) {
+        QSqlQuery query;
 
-    bool ret = query.prepare("update node set last_mutual_conn_time=:last_mutual_conn_time,last_conn_time=:last_conn_time,time_last_reference=:time_last_reference where hash1=:hash1 and hash2=:hash2 and hash3=:hash3 and hash4=:hash4 and hash5=:hash5") ;
-    if ( ret ) {
-        query.bindValue(":hash1", aNodeFp.iHash160bits[0]);
-        query.bindValue(":hash2", aNodeFp.iHash160bits[1]);
-        query.bindValue(":hash3", aNodeFp.iHash160bits[2]);
-        query.bindValue(":hash4", aNodeFp.iHash160bits[3]);
-        query.bindValue(":hash5", aNodeFp.iHash160bits[4]);
+        ret = query.prepare("update node set last_mutual_conn_time=:last_mutual_conn_time,last_conn_time=:last_conn_time,time_last_reference=:time_last_reference where hash1=:hash1 and hash2=:hash2 and hash3=:hash3 and hash4=:hash4 and hash5=:hash5") ;
+        if ( ret ) {
+            query.bindValue(":hash1", aNodeFp.iHash160bits[0]);
+            query.bindValue(":hash2", aNodeFp.iHash160bits[1]);
+            query.bindValue(":hash3", aNodeFp.iHash160bits[2]);
+            query.bindValue(":hash4", aNodeFp.iHash160bits[3]);
+            query.bindValue(":hash5", aNodeFp.iHash160bits[4]);
 
-        query.bindValue(":last_conn_time", aTime);
-        query.bindValue(":last_mutual_conn_time", aTime);
-        query.bindValue(":time_last_reference", aTime);
+            query.bindValue(":last_conn_time", aTime);
+            query.bindValue(":last_mutual_conn_time", aTime);
+            query.bindValue(":time_last_reference", aTime);
 
-        ret = query.exec() ;
-    }
-    if ( !ret ) {
-        QLOG_STR(query.lastError().text() + " "+ __FILE__ + QString::number(__LINE__)) ;
-        emit error(MController::DbTransactionError, query.lastError().text()) ;
+            ret = query.exec() ;
+        }
+        if ( !ret ) {
+            QLOG_STR(query.lastError().text() + " "+ __FILE__ + QString::number(__LINE__)) ;
+            emit error(MController::DbTransactionError, query.lastError().text()) ;
+        }
     }
     return ret ;
 }

@@ -22,10 +22,15 @@
 #include "tclprogram.h"
 #include "../log.h"
 #include "../util/hash.h"
+#include "../util/ungzip.h"
 #include "model.h"
 #include <QSqlQuery>
 #include <QSqlError>
-
+#include <QDir>
+#include <QFileInfo>
+#ifdef WIN32
+#include <QCoreApplication>
+#endif
 
 TclModel::TclModel(MController *aController,
                    const MModelProtocolInterface &aModel)
@@ -39,6 +44,7 @@ TclModel::TclModel(MController *aController,
             SLOT(handleError(MController::CAErrorSituation,
                              const QString&)),
             Qt::QueuedConnection ) ;
+    installExamplePrograms() ; 
 }
 
 
@@ -270,4 +276,59 @@ QByteArray TclModel::retrieveTCLProgLocalData(const Hash& aProgram) {
         }
     }
     return retval ;
+}
+
+void TclModel::installExamplePrograms() {
+    if ( getListOfTclPrograms().isEmpty() ) {
+        // this is our first run or user deleted all example programs.
+        // bring 'em back:
+#ifdef WIN32
+        // in windows try fetch examples from path relative to
+        // the executable, see file windows/nsis-installer.nsi for details
+        QString examplesDirName(QCoreApplication::applicationDirPath()) ;
+        examplesDirName.append(QDir::separator()) ;
+        examplesDirName.append("examples") ; 
+        QDir examplesDir (examplesDirName) ;
+#else
+        // in unix this path appears in classified-ads.pro and 
+        // is used by "make install" phase.
+        QDir examplesDir ("/usr/share/doc/classified-ads/examples") ; 
+#endif
+        if ( !examplesDir.exists() ) {
+            return ; // no examples, obviously
+        }
+        examplesDir.setFilter(QDir::Files | QDir::Readable) ;
+        QStringList fileTypes ; 
+        // debian installation insists on compression of example files ; we
+        // need to apply un-gzip here to make examples usable again:
+        fileTypes << "*.tcl" << "*.tcl.gz" ;
+        const QStringList exampleFiles ( examplesDir.entryList(fileTypes) ) ; 
+        foreach ( const QString& exampleFileName, exampleFiles ) {
+            QLOG_STR(exampleFileName) ;
+            QFile exampleFile(examplesDir.filePath(exampleFileName));
+            if (exampleFile.open(QIODevice::ReadOnly)) {
+                QByteArray exampleContents ( exampleFile.readAll() ) ; 
+                if ( exampleContents.length() > 0 ) {
+                    TclProgram p ;
+                    if ( exampleFileName.toLower().endsWith (".tcl.gz" ) ) {
+                        QByteArray uncompressed ;
+                        bool success ; 
+                        uncompressed.append ( UnGZip::unGZip(exampleContents,
+                                                             &success) ) ;
+                        if ( !success || ( uncompressed.length() < 1 ) ) {
+                            continue ; 
+                        } else {
+                            exampleContents.clear() ; 
+                            exampleContents.append(uncompressed) ; 
+                        }
+                    }
+                    p.setProgramText(exampleContents) ; 
+                    p.setProgramName(exampleFileName) ; 
+                    const QFileInfo info ( exampleFile ) ; 
+                    p.iTimeOfPublish = info.lastModified().toTime_t() ; 
+                    locallyStoreTclProgram(p) ; 
+                }
+            }
+        }
+    }
 }

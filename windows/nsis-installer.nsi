@@ -36,6 +36,8 @@ CreateDirectory "$INSTDIR\uk\LC_MESSAGES"
 file /oname=$INSTDIR\uk\LC_MESSAGES\classified-ads.mo ..\po\uk.mo
 CreateDirectory "$INSTDIR\de\LC_MESSAGES"
 file /oname=$INSTDIR\de\LC_MESSAGES\classified-ads.mo ..\po\de.mo
+CreateDirectory "$INSTDIR\es\LC_MESSAGES"
+file /oname=$INSTDIR\es\LC_MESSAGES\classified-ads.mo ..\po\es.mo
 file /oname=qt_ca.qm ..\release\translations\qt_ca.qm
 file /oname=qt_cs.qm ..\release\translations\qt_cs.qm
 file /oname=qt_de.qm ..\release\translations\qt_de.qm
@@ -47,6 +49,10 @@ file /oname=qt_lv.qm ..\release\translations\qt_lv.qm
 file /oname=qt_ru.qm ..\release\translations\qt_ru.qm
 file /oname=qt_sk.qm ..\release\translations\qt_sk.qm
 file /oname=qt_uk.qm ..\release\translations\qt_uk.qm
+CreateDirectory "$INSTDIR\examples"
+file /oname=$INSTDIR\examples\sysinfo.tcl ..\doc\sysinfo.tcl
+file /oname=$INSTDIR\examples\luikero.tcl ..\doc\luikero.tcl
+file /oname=$INSTDIR\examples\calendar.tcl ..\doc\calendar.tcl
 CreateDirectory "$INSTDIR\bearer"
 CreateDirectory "$INSTDIR\iconengines"
 CreateDirectory "$INSTDIR\imageformats"
@@ -1110,6 +1116,10 @@ delete "$INSTDIR\qt_lv.qm"
 delete "$INSTDIR\qt_ru.qm"
 delete "$INSTDIR\qt_sk.qm"
 delete "$INSTDIR\qt_uk.qm"
+delete "$INSTDIR\examples\sysinfo.tcl"
+delete "$INSTDIR\examples\luikero.tcl"
+delete "$INSTDIR\examples\calendar.tcl"
+RMDIR "$INSTDIR\examples"
 delete "$INSTDIR\D3Dcompiler_41.dll"
 delete "$INSTDIR\libEGL.dll"
 delete "$INSTDIR\libGLESV2.dll"
@@ -1155,6 +1165,7 @@ delete "$INSTDIR\sv\LC_MESSAGES\classified-ads.mo"
 delete "$INSTDIR\da\LC_MESSAGES\classified-ads.mo"
 delete "$INSTDIR\uk\LC_MESSAGES\classified-ads.mo"
 delete "$INSTDIR\de\LC_MESSAGES\classified-ads.mo"
+delete "$INSTDIR\es\LC_MESSAGES\classified-ads.mo"
 RMDIR "$INSTDIR\sv\LC_MESSAGES"
 RMDIR "$INSTDIR\sv"
 RMDIR "$INSTDIR\fi\LC_MESSAGES"
@@ -1165,6 +1176,8 @@ RMDIR "$INSTDIR\uk\LC_MESSAGES"
 RMDIR "$INSTDIR\uk"
 RMDIR "$INSTDIR\de\LC_MESSAGES"
 RMDIR "$INSTDIR\de"
+RMDIR "$INSTDIR\es\LC_MESSAGES"
+RMDIR "$INSTDIR\es"
 RMDIR "$INSTDIR\bearer"
 RMDIR "$INSTDIR\iconengines"
 RMDIR "$INSTDIR\imageformats"

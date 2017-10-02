@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
 
   This file is part of Classified Ads.
 
@@ -37,6 +37,7 @@
 #include "../datamodel/binaryfilemodel.h"
 #include "../datamodel/privmsgmodel.h"
 #include "../datamodel/profilecommentmodel.h"
+#include "../datamodel/cadbrecordmodel.h"
 #include <QWaitCondition>
 #include <QMutex>
 #include <QSslCipher>
@@ -641,11 +642,21 @@ void Connection::checkForBucketFill() {
                                                     iEndOfBucket,
                                                     iNodeOfConnectedPeer->lastMutualConnectTime(),
                                                     iNodeOfConnectedPeer->nodeFingerPrint()) ;
+            iStageOfBucketFill = DbRecord; // next stage distributed database records
+            break ;
+        case DbRecord:
+            // Next stage after binary blob
+            iModel.caDbRecordModel()->fillBucket(iSendQueue,
+                                                 iNodeOfConnectedPeer->nodeFingerPrint(),
+                                                 iEndOfBucket,
+                                                 iNodeOfConnectedPeer->lastMutualConnectTime(),
+                                                 iNodeOfConnectedPeer->nodeFingerPrint()) ;
             iStageOfBucketFill = UserProfileComment; // and set next stage
             break ;
         case UserProfileComment:
             // we came here, we've sent profiles, ads and binary files profile comments and
-            // the queue is empty: set mutual connect time of the node
+            // distributed database records and the queue is empty: 
+            // set mutual connect time of the node
             // so we won't send the same stuff again next time:
             iNodeOfConnectedPeer->setLastMutualConnectTime(QDateTime::currentDateTimeUtc().toTime_t()) ;
             iModel.nodeModel().updateNodeLastMutualConnectTimeInDb(iNodeOfConnectedPeer->nodeFingerPrint(),

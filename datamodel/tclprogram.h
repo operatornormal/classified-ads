@@ -29,7 +29,7 @@ class MController ;
  * @brief Carrier-class for TCL-program and related settings
  *
  * Instances of this class are stored and retrieved using
- * @ref TclProgramModel.
+ * @ref TclModel.
  */
 class TclProgram {
 public:
