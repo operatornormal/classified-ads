@@ -124,7 +124,7 @@ proc initUI {} {
     grid rowconfigure . 0 -weight 1
     grid columnconfigure . .rightframe -weight 1
     frame .rightframe.buttons -borderwidth 2 -relief ridge
-    button .rightframe.buttons.dayview -text {Day view} -command showDayView
+    button .rightframe.buttons.dayview -text {Calendar view} -command showDayView
     button .rightframe.buttons.settings -text {Settings} -command showSettings
     button .rightframe.buttons.newEvent -text {Create event} -command showCreateEvent
     pack .rightframe.buttons -side top
@@ -513,7 +513,7 @@ proc updateSelection { newtime } {
     set ::monthOnDisplay $newtime
     # fetch events of newly-selected month
     eventsByTimeAndCollection $::monthOnDisplay
-    # and update day view:
+    # and update calendar view:
     displayDay [ clock format $newtime -format {%d} ]
 }
 #
@@ -728,13 +728,13 @@ proc postNewEventCmd {} {
         storeNewEvent $ev
         # and clear fields using "cancel" methods
         cancelNewEventCmd 
-        # and update the day view:
+        # and update the calendar view:
         displayDay [ clock format $::dayOnDisplay -format "%d" ]
     }
 }
 #
 # cancel creation of new event by clearing input fields and navigating
-# to day view
+# to calendar view
 #
 proc cancelNewEventCmd {} {
     .rightframe.newEventFrame.timeFrame.startDayLabel configure -text {}
