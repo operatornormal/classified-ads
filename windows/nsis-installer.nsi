@@ -8,7 +8,7 @@
 # define name of installer
 outFile "Classified-ads-Win32.exe"
 !define MUI_ICON "turt-transparent-128x128.ico"
-!define VERSION "0.11" 
+!define VERSION "0.12" 
 # ask to be admin in order to create start menu shortcuts to all users
 RequestExecutionLevel admin
 Name "Classified ads ${VERSION}" 
@@ -62,7 +62,7 @@ CreateDirectory "$INSTDIR\sqldrivers"
 CreateDirectory "$INSTDIR\audio"
 file /oname=miniupnpc.dll ..\..\miniupnpc-1.9\miniupnpc.dll
 CreateShortCut "$SMPROGRAMS\Classified-ads\Classified-ads.lnk" "$INSTDIR\Classified-ads.exe"
-file /oname=D3Dcompiler_41.dll deps\D3Dcompiler_41.dll
+file /oname=D3Dcompiler_47.dll deps\D3Dcompiler_47.dll
 file /oname=libEGL.dll deps\libEGL.dll
 file /oname=libGLESV2.dll deps\libGLESV2.dll
 file /oname=libgcc_s_dw2-1.dll deps\libgcc_s_dw2-1.dll
@@ -1120,7 +1120,7 @@ delete "$INSTDIR\examples\sysinfo.tcl"
 delete "$INSTDIR\examples\luikero.tcl"
 delete "$INSTDIR\examples\calendar.tcl"
 RMDIR "$INSTDIR\examples"
-delete "$INSTDIR\D3Dcompiler_41.dll"
+delete "$INSTDIR\D3Dcompiler_47.dll"
 delete "$INSTDIR\libEGL.dll"
 delete "$INSTDIR\libGLESV2.dll"
 delete "$INSTDIR\libgcc_s_dw2-1.dll"
