@@ -167,7 +167,7 @@ unix {
 win32 {
         TCL_VERSION = 8.6
 }
-INCLUDEPATH += /usr/include/tcl$$TCL_VERSION
+INCLUDEPATH += /usr/include/tcl$$TCL_VERSION /usr/include/tk /usr/include/tk$$TCL_VERSION
 target.path = /usr/bin
 desktopfiles.path = /usr/share/applications
 desktopfiles.files = ui/classified-ads.desktop

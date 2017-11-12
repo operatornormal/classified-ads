@@ -33,11 +33,7 @@
 #include "../ui/tclConsole.h"
 #include "../log.h"
 #include <QCoreApplication>
-#ifdef WIN32
 #include <tk.h>
-#else
-#include <tk/tk.h>
-#endif
 #include "tclCallbacks.h"
 
 extern MController* controllerInstanceEx ;

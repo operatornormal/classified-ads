@@ -68,6 +68,9 @@ fi
 %{_mandir}/man1/classified-ads.1.*
 %{_datadir}/appdata/classified-ads.appdata.xml
 %license LICENSE
+%{_datadir}/doc/classified-ads/examples/sysinfo.tcl
+%{_datadir}/doc/classified-ads/examples/luikero.tcl
+%{_datadir}/doc/classified-ads/examples/calendar.tcl
 
 %changelog
 * Sun Nov 12 2017 Antti Jarvinen <antti.jarvinen@katiska.org> - 0.12-1
