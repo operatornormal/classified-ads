@@ -131,7 +131,7 @@ RESOURCES     = ui_resources.qrc
 TRANSLATIONS  = classified_ads_fi.ts \
                 classified_ads_sv.ts
 unix:LIBS = -lssl -lcrypto -lnatpmp -lminiupnpc -ltcl -ltk -lz
-win32:LIBS+=-ltcl86 -ltk86
+win32:LIBS+=-ltcl86 -ltk86 -lz
 lessThan(QT_MAJOR_VERSION, 5) {
      unix:LIBS +=  -lqjson -lmagic
 } 
