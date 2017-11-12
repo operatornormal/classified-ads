@@ -1,7 +1,7 @@
 Name:		classified-ads
-Version:	0.11
+Version:	0.12
 Release:	1%{?dist}
-Summary:	Classified ads is a program for posting ads online
+Summary:	Classified ads is distributed, serverless messaging system
 
 Group:		Applications/Internet
 License:	LGPLv2
@@ -17,13 +17,20 @@ BuildRequires:	gettext
 BuildRequires:	libappstream-glib
 BuildRequires:	desktop-file-utils
 BuildRequires:	opus-devel
+BuildRequires:	tcl-devel
+BuildRequires:	tk-devel
+BuildRequires:	zlib-devel
 
 %description
 Classified ads is an attempt to re-produce parts of the functionality
 that went away when Usenet news ceased to exist. This attempt tries to
 fix the problem of disappearing news-servers so that there is no servers
 required and no service providers needed; data storage is implemented
-inside client applications that users are running.
+inside client applications that users are running. Main feature is
+public posting. Other features include private messages, group messages,
+basic operator data, search, voice calls between nodes, UI extensions
+with TCL language and general-purpose database shared between nodes of the 
+application. 
 %prep
 %setup -q -a 1
 
@@ -63,6 +70,9 @@ fi
 %license LICENSE
 
 %changelog
+* Sun Nov 12 2017 Antti Jarvinen <antti.jarvinen@katiska.org> - 0.12-1
+- New upstream version: new features, many new translations
+
 * Sun Jul 3 2016 Antti Jarvinen <antti.jarvinen@katiska.org> - 0.11-1
 - New upstream version: bugfixes and support for OpenSSL 1.1 API
 
