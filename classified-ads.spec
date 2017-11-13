@@ -1,7 +1,7 @@
 Name:		classified-ads
 Version:	0.12
 Release:	1%{?dist}
-Summary:	Classified ads is distributed, serverless messaging system
+Summary:	Classified ads is distributed, server-less messaging system
 
 Group:		Applications/Internet
 License:	LGPLv2
