@@ -40,7 +40,7 @@ qmake-qt5 QMAKE_STRIP=echo
 
 %install
 %make_install INSTALL_ROOT=%{buildroot}
-appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/classified-ads.appdata.xml
+appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/classified-ads.appdata.xml
 desktop-file-validate %{buildroot}/%{_datadir}/applications/classified-ads.desktop
 %find_lang %{name}
 
@@ -66,7 +66,7 @@ fi
 %dir %{_datadir}/app-install/icons
 %{_datadir}/app-install/icons/turt-transparent-128x128.png
 %{_mandir}/man1/classified-ads.1.*
-%{_datadir}/appdata/classified-ads.appdata.xml
+%{_datadir}/metainfo/classified-ads.appdata.xml
 %license LICENSE
 %{_datadir}/doc/classified-ads/examples/sysinfo.tcl
 %{_datadir}/doc/classified-ads/examples/luikero.tcl
@@ -75,6 +75,7 @@ fi
 %changelog
 * Sun Nov 12 2017 Antti Jarvinen <antti.jarvinen@katiska.org> - 0.12-1
 - New upstream version: new features, many new translations
+- Appdata moved to /usr/share/metainfo
 
 * Sun Jul 3 2016 Antti Jarvinen <antti.jarvinen@katiska.org> - 0.11-1
 - New upstream version: bugfixes and support for OpenSSL 1.1 API

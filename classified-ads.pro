@@ -172,7 +172,7 @@ target.path = /usr/bin
 desktopfiles.path = /usr/share/applications
 desktopfiles.files = ui/classified-ads.desktop
 appdata.files = ui/classified-ads.appdata.xml
-appdata.path = /usr/share/appdata/
+appdata.path = /usr/share/metainfo/
 unix {
     # in unix install translations as part of appdata:
     appdata.extra = cd po ; $(MAKE) install DESTDIR=$(DESTDIR)
