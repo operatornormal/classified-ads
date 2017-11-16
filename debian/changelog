@@ -1,0 +1,34 @@
+classified-ads (0.11-1) unstable; urgency=medium
+
+  * New upstream version. Closes: #828268
+  * Standards version bump to 3.9.8. No changes to sources were required.
+  * Additions to copyright-file
+  * Changed git:// urls to https:// urls in d/control
+
+ -- Antti Järvinen <antti.jarvinen@katiska.org>  Sun, 03 Jul 2016 16:13:55 +0300
+
+classified-ads (0.10-1) unstable; urgency=medium
+
+  * New upstream version.
+
+ -- Antti Järvinen <antti.jarvinen@katiska.org>  Thu, 21 Apr 2016 20:37:58 +0300
+
+classified-ads (0.09-1) unstable; urgency=medium
+
+  * New upstream version.
+  * Noticed translations in copyright file. Closes: #801147
+
+ -- Antti Järvinen <antti.jarvinen@katiska.org>  Sat, 10 Oct 2015 15:58:24 +0300
+
+classified-ads (0.08-1) unstable; urgency=low
+
+  * New upstream release. Closes: #794395
+  * Build deps changed: qt5 instead of qt4, removal of libqjson and libmagic.
+
+ -- Antti Järvinen <antti.jarvinen@katiska.org>  Sun, 04 Oct 2015 23:24:17 +0300
+
+classified-ads (0.07-1) unstable; urgency=low
+
+  * Initial release. Closes: #779375
+
+ -- Antti Järvinen <antti.jarvinen@katiska.org>  Sun, 12 Apr 2015 13:21:59 +0300
