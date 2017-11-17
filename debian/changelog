@@ -2,6 +2,7 @@ classified-ads (0.12-1) unstable; urgency=medium
 
   * New upstream version 0.12, new dependencies added to control
   * Additions to copyright file
+  * Standards-version bump, application description update
 
  -- Antti Järvinen <antti.jarvinen@katiska.org>  Fri, 17 Nov 2017 21:16:32 +0200
 
