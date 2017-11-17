@@ -1,21 +1,21 @@
 /*  -*-C++-*- -*-coding: utf-8-unix;-*-
-    Classified Ads is Copyright (c) Antti Järvinen 2013-2016.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
 
-    This file is part of Classified Ads.
+  This file is part of Classified Ads.
 
-    Classified Ads is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  Classified Ads is free software; you can redistribute it and/or
+  modify it under the terms of the GNU Lesser General Public
+  License as published by the Free Software Foundation; either
+  version 2.1 of the License, or (at your option) any later version.
 
-    Classified Ads is distributed in the hope that it will be useful,
-       but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Classified Ads is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with Classified Ads; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+  You should have received a copy of the GNU Lesser General Public
+  License along with Classified Ads; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 #ifdef WIN32
 #define NOMINMAX
@@ -49,6 +49,7 @@
 #include "profilecommentmodel.h"
 #include "const.h"
 #include "searchmodel.h"
+#include "cadbrecordmodel.h"
 #include <QTimerEvent>
 
 /**
@@ -75,6 +76,10 @@ NodeModel::NodeModel(MController *aController,
             Qt::QueuedConnection ) ;
     openOrCreateSSLCertificate() ; // this method emit possible errors itself
     iTimerId = startTimer(20000*2) ; // 2-minute timer
+    QSqlQuery duplicateDeletiaQuery ; 
+    if ( ! duplicateDeletiaQuery.exec("delete from node where rowid not in ( select max(rowid) from node group by hash1,hash2,hash3,hash4,hash5 )") ) {
+        QLOG_STR(duplicateDeletiaQuery.lastError().text() + " "+ __FILE__ + QString::number(__LINE__)) ;
+    }
 }
 
 NodeModel::~NodeModel() {
@@ -109,22 +114,22 @@ bool NodeModel::openOrCreateSSLCertificate() {
         pkey = EVP_PKEY_new();
         RSA * rsa (NULL);
         BIGNUM          *bne ( NULL );
-        int ret = 0 ; 
+        int ret = 0 ;
         bne = BN_new();
         unsigned long   e = RSA_F4;
         ret = BN_set_word(bne,e);
-        rsa = RSA_new() ; 
-        
+        rsa = RSA_new() ;
+
         if ( rsa != NULL &&
-             ( ret = RSA_generate_key_ex(rsa,
-                                         2048, 
-                                         bne, 
-                                         NULL 
-                   ) ) != 1 ) {
+                ( ret = RSA_generate_key_ex(rsa,
+                                            2048,
+                                            bne,
+                                            NULL
+                                           ) ) != 1 ) {
             QString errmsg(tr("SSL key generation went wrong, calling exit..")) ;
             emit error(MController::OwnCertNotFound, errmsg) ;
-            RSA_free(rsa) ; 
-            BN_free(bne) ; 
+            RSA_free(rsa) ;
+            BN_free(bne) ;
             return false ;
         }
         EVP_PKEY_assign_RSA(pkey, rsa); // after this point rsa can't be free'd
@@ -506,6 +511,33 @@ QByteArray* NodeModel::getNextItemToSend(Connection& aConnection) {
                 }
             }
             break ;
+            case DbRecord: {
+                // this request has been put into queue locally and is
+                // from here spammed to connected nodes:
+
+                QList<CaDbRecord *> resultSet ( 
+                    iModel
+                    .caDbRecordModel()
+                    ->searchRecords(KNullHash,
+                                    itemToPrepare.iHash,
+                                    0 ,
+                                    std::numeric_limits<quint32>::max(),
+                                    std::numeric_limits<qint64>::min(),
+                                    std::numeric_limits<qint64>::max(),
+                                    QString::null,
+                                    KNullHash,
+                                    true ) ) ;
+                if ( resultSet.size() ) {
+                    QByteArray* resultBytes = new QByteArray() ;
+                    while(resultSet.size()) {
+                        CaDbRecord *r ( resultSet.takeFirst() ) ;
+                        resultBytes->append(ProtocolMessageFormatter::dbRecordSend(*r));
+                        delete r ; 
+                    }
+                    retval = resultBytes ;
+                }
+            }
+            break ;
             default:
                 // for rest of the types, there is no need to send
                 LOG_STR2("Unhandled send queue item type %d", (int)(itemToPrepare.iItemType)) ;
@@ -520,8 +552,12 @@ Node* NodeModel::nodeByHash(const Hash& aHash) {
     LOG_STR("NodeModel::nodeByHash in ") ;
     Node *retval = NULL ;
     QSqlQuery query;
-    bool ret = query.prepare("select hash1,hash2,hash3,hash4,hash5,listenport,last_conn_time,does_listen,ipv4addr,ipv6addr1,ipv6addr2,ipv6addr3,ipv6addr4,last_nodelist_time,last_mutual_conn_time from node where hash1 = :hash1") ;
+    bool ret = query.prepare("select hash1,hash2,hash3,hash4,hash5,listenport,last_conn_time,does_listen,ipv4addr,ipv6addr1,ipv6addr2,ipv6addr3,ipv6addr4,last_nodelist_time,last_mutual_conn_time from node where hash1 = :hash1 and hash2 = :hash2 and hash3 = :hash3 and hash4 = :hash4 and hash5 = :hash5") ;
     query.bindValue(":hash1", aHash.iHash160bits[0]);
+    query.bindValue(":hash2", aHash.iHash160bits[1]);
+    query.bindValue(":hash3", aHash.iHash160bits[2]);
+    query.bindValue(":hash4", aHash.iHash160bits[3]);
+    query.bindValue(":hash5", aHash.iHash160bits[4]);
     if ( ret && (ret = query.exec() ) == true && query.next()  ) {
         quint32 hash1 = query.value(0).toUInt() ;
         quint32 hash2 = query.value(1).toUInt() ;
@@ -826,6 +862,40 @@ QList<Node *>* NodeModel::getNodesAfterHash(const Hash& aHash,
             }
         }
     }
+    // still got less nodes than expected: return any connected nodes
+    int nodesMissing ( aMaxNodes - retval->size() ) ;
+    if ( (unsigned)(retval->size()) < aMaxNodes ) {
+        const bool hasIpv6 =
+            !Connection::Ipv6AddressesEqual(iController->getNode().ipv6Addr(),
+                                            KNullIpv6Addr) ;
+        const QList<Connection *>& openConnections ( iModel.getConnections());
+        foreach ( const Connection *connection, openConnections ) {
+            if ( connection->node() ) {
+                const Node* connectedNode ( connection->node() ) ;
+                if ( connectedNode->ipv4Addr() ||
+                        (
+                            !Connection::Ipv6AddressesEqual(connectedNode->ipv6Addr(),
+                                    KNullIpv6Addr) && hasIpv6
+                        )
+                   ) {
+                    Node* n = new Node (connectedNode->nodeFingerPrint(), connectedNode->port()) ;
+                    n->setIpv6Addr(connectedNode->ipv6Addr()) ;
+                    n->setIpv4Addr(connectedNode->ipv4Addr()) ;
+                    n->setGoodNodeListTime(connectedNode->goodNodeListTime()) ;
+                    // is connected now:
+                    n->setLastConnectTime(QDateTime::currentDateTimeUtc().toTime_t()) ;
+                    n->setCanReceiveIncoming(connectedNode->canReceiveIncoming()) ;
+                    n->setDNSAddr(connectedNode->DNSAddr())  ;
+                    n->setTORAddr(connectedNode->TORAddr())  ;
+                    retval->append(n) ;
+
+                }
+                if ( --nodesMissing < 0 ) {
+                    break ;
+                }
+            }
+        }
+    }
     return retval ;
 }
 
@@ -999,6 +1069,10 @@ bool NodeModel::nodeGreetingReceived(Node& aNode,
         aNode.setLastConnectTime(QDateTime::currentDateTimeUtc().toTime_t()) ;
         removeNodeFromRecentlyFailedList(aNode.nodeFingerPrint()) ;
     }
+    if ( aNode.lastConnectTime() > QDateTime::currentDateTimeUtc().addSecs(5*60).toTime_t() ) {
+        QLOG_STR("Received node whose last connect time is in future -> discarding") ; 
+        return true ; 
+    }
     if ( previousEntry ) {
         previousConnectTime= previousEntry->lastConnectTime() ;
         // ok, we had previous information, now we have new ; what
@@ -1050,48 +1124,54 @@ bool NodeModel::nodeGreetingReceived(Node& aNode,
 }
 
 bool NodeModel::updateNodeLastConnectTimeInDb(Node& aNode) {
-    QSqlQuery query;
+    bool ret ( true ) ; 
+    if ( aNode.lastConnectTime() < QDateTime::currentDateTimeUtc().addSecs(5*60).toTime_t() ) {
+        QSqlQuery query; 
 
-    bool ret = query.prepare("update node set last_conn_time=:last_conn_time,time_last_reference=:time_last_reference where hash1=:hash1 and hash2=:hash2 and hash3=:hash3 and hash4=:hash4 and hash5=:hash5") ;
-    if ( ret ) {
-        query.bindValue(":hash1", aNode.nodeFingerPrint().iHash160bits[0]);
-        query.bindValue(":hash2", aNode.nodeFingerPrint().iHash160bits[1]);
-        query.bindValue(":hash3", aNode.nodeFingerPrint().iHash160bits[2]);
-        query.bindValue(":hash4", aNode.nodeFingerPrint().iHash160bits[3]);
-        query.bindValue(":hash5", aNode.nodeFingerPrint().iHash160bits[4]);
+        ret = query.prepare("update node set last_conn_time=:last_conn_time,time_last_reference=:time_last_reference where hash1=:hash1 and hash2=:hash2 and hash3=:hash3 and hash4=:hash4 and hash5=:hash5") ;
+        if ( ret ) {
+            query.bindValue(":hash1", aNode.nodeFingerPrint().iHash160bits[0]);
+            query.bindValue(":hash2", aNode.nodeFingerPrint().iHash160bits[1]);
+            query.bindValue(":hash3", aNode.nodeFingerPrint().iHash160bits[2]);
+            query.bindValue(":hash4", aNode.nodeFingerPrint().iHash160bits[3]);
+            query.bindValue(":hash5", aNode.nodeFingerPrint().iHash160bits[4]);
 
-        query.bindValue(":last_conn_time", (quint32)(aNode.lastConnectTime()));
-        query.bindValue(":time_last_reference", (quint32)(aNode.lastConnectTime()));
-        ret = query.exec() ;
-    }
-    if ( !ret ) {
-        QLOG_STR(query.lastError().text() + " "+ __FILE__ + QString::number(__LINE__)) ;
-        emit error(MController::DbTransactionError, query.lastError().text()) ;
+            query.bindValue(":last_conn_time", (quint32)(aNode.lastConnectTime()));
+            query.bindValue(":time_last_reference", (quint32)(aNode.lastConnectTime()));
+            ret = query.exec() ;
+        }
+        if ( !ret ) {
+            QLOG_STR(query.lastError().text() + " "+ __FILE__ + QString::number(__LINE__)) ;
+            emit error(MController::DbTransactionError, query.lastError().text()) ;
+        }
     }
     return ret ;
 }
 
 bool NodeModel::updateNodeLastMutualConnectTimeInDb(const Hash& aNodeFp,
-        quint32 aTime ) {
-    QSqlQuery query;
+                                                    quint32 aTime ) {
+    bool ret ( true ) ;
+    if ( aTime < QDateTime::currentDateTimeUtc().addSecs(5*60).toTime_t() ) {
+        QSqlQuery query;
 
-    bool ret = query.prepare("update node set last_mutual_conn_time=:last_mutual_conn_time,last_conn_time=:last_conn_time,time_last_reference=:time_last_reference where hash1=:hash1 and hash2=:hash2 and hash3=:hash3 and hash4=:hash4 and hash5=:hash5") ;
-    if ( ret ) {
-        query.bindValue(":hash1", aNodeFp.iHash160bits[0]);
-        query.bindValue(":hash2", aNodeFp.iHash160bits[1]);
-        query.bindValue(":hash3", aNodeFp.iHash160bits[2]);
-        query.bindValue(":hash4", aNodeFp.iHash160bits[3]);
-        query.bindValue(":hash5", aNodeFp.iHash160bits[4]);
+        ret = query.prepare("update node set last_mutual_conn_time=:last_mutual_conn_time,last_conn_time=:last_conn_time,time_last_reference=:time_last_reference where hash1=:hash1 and hash2=:hash2 and hash3=:hash3 and hash4=:hash4 and hash5=:hash5") ;
+        if ( ret ) {
+            query.bindValue(":hash1", aNodeFp.iHash160bits[0]);
+            query.bindValue(":hash2", aNodeFp.iHash160bits[1]);
+            query.bindValue(":hash3", aNodeFp.iHash160bits[2]);
+            query.bindValue(":hash4", aNodeFp.iHash160bits[3]);
+            query.bindValue(":hash5", aNodeFp.iHash160bits[4]);
 
-        query.bindValue(":last_conn_time", aTime);
-        query.bindValue(":last_mutual_conn_time", aTime);
-        query.bindValue(":time_last_reference", aTime);
+            query.bindValue(":last_conn_time", aTime);
+            query.bindValue(":last_mutual_conn_time", aTime);
+            query.bindValue(":time_last_reference", aTime);
 
-        ret = query.exec() ;
-    }
-    if ( !ret ) {
-        QLOG_STR(query.lastError().text() + " "+ __FILE__ + QString::number(__LINE__)) ;
-        emit error(MController::DbTransactionError, query.lastError().text()) ;
+            ret = query.exec() ;
+        }
+        if ( !ret ) {
+            QLOG_STR(query.lastError().text() + " "+ __FILE__ + QString::number(__LINE__)) ;
+            emit error(MController::DbTransactionError, query.lastError().text()) ;
+        }
     }
     return ret ;
 }
@@ -1297,11 +1377,10 @@ void NodeModel::retrieveListOfHotConnections() {
 
 
             if (  hashOfRetrievedNode != *iFingerPrintOfThisNode  ) { // don't connect to self
-                const Node* nodeOfConnection = NULL ;
                 bool alreadyConnected = false ;
                 for ( int i = iModel.getConnections().size()-1 ; i >= 0 ; i-- ) {
                     // and don't connect to already-connected nodes
-                    nodeOfConnection = iModel.getConnections().value(i)->node() ;
+                    const Node* nodeOfConnection = iModel.getConnections().value(i)->node() ;
                     if ( nodeOfConnection &&
                             ( nodeOfConnection->nodeFingerPrint() == hashOfRetrievedNode  ) ) {
                         QLOG_STR("Hot: Was already connected " + hashOfRetrievedNode.toString()) ;
@@ -1478,12 +1557,11 @@ bool NodeModel::isNodeAlreadyConnected(const Node& aNode) const {
     }
 
     const QList <Connection *>& currentConnections ( iModel.getConnections() ) ;
-    Node* nodeOfConnection ( NULL ) ;
     for ( int i = currentConnections.size()-1 ; i >= 0 ; i-- ) {
         // and don't connect to already-connected nodes
-        nodeOfConnection = currentConnections.value(i)->node() ;
-        if ( nodeOfConnection && 
-             currentConnections.value(i)->connectionState() == Connection::Open ) {
+        const Node* nodeOfConnection ( currentConnections.value(i)->node() );
+        if ( nodeOfConnection &&
+                currentConnections.value(i)->connectionState() == Connection::Open ) {
             if ( nodeOfConnection->nodeFingerPrint() == aNode.nodeFingerPrint() ) {
                 return true ; // was already connected
             }
@@ -1513,12 +1591,11 @@ bool NodeModel::isNodeAlreadyConnected(const Hash& aHash) const {
     }
 
     const QList <Connection *>& currentConnections ( iModel.getConnections() ) ;
-    Node* nodeOfConnection ( NULL ) ;
     for ( int i = currentConnections.size()-1 ; i >= 0 ; i-- ) {
         // and don't connect to already-connected nodes
-        nodeOfConnection = currentConnections.value(i)->node() ;
+        const Node* nodeOfConnection( currentConnections.value(i)->node() ) ;
         if ( nodeOfConnection  &&
-            currentConnections.value(i)->connectionState() == Connection::Open) {
+                currentConnections.value(i)->connectionState() == Connection::Open) {
             if ( nodeOfConnection->nodeFingerPrint() == aHash ) {
                 return true ; // was already connected
             }
@@ -1715,9 +1792,9 @@ void NodeModel::timerEvent(QTimerEvent*  /* event */ ) {
     // remove all nodes that have been more than 10 minutes on the list
     for ( int i = iRecentlyFailedNodes.size()-1 ; i >= 0 ; i-- ) {
         if ( iRecentlyFailedNodes[i].second < time10MinAgo ) {
-        QLOG_STR("Removing failed node " + iRecentlyFailedNodes[i].first.toString() +
-                 " time " +  QString::number(iRecentlyFailedNodes[i].second) + 
-                 " because " +  QString::number(time10MinAgo) ) ;
+            QLOG_STR("Removing failed node " + iRecentlyFailedNodes[i].first.toString() +
+                     " time " +  QString::number(iRecentlyFailedNodes[i].second) +
+                     " because " +  QString::number(time10MinAgo) ) ;
             iRecentlyFailedNodes.removeAt(i) ;
         }
     }

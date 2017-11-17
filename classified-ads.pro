@@ -1,5 +1,5 @@
 #
-# Classified Ads is Copyright (c) Antti Järvinen 2013-2016.
+# Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
 #
 # This file is part of Classified Ads.
 #
@@ -78,7 +78,11 @@ HEADERS = mcontroller.h controller.h FrontWidget.h net/node.h util/hash.h \
         util/catranslator.h datamodel/voicecall.h net/voicecallengine.h \
         ui/callstatus.h ui/callbuttondelegate.h net/mvoicecallengine.h \
         call/audiosource.h call/audiomixer.h call/audioplayer.h \
-        call/audioencoder.h call/audiodecoder.h call/ringtoneplayer.h
+        call/audioencoder.h call/audiodecoder.h call/ringtoneplayer.h \
+        ui/tclPrograms.h ui/tclConsole.h tcl/tclWrapper.h \
+        datamodel/tclprogram.h datamodel/tclmodel.h tcl/tclCallbacks.h \
+        tcl/tclUtil.h datamodel/cadbrecord.h datamodel/cadbrecordmodel.h \
+        net/dbretrievalengine.h util/ungzip.h
 SOURCES = main.cpp controller.cpp FrontWidget.cpp net/node.cpp util/hash.cpp \
 	net/connection.cpp datamodel/model.cpp \
         net/networklistener.cpp net/protocol_message_formatter.cpp \
@@ -110,18 +114,24 @@ SOURCES = main.cpp controller.cpp FrontWidget.cpp net/node.cpp util/hash.cpp \
         net/voicecallengine.cpp ui/callstatus.cpp ui/callbuttondelegate.cpp \
         call/audiosource.cpp call/audiomixer.cpp \
         call/audioplayer.cpp call/audioencoder.cpp call/audiodecoder.cpp \
-        call/ringtoneplayer.cpp
+        call/ringtoneplayer.cpp ui/tclPrograms.cpp ui/tclConsole.cpp \
+        tcl/tclWrapper.cpp datamodel/tclprogram.cpp datamodel/tclmodel.cpp \
+        tcl/tclCallbacks.cpp tcl/tclUtil.cpp  datamodel/cadbrecord.cpp \
+        datamodel/cadbrecordmodel.cpp net/dbretrievalengine.cpp \
+        util/ungzip.cpp
 FORMS = frontWidget.ui ui/profileReadersDialog.ui ui/passwordDialog.ui \
 	ui/newClassifiedAd.ui 	ui/newPrivMsg.ui ui/editContact.ui \
         ui/newProfileComment.ui ui/profileCommentDisplay.ui \
         ui/attachmentListDialog.ui ui/settingsDialog.ui \
 	ui/statusDialog.ui ui/manualConnectionDialog.ui \
 	ui/aboutDialog.ui ui/searchDisplay.ui ui/insertLink.ui \
-        ui/newTextDocument.ui ui/metadataQuery.ui ui/callStatusDialog.ui
+        ui/newTextDocument.ui ui/metadataQuery.ui ui/callStatusDialog.ui \
+        ui/tclPrograms.ui ui/tclConsole.ui
 RESOURCES     = ui_resources.qrc
 TRANSLATIONS  = classified_ads_fi.ts \
                 classified_ads_sv.ts
-unix:LIBS = -lssl -lcrypto -lnatpmp -lminiupnpc 
+unix:LIBS = -lssl -lcrypto -lnatpmp -lminiupnpc -ltcl -ltk -lz
+win32:LIBS+=-ltcl86 -ltk86 -lz
 lessThan(QT_MAJOR_VERSION, 5) {
      unix:LIBS +=  -lqjson -lmagic
 } 
@@ -135,6 +145,7 @@ win32:LIBS += "..\miniupnpc-1.9\miniupnpc.lib"
 win32:LIBS += "-L\msys32\usr\local\lib"
 win32:LIBS += "-lintl"
 win32:LIBS += "-L..\opus-1.1.2\binary\lib"
+win32:LIBS += "-L\msys32\opt\tcl\lib"
 lessThan(QT_MAJOR_VERSION, 5) {
     win32:LIBS += "-L" 
     win32:LIBS += "..\qjson-master\build\src"
@@ -145,14 +156,23 @@ win32:INCLUDEPATH += "..\openssl-1.0.2d\include"
 win32:INCLUDEPATH += "..\miniupnpc-1.9"
 win32:INCLUDEPATH += "\msys32\usr\local\include"
 win32:INCLUDEPATH += "..\opus-1.1.2\binary\include"
+win32:INCLUDEPATH += "\msys32\opt\tcl\include"
 lessThan(QT_MAJOR_VERSION, 5) {
     win32:INCLUDEPATH += "..\qjson-master\include"
 }
+unix {
+        TCL_VERSION = $$system(echo \'puts $tcl_version;exit 0\' | tclsh)
+        message(Tcl version $$TCL_VERSION)
+} 
+win32 {
+        TCL_VERSION = 8.6
+}
+INCLUDEPATH += /usr/include/tcl$$TCL_VERSION /usr/include/tk /usr/include/tk$$TCL_VERSION
 target.path = /usr/bin
 desktopfiles.path = /usr/share/applications
 desktopfiles.files = ui/classified-ads.desktop
 appdata.files = ui/classified-ads.appdata.xml
-appdata.path = /usr/share/appdata/
+appdata.path = /usr/share/metainfo/
 unix {
     # in unix install translations as part of appdata:
     appdata.extra = cd po ; $(MAKE) install DESTDIR=$(DESTDIR)
@@ -161,10 +181,14 @@ desktopicons.files = ui/turt-transparent-128x128.png
 desktopicons.path = /usr/share/app-install/icons/
 manpages.path = /usr/share/man/man1
 manpages.files = classified-ads.1
+# note this example file path appears also in file tclmodel.cpp
+examplefiles.path = /usr/share/doc/classified-ads/examples
+examplefiles.files = doc/sysinfo.tcl doc/luikero.tcl doc/calendar.tcl
 INSTALLS += target \
         desktopfiles \
         desktopicons \
         appdata
 unix:INSTALLS += manpages
 unix:INSTALLS += appdata
+unix:INSTALLS += examplefiles
 RC_FILE=classified-ads.rc

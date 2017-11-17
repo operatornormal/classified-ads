@@ -1,0 +1,2507 @@
+# Translation file for classified ads.
+#
+# This is auto-generated from .ts file.
+# Brian Curtich <bcurtich@gmail.com>, 2016. #zanata
+# Dennis Tobar <dennis.tobar@gmail.com>, 2016. #zanata
+# Omar Berroterán S. <omarberroteranlkf@gmail.com>, 2016. #zanata
+# tatica leandro <tatica@fedoraproject.org>, 2016. #zanata
+# Emilio Herrera <ehespinosa57@gmail.com>, 2017. #zanata
+# Fernando Espinoza <herculesoplimpus@gmail.com>, 2017. #zanata
+msgid ""
+msgstr ""
+"Project-Id-Version: classified-ads 0.10\n"
+"Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
+"POT-Creation-Date: 2016-03-14 21:30+0300\n"
+"PO-Revision-Date: 2017-08-26 02:07-0400\n"
+"Last-Translator: Fernando Espinoza <herculesoplimpus@gmail.com>\n"
+"Language-Team: Spanish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: Zanata 3.9.6\n"
+"X-Language: fi_FI\n"
+"X-Qt-Contexts: true\n"
+
+#: ui/attachmentlistdialog.cpp:60
+msgctxt "AttachmentListDialog|"
+msgid "Save file to disk.."
+msgstr "Guardar archivo"
+
+#: ui/attachmentlistdialog.cpp:151 ui/attachmentlistdialog.cpp:153
+msgctxt "AttachmentListDialog|"
+msgid "files"
+msgstr "archivos"
+
+#: ui/attachmentlistdialog.cpp:162
+msgctxt "AttachmentListDialog|"
+msgid "Save location"
+msgstr "Guardar dirección"
+
+#: ui/attachmentlistdialog.cpp:163
+msgctxt "AttachmentListDialog|"
+msgid "Save to TCL app library instead of regular file?"
+msgstr ""
+"Guardar en la biblioteca de aplicaciones TCL en lugar del archivo normal"
+
+#: ui/attachmentlistdialog.cpp:155
+msgctxt "AttachmentListDialog|"
+msgid "Choose file name for saving"
+msgstr "Indique el nombre del archivo para guardar "
+
+#: ui/attachmentlistdialog.cpp:166
+msgctxt "AttachmentListDialog|"
+msgid "Error"
+msgstr "Error"
+
+#: ui/attachmentlistdialog.cpp:167
+msgctxt "AttachmentListDialog|"
+msgid "File open error"
+msgstr "Error al abrir el archivo"
+
+#: call/audioplayer.cpp:65
+msgctxt "AudioPlayer|"
+msgid "raw audio format not supported by backend, cannot play audio."
+msgstr ""
+"formato de aurio raw no soportado por por backend, no se puede reproducir el"
+" archivo de audio."
+
+#: call/audioplayer.cpp:83
+msgctxt "AudioPlayer|"
+msgid "Could not initialize audio player."
+msgstr "No se puede iniciar el reproductor de aurio."
+
+#: datamodel/binaryfilelistingmodel.cpp:173
+msgctxt "BinaryFileListingModel|"
+msgid "Name or fingerprint of file"
+msgstr "Nombre o fingerprint(identificador) del archivo"
+
+#: datamodel/calistingmodel.cpp:50 datamodel/calistingmodel.cpp:143
+msgctxt "CAListingModel|"
+msgid "Date"
+msgstr "Fecha"
+
+#: datamodel/calistingmodel.cpp:51 datamodel/calistingmodel.cpp:142
+msgctxt "CAListingModel|"
+msgid "Subject"
+msgstr "Asunto"
+
+#: datamodel/camodel.cpp:127
+msgctxt "ClassifiedAdsModel|"
+msgid "Buying"
+msgstr "Comprando"
+
+#: datamodel/camodel.cpp:129
+msgctxt "ClassifiedAdsModel|"
+msgid "Selling"
+msgstr "Vendiendo"
+
+#: datamodel/camodel.cpp:131
+msgctxt "ClassifiedAdsModel|"
+msgid "Giving away"
+msgstr "Obsequiar"
+
+#: datamodel/camodel.cpp:133
+msgctxt "ClassifiedAdsModel|"
+msgid "Wanting"
+msgstr "Necesitando"
+
+#: datamodel/camodel.cpp:135
+msgctxt "ClassifiedAdsModel|"
+msgid "Renting"
+msgstr "Rentando"
+
+#: datamodel/camodel.cpp:137
+msgctxt "ClassifiedAdsModel|"
+msgid "Announcement"
+msgstr "Anunciando"
+
+#: datamodel/camodel.cpp:210
+msgctxt "ClassifiedAdsModel|"
+msgid "Cars"
+msgstr "Carros"
+
+#: datamodel/camodel.cpp:212
+msgctxt "ClassifiedAdsModel|"
+msgid "Boats"
+msgstr "Botes"
+
+#: datamodel/camodel.cpp:214
+msgctxt "ClassifiedAdsModel|"
+msgid "Bikes"
+msgstr "Bicicletas"
+
+#: datamodel/camodel.cpp:216
+msgctxt "ClassifiedAdsModel|"
+msgid "Other vehicles"
+msgstr "Otros vehiculos"
+
+#: datamodel/camodel.cpp:218
+msgctxt "ClassifiedAdsModel|"
+msgid "Vehicle parts"
+msgstr "Partes de vehiculos"
+
+#: datamodel/camodel.cpp:220
+msgctxt "ClassifiedAdsModel|"
+msgid "Habitation"
+msgstr "Habitación"
+
+#: datamodel/camodel.cpp:222
+msgctxt "ClassifiedAdsModel|"
+msgid "Household appliances"
+msgstr "Electrodomésticos"
+
+#: datamodel/camodel.cpp:224
+msgctxt "ClassifiedAdsModel|"
+msgid "Furniture"
+msgstr "Carpinteria"
+
+#: datamodel/camodel.cpp:226
+msgctxt "ClassifiedAdsModel|"
+msgid "Clothing"
+msgstr "Sastretria"
+
+#: datamodel/camodel.cpp:228
+msgctxt "ClassifiedAdsModel|"
+msgid "Tools"
+msgstr "Herramientas"
+
+#: datamodel/camodel.cpp:230
+msgctxt "ClassifiedAdsModel|"
+msgid "Sports"
+msgstr "Deportes"
+
+#: datamodel/camodel.cpp:232
+msgctxt "ClassifiedAdsModel|"
+msgid "Music"
+msgstr "Música"
+
+#: datamodel/camodel.cpp:234
+msgctxt "ClassifiedAdsModel|"
+msgid "Books"
+msgstr "Libros"
+
+#: datamodel/camodel.cpp:236
+msgctxt "ClassifiedAdsModel|"
+msgid "Movies"
+msgstr "Películas"
+
+#: datamodel/camodel.cpp:238
+msgctxt "ClassifiedAdsModel|"
+msgid "Animals"
+msgstr "Animales"
+
+#: datamodel/camodel.cpp:240
+msgctxt "ClassifiedAdsModel|"
+msgid "Electronics"
+msgstr "Electrónicos"
+
+#: datamodel/camodel.cpp:242
+msgctxt "ClassifiedAdsModel|"
+msgid "Jobs"
+msgstr "Trabajos"
+
+#: datamodel/camodel.cpp:244
+msgctxt "ClassifiedAdsModel|"
+msgid "Transportation"
+msgstr "Transporte"
+
+#: datamodel/camodel.cpp:246
+msgctxt "ClassifiedAdsModel|"
+msgid "Services"
+msgstr "Servicios"
+
+#: datamodel/camodel.cpp:248
+msgctxt "ClassifiedAdsModel|"
+msgid "Healthcare"
+msgstr "Cuidados médicos"
+
+#: datamodel/camodel.cpp:250
+msgctxt "ClassifiedAdsModel|"
+msgid "Foodstuff"
+msgstr "Productos Alimenticios"
+
+#: datamodel/camodel.cpp:252
+msgctxt "ClassifiedAdsModel|"
+msgid "Software"
+msgstr "Programas computacionales"
+
+#: datamodel/camodel.cpp:254
+msgctxt "ClassifiedAdsModel|"
+msgid "Events"
+msgstr "Eventos"
+
+#: datamodel/camodel.cpp:256
+msgctxt "ClassifiedAdsModel|"
+msgid "Education"
+msgstr "Educación"
+
+#: datamodel/camodel.cpp:258
+msgctxt "ClassifiedAdsModel|"
+msgid "Finance"
+msgstr "Finanzas"
+
+#: datamodel/camodel.cpp:260
+msgctxt "ClassifiedAdsModel|"
+msgid "Jewelry"
+msgstr "Joyería"
+
+#: datamodel/camodel.cpp:262
+msgctxt "ClassifiedAdsModel|"
+msgid "Religious rituals"
+msgstr "Rituales religiosos"
+
+#: datamodel/camodel.cpp:264
+msgctxt "ClassifiedAdsModel|"
+msgid "Philosophy"
+msgstr "Filosofía"
+
+#: datamodel/camodel.cpp:908
+msgctxt "ClassifiedAdsModel|"
+msgid "Any country"
+msgstr "Cualquier país"
+
+#: datamodel/connectionlistingmodel.cpp:142
+msgctxt "ConnectionListingModel|"
+msgid "Peer network address"
+msgstr "Dirección de red de iguales"
+
+#: datamodel/connectionlistingmodel.cpp:145
+msgctxt "ConnectionListingModel|"
+msgid "Inbound connections are those where peer initiated connection"
+msgstr ""
+"Conexiones entrantes son aquellas en las que el par ha iniciado la conexión"
+
+#: datamodel/connectionlistingmodel.cpp:148
+msgctxt "ConnectionListingModel|"
+msgid "Data transferred from peer to your node"
+msgstr "Datos transferidos desde el par a su nodo"
+
+#: datamodel/connectionlistingmodel.cpp:151
+msgctxt "ConnectionListingModel|"
+msgid "Data transferred to peer from your node"
+msgstr "Datos transferidos al par desde su nodo"
+
+#: datamodel/connectionlistingmodel.cpp:154
+msgctxt "ConnectionListingModel|"
+msgid "Time when connection was opened"
+msgstr "Momento en que se abrió la conexión"
+
+#: datamodel/connectionlistingmodel.cpp:164
+msgctxt "ConnectionListingModel|"
+msgid "Address"
+msgstr "Dirección"
+
+#: datamodel/connectionlistingmodel.cpp:167
+msgctxt "ConnectionListingModel|"
+msgid "Inbound"
+msgstr "Entrante"
+
+#: datamodel/connectionlistingmodel.cpp:170
+msgctxt "ConnectionListingModel|"
+msgid "Bytes in"
+msgstr "Bytes entrada"
+
+#: datamodel/connectionlistingmodel.cpp:173
+msgctxt "ConnectionListingModel|"
+msgid "Bytes out"
+msgstr "Bytes salida"
+
+#: datamodel/connectionlistingmodel.cpp:176
+msgctxt "ConnectionListingModel|"
+msgid "Open time"
+msgstr "Tiempo abierto"
+
+#: datamodel/contactlistingmodel.cpp:73
+msgctxt "ContactListingModel|"
+msgid "Yes"
+msgstr "Sí"
+
+#: datamodel/contactlistingmodel.cpp:75
+msgctxt "ContactListingModel|"
+msgid "Unknown"
+msgstr "Desconocido"
+
+#: datamodel/contactlistingmodel.cpp:98
+msgctxt "ContactListingModel|"
+msgid "Actual network address (SHA1) of the contact"
+msgstr "Dirección de red (SHA-1) actual del contacto"
+
+#: datamodel/contactlistingmodel.cpp:101
+msgctxt "ContactListingModel|"
+msgid "Locally given nickname ; user may set her own nickname himself"
+msgstr ""
+"Apodo dado localmente ; el usuario debe fijar su propio apodo el mismo"
+
+#: datamodel/contactlistingmodel.cpp:104
+msgctxt "ContactListingModel|"
+msgid "Public statement if this operator to be trusted in transactions"
+msgstr ""
+"Declaración pública de si este operador es confiable en las transacciones"
+
+#: datamodel/contactlistingmodel.cpp:114
+msgctxt "ContactListingModel|"
+msgid "Address"
+msgstr "Dirección"
+
+#: datamodel/contactlistingmodel.cpp:117
+msgctxt "ContactListingModel|"
+msgid "Nickname"
+msgstr "Apodo"
+
+#: datamodel/contactlistingmodel.cpp:120
+msgctxt "ContactListingModel|"
+msgid "Publicly trusted"
+msgstr "De confianza pública"
+
+#: datamodel/contentencryptionmodel.cpp:88
+msgctxt "ContentEncryptionModel|"
+msgid "SSL key generation went wrong, calling exit.."
+msgstr "Error en la generación de la llave SSL, finalizando..."
+
+#: datamodel/contentencryptionmodel.cpp:96
+msgctxt "ContentEncryptionModel|"
+msgid "x509 cert generation went wrong, calling exit.."
+msgstr "Error al generar certificado x509, terminando..."
+
+#: datamodel/contentencryptionmodel.cpp:194
+#: datamodel/contentencryptionmodel.cpp:292
+msgctxt "ContentEncryptionModel|"
+msgid "RSA Private key key saving went wrong"
+msgstr "Error al guardar llave RSA"
+
+#: datamodel/contentencryptionmodel.cpp:639
+msgctxt "ContentEncryptionModel|"
+msgid "No suitable de-cryption key found"
+msgstr "No se ha encontrado llave de descifrado"
+
+#: controller.cpp:109
+msgctxt "Controller|"
+msgid "Classified ads"
+msgstr "Anuncios clasificados"
+
+#: controller.cpp:141
+msgctxt "Controller|"
+msgid "Enter password for protection of your messages:"
+msgstr "Ingrese una contraseña para proteger sus mensajes:"
+
+#: controller.cpp:432
+msgctxt "Controller|"
+msgid "Fetching item from network.."
+msgstr "Obteniendo elemento desde la red..."
+
+#: controller.cpp:485
+msgctxt "Controller|"
+msgid "E&xit"
+msgstr "Salir"
+
+#: controller.cpp:487
+msgctxt "Controller|"
+msgid "Exit the application"
+msgstr "Salir de la aplicación"
+
+#: controller.cpp:489
+msgctxt "Controller|"
+msgid "&About"
+msgstr "&Acerca de"
+
+#: controller.cpp:490
+msgctxt "Controller|"
+msgid "Show the application's About box"
+msgstr "Muestra el cuadro Acerca de"
+
+#: controller.cpp:492
+msgctxt "Controller|"
+msgid "&Change password"
+msgstr "&Cambiar contraseña"
+
+#: controller.cpp:493
+msgctxt "Controller|"
+msgid "Change password of current profile"
+msgstr "Cambiar la contraseña del perfil actual"
+
+#: controller.cpp:495
+msgctxt "Controller|"
+msgid "Create &new profile"
+msgstr "Crear &nuevo perfil"
+
+#: controller.cpp:496
+msgctxt "Controller|"
+msgid "Makes a brand new user profile"
+msgstr "Crea un nuevo perfil de usuario"
+
+#: controller.cpp:498
+msgctxt "Controller|"
+msgid "&Delete current profile"
+msgstr "&Delete perfil actual"
+
+#: controller.cpp:499
+msgctxt "Controller|"
+msgid "Deletes currently open profile"
+msgstr "Borrar el perfil actualmente abierto"
+
+#: controller.cpp:501
+msgctxt "Controller|"
+msgid "&Select another profile"
+msgstr "&Seleccionar otro perfil"
+
+#: controller.cpp:502
+msgctxt "Controller|"
+msgid "If you have multitude of profiles"
+msgstr "Si tienes varios perfiles"
+
+#: controller.cpp:504
+msgctxt "Controller|"
+msgid "Settings.."
+msgstr "Configuración.."
+
+#: controller.cpp:505
+msgctxt "Controller|"
+msgid "Node-wide settings.."
+msgstr "Ajustes de todo el nodo.."
+
+#: controller.cpp:507
+msgctxt "Controller|"
+msgid "Network status.."
+msgstr "Estado de la red.."
+
+#: controller.cpp:509
+msgctxt "Controller|"
+msgid "Search.."
+msgstr "Buscar.."
+
+#: controller.cpp:526
+msgctxt "Controller|"
+msgid "&File"
+msgstr "&File"
+
+#: controller.cpp:729
+msgctxt "Controller|"
+msgid "&TCL Programs"
+msgstr ""
+
+#: controller.cpp:730
+msgctxt "Controller|"
+msgid "&Local library"
+msgstr ""
+
+#: controller.cpp:731
+msgctxt "Controller|"
+msgid "Locally stored TCL programs"
+msgstr "Programas de TCL almacenados localmente"
+
+#: controller.cpp:734
+msgctxt "Controller|"
+msgid "TCL &Console"
+msgstr ""
+
+#: controller.cpp:735
+msgctxt "Controller|"
+msgid "Display interpreter console"
+msgstr "Programas de TCL almacenados localmente"
+
+#: controller.cpp:571
+msgctxt "Controller|"
+msgid "Enter new password:"
+msgstr "Ingrese contraseña nueva:"
+
+#: controller.cpp:599 controller.cpp:708
+msgctxt "Controller|"
+msgid "Activate another profile with password"
+msgstr "Activar otro perfil con contraseña"
+
+#: controller.cpp:693
+msgctxt "Controller|"
+msgid "Can't delete only profile."
+msgstr "No se puede eliminar sólo el perfil."
+
+#: controller.cpp:697
+msgctxt "Controller|"
+msgid "Permanently discard profile?"
+msgstr "¿Eliminar perfil permanentemente?"
+
+#: controller.cpp:698
+msgctxt "Controller|"
+msgid "There will be NO way to access content of this profile later"
+msgstr "NO habrá modo de acceder al contenido de este perfil nuevamente."
+
+#: controller.cpp:761
+msgctxt "Controller|"
+msgid "Cant load node cert or key cert"
+msgstr "No se puede cargar nodo de cert o llave de cert"
+
+#: controller.cpp:766
+msgctxt "Controller|"
+msgid "File error"
+msgstr "Error de archivos"
+
+#: controller.cpp:771
+msgctxt "Controller|"
+msgid "Database error"
+msgstr "Error de base de datos"
+
+#: controller.cpp:777 controller.cpp:787
+msgctxt "Controller|"
+msgid "Cryptographic module"
+msgstr "Módulo de cifrado"
+
+#: controller.cpp:782
+msgctxt "Controller|"
+msgid "Database module"
+msgstr "Módulo de base de datos"
+
+#: controller.cpp:788
+msgctxt "Controller|"
+msgid "Bad password"
+msgstr "Contraseña incorrecta"
+
+#: controller.cpp:1043
+msgctxt "Controller|"
+msgid "TCL Interpreter"
+msgstr "Intérprete TCL"
+
+#: controller.cpp:1004
+msgctxt "Controller|"
+msgid "Could not find item from network.."
+msgstr "No se pudo encontrar el elemento de la red.."
+
+#: controller.cpp:1117
+msgctxt "Controller|"
+msgid "SHA1: "
+msgstr "SHA1:"
+
+#: controller.cpp:1122
+msgctxt "Controller|"
+msgid "Mime-Type: "
+msgstr "Mime-Type:"
+
+#: controller.cpp:1128
+msgctxt "Controller|"
+msgid "Description: "
+msgstr "Descripción:"
+
+#: controller.cpp:1134
+msgctxt "Controller|"
+msgid "Publisher: "
+msgstr "Editor: "
+
+#: controller.cpp:1140
+msgctxt "Controller|"
+msgid "Content owner: "
+msgstr "Propietario del contenido: "
+
+#: controller.cpp:1146
+msgctxt "Controller|"
+msgid "License: "
+msgstr "Licencia:"
+
+#: controller.cpp:1152
+msgctxt "Controller|"
+msgid "Name: "
+msgstr "Nombre:"
+
+#: controller.cpp:1159
+msgctxt "Controller|"
+msgid "Date: "
+msgstr "Fecha:"
+
+#: ui/dialogbase.cpp:47 ui/dialogbase.cpp:101
+msgctxt "DialogBase|"
+msgid "File way too big"
+msgstr "Archivo demasiado grande"
+
+#: ui/dialogbase.cpp:55 ui/dialogbase.cpp:109
+msgctxt "DialogBase|"
+msgid "File too big"
+msgstr "Archivo demasiado grande"
+
+#: ui/dialogbase.cpp:85 ui/dialogbase.cpp:131
+msgctxt "DialogBase|"
+msgid "File open error"
+msgstr "Error al abrir archivo"
+
+#: ui/dialogbase.cpp:94
+msgctxt "DialogBase|"
+msgid "Select file to be published"
+msgstr "Seleccione el archivo a publicar"
+
+#: ui/dialogbase.cpp:96
+msgctxt "DialogBase|"
+msgid "Files (*.*)"
+msgstr "Archivos (*.*)"
+
+#: ui/editcontact.cpp:72
+msgctxt "EditContactDialog|"
+msgid "Error"
+msgstr "Error"
+
+#: ui/editcontact.cpp:73
+msgctxt "EditContactDialog|"
+msgid "Operator addr is not valid"
+msgstr "Dirección del operador no es válida"
+
+#: FrontWidget.cpp:95
+msgctxt "FrontWidget|"
+msgid "Classified ads"
+msgstr "Anuncios clasificados"
+
+#: FrontWidget.cpp:96
+msgctxt "FrontWidget|"
+msgid "My profile"
+msgstr "Mi perfil"
+
+#: FrontWidget.cpp:97
+msgctxt "FrontWidget|"
+msgid "Contacts"
+msgstr "Contactos"
+
+#: FrontWidget.cpp:98
+msgctxt "FrontWidget|"
+msgid "Private messages"
+msgstr "Mensajes privados"
+
+#: FrontWidget.cpp:160
+msgctxt "FrontWidget|"
+msgid "Add shared file.."
+msgstr "Agregar archivo compartido.."
+
+#: FrontWidget.cpp:161
+msgctxt "FrontWidget|"
+msgid "Stop advertising selected shared file"
+msgstr "Dejar de publicitar el archivo compartido seleccionado"
+
+#: FrontWidget.cpp:162
+msgctxt "FrontWidget|"
+msgid "Save file to disk.."
+msgstr "Guardar archivo en el disco.."
+
+#: FrontWidget.cpp:163
+msgctxt "FrontWidget|"
+msgid "View file information.."
+msgstr "Ver información del archivo.."
+
+#: FrontWidget.cpp:164
+msgctxt "FrontWidget|"
+msgid "Copy file address (SHA1) to clipboard.."
+msgstr "Copiar dirección del archivo (SHA-1) al portapapeles.."
+
+#: FrontWidget.cpp:165
+msgctxt "FrontWidget|"
+msgid "Edit+publish new text document.."
+msgstr "Editar y publicar nuevo documento de texto.."
+
+#: FrontWidget.cpp:353
+msgctxt "FrontWidget|"
+msgid "Open File"
+msgstr "Abrir archivo"
+
+#: FrontWidget.cpp:355 FrontWidget.cpp:885
+msgctxt "FrontWidget|"
+msgid "Files (*.*)"
+msgstr "Archivos (*.*)"
+
+#: FrontWidget.cpp:359 FrontWidget.cpp:1185 FrontWidget.cpp:1328
+msgctxt "FrontWidget|"
+msgid "Error"
+msgstr "Error"
+
+#: FrontWidget.cpp:360
+msgctxt "FrontWidget|"
+msgid "Can't load image"
+msgstr "No puede cargar imagen"
+
+#: FrontWidget.cpp:626 FrontWidget.cpp:766
+msgctxt "FrontWidget|"
+msgid "Profile not in database"
+msgstr "Perfil no existe en la base de datos"
+
+#: FrontWidget.cpp:627 FrontWidget.cpp:767
+msgctxt "FrontWidget|"
+msgid "Try viewing profile first to obtain data"
+msgstr "Intentando visualizar el perfil antes de obtener datos"
+
+#: FrontWidget.cpp:883
+msgctxt "FrontWidget|"
+msgid "Select file to be published"
+msgstr "Seleccione el archivo a publicar"
+
+#: FrontWidget.cpp:890
+msgctxt "FrontWidget|"
+msgid "File way too big"
+msgstr "Archivo demasiado grande"
+
+#: FrontWidget.cpp:898
+msgctxt "FrontWidget|"
+msgid "File too big"
+msgstr "Archivo muy grande"
+
+#: FrontWidget.cpp:942 FrontWidget.cpp:1186
+msgctxt "FrontWidget|"
+msgid "File open error"
+msgstr "Error al abrir archivo"
+
+#: FrontWidget.cpp:1167 FrontWidget.cpp:1173
+msgctxt "FrontWidget|"
+msgid "files"
+msgstr "archivos"
+
+#: FrontWidget.cpp:1183
+msgctxt "FrontWidget|"
+msgid "Save location"
+msgstr "Guardar dirección"
+
+#: FrontWidget.cpp:1184
+msgctxt "FrontWidget|"
+msgid "Save to TCL app library instead of regular file?"
+msgstr ""
+"Guardar en la biblioteca de aplicaciones TCL en lugar de archivo normal?"
+
+#: FrontWidget.cpp:1176
+msgctxt "FrontWidget|"
+msgid "Choose file name for saving"
+msgstr "Elegir nombre de archivo para guardar"
+
+#: FrontWidget.cpp:1236
+msgctxt "FrontWidget|"
+msgid ""
+"\n"
+"\n"
+"\n"
+"Click\n"
+"To\n"
+"Add\n"
+"Image\n"
+msgstr ""
+"\n"
+"\n"
+"\n"
+"Clic\n"
+"Para\n"
+"Agregar\n"
+"Imagen\n"
+
+#: FrontWidget.cpp:1329
+msgctxt "FrontWidget|"
+msgid "Article not found from local storage"
+msgstr "Artículo no encontrado desde el almacenamiento local"
+
+#: FrontWidget.cpp:1355 FrontWidget.cpp:1903
+#, qt-format
+msgctxt "FrontWidget|"
+msgid ""
+"Trusted by %1\n"
+"SHA1 %2"
+msgstr ""
+"Confiado por %1\n"
+"SHA1 %2"
+
+#: FrontWidget.cpp:1392
+msgctxt "FrontWidget|"
+msgid "Time of last update "
+msgstr "Hora de última actualización"
+
+#: FrontWidget.cpp:1400
+msgctxt "FrontWidget|"
+msgid ""
+"\n"
+"\n"
+"\n"
+"(No\n"
+"Image\n"
+"Selected)\n"
+msgstr ""
+"\n"
+"\n"
+"\n"
+"(No hay\n"
+"Imagen\n"
+"Seleccionada)\n"
+
+#: FrontWidget.cpp:1494
+msgctxt "FrontWidget|"
+msgid "Edit contact.."
+msgstr "Editar contacto.."
+
+#: FrontWidget.cpp:1534
+msgctxt "FrontWidget|"
+msgid "&Reply to sender"
+msgstr "&Reply al emisor"
+
+#: FrontWidget.cpp:1535
+msgctxt "FrontWidget|"
+msgid "Reply to &forum"
+msgstr "Responder a &forum"
+
+#: FrontWidget.cpp:1536
+msgctxt "FrontWidget|"
+msgid "&Post new ad"
+msgstr "&Post nuevo anuncio"
+
+#: FrontWidget.cpp:1537
+msgctxt "FrontWidget|"
+msgid "&Public comment"
+msgstr "&Public comentario"
+
+#: FrontWidget.cpp:1538
+msgctxt "FrontWidget|"
+msgid "&View profile"
+msgstr "&View perfil"
+
+#: FrontWidget.cpp:1539 FrontWidget.cpp:1677
+msgctxt "FrontWidget|"
+msgid "Attachments.."
+msgstr "Adjuntos.."
+
+#: FrontWidget.cpp:1599
+msgctxt "FrontWidget|"
+msgid "Add selected operator to contacts.."
+msgstr "Añadir el operador seleccionado a los contactos.."
+
+#: FrontWidget.cpp:1673
+msgctxt "FrontWidget|"
+msgid "&Reply"
+msgstr "&Reply"
+
+#: FrontWidget.cpp:1674
+msgctxt "FrontWidget|"
+msgid "&New message"
+msgstr "&New mensaje"
+
+#: FrontWidget.cpp:1675
+msgctxt "FrontWidget|"
+msgid "&Send public comment to sender"
+msgstr "&Send comentario público al emisor"
+
+#: FrontWidget.cpp:1676
+msgctxt "FrontWidget|"
+msgid "&View profile of peer"
+msgstr "&View perfil del par"
+
+#: FrontWidget.cpp:1711
+msgctxt "FrontWidget|"
+msgid "Add selected to contacts.."
+msgstr "Añade los seleccionado a contactos.."
+
+#: FrontWidget.cpp:1913 FrontWidget.cpp:1915 FrontWidget.cpp:1979
+#: FrontWidget.cpp:1981
+msgctxt "FrontWidget|"
+msgid "From:"
+msgstr "De:"
+
+#: FrontWidget.cpp:1917 FrontWidget.cpp:1984
+msgctxt "FrontWidget|"
+msgid "Subject:"
+msgstr "Asunto:"
+
+#: FrontWidget.cpp:1976
+msgctxt "FrontWidget|"
+msgid "To:"
+msgstr "Para:"
+
+#: FrontWidget.cpp:2288
+msgctxt "FrontWidget|"
+msgid "Invalid SHA1 in URL"
+msgstr "SHA-1 inválido en la URL"
+
+#: FrontWidget.cpp:2315
+msgctxt "FrontWidget|"
+msgid "Invalid URL"
+msgstr "URL inválida"
+
+#: ui/insertlinkdialog.cpp:69
+msgctxt "InsertLinkDialog|"
+msgid "Invalid URL"
+msgstr "URL inválida"
+
+#: ui/manualconnection.cpp:53
+msgctxt "ManualConnectionDialog|"
+msgid "DNS lookup failure"
+msgstr "Error en la petición DNS"
+
+#: ui/newprivmsgdialog.cpp:88 ui/newprivmsgdialog.cpp:138
+msgctxt "NewPrivMessageDialog|"
+msgid "Error"
+msgstr "Error"
+
+#: ui/newprivmsgdialog.cpp:89
+msgctxt "NewPrivMessageDialog|"
+msgid "Recipient addr is not valid"
+msgstr "Dirección del receptor no es válida"
+
+#: ui/newprivmsgdialog.cpp:139
+msgctxt "NewPrivMessageDialog|"
+msgid "Recipient encryption key not found from storage"
+msgstr "Clave de cifrado del destinatario no encontrada en el almacenamiento"
+
+#: ui/newprofilecommentdialog.cpp:89 ui/newprofilecommentdialog.cpp:126
+msgctxt "NewProfileCommentDialog|"
+msgid "Error"
+msgstr "Error"
+
+#: ui/newprofilecommentdialog.cpp:90
+msgctxt "NewProfileCommentDialog|"
+msgid "Commented profile addr is not valid"
+msgstr "Dirección del perfil comentado no es válida"
+
+#: ui/newprofilecommentdialog.cpp:127
+msgctxt "NewProfileCommentDialog|"
+msgid "Recipient encryption key not found from storage"
+msgstr "Clave de encriptación del receptor no encontrada en el almacenamiento"
+
+#: datamodel/nodemodel.cpp:115
+msgctxt "NodeModel|"
+msgid "SSL key generation went wrong, calling exit.."
+msgstr "generación de clave SSL fue errónea, llamando a salir.."
+
+#: datamodel/nodemodel.cpp:123
+msgctxt "NodeModel|"
+msgid "x509 cert generation went wrong, calling exit.."
+msgstr "generación de certificado x509 fue errónea, llamando a salir.."
+
+#: datamodel/nodemodel.cpp:1596
+msgctxt "NodeModel|"
+msgid "Cant load SSL cert"
+msgstr "No se puede cargar certificado SSL"
+
+#: datamodel/nodemodel.cpp:1626
+msgctxt "NodeModel|"
+msgid "Cant load SSL key"
+msgstr "No se puede cargar llave SSL"
+
+#: ui/passwd_dialog.cpp:104
+msgctxt "PasswdDialog|"
+msgid "Min length 5 (use 10+)"
+msgstr "Longitud mínima 5 (use 10+)"
+
+#: ui/passwordDialog.ui:14
+msgctxt "PasswordDialog|"
+msgid "Password required"
+msgstr "Contraseña requerida"
+
+#: ui/passwordDialog.ui:17
+msgctxt "PasswordDialog|"
+msgid ""
+"Should you forget this word, there is no easy way to recover any of your "
+"content"
+msgstr ""
+"Debería olvidar esta palabra, no es una manera fácil de recuperar algo de su"
+" contenido"
+
+#: ui/passwordDialog.ui:29
+msgctxt "PasswordDialog|"
+msgid "Enter password for protection of your messages"
+msgstr "Ingrese contraseña para la protección de sus mensajes"
+
+#: ui/passwordDialog.ui:42
+msgctxt "PasswordDialog|"
+msgid ""
+"If you forget this word, there is no simple way to recover your contents"
+msgstr ""
+"Si olvida esta palabra, no existe una manera simple de recuperar el "
+"contenido"
+
+#: ui/passwordDialog.ui:55
+msgctxt "PasswordDialog|"
+msgid "OK"
+msgstr "OK"
+
+#: ui/passwordDialog.ui:68
+msgctxt "PasswordDialog|"
+msgid "Show password"
+msgstr "Mostrar contraseña"
+
+#: datamodel/privmsgsearchmodel.cpp:110
+#, qt-format
+msgctxt "PrivateMessageSearchModel|"
+msgid ""
+"%1\n"
+"Trusted by %2"
+msgstr ""
+"%1\n"
+"Confiado por %2"
+
+#: datamodel/privmsgsearchmodel.cpp:237
+msgctxt "PrivateMessageSearchModel|"
+msgid "Direction of message, sent/received"
+msgstr "Dirección de mensaje, enviado/recibido"
+
+#: datamodel/privmsgsearchmodel.cpp:247
+msgctxt "PrivateMessageSearchModel|"
+msgid "Dir"
+msgstr "Dir"
+
+#: datamodel/privmsgsearchmodel.cpp:250
+msgctxt "PrivateMessageSearchModel|"
+msgid "Peer"
+msgstr "Par"
+
+#: datamodel/privmsgsearchmodel.cpp:253
+msgctxt "PrivateMessageSearchModel|"
+msgid "Time"
+msgstr "Hora"
+
+#: datamodel/privmsgsearchmodel.cpp:256
+msgctxt "PrivateMessageSearchModel|"
+msgid "Subject"
+msgstr "Asunto"
+
+#: ui/profilecommentdisplay.cpp:54
+msgctxt "ProfileCommentDisplay|"
+msgid "&Add comment..."
+msgstr "&Add comentario..."
+
+#: ui/profilecommentdisplay.cpp:65
+msgctxt "ProfileCommentDisplay|"
+msgid "Save attachment to disk.."
+msgstr "Guardar el adjunto en el disco.."
+
+#: ui/profilecommentdisplay.cpp:92
+msgctxt "ProfileCommentDisplay|"
+msgid "Error"
+msgstr "Error"
+
+#: ui/profilecommentdisplay.cpp:93
+msgctxt "ProfileCommentDisplay|"
+msgid "Article not found from local storage"
+msgstr "Artículo no encontrado en el almacenamiento local"
+
+#: ui/profilecommentitemdelegate.cpp:93
+msgctxt "ProfileCommentItemDelegate|"
+msgid "Attachments: "
+msgstr "Adjuntos:"
+
+#: datamodel/profilecommentlistingmodel.cpp:219
+msgctxt "ProfileCommentListingModel|"
+msgid "Sender"
+msgstr "Emisor"
+
+#: datamodel/profilecommentlistingmodel.cpp:222
+msgctxt "ProfileCommentListingModel|"
+msgid "Time"
+msgstr "Hora"
+
+#: datamodel/profilecommentlistingmodel.cpp:225
+msgctxt "ProfileCommentListingModel|"
+msgid "Subject"
+msgstr "Asunto"
+
+#: datamodel/profilecommentmodel.cpp:67
+msgctxt "ProfileCommentModel|"
+msgid "Profile related to comment not found from database"
+msgstr "Perfil relativo al comentario no encontrado en la base de datos"
+
+#: ui/profilereadersdialog.cpp:73
+msgctxt "ProfileReadersDialog|"
+msgid "View profile"
+msgstr "Ver perfil"
+
+#: datamodel/profilereaderslistingmodel.cpp:174
+msgctxt "ProfileReadersListingModel|"
+msgid "Name or fingerprint of reader"
+msgstr "Nombre o huella digital del lector"
+
+#: call/ringtoneplayer.cpp:77
+msgctxt "RingtonePlayer|"
+msgid "raw audio format not supported by backend, cannot play audio."
+msgstr ""
+"formato de audio crudo no soportado por el punto final, no puede reproducir "
+"el audio."
+
+#: call/ringtoneplayer.cpp:93
+msgctxt "RingtonePlayer|"
+msgid "Could not initialize audio player."
+msgstr "No se pudo iniciar el reproductor de audio."
+
+#: ui/searchdisplay.cpp:62
+msgctxt "SearchDisplay|"
+msgid "Open.."
+msgstr "Abrir.."
+
+#: ui/tclPrograms.cpp:42
+msgctxt "TclProgramsDialog|"
+msgid "Evaluate"
+msgstr "Evaluar"
+
+#: ui/tclPrograms.cpp:43
+msgctxt "TclProgramsDialog|"
+msgid "Stop program"
+msgstr "Detener programa"
+
+#: ui/tclPrograms.cpp:49
+msgctxt "TclProgramsDialog|"
+msgid "Delete program"
+msgstr "Borrar programa"
+
+#: ui/tclPrograms.cpp:99
+msgctxt "TclProgramsDialog|"
+msgid "TCL Program name"
+msgstr "Nombre del programa TCL"
+
+#: ui/tclPrograms.cpp:100
+msgctxt "TclProgramsDialog|"
+msgid "Name:"
+msgstr "Nombre:"
+
+#: ui/tclPrograms.cpp:140
+msgctxt "TclProgramsDialog|"
+msgid "Deletion confirmation"
+msgstr "Confirmación de eliminación"
+
+#: ui/tclPrograms.cpp:141
+#, qt-format
+msgctxt "TclProgramsDialog|"
+msgid "Permanently delete program %1?"
+msgstr "¿Eliminar definitivamente el programa% 1?"
+
+#: textedit/textedit.cpp:127
+msgctxt "TextEdit|"
+msgid "Help"
+msgstr "Ayuda"
+
+#: textedit/textedit.cpp:129
+msgctxt "TextEdit|"
+msgid "About &Qt"
+msgstr "Sobre &Qt"
+
+#: textedit/textedit.cpp:186
+msgctxt "TextEdit|"
+msgid "Edit Actions"
+msgstr "Editar Acciones"
+
+#: textedit/textedit.cpp:188
+msgctxt "TextEdit|"
+msgid "&File"
+msgstr "&File"
+
+#: textedit/textedit.cpp:194
+msgctxt "TextEdit|"
+msgid "&Open..."
+msgstr "&Open..."
+
+#: textedit/textedit.cpp:203
+msgctxt "TextEdit|"
+msgid "&Save locally before send"
+msgstr "&Save localmente antes de enviar"
+
+#: textedit/textedit.cpp:210
+msgctxt "TextEdit|"
+msgid "Save locally &As..."
+msgstr "Guardar localmente &As..."
+
+#: textedit/textedit.cpp:218
+msgctxt "TextEdit|"
+msgid "&Print..."
+msgstr "&Print..."
+
+#: textedit/textedit.cpp:226
+msgctxt "TextEdit|"
+msgid "Print Preview..."
+msgstr "Imprimir Vista Previa..."
+
+#: textedit/textedit.cpp:231
+msgctxt "TextEdit|"
+msgid "&Export PDF..."
+msgstr "&Export PDF..."
+
+#: textedit/textedit.cpp:244
+msgctxt "TextEdit|"
+msgid "&Edit"
+msgstr "&Edit"
+
+#: textedit/textedit.cpp:249
+msgctxt "TextEdit|"
+msgid "&Undo"
+msgstr "&Undo"
+
+#: textedit/textedit.cpp:254
+msgctxt "TextEdit|"
+msgid "&Redo"
+msgstr "&Redo"
+
+#: textedit/textedit.cpp:261
+msgctxt "TextEdit|"
+msgid "Cu&t"
+msgstr "Cu&t"
+
+#: textedit/textedit.cpp:267
+msgctxt "TextEdit|"
+msgid "&Copy"
+msgstr "&Copy"
+
+#: textedit/textedit.cpp:273
+msgctxt "TextEdit|"
+msgid "&Paste"
+msgstr "&Paste"
+
+#: textedit/textedit.cpp:283
+msgctxt "TextEdit|"
+msgid "Insert link"
+msgstr "Insertar enlace"
+
+#: textedit/textedit.cpp:287
+msgctxt "TextEdit|"
+msgid "Embed image"
+msgstr "Imagen embebida"
+
+#: textedit/textedit.cpp:294
+msgctxt "TextEdit|"
+msgid "F&ormat"
+msgstr "F&ormat"
+
+#: textedit/textedit.cpp:298
+msgctxt "TextEdit|"
+msgid "&Bold"
+msgstr "&Bold"
+
+#: textedit/textedit.cpp:310
+msgctxt "TextEdit|"
+msgid "&Italic"
+msgstr "&Italic"
+
+#: textedit/textedit.cpp:322
+msgctxt "TextEdit|"
+msgid "&Underline"
+msgstr "&Underline"
+
+#: textedit/textedit.cpp:341 textedit/textedit.cpp:347
+msgctxt "TextEdit|"
+msgid "&Left"
+msgstr "&Left"
+
+#: textedit/textedit.cpp:342 textedit/textedit.cpp:346
+msgctxt "TextEdit|"
+msgid "C&enter"
+msgstr "C&enter"
+
+#: textedit/textedit.cpp:343 textedit/textedit.cpp:345
+msgctxt "TextEdit|"
+msgid "&Right"
+msgstr "&Right"
+
+#: textedit/textedit.cpp:349
+msgctxt "TextEdit|"
+msgid "&Justify"
+msgstr "&Justify"
+
+#: textedit/textedit.cpp:376
+msgctxt "TextEdit|"
+msgid "&Color..."
+msgstr "&Color..."
+
+#: textedit/textedit.cpp:383
+msgctxt "TextEdit|"
+msgid "Standard"
+msgstr "Estándar"
+
+#: textedit/textedit.cpp:384
+msgctxt "TextEdit|"
+msgid "Bullet List (Disc)"
+msgstr "Lista de Balas (Disco)"
+
+#: textedit/textedit.cpp:385
+msgctxt "TextEdit|"
+msgid "Bullet List (Circle)"
+msgstr "Lista de Balas (Círculo)"
+
+#: textedit/textedit.cpp:386
+msgctxt "TextEdit|"
+msgid "Bullet List (Square)"
+msgstr "Lista de Balas (Cuadrado)"
+
+#: textedit/textedit.cpp:387
+msgctxt "TextEdit|"
+msgid "Ordered List (Decimal)"
+msgstr "Lista Ordenada (Decimal)"
+
+#: textedit/textedit.cpp:388
+msgctxt "TextEdit|"
+msgid "Ordered List (Alpha lower)"
+msgstr "Lista Ordenada (Alpha inferior)"
+
+#: textedit/textedit.cpp:389
+msgctxt "TextEdit|"
+msgid "Ordered List (Alpha upper)"
+msgstr "Lista Ordenada (Alpha más arriba)"
+
+#: textedit/textedit.cpp:390
+msgctxt "TextEdit|"
+msgid "Ordered List (Roman lower)"
+msgstr "Lista Ordenada (Roman inferior)"
+
+#: textedit/textedit.cpp:391
+msgctxt "TextEdit|"
+msgid "Ordered List (Roman upper)"
+msgstr "Lista Ordenada (Roman arriba)"
+
+#: textedit/textedit.cpp:442
+msgctxt "TextEdit|"
+msgid "Application"
+msgstr "Aplicación"
+
+#: textedit/textedit.cpp:443
+msgctxt "TextEdit|"
+msgid ""
+"The document has been modified.\n"
+"Do you want to save your changes?"
+msgstr ""
+"El documento ha sido modificado.\n"
+"¿Desea guardar los cambios?"
+
+#: textedit/textedit.cpp:467
+msgctxt "TextEdit|"
+msgid "Open File..."
+msgstr "Abrir Archivo..."
+
+#: textedit/textedit.cpp:468
+msgctxt "TextEdit|"
+msgid "HTML-Files (*.htm *.html);;All Files (*)"
+msgstr "Archivos HTML (*.htm *.html);;Todos los Archivos (*)"
+
+#: textedit/textedit.cpp:485
+msgctxt "TextEdit|"
+msgid "Save as..."
+msgstr "Guardar como..."
+
+#: textedit/textedit.cpp:486
+msgctxt "TextEdit|"
+msgid "ODF files (*.odt);;HTML-Files (*.htm *.html);;All Files (*)"
+msgstr ""
+"Archivos ODF (*.odt);;Archivos HTML (*.htm *.html);;Todos los Archivos (*)"
+
+#: textedit/textedit.cpp:501
+msgctxt "TextEdit|"
+msgid "Print Document"
+msgstr "Imprimir Documento"
+
+#: textedit/textedit.cpp:559
+msgctxt "TextEdit|"
+msgid "Open File"
+msgstr "Abrir Archivo"
+
+#: textedit/textedit.cpp:561
+msgctxt "TextEdit|"
+msgid "Files (*.*)"
+msgstr "Archivos (*.*)"
+
+#: textedit/textedit.cpp:566
+msgctxt "TextEdit|"
+msgid "Error"
+msgstr "Error"
+
+#: textedit/textedit.cpp:567
+msgctxt "TextEdit|"
+msgid "Can't load image"
+msgstr "No puede cargar imagen"
+
+#: textedit/textedit.cpp:621 textedit/textedit.cpp:631
+msgctxt "TextEdit|"
+msgid "File way too big"
+msgstr "Camino del archivo demasiado grande"
+
+#: net/voicecallengine.cpp:525
+msgctxt "VoiceCallEngine|"
+msgid "Accept"
+msgstr "Aceptar"
+
+#: net/voicecallengine.cpp:533
+msgctxt "VoiceCallEngine|"
+msgid "Reject"
+msgstr "Rechazar"
+
+#: net/voicecallengine.cpp:535
+msgctxt "VoiceCallEngine|"
+msgid "Close"
+msgstr "Cerca"
+
+#: net/voicecallengine.cpp:551
+msgctxt "VoiceCallEngine|"
+msgid "Actual network address (SHA1) of the peer operator"
+msgstr "Dirección de red real (SHA1) del operador de grupo"
+
+#: net/voicecallengine.cpp:554
+msgctxt "VoiceCallEngine|"
+msgid "Network address of the remote node"
+msgstr "Dirección de red del nodo remoto"
+
+#: net/voicecallengine.cpp:564
+msgctxt "VoiceCallEngine|"
+msgid "Operator"
+msgstr "Operador"
+
+#: net/voicecallengine.cpp:567
+msgctxt "VoiceCallEngine|"
+msgid "Node address"
+msgstr "Dirección del nodo"
+
+#: net/voicecallengine.cpp:570
+msgctxt "VoiceCallEngine|"
+msgid "Call status"
+msgstr "Estado de la llamada"
+
+#: net/voicecallengine.cpp:573
+msgctxt "VoiceCallEngine|"
+msgid "Controls"
+msgstr "Controles"
+
+#: net/voicecallengine.cpp:576
+msgctxt "VoiceCallEngine|"
+msgid "Ending"
+msgstr "Finalizando"
+
+#: net/voicecallengine.cpp:613
+msgctxt "VoiceCallEngine|"
+msgid "Initializing"
+msgstr "Inicializando"
+
+#: net/voicecallengine.cpp:616
+msgctxt "VoiceCallEngine|"
+msgid "Incoming"
+msgstr "Entrante"
+
+#: net/voicecallengine.cpp:619
+msgctxt "VoiceCallEngine|"
+msgid "Open"
+msgstr "Abierto"
+
+#: net/voicecallengine.cpp:622
+msgctxt "VoiceCallEngine|"
+msgid "Closing"
+msgstr "Cerrando"
+
+#: net/voicecallengine.cpp:625
+msgctxt "VoiceCallEngine|"
+msgid "Closed"
+msgstr "Cerrado"
+
+#: net/voicecallengine.cpp:628
+msgctxt "VoiceCallEngine|"
+msgid "Error"
+msgstr "Error"
+
+#: net/voicecallengine.cpp:631
+msgctxt "VoiceCallEngine|"
+msgid "No call"
+msgstr "Sin llamada"
+
+#: net/voicecallengine.cpp:834
+msgctxt "VoiceCallEngine|"
+msgid "Audio call is not possible"
+msgstr "Llamada de audio no es posible"
+
+#: net/voicecallengine.cpp:840
+msgctxt "VoiceCallEngine|"
+msgid "Audio call is possible"
+msgstr "La llamada de audio es posible"
+
+#: net/voicecallengine.cpp:847
+msgctxt "VoiceCallEngine|"
+msgid "Audio call is not possible: operator address unknown"
+msgstr "La llamada de audio no es posible: dirección del operador desconocida"
+
+#: net/voicecallengine.cpp:853
+msgctxt "VoiceCallEngine|"
+msgid "Audio call is not possible: operator profile not found"
+msgstr ""
+"La llamada de audio no es posible: no se encuentra perfil del operador"
+
+#: net/voicecallengine.cpp:856
+msgctxt "VoiceCallEngine|"
+msgid ""
+"Audio call is not possible: operator has no node information in profile"
+msgstr ""
+"La llamada de audio no es posible: el operador no tiene información de nodo "
+"en el perfil"
+
+#: net/voicecallengine.cpp:875
+#, qt-format
+msgctxt "VoiceCallEngine|"
+msgid "Audio call is not possible: operators IPv4 address %1 not connected"
+msgstr ""
+"La llamada de audio no es posible: la dirección IPv4 %1 del operador no "
+"conectada"
+
+#: net/voicecallengine.cpp:882
+#, qt-format
+msgctxt "VoiceCallEngine|"
+msgid "Audio call is not possible: operators IPv6 address %1 not connected"
+msgstr ""
+"La llamada de audio no es posible: la dirección IPv6 %1 del operador no "
+"conectada"
+
+#: net/voicecallengine.cpp:893
+msgctxt "VoiceCallEngine|"
+msgid ""
+"Audio call is not possible: local node has no IPv6 address, operator has "
+"only IPv6 addr"
+msgstr ""
+"La llamada de audio no es posible: el nodo local no tiene dirección IPv6, el"
+" operador sólo tiene dirección IPv6"
+
+#: net/voicecallengine.cpp:895
+msgctxt "VoiceCallEngine|"
+msgid "Audio call is not possible: operator does not publish network address"
+msgstr ""
+"La llamada de audio no es posible: el operador no publica dirección de red"
+
+#: ui/aboutDialog.ui:26
+msgctxt "aboutDialog|"
+msgid "About classified ads"
+msgstr "Sobre classified ads"
+
+#: ui/aboutDialog.ui:100
+msgctxt "aboutDialog|"
+msgid " Classified ads is a program for online communications"
+msgstr " Classified ads es un programa para comunicaciones en línea"
+
+#: ui/aboutDialog.ui:163
+msgctxt "aboutDialog|"
+msgid ""
+"<html><head/><body><p>Classified ads is free software. You may use, copy and"
+" modify it if you follow the conditions given in GNU lesser general public "
+"license version 2.1.</p><p>Classified ads is copyright © Antti Järvinen "
+"2013. </p><p>Main feature of the program is an &quot;advertisement&quot; - a"
+" piece of text belonging to selected classification. There are several pre-"
+"programmed classifications and operators are encouraged to invent new "
+"classifications for new purposes ; the selection boxes in classification-"
+"selection tab are editable. Other operators may then view the ads, publicly "
+"comment the ads, the operators and also send private messages to each "
+"others. </p><p>Another important feature of classified ads is that it is "
+"designed to be operated without any centralized server infrastructure - it "
+"is you and other operators whose computers store and transmit all the "
+"content visible inside classified ads. To get connected you need to know "
+"address of at least one existing computer (a <span style=\" font-"
+"style:italic;\">node</span>) so if your network connection dialog shows no "
+"connections, you may need to contact someone you know is using the software "
+"and ask for address of her node to make initial contact with the network. "
+"Once connected the software should maintain list of addresses of other "
+"nodes. </p><p>Due to its server-less design the whole system works best if "
+"you leave the program running always when you have your computer powered on "
+"; while processing other operators requests it will hog some computing "
+"resources and generate network traffic also when you are not actively using "
+"the program yourself - others are. </p><p>Operators concerned about privacy "
+"of the content should be aware of following items:</p><p>- Data storage "
+"implementation is variant of <span style=\" font-style:italic;\">distributed"
+" hash table</span>, practically meaning that content posted by you gets "
+"copied some more-or-less random nodes in the network. </p><p>- Any data item"
+" (ad, comment, binary file, private message etc.) is digitally signed. This "
+"makes it more difficult to try to pose as another operator. </p><p>- "
+"Operators are reliably identified only by the SHA1 hash of their generated "
+"encryption keys. SHA1 hash is displayed when viewing details of operator "
+"profiles. Other identifying information like nickname or city name are "
+"entered by operator himself and can be anything. The operator profile, as it"
+" is published to the network, is also signed with the encryption keys of the"
+" operator - if you identify an operator by her SHA1 hash, you have a "
+"mechanism for identifying if any content inside classified ads is posted by "
+"this operator or not. Classified ads internally checks for digital "
+"signatures, throwing away content that fails signature check and tries to "
+"provide SHA1 hash of the operator who posted the content.</p><p>- All "
+"classified ads are posted as plain text, no encryption is used. All public "
+"profiles are posted as plain text, no encryption is used. If profile is made"
+" private, it is encrypted to be readable only by selected other profiles. "
+"This applies also to binary files shared by operators private profiles and "
+"comments about private profiles after the profile was made private "
+"(previously plain-text comments or files don't get magically encrypted "
+"afterwards). Private messages are encrypted always to be readable only by "
+"recipient and sender. Attachments follow the privacy rules of the document, "
+"they're attached to. </p><p>- As is the case with all internet-"
+"communications, this small fact is true for classified ads too : <span "
+"style=\" font-style:italic;\">once something gets posted online, there is no"
+" way to remove it from network</span>. </p><p>- Data encryption "
+"implementation for content is OpenSSL, relying mostly on algorithms RSA-2048"
+" and AES-256. </p><p>- While connections between nodes are implemented using"
+" SSL, other nodes inside network do get to know what content is being "
+"transmitted in neighboring nodes. While there is no central point for easily"
+" collecting this information about particular classification or operator, "
+"operators still should expect no privacy regarding their doings online, "
+"although some effort has been been put into hiding <span style=\" font-"
+"style:italic;\">contents</span> of private messages and private profiles. "
+"</p><p>Programming was (mostly) done by Antti Järvinen, artwork by Meeri "
+"Järvinen.</p><p>This product includes software developed by the OpenSSL "
+"Project for use in the OpenSSL Toolkit "
+"(http://www.openssl.org/).</p><p>Happy "
+"advertising!</p><p><br/></p></body></html>"
+msgstr ""
+"<html><head/><body><p>Classified ads es un software libre. Usted puede "
+"usarlo, copiarlo y modificarlo siguiendo las condiciones dadas por la "
+"licencia publica general menor GNU 2.1.</p><p>Classified ads copyright © "
+"Antti Järvinen 2013. </p><p>La principal función de este programa es la "
+"&quot;publicidad&quot; - una pieza de texto que pertenece a la clasificación"
+" seleccionada. Existen varias clasificaciones pre programadas y a los "
+"operadores se les anima a inventar nuevas clasificaciones con nuevos "
+"propósitos; las cajas de selección en el tabular de selección de "
+"clasificación son editables. Otros operadores pueden ver ads, comentar "
+"públicamente ads, los operadores y también enviar mensajes privados unos a "
+"otros. </p><p>Otra característica importante de classified ads es que está "
+"diseñado para operar sin ninguna infraestructura de servidor centralizada – "
+"es usted y los otros operadores quienes en sus ordenadores almacenan y "
+"transmiten todo el contenido visible dentro de classified ads. Para estar "
+"conectado usted necesita saber la dirección de al menos un ordenador "
+"existente (a <span style=\" font-style:italic;\">node</span>) de modo que si"
+" cuadro de diálogo de conexión de red muestra que no hay conexiones, usted "
+"puede necesitar contactar con alguien del que usted sepa que está utilizando"
+" el software y pedirle la dirección de su nodo para hacer el contacto "
+"inicial con la red. Una vez conectado el software mantendrá una lista de las"
+" direcciones de los otros nodos. </p><p>Debido a su diseño sin servidor todo"
+" el sistema trabaja mejor si usted deja el programa corriendo siempre que el"
+" ordenador esté encendido; puesto que el procesamientos de peticiones de "
+"otros operadores consumirá algunos recursos de computación y generará "
+"tráfico de red también cuando usted no esté usando el programa activamente –"
+" otros lo están. </p><p>Los operadores preocupados con la privacidad del "
+"contenido deberían estar atentos a los siguientes puntos:</p><p>- La "
+"implementación del almacenamiento de datos es una variante de la <span "
+"style=\" font-style:italic;\">tabla de hash distribuida</span>, "
+"prácticamente significa que el contenido publicado por usted se copia más o "
+"menos al azar en algunos nodos de la red. </p><p>- Cualquier elemento de "
+"datos (ad, comentario, archivo binario, mensaje privado, etc.) es firmado "
+"digitalmente.  Esto hace más difícil hacerse pasar por otro operador. "
+"</p><p>- Los operadores son seguramente identificados por el hash SHA1 de "
+"sus claves de encriptación generadas. El hash SHA1 se muestra cuando se "
+"visualizan los detalles del perfil del operador. Otras informaciones de "
+"identificación como apodo o nombre de la ciudad son introducidas por el "
+"mismo operador y pueden ser cualquiera. El perfil del operador, como se "
+"publica en la red, también está firmado con la clave de encriptación del "
+"operador – si usted identifica a un operador por su hash SHA1, usted tiene "
+"un mecanismo para identificar si cualquier contenido dentro de classified "
+"ads está enviado por el operador o no. Classified ads internamente comprueba"
+" las firmas digitales, tirando el contenido que falla en la comprobación de "
+"firma e intentando suministrar el hash SHA1 del operador que publicó el "
+"contenido.</p><p>- Todo classified ads se publica como texto plano, no se "
+"usa encriptación. Todos los perfiles publicos se publican como texto plano, "
+"no se usa encriptación. Si el perfil se hace privado, se encripta para ser "
+"legible sólo por otros perfiles seleccionados. Esto se aplica también a los "
+"archivos binarios compartidos por operadores con perfiles privados y "
+"comentarios sobre los perfiles privados después de que el perfil se haya "
+"hecho privado (los comentarios en texto plano o los archivos no son "
+"mágicamente encriptados después). Los mensajes privados son encriptados "
+"siempre para ser leídos solo por el receptor y el emisor. Los adjuntos "
+"siguen las reglas de privacidad del documento al que se adjuntan. </p><p>- "
+"Como en el caso de todas las comunicaciones en internet, este pequeño hecho "
+"es cierto para classified ads también : <span style=\" font-"
+"style:italic;\">una vez que algo se ha publicado en línea, no hay modo de "
+"borrarlo de la red</span>. </p><p>- La implementación de encriptación de "
+"datos para el contenido es OpenSSL, confiando mayormente en los algoritmos "
+"RSA-2048 y AES-256. </p><p>- Puesto que las conexiones entre nodos son "
+"implementadas usando SSL, Otros nodos dentro de la red llegan a saber qué "
+"contenido se está transmitiendo en los nodos vecinos. Puesto que no hay un "
+"punto central para recolectar fácilmente esta información sobre una "
+"clasificación o un operador concreto, los operadores no deben esperar "
+"privacidad sobre sus actividades en línea, aunque se han hecho algunos "
+"esfuerzos para ocultarlos <span style=\" font-"
+"style:italic;\">contents</span> de mensajes y perfiles privados. </p><p>La "
+"programación fue (mayoritariamente) hecha por Antti Järvinen, el arte por "
+"Meeri Järvinen.</p><p>Este producto incluye software desarrollador por "
+"OpenSSL Project para su uso en OpenSSL Toolkit "
+"(http://www.openssl.org/).</p><p>Feliz "
+"publicidad!</p><p><br/></p></body></html>"
+
+#: ui/attachmentListDialog.ui:26
+msgctxt "attachmentListDialog|"
+msgid "List of attached files"
+msgstr "Lista de archivos adjuntos"
+
+#: ui/callStatusDialog.ui:26
+msgctxt "callStatusDialog|"
+msgid "Call status"
+msgstr "Estado de la llamada"
+
+#: ui/callStatusDialog.ui:49
+msgctxt "callStatusDialog|"
+msgid "Input level"
+msgstr "Nivel de entrada"
+
+#: ui/callStatusDialog.ui:65
+msgctxt "callStatusDialog|"
+msgid "Audio calls"
+msgstr "Llamadas de audio"
+
+#: ui/callStatusDialog.ui:90
+msgctxt "callStatusDialog|"
+msgid "Output level"
+msgstr "Nivel de salida"
+
+#: ui/editContact.ui:26
+msgctxt "editContactDialog|"
+msgid "Edit a contact"
+msgstr "Editar un contacto"
+
+#: ui/editContact.ui:39
+msgctxt "editContactDialog|"
+msgid "Address (SHA1) of contact"
+msgstr "Dirección (SHA1) de contacto"
+
+#: ui/editContact.ui:53
+msgctxt "editContactDialog|"
+msgid "Local nickname"
+msgstr "Apodo local"
+
+#: ui/editContact.ui:65
+msgctxt "editContactDialog|"
+msgid ""
+"<html><head/><body><p>Settings some trusted is public information to readers"
+" of your profile</p></body></html>"
+msgstr ""
+"<html><head/><body><p>Configuraciones algunas de las cuales son información "
+"pública para los lectores de tu perfil</p></body></html>"
+
+#: ui/editContact.ui:68
+msgctxt "editContactDialog|"
+msgid "This contact is to be publicly trusted in transactions"
+msgstr "Este contacto debe ser de confianza pública en transacciones"
+
+#: frontWidget.ui:14
+msgctxt "frontWidget|"
+msgid "Form"
+msgstr "Formar"
+
+#: frontWidget.ui:39
+msgctxt "frontWidget|"
+msgid "Classified ads"
+msgstr "Classified ads"
+
+#: frontWidget.ui:67
+msgctxt "frontWidget|"
+msgid "Search for classified ads about"
+msgstr "Buscar sobre classified ads"
+
+#: frontWidget.ui:74
+msgctxt "frontWidget|"
+msgid "Perform"
+msgstr "Realizar"
+
+#: frontWidget.ui:97
+msgctxt "frontWidget|"
+msgid "of"
+msgstr "De"
+
+#: frontWidget.ui:113
+msgctxt "frontWidget|"
+msgid "in"
+msgstr "En"
+
+#: frontWidget.ui:123
+msgctxt "frontWidget|"
+msgid "Search"
+msgstr "Buscar"
+
+#: frontWidget.ui:161
+msgctxt "frontWidget|"
+msgid "My profile"
+msgstr "Mi perfil"
+
+#: frontWidget.ui:177 frontWidget.ui:937
+msgctxt "frontWidget|"
+msgid "Profile address"
+msgstr "Dirección de perfil"
+
+#: frontWidget.ui:208 frontWidget.ui:643
+msgctxt "frontWidget|"
+msgid "Nickname"
+msgstr "Apodo"
+
+#: frontWidget.ui:225 frontWidget.ui:669
+msgctxt "frontWidget|"
+msgid "Greeting text"
+msgstr "Texto de saludo"
+
+#: frontWidget.ui:232
+msgctxt "frontWidget|"
+msgid "For the rest of the world. "
+msgstr "Para el resto del mundo"
+
+#: frontWidget.ui:239 frontWidget.ui:695
+msgctxt "frontWidget|"
+msgid "First name"
+msgstr "Primer Nombre"
+
+#: frontWidget.ui:253 frontWidget.ui:715
+msgctxt "frontWidget|"
+msgid "Family name"
+msgstr "Apellido"
+
+#: frontWidget.ui:263
+msgctxt "frontWidget|"
+msgid "City/country"
+msgstr "Ciudad/país"
+
+#: frontWidget.ui:273
+msgctxt "frontWidget|"
+msgid "BTC address"
+msgstr "Dirección BTC"
+
+#: frontWidget.ui:280
+msgctxt "frontWidget|"
+msgid "If you wish to receive payments via BTC, include your BTC address too."
+msgstr ""
+"Si usted desea recibir pagos por medio de BTC, iincluya también su dirección"
+" BTC."
+
+#: frontWidget.ui:287 frontWidget.ui:799
+msgctxt "frontWidget|"
+msgid "State of the world"
+msgstr "Estado del mundo"
+
+#: frontWidget.ui:294
+msgctxt "frontWidget|"
+msgid "Longer explanation about state of the world"
+msgstr "Explicación más larga sobre el estado del mundo"
+
+#: frontWidget.ui:301
+msgctxt "frontWidget|"
+msgid "Profile is private"
+msgstr "El perfil es privado"
+
+#: frontWidget.ui:308
+msgctxt "frontWidget|"
+msgid "Readers of profile"
+msgstr "Lectores de perfil"
+
+#: frontWidget.ui:315
+msgctxt "frontWidget|"
+msgid "None of the fields is mandatory"
+msgstr "Ninguno de los campos es obligatorio"
+
+#: frontWidget.ui:322
+msgctxt "frontWidget|"
+msgid "Time of last update"
+msgstr "Tiempo desde la última actualización"
+
+#: frontWidget.ui:342
+msgctxt "frontWidget|"
+msgid "Publish"
+msgstr "Publicar"
+
+#: frontWidget.ui:355
+msgctxt "frontWidget|"
+msgid "Revert changes"
+msgstr "Revertir los cambios"
+
+#: frontWidget.ui:369
+msgctxt "frontWidget|"
+msgid "Details of operator profile:"
+msgstr "Detalles del perfil del operador:"
+
+#: frontWidget.ui:401
+msgctxt "frontWidget|"
+msgid ""
+"\n"
+"\n"
+"Click \n"
+"to \n"
+"Add\n"
+"Image"
+msgstr ""
+"\n"
+"\n"
+"Pulsar \n"
+"para \n"
+"Añadir\n"
+"Imagen"
+
+#: frontWidget.ui:425 frontWidget.ui:845
+msgctxt "frontWidget|"
+msgid "Shared files"
+msgstr "Archivos compartidos"
+
+#: frontWidget.ui:461 frontWidget.ui:897
+msgctxt "frontWidget|"
+msgid "Latest comments"
+msgstr "Últimos comentarios"
+
+#: frontWidget.ui:504
+msgctxt "frontWidget|"
+msgid "Contacts"
+msgstr "Contactos"
+
+#: frontWidget.ui:536
+msgctxt "frontWidget|"
+msgid "Add contact"
+msgstr "Añadir contacto"
+
+#: frontWidget.ui:543
+msgctxt "frontWidget|"
+msgid "Remove contact"
+msgstr "Borrar contacto"
+
+#: frontWidget.ui:550
+msgctxt "frontWidget|"
+msgid "View profile"
+msgstr "Visualizar perfil"
+
+#: frontWidget.ui:557
+msgctxt "frontWidget|"
+msgid "Send message"
+msgstr "Enviar mensaje"
+
+#: frontWidget.ui:569
+msgctxt "frontWidget|"
+msgid "Private messages"
+msgstr "Mensajes privados"
+
+#: frontWidget.ui:624
+msgctxt "frontWidget|"
+msgid "Profile details"
+msgstr "Detalles del perfil"
+
+#: frontWidget.ui:741
+msgctxt "frontWidget|"
+msgid "City/Country"
+msgstr "Ciudad/País"
+
+#: frontWidget.ui:767
+msgctxt "frontWidget|"
+msgid "BTC Addr"
+msgstr "Dirección BTC"
+
+#: frontWidget.ui:829
+msgctxt "frontWidget|"
+msgid ""
+"<html><head/><body><p align=\"center\"><span style=\" font-"
+"size:16pt;\"><br/></span></p><p align=\"center\"><span style=\" font-"
+"size:16pt;\"><br/></span></p><p align=\"center\"><span style=\" font-"
+"size:16pt;\"><br/></span></p><p align=\"center\"><span style=\" font-"
+"size:16pt;\">No</span></p><p align=\"center\"><span style=\" font-"
+"size:16pt;\">Image</span></p><p align=\"center\"><span style=\" font-"
+"size:16pt;\">Inserted</span></p></body></html>"
+msgstr ""
+"<html><head/><body><p align=\"center\"><span style=\" font-"
+"size:16pt;\"><br/></span></p><p align=\"center\"><span style=\" font-"
+"size:16pt;\"><br/></span></p><p align=\"center\"><span style=\" font-"
+"size:16pt;\"><br/></span></p><p align=\"center\"><span style=\" font-"
+"size:16pt;\">No</span></p><p align=\"center\"><span style=\" font-"
+"size:16pt;\">Image</span></p><p align=\"center\"><span style=\" font-"
+"size:16pt;\">Inserted</span></p></body></html>"
+
+#: frontWidget.ui:874
+msgctxt "frontWidget|"
+msgid "Send message to operator"
+msgstr "Enviar mensaje al operador"
+
+#: frontWidget.ui:879
+msgctxt "frontWidget|"
+msgid "Audio call"
+msgstr "Llamada de audio"
+
+#: frontWidget.ui:884
+msgctxt "frontWidget|"
+msgid "View readers"
+msgstr "Visualizar lectores"
+
+#: frontWidget.ui:932
+msgctxt "frontWidget|"
+msgid "Comment"
+msgstr "Comentario"
+
+#: frontWidget.ui:964
+msgctxt "frontWidget|"
+msgid "Add to contacts"
+msgstr "Añadir a contactos"
+
+#: ui/insertLink.ui:26
+msgctxt "insertLinkDialog|"
+msgid "Insert link"
+msgstr "Insertar enlace"
+
+#: ui/insertLink.ui:39
+msgctxt "insertLinkDialog|"
+msgid "URL"
+msgstr "URL"
+
+#: ui/insertLink.ui:112
+msgctxt "insertLinkDialog|"
+msgid "Link label in text"
+msgstr "Enlace a la etiqueta en el texto"
+
+#: ui/manualConnectionDialog.ui:26
+msgctxt "manualConnectionDialog|"
+msgid "Manually add node to connection queue"
+msgstr "Añadir manualmente nodo a la cola de conexión"
+
+#: ui/manualConnectionDialog.ui:48
+msgctxt "manualConnectionDialog|"
+msgid "Remote node listen port"
+msgstr "Puerto de escucha del nodo remoto"
+
+#: ui/manualConnectionDialog.ui:78
+msgctxt "manualConnectionDialog|"
+msgid "Remote node network address"
+msgstr "Dirección de red del nodo remoto"
+
+#: ui/manualConnectionDialog.ui:91
+msgctxt "manualConnectionDialog|"
+msgid "IPv4, IPv6 or DNS name"
+msgstr "IPv4, IPv6 o nombre DNS"
+
+#: ui/metadataQuery.ui:26
+msgctxt "metadataQuery|"
+msgid "File information"
+msgstr "Información del archivo"
+
+#: ui/metadataQuery.ui:60
+msgctxt "metadataQuery|"
+msgid "Name of the file:"
+msgstr "Nombre del archivo:"
+
+#: ui/metadataQuery.ui:81
+msgctxt "metadataQuery|"
+msgid "Owner of file (name or SHA1 if CA operator):"
+msgstr "Propietario del archivo (nombre o SHA1 sio es operador CA):"
+
+#: ui/metadataQuery.ui:111
+msgctxt "metadataQuery|"
+msgid "License of use:"
+msgstr "Licencia de uso:"
+
+#: ui/metadataQuery.ui:122
+msgctxt "metadataQuery|"
+msgid "Public domain"
+msgstr "Dominio público"
+
+#: ui/metadataQuery.ui:127
+msgctxt "metadataQuery|"
+msgid "GPL"
+msgstr "GPL"
+
+#: ui/metadataQuery.ui:132
+msgctxt "metadataQuery|"
+msgid "LGPL"
+msgstr "LGPL"
+
+#: ui/metadataQuery.ui:137
+msgctxt "metadataQuery|"
+msgid "BSD"
+msgstr "BSD"
+
+#: ui/metadataQuery.ui:142
+msgctxt "metadataQuery|"
+msgid "CC-BY"
+msgstr "CC-BY"
+
+#: ui/metadataQuery.ui:147
+msgctxt "metadataQuery|"
+msgid "CC-BY-SA"
+msgstr "CC-BY-SA"
+
+#: ui/metadataQuery.ui:152
+msgctxt "metadataQuery|"
+msgid "CC-BY-ND"
+msgstr "CC-BY-ND"
+
+#: ui/metadataQuery.ui:157
+msgctxt "metadataQuery|"
+msgid "CC-BY-NC"
+msgstr "CC-BY-NC"
+
+#: ui/metadataQuery.ui:162
+msgctxt "metadataQuery|"
+msgid "CC-BY-NC-SA"
+msgstr "CC-BY-NC-SA"
+
+#: ui/metadataQuery.ui:167
+msgctxt "metadataQuery|"
+msgid "CC-BY-NC-ND"
+msgstr "CC-BY-NC-ND"
+
+#: ui/metadataQuery.ui:182
+msgctxt "metadataQuery|"
+msgid "Mime-type:"
+msgstr "Tipo-Mime:"
+
+#: ui/metadataQuery.ui:199
+msgctxt "metadataQuery|"
+msgid "Description of file:"
+msgstr "Descripción de archivo:"
+
+#: ui/metadataQuery.ui:218
+msgctxt "metadataQuery|"
+msgid "Enter information regarding file before publish:"
+msgstr "Introduzca Einformación respecto al archivo antes de publicar:"
+
+#: ui/newClassifiedAd.ui:26
+msgctxt "newCaDialog|"
+msgid "Post a new classified ad"
+msgstr "Publicar un nuevo anuncio clasificado"
+
+#: ui/newClassifiedAd.ui:47
+msgctxt "newCaDialog|"
+msgid "About"
+msgstr "Sobre"
+
+#: ui/newClassifiedAd.ui:65
+msgctxt "newCaDialog|"
+msgid "of"
+msgstr "De"
+
+#: ui/newClassifiedAd.ui:81
+msgctxt "newCaDialog|"
+msgid "in"
+msgstr "En"
+
+#: ui/newClassifiedAd.ui:95
+msgctxt "newCaDialog|"
+msgid "Subject"
+msgstr "Asunto"
+
+#: ui/newClassifiedAd.ui:129
+msgctxt "newCaDialog|"
+msgid "Attachment: "
+msgstr "Adjunto: "
+
+#: ui/newClassifiedAd.ui:149
+msgctxt "newCaDialog|"
+msgid "Add"
+msgstr "Añadir"
+
+#: ui/newPrivMsg.ui:26
+msgctxt "newPrivMsgDialog|"
+msgid "Send a private message"
+msgstr "Enviar un mensaje privado"
+
+#: ui/newPrivMsg.ui:39
+msgctxt "newPrivMsgDialog|"
+msgid "Subject"
+msgstr "Asunto"
+
+#: ui/newPrivMsg.ui:53
+msgctxt "newPrivMsgDialog|"
+msgid "Recipient"
+msgstr "Recipiente"
+
+#: ui/newPrivMsg.ui:83
+msgctxt "newPrivMsgDialog|"
+msgid "Attachments: "
+msgstr "Adjuntos: "
+
+#: ui/newPrivMsg.ui:103
+msgctxt "newPrivMsgDialog|"
+msgid "Attach"
+msgstr "Adjuntar"
+
+#: ui/newProfileComment.ui:26
+msgctxt "newProfileCommentDialog|"
+msgid "Comment a operators profile"
+msgstr "Comentar un perfil de operadores"
+
+#: ui/newProfileComment.ui:39
+msgctxt "newProfileCommentDialog|"
+msgid "Subject"
+msgstr "Asunto"
+
+#: ui/newProfileComment.ui:53
+msgctxt "newProfileCommentDialog|"
+msgid "Commented profile"
+msgstr "Perfil comentado"
+
+#: ui/newProfileComment.ui:89
+msgctxt "newProfileCommentDialog|"
+msgid "Attachments:"
+msgstr "Adjuntos:"
+
+#: ui/newProfileComment.ui:109
+msgctxt "newProfileCommentDialog|"
+msgid "Attach"
+msgstr "Adjuntar"
+
+#: ui/newTextDocument.ui:26
+msgctxt "newTextDocumentDialog|"
+msgid "Edit and publish a new text document"
+msgstr "Editar y publicar un nuevo documento de texto"
+
+#: ui/newTextDocument.ui:39
+msgctxt "newTextDocumentDialog|"
+msgid "Document title"
+msgstr "Título del documento"
+
+#: ui/newTextDocument.ui:75
+msgctxt "newTextDocumentDialog|"
+msgid "Attachments:"
+msgstr "Adjuntos:"
+
+#: ui/newTextDocument.ui:95
+msgctxt "newTextDocumentDialog|"
+msgid "Attach"
+msgstr "Adjuntar"
+
+#: ui/profileCommentDisplay.ui:26
+msgctxt "profileCommentDisplay|"
+msgid "Comments regarding operator"
+msgstr "Comentarios acerca del operador"
+
+#: ui/profileReadersDialog.ui:26
+msgctxt "profileReadersDialog|"
+msgid "Profile readers list"
+msgstr "Lista de perfiles de lectores"
+
+#: ui/profileReadersDialog.ui:37
+msgctxt "profileReadersDialog|"
+msgid "Search for profiles to add"
+msgstr "Buscar perfiles para añadir"
+
+#: ui/profileReadersDialog.ui:44
+msgctxt "profileReadersDialog|"
+msgid "First 100 matching profiles:"
+msgstr "Primeros 100 perfiles que coinciden:"
+
+#: ui/profileReadersDialog.ui:66
+msgctxt "profileReadersDialog|"
+msgid "Add selected to list of readers"
+msgstr "Añadir lo seleccionado a la lista de lectores"
+
+#: ui/profileReadersDialog.ui:73
+msgctxt "profileReadersDialog|"
+msgid "Current list of readers"
+msgstr "Lista actual de lectores"
+
+#: ui/profileReadersDialog.ui:90
+msgctxt "profileReadersDialog|"
+msgid "Close"
+msgstr "Cerrar"
+
+#: ui/profileReadersDialog.ui:109
+msgctxt "profileReadersDialog|"
+msgid "Remove selected"
+msgstr "Borrar lo seleccionado"
+
+#: ui/searchDisplay.ui:26
+msgctxt "searchDisplay|"
+msgid "Search data storage"
+msgstr "Buscar almacenamiento de datos"
+
+#: ui/searchDisplay.ui:60
+msgctxt "searchDisplay|"
+msgid "Words:"
+msgstr "Palabras:"
+
+#: ui/searchDisplay.ui:70
+msgctxt "searchDisplay|"
+msgid "Search"
+msgstr "Buscar"
+
+#: ui/searchDisplay.ui:87
+msgctxt "searchDisplay|"
+msgid "Network search"
+msgstr "Buscar red"
+
+#: ui/searchDisplay.ui:101
+msgctxt "searchDisplay|"
+msgid "Search ads"
+msgstr "Buscar anuncios"
+
+#: ui/searchDisplay.ui:111
+msgctxt "searchDisplay|"
+msgid "Search profiles"
+msgstr "Buscar perfiles"
+
+#: ui/searchDisplay.ui:121
+msgctxt "searchDisplay|"
+msgid "Search comments"
+msgstr "Buscar comentarios"
+
+#: ui/settingsDialog.ui:26
+msgctxt "settingsDialog|"
+msgid "Node settings"
+msgstr "Ajustes de nodo"
+
+#: ui/settingsDialog.ui:39
+msgctxt "settingsDialog|"
+msgid "TCP listen port"
+msgstr "Puerto TCP de escucha"
+
+#: ui/settingsDialog.ui:58
+msgctxt "settingsDialog|"
+msgid "Incoming TCP listen port. Change requires node restart. "
+msgstr ""
+"Puerto TCP entrante de escucha. El cambio requiere el reinicio del nodo. "
+
+#: ui/settingsDialog.ui:84
+msgctxt "settingsDialog|"
+msgid "DNS name of node"
+msgstr "Nombre DNS del nodo"
+
+#: ui/settingsDialog.ui:91
+msgctxt "settingsDialog|"
+msgid ""
+"If you have permanent DNS name for your machine, you may type it here to be "
+"used to reference your node"
+msgstr ""
+"Si tiene nombre DNS permanente para su máquina, debe teclearlo aquí para ser"
+" usado como referencia de su nodo"
+
+#: ui/settingsDialog.ui:103
+msgctxt "settingsDialog|"
+msgid "Data store limits:"
+msgstr "Limites de almacen de datos:"
+
+#: ui/settingsDialog.ui:115
+msgctxt "settingsDialog|"
+msgid "Nr of profiles to keep"
+msgstr "Nº de perfiles a mantener"
+
+#: ui/settingsDialog.ui:154
+msgctxt "settingsDialog|"
+msgid "Nr of private messages to keep"
+msgstr "Nº de mensajes privados a mantener"
+
+#: ui/settingsDialog.ui:193
+msgctxt "settingsDialog|"
+msgid "Nr of binary blobs to keep"
+msgstr "Nº de bloques binarios a mantener"
+
+#: ui/settingsDialog.ui:232
+msgctxt "settingsDialog|"
+msgid "Nr of CAs to keep"
+msgstr "Nº de CAs a mantener"
+
+#: ui/settingsDialog.ui:251
+msgctxt "settingsDialog|"
+msgid ""
+"Number of classified ads to keep in storage, total, including all "
+"classifications. Oldest referenced will be deleted first."
+msgstr ""
+"Número de anuncios clasificados a mantener en el almacenamientos, total, "
+"incluyendo todas las clasificaciones. Las referencias más antiguas serán "
+"borradas primero."
+
+#: ui/settingsDialog.ui:274
+msgctxt "settingsDialog|"
+msgid "Nr of profile comments to keep"
+msgstr "Nº de comentarios de perfil a mantener"
+
+#: ui/settingsDialog.ui:313
+msgctxt "settingsDialog|"
+msgid "Nr of db records to keep"
+msgstr "Nº de perfiles a mantener"
+
+#: ui/settingsDialog.ui:316
+msgctxt "settingsDialog|"
+msgid "Ringtone"
+msgstr "Tono de llamada"
+
+#: ui/settingsDialog.ui:324
+msgctxt "settingsDialog|"
+msgid "Bow"
+msgstr "Arco"
+
+#: ui/settingsDialog.ui:329
+msgctxt "settingsDialog|"
+msgid "Electrical"
+msgstr "Eléctrico"
+
+#: ui/settingsDialog.ui:334
+msgctxt "settingsDialog|"
+msgid "Acoustic"
+msgstr "Acústico"
+
+#: ui/settingsDialog.ui:339
+msgctxt "settingsDialog|"
+msgid "Beep"
+msgstr "Bip"
+
+#: ui/settingsDialog.ui:344
+msgctxt "settingsDialog|"
+msgid "Silence"
+msgstr "Silencio"
+
+#: ui/settingsDialog.ui:356
+msgctxt "settingsDialog|"
+msgid "Accept voice calls"
+msgstr "Aceptar llamadas de voz"
+
+#: ui/settingsDialog.ui:364
+msgctxt "settingsDialog|"
+msgid "All"
+msgstr "Todo"
+
+#: ui/settingsDialog.ui:369
+msgctxt "settingsDialog|"
+msgid "From trusted operators"
+msgstr "De operadores de confianza"
+
+#: ui/settingsDialog.ui:374
+msgctxt "settingsDialog|"
+msgid "Accept no voice calls"
+msgstr "No aceptar llamadas de voz"
+
+#: ui/statusDialog.ui:26
+msgctxt "statusDialog|"
+msgid "Network and connection status"
+msgstr "Estado de red y conexión"
+
+#: ui/statusDialog.ui:48
+msgctxt "statusDialog|"
+msgid "Detected own IPv4"
+msgstr "Detectada IPv4 propia"
+
+#: ui/statusDialog.ui:61 ui/statusDialog.ui:93
+msgctxt "statusDialog|"
+msgid ""
+"Should your friend have trouble connecting, give her this address with port "
+"number"
+msgstr ""
+"Debería su amigo tener problemas conectando, de su dirección con número de "
+"puerto"
+
+#: ui/statusDialog.ui:74
+msgctxt "statusDialog|"
+msgid "IPv6"
+msgstr "IPv6"
+
+#: ui/statusDialog.ui:113
+msgctxt "statusDialog|"
+msgid "TCP port currently used"
+msgstr "Puerto TCP usado actualmente"
+
+#: ui/statusDialog.ui:151
+msgctxt "statusDialog|"
+msgid "Currently open connections"
+msgstr "Conexiones abiertas actualmente"
+
+#: ui/statusDialog.ui:195
+msgctxt "statusDialog|"
+msgid "Manually add connection"
+msgstr "Conexión añadida manualmente"
+
+#: ui/statusDialog.ui:202
+msgctxt "statusDialog|"
+msgid "Close"
+msgstr "Cerrar"
+
+#: ui/tclConsole.ui:26
+msgctxt "tclConsoleDialog|"
+msgid "TCL Interpreter console"
+msgstr "Intérprete TCL"
+
+#: ui/tclConsole.ui:51
+msgctxt "tclConsoleDialog|"
+msgid "Evaluate"
+msgstr "Evaluar"
+
+#: ui/tclConsole.ui:58
+msgctxt "tclConsoleDialog|"
+msgid "Close"
+msgstr "Cerrar"
+
+#: ui/tclConsole.ui:69
+msgctxt "tclConsoleDialog|"
+msgid "Interpreter output"
+msgstr "salida"
+
+#: ui/tclConsole.ui:79
+msgctxt "tclConsoleDialog|"
+msgid "Command input"
+msgstr "entrada"
+
+#: ui/tclPrograms.ui:26
+msgctxt "tclProgramsDialog|"
+msgid "TCL programs"
+msgstr "Intérprete TCL"
+
+#: ui/tclPrograms.ui:48
+msgctxt "tclProgramsDialog|"
+msgid "Stored programs"
+msgstr "Perfiles almacenados"
+
+#: ui/tclPrograms.ui:68
+msgctxt "tclProgramsDialog|"
+msgid "Program code"
+msgstr "Código de programa"

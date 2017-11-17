@@ -1,38 +1,60 @@
+# Antti Järvinen <antti.jarvinen@katiska.org>, 2016. #zanata
+# Juhani Numminen <juhaninumminen0@gmail.com>, 2016. #zanata
 msgid ""
 msgstr ""
+"Project-Id-Version: classified-ads 0.12\n"
+"Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
+"POT-Creation-Date: 2016-03-14 21:30+0300\n"
+"PO-Revision-Date: 2016-07-05 05:59-0400\n"
+"Last-Translator: Juhani Numminen <juhaninumminen0@gmail.com>\n"
+"Language-Team: Finnish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Zanata 3.9.6\n"
 "X-Language: fi_FI\n"
 "X-Qt-Contexts: true\n"
 
 # Context menu item text for menu, that appears when right-mouse is clicked on top of a file in a list. 
-#: ui/attachmentlistdialog.cpp:60
+#: ui/attachmentlistdialog.cpp:62
 msgctxt "AttachmentListDialog|"
 msgid "Save file to disk.."
-msgstr "Tallenna tiedostojärjestelmälle.."
+msgstr "Tallenna tiedostojärjestelmälle…"
 
 # In file open dialog this is text specifying what kind of files to include in listing, filtered by file name suffix. For example, user wants only PNG files, then text appearing in dialog filter field would say "PNG files (*.png)" and this work "files" here is the word after the word PNG.  
-#: ui/attachmentlistdialog.cpp:151 ui/attachmentlistdialog.cpp:153
+#: ui/attachmentlistdialog.cpp:153 ui/attachmentlistdialog.cpp:155
 msgctxt "AttachmentListDialog|"
 msgid "files"
 msgstr "tiedostot"
 
+# Appears as dialog title where text asks if user wants to save into "application library" or into local file
+#: ui/attachmentlistdialog.cpp:162
+msgctxt "AttachmentListDialog|"
+msgid "Save location"
+msgstr "Mihin tallennetaan"
+
+# Dialog text regarding TCL app save location
+#: ui/attachmentlistdialog.cpp:163
+msgctxt "AttachmentListDialog|"
+msgid "Save to TCL app library instead of regular file?"
+msgstr "Tallennetaanko TCL-ohjelmien kirjastoon vai tiedostojärjestelmälle?"
+
 # Dialog title text for dialog asking user to give a name to file for purpose of saving it to filesystem. 
-#: ui/attachmentlistdialog.cpp:155
+#: ui/attachmentlistdialog.cpp:170
 msgctxt "AttachmentListDialog|"
 msgid "Choose file name for saving"
 msgstr "Valitse nimi tiedostolle"
 
 # Dialog title text for error dialog. 
-#: ui/attachmentlistdialog.cpp:166
+#: ui/attachmentlistdialog.cpp:181
 msgctxt "AttachmentListDialog|"
 msgid "Error"
 msgstr "Vikaa"
 
 # This gives (no)  explanation about reason for "file open failure"?
-#: ui/attachmentlistdialog.cpp:167
+#: ui/attachmentlistdialog.cpp:182
 msgctxt "AttachmentListDialog|"
 msgid "File open error"
 msgstr "Vika tiedoston avaamisessa"
@@ -387,297 +409,333 @@ msgid "Publicly trusted"
 msgstr "Julkisesti luotettu"
 
 # Error message that is displayed when SSL key generation failed. Text is displayed in a dialog, after user dismisses the dialog, whole application will exit.
-#: datamodel/contentencryptionmodel.cpp:88
+#: datamodel/contentencryptionmodel.cpp:94
 msgctxt "ContentEncryptionModel|"
 msgid "SSL key generation went wrong, calling exit.."
 msgstr "SSL-avaimen rakentaminen epäonnistui, pakko poistua.."
 
 # Error message that is displayed when x509 certificate generation failed. Text is displayed in a dialog, after user dismisses the dialog, whole application will exit.
-#: datamodel/contentencryptionmodel.cpp:96
+#: datamodel/contentencryptionmodel.cpp:104
 msgctxt "ContentEncryptionModel|"
 msgid "x509 cert generation went wrong, calling exit.."
 msgstr "x509-sertifikaatin rakentaminen epäonnistui, pakko poistua.."
 
 # Error message that is displayed when RSA private key could not be saved to database. This is rather fatal error, the operator profile that user tried to create will be un-usable. 
-#: datamodel/contentencryptionmodel.cpp:194
-#: datamodel/contentencryptionmodel.cpp:292
+#: datamodel/contentencryptionmodel.cpp:202
+#: datamodel/contentencryptionmodel.cpp:300
 msgctxt "ContentEncryptionModel|"
 msgid "RSA Private key key saving went wrong"
 msgstr "Salaisen RSA-avaimen tallettaminen epäonnistui"
 
 # Error message text. This is displayed in situation where user tried to access content that he does not have encryption key for. This may appear frequently during normal operation and is no fatal error, only telling user that he is not going to see the content he was trying to access. 
-#: datamodel/contentencryptionmodel.cpp:639
+#: datamodel/contentencryptionmodel.cpp:650
 msgctxt "ContentEncryptionModel|"
 msgid "No suitable de-cryption key found"
 msgstr "Avaamiseen sopivaa salausavainta ei ole käytettävissä"
 
 # Window title text for whole application. 
-#: controller.cpp:109
+#: controller.cpp:194
 msgctxt "Controller|"
 msgid "Classified ads"
 msgstr "Luokitellut ilmoitukset"
 
 # Prompt text for password dialog
-#: controller.cpp:141
+#: controller.cpp:226
 msgctxt "Controller|"
 msgid "Enter password for protection of your messages:"
 msgstr "Anna salasana viestiesi sisällön turvaamiseksi"
 
 # Dialog text for a wait dialog (a progress-bar like thing will be shown next to this text and user is supposed to sit down and wait a moment..)
-#: controller.cpp:432
+#: controller.cpp:618
 msgctxt "Controller|"
 msgid "Fetching item from network.."
 msgstr "Kaivellaan kohdetta verkon syövereistä.."
 
 # Menu item text used in "File" menu item and when this particular item is selected, application will close
-#: controller.cpp:485
+#: controller.cpp:674
 msgctxt "Controller|"
 msgid "E&xit"
 msgstr "Sulje"
 
 # Menu item tooltip-text used in "File" menu entry and when this particular item is selected, application will close
-#: controller.cpp:487
+#: controller.cpp:676
 msgctxt "Controller|"
 msgid "Exit the application"
 msgstr "Sulje sovellus"
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a dialog telling why this application is and how to use it
-#: controller.cpp:489
+#: controller.cpp:678
 msgctxt "Controller|"
 msgid "&About"
 msgstr "Tietoja"
 
 # Tooltip-text of menu item text used in "File" menu and when this particular item is selected, application will show a dialog telling why this application is and how to use it
-#: controller.cpp:490
+#: controller.cpp:679
 msgctxt "Controller|"
 msgid "Show the application's About box"
 msgstr "Esitä selvitys sovelluksen tarkoituksesta"
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to change her password
-#: controller.cpp:492
+#: controller.cpp:681
 msgctxt "Controller|"
 msgid "&Change password"
 msgstr "Vaihda salasana"
 
 # Tooltip-item for a menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to change her password
-#: controller.cpp:493
+#: controller.cpp:682
 msgctxt "Controller|"
 msgid "Change password of current profile"
 msgstr "Valitse valitulle operaattori-profiilille uusi salasana"
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to enter password for a newly-created user profile
-#: controller.cpp:495
+#: controller.cpp:684
 msgctxt "Controller|"
 msgid "Create &new profile"
 msgstr "Luo uusi profiili"
 
 # Tooltip-text for a menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to enter password for a newly-created user profile
-#: controller.cpp:496
+#: controller.cpp:685
 msgctxt "Controller|"
 msgid "Makes a brand new user profile"
 msgstr "Luo  operaattorille uuden profiilin"
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to confirm deletion of currently open operator profile
-#: controller.cpp:498
+#: controller.cpp:687
 msgctxt "Controller|"
 msgid "&Delete current profile"
 msgstr "Poista valittu profiili"
 
 # Tooltip-text for a menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to confirm deletion of currently open profile
-#: controller.cpp:499
+#: controller.cpp:688
 msgctxt "Controller|"
 msgid "Deletes currently open profile"
 msgstr "Pysyvästi poistaa tämänhetkisen valitun profiilin"
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to enter password of another profile that user will use next
-#: controller.cpp:501
+#: controller.cpp:690
 msgctxt "Controller|"
 msgid "&Select another profile"
 msgstr "Valitse käyttöön toinen profiilii"
 
 # Tooltip-text for a menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to enter password of another profile that user will use next
-#: controller.cpp:502
+#: controller.cpp:691
 msgctxt "Controller|"
 msgid "If you have multitude of profiles"
 msgstr "Jos olet luonnut useamman profiilin, voit tästä valita toisen"
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a settings-dialog 
-#: controller.cpp:504
+#: controller.cpp:693
 msgctxt "Controller|"
 msgid "Settings.."
 msgstr "Asetukset.."
 
 # Tooltip-text for a menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to enter password of another profile that user will use next
-#: controller.cpp:505
+#: controller.cpp:694
 msgctxt "Controller|"
 msgid "Node-wide settings.."
 msgstr "Solmun asetukset.."
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a dialog detailing network connectivity of the node
-#: controller.cpp:507
+#: controller.cpp:696
 msgctxt "Controller|"
 msgid "Network status.."
 msgstr "Verkko-yhteydet.."
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a search-dialog
-#: controller.cpp:509
+#: controller.cpp:698
 msgctxt "Controller|"
 msgid "Search.."
 msgstr "Etsi.."
 
 # Menu bar title text for "File" menu. 
-#: controller.cpp:526
+#: controller.cpp:715
 msgctxt "Controller|"
 msgid "&File"
 msgstr "Tiedosto"
 
+# Menu title. Menu contains menu-items related to TCL-programs.
+#: controller.cpp:729
+msgctxt "Controller|"
+msgid "&TCL Programs"
+msgstr "TCL-Ohjelmat"
+
+# Menu item from menu of TCL-related items. Selecting this menu item opens library of TCL programs. 
+#: controller.cpp:730
+msgctxt "Controller|"
+msgid "&Local library"
+msgstr "TCL-Ohjelmakirjasto"
+
+# Tooltip-text for menu item that opens local TCL program library.
+#: controller.cpp:731
+msgctxt "Controller|"
+msgid "Locally stored TCL programs"
+msgstr "Paikallisen ohjelmakirjaston TCL-ohjelmat."
+
+# Difficult to translate: after selecting this menu-item you can write ad-hoc TCL programs to TCL interpreter that may be already executing existing program or is empty. Practically gives TCL command line access to possibly running interpreter.
+#: controller.cpp:734
+msgctxt "Controller|"
+msgid "TCL &Console"
+msgstr "TCL-Komentokehote"
+
+# Tooltip for menu-item that displays dialog where you can type in ad-hoc TCL-programs.
+#: controller.cpp:735
+msgctxt "Controller|"
+msgid "Display interpreter console"
+msgstr "TCL-tulkin komennot"
+
 # Password dialog prompt.
-#: controller.cpp:571
+#: controller.cpp:771
 msgctxt "Controller|"
 msgid "Enter new password:"
 msgstr "Anna uusi salasana:"
 
 # Password dialog prompt. In this case the password dialog is not used for giving initial password or change password but instead password is typed for the reason of selection of another operator profile to be used. 
-#: controller.cpp:599 controller.cpp:708
+#: controller.cpp:799 controller.cpp:959
 msgctxt "Controller|"
 msgid "Activate another profile with password"
 msgstr "Valitse uusi profiili antamalla haluamasi profiilin salasana"
 
 # Error message shown in dialog in situation where user tried to delete the last (one and only) operator profile in machine. There needs to be at least one profile and this error message is shown if user tries to get around that limitation. 
-#: controller.cpp:693
+#: controller.cpp:944
 msgctxt "Controller|"
 msgid "Can't delete only profile."
 msgstr "Viimeistä jäljellä olevaa profiilia ei voi poistaa."
 
 # Text shown in title of confirmation dialog. 
-#: controller.cpp:697
+#: controller.cpp:948
 msgctxt "Controller|"
 msgid "Permanently discard profile?"
 msgstr "Poistetaanko profiili lopullisesti?"
 
 # Text shown inside a confirmation dialog. Dialog will have buttons OK and Cancel and this is the question.
-#: controller.cpp:698
+#: controller.cpp:949
 msgctxt "Controller|"
 msgid "There will be NO way to access content of this profile later"
 msgstr ""
 "Tämän profiilin viestejä tai muuta sisältöä ei ole mahdollista nähdä enää"
 
 # Error message that is shown in a dialog in situation where previously stored encryption keys of the node could not be accessed. Rather fatal error, will render node un-usable. 
-#: controller.cpp:761
+#: controller.cpp:1012
 msgctxt "Controller|"
 msgid "Cant load node cert or key cert"
 msgstr "Solmun salausavaimen tai sertifikaatin lataaminen ei onnistunut"
 
 # Error message dialog title text for a dialog that is shown in a dialog in situation where something bad happened during a filesystem file operation. Actual explanation of the error is shown inside the dialog whose title text this is.  
-#: controller.cpp:766
+#: controller.cpp:1017
 msgctxt "Controller|"
 msgid "File error"
 msgstr "Tiedostokäsittelyyn liittyvä virhe"
 
 # Error message dialog title text for a dialog that is shown in a dialog in situation where something bad happened during database operation. Actual explanation of the error is shown inside the dialog whose title text this is.  
-#: controller.cpp:771
+#: controller.cpp:1022
 msgctxt "Controller|"
 msgid "Database error"
 msgstr "Tietokantavirhe"
 
 # Error message dialog title text for a dialog that is shown in a dialog in situation where something bad happened during a operation inside crypto-module. Actual explanation of the error is shown inside the dialog whose title text this is.  
-#: controller.cpp:777 controller.cpp:787
+#: controller.cpp:1028 controller.cpp:1038
 msgctxt "Controller|"
 msgid "Cryptographic module"
 msgstr "Salausjärjestelmän virhe"
 
 # Error message dialog title text for a dialog that is shown in a dialog in situation where something bad happened during operation inside database module. Actual explanation of the error is shown inside the dialog whose title text this is.  
-#: controller.cpp:782
+#: controller.cpp:1033
 msgctxt "Controller|"
 msgid "Database module"
 msgstr "Tietokannan vikatila"
 
 # Error message dialog title text for a dialog that is shown in a dialog in situation when password supplied by user was not good for any purpose. Actual explanation of the error is shown inside the dialog whose title text this is.  
-#: controller.cpp:788
+#: controller.cpp:1039
 msgctxt "Controller|"
 msgid "Bad password"
 msgstr "Kelpaamaton salasana"
 
+# Dialog title for error dialog that displays error message originating from TCL-interpereter. 
+#: controller.cpp:1043
+msgctxt "Controller|"
+msgid "TCL Interpreter"
+msgstr "TCL-Ohjelma"
+
 # Error message text inside a dialog when user had requested for an item to be opened but program could not find the requested item.   
-#: controller.cpp:1004
+#: controller.cpp:1276
 msgctxt "Controller|"
 msgid "Could not find item from network.."
 msgstr "Haluttua kohdetta ei verkosta löytynyt.."
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies SHA1 digest of the file.
-#: controller.cpp:1117
+#: controller.cpp:1396
 msgctxt "Controller|"
 msgid "SHA1: "
 msgstr "SHA1:"
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies mime-type of the file
-#: controller.cpp:1122
+#: controller.cpp:1401
 msgctxt "Controller|"
 msgid "Mime-Type: "
 msgstr "Mime-Tyyppi:"
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that gives longer explanation of the file
-#: controller.cpp:1128
+#: controller.cpp:1407
 msgctxt "Controller|"
 msgid "Description: "
 msgstr "Kuvaus:"
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies name of publisher of the file (in practice, who uploaded the file into classified ads)
-#: controller.cpp:1134
+#: controller.cpp:1413
 msgctxt "Controller|"
 msgid "Publisher: "
 msgstr "Julkaisija:"
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies name of the person (or organization) that owns (in copyright sense) the file or its contents. 
-#: controller.cpp:1140
+#: controller.cpp:1419
 msgctxt "Controller|"
 msgid "Content owner: "
 msgstr "Sisällön omistaja:"
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies the license of the file
-#: controller.cpp:1146
+#: controller.cpp:1425
 msgctxt "Controller|"
 msgid "License: "
 msgstr "Lisenssi:"
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies file name
-#: controller.cpp:1152
+#: controller.cpp:1431
 msgctxt "Controller|"
 msgid "Name: "
 msgstr "Nimi:"
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies file date
-#: controller.cpp:1159
+#: controller.cpp:1438
 msgctxt "Controller|"
 msgid "Date: "
 msgstr "Päivämäärä:"
 
 # Error message text shown inside dialog when user tries to select for operation a file that is much much too big. (there is currently 2MB size limit for shared files) 
-#: ui/dialogbase.cpp:47 ui/dialogbase.cpp:101
+#: ui/dialogbase.cpp:48 ui/dialogbase.cpp:102
 msgctxt "DialogBase|"
 msgid "File way too big"
 msgstr "Tiedosto on ihan liian iso"
 
 # Error message text shown inside dialog when user tries to select for operation a file that is just-and-just too big. (there is currently 2MB size limit for shared files) 
-#: ui/dialogbase.cpp:55 ui/dialogbase.cpp:109
+#: ui/dialogbase.cpp:56 ui/dialogbase.cpp:110
 msgctxt "DialogBase|"
 msgid "File too big"
 msgstr "Tiedosto on liian iso"
 
 # Error message text shown inside dialog when user tries to select for operation a file that can not be opened (for example due to file permission reasons)
-#: ui/dialogbase.cpp:85 ui/dialogbase.cpp:131
+#: ui/dialogbase.cpp:86 ui/dialogbase.cpp:132
 msgctxt "DialogBase|"
 msgid "File open error"
 msgstr "Ongelma tiedoston avaamisessa"
 
 # Dialog title text. Dialog prompts user to select the filesystem file that will be published inside classified ads. 
-#: ui/dialogbase.cpp:94
+#: ui/dialogbase.cpp:95
 msgctxt "DialogBase|"
 msgid "Select file to be published"
 msgstr "Valitse julkaistava tiedosto"
 
 # Text for file type filter field in file-selection-dialog
-#: ui/dialogbase.cpp:96
+#: ui/dialogbase.cpp:97
 msgctxt "DialogBase|"
 msgid "Files (*.*)"
 msgstr "Kaikki tiedostot (*.*)"
@@ -695,139 +753,151 @@ msgid "Operator addr is not valid"
 msgstr "Operaattorin osoite ei ole sopivaa muotoa"
 
 # Tab text. In "main window" of classified ads UI there a are 4 or 5 tabs, normally "Classified ads"; "My profile", "Contacts", "Private messages" and maybe something else. This is the text of the first tab. 
-#: FrontWidget.cpp:95
+#: FrontWidget.cpp:97
 msgctxt "FrontWidget|"
 msgid "Classified ads"
 msgstr "Luokitellut ilmoitukset"
 
 # Tab text. In "main window" of classified ads UI there a are 4 or 5 tabs, normally "Classified ads"; "My profile", "Contacts", "Private messages" and maybe something else. This is the text of the 2nd tab. 
-#: FrontWidget.cpp:96
+#: FrontWidget.cpp:98
 msgctxt "FrontWidget|"
 msgid "My profile"
 msgstr "Oma profiili"
 
 # Tab text. In "main window" of classified ads UI there a are 4 or 5 tabs, normally "Classified ads"; "My profile", "Contacts", "Private messages" and maybe something else. This is the text of the 3rd tab. 
-#: FrontWidget.cpp:97
+#: FrontWidget.cpp:99
 msgctxt "FrontWidget|"
 msgid "Contacts"
 msgstr "Osoitekirja"
 
 # Tab text. In "main window" of classified ads UI there a are 4 or 5 tabs, normally "Classified ads"; "My profile", "Contacts", "Private messages" and maybe something else. This is the text of the 4th tab. 
-#: FrontWidget.cpp:98
+#: FrontWidget.cpp:100
 msgctxt "FrontWidget|"
 msgid "Private messages"
 msgstr "Yksityiset viestit"
 
 # Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, a dialog will appear asking which file to share
-#: FrontWidget.cpp:160
+#: FrontWidget.cpp:162
 msgctxt "FrontWidget|"
 msgid "Add shared file.."
 msgstr "Lisää tiedosto jakoon"
 
 # Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, the selected file in the listing view will no longer be shared
-#: FrontWidget.cpp:161
+#: FrontWidget.cpp:163
 msgctxt "FrontWidget|"
 msgid "Stop advertising selected shared file"
 msgstr "Lakkaa mainostamasta valittua jaettua tiedostoa"
 
 # Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, the selected file in the listing view will be saved to filesystem
-#: FrontWidget.cpp:162
+#: FrontWidget.cpp:164
 msgctxt "FrontWidget|"
 msgid "Save file to disk.."
 msgstr "Tallenna tiedosto tiedostojärjestelmälle"
 
 # Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, information dialog about selected file will be shown
-#: FrontWidget.cpp:163
+#: FrontWidget.cpp:165
 msgctxt "FrontWidget|"
 msgid "View file information.."
 msgstr "Tarkastele tiedoston ominaisuuksia.."
 
 # Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, SHA digest of the selected file will be copied to clipboard. 
-#: FrontWidget.cpp:164
+#: FrontWidget.cpp:166
 msgctxt "FrontWidget|"
 msgid "Copy file address (SHA1) to clipboard.."
 msgstr "Kopioi tiedoston osoite (SHA1) leikepöydälle.."
 
 # Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, an editor will be displayed prompting user to enter text that will then be published  for other users to see. 
-#: FrontWidget.cpp:165
+#: FrontWidget.cpp:167
 msgctxt "FrontWidget|"
 msgid "Edit+publish new text document.."
 msgstr "Muokkaa ja julkaise uusi tekstidokumentti.."
 
 # Dialog title text for "file open" dialog
-#: FrontWidget.cpp:353
+#: FrontWidget.cpp:355
 msgctxt "FrontWidget|"
 msgid "Open File"
 msgstr "Avaa tiedosto"
 
 # Text for filter field of file selection dialog
-#: FrontWidget.cpp:355 FrontWidget.cpp:885
+#: FrontWidget.cpp:357 FrontWidget.cpp:887
 msgctxt "FrontWidget|"
 msgid "Files (*.*)"
 msgstr "Kaikki tiedostot (*.*)"
 
 # Error dialog title text. Actual error message will be shown inside dialog whose title is this text. 
-#: FrontWidget.cpp:359 FrontWidget.cpp:1185 FrontWidget.cpp:1328
+#: FrontWidget.cpp:361 FrontWidget.cpp:1200 FrontWidget.cpp:1357
 msgctxt "FrontWidget|"
 msgid "Error"
 msgstr "Vikaa.."
 
 # Error dialog content text. Shown when image file that user selected could not be opened (maybe because file permission problem or maybe image format issue or ..)
-#: FrontWidget.cpp:360
+#: FrontWidget.cpp:362
 msgctxt "FrontWidget|"
 msgid "Can't load image"
 msgstr "Kuvan avaaminen ei onnistu"
 
 # Error dialog title text. This dialog is shown when user  tries to comment another operator but required operator data is missing from local storage. 
-#: FrontWidget.cpp:626 FrontWidget.cpp:766
+#: FrontWidget.cpp:628 FrontWidget.cpp:768
 msgctxt "FrontWidget|"
 msgid "Profile not in database"
 msgstr "Profiilia ei tietovarastosta löydy"
 
 # Error dialog content text. This dialog is shown when user  tries to comment another operator but required operator data is missing from local storage. 
-#: FrontWidget.cpp:627 FrontWidget.cpp:767
+#: FrontWidget.cpp:629 FrontWidget.cpp:769
 msgctxt "FrontWidget|"
 msgid "Try viewing profile first to obtain data"
 msgstr "Yritä valita profiili katseltavaksi ensin, yritä sitten uudelleen"
 
 # File selection title text. Prompts user to select a file for publish purpose. 
-#: FrontWidget.cpp:883
+#: FrontWidget.cpp:885
 msgctxt "FrontWidget|"
 msgid "Select file to be published"
 msgstr "Valitse julkaistava tiedosto"
 
 # Error text shown in dialog. Shown in situation where user selected a file that really exceeds size limit (of 2MB)
-#: FrontWidget.cpp:890
+#: FrontWidget.cpp:892
 msgctxt "FrontWidget|"
 msgid "File way too big"
 msgstr "Tiedosto on aivan liian suuri"
 
 # Error text shown in dialog. Shown in situation where user selected a file that slightly exceeds size limit (of 2MB)
-#: FrontWidget.cpp:898
+#: FrontWidget.cpp:900
 msgctxt "FrontWidget|"
 msgid "File too big"
 msgstr "Tiedosto on liian suuri"
 
 # Error text shown in dialog. Shown in situation where user selected a file that could for some reason not be opened
-#: FrontWidget.cpp:942 FrontWidget.cpp:1186
+#: FrontWidget.cpp:944 FrontWidget.cpp:1201
 msgctxt "FrontWidget|"
 msgid "File open error"
 msgstr "Ongelma tiedoston avaamisessa"
 
 # Part of filter text field in file selection dialog. If for instance user tries to open PNG files, then the text in filter field will be "PNG files (*.png)" and this word is the 2nd word in the phrase. 
-#: FrontWidget.cpp:1167 FrontWidget.cpp:1173
+#: FrontWidget.cpp:1169 FrontWidget.cpp:1175
 msgctxt "FrontWidget|"
 msgid "files"
 msgstr "kaikki tiedostot"
 
+# Dialog title for dialog that asks whether user wants to save TCL program into local library or into filesystem file
+#: FrontWidget.cpp:1183
+msgctxt "FrontWidget|"
+msgid "Save location"
+msgstr "Mihin tallennetaan"
+
+# Dialog text in question dialog asking if user wants to save TCL app into local library or into filesystem file
+#: FrontWidget.cpp:1184
+msgctxt "FrontWidget|"
+msgid "Save to TCL app library instead of regular file?"
+msgstr "Tallennetaanko TCL-ohjelmien kirjastoon vai tiedostojärjestelmälle?"
+
 # File selection dialog title text. Dialog prompts user to select location+name for an file to be exported into filesystem.
-#: FrontWidget.cpp:1176
+#: FrontWidget.cpp:1191
 msgctxt "FrontWidget|"
 msgid "Choose file name for saving"
 msgstr "Valitse nimi tallennettavalle tiedostolle"
 
 # Text shown in placeholder for operators image in situation where user has not yet selected any image. In practice it prompts user to insert image by clicking at the text. 
-#: FrontWidget.cpp:1236
+#: FrontWidget.cpp:1265
 msgctxt "FrontWidget|"
 msgid ""
 "\n"
@@ -846,13 +916,13 @@ msgstr ""
 "Kuva\n"
 
 # Error message dialog content text shown when user tried to access article, that was not stored in local database
-#: FrontWidget.cpp:1329
+#: FrontWidget.cpp:1358
 msgctxt "FrontWidget|"
 msgid "Article not found from local storage"
 msgstr "Artikkelia ei paikallisesta tietokannasta löydy"
 
 # Tool-tip text. Shown on top of operators address when user hovers mouse on top of the address field. The  %1 will be replaced by nickname of an operator who trusts this particular operator. The %2 will be replaced by SHA1 digest of the operator who trusts the operator whose SHA1 is under mouse cursor.  
-#: FrontWidget.cpp:1355 FrontWidget.cpp:1903
+#: FrontWidget.cpp:1384 FrontWidget.cpp:1932
 #, qt-format
 msgctxt "FrontWidget|"
 msgid ""
@@ -863,13 +933,13 @@ msgstr ""
 "SHA1 %2"
 
 # Tool tip text. Shown when user howers mouse on top of operators nickname field. In code a date-string will be concatenated to this string, so in practice in the UI it will read "Time of last update 31 aug 2015" or similar. 
-#: FrontWidget.cpp:1392
+#: FrontWidget.cpp:1421
 msgctxt "FrontWidget|"
 msgid "Time of last update "
 msgstr "Viimeinen päivitysajankohta"
 
 # Text for image placeholder, shown in situation where another operator has not selected any image for her.This text is shown place of the missing image. 
-#: FrontWidget.cpp:1400
+#: FrontWidget.cpp:1429
 msgctxt "FrontWidget|"
 msgid ""
 "\n"
@@ -887,110 +957,110 @@ msgstr ""
 "Valittuna)\n"
 
 # Context menu item text. Context-menu is related to frequent-contacts column-view. 
-#: FrontWidget.cpp:1494
+#: FrontWidget.cpp:1523
 msgctxt "FrontWidget|"
 msgid "Edit contact.."
 msgstr "Muokkaa profiilin tietoja "
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a private message to operator who sent the classified ad currently on display
-#: FrontWidget.cpp:1534
+#: FrontWidget.cpp:1563
 msgctxt "FrontWidget|"
 msgid "&Reply to sender"
 msgstr "Vastaa lähettäjälle"
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a reply to classified ad currently on display
-#: FrontWidget.cpp:1535
+#: FrontWidget.cpp:1564
 msgctxt "FrontWidget|"
 msgid "Reply to &forum"
 msgstr "Vastaa foorumille"
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a new classified ad.
-#: FrontWidget.cpp:1536
+#: FrontWidget.cpp:1565
 msgctxt "FrontWidget|"
 msgid "&Post new ad"
 msgstr "Uusi ilmoitus"
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a public comment about operator who sent the classified ad currently on display
-#: FrontWidget.cpp:1537
+#: FrontWidget.cpp:1566
 msgctxt "FrontWidget|"
 msgid "&Public comment"
 msgstr "Uusi kommentti"
 
 # Push button text. Pushing the button will switch to view detailing operator who sent the classified ad currently on display
-#: FrontWidget.cpp:1538
+#: FrontWidget.cpp:1567
 msgctxt "FrontWidget|"
 msgid "&View profile"
 msgstr "Katsele profiilia"
 
 # Push button text. Pushing the button will open a a listing of files that are attached to classified ad currently on display
-#: FrontWidget.cpp:1539 FrontWidget.cpp:1677
+#: FrontWidget.cpp:1568 FrontWidget.cpp:1706
 msgctxt "FrontWidget|"
 msgid "Attachments.."
 msgstr "Liitetiedostot.."
 
 # Push button text. Pushing the button will open an editor prompting user to add to her contact-list the operator who sent the classified ad currently on display
-#: FrontWidget.cpp:1599
+#: FrontWidget.cpp:1628
 msgctxt "FrontWidget|"
 msgid "Add selected operator to contacts.."
 msgstr "Lisää valittu operaattori osoitekirjaan.."
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a private message to operator who sent the private message currently on display
-#: FrontWidget.cpp:1673
+#: FrontWidget.cpp:1702
 msgctxt "FrontWidget|"
 msgid "&Reply"
 msgstr "Vastaa"
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a private message to some operator. 
-#: FrontWidget.cpp:1674
+#: FrontWidget.cpp:1703
 msgctxt "FrontWidget|"
 msgid "&New message"
 msgstr "Uusi viesti"
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a public comment about operator who sent the private message currently on display
-#: FrontWidget.cpp:1675
+#: FrontWidget.cpp:1704
 msgctxt "FrontWidget|"
 msgid "&Send public comment to sender"
 msgstr "Esitä julkinen kommentti lähettäjästä"
 
 # Push button text. Pushing the button will open view that will show details of operator, who sent the private message currently on display. 
-#: FrontWidget.cpp:1676
+#: FrontWidget.cpp:1705
 msgctxt "FrontWidget|"
 msgid "&View profile of peer"
 msgstr "Näytä viesti-osapuolen profiili"
 
 # Context menu item text. Appears in "message listing view" when user right-clicks on messages view. When selected, the operator who sent the message that is selected is added to contacts. 
-#: FrontWidget.cpp:1711
+#: FrontWidget.cpp:1740
 msgctxt "FrontWidget|"
 msgid "Add selected to contacts.."
 msgstr "Lisää valittu osoitekirjaan"
 
 # Text field label. Label tells who sent particular classified ad. 
-#: FrontWidget.cpp:1913 FrontWidget.cpp:1915 FrontWidget.cpp:1979
-#: FrontWidget.cpp:1981
+#: FrontWidget.cpp:1942 FrontWidget.cpp:1944 FrontWidget.cpp:2008
+#: FrontWidget.cpp:2010
 msgctxt "FrontWidget|"
 msgid "From:"
 msgstr "Keneltä:"
 
 # Text field label. Label tells subject of classified ads. 
-#: FrontWidget.cpp:1917 FrontWidget.cpp:1984
+#: FrontWidget.cpp:1946 FrontWidget.cpp:2013
 msgctxt "FrontWidget|"
 msgid "Subject:"
 msgstr "Aihe:"
 
 # Text field label. Label tells whom a private message was sent to. 
-#: FrontWidget.cpp:1976
+#: FrontWidget.cpp:2005
 msgctxt "FrontWidget|"
 msgid "To:"
 msgstr "Kenelle:"
 
 # Error dialog content text. Shown in situation when user clicked on a link that contained SHA1 digest that was not valid. 
-#: FrontWidget.cpp:2288
+#: FrontWidget.cpp:2317
 msgctxt "FrontWidget|"
 msgid "Invalid SHA1 in URL"
 msgstr "Viallinen SHA1-tiiviste URLissa"
 
 # Error dialog content text. Shown in situation when user clicked on a link that was not correctly formatted. 
-#: FrontWidget.cpp:2315
+#: FrontWidget.cpp:2344
 msgctxt "FrontWidget|"
 msgid "Invalid URL"
 msgstr "Viallinen URL"
@@ -1044,31 +1114,31 @@ msgid "Recipient encryption key not found from storage"
 msgstr "Valitun profiilin salausavainta ei paikallisesta tietokannasta löydy"
 
 # Error message text. Will be shown in error message dialog in case when initial SSL key generation of node did not succeed. After user dismisses the dialog, the application will close.
-#: datamodel/nodemodel.cpp:115
+#: datamodel/nodemodel.cpp:125
 msgctxt "NodeModel|"
 msgid "SSL key generation went wrong, calling exit.."
 msgstr "SSL-avaimen luonti epäonnistui, poistutaan.."
 
 # Error message text. Will be shown in error message dialog in case when initial encryption key generation of user did not succeed. After user dismisses the dialog, the application will close.
-#: datamodel/nodemodel.cpp:123
+#: datamodel/nodemodel.cpp:135
 msgctxt "NodeModel|"
 msgid "x509 cert generation went wrong, calling exit.."
 msgstr "x509-sertifikaatin luonti epäonnistui, poistutaan.."
 
 # Error message text. Will be shown in error message dialog in case when SSL certificate of the node could not be loaded from storage. After user dismisses the dialog, the application will close.
-#: datamodel/nodemodel.cpp:1596
+#: datamodel/nodemodel.cpp:1667
 msgctxt "NodeModel|"
 msgid "Cant load SSL cert"
 msgstr "SSL-sertifikaatin lataaminen ei onnistu"
 
 # Error message text. Will be shown in error message dialog in case when SSL key of the node could not be retrieved from local storage. After user dismisses the dialog, the application will close.
-#: datamodel/nodemodel.cpp:1626
+#: datamodel/nodemodel.cpp:1697
 msgctxt "NodeModel|"
 msgid "Cant load SSL key"
 msgstr "SSL-avaimen lataaminen ei onnistu"
 
 # Error message text. Shown in dialog when user tries to enter a password that is too short. 
-#: ui/passwd_dialog.cpp:104
+#: ui/passwd_dialog.cpp:107
 msgctxt "PasswdDialog|"
 msgid "Min length 5 (use 10+)"
 msgstr "Vähimmäispituus on 5 (käytä silti ainakin 10)"
@@ -1109,6 +1179,12 @@ msgstr ""
 msgctxt "PasswordDialog|"
 msgid "OK"
 msgstr "OK"
+
+# Check-box item text. If check-box is selected, password is shown in text editor, if not selected then "hidden text" editor is used that does not show the word being typed. 
+#: ui/passwordDialog.ui:68
+msgctxt "PasswordDialog|"
+msgid "Show password"
+msgstr "Näytä salasana"
 
 # Tooltip text. Shown when user hovers mouse cursor on top of message sender name. First %1 will be replaced with nickname of the operator whose message is hovered, %2 will be replaced by nickname of operator who has expressed positive trust towards the operator who sent the message. 
 #: datamodel/privmsgsearchmodel.cpp:110
@@ -1235,6 +1311,49 @@ msgstr "Äänitoistimen alustus epäonnistui."
 msgctxt "SearchDisplay|"
 msgid "Open.."
 msgstr "Avaa.."
+
+# Button text. When button is pressed, TCL program is started. 
+#: ui/tclPrograms.cpp:42
+msgctxt "TclProgramsDialog|"
+msgid "Evaluate"
+msgstr "Suorita"
+
+# Button text. If button is pressed, TCL program being executed is stopped.
+#: ui/tclPrograms.cpp:43
+msgctxt "TclProgramsDialog|"
+msgid "Stop program"
+msgstr "Pysäytä ohjelma"
+
+# Button text for button that permanently removes TCL program from local library
+#: ui/tclPrograms.cpp:49
+msgctxt "TclProgramsDialog|"
+msgid "Delete program"
+msgstr "Poista ohjelma"
+
+# Dialog title for dialog that asks user to type in name of TCL program. 
+#: ui/tclPrograms.cpp:99
+msgctxt "TclProgramsDialog|"
+msgid "TCL Program name"
+msgstr "TCL-Ohjelman nimi"
+
+# Text-input label text. Text input will contain name of TCL program. 
+#: ui/tclPrograms.cpp:100
+msgctxt "TclProgramsDialog|"
+msgid "Name:"
+msgstr "Nimi:"
+
+# Dialog title text for situation where user is about to delete a TCL program. Dialog includes question and yes+no buttons. 
+#: ui/tclPrograms.cpp:140
+msgctxt "TclProgramsDialog|"
+msgid "Deletion confirmation"
+msgstr "Poistovarmistus"
+
+# Dialog text from deletion-confirmation dialog
+#: ui/tclPrograms.cpp:141
+#, qt-format
+msgctxt "TclProgramsDialog|"
+msgid "Permanently delete program %1?"
+msgstr "Poistetaanko pysyvästi ohjelma %1?"
 
 # Menu title text. This is the help menu. 
 #: textedit/textedit.cpp:127
@@ -1528,139 +1647,139 @@ msgid "File way too big"
 msgstr "Tiedosto on aivan liian suuri"
 
 # Button text for "incoming call" dialog. When user hits the button, call is answered. 
-#: net/voicecallengine.cpp:525
+#: net/voicecallengine.cpp:515
 msgctxt "VoiceCallEngine|"
 msgid "Accept"
 msgstr "Vastaa"
 
 # Button text for "incoming call" dialog. When user hits the button, incoming call is rejected. 
-#: net/voicecallengine.cpp:533
+#: net/voicecallengine.cpp:523
 msgctxt "VoiceCallEngine|"
 msgid "Reject"
 msgstr "Hylkää"
 
 # Button text for "ongoing call" dialog. When button is hit, call is closed. 
-#: net/voicecallengine.cpp:535
+#: net/voicecallengine.cpp:525
 msgctxt "VoiceCallEngine|"
 msgid "Close"
 msgstr "Sulje"
 
 # Tooltip text. Shown in listing of ongoing calls. This tooltip explains "operator address" column of the display. The text explained is SHA1-digest or operator name if known. 
-#: net/voicecallengine.cpp:551
+#: net/voicecallengine.cpp:541
 msgctxt "VoiceCallEngine|"
 msgid "Actual network address (SHA1) of the peer operator"
 msgstr "Osapuolen profiilin SHA1-tiiviste"
 
 # Tooltip text for list display that lists ongoing voice calls. The text explained is (IP) address of the remote node of the voice call participant. 
-#: net/voicecallengine.cpp:554
+#: net/voicecallengine.cpp:544
 msgctxt "VoiceCallEngine|"
 msgid "Network address of the remote node"
 msgstr "Osapuolen käyttämän solmun verkko-osoite"
 
 # Column header text for display that lists ongoing calls. This gives header text for column that shows name of the call participant
-#: net/voicecallengine.cpp:564
+#: net/voicecallengine.cpp:554
 msgctxt "VoiceCallEngine|"
 msgid "Operator"
 msgstr "Operaattori"
 
 # Column header text for display that lists ongoing calls. This gives header text for column that shows network address of the call participant
-#: net/voicecallengine.cpp:567
+#: net/voicecallengine.cpp:557
 msgctxt "VoiceCallEngine|"
 msgid "Node address"
 msgstr "Verkko-osoite"
 
 # Column header text for display that lists ongoing calls. This gives header text for column that shows state of the call (like open, closed, ringing etc)
-#: net/voicecallengine.cpp:570
+#: net/voicecallengine.cpp:560
 msgctxt "VoiceCallEngine|"
 msgid "Call status"
 msgstr "Puhelun tila"
 
 # Column header text for display that lists ongoing calls. This gives header text for column containing buttons for accepting, rejecting and ending a call. 
-#: net/voicecallengine.cpp:573
+#: net/voicecallengine.cpp:563
 msgctxt "VoiceCallEngine|"
 msgid "Controls"
 msgstr "Hallinta"
 
 # Column header text for display that lists ongoing calls. This gives header text for column that shows name column containing button for ending an ongoing call. 
-#: net/voicecallengine.cpp:576
+#: net/voicecallengine.cpp:566
 msgctxt "VoiceCallEngine|"
 msgid "Ending"
 msgstr "Päättäminen"
 
 # Call status text. When making a new outgoing call, this is status for new call that is not answered yet. 
-#: net/voicecallengine.cpp:613
+#: net/voicecallengine.cpp:603
 msgctxt "VoiceCallEngine|"
 msgid "Initializing"
 msgstr "Alustetaan"
 
 # Call status text. When receiving a new incoming call, this is status for new call that is not answered yet.
-#: net/voicecallengine.cpp:616
+#: net/voicecallengine.cpp:606
 msgctxt "VoiceCallEngine|"
 msgid "Incoming"
 msgstr "Saapuva"
 
 # Call status text. When voice call is in progress, this is the status.
-#: net/voicecallengine.cpp:619
+#: net/voicecallengine.cpp:609
 msgctxt "VoiceCallEngine|"
 msgid "Open"
 msgstr "Avoinna"
 
 # Call status text. When voice call is marked to be closed, this is its status.
-#: net/voicecallengine.cpp:622
+#: net/voicecallengine.cpp:612
 msgctxt "VoiceCallEngine|"
 msgid "Closing"
 msgstr "Suljetaan"
 
 # Call status text. When voice call is closed, this is the status text.
-#: net/voicecallengine.cpp:625
+#: net/voicecallengine.cpp:615
 msgctxt "VoiceCallEngine|"
 msgid "Closed"
 msgstr "Suljettu"
 
 # Call status text. When voice call attempt ends in error, this is text displayed.
-#: net/voicecallengine.cpp:628
+#: net/voicecallengine.cpp:618
 msgctxt "VoiceCallEngine|"
 msgid "Error"
 msgstr "Virhe"
 
 # Call status text. When there is no voice call to display, this text may be displayed instead. 
-#: net/voicecallengine.cpp:631
+#: net/voicecallengine.cpp:621
 msgctxt "VoiceCallEngine|"
 msgid "No call"
 msgstr "Ei puhelua"
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "general purpose" excuse, when no detailed reason is know.
-#: net/voicecallengine.cpp:834
+#: net/voicecallengine.cpp:824
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible"
 msgstr "Puhelu ei ole mahdollinen"
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is not dimmed and call is possible. 
-#: net/voicecallengine.cpp:840
+#: net/voicecallengine.cpp:830
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is possible"
 msgstr "Puhelu on mahdollinen"
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "SHA1 digest of operator is not known"
-#: net/voicecallengine.cpp:847
+#: net/voicecallengine.cpp:837
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible: operator address unknown"
 msgstr "Puhelu ei ole mahdollinen: operaattorin SHA1-tiiviste on tuntematon"
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "operators profile not found (from local database)"
-#: net/voicecallengine.cpp:853
+#: net/voicecallengine.cpp:843
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible: operator profile not found"
 msgstr "Puhelu ei ole mahdollinen: operaattorin profiilia ei löydy"
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "there is no network address included in node information of the profile"
-#: net/voicecallengine.cpp:856
+#: net/voicecallengine.cpp:846
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible: operator has no node information in profile"
 msgstr "Puhelu ei ole mahdollinen: operaattorin solmusta puuttuu verkko-osoite"
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "there is no (ipv4) network connection to node"
-#: net/voicecallengine.cpp:875
+#: net/voicecallengine.cpp:865
 #, qt-format
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible: operators IPv4 address %1 not connected"
@@ -1669,7 +1788,7 @@ msgstr ""
 "ei ole yhteyttä"
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "there is no (ipv6) network connection to node"
-#: net/voicecallengine.cpp:882
+#: net/voicecallengine.cpp:872
 #, qt-format
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible: operators IPv6 address %1 not connected"
@@ -1678,7 +1797,7 @@ msgstr ""
 "ei ole yhteyttä "
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is protocol mismatch. 
-#: net/voicecallengine.cpp:893
+#: net/voicecallengine.cpp:883
 msgctxt "VoiceCallEngine|"
 msgid ""
 "Audio call is not possible: local node has no IPv6 address, operator has "
@@ -1688,7 +1807,7 @@ msgstr ""
 "operaattorilla on vain IPv6"
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "operator does not publish network address of his node"
-#: net/voicecallengine.cpp:895
+#: net/voicecallengine.cpp:885
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible: operator does not publish network address"
 msgstr "Puhelu ei ole mahdollinen: operaattori ei julkaise verkko-osoitettaan"
@@ -2774,62 +2893,68 @@ msgctxt "settingsDialog|"
 msgid "Nr of profile comments to keep"
 msgstr "Kommenttien määrä"
 
+# Settings dialog text for item that tells how many records of distributed database to keep
+#: ui/settingsDialog.ui:313
+msgctxt "settingsDialog|"
+msgid "Nr of db records to keep"
+msgstr "Jaetun tietokannan tietuemäärä"
+
 # Label for combo-box where user can choose between voice call ringtones. 
-#: ui/settingsDialog.ui:316
+#: ui/settingsDialog.ui:349
 msgctxt "settingsDialog|"
 msgid "Ringtone"
 msgstr "Puhelun hälytysääni"
 
 # Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is performed with a bow.
-#: ui/settingsDialog.ui:324
+#: ui/settingsDialog.ui:357
 msgctxt "settingsDialog|"
 msgid "Bow"
 msgstr "Jousella"
 
 # Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is electrical.
-#: ui/settingsDialog.ui:329
+#: ui/settingsDialog.ui:362
 msgctxt "settingsDialog|"
 msgid "Electrical"
 msgstr "Sähköisesti"
 
 # Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is performed in acoustic manner
-#: ui/settingsDialog.ui:334
+#: ui/settingsDialog.ui:367
 msgctxt "settingsDialog|"
 msgid "Acoustic"
 msgstr "Akustisesti"
 
 # Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is only a beep
-#: ui/settingsDialog.ui:339
+#: ui/settingsDialog.ui:372
 msgctxt "settingsDialog|"
 msgid "Beep"
 msgstr "Piippaus"
 
 # Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is silent
-#: ui/settingsDialog.ui:344
+#: ui/settingsDialog.ui:377
 msgctxt "settingsDialog|"
 msgid "Silence"
 msgstr "Hiljaisuus"
 
 # Combox-box label text. Combo-box is for selecting which audio calls to accept, selections are like "all ; no calls at all ; from some operators ; .."
-#: ui/settingsDialog.ui:356
+#: ui/settingsDialog.ui:389
 msgctxt "settingsDialog|"
 msgid "Accept voice calls"
 msgstr "Hyväksy puhelut"
 
 # Combobox item text for selecting which audio calls to accept. Selecting this item lets all calls in. 
-#: ui/settingsDialog.ui:364
+#: ui/settingsDialog.ui:397
 msgctxt "settingsDialog|"
 msgid "All"
 msgstr "Kaikki"
 
 # Combobox item text for selecting which audio calls to accept. Selecting this item lets in calls from trusted operators.
-#: ui/settingsDialog.ui:369
+#: ui/settingsDialog.ui:402
 msgctxt "settingsDialog|"
 msgid "From trusted operators"
 msgstr "Vain luotetuilta operaattoreilta"
 
 # Combobox item text for selecting which audio calls to accept. Selecting this item rejects all calls. 
-#: ui/settingsDialog.ui:374
+#: ui/settingsDialog.ui:407
 msgctxt "settingsDialog|"
 msgid "Accept no voice calls"
 msgstr "Ei ainuttakaan"
@@ -2885,3 +3010,51 @@ msgstr "Lisää yhteys käsipelillä"
 msgctxt "statusDialog|"
 msgid "Close"
 msgstr "Sulje"
+
+# Dialog title text for dialog that displays TCL interpreter console.
+#: ui/tclConsole.ui:26
+msgctxt "tclConsoleDialog|"
+msgid "TCL Interpreter console"
+msgstr "TCL-komentotulkin syötteet ja tulosteet"
+
+# Button text for button that runs TCL commands that user has typed
+#: ui/tclConsole.ui:51
+msgctxt "tclConsoleDialog|"
+msgid "Evaluate"
+msgstr "Suorita"
+
+# Button text for button that closes TCL interpreter window. Not the interpreter but only the console dialog.  
+#: ui/tclConsole.ui:58
+msgctxt "tclConsoleDialog|"
+msgid "Close"
+msgstr "Sulje"
+
+# label for text field that shows TCL interpreter output
+#: ui/tclConsole.ui:69
+msgctxt "tclConsoleDialog|"
+msgid "Interpreter output"
+msgstr "TCL-tulkin tulosteet"
+
+# label for text field that shows TCL interpreter input
+#: ui/tclConsole.ui:79
+msgctxt "tclConsoleDialog|"
+msgid "Command input"
+msgstr "TCL-kieliset komennot suoritettavaksi"
+
+# Dialog title text for dialog that lists stored TCL programs
+#: ui/tclPrograms.ui:26
+msgctxt "tclProgramsDialog|"
+msgid "TCL programs"
+msgstr "TCL-Ohjelmat"
+
+# Label for list-item that lists stored TCL programs.
+#: ui/tclPrograms.ui:48
+msgctxt "tclProgramsDialog|"
+msgid "Stored programs"
+msgstr "Ohjelmat"
+
+# Label for text item that shows program text of locally stored TCL program
+#: ui/tclPrograms.ui:68
+msgctxt "tclProgramsDialog|"
+msgid "Program code"
+msgstr "Ohjelmakoodi"

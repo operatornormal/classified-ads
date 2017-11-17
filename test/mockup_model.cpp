@@ -1,21 +1,21 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-    Classified Ads is Copyright (c) Antti Järvinen 2013.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-16.
 
-    This file is part of Classified Ads.
+  This file is part of Classified Ads.
 
-    Classified Ads is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  Classified Ads is free software; you can redistribute it and/or
+  modify it under the terms of the GNU Lesser General Public
+  License as published by the Free Software Foundation; either
+  version 2.1 of the License, or (at your option) any later version.
 
-    Classified Ads is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Classified Ads is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with Classified Ads; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+  You should have received a copy of the GNU Lesser General Public
+  License along with Classified Ads; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include "mockup_model.h"
@@ -31,6 +31,8 @@
 #include "../datamodel/profilecommentmodel.h"
 #include "../datamodel/searchmodel.h"
 #include "../datamodel/contentencryptionmodel.h"
+#include "../datamodel/cadbrecordmodel.h"
+#include "../datamodel/tclmodel.h"
 #include <QFile>
 
 MockUpModel::MockUpModel( MController *aController ) :
@@ -42,12 +44,15 @@ MockUpModel::MockUpModel( MController *aController ) :
     iPrivMsgModel(NULL),
     iContentEncryptionModel(NULL),
     iProfileCommentModel(NULL),
-    iSearchModel(NULL) {
+    iSearchModel(NULL),
+    iCaDbRecordModel(NULL),
+    iTclModel(NULL) {
     LOG_STR("MockUpModel::MockUpModel in\n") ;
 
     SSL_load_error_strings() ;
     SSL_library_init() ;
     QFile randomFile("/dev/urandom") ;
+    randomFile.open(QIODevice::ReadOnly) ; 
     QByteArray randomBytes = randomFile.read(1024) ;
     char *randomBytesPointer = randomBytes.data() ;
     RAND_seed(randomBytesPointer, 1024);
@@ -60,6 +65,8 @@ MockUpModel::MockUpModel( MController *aController ) :
     iContentEncryptionModel = new ContentEncryptionModel(aController, *this) ;
     iSearchModel = new SearchModel(*this,*iController) ;
     iSearchModel->setObjectName("CA SearchModel test") ;
+    iCaDbRecordModel = new CaDbRecordModel(iController, *this) ; 
+    iTclModel = new TclModel(iController, *this) ; 
     LOG_STR("MockUpModel::MockUpModel out\n") ;
 }
 
@@ -73,6 +80,8 @@ MockUpModel::~MockUpModel() {
     delete iProfileCommentModel ;
     delete iContentEncryptionModel ;
     delete iSearchModel;
+    delete iCaDbRecordModel;
+    delete iTclModel;
     LOG_STR("MockUpModel::~MockUpModel\n") ;
 }
 void MockUpModel::addNetworkRequest(NetworkRequestExecutor::NetworkRequestQueueItem&
@@ -121,4 +130,12 @@ ProfileCommentModel& MockUpModel::profileCommentModel() const {
 
 SearchModel* MockUpModel::searchModel() const {
     return iSearchModel ;
+}
+
+CaDbRecordModel* MockUpModel::caDbRecordModel() const {
+    return iCaDbRecordModel ; 
+}
+
+TclModel& MockUpModel::tclModel() const {
+    return *iTclModel ; 
 }

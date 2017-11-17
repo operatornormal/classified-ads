@@ -1,24 +1,23 @@
-/*     -*-C++-*- -*-coding: utf-8-unix;-*-
-    Classified Ads is Copyright (c) Antti Järvinen 2013.
+/*   -*-C++-*- -*-coding: utf-8-unix;-*-
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
 
-    This file is part of Classified Ads.
+  This file is part of Classified Ads.
 
-    Classified Ads is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  Classified Ads is free software; you can redistribute it and/or
+  modify it under the terms of the GNU Lesser General Public
+  License as published by the Free Software Foundation; either
+  version 2.1 of the License, or (at your option) any later version.
 
-    Classified Ads is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Classified Ads is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with Classified Ads; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+  You should have received a copy of the GNU Lesser General Public
+  License along with Classified Ads; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
-#include <QtGui>
 #include "mockup_controller.h"
 #include "../log.h"
 #include "../net/node.h"
@@ -29,12 +28,14 @@
 #include <signal.h>
 #include "../datamodel/binaryfile.h"
 #include "mockup_voicecallengine.h"
+#include "../tcl/tclWrapper.h"
 
 MockUpController::MockUpController() :
     iNode(NULL),
     iModel(NULL),
     iListener(NULL),
-    iCallEngine(NULL) {
+    iCallEngine(NULL),
+    iTclWrapper(NULL) {
     LOG_STR("MockUpController::Controller in\n") ;
     qRegisterMetaType<MController::CAErrorSituation>("MController::CAErrorSituation");
     iModel = new Model(this);
@@ -44,6 +45,7 @@ MockUpController::MockUpController() :
     // network listener enumerates network interfaces and sets
     // possible ipv6 addr into iNode() ->
     iCallEngine = new MockUpVoiceCallEngine ; 
+    iTclWrapper = new TclWrapper(*iModel, *this) ; 
     LOG_STR("MockUpController::Controller out\n") ;
 }
 
@@ -58,6 +60,7 @@ MockUpController::~MockUpController() {
     delete iModel ;
     delete iNode ;
     delete iCallEngine ; 
+    delete iTclWrapper ; 
 }
 
 void MockUpController::userInterfaceAction ( CAUserInterfaceRequest aRequest,
@@ -134,6 +137,10 @@ void MockUpController::startRetrievingContent(NetworkRequestExecutor::NetworkReq
     return ;
 }
 
+void MockUpController::startRetrievingContent(CaDbRecord::SearchTerms /*aSearchTerms*/) {
+    return ;
+}
+
 void MockUpController::storePrivateDataOfSelectedProfile(bool /*aPublishTrustListToo*/) {
     return ;
 }
@@ -164,4 +171,18 @@ void MockUpController::displayFileInfoOnUi(const BinaryFile& aFileMetadata) {
 
 MVoiceCallEngine* MockUpController::voiceCallEngineInterface() {
     return iCallEngine ; 
+}
+
+TclWrapper& MockUpController::tclWrapper() {
+    return *iTclWrapper ; 
+}
+
+QString MockUpController::getFileName(bool& aSuccess,
+                                      bool /*aIsSaveFile*/ , 
+                                      QString /*aSuggestedFileName*/) {
+    aSuccess = true ; 
+    char fileNameBuffer[L_tmpnam+1] ; // buffer for file name, macro
+                                      // L_tmpnam should be in stdio.h telling
+                                      // max len of returned name. 
+    return QString(tmpnam_r(fileNameBuffer)) ; 
 }

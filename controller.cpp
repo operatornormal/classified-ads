@@ -1,21 +1,21 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-    Classified Ads is Copyright (c) Antti Järvinen 2013.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
 
-    This file is part of Classified Ads.
+  This file is part of Classified Ads.
 
-    Classified Ads is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  Classified Ads is free software; you can redistribute it and/or
+  modify it under the terms of the GNU Lesser General Public
+  License as published by the Free Software Foundation; either
+  version 2.1 of the License, or (at your option) any later version.
 
-    Classified Ads is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Classified Ads is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with Classified Ads; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+  You should have received a copy of the GNU Lesser General Public
+  License along with Classified Ads; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include <QtGui>
@@ -30,6 +30,7 @@
 #include <QLocalServer>
 #include <QLocalSocket>
 #endif
+#include <QFileDialog>
 #include "controller.h"
 #include "FrontWidget.h"
 #include "log.h"
@@ -40,6 +41,7 @@
 #include "net/networkconnectorengine.h"
 #include "net/publishingengine.h"
 #include "net/retrievalengine.h"
+#include "net/dbretrievalengine.h"
 #ifndef WIN32
 #include <unistd.h> // for getpid() 
 #endif
@@ -60,6 +62,8 @@
 #include "datamodel/binaryfile.h"
 #include "net/voicecallengine.h"
 #include "datamodel/voicecall.h"
+#include "ui/tclPrograms.h"
+#include "tcl/tclWrapper.h"
 
 static const char *KPrivateDataContactsSection = "contacts" ;
 static const char *KPrivateDataContactsCache = "contactsCache" ;
@@ -79,20 +83,25 @@ Controller::Controller(QApplication &app) : iWin(NULL),
     iDisplaySettingsAct(NULL),
     iDisplayStatusAct(NULL),
     iDisplaySearchAct(NULL),
+    iTclMenu(NULL),
+    iTclLibraryAct(NULL),
+    iTclConsoleAct(NULL),
     iNode(NULL),
     iModel(NULL),
     iListener(NULL),
     iNetEngine(NULL),
     iPubEngine(NULL),
     iRetrievalEngine(NULL),
+    iDbRetrievalEngine(NULL),
     iVoiceCallEngine (NULL),
     iInsideDestructor(false),
-    iSharedMemory(NULL)
+    iSharedMemory(NULL),
 #ifdef WIN32
-    ,iLocalServer(NULL)
+    iLocalServer(NULL),
 #endif
-
-{
+    iTclWrapper(NULL),
+    iGetFileNameDialog(NULL),
+    iGetFileNameSemaphore(1) {
     LOG_STR("Controller::Controller constructor out") ;
 }
 
@@ -132,8 +141,8 @@ bool Controller::init() {
             if( iSharedMemory->attach() == false ) {
                 // 1 kb and some extra
                 iSharedMemory->create(1024,QSharedMemory::ReadWrite) ;
-                QLOG_STR("Created shared mem 1kb, is attached = " + 
-                         QString::number(iSharedMemory->isAttached())) ; 
+                QLOG_STR("Created shared mem 1kb, is attached = " +
+                         QString::number(iSharedMemory->isAttached())) ;
             }
         }
     }
@@ -230,6 +239,9 @@ bool Controller::init() {
     iRetrievalEngine = new RetrievalEngine (this, *iModel) ;
     iRetrievalEngine->setInterval(5000); // every 5 seconds
 
+    iDbRetrievalEngine = new DbRecordRetrievalEngine (this, *iModel) ;
+    iDbRetrievalEngine->setInterval(5000); // every 5 seconds
+
     // network listener is also connection status observer so lets
     // have it to signal the pub-engine when connections are opened/closed
     // (also the failed ones that are usually of no interest)
@@ -254,6 +266,14 @@ bool Controller::init() {
                 SIGNAL(  nodeConnectionAttemptStatus(Connection::ConnectionState ,
                          const Hash  ) ),
                 iRetrievalEngine,
+                SLOT( nodeConnectionAttemptStatus(Connection::ConnectionState ,
+                        const Hash  )),
+                Qt::QueuedConnection )  ) ;
+    assert(
+        connect(iListener,
+                SIGNAL(  nodeConnectionAttemptStatus(Connection::ConnectionState ,
+                         const Hash  ) ),
+                iDbRetrievalEngine,
                 SLOT( nodeConnectionAttemptStatus(Connection::ConnectionState ,
                         const Hash  )),
                 Qt::QueuedConnection )  ) ;
@@ -290,10 +310,14 @@ bool Controller::init() {
     // after signals are connected, start publishing and retrieval
     iPubEngine->start() ;
     iRetrievalEngine->start() ;
+    iDbRetrievalEngine->start() ;
     // instantiate voice call engine from UI thread, otherwise
     // some transient connection-related thread will do it and
     // problems start appearing after the thread finishes..
     this->voiceCallEngine() ;
+    connect(this, SIGNAL(startGettingFileName(QString,bool)),
+            this, SLOT(getFileNameSlot(QString,bool)),
+            Qt::QueuedConnection) ; 
     /*
     // debug thing:
     iModel->classifiedAdsModel().reIndexAllAdsIntoFTS() ;
@@ -344,6 +368,23 @@ bool Controller::createSharedMemSegment(QString& aSegmentName) {
 Controller::~Controller() {
     LOG_STR("Controller::~Controller") ;
     iInsideDestructor = true ;
+    if ( iGetFileNameDialog ) {
+        iGetFileNameDialog->reject() ; 
+        QWaitCondition waitCondition;
+        QMutex mutex;
+        mutex.lock() ; // waitCondition needs a mutex initially locked
+        waitCondition.wait(&mutex, 100);// let file selection call stack
+                // collapse or it will return to deleted tcl interpreter
+        mutex.unlock() ;
+    }
+    if (  iGetFileNameDialog ) {
+        delete iGetFileNameDialog ; 
+        iGetFileNameDialog = NULL ; 
+    }
+    if ( iTclWrapper ) {
+        iTclWrapper->stopScript(true) ; // deletes self
+        iTclWrapper = NULL ;
+    }
 #ifdef WIN32
     if ( iLocalServer ) {
         iLocalServer->close() ;
@@ -368,10 +409,14 @@ Controller::~Controller() {
     }
     LOG_STR("Controller::~Controller 1 pubengine gone") ;
     if ( iRetrievalEngine ) {
-        iRetrievalEngine->iNeedsToRun = false ;
         iRetrievalEngine->stop() ;
         delete iRetrievalEngine ;
         iRetrievalEngine = NULL ;
+    }
+    if ( iDbRetrievalEngine ) {
+        iDbRetrievalEngine->stop() ;
+        delete iDbRetrievalEngine ;
+        iDbRetrievalEngine = NULL ;
     }
     if ( iNetEngine ) {
 #ifndef WIN32
@@ -448,6 +493,15 @@ Controller::~Controller() {
     }
     if ( iDisplaySearchAct ) {
         delete iDisplaySearchAct ;
+    }
+    if ( iTclMenu ) {
+        delete iTclMenu;
+    }
+    if ( iTclLibraryAct ) {
+        delete iTclLibraryAct ;
+    }
+    if ( iTclConsoleAct ) {
+        delete iTclConsoleAct ;
     }
     if ( iWin ) {
         delete iWin ;
@@ -616,6 +670,7 @@ void Controller::showUI() {
 }
 
 void Controller::createMenus() {
+    // first "file" menu:
     iExitAct = new QAction(tr("E&xit"), this);
     iExitAct->setShortcuts(QKeySequence::Quit);
     iExitAct->setStatusTip(tr("Exit the application"));
@@ -669,6 +724,17 @@ void Controller::createMenus() {
     iPwdChangeAct->setDisabled(true) ; // enable when profile is open
     iProfileDeleteAct->setDisabled(true) ; // enable when profile is open
     iFileMenu->addAction(iExitAct);
+
+    // menu-items related to TCL interpreter
+    iTclMenu = iWin->menuBar()->addMenu(tr("&TCL Programs"));
+    iTclLibraryAct = new QAction(tr("&Local library"), this);
+    iTclLibraryAct->setStatusTip(tr("Locally stored TCL programs"));
+    connect(iTclLibraryAct, SIGNAL(triggered()), this, SLOT(displayTclProgs()));
+    iTclMenu->addAction(iTclLibraryAct) ;
+    iTclConsoleAct = new QAction(tr("TCL &Console"), this);
+    iTclConsoleAct->setStatusTip(tr("Display interpreter console"));
+    connect(iTclConsoleAct, SIGNAL(triggered()), this, SLOT(displayTclConsole()));
+    iTclMenu->addAction(iTclConsoleAct) ;
 }
 
 void Controller::exitApp() {
@@ -815,6 +881,57 @@ void Controller::displaySearch() {
     }
 }
 
+/** Slot for displaying TCL library */
+void Controller::displayTclProgs() {
+    QLOG_STR("Controller::displayTclProgs") ;
+
+    const QString dlgName ("classified_ads_tclprogs_dialog") ;
+    TclProgramsDialog *dialog = iWin->findChild<TclProgramsDialog *>(dlgName) ;
+    if ( dialog == NULL ) {
+        dialog = new TclProgramsDialog(iWin, *this) ;
+        dialog->setObjectName(dlgName) ;
+        connect(dialog,
+                SIGNAL(  error(MController::CAErrorSituation,
+                               const QString&) ),
+                this,
+                SLOT(handleError(MController::CAErrorSituation,
+                                 const QString&)),
+                Qt::QueuedConnection ) ;
+        dialog->show() ;
+        // also connect tcl eval signal from dialog to wrapper
+        tclWrapper() ;// ensure there is interpreter inside wrapper
+        if ( iTclWrapper ) {
+            connect(dialog, SIGNAL(evalScript(QString,QString*)),
+                    iTclWrapper, SLOT(evalScript(QString,QString*)),
+                    Qt::QueuedConnection) ;
+            connect(iTclWrapper, SIGNAL(started()),
+                    dialog, SLOT(tclProgramStarted()),
+                    Qt::QueuedConnection) ;
+            connect(iTclWrapper, SIGNAL(finished()),
+                    dialog, SLOT(tclProgramStopped()),
+                    Qt::QueuedConnection) ;
+#if QT_VERSION < 0x050000
+            // qt5 has no terminated signal in QThread
+            // but if on older qt connect that anyway
+            connect(iTclWrapper, SIGNAL(terminated()),
+                    dialog, SLOT(tclProgramStopped()),
+                    Qt::QueuedConnection) ;
+#endif
+            if ( iTclWrapper->isRunning() ) {
+                dialog->tclProgramStarted() ;
+            }
+        }
+    } else {
+        dialog->setFocus(Qt::MenuBarFocusReason) ;
+    }
+}
+
+/** Slot for displaying TCL console */
+void Controller::displayTclConsole() {
+    QLOG_STR("Controller::displayTclConsole") ;
+    tclWrapper().showConsole() ;
+}
+
 
 // Initiates UI sequence for deleting profile
 void Controller::deleteProfile() {
@@ -920,6 +1037,11 @@ void Controller::handleError(MController::CAErrorSituation aError,
     case BadPassword :
         QMessageBox::about(iWin,tr("Cryptographic module"),
                            tr("Bad password"));
+        QLOG_STR("DbTransactionError " + aExplanation ) ;
+        break ;
+    case TCLEvalError :
+        QMessageBox::about(iWin,tr("TCL Interpreter"),
+                           aExplanation);
         QLOG_STR("DbTransactionError " + aExplanation ) ;
         break ;
     }
@@ -1059,10 +1181,20 @@ void Controller::notifyOfContentReceived(const Hash& aHashOfContent,
     }
     iRetrievalEngine->notifyOfContentReceived(aHashOfContent,
             aTypeOfReceivedContent) ;
+    // offer db records to db retrieval engine
+    if ( aTypeOfReceivedContent == DbRecord ) {
+        iDbRetrievalEngine->notifyOfContentReceived(aHashOfContent,
+                                                    aTypeOfReceivedContent) ;
+    }
     // offer profiles to trust list
     if ( aTypeOfReceivedContent == UserProfile ) {
         iModel->trustTreeModel()->contentReceived(aHashOfContent,
                 aTypeOfReceivedContent) ;
+    }
+
+    if ( iTclWrapper ) {
+        iTclWrapper->notifyOfContentReceived(aHashOfContent,
+                                             aTypeOfReceivedContent) ;
     }
 }
 
@@ -1119,6 +1251,13 @@ void Controller::notifyOfContentReceived(const Hash& aHashOfContent,
     }
     iRetrievalEngine->notifyOfContentReceived(aHashOfContent,
             aTypeOfReceivedContent) ;
+    iDbRetrievalEngine->notifyOfContentReceived(aHashOfContent,
+            aTypeOfReceivedContent) ;
+
+    if ( iTclWrapper ) {
+        iTclWrapper->notifyOfContentReceived(aHashOfContent,
+                                             aTypeOfReceivedContent) ;
+    }
 }
 void Controller::notifyOfContentNotReceived(const Hash& aHashOfContent,
         const ProtocolItemType
@@ -1146,6 +1285,13 @@ void Controller::startRetrievingContent(NetworkRequestExecutor::NetworkRequestQu
                                       aIsBackgroundDl) ;
     iHashOfObjectBeingWaitedFor = aReq.iRequestedItem ;
     iTypeOfObjectBeingWaitedFor = aTypeOfExpectedObject ;
+}
+
+
+void Controller::startRetrievingContent( CaDbRecord::SearchTerms aSearchTerms ) {
+    if ( iDbRetrievalEngine ) {
+        iDbRetrievalEngine->startRetrieving(aSearchTerms) ; 
+    }
 }
 
 void Controller::storePrivateDataOfSelectedProfile(bool aPublishTrustListToo) {
@@ -1400,3 +1546,87 @@ void Controller::newInstanceConnected() {
     }
 }
 #endif
+
+TclWrapper & Controller::tclWrapper() {
+    if ( iTclWrapper == NULL ) {
+        QLOG_STR("Controller::tclWrapper instantiates new") ;
+        iTclWrapper = new TclWrapper(*iModel,*this) ;
+        connect(iTclWrapper,
+                SIGNAL(error(MController::CAErrorSituation,
+                             const QString&) ),
+                this,
+                SLOT(handleError(MController::CAErrorSituation,
+                                 const QString&)),
+                Qt::QueuedConnection ) ;
+        if ( iDbRetrievalEngine ) {
+            assert(
+                connect(iTclWrapper,
+                        SIGNAL(finished()),
+                        iDbRetrievalEngine,
+                        SLOT(stopRetrieving()),
+                        Qt::QueuedConnection )) ;
+        } else {
+            QLOG_STR("TCL Wrapper instantiated by retrieval engine missing?");
+        }
+    }
+    return *iTclWrapper ;
+}
+
+QWidget* Controller::frontWidget() {
+    return iCurrentWidget ;
+}
+
+
+QString Controller::getFileName(bool& aSuccess,
+                                bool aIsSaveFile , 
+                                QString aSuggestedFileName ) {
+    if ( iGetFileNameDialog || iGetFileNameSemaphore.available() == 0 ) {
+        aSuccess = false ; 
+        return QString::null ; 
+    }
+    iGetFileNameResult = QString::null ; 
+    iGetFileNameSuccess = false ; 
+    // lock mutex once
+    QLOG_STR("iGetFileNameMutex.acquire") ; 
+    iGetFileNameSemaphore.acquire(1) ; 
+    // go to UI thread:
+    QLOG_STR("emit getFileNameSignal") ; 
+    emit startGettingFileName(aSuggestedFileName, aIsSaveFile) ; 
+    // stop here until UI thread calls iGetFileNameMutex.release
+    QLOG_STR("iGetFileNameMutex.acquire 2") ; 
+    iGetFileNameSemaphore.acquire(1) ; 
+    QLOG_STR("iGetFileNameMutex.release") ; 
+    iGetFileNameSemaphore.release(1) ; 
+    aSuccess = iGetFileNameSuccess ; 
+    return iGetFileNameResult ; 
+}
+
+// this will be executed in UI thread, called from getFileName
+// method via queued connection
+void Controller::getFileNameSlot(QString aSuggestedFileName,bool aIsSaveFile) {
+    QLOG_STR("getFileNameSlot in") ; 
+    if ( ( iGetFileNameDialog = new QFileDialog() ) != NULL ) {
+
+        if ( aIsSaveFile ) {
+            iGetFileNameDialog->setFileMode(QFileDialog::AnyFile);
+            iGetFileNameDialog->setAcceptMode(QFileDialog::AcceptSave) ; 
+        } else {
+            iGetFileNameDialog->setFileMode(QFileDialog::ExistingFile);
+            iGetFileNameDialog->setAcceptMode(QFileDialog::AcceptOpen) ;
+        }
+        if ( aSuggestedFileName.length() > 0 ) {
+            iGetFileNameDialog->setNameFilter(aSuggestedFileName);
+        }
+        QStringList fileNames;
+        if (iGetFileNameDialog->exec() && iGetFileNameDialog )
+            fileNames = iGetFileNameDialog->selectedFiles();
+        if ( fileNames.count() > 0 ) {
+            iGetFileNameResult = fileNames.at(0) ; 
+            iGetFileNameSuccess = true ;
+        }
+        delete iGetFileNameDialog ; 
+    }
+    iGetFileNameDialog = NULL ; 
+    iGetFileNameSemaphore.release(1) ; 
+    QLOG_STR("getFileNameSlot out") ; 
+}

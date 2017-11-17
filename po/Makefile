@@ -1,5 +1,5 @@
 #
-# Classified Ads is Copyright (c) Antti Järvinen 2013-2016.
+# Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
 #
 # This file is part of Classified Ads.
 #
@@ -20,7 +20,7 @@
 
 # If adding a new translation, list it here. Also see the list 
 # in "install" target.
-translations = fi.mo sv.mo da.mo uk.mo de.mo
+translations = fi.mo sv.mo da.mo uk.mo de.mo es.mo
 
 .SUFFIXES: .mo .po
 
@@ -45,3 +45,5 @@ install:	all
 	$(DESTDIR)/usr/share/locale/uk/LC_MESSAGES/classified-ads.mo
 	install -m 644 -D -T de.mo \
 	$(DESTDIR)/usr/share/locale/de/LC_MESSAGES/classified-ads.mo
+	install -m 644 -D -T es.mo \
+	$(DESTDIR)/usr/share/locale/es/LC_MESSAGES/classified-ads.mo

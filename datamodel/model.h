@@ -1,21 +1,21 @@
 /*    -*-C++-*- -*-coding: utf-8-unix;-*-
-      Classified Ads is Copyright (c) Antti Jarvinen 2013.
+  Classified Ads is Copyright (c) Antti Jarvinen 2013-2016.
 
-      This file is part of Classified Ads.
+  This file is part of Classified Ads.
 
-    Classified Ads is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  Classified Ads is free software; you can redistribute it and/or
+  modify it under the terms of the GNU Lesser General Public
+  License as published by the Free Software Foundation; either
+  version 2.1 of the License, or (at your option) any later version.
 
-    Classified Ads is distributed in the hope that it will be useful,
-      but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Classified Ads is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with Classified Ads; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+  You should have received a copy of the GNU Lesser General Public
+  License along with Classified Ads; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #ifndef CLASSIFIED_DATAMODEL_H
@@ -38,6 +38,8 @@ class QSslCertificate ;
 class QSslKey ;
 class SearchModel ;
 class TrustTreeModel ;
+class TclModel ;
+
 /**
  * @brief M of the MVC pattern. Handles permanent storage.
  *
@@ -52,28 +54,28 @@ public:
     // public enums
     /**
      * Enumeration for ringtone settings. Numbering of
-     * the enum must exactly follow indexing of 
+     * the enum must exactly follow indexing of
      * items in ringToneComboxBox in settings UI
-     * dialog. 
+     * dialog.
      */
     enum RingtoneSetting {
         BowRingTone = 0,
         ElectricalRingTone = 1,
         AcousticRingTone = 2,
         BeepRingTone = 3 ,
-        NoRingTone = 4 
-    } ; 
+        NoRingTone = 4
+    } ;
     /**
      * Enumeration for call acceptance settings. Numbering of
-     * the enum must exactly follow indexing of 
+     * the enum must exactly follow indexing of
      * items in callAcceptanceComboBox in settings UI
-     * dialog. 
+     * dialog.
      */
     enum CallAcceptanceSetting {
         AcceptAllCalls = 0,
         AcceptCallsFromTrusted = 1,
         AcceptNoCalls = 2
-    } ; 
+    } ;
     // methods
     Model(MController *aMController) ;
     ~Model() ;
@@ -84,7 +86,13 @@ public:
     virtual PrivMessageModel& privateMessageModel() const ; /**< method for getting the priv msg datamodel */
     virtual ProfileCommentModel& profileCommentModel() const ; /**< method for getting the comment datamodel */
     virtual SearchModel* searchModel() const ; /**< method for getting the full text search datamodel */
+    virtual CaDbRecordModel* caDbRecordModel() const ; /**< method for getting distributed database model part */
     virtual TrustTreeModel* trustTreeModel() const ; /**< method for getting the trust tree datamodel */
+    virtual TclModel& tclModel() const ; /**< method for getting the storage of TCL programs */
+    /**
+     * Method for adding newly created peer-connection to list kept
+     * by datamodel
+     */
     void addOpenNetworkConnection(Connection *aConnection) ;
     /**
      * Method for telling datamodel about a existing network connection
@@ -108,7 +116,8 @@ public:
                        QByteArray* aBytesToSend) ;
 
     /**
-     * Currently open connections.
+     * Currently open connections. Caller does not own the returned list
+     * and should not try adding/removing items from it. 
      */
     const QList <Connection *>& getConnections() const ;
     /**
@@ -204,7 +213,7 @@ public:
     /**
      * getter method for users ringtone-setting
      */
-    Model::RingtoneSetting getRingtoneSetting() ; 
+    Model::RingtoneSetting getRingtoneSetting() ;
     /**
      * getter method for users ringtone-setting
      */
@@ -213,7 +222,7 @@ public:
     /**
      * getter method for users call-acceptance-setting
      */
-    Model::CallAcceptanceSetting getCallAcceptanceSetting() ; 
+    Model::CallAcceptanceSetting getCallAcceptanceSetting() ;
     /**
      * getter method for users call-acceptance-setting
      */
@@ -244,6 +253,10 @@ private:
     bool createTables() ;
     // additions to first version of tables
     bool createTablesV2() ;
+    // additions to 2nd version of tables
+    bool createTablesV3() ;
+    // additions to 3rd version of tables
+    bool createTablesV4() ;
     void initPseudoRandom() ; /**< just calls srand() */
 signals:
     void error(MController::CAErrorSituation aError,
@@ -268,7 +281,9 @@ private:
     PrivMessageModel* iPrivMsgModel ; /**< storage of private messages */
     ProfileCommentModel* iProfileCommentModel ; /**< comments data storage */
     SearchModel* iSearchModel ; /**< full text search model part */
+    CaDbRecordModel* iCaDbRecordModel ;/**< distributed general-purpose database */
     TrustTreeModel *iTrustTreeModel ; /**< trust list handling model */
     time_t iTimeOfLastNetworkAddrCheck ; /**< timestamp of local addr update */
+    TclModel* iTclModel ; /**< TCL scripts storage */
 } ;
 #endif

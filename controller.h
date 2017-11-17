@@ -1,21 +1,21 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-    Classified Ads is Copyright (c) Antti Järvinen 2013.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
 
-    This file is part of Classified Ads.
+  This file is part of Classified Ads.
 
-    Classified Ads is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  Classified Ads is free software; you can redistribute it and/or
+  modify it under the terms of the GNU Lesser General Public
+  License as published by the Free Software Foundation; either
+  version 2.1 of the License, or (at your option) any later version.
 
-    Classified Ads is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Classified Ads is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with Classified Ads; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+  You should have received a copy of the GNU Lesser General Public
+  License along with Classified Ads; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 /**
@@ -62,6 +62,7 @@
 class FrontWidget ;
 class PublishingEngine ;
 class RetrievalEngine ;
+class DbRecordRetrievalEngine ; 
 class QMainWindow ;
 class QMenu ;
 class VoiceCallEngine ;
@@ -69,6 +70,8 @@ class QSharedMemory ;
 #ifdef WIN32
 class QLocalServer ;
 #endif
+class QFileDialog ; 
+
 /**
  * @brief Class for keeping app state.
  *
@@ -112,6 +115,12 @@ public:
     virtual void startRetrievingContent(NetworkRequestExecutor::NetworkRequestQueueItem aReq,
                                         bool aIsBackgroundDl,
                                         ProtocolItemType aTypeOfExpectedObject) ;
+    /**
+     * Variant of "start fetch" method that starts fetch of db records.
+     * @param aSearchTerms Database query that fetched record should
+     *        satisfy
+     */
+    virtual void startRetrievingContent( CaDbRecord::SearchTerms aSearchTerms ) ;
     /**
      * From MController.
      *
@@ -199,6 +208,7 @@ signals:
     void userProfileSelected(const Hash& aProfile) ;
     /** used for signalling possible wait dialog about dismissal */
     void waitDialogToBeDismissed() ;
+    void startGettingFileName(QString aSuggestedFileName,bool aIsSaveFile) ; /**< signal for launching file selection dlg*/
 public slots:
     virtual void exitApp() ; /**< quitting */
     virtual void displayAboutBox() ; /**< bragging */
@@ -210,6 +220,11 @@ public slots:
     virtual void displaySettings() ; /**< Slot for displaying node settings */
     virtual void displayStatus() ; /**< Slot for displaying network status */
     virtual void displaySearch() ; /**< Slot for displaying search dialog */
+
+    /* tcl-related UI slots */
+    virtual void displayTclProgs() ; /**< Slot for displaying TCL library */
+    virtual void displayTclConsole() ; /**< Slot for displaying TCL console */
+
     /**
      * Method for handling errors inside application.
      * @param aError Reason for error call, from error enum above
@@ -306,6 +321,18 @@ public slots:
      */
     virtual MVoiceCallEngine* voiceCallEngineInterface()  ;
     /**
+     * Method for getting tcl wrapper instance. If there is no instance
+     * one will be created.
+     * From @ref MController interface. 
+     */
+    virtual TclWrapper &tclWrapper() ;
+
+    /**
+     * Method for getting front-widget, to be used as parent of dialogs
+     * spawned from non-ui threads. From MController interface. 
+     */
+    virtual QWidget *frontWidget() ; 
+    /**
      * method for sending a poll around network regarding possible
      * update for a profile and possible addition of comments about
      * given profile.
@@ -327,6 +354,27 @@ public slots:
 #ifdef WIN32
     void newInstanceConnected() ; /**< WIN32 IPC callback */
 #endif
+    /**
+     * Method for getting file name. Method displays file selection
+     * dialog and returns the selected file.  Idea of this method is 
+     * that it may be called from background threads and it will
+     * display the dialog in UI thread, then report results back.
+     * This is a blocking method that will suspend execution of the
+     * calling thread for the duration while user is doing the selection. 
+     *
+     * @param aSuccess is set to true if operation ends all right. 
+     * @param aIsSaveFile if set to true, "file save" dialog is
+     *        shown, otherwise "file open" dialog.
+     * @param aSuggestedFileName file name (pattern). If given empty,
+     *        any file is suggested in dialog, if "*.jpg" is given, then
+     *        dialog shall suggest only files with .jpg ending and
+     *        if "foobar.txt" is given, then dialog will suggest literal
+     *        file name "foobar.txt". 
+     * @return file system file name or empty if aSuccess is set to false. 
+     */
+    virtual QString getFileName(bool& aSuccess,
+                                bool aIsSaveFile = false , 
+                                QString aSuggestedFileName = QString()) ;
 private:
     void createMenus(); /**< menus here */
     int createPidFile(); /**< leave a mark to filesystem about instance */
@@ -338,6 +386,11 @@ private:
     bool createSharedMemSegment(QString& aSegmentName);
 private slots:
     void checkForObjectToOpen(const Hash& aIgnored) ; /** processing of method addObjectToOpen */
+    /**
+     * worker-slot for @ref getFileName method ; this slot will be called
+     * in queued manner and have its code run in UI thread.
+     */
+    void getFileNameSlot(QString aSuggestedFileName,bool aIsSaveFile) ;
 private:
     QMainWindow* iWin ;
     FrontWidget* iCurrentWidget ; /**< normally points to "frontwidget" instance */
@@ -353,6 +406,9 @@ private:
     QAction *iDisplaySettingsAct;
     QAction *iDisplayStatusAct;
     QAction *iDisplaySearchAct;
+    QMenu *iTclMenu;
+    QAction *iTclLibraryAct; /**< Menu item for opening tcl lib dialog */
+    QAction *iTclConsoleAct; /**< Menu item for opening tcl console dialog */
     Node *iNode ; /**< our network presence object, there is single instance */
     Model *iModel ; /**< data storage animal */
     NetworkListener *iListener ; /**< Incoming connections handler, for ipv4 */
@@ -361,6 +417,7 @@ private:
     Hash iProfileHash ; /**< fingerprint of profile currently in use */
     PublishingEngine *iPubEngine ; /**< Logic for handling content publish */
     RetrievalEngine* iRetrievalEngine ;/**< Logic for fetcing stuff from other nodes */
+    DbRecordRetrievalEngine* iDbRetrievalEngine ;/**< Logic for fetcing db records from other nodes */
     /**
      * if user requests for item that we do not have, lets put a
      * wait dialog in place and start wait for the object to appear
@@ -409,6 +466,17 @@ private:
 #ifdef WIN32
     QLocalServer* iLocalServer ; /**< In WIN32 use named pipe for IPC */
 #endif
+    TclWrapper* iTclWrapper ; /**< wraps TCL interpreter */
+    /** variable used in @ref getFileName wrapper: holds result string */
+    QString iGetFileNameResult ; 
+    /** variable used in @ref getFileName wrapper: points to dialog */
+    QFileDialog* iGetFileNameDialog ; 
+    /** variable used in @ref getFileName wrapper: mutex that is locked
+     for duration while iGetFileNameDialog is on display */
+    QSemaphore iGetFileNameSemaphore ; 
+    /** variable used in @ref getFileName wrapper: result from file
+     selection dialog */
+    bool iGetFileNameSuccess ; 
 } ;
 #endif
 

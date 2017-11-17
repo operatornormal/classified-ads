@@ -1,31 +1,29 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-    Classified Ads is Copyright (c) Antti Järvinen 2013.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
 
-    This file is part of Classified Ads.
+  This file is part of Classified Ads.
 
-    Classified Ads is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  Classified Ads is free software; you can redistribute it and/or
+  modify it under the terms of the GNU Lesser General Public
+  License as published by the Free Software Foundation; either
+  version 2.1 of the License, or (at your option) any later version.
 
-    Classified Ads is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Classified Ads is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with Classified Ads; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+  You should have received a copy of the GNU Lesser General Public
+  License along with Classified Ads; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #ifndef MOCKUP_CONTROLLER_H
 #define MOCKUP_CONTROLLER_H
-#include <QtGui>
-#include <QBoxLayout>
 #include "../mcontroller.h"
 #include "mockup_model.h"
 class MockUpVoiceCallEngine ; 
-
+class TclWrapper ; 
 /**
  * @brief Controller for testing purposes only. Not included in real binary.
  */
@@ -98,6 +96,13 @@ public slots:
     virtual void startRetrievingContent(NetworkRequestExecutor::NetworkRequestQueueItem aReq,bool aIsBackgroundDl, ProtocolItemType aTypeOfExpectedObject) ;
 
 
+    /**
+     * Variant of "start fetch" method that starts fetch of db records.
+     * @param aSearchTerms Database query that fetched record should
+     *        satisfy
+     */
+    virtual void startRetrievingContent( CaDbRecord::SearchTerms aSearchTerms )  ;
+
     virtual void storePrivateDataOfSelectedProfile(bool aPublishTrustListToo = false)  ;
 
 
@@ -134,6 +139,34 @@ public slots:
      * we can determine the success of test cases
      */
     MockUpVoiceCallEngine* voiceCallEngineMockUp() { return iCallEngine; } 
+    /**
+     * Method for getting tcl wrapper instance. If there is no instance
+     * one will be created
+     */
+    virtual TclWrapper &tclWrapper()  ;
+
+    /**
+     * Method for getting front-widget, to be used as parent of dialogs
+     * spawned from non-ui threads
+     */
+    virtual QWidget *frontWidget()  { return NULL; } ;
+    /**
+     * Method for getting file name. This mockup-version returns
+     * temporary file name. 
+     *
+     * @param aSuccess is set to true if operation ends all right. 
+     * @param aIsSaveFile if set to true, "file save" dialog is
+     *        shown, otherwise "file open" dialog.
+     * @param aSuggestedFileName file name (pattern). If given empty,
+     *        any file is suggested in dialog, if "*.jpg" is given, then
+     *        dialog shall suggest only files with .jpg ending and
+     *        if "foobar.txt" is given, then dialog will suggest literal
+     *        file name "foobar.txt". 
+     * @return file system file name or empty if aSuccess is set to false. 
+     */
+    virtual QString getFileName(bool& aSuccess,
+                                bool aIsSaveFile = false , 
+                                QString aSuggestedFileName = QString()) ;
 private:
     Node *iNode ; /**< our network presence object, there is single instance */
     Model *iModel ; /**< data storage animal */
@@ -141,6 +174,7 @@ private:
     QString iContentPasswd ;
     Hash iProfileHash ;
     MockUpVoiceCallEngine *iCallEngine ; 
+    TclWrapper* iTclWrapper ; 
 } ;
 #endif
 

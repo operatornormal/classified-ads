@@ -1,21 +1,21 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-       Classified Ads is Copyright (c) Antti Järvinen 2013.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
 
-       This file is part of Classified Ads.
+  This file is part of Classified Ads.
 
-    Classified Ads is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  Classified Ads is free software; you can redistribute it and/or
+  modify it under the terms of the GNU Lesser General Public
+  License as published by the Free Software Foundation; either
+  version 2.1 of the License, or (at your option) any later version.
 
-    Classified Ads is distributed in the hope that it will be useful,
-       but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Classified Ads is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with Classified Ads; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+  You should have received a copy of the GNU Lesser General Public
+  License along with Classified Ads; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include "privmsgmodel.h"
@@ -453,8 +453,8 @@ void PrivMessageModel::fillBucket(QList<SendQueueItem>& aSendQueue,
         query.bindValue(":last_connect_time", aLastMutualConnectTime);
         query.bindValue(":last_connect_time2", aLastMutualConnectTime);
         query.bindValue(":lowbits_of_requester", aForNode.iHash160bits[4]);
-        query.bindValue(":curr_time", QDateTime::currentDateTimeUtc().toTime_t());
-        query.bindValue(":curr_time2", QDateTime::currentDateTimeUtc().toTime_t());
+        query.bindValue(":curr_time", QDateTime::currentDateTimeUtc().addSecs(5*60).toTime_t());
+        query.bindValue(":curr_time2", QDateTime::currentDateTimeUtc().addSecs(5*60).toTime_t());
         query.bindValue(":dnode_hash1", aForNode.iHash160bits[0]);
         query.bindValue(":dnode_hash2", aForNode.iHash160bits[1]);
         query.bindValue(":dnode_hash3", aForNode.iHash160bits[2]);

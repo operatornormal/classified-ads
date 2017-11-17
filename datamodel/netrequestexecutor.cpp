@@ -1,21 +1,21 @@
 /*    -*-C++-*- -*-coding: utf-8-unix;-*-
-      Classified Ads is Copyright (c) Antti Järvinen 2013.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2016.
 
-      This file is part of Classified Ads.
+  This file is part of Classified Ads.
 
-    Classified Ads is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  Classified Ads is free software; you can redistribute it and/or
+  modify it under the terms of the GNU Lesser General Public
+  License as published by the Free Software Foundation; either
+  version 2.1 of the License, or (at your option) any later version.
 
-    Classified Ads is distributed in the hope that it will be useful,
-      but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Classified Ads is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with Classified Ads; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+  You should have received a copy of the GNU Lesser General Public
+  License along with Classified Ads; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 #include "../mcontroller.h"
 #include "netrequestexecutor.h"
@@ -32,6 +32,8 @@
 #include "camodel.h"
 #include "privmsgmodel.h"
 #include "profilecommentmodel.h"
+#include "cadbrecordmodel.h"
+#include "cadbrecord.h"
 #include "../net/protocol.h"
 #include <QThread>
 
@@ -140,7 +142,10 @@ void NetworkRequestExecutor::run() {
                 LOG_STR("Network request type RequestAdsClassified") ;
                 processAdsClassified(entry) ;
                 break ;
-
+            case DbRecordPublish: // new db record added and will be published
+                LOG_STR("Network request type DbRecordPublish") ;
+                processRequestForContentPublish(entry) ; 
+                break ;
             default:
                 LOG_STR2("Unhandled Network request type %d", entry.iRequestType) ;
                 entry.iState = ReadyToSend ;
@@ -695,13 +700,56 @@ void NetworkRequestExecutor::doSendRequestToNode(NetworkRequestQueueItem& aEntry
         }
     }
     break ;
+
+
+    case DbRecordPublish: 
+    {
+        LOG_STR("doSendRequestToNode DbRecordPublish") ;
+        QList<CaDbRecord *> dbRecordsToPublish ( 
+            iModel
+            .caDbRecordModel()
+            ->searchRecords(KNullHash, 
+                            aEntry.iRequestedItem,
+                            0 , // modified after
+                            std::numeric_limits<quint32>::max(), // modified before
+                            std::numeric_limits<qint64>::min(), // search number min
+                            std::numeric_limits<qint64>::max(), // search number max
+                            QString::null, // searchphrase
+                            KNullHash, // by sender
+                            true) ) ; // is for publish, here "yes"
+        foreach ( const CaDbRecord* r, dbRecordsToPublish ) {
+            QByteArray* resultBytes = new QByteArray() ;
+            resultBytes->append(
+                ProtocolMessageFormatter::dbRecordPublish(
+                    *r, aEntry.iBangPath ));
+            if ( resultBytes->size() ) {
+                // datamodel will delete resultBytes
+                iModel.addItemToSend(aNodeToSend == KNullHash ?
+                                     aEntry.iDestinationNode :
+                                     aNodeToSend,
+                                     resultBytes) ;
+            } else {
+                // we obtained zero bytes -> delete empty bytearray
+                delete resultBytes ;
+            }
+        }
+        // db record model obliges us to delete the resultset:
+        while ( dbRecordsToPublish.isEmpty() == false ) {
+            CaDbRecord *deletee = dbRecordsToPublish.takeFirst() ; 
+            delete deletee ; 
+        }
+    }
+    break ;
+
     case RequestAdsClassified: // we come here after nodes have been put to wishlist
         LOG_STR2("doSendRequestToNode RequestAdsClassified %d", aEntry.iRequestType) ;
         if ( aNodeToSend != KNullHash ) {
             QByteArray* resultBytes = new QByteArray() ;
-            resultBytes->append(ProtocolMessageFormatter::requestForAdsClassified(aEntry.iRequestedItem,
-                                aEntry.iTimeStampOfItem,
-                                aEntry.iTimeStampOfLastActivity  ) ) ;
+            resultBytes->append(
+                ProtocolMessageFormatter::requestForAdsClassified(
+                    aEntry.iRequestedItem,
+                    aEntry.iTimeStampOfItem,
+                    aEntry.iTimeStampOfLastActivity ) ) ;
             if ( resultBytes->size() ) {
                 // datamodel will delete resultBytes
                 iModel.addItemToSend(aNodeToSend,

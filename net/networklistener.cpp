@@ -179,11 +179,11 @@ void NetworkListener::connectionClosed(Connection *aDeletee) {
     LOG_STR("NetworkListener::connectionClosed, obtaining lock..") ;
     iModel->lock() ;
     Hash hashOfClosedConnection ( aDeletee->fingerPrintOfNodeAttempted() ) ;
-    Node* nodeOfConnection = NULL ;
     if ( hashOfClosedConnection == KNullHash ) {
         // connection was made to no particular node. check if node
         // connection has node in place
-        if ((nodeOfConnection = aDeletee->node())!=NULL) {
+        const Node* nodeOfConnection (aDeletee->node()) ;
+        if (nodeOfConnection != NULL) {
             // note that pointer returned by ->node() is not to be deleted.
             hashOfClosedConnection = nodeOfConnection->nodeFingerPrint() ;
         }
@@ -199,9 +199,9 @@ void NetworkListener::connectionClosed(Connection *aDeletee) {
 }
 
 void NetworkListener::connectionAttemptFailed(const Hash& aNodeHash) {
-    iModel->lock() ; 
+    iModel->lock() ;
     iModel->nodeModel().offerNodeToRecentlyFailedList(aNodeHash) ;
-    iModel->unlock() ; 
+    iModel->unlock() ;
 }
 
 void NetworkListener::connectionReady(Connection *aBusinessEntity) {
@@ -394,17 +394,17 @@ void NetworkListener::figureOutLocalAddresses() {
                 getnatpmprequesttimeout(&natpmp, &timeout);
                 select_retval = select(FD_SETSIZE, &fds, NULL, NULL, &timeout);
                 if ( select_retval == -1 ) {
-                    QLOG_STR("natpmp wait select error = " + 
+                    QLOG_STR("natpmp wait select error = " +
                              QString::number(select_retval)) ;
-                    r = NATPMP_ERR_CANNOTGETGATEWAY ; 
-                    break ; // out of the loop 
+                    r = NATPMP_ERR_CANNOTGETGATEWAY ;
+                    break ; // out of the loop
                 } else if ( select_retval ) {
                     r = readnatpmpresponseorretry(&natpmp, &response);
                 } else {
                     // no data within timeout:
                     QLOG_STR("natpmp wait timeout reached") ;
-                    r = NATPMP_ERR_CANNOTGETGATEWAY ; 
-                    break ; // out of the loop 
+                    r = NATPMP_ERR_CANNOTGETGATEWAY ;
+                    break ; // out of the loop
                 }
             } while(r==NATPMP_TRYAGAIN && ++loopCount < 100 );
             if(r>=0) {

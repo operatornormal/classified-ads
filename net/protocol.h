@@ -1,21 +1,21 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-    Classified Ads is Copyright (c) Antti Järvinen 2013.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2016.
 
-    This file is part of Classified Ads.
+  This file is part of Classified Ads.
 
-    Classified Ads is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  Classified Ads is free software; you can redistribute it and/or
+  modify it under the terms of the GNU Lesser General Public
+  License as published by the Free Software Foundation; either
+  version 2.1 of the License, or (at your option) any later version.
 
-    Classified Ads is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Classified Ads is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with Classified Ads; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+  You should have received a copy of the GNU Lesser General Public
+  License along with Classified Ads; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #ifndef CA_PROTOCOL_H
@@ -126,11 +126,18 @@ static const unsigned char KVoiceCallEnd (124) ;
  */
 static const unsigned char KRealtimeData (125) ;
 /**
+ * Protocol PDU identifier for general-purpose db-record publish
+ */
+static const unsigned char KDbRecordPublish ( 126 ) ; 
+static const unsigned char KDbRecordSend ( 127 ) ; 
+static const unsigned char KDbRecordSearch ( 128 ) ; 
+
+/**
  * Protocol constants for future use
  */
-static const unsigned char KFutureUse4 (126) ;
-static const unsigned char KFutureUse5 (127) ;
-static const unsigned char KFutureUse6 (128) ;
+static const unsigned char KFutureUse4 (129) ;
+static const unsigned char KFutureUse5 (130) ;
+static const unsigned char KFutureUse6 (131) ;
 
 
 /**
@@ -174,7 +181,10 @@ enum ProtocolItemType {
     RequestForProfileComment=24, /**< UI request regarding individual comment */
     RequestForSearchSend=25, /**< UI request about network search */
     RequestForVoiceCallStart=26,/**< node<->node audio control start */
-    RequestForVoiceCallEnd=27 /**< node<->node audio control stop */
+    RequestForVoiceCallEnd=27,/**< node<->node audio control stop */
+    DbRecord=28,/**< Record of distributed database */
+    DbRecordPublish=29, /**< Record of distributed database via publish operation */
+    RequestForDbRecord=30 /**< Query regarding distributed database records */
 };
 /**
  * @brief send-queue item.

@@ -32,6 +32,8 @@
 #include "../datamodel/binaryfile.h"
 #include "../datamodel/profile.h"
 #include "../datamodel/profilemodel.h"
+#include "../datamodel/tclprogram.h"
+#include "../datamodel/tclmodel.h"
 
 AttachmentListDialog::AttachmentListDialog(QWidget *aParent,
         MController* aController,
@@ -129,7 +131,7 @@ void AttachmentListDialog::exportSharedFile() {
             } else {
                 QByteArray fileSignature ;
                 Hash fileOwnerFingerPrint ;
-                fileOwnerFingerPrint.fromString((const unsigned char *)(metadata->iOwner.toLatin1().constData())) ;
+                fileOwnerFingerPrint.fromString((const unsigned char *)(metadata->iOwner.toUtf8().constData())) ;
                 bool dummy ;
                 iController->model().binaryFileModel().setTimeLastReference(fingerPrint, QDateTime::currentDateTimeUtc().toTime_t()) ;
                 if ( !iController->model().binaryFileModel().binaryFileDataByFingerPrint(fingerPrint,
@@ -152,20 +154,47 @@ void AttachmentListDialog::exportSharedFile() {
         } else {
             suffix = tr("files")+" (*.*)" ;
         }
-        QString fileName = QFileDialog::getSaveFileName(this, tr("Choose file name for saving"),
-                           metadata->iFileName,
-                           suffix);
-        if ( fileName.length() > 0 ) {
-            QFile f ( fileName ) ;
-            if ( f.open(QIODevice::WriteOnly) ) {
-                f.write(fileData) ;
-                f.close() ;
-                close() ;  // close this dialog after successful save
-                this->deleteLater() ;
-            } else {
-                QMessageBox::about(this,tr("Error"),
-                                   tr("File open error"));
+        bool saveToFile = true ;
+        if (  metadata->iFileName.length()> 0 &&
+                ( suffix.toLower() == "tcl" ||
+                  ( metadata->iMimeType.contains("/x-tcl" ) )) ) {
+            QMessageBox::StandardButton reply;
+            reply = QMessageBox::question(this, tr("Save location"),
+                                          tr("Save to TCL app library instead of regular file?"),
+                                          QMessageBox::Yes|QMessageBox::No);
+            if (reply == QMessageBox::Yes) {
+                saveToFile = false ;
             }
+        }
+        if ( saveToFile ) {
+            QString fileName = QFileDialog::getSaveFileName(this, tr("Choose file name for saving"),
+                               metadata->iFileName,
+                               suffix);
+            if ( fileName.length() > 0 ) {
+                QFile f ( fileName ) ;
+                if ( f.open(QIODevice::WriteOnly) ) {
+                    f.write(fileData) ;
+                    f.close() ;
+                    close() ;  // close this dialog after successful save
+                    this->deleteLater() ;
+                } else {
+                    QMessageBox::about(this,tr("Error"),
+                                       tr("File open error"));
+                }
+            }
+        } else {
+            // do not save to file, save to TCL library:
+            TclProgram p ;
+            p.setProgramText(fileData) ;
+            if ( metadata->iDescription.length() > 0 ) {
+                p.setProgramName(metadata->iDescription) ;
+            } else {
+                p.setProgramName(metadata->iFileName) ;
+            }
+            p.iTimeOfPublish = metadata->iTimeOfPublish ;
+            iController->model().lock() ;
+            iController->model().tclModel().locallyStoreTclProgram(p) ;
+            iController->model().unlock() ;
         }
     }
     delete metadata ;

@@ -1,21 +1,21 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-       Classified Ads is Copyright (c) Antti Järvinen 2013.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
 
-       This file is part of Classified Ads.
+  This file is part of Classified Ads.
 
-    Classified Ads is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  Classified Ads is free software; you can redistribute it and/or
+  modify it under the terms of the GNU Lesser General Public
+  License as published by the Free Software Foundation; either
+  version 2.1 of the License, or (at your option) any later version.
 
-    Classified Ads is distributed in the hope that it will be useful,
-       but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Classified Ads is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with Classified Ads; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+  You should have received a copy of the GNU Lesser General Public
+  License along with Classified Ads; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 #include "retrievalengine.h"
 #include "../log.h"
@@ -27,7 +27,6 @@
 RetrievalEngine::RetrievalEngine(Controller* aController,
                                  Model& aModel) :
     QTimer(aController),
-    iNeedsToRun(true),
     iController(aController),
     iModel(aModel),
     iNowRunning(false) {
@@ -45,136 +44,134 @@ RetrievalEngine::~RetrievalEngine() {
 void RetrievalEngine::run() {
     if ( iNowRunning == false ) {
         iNowRunning = true ;
-        if (iNeedsToRun ) {
-            if ( iObjectBeingRetrieved.iRequestedItem == KNullHash ) {
-                // we had nothing to retrieve, go on and start
-                iModel.lock() ;
-                if ( iDownloadQueue.size() > 0 ) {
-                    iObjectBeingRetrieved = iDownloadQueue.takeAt(0) ;
-                    iObjectBeingRetrieved.iState = NetworkRequestExecutor::NewRequest ;
+        if ( iObjectBeingRetrieved.iRequestedItem == KNullHash ) {
+            // we had nothing to retrieve, go on and start
+            iModel.lock() ;
+            if ( iDownloadQueue.size() > 0 ) {
+                iObjectBeingRetrieved = iDownloadQueue.takeAt(0) ;
+                iObjectBeingRetrieved.iState = NetworkRequestExecutor::NewRequest ;
+            }
+            iModel.unlock() ;
+            iObjectBeingRetrieved.iTimeStampOfLastActivity= QDateTime::currentDateTimeUtc().toTime_t();
+        }
+
+        if ( iObjectBeingRetrieved.iRequestedItem != KNullHash ) {
+            iModel.lock() ;
+            switch ( iObjectBeingRetrieved.iState ) {
+
+            case NetworkRequestExecutor::NewRequest: {
+                // do internal initialization:
+                iNodesSuccessfullyConnected.clear();
+                iNodesFailurefullyConnected.clear();
+                emptyNodeCandidateList() ;
+
+                // initial stage, check if we have named node:
+                if( iObjectBeingRetrieved.iDestinationNode != KNullHash ) {
+                    // we have candidate, check if it is connected, or should
+                    // we have it on wishlist:
+                    if(iModel.nodeModel().isNodeAlreadyConnected(iObjectBeingRetrieved.iDestinationNode)) {
+                        sendQueryToNode(iObjectBeingRetrieved.iDestinationNode) ;
+                    } else {
+                        iNodeCandidatesToTryQuery.append(iObjectBeingRetrieved.iDestinationNode) ;
+                        iModel.nodeModel().addNodeToConnectionWishList(iObjectBeingRetrieved.iDestinationNode);
+                    }
                 }
-                iModel.unlock() ;
+                // additionally, to our connected nodes send a query
+                // about nodes around that hash we want:
+                NetworkRequestExecutor::NetworkRequestQueueItem hashReq ;
+                hashReq.iRequestType = RequestForNodesAroundHash ;
+                hashReq.iRequestedItem = iObjectBeingRetrieved.iRequestedItem ;
+                hashReq.iState = NetworkRequestExecutor::NewRequest ;
+                hashReq.iMaxNumberOfItems = 10 ; // ask from 10 nodes currently connected
+                iModel.addNetworkRequest(hashReq) ; // datamodel will add to queue
+                // and netreq-executor will send to 10 nodes
+                iObjectBeingRetrieved.iState = NetworkRequestExecutor::Processing ;
                 iObjectBeingRetrieved.iTimeStampOfLastActivity= QDateTime::currentDateTimeUtc().toTime_t();
             }
-
-            if ( iObjectBeingRetrieved.iRequestedItem != KNullHash ) {
-                iModel.lock() ;
-                switch ( iObjectBeingRetrieved.iState ) {
-
-                case NetworkRequestExecutor::NewRequest: {
-                    // do internal initialization:
-                    iNodesSuccessfullyConnected.clear();
-                    iNodesFailurefullyConnected.clear();
-                    emptyNodeCandidateList() ;
-
-                    // initial stage, check if we have named node:
-                    if( iObjectBeingRetrieved.iDestinationNode != KNullHash ) {
-                        // we have candidate, check if it is connected, or should
-                        // we have it on wishlist:
-                        if(iModel.nodeModel().isNodeAlreadyConnected(iObjectBeingRetrieved.iDestinationNode)) {
-                            sendQueryToNode(iObjectBeingRetrieved.iDestinationNode) ;
-                        } else {
-                            iNodeCandidatesToTryQuery.append(iObjectBeingRetrieved.iDestinationNode) ;
-                            iModel.nodeModel().addNodeToConnectionWishList(iObjectBeingRetrieved.iDestinationNode);
-                        }
-                    }
-                    // additionally, to our connected nodes send a query
-                    // about nodes around that hash we want:
-                    NetworkRequestExecutor::NetworkRequestQueueItem hashReq ;
-                    hashReq.iRequestType = RequestForNodesAroundHash ;
-                    hashReq.iRequestedItem = iObjectBeingRetrieved.iRequestedItem ;
-                    hashReq.iState = NetworkRequestExecutor::NewRequest ;
-                    hashReq.iMaxNumberOfItems = 10 ; // ask from 10 nodes currently connected
-                    iModel.addNetworkRequest(hashReq) ; // datamodel will add to queue
-                    // and netreq-executor will send to 10 nodes
-                    iObjectBeingRetrieved.iState = NetworkRequestExecutor::Processing ;
-                    iObjectBeingRetrieved.iTimeStampOfLastActivity= QDateTime::currentDateTimeUtc().toTime_t();
-                }
                 break ;
-                case NetworkRequestExecutor::Processing: {
-                    if ( iObjectBeingRetrieved.iTimeStampOfLastActivity + 10 <
-                            QDateTime::currentDateTimeUtc().toTime_t() ) {
-                        // 10 seconds passed since we asked for node references
-                        // around hash: proceed to ask for connections to
-                        // given node
-                        QList<Node *>* nodesToTry =
-                            iModel.nodeModel().getNodesAfterHash(iObjectBeingRetrieved.iRequestedItem,
-                                    20, // 20 nodes
-                                    300 ) ;// at most 5 hours old
+            case NetworkRequestExecutor::Processing: {
+                if ( iObjectBeingRetrieved.iTimeStampOfLastActivity + 10 <
+                     QDateTime::currentDateTimeUtc().toTime_t() ) {
+                    // 10 seconds passed since we asked for node references
+                    // around hash: proceed to ask for connections to
+                    // given node
+                    QList<Node *>* nodesToTry =
+                        iModel.nodeModel().getNodesAfterHash(iObjectBeingRetrieved.iRequestedItem,
+                                                             20, // 20 nodes
+                                                             300 ) ;// at most 5 hours old
 
-                        while ( ! nodesToTry->isEmpty() ) {
-                            Node* connectCandidate ( nodesToTry->takeFirst() ) ;
-                            if (  connectCandidate->nodeFingerPrint() != iController->getNode().nodeFingerPrint() ) {
-                                if ( iModel.nodeModel().isNodeAlreadyConnected(connectCandidate->nodeFingerPrint()) ) {
-                                    sendQueryToNode(connectCandidate->nodeFingerPrint()) ;
-                                    QLOG_STR("In retrieve::processing node " + connectCandidate->nodeFingerPrint().toString() + " was already connected") ;
-                                    delete connectCandidate ;
-                                } else {
-                                    iNodeCandidatesToTryQuery.append(connectCandidate->nodeFingerPrint()) ;
-                                    iModel.nodeModel().addNodeToConnectionWishList(connectCandidate) ;
-                                    QLOG_STR("In retrieve::processing node " + connectCandidate->nodeFingerPrint().toString() + " was added to wishlist") ;
-                                }
+                    while ( ! nodesToTry->isEmpty() ) {
+                        Node* connectCandidate ( nodesToTry->takeFirst() ) ;
+                        if (  connectCandidate->nodeFingerPrint() != iController->getNode().nodeFingerPrint() ) {
+                            if ( iModel.nodeModel().isNodeAlreadyConnected(connectCandidate->nodeFingerPrint()) ) {
+                                sendQueryToNode(connectCandidate->nodeFingerPrint()) ;
+                                QLOG_STR("In retrieve::processing node " + connectCandidate->nodeFingerPrint().toString() + " was already connected") ;
+                                delete connectCandidate ;
+                            } else {
+                                iNodeCandidatesToTryQuery.append(connectCandidate->nodeFingerPrint()) ;
+                                iModel.nodeModel().addNodeToConnectionWishList(connectCandidate) ;
+                                QLOG_STR("In retrieve::processing node " + connectCandidate->nodeFingerPrint().toString() + " was added to wishlist") ;
                             }
                         }
-                        if ( iNodeCandidatesToTryQuery.size() > 0 ) {
-                            iObjectBeingRetrieved.iState = NetworkRequestExecutor::NodeIsInWishList ;
-                            iObjectBeingRetrieved.iTimeStampOfLastActivity= QDateTime::currentDateTimeUtc().toTime_t();
-                        } else {
-                            // did not add anything to wishlist ; set timestamp back
-                            // to past so this state-machine will spam the query to
-                            // every connected node ; better than nothing
-                            iObjectBeingRetrieved.iState = NetworkRequestExecutor::NodeIsInWishList ;
-                            iObjectBeingRetrieved.iTimeStampOfLastActivity= QDateTime::currentDateTimeUtc().toTime_t() - 120;
-                        }
                     }
-                }
-                break ;
-                case NetworkRequestExecutor::NodeIsInWishList: {
-                    if ( iObjectBeingRetrieved.iTimeStampOfLastActivity + 60 <
-                            QDateTime::currentDateTimeUtc().toTime_t() ) {
-                        // after one minute decide that we're not gonna get
-                        // it from nodes where we requested connection to ..
-                        // spam the request to our connected nodes
-                        const QList <Connection *>& currentlyOpenConnections ( iModel.getConnections() ) ;
-                        Node* n ( NULL ) ;
-                        Connection* c (NULL) ;
-                        for ( int i = 0 ; i < 10 &&
-                                i< currentlyOpenConnections.size() ;
-                                i++ ) {
-                            c = currentlyOpenConnections.at(i) ;
-                            if ( c && ( ( n = c->node() ) != NULL ) ) {
-                                sendQueryToNode(n->nodeFingerPrint()) ;
-                            }
-                        }
-                        iObjectBeingRetrieved.iState=NetworkRequestExecutor::RequestBeingSentAround;
+                    if ( iNodeCandidatesToTryQuery.size() > 0 ) {
+                        iObjectBeingRetrieved.iState = NetworkRequestExecutor::NodeIsInWishList ;
                         iObjectBeingRetrieved.iTimeStampOfLastActivity= QDateTime::currentDateTimeUtc().toTime_t();
                     } else {
-                        checkForSuccessfullyConnectedNodes() ;
-                        checkForUnSuccessfullyConnectedNodes() ;
+                        // did not add anything to wishlist ; set timestamp back
+                        // to past so this state-machine will spam the query to
+                        // every connected node ; better than nothing
+                        iObjectBeingRetrieved.iState = NetworkRequestExecutor::NodeIsInWishList ;
+                        iObjectBeingRetrieved.iTimeStampOfLastActivity= QDateTime::currentDateTimeUtc().toTime_t() - 120;
                     }
                 }
+            }
                 break ;
-                case NetworkRequestExecutor::RequestBeingSentAround: {
-                    if ( iObjectBeingRetrieved.iTimeStampOfLastActivity + 60 <
-                            QDateTime::currentDateTimeUtc().toTime_t() ) {
-                        // after one minute+one minute give up
-                        emit notifyOfContentNotReceived(iObjectBeingRetrieved.iRequestedItem ,
-                                                        iObjectBeingRetrieved.iRequestType ) ;
-                        iObjectBeingRetrieved.iRequestedItem= KNullHash ;
-                        iObjectBeingRetrieved.iState=NetworkRequestExecutor::ReadyToSend;
-                    } else {
-                        checkForSuccessfullyConnectedNodes() ;
-                        checkForUnSuccessfullyConnectedNodes() ;
+            case NetworkRequestExecutor::NodeIsInWishList: {
+                if ( iObjectBeingRetrieved.iTimeStampOfLastActivity + 60 <
+                     QDateTime::currentDateTimeUtc().toTime_t() ) {
+                    // after one minute decide that we're not gonna get
+                    // it from nodes where we requested connection to ..
+                    // spam the request to our connected nodes
+                    const QList <Connection *>& currentlyOpenConnections ( iModel.getConnections() ) ;
+                    Node* n ( NULL ) ;
+                    Connection* c (NULL) ;
+                    for ( int i = 0 ; i < 10 &&
+                              i< currentlyOpenConnections.size() ;
+                          i++ ) {
+                        c = currentlyOpenConnections.at(i) ;
+                        if ( c && ( ( n = c->node() ) != NULL ) ) {
+                            sendQueryToNode(n->nodeFingerPrint()) ;
+                        }
                     }
+                    iObjectBeingRetrieved.iState=NetworkRequestExecutor::RequestBeingSentAround;
+                    iObjectBeingRetrieved.iTimeStampOfLastActivity= QDateTime::currentDateTimeUtc().toTime_t();
+                } else {
+                    checkForSuccessfullyConnectedNodes() ;
+                    checkForUnSuccessfullyConnectedNodes() ;
                 }
+            }
+                break ;
+            case NetworkRequestExecutor::RequestBeingSentAround: {
+                if ( iObjectBeingRetrieved.iTimeStampOfLastActivity + 60 <
+                     QDateTime::currentDateTimeUtc().toTime_t() ) {
+                    // after one minute+one minute give up
+                    emit notifyOfContentNotReceived(iObjectBeingRetrieved.iRequestedItem ,
+                                                    iObjectBeingRetrieved.iRequestType ) ;
+                    iObjectBeingRetrieved.iRequestedItem= KNullHash ;
+                    iObjectBeingRetrieved.iState=NetworkRequestExecutor::ReadyToSend;
+                } else {
+                    checkForSuccessfullyConnectedNodes() ;
+                    checkForUnSuccessfullyConnectedNodes() ;
+                }
+            }
                 break;
-                case NetworkRequestExecutor::ReadyToSend:
-                    // final stage, do nothing here
-                    break ;
-                }
-                iModel.unlock() ;
-            } // if iRequestedItem was not nullhash
-        }
+            case NetworkRequestExecutor::ReadyToSend:
+                // final stage, do nothing here
+                break ;
+            }
+            iModel.unlock() ;
+        } // if iRequestedItem was not nullhash
         iNowRunning = false ;
     }
 }

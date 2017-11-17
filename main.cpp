@@ -1,21 +1,21 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-    Classified Ads is Copyright (c) Antti Järvinen 2013.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
 
-    This file is part of Classified Ads.
+  This file is part of Classified Ads.
 
-    Classified Ads is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  Classified Ads is free software; you can redistribute it and/or
+  modify it under the terms of the GNU Lesser General Public
+  License as published by the Free Software Foundation; either
+  version 2.1 of the License, or (at your option) any later version.
 
-    Classified Ads is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Classified Ads is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with Classified Ads; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+  You should have received a copy of the GNU Lesser General Public
+  License along with Classified Ads; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 #ifdef WIN32
 #include <winsock2.h>
@@ -29,7 +29,10 @@
 #include <QRegExpValidator>
 
 QApplication* app ; /**< The qt application, we need to have 1 instance */
-Controller* c ; /** Application controller, here as static for signal handlers */
+MController* controllerInstanceEx ; /**< Application controller,
+                                     used in test suite+tcl wrapper */
+Controller* controllerInstance ; /**< Application controller,
+                                    here as static for signal handlers */
 /** ipv6 addr with all bits zero, to denote an invalid addr */
 Q_IPV6ADDR KNullIpv6Addr ( QHostAddress("::0").toIPv6Address () ) ;
 /**
@@ -56,8 +59,8 @@ void sigINThandler(int) {
  */
 void sigUSR1handler(int) {
     LOG_STR("SIGUSR1 trapped..") ;
-    if ( c != NULL ) {
-        c->hideUI() ;
+    if ( controllerInstance != NULL ) {
+        controllerInstance->hideUI() ;
     }
 }
 
@@ -67,9 +70,9 @@ void sigUSR1handler(int) {
  */
 void sigUSR2handler(int) {
     LOG_STR("SIGUSR2 trapped..") ;
-    if ( c != NULL ) {
-        c->showUI() ;
-        c->checkForSharedMemoryContents() ;
+    if ( controllerInstance != NULL ) {
+        controllerInstance->showUI() ;
+        controllerInstance->checkForSharedMemoryContents() ;
     }
 }
 #endif
@@ -109,7 +112,38 @@ int main(int argc, char *argv[]) {
 #endif // check of $DISPLAY or $WAYLAND_DISPLAY
 
     app = new QApplication (argc, argv);
-
+#ifdef DEBUG
+    QLoggingCategory::setFilterRules("*.debug=true");
+#endif
+#ifdef WIN32
+    // In windows it is necessary to tell TCL where
+    // its runtime resides:
+    if ( getenv("TCL_LIBRARY") == NULL  ) {
+      // TCL library variable is not set, set:
+      QString tclLib ( "TCL_LIBRARY=" +
+		       QCoreApplication::applicationDirPath() +
+		       "/tcl8.6") ; 
+      QLOG_STR("Setting TCL library to " + tclLib) ; 
+      putenv(tclLib.toUtf8().constData()) ; 
+    }
+    QString tclLibValue ; 
+    if ( getenv("TCLLIBPATH") != NULL  ) {
+      char *tclLibEnvValue ( getenv("TCLLIBPATH") ) ; 
+      tclLibValue.append(QString ( tclLibEnvValue ) ) ; 
+    } 
+    if ( tclLibValue.toLower().contains("tk8") == false ) {
+      // tk is not mentioned in library path, put it there
+      if ( tclLibValue.isEmpty() == false ) {
+	tclLibValue.append(" ") ; // separating whitespace
+      }
+      QString tclLibSetCmd  ( "TCLLIBPATH=" +
+			      tclLibValue + 
+			      QCoreApplication::applicationDirPath() +
+			      "/tk8.6") ; 
+      QLOG_STR("Setting TCLLIBPATH to " + tclLibSetCmd) ; 
+      putenv(tclLibSetCmd.toUtf8().constData()) ; 
+    }
+#endif
     CATranslator caTranslator;
 
     if ( caTranslator.load( "qt_" + QLocale::system().name()) == false )  {
@@ -135,7 +169,8 @@ int main(int argc, char *argv[]) {
     app->installTranslator(&caTranslator);
 
     // controller will actually start launching the application
-    c = new Controller(*app) ;
+    controllerInstance = new Controller(*app) ;
+    controllerInstanceEx = controllerInstance ;  
 #if QT_VERSION < 0x050000
     // without this qt4+qjson does not handle utf-8 well ; every
     // byte in multi-byte unicode-sequences appears as separate
@@ -163,16 +198,16 @@ int main(int argc, char *argv[]) {
             QUrl commandLineUrl ( argumentCandidate ) ;
             QLOG_STR("scheme " + commandLineUrl.scheme() ) ;
             QLOG_STR("host " + commandLineUrl.host() ) ;
-            c->addObjectToOpen(commandLineUrl) ;
+            controllerInstance->addObjectToOpen(commandLineUrl) ;
             break ; // out of the loop, process only one
         }
     }
     int retval ( 0 ) ;
-    if ( c->init() ) { // 2nd stage of constructor
+    if ( controllerInstance->init() ) { // 2nd stage of constructor
         retval = app->exec() ;
     }
     QLOG_STR("deleting controller") ;
-    delete c ;
+    delete controllerInstance ;
     delete app ;
     return retval ;
 }

@@ -1,7 +1,7 @@
 Name:		classified-ads
-Version:	0.11
+Version:	0.12
 Release:	1%{?dist}
-Summary:	Classified ads is a program for posting ads online
+Summary:	Classified ads is distributed, server-less messaging system
 
 Group:		Applications/Internet
 License:	LGPLv2
@@ -17,13 +17,20 @@ BuildRequires:	gettext
 BuildRequires:	libappstream-glib
 BuildRequires:	desktop-file-utils
 BuildRequires:	opus-devel
+BuildRequires:	tcl-devel
+BuildRequires:	tk-devel
+BuildRequires:	zlib-devel
 
 %description
 Classified ads is an attempt to re-produce parts of the functionality
 that went away when Usenet news ceased to exist. This attempt tries to
 fix the problem of disappearing news-servers so that there is no servers
 required and no service providers needed; data storage is implemented
-inside client applications that users are running.
+inside client applications that users are running. Main feature is
+public posting. Other features include private messages, group messages,
+basic operator data, search, voice calls between nodes, UI extensions
+with TCL language and general-purpose database shared between nodes of the 
+application. 
 %prep
 %setup -q -a 1
 
@@ -33,7 +40,7 @@ qmake-qt5 QMAKE_STRIP=echo
 
 %install
 %make_install INSTALL_ROOT=%{buildroot}
-appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/classified-ads.appdata.xml
+appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/classified-ads.appdata.xml
 desktop-file-validate %{buildroot}/%{_datadir}/applications/classified-ads.desktop
 %find_lang %{name}
 
@@ -59,10 +66,17 @@ fi
 %dir %{_datadir}/app-install/icons
 %{_datadir}/app-install/icons/turt-transparent-128x128.png
 %{_mandir}/man1/classified-ads.1.*
-%{_datadir}/appdata/classified-ads.appdata.xml
+%{_datadir}/metainfo/classified-ads.appdata.xml
 %license LICENSE
+%{_datadir}/doc/classified-ads/examples/sysinfo.tcl
+%{_datadir}/doc/classified-ads/examples/luikero.tcl
+%{_datadir}/doc/classified-ads/examples/calendar.tcl
 
 %changelog
+* Sun Nov 12 2017 Antti Jarvinen <antti.jarvinen@katiska.org> - 0.12-1
+- New upstream version: new features, many new translations
+- Appdata moved to /usr/share/metainfo
+
 * Sun Jul 3 2016 Antti Jarvinen <antti.jarvinen@katiska.org> - 0.11-1
 - New upstream version: bugfixes and support for OpenSSL 1.1 API
 

@@ -113,7 +113,7 @@ public:
      * we just have no clue about origins of the file and this is possible
      * situation too.
      *
-     * @param aFingerPrint profile serial number
+     * @param aFingerPrint binary blob serial number
      * @param aPresumedSender is fingerprint of the file sender from file
      *        metadata -> file content verification against this key
      *        must succeed.
