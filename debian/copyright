@@ -26,6 +26,10 @@ Files: po/de.po
 Copyright: 2016 Florian Heiser <florian.heiser@alumni.tu-berlin.de>
 License: LGPL-2.1+
 
+Files: po/sv.po
+Copyright: 2017 Göran Uddeborg <goeran@uddeborg.se>
+License: LGPL-2.1+
+
 License: LGPL-2.1+
  Classified Ads is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
