@@ -24,10 +24,10 @@
 #include <QObject>
 
 /**
- * @brief Class for un-zipping gzip'ed content
+ * @brief Class for un-zipping gzip'ed content. Supports also bzip2.
  *
- * This class is wrapper around zlib, it is used to de-compress
- * contents previously compressed with gzip. 
+ * This class is wrapper around zlib/bzip2lib, it is used to de-compress
+ * contents previously compressed with gzip/bzip2. 
  */
 class UnGZip : public QObject {
     Q_OBJECT
@@ -37,7 +37,7 @@ public:
     ~UnGZip() ;
 
     /**
-     * Method for doing de-gzip. 
+     * Method for doing de-gzip
      * 
      * @param aCompressedContent compressed content
      * @param aResult if not-null, will have its value set to true/false
@@ -46,6 +46,18 @@ public:
      */
     static QByteArray unGZip(const QByteArray& aCompressedContent,
                              bool* aResult ) ;
+#ifndef WIN32
+    /**
+     * Method for doing de-bzip2
+     * 
+     * @param aCompressedContent compressed content
+     * @param aResult if not-null, will have its value set to true/false
+     *                depending on success of de-compression
+     * @return un-compressed content.
+     */
+    static QByteArray unBZip2(const QByteArray& aCompressedContent,
+                              bool* aResult ) ;
+#endif
 } ;
 
 #endif

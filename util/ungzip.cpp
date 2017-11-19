@@ -22,6 +22,9 @@ static const unsigned KZLibBlockSize ( 1024 ) ;
 
 #include "ungzip.h"
 #include <zlib.h> // actual gzip functions and data-types
+#ifndef WIN32
+#include <bzlib.h> // actual bzip2 functions and data-types
+#endif
 #include "log.h"
 
 UnGZip::UnGZip() {
@@ -89,3 +92,64 @@ QByteArray UnGZip::unGZip(const QByteArray& aCompressedContent,
     }
     return retval ; 
 }
+#ifndef WIN32
+// static method, idea borrowed from blib2 code examples
+QByteArray UnGZip::unBZip2(const QByteArray& aCompressedContent,
+                           bool* aResult ) {
+    QByteArray retval ; 
+    if ( aCompressedContent.length() < 5 ) {
+        if ( aResult ) {
+            *aResult = false ; 
+        }
+        return retval ; 
+    }
+    bz_stream stream ; 
+    char uncompressedBlock[KZLibBlockSize] ; 
+    
+    // initialize bzlib2 stream:
+    stream.bzalloc = NULL ; 
+    stream.bzfree = NULL ; 
+    stream.opaque = NULL ; 
+    stream.avail_in = aCompressedContent.length() ;
+    stream.next_in = const_cast<char *>
+        (reinterpret_cast<const char *>
+         (aCompressedContent.data())) ;
+    int errorcode (0);
+    if ( ( errorcode = BZ2_bzDecompressInit(&stream,0,0) ) != BZ_OK ) {
+            QLOG_STR("Bzip2 init error " + QString::number(errorcode));
+        if ( aResult ) {
+            *aResult = false ; 
+        }
+        return retval ; 
+    }
+
+    do {
+        stream.avail_out = KZLibBlockSize ;
+        stream.next_out = reinterpret_cast<char *>(uncompressedBlock) ;
+        switch ( errorcode = BZ2_bzDecompress(&stream) ) {
+        case BZ_STREAM_END:
+        case BZ_OK:
+            // grab content and continue
+            retval.append(uncompressedBlock, 
+                          KZLibBlockSize - stream.avail_out);
+            break ; 
+        default:
+            // error in bzip2
+            QLOG_STR("Bzip2 decompress error " + QString::number(errorcode));
+            if ( aResult ) {
+                *aResult = false ; 
+            }
+            BZ2_bzDecompressEnd(&stream);
+            return retval ; 
+        }
+    } while ( stream.avail_out == 0 ) ;
+    
+    // all done:
+    BZ2_bzDecompressEnd(&stream);
+
+    if ( aResult ) {
+        *aResult = true ; 
+    }
+    return retval ; 
+}
+#endif

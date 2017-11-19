@@ -301,7 +301,7 @@ void TclModel::installExamplePrograms() {
         QStringList fileTypes ; 
         // debian installation insists on compression of example files ; we
         // need to apply un-gzip here to make examples usable again:
-        fileTypes << "*.tcl" << "*.tcl.gz" ;
+        fileTypes << "*.tcl" << "*.tcl.gz" << "*.tcl.bz2" ;
         const QStringList exampleFiles ( examplesDir.entryList(fileTypes) ) ; 
         foreach ( const QString& exampleFileName, exampleFiles ) {
             QLOG_STR(exampleFileName) ;
@@ -322,6 +322,21 @@ void TclModel::installExamplePrograms() {
                             exampleContents.append(uncompressed) ; 
                         }
                     }
+#ifndef WIN32
+                    if ( exampleFileName.toLower().endsWith (".tcl.bz2" ) ) {
+                        QLOG_STR("Installing example program " + exampleFileName) ; 
+                        QByteArray uncompressed ;
+                        bool success ; 
+                        uncompressed.append ( UnGZip::unBZip2(exampleContents,
+                                                              &success) ) ;
+                        if ( !success || ( uncompressed.length() < 1 ) ) {
+                            continue ; 
+                        } else {
+                            exampleContents.clear() ; 
+                            exampleContents.append(uncompressed) ; 
+                        }
+                    }
+#endif
                     p.setProgramText(exampleContents) ; 
                     p.setProgramName(exampleFileName) ; 
                     const QFileInfo info ( exampleFile ) ; 
