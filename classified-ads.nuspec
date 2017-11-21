@@ -4,21 +4,23 @@
   <metadata>
     <id>classified-ads</id>
     <title>classified-ads (Install)</title>
-    <version>0.11</version>
+    <version>0.12</version>
     <authors>Antti Järvinen</authors>
     <owners>Antti Järvinen</owners>
     <summary>Classified ads is an internet messaging system designed to persist</summary>
     <description>Classified ads is a distributed internet messaging system that requires no server-side support of any kind. It allows users to post public and private messages, display basic details about themselves and do searches over data posted online.  
  
 	             In practice it allows you to do about same kind of things that you can do with web-forums and e-mail but here you don't need to deal with any kind of "service provider", here users provide service to each others. This also makes the software reliable as there is no "service that would go down" or cease to exist, leaving users with no correspondence. 
+
+Main feature is a public posting with replies. Additional features include search, voice calls between operators, operator identification, ability to extend UI with TCL scripts and a shared database for sharing data between TCL programs.
     </description>
     <projectUrl>http://katiska.org/classified-ads/</projectUrl>
     <packageSourceUrl>https://github.com/operatornormal/classified-ads/tree/choco</packageSourceUrl>
     <projectSourceUrl>https://github.com/operatornormal/classified-ads/</projectSourceUrl>
-    <docsUrl>http://katiska.org/classified_ads/doc-0.09/index.html</docsUrl>
+    <docsUrl>http://katiska.org/classified_ads/doc-latest/index.html</docsUrl>
     <bugTrackerUrl>https://github.com/operatornormal/classified-ads/issues</bugTrackerUrl>
     <tags>messaging e-mail distributed discussion forums voip</tags>
-    <copyright>Copyright (C) Antti Järvinen and others, 2013-2016</copyright>
+    <copyright>Copyright (C) Antti Järvinen and others, 2013-2017</copyright>
     <licenseUrl>https://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>http://katiska.org/classified-ads/classified-ads-32x32.png</iconUrl>
@@ -26,7 +28,7 @@
       <dependency id="" version="__VERSION__" />
       <dependency id="" />
     </dependencies>-->
-    <releaseNotes>Release 0.11 - bugfixes and OpenSSL API changes</releaseNotes>
+    <releaseNotes>Release 0.12 - UI extensions in TCL and a shared database</releaseNotes>
     <!--<provides></provides>-->
   </metadata>
   <files>
