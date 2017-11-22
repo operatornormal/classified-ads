@@ -25,7 +25,7 @@ static const unsigned KZLibBlockSize ( 1024 ) ;
 #ifndef WIN32
 #include <bzlib.h> // actual bzip2 functions and data-types
 #endif
-#include "log.h"
+#include "../log.h"
 
 UnGZip::UnGZip() {
     // not really used
