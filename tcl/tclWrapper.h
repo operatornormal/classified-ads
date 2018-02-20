@@ -86,6 +86,18 @@ class TclCallbacks ;
  *   [getProfileComment](@ref getCommentLabel)| Returns profile comment by id
  *   [getClassifiedAd](@ref getAdLabel)       | Returns classified ad by id
  *   [getBinaryFile](@ref getFileLabel)       | Returns binary file by id
+ *   [getDbRecord](@ref getDbRecordLabel)     | Returns database records by query
+ *   [publishFile](@ref pFileLabel)           | Publishes a binary file to DHT for other operators to retrieve
+ *   [publishProfile](@ref pPLabel)           | Publishes operators profile
+ *   [publishProfileComment](@ref pPCLabel)   | Publishes a new comment regarding some operator
+ *   [publishClassifiedAd](@ref pAdLabel)     | Publishes a new classified ad
+ *   [publishDbRecord](@ref pDbRecordLabel)   | Publishes a new or updated database record
+ *   [calculateSHA1](@ref calcSHA1Label)      | Command for calculating SHA1 hash
+ *   [storeLocalData](@ref storeDLabel)       | Stores data into local storage in operators computer
+ *   [retrieveLocalData](@ref retrieveDLabel) | Retrieves TCL-program specific data prevously saved
+ *   [openFileSystemFile](@ref openFSFLabel)  | Opens file from local file system
+ *   [saveFileSystemFile](@ref saveSFFLabel)  | Saves file to local file system
+ *   [isProfileTrusted](@ref isPTrustedLabel) | Performs look-up to operator trust-tree
  *
  * Longer documentation of each command follows. 
  * 
@@ -178,7 +190,7 @@ class TclCallbacks ;
  * ```
  * set adList [ listAds computer ]
  * ```
- * Would return every classified ad with word foobar in any indexed field. 
+ * Would return every classified ad with word computer in any indexed field. 
  * Indexed fields are
  *  * Author profile identifier (SHA1), field name = senderhash
  *  * Author profile display name, field name = sendername
@@ -299,6 +311,342 @@ class TclCallbacks ;
  *   contentOwner           | Name (string) of possible (copyright) owner of content
  *   license                | License under which the file may be further shared
  *   fileData               | Actual binary data of the file
+ *
+ * getDbRecord {#getDbRecordLabel}
+ * ============
+ * Classified ads has concept of shared database. It is a general-purpose
+ * database where database records are shared between nodes in the 
+ * network. Queries to data may be made get fetch records, queries 
+ * may also be sent to neighboring nodes in the network to check
+ * there might be any database records that would fit the query. 
+ * In C++ api fetching and retrieving of records happens via 
+ * @ref CaDbRecordModel and database-related network operations are
+ * implemented in class @ref DbRecordRetrievalEngine. This getter
+ * method makes a query to local database and also sends the same
+ * query to neighboring nodes. 
+ *
+ * Shared database has concept of "collection" and database records
+ * in same collection are supposed to somehow logically belong 
+ * together. For example product items available from a shop might
+ * go to one collection, purchase orders of same items might belong
+ * to anohter collection. In classified ads collection is just
+ * SHA1 hash that may be calculated from string data. 
+ *
+ * Actual data content is binary data and it can not be queried. Classified
+ * ads makes no assumptions about data content and therefore does not 
+ * try to even index the data. When [publishDbRecord](@ref pDbRecordLabel)
+ * is called, programmer must set database record metadata so, that
+ * record may be later successfully found. At simplest form a word
+ * describing the content is included in metadata - for example if
+ * there is pet-shop operating inside classified ads, it might have
+ * animals for sale and rent and while publishing the product listing
+ * the indexed metadata of records might contain word "cow" for each
+ * db recort that in binary data blob contains details about particular
+ * cow for sale or rent - end-user may then perform a query regarding
+ * cows in this particular product collection and end up with 0 or more
+ * bovines.
+ *
+ * Queries may be done in several ways but basic form is
+ *
+ * ```
+ * dict set criteria collectionId [ calculateSHA1 {Pet-shop products} ]
+ * dict set criteria searchPhrase cow
+ * set recordsFound [ getDbRecord $criteria ]
+ * ```
+ * That would return all records from collection "Pet-shop products"
+ * and that contain word "cow" in search text. The criteria is a 
+ * tcl dictionary, the database records are returned as a list of
+ * dictionaries. Content of dictionaries is detailed below. 
+ *
+ *   Search dictionary key      | Value
+ *   -------------------------  | -------------
+ *   recordId                   | Simplest query. If record SHA1 id is known, this fetches the record
+ *   collectionId               | Specifies collection SHA1. Only mandatory value.
+ *   senderId                   | Operator address SHA1. Include only records from this operator
+ *   searchPhrase               | Searchphrase in [SQLite FTS](https://www.sqlite.org/fts3.html) format
+ *   searchNumber               | Returns records having exactly this indexed integer
+ *   searchNumberLessThan       | Returns records where search number is smaller than given number
+ *   searchNumberMoreThan       | Returns records where search number is greater than given number
+ *
+ * Idea behind searchPhrase and searchNumber is that when record is
+ * stored (published) programmer may assign a text and a number to the
+ * record. Phrase is just text, it may contain several words and it
+ * is indexed with Sqlite FTS method. Records may then be queried
+ * using the FTS that goes along the database record database table. 
+ * Example usage would go like this:
+ * ```
+ * dict set criteria collectionId [ calculateSHA1 {Pet-shop products} ]
+ * dict set criteria searchPhrase {cow priceCategory3*} ]
+ * dict set criteria searchNumberLessThan 15 ]
+ * set recordsFound [ getDbRecord $criteria ]
+ * ```
+ * All conditions in the criteria must be met for each record to be included.
+ * In above example the pet-shop products are queried regarding records
+ * that previously have been assigned a search number with value less than
+ * 15 and published with a search phrase that contains both words "cow"
+ * and another word that begins with "priceCategory3". 
+ *
+ * Records are returned in TCL list containing dictionaries. Each dictionary
+ * presents one record in the database. Keys in the returned dictionary
+ * are the following
+ *   Db record dictionary key   | Value
+ *   -------------------------  | -------------
+ *   recordId                   | Record identifier. Used together with senderId uniquely identifies the record
+ *   collectionId               | Specifies collection SHA1.
+ *   senderId                   | SHA1 address of operator who published the record
+ *   searchPhrase               | Original search phrase
+ *   searchNumber               | Original search number
+ *   data                       | Actual payload of the record - any binary data
+ *   isSignatureVerified        | Boolean indicating record RSA signature was checked agaist key of senderId
+ *   recordRecipients           | List of operator SHA1 addresses to whom the record was encrypted to
+ *   encrypted                  | Boolean indicating if record was published encrypted
+ *   timeOfPublish              | Time when record was published as seconds since 01-Jan-1970
+ *
+ * As the API to the shared database here is implemented as set of
+ * TCL commands, it is easiest to carry the actual payload (member "data" in 
+ * dictionary) in some TCL data structure like list or dictionary but
+ * that is naturally up to programmer to decide. In underlying storage
+ * the database data is stored in zlib-compressed format so trying to
+ * compress the content prior to publish usually makes situation worse. After
+ * compression the data must fit limits set by DHT implementation of
+ * classified ads, meaning maximum size slightly less than 2 megabytes
+ * per record. For application processing larger amounts of data the
+ * data must be split into smaller records.
+ *
+ * It is also worth noting that database content can really be anything.
+ * Database records can originate from any operator, regardless of collection.
+ * Implementation can not guarantee any format regarding actual data
+ * in the records. Bugs in TCL program implementations will result
+ * in faulty data records being published so extreme care is in order
+ * while parsing the database record contents. There are numerous articles
+ * concerning TCL and untrusted input data ; special care must be taken
+ * to prevent calls to TCL functions that would evaluate the content as
+ * a TCL script, see [TCL wiki](http://wiki.tcl.tk/9749) for examples.  
+ *
+ * publishFile {#pFileLabel}
+ * ============
+ * This command is used to publish a binary file to DHT for other
+ * operators to retrieve. Unlike [database records](@ref pDbRecordLabel)
+ * there is no search function over binary files ; the file SHA1
+ * must be known for its retrieval later. Most often published files 
+ * are used as attachment to classified ads, profile comments and included
+ * in list of operators shared files. 
+ *
+ * Basic example of file publish is
+ * ```
+ * dict set f fileName README.TXT
+ * dict set f description {This is a very fine text file}
+ * dict set f license {Creative commons CC0}
+ * dict set f fileData {Actual content of the file is here, can be anything}
+ * dict set f forceNoEncryption true
+ * set fileHash [ publishFile $f ]
+ * puts [ format {Fingerprint of README.TXT is %s} $fileHash ]
+ * ```
+ * In addition to dictionary keys listed in above example it is possible
+ * add to dictionary a list with dictionary key `fileRecipients` whose
+ * value is a TCL list containing SHA1 addresses of operators whose
+ * public RSA keys will be used to encrypt the file content. It is up
+ * to programmer to ensure that RSA keys of named operators are present
+ * in local data storage before the operation. If operators profile can
+ * be retrieved using [getProfile](@ref getProfileLabel) then encrypting
+ * content to be readable by that operator is likely to succeed. 
+ *
+ * Normally file is published using operators profile settings: if operator
+ * has private profile, files are published so that content is encrypted to
+ * be readable only by those operators that are listed as readers of 
+ * publishing operators profile. Dictionary key `forceNoEncryption` skips 
+ * encryption always, making the file readable by all. Using 
+ * `forceNoEncryption` together with `fileRecipients` is silly.
+ *
+ * publishProfile {#pPLabel}
+ * ============
+ * Command `publishProfile` publishes operators own profile for others
+ * to see. It is equivalent to pressing button "publish" in "own profile"
+ * page of user interface. 
+ *
+ * This command is present in classified ads since v0.13. 
+ *
+ * publishProfileComment {#pPCLabel}
+ * ============
+ * Command `publishProfileComment` is equivalent to pressing the "Comment"
+ * button on profile display UI, typing and sending the comment. 
+ * Example usage might go along following example:
+ * ```
+ * # find profile fingerprint of Erkkielvis
+ * set profiles [ listProfiles {nickname:Erkkielvis} ]
+ * set profileFP [ dict keys [ lindex $profiles 0 ] ]
+ * # construct a comment
+ * set d [ dict create fingerPrintOfCommented $profileFP ]
+ * dict set d senderName {Eino Reino Leino} 
+ * dict set d subject {Message subject goes here} 
+ * dict set d messageText {Lenghty message text and Greetings from outer space.} ]
+ * # and send it away
+ * set hash [ publishProfileComment $d ]
+ * puts [ format {Fingerprint of new comment is %s} $hash ]
+ * ```
+ * In addition to dictionary keys presented in above example, following keys
+ * may be also present in the dictionary during publish. 
+ *   Key                    | Description of the value
+ *   ---------------------- | ----------------------------------
+ *   replyTo                | SHA1 id of comment that this comment is a reply to
+ *   attachedFiles          | List of files attached to this comment, value is list of file SHA1 identifiers
+ *
+ * In practice the attachment files must have been previously published 
+ * using [publishFile](@ref pFileLabel) command.
+ *
+ * publishClassifiedAd {#pAdLabel}
+ * ============
+ * Command is used to send a new classified ads for whole world to see.
+ * Usage is similar to [publishProfileComment](@ref pPCLabel) command as
+ * the ad is first constructed as a TCL dictionary and then
+ * given to publish command. SHA1 fingerprint of the new ad item
+ * is returned. 
+ *
+ * When replying to existing ad, it is important to exactly copy 
+ * the classification-related fields from replied article because
+ * they affect the classification of the ad and user interface in
+ * turn exclusively uses classification when searching for articles. 
+ * If classification does not match, reply very easily goes un-noticed
+ * by readers of the original message chain. 
+ *
+ * ```
+ * dict set new_ad senderName {Eino-Reino the cosmonaut}
+ * dict set new_ad subject {Orbiting the moon is for extraordinary cows}
+ * dict set new_ad plainMessageText {TCL is fully usable in outer space.}
+ * dict set new_ad aboutComboboxText {Testing}
+ * dict set new_ad concernsComboboxText {Classifed ads software}
+ * dict set new_ad inComboboxText {Moon orbit}
+ * set ad_hash [ publishClassifiedAd $new_ad ]
+ * puts [ format {Fingerprint of new ad is %s} $ad_hash ]
+ * ```
+ *
+ * publishDbRecord {#pDbRecordLabel}
+ * ============
+ * Before database record can be retrieved using 
+ * [getDbRecord](@ref getDbRecordLabel) it must be published in some 
+ * node in the network. DHT takes care of storing the database record
+ * in correct nodes so that they'll be later found as queried. 
+ * In practice the collection of the record is used to determine 
+ * the network nodes that will store the record. 
+ *
+ * Same principle that holds true all items that may be posted to
+ * internet holds true here too: once published, it is impossible to
+ * permanently remove the once-published content. In classified-ads 
+ * it is possible to replace database record with new content, also
+ * with empty content but due to very nature of peer-to-peer 
+ * distributed hash table it is possible that someone somewhere still
+ * has the old or original record. 
+ *
+ * Classified ads distributed database has no concept of "commit" like
+ * some relational databases. A database record is published, it is copied
+ * to some nodes in the network and it may be queried. It is possible that
+ * upon query not all records that since beginning of time have been
+ * published are always returned in query if they should match, or that 
+ * the very latest record is returned. Keeping this philosophy in mind, 
+ * that classified ads distributed database is not accurate in query 
+ * results in same sense as databases that are based on client-server 
+ * principle, the applications need to be designed around this fact. 
+ * Old records that have not been queried for a very long time are simply
+ * forgotten. On the other hand a DHT should be able to handle vast amounts
+ * of data as each node in the network adds a little bit additional
+ * storage and processing capacity to the whole network. 
+ *
+ * Semantics of `searchPhrase` and `searchNumber` are already discussed in
+ * [getDbRecord](@ref getDbRecordLabel) and usually it is very useful to
+ * set one or both of them to some value that describes the content. 
+ *
+ * Basic usage of publishDbRecord is 
+ * ```
+ * dict set recordToSave collectionId [ calculateSHA1 {Name of db collection} ]
+ * dict set recordToSave searchPhrase {Cow cows bovines}
+ * dict set recordToSave searchNumber 42
+ * dict set recordToSave encrypted false
+ * dict set recordToSave data {This is actual record content, usually a TCL data structure}
+ * publishDbRecord $recordToSave
+ * ```
+ * The record that got published in example, can later be retrieved using
+ * the collection id together with search number and/or phrase. If db record is
+ * published encrypted, the readers of the current operator profile
+ * are the readers of the record. That may be overridden using key
+ * `recordRecipients` in dictionary, its value is list of operator SHA1 
+ * identifiers whose public RSA keys must be present in local storage
+ * and the db record will be made readable to those operators. 
+ *
+ * calculateSHA1 {#calcSHA1Label}
+ * ============
+ * Calculates SHA1 digest over data
+ * ```
+ * set SHA1sum [ calculateSHA1 {Cow belongs to low-flying bovines} ]
+ * ```
+ *
+ * storeLocalData {#storeDLabel}
+ * ============
+ * Command for storing local data works in about same manner as 
+ * [publishDbRecord](@ref pDbRecordLabel) with exception that this
+ * data is not sent to any other node of the network. Local data
+ * may only be retrieved from the same program that was used
+ * to store it. Classified ads keeps local data in same db
+ * table with the TCL program data and if program is deleted, its
+ * local data is deleted too. If TCL program is modified and
+ * saved again in "TCL Programs" dialog, it is still considered
+ * same program e.g. it will find local data also after modifications.
+ * If name of the program changes when saving the changes to TCL program,
+ * the new program with new name is considered a new program and
+ * its local data block is initially empty. 
+ *
+ * ```
+ * set x {any binary data}
+ * storeLocalData $x
+ * ```
+ *
+ * retrieveLocalData {#retrieveDLabel}
+ * ============
+ * Command may be used to bring back data previously stored 
+ * using [storeLocalData](@ref storeDLabel) like in this example
+ * ```
+ * set x [ retrieveLocalData foobar ]
+ * puts [ format {len of local data is %d} [ string length $x ] ]
+ * ```
+ * For local storage to work in meaningful way the TCL program 
+ * being run must be saved using "TCL Programs" dialog as local
+ * data is kept in same db table with the programs that access them. 
+ *
+ * openFileSystemFile {#openFSFLabel}
+ * ============
+ * Command may be used to ask user to select a file system file
+ * whose content will be returned as return value 
+ * ```
+ * set x [ openFileSystemFile ]
+ * ```
+ * command may be given additional additional specifying file pattern,
+ * like `openFileSystemFile *.png` would offer for open only files
+ * whose name end with `.png`.
+ *
+ * saveFileSystemFile {#saveSFFLabel}
+ * ============
+ * Command may be used to save data into file system file. 
+ * ```
+ * set fileContent {A cow filet in a file}
+ * saveFileSystemFile $fileContent *.txt
+ * ```
+ * Would ask user which .txt -ending file name shall be used
+ * to store content of variable `fileContent`.
+ *
+ * isProfileTrusted {#isPTrustedLabel}
+ * ============
+ * Does a look-up in @ref TrustTreeModel to find out if given operator
+ * specified by SHA1 address is found from trust tree or not:
+ * ```
+ * # find profile fingerprint of Maud
+ * set profiles [ listProfiles {nickname:Maud} ]
+ * set profileFP [ dict keys [ lindex $profiles 0 ] ]
+ * # and do a query
+ * puts [ format {Is Maud trusted %s} [ isProfileTrusted $profileFP ] ]
+ * ```
+ * Trust-tree is populated from operators user interface where contacts
+ * may be assigned a "public trust" value that is then used to construct
+ * the trust tree. Operators trusted by operators in your trust-list
+ * are considered trusted too. 
  *
  */
 class TclWrapper : public QThread {
