@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
 
   This file is part of Classified Ads.
 
@@ -24,6 +24,7 @@
 #include <QMainWindow>
 #include <QDesktopServices>
 #include <QClipboard>
+#include <QAction>
 #include <assert.h>
 #include "FrontWidget.h"
 #include "log.h"

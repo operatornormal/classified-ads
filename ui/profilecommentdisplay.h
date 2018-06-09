@@ -32,6 +32,7 @@ class ProfileComment ;
 class QPushButton ;
 class ProfileCommentItemDelegate ;
 class Profile ;
+class QAction ; 
 
 /**
  * @brief class for display of single classified ad

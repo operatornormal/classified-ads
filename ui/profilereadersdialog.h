@@ -29,6 +29,7 @@ class ProfileSearchModel ;
 class QTimerEvent ;
 class ProfileReadersListingModel ;
 class Profile ;
+class QAction ; 
 
 /**
  * @brief class for allowing edit of profile readers list
