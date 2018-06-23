@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
 
   This file is part of Classified Ads.
 
@@ -34,10 +34,8 @@
 #include "searchmodel.h"
 
 CaDbRecordModel::CaDbRecordModel(MController *aController,
-        const MModelProtocolInterface &aModel)
-    : ModelBase("dbrecord",KMaxRowsInTableDbRecord),
-      iController(aController),
-      iModel(aModel) {
+        MModelProtocolInterface &aModel)
+    : ModelBase("dbrecord",KMaxRowsInTableDbRecord,aController,aModel) {
     LOG_STR("CaDbRecordModel::CaDbRecordModel()") ;
     connect(this,
             SIGNAL(  error(MController::CAErrorSituation,
@@ -189,7 +187,7 @@ QList<CaDbRecord *> CaDbRecordModel::searchRecords(const Hash& aFromCollection,
         return resultSet ; 
     }
 
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     bool ret ;
 
     QString selectStm = QString("select hash1,hash2,hash3,hash4,hash5,"
@@ -568,7 +566,7 @@ void CaDbRecordModel::fillBucket(QList<SendQueueItem>& aSendQueue,
                                  const Hash& aEndOfBucket,
                                  quint32 aLastMutualConnectTime,
                                  const Hash& aForNode ) {
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     bool ret ;
     // bucket of database record is determined by collection hash
     ret = query.prepare ("select hash1,hash2,hash3,hash4,hash5,time_of_publish from dbrecord where collection_hash1 >= :start and collection_hash1 <= :end and time_of_publish > :last_connect_time and time_of_publish < :curr_time and ( recvd_from != :lowbits_of_requester or recvd_from is null ) order by time_of_publish desc " ) ;
@@ -623,7 +621,7 @@ QString CaDbRecordModel::persistDbRecordIntoDb(const CaDbRecord &aRecord,
                                                const QByteArray& aSignature,
                                                quint32 aReceivedFrom ) {
     bool retval (false); 
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     QLOG_STR("CaDbRecordModel::persistDbRecordIntoDb is new = " + QString::number(aIsNew)) ; 
     if ( aIsNew ) {
         // record is new, prepare an insert-statement
@@ -738,7 +736,7 @@ QString CaDbRecordModel::isRecordNew(const CaDbRecord &aRecord,
     *aResult = false ; 
     bool retval ( false ) ; 
     // need to figure out ourselves
-    QSqlQuery query ;
+    QSqlQuery query(iModel.dataBaseConnection()) ;
     retval = query.prepare("select count(hash1),max(time_of_publish) from dbrecord where "
                            "hash1 = :hash1 and "
                            "hash2 = :hash2 and "
@@ -820,7 +818,7 @@ bool CaDbRecordModel::tryVerifyRecord(CaDbRecord &aRecord,
 
 void CaDbRecordModel::deleteRecord(const Hash& aRecordId,
                                    const Hash& aSenderId) {
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     query.prepare("delete from  " + iDataTableName + "  where  "
                   "hash1 = :hash1 and "
                   "hash2 = :hash2 and "
@@ -852,7 +850,7 @@ void CaDbRecordModel::deleteRecord(const Hash& aRecordId,
 void CaDbRecordModel::updateRecordVerification(const Hash& aRecordId,
                                                const Hash& aSenderId,
                                                bool aNewVerificationStatus) {
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     query.prepare("update " + iDataTableName + " set issignatureverified = :s where  "
                   "hash1 = :hash1 and "
                   "hash2 = :hash2 and "
@@ -890,7 +888,7 @@ void CaDbRecordModel::updateFTS(const CaDbRecord& aRecord,
     if ( aIsNewRecord && aRecord.iSearchPhrase.isEmpty()) {
         return ; 
     }
-    QSqlQuery q ; 
+    QSqlQuery q(iModel.dataBaseConnection()) ; 
     bool operation_success ( false ) ; 
     if ( aIsNewRecord == false ) {
         operation_success= q.prepare("update dbrecord_search set "

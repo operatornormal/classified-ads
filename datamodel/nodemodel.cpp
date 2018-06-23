@@ -1,5 +1,5 @@
 /*  -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
 
   This file is part of Classified Ads.
 
@@ -58,13 +58,11 @@
 static const int KMaxNodesInDbTable( 10000 );
 
 NodeModel::NodeModel(MController *aController,
-                     const Model &aModel)
-    : ModelBase("node", KMaxRowsInTableNode),
-      iController(aController),
+                     Model &aModel)
+    : ModelBase("node", KMaxRowsInTableNode,aController,aModel),
       iFingerPrintOfThisNode(NULL) ,
       iThisNodeCert(NULL),
       iThisNodeKey(NULL),
-      iModel(aModel),
       iTimerId(-1) {
     LOG_STR("NodeModel::NodeModel()") ;
     connect(this,
@@ -76,7 +74,7 @@ NodeModel::NodeModel(MController *aController,
             Qt::QueuedConnection ) ;
     openOrCreateSSLCertificate() ; // this method emit possible errors itself
     iTimerId = startTimer(20000*2) ; // 2-minute timer
-    QSqlQuery duplicateDeletiaQuery ; 
+    QSqlQuery duplicateDeletiaQuery (iModel.dataBaseConnection()); 
     if ( ! duplicateDeletiaQuery.exec("delete from node where rowid not in ( select max(rowid) from node group by hash1,hash2,hash3,hash4,hash5 )") ) {
         QLOG_STR(duplicateDeletiaQuery.lastError().text() + " "+ __FILE__ + QString::number(__LINE__)) ;
     }
@@ -244,7 +242,7 @@ Hash& NodeModel::nodeFingerPrint() {
 int NodeModel::listenPortOfThisNode() {
     bool ret = false ;
     int port = -1  ;
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     ret = query.exec("select node_listenport from settings") ;
     if ( ret && query.next() && !query.isNull(0) ) {
         port = query.value(0).toInt() ;
@@ -261,7 +259,7 @@ int NodeModel::listenPortOfThisNode() {
 
 void NodeModel::setListenPortOfThisNode(int port) {
     bool ret ( true ) ;
-    QSqlQuery q2;
+    QSqlQuery q2(iModel.dataBaseConnection());
     ret = q2.prepare("update settings set node_listenport = :port") ;
     if (ret) {
         q2.bindValue(":port", port) ;
@@ -551,7 +549,7 @@ QByteArray* NodeModel::getNextItemToSend(Connection& aConnection) {
 Node* NodeModel::nodeByHash(const Hash& aHash) {
     LOG_STR("NodeModel::nodeByHash in ") ;
     Node *retval = NULL ;
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     bool ret = query.prepare("select hash1,hash2,hash3,hash4,hash5,listenport,last_conn_time,does_listen,ipv4addr,ipv6addr1,ipv6addr2,ipv6addr3,ipv6addr4,last_nodelist_time,last_mutual_conn_time from node where hash1 = :hash1 and hash2 = :hash2 and hash3 = :hash3 and hash4 = :hash4 and hash5 = :hash5") ;
     query.bindValue(":hash1", aHash.iHash160bits[0]);
     query.bindValue(":hash2", aHash.iHash160bits[1]);
@@ -646,7 +644,7 @@ QList<Node *>* NodeModel::getHotNodes(int aMaxNodes) {
     LOG_STR("getHotNodes in") ;
     QList<Node* >* retval = new QList<Node *>() ;
 
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     bool ret ;
 
     QString conditional_recently_failed_condition ;
@@ -718,7 +716,7 @@ QList<Node *>* NodeModel::getNodesAfterHash(const Hash& aHash,
     // is usable also when hash number rolls over
     QList<Node* >* retval = new QList<Node *>() ;
 
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     bool ret ;
 
     if ( aMaxNodes > iCurrentDbTableRowCount ) {
@@ -798,7 +796,7 @@ QList<Node *>* NodeModel::getNodesAfterHash(const Hash& aHash,
         // to seek was so close to end of list that there were less
         // than aMaxNodes nodes in table after the hash we were
         // seeking. so so .. here roll over, start from node zero
-        QSqlQuery query2;
+        QSqlQuery query2(iModel.dataBaseConnection());
 
         // note here: no where-condition but only order by.
         // this will start from first node, return nodes
@@ -906,7 +904,7 @@ QList<Node *>* NodeModel::getNodesBeforeHash(const Hash& aHash,
         unsigned aMaxNodes) {
     QList<Node* >* retval = new QList<Node *>() ;
 
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     bool ret ;
 
     if ( aMaxNodes > iCurrentDbTableRowCount ) {
@@ -973,7 +971,7 @@ QList<Node *>* NodeModel::getNodesBeforeHash(const Hash& aHash,
         // to seek was so close to end of list that there were less
         // than aMaxNodes nodes in table after the hash we were
         // seeking. so so .. here roll over, start from node zero
-        QSqlQuery query2;
+        QSqlQuery query2(iModel.dataBaseConnection());
 
         // note here: no where-condition but only order by.
         // this will start from first node, return nodes
@@ -1126,7 +1124,7 @@ bool NodeModel::nodeGreetingReceived(Node& aNode,
 bool NodeModel::updateNodeLastConnectTimeInDb(Node& aNode) {
     bool ret ( true ) ; 
     if ( aNode.lastConnectTime() < QDateTime::currentDateTimeUtc().addSecs(5*60).toTime_t() ) {
-        QSqlQuery query; 
+        QSqlQuery query(iModel.dataBaseConnection()); 
 
         ret = query.prepare("update node set last_conn_time=:last_conn_time,time_last_reference=:time_last_reference where hash1=:hash1 and hash2=:hash2 and hash3=:hash3 and hash4=:hash4 and hash5=:hash5") ;
         if ( ret ) {
@@ -1152,7 +1150,7 @@ bool NodeModel::updateNodeLastMutualConnectTimeInDb(const Hash& aNodeFp,
                                                     quint32 aTime ) {
     bool ret ( true ) ;
     if ( aTime < QDateTime::currentDateTimeUtc().addSecs(5*60).toTime_t() ) {
-        QSqlQuery query;
+        QSqlQuery query(iModel.dataBaseConnection());
 
         ret = query.prepare("update node set last_mutual_conn_time=:last_mutual_conn_time,last_conn_time=:last_conn_time,time_last_reference=:time_last_reference where hash1=:hash1 and hash2=:hash2 and hash3=:hash3 and hash4=:hash4 and hash5=:hash5") ;
         if ( ret ) {
@@ -1177,7 +1175,7 @@ bool NodeModel::updateNodeLastMutualConnectTimeInDb(const Hash& aNodeFp,
 }
 
 bool NodeModel::updateNodeInDb(Node& aNode) {
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
 
     bool ret = query.prepare("update node set listenport=:listenport,last_conn_time=:last_conn_time,does_listen=:does_listen,ipv4addr=:ipv4addr,ipv6addr1=:ipv6addr1,ipv6addr2=:ipv6addr2,ipv6addr3=:ipv6addr3,ipv6addr4=:ipv6addr4,last_nodelist_time=:last_nodelist_time,last_mutual_conn_time=:last_mutual_conn_time,dns_name=:dns_name,tor_name=:tor_name where hash1=:hash1 and hash2=:hash2 and hash3=:hash3 and hash4=:hash4 and hash5=:hash5") ;
     if ( ret ) {
@@ -1259,7 +1257,7 @@ bool NodeModel::updateNodeInDb(Node& aNode) {
 
 bool NodeModel::insertNodeToDb(Node& aNode) {
     bool ret ;
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     ret = query.prepare ("insert into node (hash1,hash2,hash3,hash4,hash5,listenport,last_conn_time,does_listen,ipv4addr,ipv6addr1,ipv6addr2,ipv6addr3,ipv6addr4,last_nodelist_time,last_mutual_conn_time,time_last_reference,dns_name,tor_name) values (:hash1,:hash2,:hash3,:hash4,:hash5,:listenport,:last_conn_time,:does_listen,:ipv4addr,:ipv6addr1,:ipv6addr2,:ipv6addr3,:ipv6addr4,:last_nodelist_time,:last_mutual_conn_time,:time_last_reference,:dns_name,:tor_name)" ) ;
     if ( ret ) {
         query.bindValue(":hash1", aNode.nodeFingerPrint().iHash160bits[0]);
@@ -1343,7 +1341,7 @@ void NodeModel::retrieveListOfHotConnections() {
     bool ret = false ;
     iHotAddresses.clear() ;
     int port = -1  ;
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     QLOG_STR("Hot addresses in") ;
     const bool hasIpv6 =
         !Connection::Ipv6AddressesEqual(iController->getNode().ipv6Addr(),
@@ -1633,7 +1631,7 @@ Hash NodeModel::bucketEndHash(const Hash& aFingerPrintOfNodeAsking) {
 
 bool NodeModel::saveSslCertToDb(const QByteArray& aCert) {
     bool ret ( false ) ;
-    QSqlQuery q2;
+    QSqlQuery q2(iModel.dataBaseConnection());
     ret = q2.prepare("update settings set node_cert = :cert") ;
     if (ret) {
         q2.bindValue(":cert", aCert) ;
@@ -1648,7 +1646,7 @@ bool NodeModel::saveSslCertToDb(const QByteArray& aCert) {
 
 bool NodeModel::saveSslKeyToDb(const QByteArray& aKey) {
     bool ret ( false ) ;
-    QSqlQuery q2;
+    QSqlQuery q2(iModel.dataBaseConnection());
     ret = q2.prepare("update settings set node_key = :key") ;
     if (ret) {
         q2.bindValue(":key", aKey) ;
@@ -1662,7 +1660,7 @@ bool NodeModel::saveSslKeyToDb(const QByteArray& aKey) {
 }
 
 bool NodeModel::loadSslCertFromDb() {
-    QSqlQuery query ;
+    QSqlQuery query(iModel.dataBaseConnection()) ;
     bool ret ( false ) ;
     QByteArray certBytes ;
     ret = query.exec("select node_cert from settings") ;
@@ -1692,7 +1690,7 @@ bool NodeModel::loadSslCertFromDb() {
 }
 bool NodeModel::loadSslKeyFromDb() {
 
-    QSqlQuery query ;
+    QSqlQuery query(iModel.dataBaseConnection()) ;
     bool ret ( false ) ;
     QByteArray keyBytes ;
     ret = query.exec("select node_key from settings") ;
@@ -1722,7 +1720,7 @@ bool NodeModel::loadSslKeyFromDb() {
 
 
 QString NodeModel::getDnsName() {
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     QString retval ;
     bool ret (false) ;
     ret = query.prepare ("select dns_name from settings");
@@ -1739,7 +1737,7 @@ QString NodeModel::getDnsName() {
 }
 
 void NodeModel::setDnsName(QString aName) {
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     bool retval ;
     retval = query.prepare ("update settings set dns_name = :name");
     if ( retval ) {

@@ -1,5 +1,5 @@
 /* -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
 
   This file is part of Classified Ads.
 
@@ -32,10 +32,8 @@
 #include "searchmodel.h"
 
 ProfileCommentModel::ProfileCommentModel(MController *aController,
-        const MModelProtocolInterface &aModel)
-    : ModelBase("profilecomment",KMaxRowsInTableProfileComment),
-      iController(aController),
-      iModel(aModel) {
+        MModelProtocolInterface &aModel)
+    : ModelBase("profilecomment",KMaxRowsInTableProfileComment,aController,aModel) {
     LOG_STR("ProfileCommentModel::ProfileCommentModel()") ;
     connect(this,
             SIGNAL(  error(MController::CAErrorSituation,
@@ -91,7 +89,7 @@ bool ProfileCommentModel::publishProfileComment(ProfileComment& aProfileComment)
         QByteArray digitalSignature ;
         messageFingerPrint.calculate(commentJSon) ;
         if ( iController->model().contentEncryptionModel().sign(aProfileComment.iCommentorHash, commentJSon, digitalSignature) == 0 ) {
-            QSqlQuery query;
+            QSqlQuery query(iModel.dataBaseConnection());
             retval = query.prepare ("insert into profilecomment (hash1,hash2,hash3,hash4,hash5,profile_hash1,profile_hash2,profile_hash3,profile_hash4,profile_hash5,sender_hash1,time_last_reference,signature,time_of_publish,commentdata,recvd_from,flags,display_name) values (:hash1,:hash2,:hash3,:hash4,:hash5,:profile_hash1,:profile_hash2,:profile_hash3,:profile_hash4,:profile_hash5,:sender_hash1,:time_last_reference,:signature,:time_of_publish,:commentdata,:recvd_from,:flags,:display_name)" ) ;
             if ( retval ) {
                 quint32 flags ( 0 ) ;
@@ -160,7 +158,7 @@ ProfileComment* ProfileCommentModel::profileCommentByFingerPrint(const Hash& aFi
         bool aEmitOnEncryptionError) {
     LOG_STR("ProfileCommentModel::profileCommentByFingerPrint()") ;
     ProfileComment* retval = NULL ;
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     bool ret ;
     ret = query.prepare ("select commentdata,signature,flags from profilecomment where hash1 = :hash1 and hash2 = :hash2 and hash3 = :hash3 and hash4 = :hash4 and hash5 = :hash5" ) ;
     if ( ret ) {
@@ -246,7 +244,7 @@ bool ProfileCommentModel::commentDataByFingerPrint(const Hash& aFingerPrint,
         quint32* aTimeOfPublish) {
     LOG_STR("ProfileCommentModel::commentDataByFingerPrint()") ;
     bool retval = false ;
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     bool ret ;
     ret = query.prepare ("select commentdata,signature,flags,time_of_publish,profile_hash1,profile_hash2,profile_hash3,profile_hash4,profile_hash5 from profilecomment where hash1 = :hash1 and hash2 = :hash2 and hash3 = :hash3 and hash4 = :hash4 and hash5 = :hash5" ) ;
     if ( ret ) {
@@ -340,7 +338,7 @@ bool ProfileCommentModel::doHandlepublishedOrSentProfileComment(const Hash& aFin
     QString displayNameForComment ;
     quint32 senderHashLowBits (0);
     // ok, lets see .. if we have this particular comment already in storage
-    QSqlQuery existenceQuery ;
+    QSqlQuery existenceQuery (iModel.dataBaseConnection());
     retval = existenceQuery.prepare("select count(hash1) from profilecomment where hash1 = :hash1 and hash2 = :hash2 and hash3 = :hash3 and hash4 = :hash4 and hash5 = :hash5");
     if ( retval ) {
         existenceQuery.bindValue(":hash1", aFingerPrint.iHash160bits[0]);
@@ -416,7 +414,7 @@ bool ProfileCommentModel::doHandlepublishedOrSentProfileComment(const Hash& aFin
     } else {
         // content had hash that was claimed to have..
 
-        QSqlQuery query;
+        QSqlQuery query(iModel.dataBaseConnection());
         retval = query.prepare ("insert into profilecomment (hash1,hash2,hash3,hash4,hash5,profile_hash1,profile_hash2,profile_hash3,profile_hash4,profile_hash5,sender_hash1,time_last_reference,signature,time_of_publish,commentdata,recvd_from,flags,display_name) values (:hash1,:hash2,:hash3,:hash4,:hash5,:profile_hash1,:profile_hash2,:profile_hash3,:profile_hash4,:profile_hash5,:sender_hash1,:time_last_reference,:signature,:time_of_publish,:commentdata,:recvd_from,:flags,:display_name)" ) ;
         if ( retval ) {
             query.bindValue(":hash1", aFingerPrint.iHash160bits[0]);
@@ -482,7 +480,7 @@ void ProfileCommentModel::fillBucket(QList<SendQueueItem>& aSendQueue,
                                      const Hash& aEndOfBucket,
                                      quint32 aLastMutualConnectTime,
                                      const Hash& aForNode ) {
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     bool ret ;
     // in bucket filling we actually have 2 cases .. we may be bucket determined by the
     // comment content fingerprint or in the bucket determined by the commented
@@ -537,7 +535,7 @@ QList<Hash> ProfileCommentModel::commentsForProfile(const Hash& aProfileHash,
         const quint32 aSinceTimeStamp) {
     QList<Hash> retval ;
 
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     bool ret ;
     // (like almost all other content)
     ret = query.prepare ("select hash1,hash2,hash3,hash4,hash5 from profilecomment where profile_hash1 = :h1 and profile_hash2 = :h2 and profile_hash3 = :h3 and profile_hash4 = :h4 and profile_hash5 = :h5 and time_of_publish > :time_of_publish" ) ;
@@ -572,7 +570,7 @@ QList<Hash> ProfileCommentModel::commentsForProfile(const Hash& aProfileHash,
 
 void ProfileCommentModel::reIndexAllCommentsIntoFTS() {
     QList <Hash> articles ;
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     bool ret ;
     query.exec("delete from profilecomment_search") ;
     ret = query.prepare ("select hash1,hash2,hash3,hash4,hash5 from profilecomment where flags & 1 = 0") ;

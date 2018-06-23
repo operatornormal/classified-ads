@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
 
   This file is part of Classified Ads.
 
@@ -35,6 +35,7 @@ class ProfileCommentModel ;
 class SearchModel ;
 class CaDbRecordModel ; 
 class TclModel ; 
+class QSqlDatabase ; 
 /**
  * @brief Pure-virtual interface of datamodel for message parser to use
  *
@@ -83,5 +84,29 @@ public:
     virtual SearchModel* searchModel() const = 0 ; /**< method for getting the full text search datamodel */
     virtual CaDbRecordModel* caDbRecordModel() const = 0 ; /**< method for getting distributed database model part */
     virtual TclModel& tclModel() const = 0 ;
+    /** 
+     * Method for opening database connection. Since Qt5.11 database
+     * class can't be shared between threads.
+     * @param aIsFirstTime Optional parameter that, when set to non-NULL
+     *        will have its value set to true, if the database did not
+     *        exist prior to this call. 
+     *
+     * @return Instance of database connection. Caller is responsible
+     *         to properly ->close() and call ::removeDatabase() in
+     *         correct way. 
+     */
+    virtual QSqlDatabase dataBaseConnection(bool* aIsFirstTime = NULL) = 0 ; 
+    /**
+     * Currently open connections. Caller does not own the returned list
+     * and should not try adding/removing items from it. 
+     */
+    virtual const QList <Connection *>& getConnections() const = 0 ;
+    /**
+     * Currently pending network requests.
+     * Even as this returns a pointer, not a reference,
+     * ownership of the list is not transferred ; caller
+     * may modiify content but is not supposed to delete
+     */
+    virtual QList <NetworkRequestExecutor::NetworkRequestQueueItem>& getNetRequests() const = 0 ;
 };
 #endif

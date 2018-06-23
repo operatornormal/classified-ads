@@ -1,5 +1,5 @@
 /*    -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
 
   This file is part of Classified Ads.
 
@@ -48,7 +48,8 @@ AttachmentListDialog::AttachmentListDialog(QWidget *aParent,
     iExportSharedFileAction(NULL),
     iNodeToTryForRetrieval(aNodeToTryForRetrieval) {
     ui.setupUi(this) ;
-    iListingModel = new BinaryFileListingModel(aFilesToDisplay) ;
+    iListingModel = new BinaryFileListingModel(aFilesToDisplay,
+					       aController->model()) ;
     ui.fileListView->setModel(iListingModel) ;
     QAbstractButton* infoButton = new QPushButton("Info..", this) ;
     ui.bottomButtonsBox->addButton(infoButton, QDialogButtonBox::ActionRole);

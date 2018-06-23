@@ -55,7 +55,7 @@ ProfileReadersDialog::ProfileReadersDialog(QWidget *aParent,
     ui.listView->setModel(iSearchModel) ;
     iTimerId = startTimer(1000);   // 1-second timer
     iPreviousSearchFieldContent = ui.searchEdit->text() ;
-    iListingModel = new ProfileReadersListingModel(iProfile) ;
+    iListingModel = new ProfileReadersListingModel(iProfile,*aController) ;
     connect(iListingModel,
             SIGNAL(  error(MController::CAErrorSituation,
                            const QString&) ),

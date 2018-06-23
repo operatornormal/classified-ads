@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
 
   This file is part of Classified Ads.
 
@@ -139,6 +139,9 @@ Connection::~Connection () {
 void Connection::run() {
     LOG_STR(QString("0x%1 ").arg((qulonglong)this, 8) +"Connection::run") ;
 
+    connect(this, SIGNAL(finished()),
+	    this, SLOT(aboutToFinish())) ; 
+    
     iBytesRead = new QByteArray() ;
     iBytesRead->clear() ;
 
@@ -152,7 +155,7 @@ void Connection::run() {
         iConnectionState = Closing ;
     }
     iObserver.connectionClosed(this) ; // will call datamodel.lock() inside
-    LOG_STR(QString("0x%1 ").arg((qulonglong)this, 8) +"Connection::run out") ;
+    LOG_STR(QString("0x%1 ").arg((qulonglong)this, 8) +"Connection::run out " + QString::number((qulonglong)(QThread::currentThreadId()))) ;
     emit finished() ;
     delete iNodeOfConnectedPeer ;
     iNodeOfConnectedPeer = NULL ;
@@ -814,3 +817,13 @@ void Connection::msleep(int aMilliSeconds) {
     waitCondition.wait(&mutex, aMilliSeconds);// give other threads a chance..
     mutex.unlock() ;
 }
+
+// slot that contains cleanup related to thread termination
+void Connection::aboutToFinish() {
+  QLOG_STR("Connection cleanup for thread " + QString::number((qulonglong)(QThread::currentThreadId())) ) ; 
+  iModel.lock() ; 
+  iModel.threadTerminationCleanup( QThread::currentThread() ) ; 
+  iModel.unlock() ; 
+  QLOG_STR("Connection cleanup out for thread " + QString::number((qulonglong)(QThread::currentThreadId()))  ) ; 
+}
+

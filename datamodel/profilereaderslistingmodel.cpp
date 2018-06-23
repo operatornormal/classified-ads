@@ -1,21 +1,21 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-       Classified Ads is Copyright (c) Antti Järvinen 2013.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
 
-       This file is part of Classified Ads.
+  This file is part of Classified Ads.
 
-    Classified Ads is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  Classified Ads is free software; you can redistribute it and/or
+  modify it under the terms of the GNU Lesser General Public
+  License as published by the Free Software Foundation; either
+  version 2.1 of the License, or (at your option) any later version.
 
-    Classified Ads is distributed in the hope that it will be useful,
-       but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Classified Ads is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with Classified Ads; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+  You should have received a copy of the GNU Lesser General Public
+  License along with Classified Ads; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include <QSqlQuery>
@@ -23,9 +23,12 @@
 #include "profilereaderslistingmodel.h"
 #include "../log.h"
 #include "profile.h"
+#include "model.h"
 
-ProfileReadersListingModel::ProfileReadersListingModel(Profile& aProfile) :
-    iProfile(aProfile) {
+ProfileReadersListingModel::ProfileReadersListingModel(Profile& aProfile,
+						       MController& aController ) :
+    iProfile(aProfile),
+    iController(aController)  {
     for ( int i = 0 ; i < iProfile.iProfileReaders.size() ; i++ ) {
         updateReaderDataInArray( iProfile.iProfileReaders[i],false ) ;
     }
@@ -132,7 +135,7 @@ QString ProfileReadersListingModel::profileDisplayNameByFingerPrint(const Hash& 
     // some kind of caching could be in order here? we'll repeatedly list
     // same profilenames, querying db for each and every listing is waste
     // of resources..
-    QSqlQuery query;
+    QSqlQuery query(iController.model().dataBaseConnection());
     bool ret ;
     QString retval ;
     ret = query.prepare (

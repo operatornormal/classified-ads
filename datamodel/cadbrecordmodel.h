@@ -1,5 +1,5 @@
 /*    -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2016.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
 
   This file is part of Classified Ads.
 
@@ -46,7 +46,7 @@ class CaDbRecordModel : public ModelBase {
 
 public:
     CaDbRecordModel(MController *aMController,
-                    const MModelProtocolInterface &aModel) ;
+                    MModelProtocolInterface &aModel) ;
     ~CaDbRecordModel() ;
 
     /**
@@ -257,8 +257,6 @@ signals:
     void contentReceived(const Hash& aHashOfContent,
                          const Hash& aHashOfCollection,
                          const ProtocolItemType aTypeOfReceivedContent) ;
-private: // member variables:
-    MController *iController  ;
-    const MModelProtocolInterface& iModel ;
+
 } ;
 #endif

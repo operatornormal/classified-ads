@@ -40,7 +40,7 @@ class TclModel : public QObject {
 
 public:
     TclModel(MController *aMController,
-             const MModelProtocolInterface &aModel) ;
+             MModelProtocolInterface &aModel) ;
     ~TclModel() ;
 
     /**
@@ -112,6 +112,6 @@ private: //methods
     void installExamplePrograms() ; 
 private: // member variables:
     MController& iController  ;
-    const MModelProtocolInterface& iModel ;
+    MModelProtocolInterface& iModel ;
 } ;
 #endif

@@ -1,21 +1,21 @@
 /*    -*-C++-*- -*-coding: utf-8-unix;-*-
-    Classified Ads is Copyright (c) Antti Jarvinen 2013.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
 
-    This file is part of Classified Ads.
+  This file is part of Classified Ads.
 
-    Classified Ads is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  Classified Ads is free software; you can redistribute it and/or
+  modify it under the terms of the GNU Lesser General Public
+  License as published by the Free Software Foundation; either
+  version 2.1 of the License, or (at your option) any later version.
 
-    Classified Ads is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Classified Ads is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with Classified Ads; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+  You should have received a copy of the GNU Lesser General Public
+  License along with Classified Ads; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #ifndef CLASSIFIED_CLASSIFIEDADMODEL_H
@@ -109,7 +109,7 @@ public:
      * @return an instance
      */
     ClassifiedAdsModel(MController *aMController,
-                       const MModelProtocolInterface &aModel) ;
+                       MModelProtocolInterface &aModel) ;
     /** destructor */
     ~ClassifiedAdsModel() ;
 
@@ -303,8 +303,6 @@ private: // methods
     /** initializes string lists used for classification comboboxes */
     void initComboBoxTexts() ;
 private: // member variables:
-    MController *iController  ;
-    const MModelProtocolInterface& iModel ;
     QList<CAObserver*>* iNewCaObservers ;
     QStringList iAboutComboBoxTexts ;
     QStringList iRegardingComboBoxTexts ;

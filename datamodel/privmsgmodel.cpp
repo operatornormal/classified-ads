@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
 
   This file is part of Classified Ads.
 
@@ -29,10 +29,8 @@
 #include "const.h"
 
 PrivMessageModel::PrivMessageModel(MController *aController,
-                                   const MModelProtocolInterface &aModel) :
-    ModelBase("private_message",KMaxRowsInTablePrivate_Message),
-    iController(aController),
-    iModel(aModel) {
+                                   MModelProtocolInterface &aModel) :
+    ModelBase("private_message",KMaxRowsInTablePrivate_Message,aController,aModel) {
     LOG_STR("PrivMessageModel::PrivMessageModel()") ;
     connect(this,
             SIGNAL(  error(MController::CAErrorSituation,
@@ -85,7 +83,7 @@ bool PrivMessageModel::publishPrivMessage(PrivMessage& aPrivMessage,
         messageFingerPrint.calculate(messageJSon) ;
 
         if ( iController->model().contentEncryptionModel().sign(aPrivMessage.iSenderHash, messageJSon, digitalSignature) == 0 ) {
-            QSqlQuery query;
+            QSqlQuery query(iModel.dataBaseConnection());
             retval = query.prepare ("insert into private_message("
                                     "hash1,hash2,hash3,hash4,hash5,"
                                     "dnode_hash1,dnode_hash2,dnode_hash3,dnode_hash4,dnode_hash5,"
@@ -155,7 +153,7 @@ bool PrivMessageModel::publishPrivMessage(PrivMessage& aPrivMessage,
 PrivMessage* PrivMessageModel::messageByFingerPrint(const Hash& aFingerPrint) {
     LOG_STR("PrivMessageModel::messageByFingerPrint()") ;
     PrivMessage* retval = NULL ;
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     bool ret ;
     ret = query.prepare ("select messagedata,signature from private_message where hash1 = :hash1 and hash2 = :hash2 and hash3 = :hash3 and hash4 = :hash4 and hash5 = :hash5" ) ;
     if ( ret ) {
@@ -226,7 +224,7 @@ bool PrivMessageModel::messageDataByFingerPrint(const Hash& aFingerPrint,
         quint32* aTimeOfPublish) {
     LOG_STR("PrivMessageModel::messageDataByFingerPrint()") ;
     bool retval = false ;
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     bool ret ;
     ret = query.prepare ("select messagedata,signature,time_of_publish,dnode_hash1,dnode_hash2,dnode_hash3,dnode_hash4,dnode_hash5,recipient_hash1,recipient_hash2,recipient_hash3,recipient_hash4,recipient_hash5 from private_message where hash1 = :hash1 and hash2 = :hash2 and hash3 = :hash3 and hash4 = :hash4 and hash5 = :hash5" ) ;
     if ( ret ) {
@@ -336,7 +334,7 @@ bool PrivMessageModel::doHandlepublishedOrSentPrivMessage(const Hash& aFingerPri
     // messages do not change nor get re-published. either we have
     // it or do not. if we did not, save it.
 
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     bool ret ;
     ret = query.prepare ("select hash1 from private_message where hash1 = :hash1 and hash2 = :hash2 and hash3 = :hash3 and hash4 = :hash4 and hash5 = :hash5" ) ;
     if ( ret ) {
@@ -361,7 +359,7 @@ bool PrivMessageModel::doHandlepublishedOrSentPrivMessage(const Hash& aFingerPri
         // store the message
 
 
-        QSqlQuery query2;
+        QSqlQuery query2(iModel.dataBaseConnection());
         retval = query2.prepare ("insert into private_message("
                                  "hash1,hash2,hash3,hash4,hash5,"
                                  "dnode_hash1,dnode_hash2,dnode_hash3,dnode_hash4,dnode_hash5,"
@@ -433,7 +431,7 @@ void PrivMessageModel::fillBucket(QList<SendQueueItem>& aSendQueue,
                                   const Hash& aEndOfBucket,
                                   quint32 aLastMutualConnectTime,
                                   const Hash& aForNode ) {
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     bool ret ;
     // note how the private messages are placed into buckets
     // based on recipient hash, not by hash of the content
@@ -494,7 +492,7 @@ QList<Hash> PrivMessageModel::messagesForProfile(const Hash& aProfileHash,
         const quint32 aLastMutualConnectTime) {
     QList<Hash> retval ;
 
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     bool ret ;
     // note how the private messages are placed into buckets
     // based on recipient hash, not by hash of the content
@@ -531,7 +529,7 @@ QList<Hash> PrivMessageModel::messagesForProfile(const Hash& aProfileHash,
 
 void PrivMessageModel::setAsRead(const Hash& aMessageHash, bool aIsRead ) {
     bool retval (false) ;
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     retval = query.prepare ("update private_message set is_read = :is_read, time_last_reference=:time_last_reference where hash1 = :hash1 and hash2 = :hash2 and hash3 = :hash3 and hash4 = :hash4 and hash5 = :hash5" ) ;
     if ( retval ) {
         query.bindValue(":hash1", aMessageHash.iHash160bits[0]);
