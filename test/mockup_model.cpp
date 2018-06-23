@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-16.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
 
   This file is part of Classified Ads.
 
@@ -67,6 +67,9 @@ MockUpModel::MockUpModel( MController *aController ) :
     iSearchModel->setObjectName("CA SearchModel test") ;
     iCaDbRecordModel = new CaDbRecordModel(iController, *this) ; 
     iTclModel = new TclModel(iController, *this) ; 
+    iConnections = new QList<Connection *>() ;
+    iNetReqQueue = new QList <NetworkRequestExecutor::NetworkRequestQueueItem>();
+
     LOG_STR("MockUpModel::MockUpModel out\n") ;
 }
 
@@ -139,3 +142,15 @@ CaDbRecordModel* MockUpModel::caDbRecordModel() const {
 TclModel& MockUpModel::tclModel() const {
     return *iTclModel ; 
 }
+
+QSqlDatabase MockUpModel::dataBaseConnection(bool* aIsFirstTime) {
+    return QSqlDatabase() ; 
+}
+const QList <Connection *>& MockUpModel::getConnections() const {
+    return *iConnections ; 
+}
+
+QList <NetworkRequestExecutor::NetworkRequestQueueItem>& MockUpModel::getNetRequests() const {
+    return *iNetReqQueue ; 
+}
+
