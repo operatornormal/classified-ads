@@ -24,6 +24,7 @@
 #include "../datamodel/mmodelprotocolinterface.h"
 #include "../datamodel/mnodemodelprotocolinterface.h"
 #include <QMutex>
+#include <QSqlDatabase>
 class MockUpNodeModel ;
 class ProfileModel ;
 class BinaryFileModel ;
@@ -94,7 +95,7 @@ public:
      *         to properly ->close() and call ::removeDatabase() in
      *         correct way. 
      */
-    virtual QSqlDatabase dataBaseConnection(bool* aIsFirstTime = NULL) ; 
+    virtual QSqlDatabase dataBaseConnection(bool* aIsFirstTime = NULL)  ; 
     /**
      * Currently open connections. Caller does not own the returned list
      * and should not try adding/removing items from it. 
@@ -106,7 +107,7 @@ public:
      * ownership of the list is not transferred ; caller
      * may modiify content but is not supposed to delete
      */
-    virtual QList <NetworkRequestExecutor::NetworkRequestQueueItem>& getNetRequests() const ;
+    virtual QList <NetworkRequestExecutor::NetworkRequestQueueItem>& getNetRequests() const  ;
 
 public:
     MockUpNodeModel* iNodeModel ;
@@ -123,9 +124,9 @@ private: // member data
     SearchModel* iSearchModel ;
     CaDbRecordModel* iCaDbRecordModel ;
     TclModel* iTclModel ;
-    QList <NetworkRequestExecutor::NetworkRequestQueueItem>* iNetReqQueue ;
+    QSqlDatabase iDb ; 
     QList <Connection *> *iConnections ; /** Network connections currently open */
-
+    QList <NetworkRequestExecutor::NetworkRequestQueueItem>* iNetReqQueue ;
 } ;
 
 #endif /* #define MOCKUP_CONTROLLER_H */

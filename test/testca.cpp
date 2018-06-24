@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
 
   This file is part of Classified Ads.
 
@@ -301,7 +301,7 @@ void TestClassifiedAds::tryContentEncryptionModel() {
             p.iIsPrivate = false ;
             p.iTimeOfPublish = QDateTime::currentDateTimeUtc().toTime_t() ;
             iController->model().profileModel().publishProfile(p) ;
-            QSqlQuery query;
+            QSqlQuery query(iController->model().dataBaseConnection());
             query.prepare("delete from publish where hash1 = " + QString::number(iHashOfPrivateKey.iHash160bits[0])) ;
             query.exec() ;
 
@@ -538,7 +538,7 @@ void   TestClassifiedAds::tryListOfAdsParsing() {
     QByteArray serializedAds = ProtocolMessageFormatter::replyToAdsClassified(classificationHash,
                                listOfAds) ;
     p->parseMessage(serializedAds,*c) ;
-    QSqlQuery query;
+    QSqlQuery query(iController->model().dataBaseConnection());
     query.prepare("delete from classified_ad where group_hash1 = 5 and group_hash2 = 6 and group_hash3 = 7 and group_hash4 = 8 and group_hash5 = 9") ;
     query.exec() ;
     QCOMPARE( m->iNetworkRequests->size() , 5 ) ;
@@ -639,7 +639,7 @@ void   TestClassifiedAds::trySearchRequest() {
     // if used under qt5.2.1 but under qt4 it returns the number
     // of rows deleted. in order to assess the number of rows under
     // qt5 we need a separate query:
-    QSqlQuery query0;
+    QSqlQuery query0(iController->model().dataBaseConnection());
     query0.prepare("select count(hash1) from classified_ad where hash1 = :h1 and hash2 = :h2 and hash3 = :h3 ") ;
     query0.bindValue(":hash1", ca.iFingerPrint.iHash160bits[0]);
     query0.bindValue(":hash2", ca.iFingerPrint.iHash160bits[1]);
@@ -655,14 +655,14 @@ void   TestClassifiedAds::trySearchRequest() {
       QLOG_STR("failure: " + query0.lastError().text() + " querySuccess = " + QString::number(querySuccess) + " isnull = " + QString::number(query0.isNull(0))) ; 
     }
     // after count is checked, the row may go:
-    QSqlQuery query;
+    QSqlQuery query(iController->model().dataBaseConnection());
     query.prepare("delete from classified_ad where hash1 = :h1 and hash2 = :h2 and hash3 = :h3 ") ;
     query.bindValue(":hash1", ca.iFingerPrint.iHash160bits[0]);
     query.bindValue(":hash2", ca.iFingerPrint.iHash160bits[1]);
     query.bindValue(":hash3", ca.iFingerPrint.iHash160bits[2]);
     query.exec() ;
 
-    QSqlQuery query2;
+    QSqlQuery query2(iController->model().dataBaseConnection());
     query2.prepare("delete from publish where hash1 = :h1 and hash2 = :h2 and hash3 = :h3 ") ;
     query2.bindValue(":hash1", ca.iFingerPrint.iHash160bits[0]);
     query2.bindValue(":hash2", ca.iFingerPrint.iHash160bits[1]);
@@ -701,7 +701,7 @@ void TestClassifiedAds::tryTrustTreeModel() {
         }
 
         iController->model().profileModel().publishProfile(*self) ;
-        QSqlQuery query;
+        QSqlQuery query(iController->model().dataBaseConnection());
         query.prepare("delete from publish where hash1 = " + QString::number(iHashOfPrivateKey.iHash160bits[0]));
         query.exec() ;
 
