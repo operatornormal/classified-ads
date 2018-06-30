@@ -63,6 +63,7 @@ Connection::Connection (const QHostAddress& aAddr,
       iObserver(aObserver) ,
       iModel(aModel),
       iBytesExpectedInPacketBeingRead (0),
+      iBytesInPacketBeingRead (0),
       iBytesRead(NULL),
       iInvocationsSinceLastByteReceived(0),
       iNodeOfConnectedPeer(NULL),
@@ -78,7 +79,9 @@ Connection::Connection (const QHostAddress& aAddr,
       iBytesIn(0),
       iBytesOut(0),
       iPeerAddress(aAddr),
-      iSleepBetweenSendOperations(500)  {
+      iSleepBetweenSendOperations(500),
+      iReadMutex(QMutex::NonRecursive),
+      iIsAlreadyReading(false) {
     LOG_STR(QString("0x%1 ").arg((qulonglong)this, 8) +"Connection::Connection outgoing") ;
 }
 
@@ -93,6 +96,7 @@ Connection::Connection(int aSocketDescriptor,
       iObserver(aObserver) ,
       iModel(aModel),
       iBytesExpectedInPacketBeingRead (0),
+      iBytesInPacketBeingRead (0),      
       iBytesRead(NULL),
       iInvocationsSinceLastByteReceived(0),
       iNodeOfConnectedPeer(NULL),
@@ -105,7 +109,9 @@ Connection::Connection(int aSocketDescriptor,
       iSocketOpenTime(QDateTime::currentDateTimeUtc().toTime_t()),
       iBytesIn(0),
       iBytesOut(0),
-      iSleepBetweenSendOperations(500)  {
+      iSleepBetweenSendOperations(500),
+      iReadMutex(QMutex::NonRecursive),
+      iIsAlreadyReading(false)  {
     LOG_STR(QString("0x%1 ").arg((qulonglong)this, 8) +"Connection::Connection incoming") ;
 }
 
@@ -379,6 +385,15 @@ void Connection::runForOutgoingConnections () {
 
 // this is called from run() method when there is data available
 void Connection::performRead() {
+    iReadMutex.lock() ;
+    if ( iIsAlreadyReading ) {
+      iReadMutex.unlock() ;
+      QLOG_STR(QString("0x%1 ").arg((qulonglong)this, 8) +" was already reading") ;
+      return ; 
+    }
+    iIsAlreadyReading = true ;
+    iReadMutex.unlock() ;
+    
     quint64 bytesAvail (0) ;
 
     while ( ( bytesAvail = iSocket->bytesAvailable() ) > 0 ) {
@@ -387,6 +402,7 @@ void Connection::performRead() {
             msleep(50) ; // size not yet received, wait for 50 ms
         }
         if ( iBytesExpectedInPacketBeingRead == 0 &&
+	     iBytesRead->size() == 0 && // only if not in middle of packet
                 bytesAvail >= (quint64) sizeof(quint32) ) {
             // we're not reading a packet yet, read packet
             quint32 bytesExpectedNetworkByteOrder = 0 ;
@@ -397,32 +413,39 @@ void Connection::performRead() {
                 iModel.connectionStateChanged(Connection::Closing, this) ;
                 iModel.unlock() ;
                 iSocket->abort() ;
+		QLOG_STR(QString("0x%1 ").arg((qulonglong)this, 8) +" performread out abort") ;
+		iReadMutex.lock() ;
+		iIsAlreadyReading = false ;
+		iReadMutex.unlock() ;
                 return ;
             } else {
                 iBytesIn += sizeof(quint32) ;
                 bytesAvail = iSocket->bytesAvailable() ;
             }
             iBytesExpectedInPacketBeingRead = ntohl ( bytesExpectedNetworkByteOrder);
-            QLOG_STR(QString("0x%1 ").arg((qulonglong)this, 8) +"Connection::performRead expecting bytes= "+ QString::number( iBytesExpectedInPacketBeingRead)) ;
+            iBytesInPacketBeingRead = 0 ; 
+            QLOG_STR(QString("0x%1 ").arg((qulonglong)this, 8) +" Connection::performRead expecting bytes= "+ QString::number( iBytesExpectedInPacketBeingRead)) ;
+	    QLOG_STR(QString("0x%1 ").arg((qulonglong)this, 8) +" Connection::performRead bytes alread = "+ QString::number( iBytesRead->size() )) ;
         }
 
         if ( iBytesExpectedInPacketBeingRead > 0 &&
-                iBytesExpectedInPacketBeingRead > (quint64)(iBytesRead->size()) &&
+	     iBytesExpectedInPacketBeingRead > iBytesInPacketBeingRead &&
                 bytesAvail > 0 ) {
             if ( bytesAvail > iBytesExpectedInPacketBeingRead ) {
                 bytesAvail = ( iBytesExpectedInPacketBeingRead -
-                               iBytesRead->size() );
+                               iBytesInPacketBeingRead );
             }
             QByteArray bytesReadThisTime ( iSocket->read(bytesAvail) ) ;
             if ( bytesReadThisTime.size() > 0 ) {
                 iBytesRead->append(bytesReadThisTime) ;
                 iBytesIn += bytesReadThisTime.size() ;
+		iBytesInPacketBeingRead += bytesReadThisTime.size() ;
                 iInvocationsSinceLastByteReceived = 0 ;
                 // seems like we received something:
                 iTimeOfLastActivity = QDateTime::currentDateTimeUtc().toTime_t() ;
             }
         }
-        if ( iBytesExpectedInPacketBeingRead == (quint64)(iBytesRead->size()) ) {
+        if ( iBytesExpectedInPacketBeingRead == iBytesInPacketBeingRead)  {
             // if we came here, we have one total packet..
             if ( iObserver.dataReceived(*iBytesRead,
                                         *this) == false ) {
@@ -438,6 +461,10 @@ void Connection::performRead() {
             iNumberOfPacketsReceived++ ;
         }
     }
+    iReadMutex.lock() ;
+    iIsAlreadyReading = false ;
+    iReadMutex.unlock() ;    
+    QLOG_STR(QString("0x%1 ").arg((qulonglong)this, 8) +" performread out") ;
 }
 
 bool Connection::Ipv6AddressesEqual(const Q_IPV6ADDR& aAddr1,

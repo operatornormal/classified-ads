@@ -23,6 +23,7 @@
 #define CONNECTION_H
 #include <QTcpSocket> // for SocketError
 #include <QHostAddress> // for ipv6 addr type
+#include <QMutex>
 #include "protocol.h"
 #include "node.h"
 
@@ -318,6 +319,8 @@ protected: // these are not public
     Model& iModel ; /**< datamodel reference */
     /** when starting to receive packet from peer, length is stored here */
     quint32 iBytesExpectedInPacketBeingRead ;
+    /** when receiving packet from peer, length is stored here */
+    quint32 iBytesInPacketBeingRead ;  
     /** when reading packet from peer, this contains bytes being read */
     QByteArray *iBytesRead ;
     /**
@@ -393,5 +396,14 @@ protected: // these are not public
      * hash of peering node
      */
     Hash iPeerHash;
+    /**
+     * Mutex for read operation
+     */
+    QMutex iReadMutex ;
+    /**
+     * flag for read operation in progress
+     */
+    bool iIsAlreadyReading ; 
+  
 } ;
 #endif
