@@ -14,7 +14,10 @@ Build-Depends: debhelper (>= 9),
                libopus-dev,
                tcl-dev,
                tk-dev,
-               zlib1g-dev
+               zlib1g-dev,
+               libbz2-dev,
+               xvfb,
+               xauth
 Standards-Version: 4.1.1
 Homepage: http://katiska.org/classified-ads/
 Vcs-Git: https://github.com/operatornormal/classified-ads.git -b debian
@@ -37,5 +40,5 @@ Description: Program for displaying classified advertisement items
   * Providing basic data of operators
   * Basic searching of content based on words.
   * Audio negotiations between operators.
-  * Possibility to extend the UI using TCL scripting language
-  * Sharing data between TCL programs using general-purpose distributed db
+  * Possibility to extend the UI using Tcl scripting language
+  * Sharing data between Tcl programs using general-purpose distributed db
