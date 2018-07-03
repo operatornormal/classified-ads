@@ -43,11 +43,11 @@ QMAKE_EXTRA_TARGETS += translations_compile
 PRE_TARGETDEPS += translations_compile
 unix {
     translations_compile.commands = cd po ; $(MAKE)
-    QMAKE_EXTRA_TARGETS += check
-    check.target = check
-    check.depends = test/testca.cpp
-    check.commands = cd test ; $(QMAKE) ; $(MAKE) ; mkdir test_home ; export HOME=`pwd`/test_home ; ./testca ; rm -rf test_home ; cd .. ; touch check
-    QMAKE_CLEAN += po/*.mo check test/*.o test/testca test/ui_*.h test/*.moc
+    QMAKE_EXTRA_TARGETS += test
+    test.target = check
+    test.depends = testca/testca.cpp
+    test.commands = cd testca ; $(QMAKE) ; $(MAKE) ; mkdir test_home ; export HOME=`pwd`/test_home ; ./testca ; rm -rf test_home ; cd .. ; touch check
+    QMAKE_CLEAN += po/*.mo check testca/testca testca/Makefile
 }
 win32 {
     translations_compile.commands = $(MAKE) -C po MSGFMT_PATH=/msys32/usr/local/bin/
