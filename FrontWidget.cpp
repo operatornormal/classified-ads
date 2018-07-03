@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
 
   This file is part of Classified Ads.
 
@@ -24,6 +24,7 @@
 #include <QMainWindow>
 #include <QDesktopServices>
 #include <QClipboard>
+#include <QAction>
 #include <assert.h>
 #include "FrontWidget.h"
 #include "log.h"
@@ -1437,7 +1438,7 @@ void FrontWidget::updateUiFromViewedProfile() {
             iViewedProfileFileListingModel = NULL ;
             ui.profileDetailsSharedFilesView->setModel(NULL) ;
         }
-        iViewedProfileFileListingModel = new BinaryFileListingModel(iViewedProfile->iSharedFiles) ;
+        iViewedProfileFileListingModel = new BinaryFileListingModel(iViewedProfile->iSharedFiles,iController->model()) ;
         connect(iViewedProfileFileListingModel,
                 SIGNAL(  error(MController::CAErrorSituation,
                                const QString&) ),
@@ -1466,7 +1467,7 @@ void FrontWidget::setUpSelectedProfileFileListingModel() {
     iSelectedOwnBinaryFile = KNullHash ;
     //, if we have profile selected, set up model again
     if ( iSelectedProfile ) {
-        iSelectedProfileFileListingModel = new BinaryFileListingModel(iSelectedProfile->iSharedFiles) ;
+        iSelectedProfileFileListingModel = new BinaryFileListingModel(iSelectedProfile->iSharedFiles,iController->model()) ;
         connect(iSelectedProfileFileListingModel,
                 SIGNAL(  error(MController::CAErrorSituation,
                                const QString&) ),

@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2015-2018.
+  Classified Ads is Copyright (c) Antti Järvinen 2015.
 
   This file is part of Classified Ads.
 
@@ -23,7 +23,7 @@
 #include "../net/voicecallengine.h"
 #include "../log.h"
 
-const int KCallButtonHeight ( 30 ) ;
+const int KCallButtonHeight ( 30 ) ; 
 
 CallButtonDelegate::CallButtonDelegate(VoiceCallEngine& aCallEngine,
                                        QObject* aParent) :
@@ -35,12 +35,13 @@ CallButtonDelegate::~CallButtonDelegate() {
 
 }
 
-// idea stolen from
+// idea stolen from 
 // http://stackoverflow.com/questions/11777637/adding-button-to-qtableview
 // so thanks SingerOfTheFall and Kim Bowles Sørhus
-void CallButtonDelegate::paint(QPainter *painter,
-                               const QStyleOptionViewItem &option,
-                               const QModelIndex &index) const {
+void CallButtonDelegate::paint(QPainter *painter, 
+                               const QStyleOptionViewItem &option, 
+                               const QModelIndex &index) const
+{
     QStyleOptionButton button;
     QRect r = option.rect;//getting the rect of the cell
     int x,y,w,h;
@@ -55,11 +56,13 @@ void CallButtonDelegate::paint(QPainter *painter,
     QApplication::style()->drawControl( QStyle::CE_PushButton, &button, painter);
 }
 
-bool CallButtonDelegate::editorEvent(QEvent *event,
-                                     QAbstractItemModel * /* model */ ,
-                                     const QStyleOptionViewItem &option,
-                                     const QModelIndex &index) {
-    if( event->type() == QEvent::MouseButtonRelease ) {
+bool CallButtonDelegate::editorEvent(QEvent *event, 
+                                     QAbstractItemModel * /* model */ , 
+                                     const QStyleOptionViewItem &option, 
+                                     const QModelIndex &index)
+{
+    if( event->type() == QEvent::MouseButtonRelease )
+    {
         QMouseEvent * e = (QMouseEvent *)event;
         int clickX = e->x();
         int clickY = e->y();
@@ -72,22 +75,23 @@ bool CallButtonDelegate::editorEvent(QEvent *event,
         h = KCallButtonHeight ;// height constant
 
         if( clickX > x && clickX < x + w )
-            if( clickY > y && clickY < y + h ) {
+            if( clickY > y && clickY < y + h )
+            {
                 const int callId ( iCallEngine.data(index, Qt::UserRole).toInt() );
                 switch ( index.column() ) {
                 case 3:
                     // accept call
-                    iCallEngine.acceptCall(callId) ;
+                    iCallEngine.acceptCall(callId) ; 
                     break ;
-                case 4:
+                case 4: 
                     // end/reject call
-                    iCallEngine.closeCall(callId) ;
+                    iCallEngine.closeCall(callId) ; 
                     break ;
                 default:
-                    QLOG_STR("Huh, editor-event in column with no editor?") ;
+                    QLOG_STR("Huh, editor-event in colum with no editor?") ; 
                     break ;
                 }
             }
     }
-    return true ;
+    return true ; 
 }

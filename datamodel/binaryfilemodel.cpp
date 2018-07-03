@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
 
   This file is part of Classified Ads.
 
@@ -40,10 +40,8 @@
 #include "const.h"
 
 BinaryFileModel::BinaryFileModel(MController *aController,
-                                 const MModelProtocolInterface &aModel)
-    : ModelBase("binaryfile",KMaxRowsInTableBinaryFile),
-      iController(aController),
-      iModel(aModel) {
+                                 MModelProtocolInterface &aModel)
+  : ModelBase("binaryfile",KMaxRowsInTableBinaryFile,aController,aModel) {
     LOG_STR("BinaryFileModel::BinaryFileModel()") ;
     connect(this,
             SIGNAL(  error(MController::CAErrorSituation,
@@ -140,7 +138,7 @@ Hash BinaryFileModel::publishBinaryFile(const Profile& aPublishingProfile,
             signature,
             &metadataJSon ) == 0 ) {
         // signature went ok, then insert/update table
-        QSqlQuery countQuery ;
+        QSqlQuery countQuery (iController->model().dataBaseConnection()) ;
         operation_success = countQuery.prepare("select count(hash1) from binaryfile where hash1 = :hash1 and hash2 = :hash2 and hash3 = :hash3 and hash4 = :hash4 and hash5 = :hash5") ;
         if ( operation_success ) {
             countQuery.bindValue(":hash1", contentFingerPrint.iHash160bits[0]);
@@ -154,7 +152,7 @@ Hash BinaryFileModel::publishBinaryFile(const Profile& aPublishingProfile,
                 LOG_STR2("Count of hashes in table binaryfile = %d", count) ;
                 if ( count == 0 ) {
                     // content was new -> insert
-                    QSqlQuery ins ;
+                    QSqlQuery ins (iController->model().dataBaseConnection());
                     operation_success = ins.prepare("insert into binaryfile"
                                                     "(hash1,hash2,hash3,hash4,hash5,"
                                                     "publisher_hash1,publisher_hash2,publisher_hash3,"
@@ -201,7 +199,7 @@ Hash BinaryFileModel::publishBinaryFile(const Profile& aPublishingProfile,
                 } else {
                     // content we already had -> update
 
-                    QSqlQuery upd ;
+                    QSqlQuery upd (iController->model().dataBaseConnection());
                     operation_success = upd.prepare("update binaryfile set contentdata=:contentdata,"
                                                     "is_private=:is_private,is_compressed=:is_compressed,"
                                                     "publisher_hash1=:publisher_hash1,"
@@ -261,7 +259,7 @@ Hash BinaryFileModel::publishBinaryFile(const Profile& aPublishingProfile,
 BinaryFile* BinaryFileModel::binaryFileByFingerPrint(const Hash& aFingerPrint) {
     LOG_STR("BinaryFileModel::binaryFileByFingerPrint()") ;
     BinaryFile* retval = NULL ;
-    QSqlQuery query;
+    QSqlQuery query(iController->model().dataBaseConnection());
     bool ret ;
 
     // note: here signature is not retrieved. signature is in
@@ -315,7 +313,7 @@ bool BinaryFileModel::binaryFileDataByFingerPrint(const Hash& aFingerPrint,
         bool* aIsBinaryFilePrivate ) {
     LOG_STR2("BinaryFileModel::binaryFileDataByFingerPrint() %s", qPrintable(aFingerPrint.toString())) ;
     bool retval = false ;
-    QSqlQuery query ;
+    QSqlQuery query (iController->model().dataBaseConnection());
     retval = query.prepare ("select contentdata,signature,is_private,is_compressed,metadata from binaryfile where hash1 = :hash1 and hash2 = :hash2 and hash3 = :hash3 and hash4 = :hash4 and hash5 = :hash5" ) ;
     if ( retval ) {
         query.bindValue(":hash1", aFingerPrint.iHash160bits[0]);
@@ -430,7 +428,7 @@ bool BinaryFileModel::doHandleReceivedFile(const Hash& aFingerPrint,
         const Hash& aFromNode ) {
     bool retval ( false ) ;
     bool hostAlreadyHadContent ( false ) ;
-    QSqlQuery query ;
+    QSqlQuery query (iController->model().dataBaseConnection());
 
     retval = query.prepare ("select count(contentdata) from binaryfile where hash1 = :hash1 and hash2 = :hash2 and hash3 = :hash3 and hash4 = :hash4 and hash5 = :hash5" ) ;
     if ( retval ) {
@@ -487,7 +485,7 @@ bool BinaryFileModel::doHandleReceivedFile(const Hash& aFingerPrint,
                 }
 
                 // content was new -> insert
-                QSqlQuery ins ;
+                QSqlQuery ins (iController->model().dataBaseConnection());
                 retval = ins.prepare("insert into binaryfile(hash1,hash2,hash3,hash4,"
                                      "hash5,publisher_hash1,publisher_hash2,"
                                      "publisher_hash3,publisher_hash4,"
@@ -616,7 +614,7 @@ bool BinaryFileModel::doFindBinaryFileForPublishOrSend(const Hash& aFingerPrint,
         bool* aIsBinaryFileCompressed,
         quint32* aTimeOfPublish ) {
     bool retval = false ;
-    QSqlQuery query ;
+    QSqlQuery query (iController->model().dataBaseConnection());
     Hash fingerPrintOfPublisherKey;
     retval = query.prepare ("select contentdata,signature,is_private,"
                             "is_compressed,metadata,publisher_hash1,"
@@ -682,7 +680,7 @@ void BinaryFileModel::fillBucket(QList<SendQueueItem>& aSendQueue,
                                  const Hash& aEndOfBucket,
                                  quint32 aLastMutualConnectTime,
                                  const Hash& aForNode ) {
-    QSqlQuery query;
+    QSqlQuery query(iController->model().dataBaseConnection());
     bool ret ;
     ret = query.prepare ("select hash1,hash2,hash3,hash4,hash5 from binaryfile where hash1 >= :start and hash1 <= :end and time_of_publish > :last_connect_time and time_of_publish < :curr_time and ( recvd_from != :lowbits_of_requester or recvd_from is null ) order by time_of_publish desc limit 1000" ) ;
     if ( ret ) {

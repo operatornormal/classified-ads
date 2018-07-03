@@ -1,5 +1,5 @@
-/*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2016.
+/*   -*-C++-*- -*-coding: utf-8-unix;-*-
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
 
   This file is part of Classified Ads.
 
@@ -59,7 +59,7 @@
 #include "tclmodel.h"
 
 Model::Model(MController *aController) : iController(aController),
-    iMutex(NULL) ,
+    iMutex(NULL),
     iConnections(NULL),
     iNodeModel(NULL),
     iNetReqExecutor(NULL),
@@ -84,7 +84,7 @@ Model::Model(MController *aController) : iController(aController),
             SLOT(handleError(MController::CAErrorSituation,
                              const QString&)),
             Qt::QueuedConnection) ;
-    iMutex = new QMutex() ;
+    iMutex = new QMutex(QMutex::Recursive); // same thread can lock recursive mutex multiple times
     initPseudoRandom() ;
     if (!openDB()) {
         QString errorText (lastError().text()) ;
@@ -254,7 +254,14 @@ Model::~Model() {
     delete iTclModel ;
     delete iCaModel ;
     delete iContentEncryptionModel ;
-    iDb.close();
+    while (  iDbPool.count() ) {
+      const QThread* firstKey ( iDbPool.firstKey() ) ; 
+      QSqlDatabase dbToClose ( iDbPool.take ( firstKey ) )  ;
+      if ( dbToClose.isOpen() ) {
+	dbToClose.close() ; 
+      }
+      QLOG_STR("Removed db at model destructor") ; 
+    }
     iController = NULL ; // not owned, just set null
     delete iMutex ;
 }
@@ -295,32 +302,15 @@ void Model::unlock() {
 
 bool Model::openDB() {
     bool tables_needed = false ;
-    iDb = QSqlDatabase::addDatabase("QSQLITE");
-    QString path(QDir::home().path());
-    path.append(QDir::separator()).append(".classified_ads");
-    if (!QDir(path).exists()) {
-        QDir().mkdir(path) ;
-        tables_needed = true ;
-    }
-    path.append(QDir::separator()).append("sqlite_db");
-    path = QDir::toNativeSeparators(path);
-    if (!QFile(path).exists()) {
-        tables_needed = true ;
-    }
-    iDb.setDatabaseName(path);
-    // Open database
-    bool isDbOpen = iDb.open() ;
-    if ( isDbOpen && tables_needed ) {
-        if ( createTables() == false ) {
+    QSqlDatabase db ( dataBaseConnection(&tables_needed) ) ; 
+    if ( db.isOpen() && tables_needed ) {
+        if ( createTables(db) == false ) {
             return false ;
         }
     }
-    if ( isDbOpen ) {
-        // set file mode
-        QFile databaseFile(path) ;
-        databaseFile.setPermissions(QFile::ReadOwner|QFile::WriteOwner) ;
+    if ( db.isOpen() ) {
         // do cleanup to rectify previous bugs:
-        QSqlQuery query;
+        QSqlQuery query (db);
         // removes every comment that does not begin with { as all json
         // is supposed but it still is not marked as private (==encrypted)
         bool ret = query.exec("delete from profile where profiledata not like x'7b25' and is_private = 'false' and hash1 not in ( select hash1 from privatekeys )") ;
@@ -337,28 +327,29 @@ bool Model::openDB() {
         }
     }
 
-    if ( isDbOpen ) {
-        createTablesV2() ;
-        createTablesV3() ;
-        createTablesV4() ;
-        QSqlQuery versionQuery("select sqlite_version()") ;
+    if ( db.isOpen() ) {
+        createTablesV2(db) ;
+        createTablesV3(db) ;
+        createTablesV4(db) ;
+        QSqlQuery versionQuery("select sqlite_version()",db) ;
         if ( versionQuery.exec() && versionQuery.next() ) {
             QLOG_STR("Sqlite version " + versionQuery.value(0).toString()) ; 
         }
     }
-    return isDbOpen ;
+    return db.isOpen() ;
 }
 
 QSqlError Model::lastError() {
-    QSqlError e = iDb.lastError();
-    QLOG_STR(e.text()) ;
-    return e;
+  const QSqlDatabase db ( dataBaseConnection() ) ; 
+  QSqlError e = db.lastError();
+  QLOG_STR(e.text()) ;
+  return e;
 }
 
-bool Model::createTables() {
+bool Model::createTables(QSqlDatabase aDb) {
     bool ret = false;
 
-    QSqlQuery query;
+    QSqlQuery query(aDb);
     ret = query.exec("create table settings "
                      "(datastore_version unsigned int primary key,"
                      "node_listenport unsigned int,"
@@ -372,12 +363,12 @@ bool Model::createTables() {
                      "node_cert varchar(5000),"
                      "dns_name varchar(256))");
     if ( ret ) {
-        QSqlQuery query;
+        QSqlQuery query(aDb);
         ret = query.exec ( "insert into settings (datastore_version) values (1)" ) ;
     }
     LOG_STR2("Table settings created 1 is ok, =  %d", ret) ;
     if ( ret ) {
-        QSqlQuery q2;
+        QSqlQuery q2(aDb);
         ret = q2.exec("create table node "
                       "(hash1 unsigned int not null,"
                       "hash2 unsigned int not null,"
@@ -400,7 +391,7 @@ bool Model::createTables() {
         LOG_STR2("Table node created, retval =  %d", ret) ;
     }
     if ( ret ) {
-        QSqlQuery q3;
+        QSqlQuery q3(aDb);
         // note how index is not unique. set of hash1+2+3+4+5 is
         // (fairly) unique but setting hash1 to be unique would
         // prevent storage of documents(nodes) where hash collides in
@@ -410,7 +401,7 @@ bool Model::createTables() {
         LOG_STR2("Index node(hash1) created, retval =  %d", ret) ;
     }
     if ( ret ) {
-        QSqlQuery q4;
+        QSqlQuery q4(aDb);
         ret = q4.exec("create table privatekeys(prikey varchar(5000) not null,"
                       "hash1 unsigned int not null,"
                       "hash2 unsigned int not null,"
@@ -422,7 +413,7 @@ bool Model::createTables() {
         LOG_STR2("Table for private keys created %d", ret) ;
     }
     if ( ret ) {
-        QSqlQuery q5;
+        QSqlQuery q5(aDb);
         ret = q5.exec("create table profile(pubkey varchar(5000) not null,"
                       "hash1 unsigned int not null,"
                       "hash2 unsigned int not null,"
@@ -440,12 +431,12 @@ bool Model::createTables() {
         LOG_STR2("Table for profile data created %d", ret) ;
     }
     if ( ret ) {
-        QSqlQuery q6;
+        QSqlQuery q6(aDb);
         ret = q6.exec("create index profile_hash1_ind on profile(hash1)");
         LOG_STR2("Index for profile data table created %d", ret) ;
     }
     if ( ret ) {
-        QSqlQuery q7;
+        QSqlQuery q7(aDb);
         // usage of the following table is this:
         // when new item (profile,ca,privmsg,binary blob) is published
         // it is inserted into this table.
@@ -484,7 +475,7 @@ bool Model::createTables() {
     }
 
     if ( ret ) {
-        QSqlQuery q8;
+        QSqlQuery q8(aDb);
         ret = q8.exec("create table binaryfile("
                       "hash1 unsigned int not null,"
                       "hash2 unsigned int not null,"
@@ -509,12 +500,12 @@ bool Model::createTables() {
         LOG_STR2("Table for binary files created %d", ret) ;
     }
     if ( ret ) {
-        QSqlQuery q9;
+        QSqlQuery q9(aDb);
         ret = q9.exec("create index binaryfile_hash1_ind on binaryfile(hash1)");
         LOG_STR2("Index for binary blob data table created %d", ret) ;
     }
     if ( ret ) {
-        QSqlQuery q10;
+        QSqlQuery q10(aDb);
         ret = q10.exec("create table classified_ad("
                        "hash1 unsigned int not null,"
                        "hash2 unsigned int not null,"
@@ -538,18 +529,18 @@ bool Model::createTables() {
         LOG_STR2("Table for classified_ads created %d", ret) ;
     }
     if ( ret ) {
-        QSqlQuery q11;
+        QSqlQuery q11(aDb);
         ret = q11.exec("create index ca_hash1_ind on classified_ad(hash1)");
         LOG_STR2("Index for classified data table created %d", ret) ;
     }
     if ( ret ) {
-        QSqlQuery q12;
+        QSqlQuery q12(aDb);
         ret = q12.exec("create index ca_ghash1_ind on classified_ad(group_hash1)");
         LOG_STR2("Index for classified data table group hash created %d", ret) ;
     }
 
     if ( ret ) {
-        QSqlQuery q13;
+        QSqlQuery q13(aDb);
         ret = q13.exec("create table private_message("
                        "hash1 unsigned int not null,"
                        "hash2 unsigned int not null,"
@@ -577,16 +568,16 @@ bool Model::createTables() {
         LOG_STR2("Table for private messages created %d", ret) ;
     }
     if ( ret ) {
-        QSqlQuery q14;
+        QSqlQuery q14(aDb);
         ret = q14.exec("create index privmsg_hash1_ind on private_message(hash1)");
-        QSqlQuery q15;
+        QSqlQuery q15(aDb);
         ret = q15.exec("create index privmsg_dhash1_ind on private_message(dnode_hash1)");
-        QSqlQuery q16;
+        QSqlQuery q16(aDb);
         ret = q16.exec("create index privmsg_rhash1_ind on private_message(recipient_hash1)");
         LOG_STR2("Index for private message data table created %d", ret) ;
     }
     if ( ret ) {
-        QSqlQuery q17;
+        QSqlQuery q17(aDb);
         ret = q17.exec("create table profilecomment("
                        "hash1 unsigned int not null,"
                        "hash2 unsigned int not null,"
@@ -610,22 +601,22 @@ bool Model::createTables() {
         LOG_STR2("Table for profile comments created %d", ret) ;
     }
     if ( ret ) {
-        QSqlQuery q18;
+        QSqlQuery q18(aDb);
         ret = q18.exec("create index profcomment_hash1_ind on profilecomment(hash1)");
-        QSqlQuery q19 ;
+        QSqlQuery q19(aDb) ;
         ret = q19.exec("create index profcomment_phash1_ind on profilecomment(profile_hash1)");
     }
     // in sqlite there is special table type for full text search.
-    if ( SearchModel::queryIfFTSSupported()) {
-        SearchModel::createFTSTables() ;
+    if ( SearchModel::queryIfFTSSupported(aDb)) {
+        SearchModel::createFTSTables(aDb) ;
     }
     return ret;
 }
 
 // method check datastore version. if is 1, upgrades to version 2.
-bool Model::createTablesV2() {
+bool Model::createTablesV2(QSqlDatabase aDb) {
 
-    QSqlQuery query;
+    QSqlQuery query(aDb);
     bool ret ;
     ret = query.prepare ("select datastore_version from settings" ) ;
     ret = query.exec() ;
@@ -638,10 +629,10 @@ bool Model::createTablesV2() {
             int datastoreVersion ( query.value(0).toInt() ) ;
             if ( datastoreVersion == 1 ) {
                 // upgrade datastore to version 2
-                QSqlQuery q;
+                QSqlQuery q(aDb);
                 ret = q.exec("alter table settings add column ringtone int not null default 0") ;
                 if ( ret ) {
-                    QSqlQuery q3;
+                    QSqlQuery q3(aDb);
                     ret = q3.exec("alter table settings add column call_acceptance int not null default 0") ;
                     if ( !ret ) {
                         QLOG_STR("alter table settings: " + q3.lastError().text());
@@ -649,7 +640,7 @@ bool Model::createTablesV2() {
                     }
                 }
                 if ( ret ) {
-                    QSqlQuery q2;
+                    QSqlQuery q2(aDb);
                     q2.exec("update settings set datastore_version = 2") ;
                 } 
             }
@@ -659,9 +650,9 @@ bool Model::createTablesV2() {
 }
 
 // method check datastore version. if is 2, upgrades to version 3.
-bool Model::createTablesV3() {
+bool Model::createTablesV3(QSqlDatabase aDb) {
 
-    QSqlQuery query;
+    QSqlQuery query(aDb);
     bool ret ;
     ret = query.prepare ("select datastore_version from settings" ) ;
     ret = query.exec() ;
@@ -674,7 +665,7 @@ bool Model::createTablesV3() {
             int datastoreVersion ( query.value(0).toInt() ) ;
             if ( datastoreVersion == 2 ) {
                 // upgrade datastore to version 3
-                QSqlQuery q;
+                QSqlQuery q(aDb);
                 ret = q.exec("create table tclprogs "
                              "(hash1 unsigned int not null,"
                              "hash2 unsigned int not null,"
@@ -686,7 +677,7 @@ bool Model::createTablesV3() {
                              "prog_settings blob,"
                              "time_modified unsigned int not null)") ;
                 if ( ret ) {
-                    QSqlQuery q2;
+                    QSqlQuery q2(aDb);
                     q2.exec("update settings set datastore_version = 3") ;
                 } else {
                     QLOG_STR("alter table settings: " + q.lastError().text());
@@ -698,9 +689,9 @@ bool Model::createTablesV3() {
     return ret ;
 }
 
-bool Model::createTablesV4() {
+bool Model::createTablesV4(QSqlDatabase aDb) {
     QLOG_STR("createTablesV4 in") ; 
-    QSqlQuery query;
+    QSqlQuery query(aDb);
     bool ret ;
     ret = query.prepare ("select datastore_version from settings" ) ;
     ret = query.exec() ;
@@ -713,7 +704,7 @@ bool Model::createTablesV4() {
             int datastoreVersion ( query.value(0).toInt() ) ;
             if ( datastoreVersion == 3 ) {
                 // upgrade datastore to version 4
-                QSqlQuery q;
+                QSqlQuery q(aDb);
                 ret = q.exec("create table dbrecord ( hash1 unsigned int not null,"
                              "hash2 unsigned int not null,"
                              "hash3 unsigned int not null,"
@@ -742,14 +733,14 @@ bool Model::createTablesV4() {
                     QLOG_STR("create table dbrecord: " + q.lastError().text());
                     emit error(MController::DbTransactionError, q.lastError().text()) ;
                 } 
-                if ( ret && SearchModel::queryIfFTSSupported() ) {
-                    QSqlQuery ftsQ ;
+                if ( ret && SearchModel::queryIfFTSSupported(aDb) ) {
+                    QSqlQuery ftsQ (aDb);
                     ret = ftsQ.exec("create virtual table dbrecord_search using fts3(searchstring)") ;
                     if (!ret) {
                         QLOG_STR("FTS3 table dbrecord_search creation: " + ftsQ.lastError().text()) ;
                         return false ;
                     } else {
-                        QSqlQuery ftsQ2 ;
+                        QSqlQuery ftsQ2 (aDb);
                         ret = ftsQ2.exec("CREATE TRIGGER dbrecord_search_del BEFORE DELETE ON dbrecord BEGIN"
                                          "  DELETE FROM dbrecord_search WHERE docid=old.hash1;"
                                          "END;") ;
@@ -763,21 +754,21 @@ bool Model::createTablesV4() {
                     QLOG_STR("FTS was not supported") ;
                 }
                 if ( ret ) {
-                    QSqlQuery q3;
+                    QSqlQuery q3(aDb);
                     ret = q3.exec("alter table settings add column dbrecord_maxrows int not null default 1000") ;
                     if (!ret) {
                         QLOG_STR("add dbrecord_maxrows: " + q3.lastError().text()) ;
                         emit error(MController::DbTransactionError, q3.lastError().text()) ;
                         return false ;
                     }
-                    QSqlQuery q4;
+                    QSqlQuery q4(aDb);
                     ret = q4.exec("update settings set dbrecord_maxrows = 100000") ;
                     if (!ret) {
                         QLOG_STR("update dbrecord_maxrows: " + q4.lastError().text()) ;
                         emit error(MController::DbTransactionError, q4.lastError().text()) ;
                         return false ;
                     }
-                    QSqlQuery q5;
+                    QSqlQuery q5(aDb);
                     ret = q5.exec("alter table tclprogs add column prog_data blob") ;
                     if (!ret) {
                         QLOG_STR("alter table tclprogs: " + q5.lastError().text()) ;
@@ -786,7 +777,7 @@ bool Model::createTablesV4() {
                     }
                 }
                 if ( ret ) {
-                    QSqlQuery q2;
+                    QSqlQuery q2(aDb);
                     q2.exec("update settings set datastore_version = 4") ;
                 } 
             }
@@ -813,7 +804,7 @@ void Model::initPseudoRandom() {
         randomFileName = "/dev/random" ;
     } else {
 #ifdef WIN32
-#define RANDOM_LEN (5*sizeof(quint32))
+#define RANDOM_LEN (15*sizeof(quint32))
         // this code is from MSDN examples
         HCRYPTPROV   hCryptProv = 0 ;
         BYTE         pbData[RANDOM_LEN]  = { 0 } ;
@@ -844,7 +835,7 @@ void Model::initPseudoRandom() {
                         hCryptProv,
                         RANDOM_LEN,
                         pbData)) {
-                QLOG_STR("Win32 seed: Random sequence generated. \n");
+                QLOG_STR("Win32 seed: Random sequence generated.");
                 RAND_seed(&pbData, RANDOM_LEN);
                 unsigned int *pointer1intothemiddle = reinterpret_cast<unsigned int *>(pbData);
                 srand(*pointer1intothemiddle) ;
@@ -1080,7 +1071,7 @@ PublishItem Model::nextItemToPublish(bool* aFound) {
     PublishItem retval ;
     *aFound = false ;
 
-    QSqlQuery query;
+    QSqlQuery query(iController->model().dataBaseConnection());
     bool ret ;
     // don't pick up the same item again if less than 10 minutes passed
     ret = query.prepare ("select itemtype,hash1,hash2,hash3,hash4,hash5, "
@@ -1154,7 +1145,7 @@ PublishItem Model::nextItemToPublish(bool* aFound) {
             // because item was found, mark the time when it was found
             // so next time it will appear at the bottom of our list
 
-            QSqlQuery query2 ;
+            QSqlQuery query2(iController->model().dataBaseConnection()) ;
             query2.prepare ("update publish set last_time_tried=:time where hash1=:hash1 and hash2=:hash2 and hash3=:hash3 and hash4=:hash4 and hash5=:hash5" ) ;
             query2.bindValue(":hash1", retval.iObjectHash.iHash160bits[0]) ;
             query2.bindValue(":hash2", retval.iObjectHash.iHash160bits[1]) ;
@@ -1197,7 +1188,7 @@ void Model::addItemToBePublished(ProtocolItemType aType,
         }
 
         int count ( 0 ) ;
-        QSqlQuery query;
+        QSqlQuery query(iController->model().dataBaseConnection());
         bool ret ;
         ret = query.prepare ("select count (itemtype) from publish where "
                              "hash1 = :hash1 and hash2 = :hash2 and hash3 = :hash3 and hash4 = :hash4 "
@@ -1216,7 +1207,7 @@ void Model::addItemToBePublished(ProtocolItemType aType,
             if ( query.next() && !query.isNull(0) ) {
                 count = query.value(0).toInt() ;
             }
-            QSqlQuery query2;
+            QSqlQuery query2(iController->model().dataBaseConnection());
             if ( count == 0 ) {
                 // item did not exist beforehand
                 ret = query2.prepare ("insert into publish(itemtype,hash1,hash2,hash3,"
@@ -1300,7 +1291,7 @@ PublishItem Model::addNodeToPublishedItem(const Hash& aContentHash,
         const Hash& aNodeHash) {
     PublishItem retval ;
 
-    QSqlQuery query;
+    QSqlQuery query(iController->model().dataBaseConnection());
     bool ret ;
     ret = query.prepare ("select itemtype, "
                          " bangpath1,bangpath2,bangpath3,bangpath4,bangpath5,hostcount"
@@ -1350,7 +1341,7 @@ PublishItem Model::addNodeToPublishedItem(const Hash& aContentHash,
                 QLOG_STR("Deleteting from publish because " + qStr ) ;
             }
 
-            QSqlQuery q2 ;
+            QSqlQuery q2(iController->model().dataBaseConnection()) ;
             q2.prepare("delete from publish where hash1=:hash1 and hash2=:hash2 and"
                        " hash3=:hash3 and hash4=:hash4 and hash5=:hash5") ;
             q2.bindValue(":hash1", aContentHash.iHash160bits[0]) ;
@@ -1362,7 +1353,7 @@ PublishItem Model::addNodeToPublishedItem(const Hash& aContentHash,
             QLOG_STR("Deleteted from publish, nr hosts was " +  retval.iAlreadyPushedHosts.size() ) ;
             retval.iObjectHash = KNullHash ;
         } else {
-            QSqlQuery q2 ;
+            QSqlQuery q2(iController->model().dataBaseConnection()) ;
             q2.prepare("update publish set bangpath1=:b1,bangpath2=:b2,bangpath3=:b3,"
                        "bangpath4=:b4,bangpath5=:b5 where  hash1=:hash1 and hash2=:hash2 and"
                        " hash3=:hash3 and hash4=:hash4 and hash5=:hash5" ) ;
@@ -1529,7 +1520,7 @@ void Model::timerEvent(QTimerEvent*
     unlock() ;
     QThread::yieldCurrentThread ();
     lock() ;
-    QSqlQuery vacuumQuery ; 
+    QSqlQuery vacuumQuery(iController->model().dataBaseConnection()) ; 
     vacuumQuery.exec("vacuum") ;
     unlock() ;
     // then check out for local network addresses:
@@ -1546,7 +1537,7 @@ void Model::timerEvent(QTimerEvent*
 
 Model::RingtoneSetting Model::getRingtoneSetting() {
     RingtoneSetting retval ( BowRingTone ) ;
-    QSqlQuery query;
+    QSqlQuery query(iController->model().dataBaseConnection());
     bool ret ;
 
     ret = query.prepare ("select ringtone from settings" ) ;
@@ -1564,7 +1555,7 @@ Model::RingtoneSetting Model::getRingtoneSetting() {
 }
 
 void Model::setRingtoneSetting(Model::RingtoneSetting aRingTone) {
-    QSqlQuery query;
+    QSqlQuery query(iController->model().dataBaseConnection());
     bool ret ( query.prepare ("update settings set ringtone = :r" ) ) ;
     if ( ret ) {
         query.bindValue(":r", aRingTone) ;
@@ -1576,7 +1567,7 @@ void Model::setRingtoneSetting(Model::RingtoneSetting aRingTone) {
 
 Model::CallAcceptanceSetting Model::getCallAcceptanceSetting() {
     CallAcceptanceSetting retval ( AcceptAllCalls ) ;
-    QSqlQuery query;
+    QSqlQuery query(iController->model().dataBaseConnection());
     bool ret ;
 
     ret = query.prepare ("select call_acceptance from settings" ) ;
@@ -1594,7 +1585,7 @@ Model::CallAcceptanceSetting Model::getCallAcceptanceSetting() {
 }
 
 void Model::setCallAcceptanceSetting(Model::CallAcceptanceSetting aAcceptance) {
-    QSqlQuery query;
+    QSqlQuery query(iController->model().dataBaseConnection());
     bool ret ( query.prepare ("update settings set call_acceptance = :a" ) ) ;
     if ( ret ) {
         query.bindValue(":a", aAcceptance) ;
@@ -1602,4 +1593,64 @@ void Model::setCallAcceptanceSetting(Model::CallAcceptanceSetting aAcceptance) {
     }
 }
 
+
+// see also method threadTerminationCleanup
+QSqlDatabase Model::dataBaseConnection(bool* aIsFirstTime) {
+    const QThread* t ( QThread::currentThread() ) ;
+    if ( iDbPool.contains ( t ) ) {
+      return iDbPool.value ( t ) ; 
+    }
+    // was not in pool, instantiate and put the db connection into
+    // pool for further use.
+    bool tables_needed = false ;
+    const QString threadId ( QString::number((qulonglong)(QThread::currentThreadId()))) ; 
+    iDbPool.insert(t,QSqlDatabase::addDatabase("QSQLITE", threadId)) ; 
+    QSqlDatabase db ( iDbPool.value ( t ) );
+    QLOG_STR("Instantiated new db for thread " + threadId + " nr connections = " + QString::number(iDbPool.count()) ) ; 
+    QString path(QDir::home().path());
+    path.append(QDir::separator()).append(".classified_ads");
+    if (!QDir(path).exists()) {
+        QDir().mkdir(path) ;
+        tables_needed = true ;
+    }
+    path.append(QDir::separator()).append("sqlite_db");
+    path = QDir::toNativeSeparators(path);
+    if (!QFile(path).exists()) {
+        tables_needed = true ;
+    }
+    if ( aIsFirstTime ) {
+      *aIsFirstTime = tables_needed ; 
+    }
+    db.setDatabaseName(path);
+    // Open database
+    bool isDbOpen = db.open() ;
+    if ( isDbOpen ) {
+      if ( tables_needed ) {
+	// first time here, set file mode
+	QFile databaseFile(path) ;
+	databaseFile.setPermissions(QFile::ReadOwner|QFile::WriteOwner) ;
+      }
+      return db ; 
+    } else {
+      QLOG_STR("database open did not succeed " + db.lastError().text() );
+      return db ; 
+    }
+}
+
+// see also method dataBaseConnection
+void Model::threadTerminationCleanup( const QThread *aTerminatingThread ) {
+    QLOG_STR("Model::threadTerminationCleanup in " + QString::number((qulonglong)(QThread::currentThreadId())) ) ; 
+    lock(); 
+    if ( iDbPool.contains ( aTerminatingThread ) ) {
+      QSqlDatabase dbToClose ( iDbPool.value ( aTerminatingThread ) )  ;
+      const QString dbConnectionName ( dbToClose.connectionName() ) ; 
+      if ( dbToClose.isOpen() ) {
+	dbToClose.close() ; 
+      }
+      iDbPool.remove(aTerminatingThread) ; // first remove, it de-allocates the db
+      QSqlDatabase::removeDatabase( dbConnectionName ) ; // then update static application-wide
+      QLOG_STR("Removed db for thread " + QString::number((qulonglong)(QThread::currentThreadId())) + " connection name " + dbConnectionName + " nr connections = " + QString::number(iDbPool.count()) ) ; 
+    }
+    unlock() ; 
+}
 

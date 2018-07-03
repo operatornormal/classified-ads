@@ -1,5 +1,5 @@
 /*    -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Jarvinen 2013-2016.
+  Classified Ads is Copyright (c) Antti Jarvinen 2013-2018.
 
   This file is part of Classified Ads.
 
@@ -20,18 +20,18 @@
 
 #ifndef CLASSIFIED_DATAMODEL_H
 #define CLASSIFIED_DATAMODEL_H
-#include <QSqlDatabase>
 #include <QObject>
+#include <QSqlDatabase>
 #include "../mcontroller.h" // because enum from there is needed
 #include "../net/connection.h"
 #include <QHostAddress>
 #include <QPair>
+#include <QMap>
 #include "netrequestexecutor.h"
 #include "nodemodel.h"
 #include "mmodelprotocolinterface.h"
 #include "mnodemodelprotocolinterface.h"
 
-class QSqlDatabase ;
 class QMutex ;
 class Hash ;
 class QSslCertificate ;
@@ -39,6 +39,7 @@ class QSslKey ;
 class SearchModel ;
 class TrustTreeModel ;
 class TclModel ;
+class QThread ; 
 
 /**
  * @brief M of the MVC pattern. Handles permanent storage.
@@ -89,6 +90,17 @@ public:
     virtual CaDbRecordModel* caDbRecordModel() const ; /**< method for getting distributed database model part */
     virtual TrustTreeModel* trustTreeModel() const ; /**< method for getting the trust tree datamodel */
     virtual TclModel& tclModel() const ; /**< method for getting the storage of TCL programs */
+    /** 
+     * Method for opening database connection. Since Qt5.11 database
+     * class can't be shared between threads.
+     * @param aIsFirstTime Optional parameter that, when set to non-NULL
+     *        will have its value set to true, if the database did not
+     *        exist prior to this call. 
+     * 
+     * @return Instance of database connection. Caller is responsible
+     *         to properly ->close() and delete the instance after use.
+     */
+    virtual QSqlDatabase dataBaseConnection(bool* aIsFirstTime = NULL) ; 
     /**
      * Method for adding newly created peer-connection to list kept
      * by datamodel
@@ -241,6 +253,14 @@ public slots:
     void notifyOfContentReceived(const Hash& aHashOfContent,
                                  const Hash& aHashOfClassification,
                                  const ProtocolItemType aTypeOfReceivdContent) ;
+
+    /** 
+     * Thread cleanup slot. Most importantly closes possible open database
+     * connection that thread may have open. Should be used by explicitly
+     * calling from end of ::run() method or by connecting a suitable 
+     * signal to this slot. 
+     */
+    void threadTerminationCleanup( const QThread *aTerminatingThread ) ; 
 protected:
     /**
      * for periodical stuff inside datamodel
@@ -250,20 +270,28 @@ private:
     bool openDB();
     QSqlError lastError();
     // 1st-time initialization methods ahead
-    bool createTables() ;
+    bool createTables(QSqlDatabase aDb) ;
     // additions to first version of tables
-    bool createTablesV2() ;
+    bool createTablesV2(QSqlDatabase aDb) ;
     // additions to 2nd version of tables
-    bool createTablesV3() ;
+    bool createTablesV3(QSqlDatabase aDb) ;
     // additions to 3rd version of tables
-    bool createTablesV4() ;
+    bool createTablesV4(QSqlDatabase aDb) ;
     void initPseudoRandom() ; /**< just calls srand() */
 signals:
     void error(MController::CAErrorSituation aError,
                const QString& aExplanation) ;
 private:
     MController *iController  ;
-    QSqlDatabase iDb;/**< actual storage here */
+    /** 
+     * Pool of database connections, one for each thread. See method
+     * @ref dataBaseConnection. When thread needs database connection, 
+     * it acquires QSqlDatabase and the instance is stored here, 
+     * thread pointer being the key to the database instance. When thread
+     * stops executing it should call a cleanup slot 
+     * @ref threadTerminationCleanup.
+     */
+    QMap<const QThread*, QSqlDatabase> iDbPool ;
     QMutex* iMutex ; /**< this mutex protects access to this datamodel */
     QList <Connection *> *iConnections ; /** Network connections currently open */
     NodeModel* iNodeModel ;/**< datamodel about our peers */

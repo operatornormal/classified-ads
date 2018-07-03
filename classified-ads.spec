@@ -1,5 +1,5 @@
 Name:		classified-ads
-Version:	0.12
+Version:	0.13
 Release:	1%{?dist}
 Summary:	Classified ads is distributed, server-less messaging system
 
@@ -20,6 +20,7 @@ BuildRequires:	opus-devel
 BuildRequires:	tcl-devel
 BuildRequires:	tk-devel
 BuildRequires:	zlib-devel
+BuildRequires:	bzip2-devel
 
 %description
 Classified ads is an attempt to re-produce parts of the functionality
@@ -44,20 +45,6 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/classifi
 desktop-file-validate %{buildroot}/%{_datadir}/applications/classified-ads.desktop
 %find_lang %{name}
 
-%post
-/usr/bin/update-desktop-database &> /dev/null || :
-/bin/touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
-
-%postun
-/usr/bin/update-desktop-database &> /dev/null || :
-if [ $1 -eq 0 ] ; then
-    /bin/touch --no-create %{_datadir}/icons/hicolor &>/dev/null
-    /usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
-fi
-
-%posttrans
-/usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
-
 %files -f %{name}.lang
 %doc README.TXT
 %{_bindir}/classified-ads
@@ -73,6 +60,15 @@ fi
 %{_datadir}/doc/classified-ads/examples/calendar.tcl
 
 %changelog
+* Sun Jun 24 2018 Antti Jarvinen <antti.jarvinen@katiska.org> - 0.13
+- New upstream version: refactoring due to qt5.11 changes
+
+* Wed Feb 07 2018 Fedora Release Engineering <releng@fedoraproject.org> - 0.12-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
+
+* Sun Jan 07 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.12-2
+- Remove obsolete scriptlets
+
 * Sun Nov 12 2017 Antti Jarvinen <antti.jarvinen@katiska.org> - 0.12-1
 - New upstream version: new features, many new translations
 - Appdata moved to /usr/share/metainfo

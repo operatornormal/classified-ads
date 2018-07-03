@@ -71,7 +71,7 @@ void CAListingModel::setClassification(const Hash&  aForumToList ) {
     iItemAndArticleHashRelation->clear() ;
     iForumToList = aForumToList ;
     if ( aForumToList != KNullHash ) {
-        QSqlQuery q ;
+        QSqlQuery q(iController->model().dataBaseConnection()) ;
         bool operation_success ;
         operation_success = q.prepare("select hash1,hash2,hash3,hash4,hash5,"
                                       "display_name,time_of_publish,reply_to from classified_ad where "
@@ -164,7 +164,7 @@ void CAListingModel::newCaReceived(const Hash& aHashNewCa,
 bool CAListingModel::insertCaIntoModel(const Hash& aArticleFingerPrint) {
     bool retval ( false ) ;
 
-    QSqlQuery q ;
+    QSqlQuery q (iController->model().dataBaseConnection());
     bool operation_success ;
     operation_success = q.prepare("select display_name,time_of_publish,reply_to from classified_ad where "
                                   "hash1=:hash1 and hash2=:hash2 and "

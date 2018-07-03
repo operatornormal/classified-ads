@@ -1,21 +1,21 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-    Classified Ads is Copyright (c) Antti Järvinen 2013.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
 
-    This file is part of Classified Ads.
+  This file is part of Classified Ads.
 
-    Classified Ads is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  Classified Ads is free software; you can redistribute it and/or
+  modify it under the terms of the GNU Lesser General Public
+  License as published by the Free Software Foundation; either
+  version 2.1 of the License, or (at your option) any later version.
 
-    Classified Ads is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Classified Ads is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with Classified Ads; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+  You should have received a copy of the GNU Lesser General Public
+  License along with Classified Ads; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 
@@ -23,6 +23,7 @@
 #define CONNECTION_H
 #include <QTcpSocket> // for SocketError
 #include <QHostAddress> // for ipv6 addr type
+#include <QMutex>
 #include "protocol.h"
 #include "node.h"
 
@@ -236,6 +237,10 @@ public slots:
      * Connected from QSslSocket. Called when bytes are available
      */
     void readyRead () ; 
+    /**
+     * Slot called at thread finish. Contains cleanup operations. 
+     */
+    void aboutToFinish() ; 
 signals:
     void error(QTcpSocket::SocketError socketError);
     void finished() ;
@@ -314,6 +319,8 @@ protected: // these are not public
     Model& iModel ; /**< datamodel reference */
     /** when starting to receive packet from peer, length is stored here */
     quint32 iBytesExpectedInPacketBeingRead ;
+    /** when receiving packet from peer, length is stored here */
+    quint32 iBytesInPacketBeingRead ;  
     /** when reading packet from peer, this contains bytes being read */
     QByteArray *iBytesRead ;
     /**
@@ -389,5 +396,14 @@ protected: // these are not public
      * hash of peering node
      */
     Hash iPeerHash;
+    /**
+     * Mutex for read operation
+     */
+    QMutex iReadMutex ;
+    /**
+     * flag for read operation in progress
+     */
+    bool iIsAlreadyReading ; 
+  
 } ;
 #endif

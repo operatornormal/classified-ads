@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
 
   This file is part of Classified Ads.
 
@@ -77,10 +77,8 @@ const static QString KStrConcerningReligiousRituals ("ReligiousRituals");
 const static QString KStrConcerningPhilosophy ("Philosophy");
 
 ClassifiedAdsModel::ClassifiedAdsModel(MController *aController,
-                                       const MModelProtocolInterface &aModel)
-    : ModelBase("classified_ad",KMaxRowsInTableClassified_Ad),
-      iController(aController),
-      iModel(aModel),
+                                       MModelProtocolInterface &aModel)
+    : ModelBase("classified_ad",KMaxRowsInTableClassified_Ad,aController,aModel),
       iNewCaObservers(NULL) {
     LOG_STR("ClassifiedAdsModel::ClassifiedAdsModel()") ;
     iNewCaObservers = new QList<CAObserver*> () ;
@@ -283,7 +281,7 @@ Hash ClassifiedAdsModel::publishClassifiedAd(const Profile& aPublishingProfile, 
 
         articleFingerPrint.calculate(articleJson) ;
         groupFingerPrint.calculate(aAd.iGroup.toUtf8()) ;
-        QSqlQuery ins ;
+        QSqlQuery ins (iModel.dataBaseConnection()) ;
         operation_success= ins.prepare("insert into classified_ad("
                                        "hash1,hash2,hash3,hash4,hash5,"
                                        "group_hash1,group_hash2,group_hash3,"
@@ -358,7 +356,7 @@ bool ClassifiedAdsModel::caDataForPublish(const Hash& aFingerPrint,
         QByteArray& aPublicKeyOfPublisher,
         quint32 *aTimeOfPublish ) {
     bool retval = false ;
-    QSqlQuery query ;
+    QSqlQuery query  (iModel.dataBaseConnection()) ;
     Hash fingerPrintOfPublisherKey;
     retval = query.prepare ("select jsondata,signature from classified_ad where jsondata is not null and "
                             "hash1 = :hash1 and hash2 = :hash2 and hash3 = :hash3 and hash4 = :hash4 and hash5 = :hash5" ) ;
@@ -442,7 +440,7 @@ bool ClassifiedAdsModel::doHandleReceivedCA(const Hash& aFingerPrint,
     bool hostAlreadyHadContent ( false ) ;
     bool operation_success(false) ;
     bool contentWasInserted ( false ) ;
-    QSqlQuery query ;
+    QSqlQuery query (iModel.dataBaseConnection()) ;
     Hash groupFingerPrint ;
     retval = query.prepare ("select count(jsondata),count(hash1) from classified_ad where hash1 = :hash1 and hash2 = :hash2 and hash3 = :hash3 and hash4 = :hash4 and hash5 = :hash5" ) ;
     if ( retval ) {
@@ -474,7 +472,7 @@ bool ClassifiedAdsModel::doHandleReceivedCA(const Hash& aFingerPrint,
         if ( count == 0 ) {
             // ok, we had the hash in the db but we did not have the content.
             needsToInsert = true ;
-            QSqlQuery deletia ;
+            QSqlQuery deletia (iModel.dataBaseConnection()) ;
             deletia.prepare("delete from classified_ad where hash1 = :hash1 and hash2 = :hash2 and hash3 = :hash3 and hash4 = :hash4 and hash5 = :hash5") ;
             deletia.bindValue(":hash1", aFingerPrint.iHash160bits[0]);
             deletia.bindValue(":hash2", aFingerPrint.iHash160bits[1]);
@@ -515,7 +513,7 @@ bool ClassifiedAdsModel::doHandleReceivedCA(const Hash& aFingerPrint,
 
                 groupFingerPrint.calculate(ca.iGroup.toUtf8()) ;
 
-                QSqlQuery ins ;
+                QSqlQuery ins (iModel.dataBaseConnection()) ;
                 operation_success= ins.prepare("insert into classified_ad("
                                                "hash1,hash2,hash3,hash4,hash5,"
                                                "group_hash1,group_hash2,group_hash3,"
@@ -626,7 +624,7 @@ CA ClassifiedAdsModel::caByHash(const Hash& aFingerPrint) {
     CA retval ;
     bool operation_success ;
     if ( aFingerPrint != KNullHash ) {
-        QSqlQuery query ;
+        QSqlQuery query (iModel.dataBaseConnection()) ;
         operation_success = query.prepare ("select jsondata from classified_ad where "
                                            "jsondata is not null and hash1 = :hash1 and hash2 = :hash2 and "
                                            "hash3=:hash3 and hash4=:hash4 and hash5=:hash5" ) ;
@@ -652,7 +650,7 @@ CA ClassifiedAdsModel::caByHash(const Hash& aFingerPrint) {
 
 void ClassifiedAdsModel::reIndexAllAdsIntoFTS() {
     QList <Hash> articles ;
-    QSqlQuery query;
+    QSqlQuery query (iModel.dataBaseConnection()) ;
     bool ret ;
     query.exec("delete from classified_ad_search") ;
     ret = query.prepare ("select hash1,hash2,hash3,hash4,hash5 from classified_ad") ;
@@ -679,7 +677,7 @@ void ClassifiedAdsModel::fillBucket(QList<SendQueueItem>& aSendQueue,
                                     const Hash& aEndOfBucket,
                                     quint32 aLastMutualConnectTime,
                                     const Hash& aForNode ) {
-    QSqlQuery query;
+    QSqlQuery query (iModel.dataBaseConnection()) ;
     bool ret ;
     ret = query.prepare ("select hash1,hash2,hash3,hash4,hash5 from classified_ad where hash1 >= :start and hash1 <= :end and time_of_publish > :last_connect_time and time_of_publish < :curr_time and jsondata is not null and ( recvd_from != :lowbits_of_requester or recvd_from is null ) order by time_of_publish desc limit 1000" ) ;
     if ( ret ) {
@@ -723,7 +721,7 @@ void ClassifiedAdsModel::caListingByClassification(const Hash& aClassificationHa
         quint32 aEndDate,
         QList<QPair<Hash,quint32> >& aResultingArticles,
         const Hash& aRequestingNode) {
-    QSqlQuery query;
+    QSqlQuery query (iModel.dataBaseConnection()) ;
     bool ret ;
     ret = query.prepare ("select hash1,hash2,hash3,hash4,hash5,time_of_publish from classified_ad where group_hash1 = :g1 and group_hash2 = :g2 and group_hash3 = :g3 and group_hash4 = :g4 and group_hash5 = :g5 and time_of_publish >= :startTime and time_of_publish <= :endTime and jsondata is not null and ( recvd_from != :lowbits_of_requester or recvd_from is null ) order by time_of_publish desc limit 1000" ) ;
     if ( ret ) {
@@ -758,7 +756,7 @@ bool ClassifiedAdsModel::caListingByClassificationReceived(QList<QPair<Hash,quin
         const Hash& aClassification) {
 
     // start by figuring out which articles we already have
-    QSqlQuery query;
+    QSqlQuery query (iModel.dataBaseConnection()) ;
     bool ret ;
     QByteArray selectStatement ("select hash1,hash2,hash3,hash4,hash5,time_of_publish from classified_ad where group_hash1 = :g1 and group_hash2 = :g2 and group_hash3 = :g3 and group_hash4 = :g4 and group_hash5 = :g5 and jsondata is not null and hash1 in (") ;
     const QByteArray closingParenthese(")") ;
@@ -797,10 +795,10 @@ bool ClassifiedAdsModel::caListingByClassificationReceived(QList<QPair<Hash,quin
     if ( ret && ( aReceivedArticles.size() > 0 ) ) {
         LOG_STR2("List of ads: we did not have %d articles", aReceivedArticles.size()) ;
         quint32 current_time ( QDateTime::currentDateTimeUtc().toTime_t() ) ;
-        QSqlQuery query2;
+        QSqlQuery query2 (iModel.dataBaseConnection()) ;
         ret = query2.exec("begin transaction ;") ;
         for ( int i = 0 ; ret && i <aReceivedArticles.size() ; i++ ) {
-            QSqlQuery countQuery;
+            QSqlQuery countQuery (iModel.dataBaseConnection()) ;
             int numberOfRowsAlready ( 0 ) ;
 
             if ( countQuery.prepare("select count(hash1) from classified_ad where hash1=:hash1,"
@@ -817,7 +815,7 @@ bool ClassifiedAdsModel::caListingByClassificationReceived(QList<QPair<Hash,quin
                 }
             }
             if ( numberOfRowsAlready == 0 ) {
-                QSqlQuery query3 ;
+                QSqlQuery query3 (iModel.dataBaseConnection()) ;
                 ret = query3.prepare ( "insert into classified_ad ("
                                        "hash1,hash2,hash3,hash4,hash5,"
                                        "group_hash1,group_hash2,group_hash3,group_hash4,group_hash5,"
@@ -862,7 +860,7 @@ bool ClassifiedAdsModel::caListingByClassificationReceived(QList<QPair<Hash,quin
             req.iMaxNumberOfItems = 1 ;
             iModel.addNetworkRequest(req) ;
         }
-        QSqlQuery query4;
+        QSqlQuery query4 (iModel.dataBaseConnection()) ;
         ret = query4.exec("commit ;") ;
     }
     return ret ;

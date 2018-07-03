@@ -20,6 +20,7 @@
 
 #include <QtGui>
 #include <QMessageBox>
+#include <QAction>
 #include "profilecommentdisplay.h"
 #include "../mcontroller.h"
 #include "../log.h"

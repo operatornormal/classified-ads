@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
 
   This file is part of Classified Ads.
 
@@ -31,10 +31,8 @@
 #include "searchmodel.h"
 
 ProfileModel::ProfileModel(MController *aController,
-                           const MModelProtocolInterface &aModel)
-    : ModelBase("profile",KMaxRowsInTableProfile),
-      iController(aController),
-      iModel(aModel) {
+                           MModelProtocolInterface &aModel)
+    : ModelBase("profile",KMaxRowsInTableProfile,aController,aModel) {
     LOG_STR("ProfileModel::ProfileModel()") ;
     connect(this,
             SIGNAL(  error(MController::CAErrorSituation,
@@ -75,7 +73,7 @@ bool ProfileModel::publishProfile(const Profile& aProfile) {
     if ( profileJSon.length() > 0 ) {
         QByteArray digitalSignature ;
         if ( iController->model().contentEncryptionModel().sign(aProfile.iFingerPrint, profileJSon, digitalSignature) == 0 ) {
-            QSqlQuery query;
+            QSqlQuery query(iModel.dataBaseConnection());
             retval = query.prepare ("update profile set profiledata = :profiledata,signature=:signature,display_name=:display_name,is_private=:is_private,time_of_publish=:time_of_publish where hash1 = :hash1 and hash2 = :hash2 and hash3 = :hash3 and hash4 = :hash4 and hash5 = :hash5" ) ;
             if ( retval ) {
                 query.bindValue(":hash1", aProfile.iFingerPrint.iHash160bits[0]);
@@ -113,7 +111,7 @@ Profile* ProfileModel::profileByFingerPrint(const Hash& aFingerPrint,
         bool aOmitImage ) {
     LOG_STR("ProfileModel::profileByFingerPrint()") ;
     Profile* retval = NULL ;
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     bool ret ;
     ret = query.prepare ("select profiledata,signature,is_private from profile where hash1 = :hash1 and hash2 = :hash2 and hash3 = :hash3 and hash4 = :hash4 and hash5 = :hash5" ) ;
     if ( ret ) {
@@ -166,7 +164,7 @@ bool ProfileModel::profileDataByFingerPrint(const Hash& aFingerPrint,
         QByteArray* aResultingPublicKey) {
     LOG_STR("ProfileModel::profileDataByFingerPrint()") ;
     bool retval = false ;
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     bool ret ;
     ret = query.prepare ("select profiledata,signature,is_private,time_of_publish,pubkey from profile where hash1 = :hash1 and hash2 = :hash2 and hash3 = :hash3 and hash4 = :hash4 and hash5 = :hash5" ) ;
     if ( ret ) {
@@ -290,7 +288,7 @@ bool ProfileModel::doHandlepublishedOrSentProfile(const Hash& aFingerPrint,
                 // lets try verifying:
                 if ( iController->model().contentEncryptionModel().verify(aFingerPrint, aContent, aSignature) == true ) {
                     // good signature
-                    QSqlQuery query;
+                    QSqlQuery query(iModel.dataBaseConnection());
                     retval = query.prepare ("update profile set profiledata = :profiledata,signature=:signature,is_private=:is_private,display_name=:display_name,time_of_publish=:time_of_publish,recvd_from=:recvd_from where hash1 = :hash1 and hash2 = :hash2 and hash3 = :hash3 and hash4 = :hash4 and hash5 = :hash5" ) ;
                     if ( retval ) {
                         query.bindValue(":hash1", aFingerPrint.iHash160bits[0]);
@@ -335,7 +333,7 @@ bool ProfileModel::doHandlepublishedOrSentProfile(const Hash& aFingerPrint,
                 iController->model().contentEncryptionModel().insertOrUpdatePublicKey(aProfilePublicKey,aFingerPrint) ;
                 if ( iController->model().contentEncryptionModel().verify(aFingerPrint, aContent, aSignature) == true ) {
                     // good signature
-                    QSqlQuery query;
+                    QSqlQuery query(iModel.dataBaseConnection());
                     retval = query.prepare ("update profile set profiledata=:profiledata,signature=:signature,is_private=:is_private,display_name=:display_name,time_of_publish=:time_of_publish,recvd_from=:recvd_from where hash1=:hash1 and hash2=:hash2 and hash3=:hash3 and hash4=:hash4 and hash5=:hash5" ) ;
                     if ( retval ) {
                         query.bindValue(":profiledata", aContent);
@@ -404,7 +402,7 @@ void ProfileModel::fillBucket(QList<SendQueueItem>& aSendQueue,
                               const Hash& aEndOfBucket,
                               quint32 aLastMutualConnectTime,
                               const Hash& aForNode ) {
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     bool ret ;
     ret = query.prepare ("select hash1,hash2,hash3,hash4,hash5,time_of_publish from profile where hash1 >= :start and hash1 <= :end and time_of_publish > :last_connect_time and time_of_publish < :curr_time and ( recvd_from != :lowbits_of_requester or recvd_from is null ) order by time_of_publish desc limit 1000" ) ;
     if ( ret ) {
@@ -454,7 +452,7 @@ void ProfileModel::fillBucket(QList<SendQueueItem>& aSendQueue,
 
 Hash ProfileModel::profileWithOldestTimeSinceMsgPoll(quint32* aLastPollTime) {
     Hash retval ;
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     quint32 timestampFromDb ( 0 ) ;
     bool ret ;
     ret = query.prepare ("select hash1,hash2,hash3,hash4,hash5,last_msgpoll_time from privatekeys where last_msgpoll_time = ( select min(last_msgpoll_time) from privatekeys ) or last_msgpoll_time is null order by last_msgpoll_time asc limit 1" ) ;
@@ -487,7 +485,7 @@ void ProfileModel::setPrivateMessagePollTimeForProfile(const quint32 aTimeStamp,
 
         const Hash& aProfile ) {
     bool ret ;
-    QSqlQuery query2 ;
+    QSqlQuery query2(iModel.dataBaseConnection()) ;
     ret = query2.prepare("update privatekeys set last_msgpoll_time = :last_msgpoll_time where hash1=:h1 and hash2=:h2 and hash3=:h3 and hash4=:h4 and hash5=:h5") ;
     if ( !ret ) {
         QLOG_STR(query2.lastError().text() + " "+ __FILE__ + QString::number(__LINE__)) ;
@@ -519,7 +517,7 @@ void  ProfileModel::setPrivateDataForProfile( const Hash& aProfile,
             dataJSon,
             encryptedJson ) ) {
         bool ret ;
-        QSqlQuery query2 ;
+        QSqlQuery query2(iModel.dataBaseConnection()) ;
         ret = query2.prepare("update privatekeys set private_data = :private_data where hash1=:h1 and hash2=:h2 and hash3=:h3 and hash4=:h4 and hash5=:h5") ;
         if ( !ret ) {
             QLOG_STR(query2.lastError().text() + " "+ __FILE__ + QString::number(__LINE__)) ;
@@ -544,7 +542,7 @@ void  ProfileModel::setPrivateDataForProfile( const Hash& aProfile,
 QVariant ProfileModel::privateDataOfProfile( const Hash& aProfile ) {
     QVariant retval ;
 
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     bool ret ;
     ret = query.prepare ("select private_data from privatekeys where hash1 = :hash1 and hash2 = :hash2 and hash3 = :hash3 and hash4 = :hash4 and hash5 = :hash5") ;
     if ( ret ) {
@@ -579,7 +577,7 @@ QVariant ProfileModel::privateDataOfProfile( const Hash& aProfile ) {
 
 time_t ProfileModel::getLastProfileUpdateTime( const Hash& aProfile ) {
     time_t retval ( 0 ) ;
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     bool ret ;
     ret = query.prepare ("select time_of_update_poll from profile where hash1 = :hash1 and hash2 = :hash2 and hash3 = :hash3 and hash4 = :hash4 and hash5 = :hash5") ;
     if ( ret ) {
@@ -603,7 +601,7 @@ time_t ProfileModel::getLastProfileUpdateTime( const Hash& aProfile ) {
 
 
 void ProfileModel::setLastProfileUpdateTime( const Hash& aProfile,time_t aTime ) {
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     bool ret ;
     ret = query.prepare ("update profile set time_of_update_poll = :time_of_update_poll where hash1 = :hash1 and hash2 = :hash2 and hash3 = :hash3 and hash4 = :hash4 and hash5 = :hash5") ;
     if ( ret ) {
@@ -623,7 +621,7 @@ void ProfileModel::setLastProfileUpdateTime( const Hash& aProfile,time_t aTime )
 
 void ProfileModel::reIndexAllProfilesIntoFTS() {
     QList <Hash> profiles ;
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     bool ret ;
     query.exec("delete from profile_search") ;
     ret = query.prepare ("select hash1,hash2,hash3,hash4,hash5 from profile where is_private='false'") ;
@@ -650,7 +648,7 @@ void ProfileModel::reIndexAllProfilesIntoFTS() {
 }
 bool ProfileModel::deleteOldestDataRowInTable() {
     bool ret = false ;
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     // this overridden version from datamodelbase is different in
     // that way that this looks also into table privatekeys
     // and does not delete profiles that we have private keys for.

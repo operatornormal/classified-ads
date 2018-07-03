@@ -1,5 +1,5 @@
 /*    -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2016.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
 
   This file is part of Classified Ads.
 
@@ -175,7 +175,7 @@ void NetworkRequestExecutor::run() {
         // incomplete ; it is not based on node greeting of the
         // node itself, it actually contains only hash and
         // ip addr..
-        QSqlQuery query;
+        QSqlQuery query(iController->model().dataBaseConnection());
         // sqlite documentation says that while single sql statement is
         // fast, transaction is slow. because here we after some time
         // running always make both insert and delete, lets have then

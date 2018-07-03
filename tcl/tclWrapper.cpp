@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
 
   This file is part of Classified Ads.
 
@@ -187,6 +187,9 @@ void TclWrapper::run() {
         deleteLater() ;
     }
     iMainWindowTitle = KMainWindowTitle ;
+    iModel.lock() ;
+    iModel.threadTerminationCleanup(this) ; 
+    iModel.unlock() ;
     LOG_STR("TclWrapper::run out") ;
     QCoreApplication::processEvents() ;
 }

@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-16.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
 
   This file is part of Classified Ads.
 
@@ -34,6 +34,7 @@
 #include "../datamodel/cadbrecordmodel.h"
 #include "../datamodel/tclmodel.h"
 #include <QFile>
+#include <QDir>
 
 MockUpModel::MockUpModel( MController *aController ) :
     iNetworkRequests(NULL),
@@ -67,10 +68,25 @@ MockUpModel::MockUpModel( MController *aController ) :
     iSearchModel->setObjectName("CA SearchModel test") ;
     iCaDbRecordModel = new CaDbRecordModel(iController, *this) ; 
     iTclModel = new TclModel(iController, *this) ; 
+    iConnections = new QList<Connection *>() ;
+    iNetReqQueue = new QList <NetworkRequestExecutor::NetworkRequestQueueItem>();
+    iDb = QSqlDatabase::addDatabase("QSQLITE", "ca-test-db") ; 
+    QString path(QDir::home().path());
+    path.append(QDir::separator()).append(".classified_ads");
+    if (!QDir(path).exists()) {
+        QDir().mkdir(path) ;
+    }
+    path.append(QDir::separator()).append("sqlite_db");
+    path = QDir::toNativeSeparators(path);
+    iDb.setDatabaseName(path);
+    // Open database
+    iDb.open() ;
     LOG_STR("MockUpModel::MockUpModel out\n") ;
 }
 
 MockUpModel::~MockUpModel() {
+    iDb.close() ; 
+    QSqlDatabase::removeDatabase("ca-test-db") ; 
     delete iNetworkRequests ;
     delete iNodeModel ;
     delete iProfileModel ;
@@ -138,4 +154,18 @@ CaDbRecordModel* MockUpModel::caDbRecordModel() const {
 
 TclModel& MockUpModel::tclModel() const {
     return *iTclModel ; 
+}
+
+
+QSqlDatabase MockUpModel::dataBaseConnection(bool* /* aIsFirstTime */ ) {
+    return iDb ; 
+}
+
+const QList <Connection *>& MockUpModel::getConnections() const {
+    return *iConnections ;
+}
+
+QList <NetworkRequestExecutor::NetworkRequestQueueItem>&
+MockUpModel::getNetRequests() const {
+    return *iNetReqQueue ;
 }
