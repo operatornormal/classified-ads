@@ -10,4 +10,8 @@ override_dh_auto_configure:
 
 override_dh_auto_clean:
 	cd graphics-highres && $(MAKE) clean
+	cd testca && ( $(MAKE) clean || /bin/true )
 	dh_auto_clean
+
+override_dh_auto_test:
+	xvfb-run -a dh_auto_test
