@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2015.
+  Classified Ads is Copyright (c) Antti Järvinen 2015-2018.
 
   This file is part of Classified Ads.
 
@@ -84,7 +84,7 @@ bool CallButtonDelegate::editorEvent(QEvent *event,
                     iCallEngine.closeCall(callId) ;
                     break ;
                 default:
-                    QLOG_STR("Huh, editor-event in colum with no editor?") ;
+                    QLOG_STR("Huh, editor-event in column with no editor?") ;
                     break ;
                 }
             }
