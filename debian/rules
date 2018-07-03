@@ -2,7 +2,7 @@
 export QT_SELECT := qt5
 
 %:
-	dh $@ --buildsystem=qmake --parallel
+	dh $@ --buildsystem=qmake
 
 override_dh_auto_configure:
 	cd graphics-highres && $(MAKE)

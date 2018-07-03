@@ -4,6 +4,7 @@ classified-ads (0.13-1) unstable; urgency=medium
   * d/compat set to 10, Standards-version 4.1.4
   * Unit test suite is run during package creation
   * Safe URL for accessing copyright format, dh version according to compat 10
+  * Removed obsolete --parallel option from dh
 
  -- Antti Järvinen <antti.jarvinen@katiska.org>  Tue, 03 Jul 2018 17:41:24 +0300
 
