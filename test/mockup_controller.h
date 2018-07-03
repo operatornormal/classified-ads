@@ -61,6 +61,7 @@ public:
      * method for showing UI
      */
     virtual void showUI() ;
+    void setMockupModel(MockUpModel* aModel) ; /**< setter for 2nd model */
 public slots:
     virtual void exitApp() ; /**< quitting */
     virtual void displayAboutBox() ; /**< bragging */
@@ -170,6 +171,7 @@ public slots:
 private:
     Node *iNode ; /**< our network presence object, there is single instance */
     Model *iModel ; /**< data storage animal */
+    MockUpModel* iMockupModel ; /**< Fake data storage animal */
     NetworkListener *iListener ; /**< Incoming connections handler, for ipv4 */
     QString iContentPasswd ;
     Hash iProfileHash ;

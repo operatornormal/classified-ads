@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-    Classified Ads is Copyright (c) Antti Järvinen 2013.
+    Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
 
     This file is part of Classified Ads.
 
@@ -25,7 +25,8 @@
 #include "../datamodel/mmodelprotocolinterface.h"
 #include "../datamodel/mnodemodelprotocolinterface.h"
 #include <QMutex>
-
+#include <QSslCertificate>
+#include <QSslKey>
 /**
  * @brief not a real part datamodel. debugging aid.
  */
@@ -120,11 +121,18 @@ public:
      * this model maintains a list of such nodes and tries to
      * not immediately re-connect a recently failed node */
     virtual void offerNodeToRecentlyFailedList(const Hash& aFailedNodeHash) ;
+    /**
+     * setter for node cert and key 
+     */
+    bool setNodeCertAndKey ( const QString& aCertPem, 
+                             const QString& aKeyPem) ; 
 public:
     Node* iLastNodeReceived ;
 private:
     MController *iController ;
     Hash* iFingerPrintOfThisNode ; /**< set by method openOrCreateSSLCertificate */
     QString iDnsName ;
+    QSslCertificate iCert ; 
+    QSslKey iKey ;
 } ;
 #endif

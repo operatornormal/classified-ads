@@ -65,16 +65,14 @@ int MockUpNodeModel::listenPortOfThisNode() { /**< TCP listen port number method
 }
 
 const QSslCertificate& MockUpNodeModel::nodeCert()  const {
-    static QSslCertificate retval ;
-    return retval ;
+    return iCert ;
 }
 
 /** getter for ssl certificate of SSL sock */
 const QSslKey& MockUpNodeModel::nodeKey()  const
 
 {
-    static QSslKey retval ;
-    return retval ;
+    return iKey ; 
 }
 
 QByteArray* MockUpNodeModel::getNextItemToSend(Connection& aConnection) {
@@ -173,4 +171,25 @@ QString MockUpNodeModel::getDnsName() {
 
 void MockUpNodeModel::offerNodeToRecentlyFailedList(const Hash& /*aFailedNodeHash*/) {
     // have very thin implementation here
+}
+
+bool MockUpNodeModel::setNodeCertAndKey ( const QString& aCertPem, 
+                                          const QString& aKeyPem) {
+    QSslCertificate cert(aCertPem.toUtf8(), QSsl::Pem) ; 
+    iCert = cert ; 
+    QSslKey key(aKeyPem.toUtf8(),
+                QSsl::Rsa,
+                QSsl::Pem,
+                QSsl::PrivateKey) ; 
+    iKey = key ; 
+    if ((iKey.isNull() == false) &&
+        (iCert.isNull() == false) &&
+        iFingerPrintOfThisNode ) {
+        Hash fp(iCert) ; 
+        iFingerPrintOfThisNode->fromQVariant(fp.toQVariant()) ; 
+        LOG_STR("MockUpNodeModel::setNodeCertAndKey out\n") ;        
+        return true ;
+    } else {
+        return false ; 
+    }
 }
