@@ -25,7 +25,7 @@
 #include "datamodel/netrequestexecutor.h"
 #include "datamodel/cadbrecord.h" // for CaDbRecord::SearchTerms
 
-#define CLASSIFIED_ADS_VERSION "0.11"
+#define CLASSIFIED_ADS_VERSION "0.13"
 
 class Node ;
 class Model ;
