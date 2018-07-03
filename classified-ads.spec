@@ -60,7 +60,7 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/classified-ads.deskt
 %{_datadir}/doc/classified-ads/examples/calendar.tcl
 
 %changelog
-* Sun Jun 24 2018 Antti Jarvinen <antti.jarvinen@katiska.org> - 0.13
+* Sun Jun 24 2018 Antti Jarvinen <antti.jarvinen@katiska.org> - 0.13-1
 - New upstream version: refactoring due to qt5.11 changes
 
 * Wed Feb 07 2018 Fedora Release Engineering <releng@fedoraproject.org> - 0.12-3
