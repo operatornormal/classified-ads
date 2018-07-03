@@ -1,5 +1,5 @@
 /*  -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
 
   This file is part of Classified Ads.
 
@@ -18,6 +18,7 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
+#include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlError>
 #include "searchmodel.h"
@@ -42,7 +43,7 @@ static const char *KJsonSearchItemSnippet = "text" ;
 SearchModel::SearchModel(MModelProtocolInterface& aModel,
                          MController& aController) :
     iModel(aModel),
-    iIsFTSSupported(queryIfFTSSupported()),
+    iIsFTSSupported(queryIfFTSSupported(aModel.dataBaseConnection())),
     iController(aController) {
 }
 
@@ -122,9 +123,9 @@ void SearchModel::setSearchString(const QString& aSearch,
 #endif
 }
 
-bool SearchModel::queryIfFTSSupported() {
+bool SearchModel::queryIfFTSSupported(QSqlDatabase aDataBase) {
     bool retval ( false ) ;
-    QSqlQuery query ;
+    QSqlQuery query (aDataBase);
     if ( query.prepare ("select trim(upper(sqlite_compileoption_get(:optNumber)))" ) ) {
         int i = 0 ;
         QString queryRes ;
@@ -154,8 +155,8 @@ bool SearchModel::queryIfFTSSupported() {
     return retval ;
 }
 
-void SearchModel::createFTSTables() {
-    QSqlQuery q;
+void SearchModel::createFTSTables(QSqlDatabase aDataBase) {
+    QSqlQuery q(aDataBase);
     bool ret ;
     ret = q.exec("create virtual table classified_ad_search using fts3(senderhash,sendername,subject,text)") ;
     if (!ret) {
@@ -218,7 +219,7 @@ void SearchModel::indexClassifiedAd(const CA& aCa) {
         htmlParser->clear() ;
         bool operation_success (false) ;
         if ( plainText.length() > 0 ) {
-            QSqlQuery ins ;
+            QSqlQuery ins(iModel.dataBaseConnection()) ;
             operation_success= ins.prepare("insert into classified_ad_search("
                                            "docid,senderhash,sendername,subject,text) values ("
                                            ":hash1,:senderhash,:sendername,:subject,:text)") ;
@@ -249,7 +250,7 @@ void SearchModel::indexProfileComment(const ProfileComment& aProfileComment) {
         htmlParser->setHtml(aProfileComment.iCommentText ) ;
         QString plainText(htmlParser->toPlainText()) ;
         htmlParser->clear() ;
-        QSqlQuery ins ;
+        QSqlQuery ins(iModel.dataBaseConnection()) ;
 
         operation_success= ins.prepare("insert into profilecomment_search("
                                        "docid,profilehash,commentorhash,comment,commentsubject,commentornickname) values ("
@@ -281,7 +282,7 @@ void SearchModel::indexProfile(const Profile& aProfile,
                                bool aWasUpdate) {
     if ( iIsFTSSupported && aProfile.iFingerPrint!=KNullHash  ) {
         bool operation_success (false) ;
-        QSqlQuery ins ;
+        QSqlQuery ins(iModel.dataBaseConnection()) ;
         if ( aWasUpdate == true ) {
             // was insert ; also do insert into index
             operation_success= ins.prepare("update profile_search set "
@@ -322,7 +323,7 @@ QList<SearchModel::SearchResultItem> SearchModel::performSearch(const QString& a
     QList<SearchModel::SearchResultItem> results ;
 
     if ( aSearchAds ) {
-        QSqlQuery query;
+        QSqlQuery query(iModel.dataBaseConnection());
         bool ret ;
         ret = query.prepare ("select classified_ad.hash1,classified_ad.hash2,"
                              "classified_ad.hash3,classified_ad.hash4,"
@@ -366,7 +367,7 @@ QList<SearchModel::SearchResultItem> SearchModel::performSearch(const QString& a
 
     // then search profiles
     if ( aSearchProfiles ) {
-        QSqlQuery query;
+        QSqlQuery query(iModel.dataBaseConnection());
         bool ret ;
         ret = query.prepare ("select profile.hash1,profile.hash2,"
                              "profile.hash3,profile.hash4,"
@@ -410,7 +411,7 @@ QList<SearchModel::SearchResultItem> SearchModel::performSearch(const QString& a
 
     // then search comments
     if ( aSearchComments ) {
-        QSqlQuery query;
+        QSqlQuery query(iModel.dataBaseConnection());
         bool ret ;
         ret = query.prepare ("select profilecomment.hash1,profilecomment.hash2,"
                              "profilecomment.hash3,profilecomment.hash4,"

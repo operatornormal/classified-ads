@@ -4,23 +4,28 @@ Here are briefly the steps for setting up dev env for windows:
 2. install, also select tools/MinGW4.9.2 from "components" section
 3. get openssl, instructions are in http://wiki.qt.io/Compiling_OpenSSL_with_MinGW
 3.1 e.g. -> install msys, the 32-bit version from https://msys2.github.io/
-3.2 get https://www.openssl.org/source/openssl-1.0.2d.tar.gz
+3.2 get https://www.openssl.org/source/openssl-1.0.2o.tar.gz
 3.3 get necessary goodies into msys, in msys-shell say
      $ pacmac -Sy
      $ pacman --needed -S bash pacman pacman-mirrors msys2-runtime
     restart the msys shell
      $ pacman --needed -S tar perl make
     add gcc from qt into path:
-     $ export PATH=$PATH:/c/qt/Qt5.5.0/Tools/mingw492_32/bin
+     $ export PATH=/d/Qt5.11/Tools/mingw530_32/bin:$PATH
     in directory where openssl is extracted into, configure:
      $ ./Configure --prefix=$PWD -I$PWD/include no-idea no-mdc2 no-rc5 shared mingw
     and do not try using mingw32-make, it will resort to g++ and fail due to missing CFLAGS
+     $ make depend
      $ make
-4. get miniupnpc from http://miniupnp.free.fr/files/download.php?file=miniupnpc-1.9.tar.gz
+     $ make install
+4. get miniupnpc from http://miniupnp.free.fr/files/download.php?file=miniupnpc-2.1.tar.gz
     compile by saying
-     $ export PATH=$PATH:/c/qt/Qt5.5.0/Tools/mingw492_32/bin
+     $ export PATH=/d/Qt5.11/Tools/mingw530_32/bin:$PATH
      $ export PATH=.:$PATH
-     $ make -f Makefile.mingw
+     $ make -f Makefile.mingw CC=gcc
+     $ ./wingenminiupnpcstrings.exe  miniupnpcstrings.h.in miniupnpcstrings.h
+     $ make -f Makefile.mingw CC=gcc
+
 5. get libiconv+gnu gettext, e.g. get 
      http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.14.tar.gz
      http://ftp.gnu.org/pub/gnu/gettext/gettext-0.19.6.tar.xz
@@ -39,16 +44,16 @@ Here are briefly the steps for setting up dev env for windows:
     after this the libraries needed at runtime libiconv-2.dll and libintl-8.dll 
     are at \msys32\usr\local\bin\
 5.1 get lib opus, e.g. get
-  http://downloads.xiph.org/releases/opus/opus-1.1.2.tar.gz
+  http://downloads.xiph.org/releases/opus/opus-1.2.tar.gz
   and un-tar it into some directory, I used one directory up from 
   classified ads source code and the .pro -file is now set up like this. 
   Then using same method as with openssl e.g. from MSYS shell
-      $ export PATH=$PATH:/c/qt/Qt5.5.0/Tools/mingw492_32/bin
-      $ configure --prefix=`pwd`/binary
+      $ export PATH=/d/Qt5.11/Tools/mingw530_32/bin:$PATH
+      $ sh configure --prefix=`pwd`/binary
       $ make
       $ make install
 5.2 get tcl/tk, e.g. get
-  http://prdownloads.sourceforge.net/tcl/tcl8.6.6-src.tar.gz
+  tcl8.6.7-src.tar.gz from https://sourceforge.net/projects/tcl/files/Tcl/8.6.7/ 
   and
   http://prdownloads.sourceforge.net/tcl/tk8.6.6-src.tar.gz
   and see instructions at http://wiki.tcl.tk/4424 about compiling. 
@@ -57,14 +62,14 @@ Here are briefly the steps for setting up dev env for windows:
   $ gzip -d < deps/tk8.6.6-src.tar.gz | tar xfvo -
   $ mkdir tclbuild
   $ cd tclbuild/
-  $ export PATH=$PATH:/c/qt/Qt5.5.0/Tools/mingw492_32/bin
+  $ export PATH=/d/Qt5.11/Tools/mingw530_32/bin:$PATH
   $ export PATH=.:$PATH
-  $ ../tcl8.6.6/win/configure --prefix=/opt/tcl
+  $ ../tcl8.6.7/win/configure --prefix=/opt/tcl
   $ make
   $ make install
   $ mkdir tk
   $ cd tk
-  $ ../../tk8.6.6/win/configure --prefix=/opt/tcl --with-tcl=..
+  $ ../../tk8.6.7/win/configure --prefix=/opt/tcl --with-tcl=..
   $ make 
   $ make install 
 After classified ads is compiled you need to copy 

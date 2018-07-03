@@ -1,21 +1,21 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-       Classified Ads is Copyright (c) Antti Järvinen 2013.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
 
-       This file is part of Classified Ads.
+  This file is part of Classified Ads.
 
-    Classified Ads is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  Classified Ads is free software; you can redistribute it and/or
+  modify it under the terms of the GNU Lesser General Public
+  License as published by the Free Software Foundation; either
+  version 2.1 of the License, or (at your option) any later version.
 
-    Classified Ads is distributed in the hope that it will be useful,
-       but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Classified Ads is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with Classified Ads; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+  You should have received a copy of the GNU Lesser General Public
+  License along with Classified Ads; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 #ifdef WIN32
 #define NOMINMAX
@@ -210,7 +210,7 @@ Hash ContentEncryptionModel::generateKeyPair() {
 
 bool ContentEncryptionModel::deleteKeyPair(const Hash& aHash) {
     bool ret ;
-    QSqlQuery query;
+    QSqlQuery query (iController->model().dataBaseConnection()) ;
     ret = query.prepare ("delete from profile where hash1=:hash1 and hash2=:hash2 and hash3=:hash3 and hash4=:hash4 and hash5=:hash5" ) ;
     if ( ret ) {
         query.bindValue(":hash1", aHash.iHash160bits[0]);
@@ -225,7 +225,7 @@ bool ContentEncryptionModel::deleteKeyPair(const Hash& aHash) {
             QLOG_STR(query.lastError().text() + " "+ __FILE__ + QString::number(__LINE__)) ;
             emit error(MController::DbTransactionError, query.lastError().text());
         } else {
-            QSqlQuery query2;
+            QSqlQuery query2 (iController->model().dataBaseConnection()) ;
             ret = query2.prepare ("delete from privatekeys where hash1=:hash1 and hash2=:hash2 and hash3=:hash3 and hash4=:hash4 and hash5=:hash5" ) ;
             if ( ret ) {
                 query2.bindValue(":hash1", aHash.iHash160bits[0]);
@@ -251,7 +251,7 @@ QList<Hash> ContentEncryptionModel::listKeys(bool aPrivateKeys,
         char * /*aKeyUidToSearch*/) {
     QList <Hash> retval ;
     if ( aPrivateKeys ) {
-        QSqlQuery query;
+        QSqlQuery query (iController->model().dataBaseConnection()) ;
         bool ret = query.prepare("select hash1,hash2,hash3,hash4,hash5 from privatekeys") ;
         if ( ( ret = query.exec() ) == true ) {
             while ( ret &&  query.next()  ) {
@@ -675,7 +675,7 @@ bool ContentEncryptionModel::insertOrUpdatePublicKey (const QByteArray& aPublicK
         if ( PublicKey(aFingerPrintOfKey, dummy) ) {
             // key is already in db
             bool ret ;
-            QSqlQuery query;
+            QSqlQuery query (iController->model().dataBaseConnection()) ;
             if ( aDisplayName && aDisplayName->length() > 0 ) {
                 ret = query.prepare ("update profile set time_last_reference=:time_last_reference, pubkey = :pubkey,display_name=:display_name where hash1 = :hash1 and hash2 = :hash2 and hash3 = :hash3 and hash4 = :hash4 and hash5 = :hash5" ) ;
             } else {
@@ -704,7 +704,7 @@ bool ContentEncryptionModel::insertOrUpdatePublicKey (const QByteArray& aPublicK
         } else {
             // key is brand new
             bool ret ;
-            QSqlQuery query;
+            QSqlQuery query (iController->model().dataBaseConnection()) ;
             if ( aDisplayName && aDisplayName->length() > 0 ) {
                 ret = query.prepare ("insert into profile (hash1,hash2,hash3,hash4,hash5,pubkey,time_last_reference,display_name) values (:hash1,:hash2,:hash3,:hash4,:hash5,:pubkey,:time_last_reference,:display_name)" ) ;
             } else {
@@ -744,7 +744,7 @@ bool ContentEncryptionModel::insertOrUpdatePrivateKey (const QByteArray& aPrivat
     if ( PrivateKey(aFingerPrintOfKey, dummy) ) {
         // key is already in db
         bool ret ;
-        QSqlQuery query;
+        QSqlQuery query (iController->model().dataBaseConnection()) ;
         ret = query.prepare ("update privatekeys set prikey = :prikey where hash1 = :hash1 and hash2 = :hash2 and hash3 = :hash3 and hash4 = :hash4 and hash5 = :hash5" ) ;
         if ( ret ) {
             query.bindValue(":hash1", aFingerPrintOfKey.iHash160bits[0]);
@@ -765,7 +765,7 @@ bool ContentEncryptionModel::insertOrUpdatePrivateKey (const QByteArray& aPrivat
     } else {
         // key is brand new
         bool ret ;
-        QSqlQuery query;
+        QSqlQuery query (iController->model().dataBaseConnection()) ;
         ret = query.prepare ("insert into privatekeys (hash1,hash2,hash3,hash4,hash5,prikey) values (:hash1,:hash2,:hash3,:hash4,:hash5,:prikey)" ) ;
         if ( ret ) {
             query.bindValue(":hash1", aFingerPrintOfKey.iHash160bits[0]);
@@ -793,7 +793,7 @@ bool ContentEncryptionModel::PublicKey (const Hash& aFingerPrintOfKeyToFind,
     bool retval = false ;
 
     QLOG_STR("ContentEncryptionModel::PublicKey in " + aFingerPrintOfKeyToFind.toString() ) ;
-    QSqlQuery query;
+    QSqlQuery query (iController->model().dataBaseConnection()) ;
     bool ret = query.prepare("select pubkey,time_of_publish from profile where hash1 = :hash1 and hash2 = :hash2 and hash3 = :hash3 and hash4 = :hash4 and hash5 = :hash5") ;
     query.bindValue(":hash1", aFingerPrintOfKeyToFind.iHash160bits[0]);
     query.bindValue(":hash2", aFingerPrintOfKeyToFind.iHash160bits[1]);
@@ -824,7 +824,7 @@ bool ContentEncryptionModel::PrivateKey (const Hash& aFingerPrintOfKeyToFind,
     bool retval = false ;
 
     LOG_STR2("ContentEncryptionModel::PrivateKey in %s", qPrintable(aFingerPrintOfKeyToFind.toString())) ;
-    QSqlQuery query;
+    QSqlQuery query (iController->model().dataBaseConnection()) ;
     bool ret = query.prepare("select prikey from privatekeys where hash1 = :hash1 and hash2 = :hash2 and hash3 = :hash3 and hash4 = :hash4 and hash5 = :hash5") ;
     query.bindValue(":hash1", aFingerPrintOfKeyToFind.iHash160bits[0]);
     query.bindValue(":hash2", aFingerPrintOfKeyToFind.iHash160bits[1]);

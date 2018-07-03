@@ -791,8 +791,13 @@ proc addCommentCallback { eventIdentifier } {
     # it will help in deciding which is the right db record 
     dict set newComment eventStartTime [ dict get $ev startTime ]
     dict set newComment senderId $::profileInUse
-    set p [ getProfile $::profileInUse ]
-    dict set newComment senderName [ dict get $p displayName ]
+    # getProfile will fail if operators profile is not published:
+    if { [ catch {
+	set p [ getProfile $::profileInUse ]
+	dict set newComment senderName [ dict get $p displayName ]
+    } fid ] } {
+	dict set newComment senderName $::profileInUse
+    }
     # see if this event already had local comments:
     if { [ dict exists $::allLocalComments $eventIdentifier ] } {
         # yes, this event has already been commented
@@ -1193,12 +1198,19 @@ proc loadSettings {} {
 # method that returns true if selected profile is public profile
 #
 proc isProfilePrivate {} {
-    set p [ getProfile $::profileInUse ]
-    # profile is a dictionary
-    if { [ dict get $p isPrivate ] > 0 } {
-        return true
-    } else {
-        return false
+    # getProfile will fail if operators profile is not published:
+    if { [ catch {    
+	set p [ getProfile $::profileInUse ]
+	# profile is a dictionary
+	if { [ dict get $p isPrivate ] > 0 } {
+	    return true
+	} else {
+	    return false
+	}
+    } fid ] } {
+	# if failed during query, assume it is unpublished and
+	# assume that user wants to keep the profile secret. 
+	return true
     }
 }
 #

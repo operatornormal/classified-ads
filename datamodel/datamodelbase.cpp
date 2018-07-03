@@ -1,21 +1,21 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-       Classified Ads is Copyright (c) Antti Järvinen 2013.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
 
-       This file is part of Classified Ads.
+  This file is part of Classified Ads.
 
-    Classified Ads is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  Classified Ads is free software; you can redistribute it and/or
+  modify it under the terms of the GNU Lesser General Public
+  License as published by the Free Software Foundation; either
+  version 2.1 of the License, or (at your option) any later version.
 
-    Classified Ads is distributed in the hope that it will be useful,
-       but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Classified Ads is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with Classified Ads; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+  You should have received a copy of the GNU Lesser General Public
+  License along with Classified Ads; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include "datamodelbase.h"
@@ -23,12 +23,17 @@
 #include <QObject>
 #include <QSqlQuery>
 #include <QSqlError>
+#include "model.h"
 
 ModelBase::ModelBase(QString aDataTableName,
-                     unsigned aMaxRowsToKeep )
+                     unsigned aMaxRowsToKeep,
+		     MController *aController,
+                     MModelProtocolInterface& aModel )
     : iDataTableName(aDataTableName),
       iMaxRowsToKeep(0),
-      iCurrentDbTableRowCount(0) {
+      iCurrentDbTableRowCount(0),
+      iController(aController),
+      iModel(aModel) {
     unsigned maxRowsFromDb ( getMaxRowsToKeep() ) ;
     if ( maxRowsFromDb == 0 ) {
         setMaxRowsToKeep(aMaxRowsToKeep) ; // side-effectively sets iMaxRowsToKeep
@@ -46,7 +51,7 @@ bool ModelBase::setTimeLastReference(const Hash& aObjectFingerPrint,
                                      quint32 aTimeWhenLastReferenced) {
     QLOG_STR("ModelBase::setTimeLastReference table " + iDataTableName ) ;
     bool retval (false) ;
-    QSqlQuery query;
+    QSqlQuery query (iModel.dataBaseConnection()) ;
     retval = query.prepare ("update "+iDataTableName+" set  time_last_reference=:time_last_reference where hash1 = :hash1 and hash2 = :hash2 and hash3 = :hash3 and hash4 = :hash4 and hash5 = :hash5" ) ;
     if ( retval ) {
         query.bindValue(":hash1", aObjectFingerPrint.iHash160bits[0]);
@@ -65,7 +70,7 @@ bool ModelBase::setTimeLastReference(const Hash& aObjectFingerPrint,
 }
 
 unsigned ModelBase::getMaxRowsToKeep() {
-    QSqlQuery query;
+    QSqlQuery query (iModel.dataBaseConnection()) ;
     bool retval ;
     unsigned ret ( 0 ) ;
     retval = query.prepare ("select "+iDataTableName+"_maxrows from settings");
@@ -82,7 +87,7 @@ unsigned ModelBase::getMaxRowsToKeep() {
 }
 
 void ModelBase::setMaxRowsToKeep(unsigned aRows) {
-    QSqlQuery query;
+    QSqlQuery query (iModel.dataBaseConnection()) ;
     bool retval ;
     retval = query.prepare ("update settings set "+iDataTableName+"_maxrows = :rows");
     if ( retval ) {
@@ -97,7 +102,7 @@ void ModelBase::setMaxRowsToKeep(unsigned aRows) {
 }
 
 void ModelBase::updateDbTableRowCount() {
-    QSqlQuery query;
+    QSqlQuery query (iModel.dataBaseConnection()) ;
     bool retval ;
     retval = query.prepare ("select count(hash1) from "+iDataTableName);
     if ( retval && (retval = query.exec()) && query.next ()) {
@@ -114,7 +119,7 @@ void ModelBase::updateDbTableRowCount() {
 
 void ModelBase::truncateDataTableToMaxRows(void) {
     QLOG_STR("truncateDataTableToMaxRows in, rows in db table " + iDataTableName + " = " + QString::number(iCurrentDbTableRowCount)) ;
-    QSqlQuery q ;
+    QSqlQuery q (iModel.dataBaseConnection()) ;
     q.exec("begin transaction") ;
     while(iCurrentDbTableRowCount > iMaxRowsToKeep) {
         if ( deleteOldestDataRowInTable() == false ) {
@@ -127,7 +132,7 @@ void ModelBase::truncateDataTableToMaxRows(void) {
 
 bool ModelBase::deleteOldestDataRowInTable() {
     bool ret = false ;
-    QSqlQuery query;
+    QSqlQuery query (iModel.dataBaseConnection()) ;
     // odd-looking sqlite-specific operation here. intention is to
     // delete exactly one row from table. we could delete several but
     // then we'll lose count because qt documentation says that

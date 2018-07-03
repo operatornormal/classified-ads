@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
 
   This file is part of Classified Ads.
 
@@ -33,7 +33,7 @@
 #endif
 
 TclModel::TclModel(MController *aController,
-                   const MModelProtocolInterface &aModel)
+                   MModelProtocolInterface &aModel)
     :     iController(*aController),
           iModel(aModel) {
     LOG_STR("TclModel::TclModel()") ;
@@ -64,7 +64,7 @@ Hash TclModel::locallyStoreTclProgram(const TclProgram& aProgram,
     if ( aPreviousFingerPrint != KNullHash &&
             possiblyExistingProgam.iFingerPrint != KNullHash ) {
         // there is previous version of the same program
-        QSqlQuery query;
+        QSqlQuery query(iModel.dataBaseConnection());
         ret = query.prepare ("update tclprogs set prog_name = :progname, "
                              "prog_text=:progtext, "
                              "time_modified=:time_modified, "
@@ -100,7 +100,7 @@ Hash TclModel::locallyStoreTclProgram(const TclProgram& aProgram,
     } else {
         // there were no previous version of the program
 
-        QSqlQuery query3 ;
+      QSqlQuery query3(iModel.dataBaseConnection()) ;
         ret = query3.prepare ( "insert into tclprogs ("
                                "hash1,hash2,hash3,hash4,hash5,"
                                "prog_name,prog_text,time_modified) "
@@ -137,7 +137,7 @@ Hash TclModel::locallyStoreTclProgram(const TclProgram& aProgram,
 TclProgram TclModel::tclProgramByFingerPrint(const Hash& aFingerPrint) {
     LOG_STR("TclprogramModel::tclprogramByFingerPrint()") ;
     TclProgram retval ;
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     bool ret ;
     ret = query.prepare ("select prog_name,prog_text,prog_settings,time_modified from tclprogs where hash1 = :hash1 and hash2 = :hash2 and hash3 = :hash3 and hash4 = :hash4 and hash5 = :hash5" ) ;
     if ( ret ) {
@@ -164,7 +164,7 @@ TclProgram TclModel::tclProgramByFingerPrint(const Hash& aFingerPrint) {
 }
 
 QMap<QString, Hash> TclModel::getListOfTclPrograms() {
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     QMap<QString, Hash> retval ;
     bool ret ;
     ret = query.prepare ("select hash1,hash2,hash3,hash4,hash5,"
@@ -194,7 +194,7 @@ QMap<QString, Hash> TclModel::getListOfTclPrograms() {
 }
 
 bool TclModel::discardTclProgram(const Hash& aFingerPrint) {
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     bool ret ;
     ret = query.prepare ("delete from tclprogs where hash1=:hash1 and hash2=:hash2 and "
                          "hash3=:hash3 and hash4=:hash4 and hash5=:hash5" ) ;
@@ -220,7 +220,7 @@ QString TclModel::storeTCLProgLocalData(const Hash& aProgram,
     if ( prog.iFingerPrint == KNullHash ) {
         return "No program found" ;
     } else {
-        QSqlQuery query;
+        QSqlQuery query(iModel.dataBaseConnection());
         bool ret ;
         ret = query.prepare ("update tclprogs set prog_data = :d where hash1=:hash1 and hash2=:hash2 and "
                              "hash3=:hash3 and hash4=:hash4 and hash5=:hash5" ) ;
@@ -253,7 +253,7 @@ QString TclModel::storeTCLProgLocalData(const Hash& aProgram,
 
 QByteArray TclModel::retrieveTCLProgLocalData(const Hash& aProgram) {
     QByteArray retval ; 
-    QSqlQuery query;
+    QSqlQuery query(iModel.dataBaseConnection());
     bool ret ;
     QLOG_STR("Retrieving TCL program data, prog hash = " + 
              aProgram.toString()) ; 

@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-    Classified Ads is Copyright (c) Antti Järvinen 2013.
+    Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
 
     This file is part of Classified Ads.
 
@@ -39,6 +39,7 @@ class Profile ;
 class BinaryFileListingModel ;
 class QShortcut ;
 class ProfileCommentModel ;
+class QAction ; 
 
 class FrontWidget: public QWidget {
     Q_OBJECT

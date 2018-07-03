@@ -1,5 +1,5 @@
 #
-# Classified Ads is Copyright (c) Antti Järvinen 2013-2016.
+# Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
 #
 # This file is part of Classified Ads.
 #
@@ -42,7 +42,8 @@ SOURCES = testca.cpp ../util/hash.cpp mockup_controller.cpp \
            ../datamodel/voicecall.cpp ../datamodel/cadbrecord.cpp \
            ../datamodel/cadbrecordmodel.cpp ../tcl/tclWrapper.cpp \
            ../datamodel/tclprogram.cpp ../datamodel/tclmodel.cpp \
-           ../tcl/tclCallbacks.cpp ../tcl/tclUtil.cpp ../ui/tclConsole.cpp
+           ../tcl/tclCallbacks.cpp ../tcl/tclUtil.cpp ../ui/tclConsole.cpp \
+           ../util/ungzip.cpp
 HEADERS = ../util/hash.h ../mcontroller.h mockup_controller.h \
 	   ../datamodel/model.h ../datamodel/nodemodel.h \
 	   ../datamodel/contentencryptionmodel.h ../net/networklistener.h \
@@ -68,13 +69,13 @@ HEADERS = ../util/hash.h ../mcontroller.h mockup_controller.h \
            ../net/mvoicecallengine.h ../datamodel/voicecall.h ../datamodel/cadbrecord.h \
            ../datamodel/cadbrecordmodel.h ../tcl/tclWrapper.h \
            ../datamodel/tclprogram.h ../datamodel/tclmodel.h ../tcl/tclCallbacks.h \
-           ../tcl/tclUtil.h ../ui/tclConsole.h
+           ../tcl/tclUtil.h ../ui/tclConsole.h ../util/ungzip.h
 CONFIG  += debug qtestlib 
 QT      += core network sql
 greaterThan(QT_MAJOR_VERSION, 4) {
     QT += widgets
 }
-LIBS = -lssl -lcrypto -lgcrypt -lnatpmp -lgcov -lminiupnpc -ltcl -ltk
+LIBS = -lssl -lcrypto -lgcrypt -lnatpmp -lminiupnpc -ltcl -ltk -lz -lbz2
 lessThan(QT_MAJOR_VERSION, 5) {
     LIBS += -lqjson
 }
@@ -87,4 +88,6 @@ win32 {
         TCL_VERSION = 8.6
 }
 INCLUDEPATH += /usr/include/tcl$$TCL_VERSION
-QMAKE_CXXFLAGS += -fprofile-arcs -ftest-coverage -DDEBUG
+#if uncommenting include also -lgcov in LIBS
+#QMAKE_CXXFLAGS += -fprofile-arcs -ftest-coverage -DDEBUG
+QMAKE_CXXFLAGS += -DDEBUG

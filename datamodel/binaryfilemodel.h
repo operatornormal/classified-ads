@@ -41,7 +41,7 @@ class BinaryFileModel : public ModelBase {
 
 public:
     BinaryFileModel(MController *aMController,
-                    const MModelProtocolInterface &aModel) ;
+                    MModelProtocolInterface &aModel) ;
     ~BinaryFileModel() ;
 
     /**
@@ -256,8 +256,6 @@ private: // methods
                               const quint32 aTimeStamp,
                               const bool aWasPublish,
                               const Hash& aFromNode ) ;
-private: // member variables:
-    MController *iController  ;
-    const MModelProtocolInterface& iModel ;
+
 } ;
 #endif

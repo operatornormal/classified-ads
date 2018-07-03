@@ -1,5 +1,5 @@
 #
-# Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
+# Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
 #
 # This file is part of Classified Ads.
 #
@@ -43,7 +43,11 @@ QMAKE_EXTRA_TARGETS += translations_compile
 PRE_TARGETDEPS += translations_compile
 unix {
     translations_compile.commands = cd po ; $(MAKE)
-    QMAKE_CLEAN += po/*.mo
+    QMAKE_EXTRA_TARGETS += test
+    test.target = check
+    test.depends = testca/testca.cpp
+    test.commands = cd testca ; $(QMAKE) ; $(MAKE) ; mkdir test_home ; export HOME=`pwd`/test_home ; ./testca ; rm -rf test_home ; cd .. ; touch check
+    QMAKE_CLEAN += po/*.mo check testca/testca testca/Makefile
 }
 win32 {
     translations_compile.commands = $(MAKE) -C po MSGFMT_PATH=/msys32/usr/local/bin/
@@ -130,7 +134,7 @@ FORMS = frontWidget.ui ui/profileReadersDialog.ui ui/passwordDialog.ui \
 RESOURCES     = ui_resources.qrc
 TRANSLATIONS  = classified_ads_fi.ts \
                 classified_ads_sv.ts
-unix:LIBS = -lssl -lcrypto -lnatpmp -lminiupnpc -ltcl -ltk -lz
+unix:LIBS = -lssl -lcrypto -lnatpmp -lminiupnpc -ltcl -ltk -lz -lbz2
 win32:LIBS+=-ltcl86 -ltk86 -lz
 lessThan(QT_MAJOR_VERSION, 5) {
      unix:LIBS +=  -lqjson -lmagic
@@ -138,25 +142,25 @@ lessThan(QT_MAJOR_VERSION, 5) {
 LIBS += -lopus
 # following line is needed for fedora linux, natpnp needs miniupnpc
 unix:INCLUDEPATH += /usr/include/miniupnpc
-win32:LIBS += "-L..\openssl-1.0.2d"
+win32:LIBS += "-L..\openssl-1.0.2o"
 win32:LIBS += "-lcrypto"
 win32:LIBS += "-lssl"
-win32:LIBS += "..\miniupnpc-1.9\miniupnpc.lib" 
-win32:LIBS += "-L\msys32\usr\local\lib"
+win32:LIBS += "..\miniupnpc-2.1\miniupnpc.lib" 
+win32:LIBS += "-Lc:\msys32\usr\local\lib"
 win32:LIBS += "-lintl"
-win32:LIBS += "-L..\opus-1.1.2\binary\lib"
-win32:LIBS += "-L\msys32\opt\tcl\lib"
+win32:LIBS += "-L..\opus-1.2\binary\lib"
+win32:LIBS += "-Lc:\msys32\opt\tcl\lib"
 lessThan(QT_MAJOR_VERSION, 5) {
     win32:LIBS += "-L" 
     win32:LIBS += "..\qjson-master\build\src"
     win32:LIBS += "-lqjson"
 }
 win32:LIBS += "-lWs2_32" "-lGdi32" "-lIphlpapi"
-win32:INCLUDEPATH += "..\openssl-1.0.2d\include"
-win32:INCLUDEPATH += "..\miniupnpc-1.9"
-win32:INCLUDEPATH += "\msys32\usr\local\include"
-win32:INCLUDEPATH += "..\opus-1.1.2\binary\include"
-win32:INCLUDEPATH += "\msys32\opt\tcl\include"
+win32:INCLUDEPATH += "..\openssl-1.0.2o\include"
+win32:INCLUDEPATH += "..\miniupnpc-2.1"
+win32:INCLUDEPATH += "c:\msys32\usr\local\include"
+win32:INCLUDEPATH += "..\opus-1.2\binary\include"
+win32:INCLUDEPATH += "c:\msys32\opt\tcl\include"
 lessThan(QT_MAJOR_VERSION, 5) {
     win32:INCLUDEPATH += "..\qjson-master\include"
 }
