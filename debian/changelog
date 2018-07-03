@@ -3,6 +3,7 @@ classified-ads (0.13-1) unstable; urgency=medium
   * New upstream version 0.13
   * d/compat set to 10, Standards-version 4.1.4
   * Unit test suite is run during package creation
+  * Safe URL for accessing copyright format, dh version according to compat 10
 
  -- Antti Järvinen <antti.jarvinen@katiska.org>  Tue, 03 Jul 2018 17:41:24 +0300
 
