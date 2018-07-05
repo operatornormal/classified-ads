@@ -15,6 +15,8 @@ include
    intended for others to see.
  * Performing of (word-based) searches of content posted into the system.
  * Doing voip calls between operators in the network.
+ * Extending existing functionality with Tcl scripts to build applications inside classified ads that can access resources in classified ads p2p network.
+ * Using rudimentary general-purpose distributed database for sharing data between Tcl scripts running on each users nodes.
 
 Server-less means that system has completely distributed design, each 
 node in the network implements a "mini-server" that serves other users
