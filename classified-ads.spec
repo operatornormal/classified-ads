@@ -1,9 +1,8 @@
 Name:		classified-ads
 Version:	0.13
-Release:	1%{?dist}
+Release:	4%{?dist}
 Summary:	Classified ads is distributed, server-less messaging system
 
-Group:		Applications/Internet
 License:	LGPLv2
 URL:		http://katiska.org/classified_ads/
 Source0:	https://github.com/operatornormal/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
@@ -60,6 +59,15 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/classified-ads.deskt
 %{_datadir}/doc/classified-ads/examples/calendar.tcl
 
 %changelog
+* Sun Feb 10 2019 Kalev Lember <klember@redhat.com> - 0.13-4
+- Rebuilt for miniupnpc soname bump
+
+* Thu Jan 31 2019 Fedora Release Engineering <releng@fedoraproject.org> - 0.13-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
+
+* Thu Jul 12 2018 Fedora Release Engineering <releng@fedoraproject.org> - 0.13-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
+
 * Sun Jun 24 2018 Antti Jarvinen <antti.jarvinen@katiska.org> - 0.13-1
 - New upstream version: refactoring due to qt5.11 changes
 
