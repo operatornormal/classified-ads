@@ -2,7 +2,7 @@ Source: classified-ads
 Section: net
 Priority: optional
 Maintainer: Antti Järvinen <antti.jarvinen@katiska.org>
-Build-Depends: debhelper (>= 10),
+Build-Depends: debhelper (>= 12~),
                libgcrypt-dev,
                libminiupnpc-dev,
                libnatpmp-dev,
