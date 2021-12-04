@@ -1,5 +1,5 @@
 #
-# Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
+# Classified Ads is Copyright (c) Antti Järvinen 2013-2021.
 #
 # This file is part of Classified Ads.
 #
@@ -186,7 +186,9 @@ desktopicons.path = /usr/share/app-install/icons/
 manpages.path = /usr/share/man/man1
 manpages.files = classified-ads.1
 # note this example file path appears also in file tclmodel.cpp
-examplefiles.path = /usr/share/doc/classified-ads/examples
+isEmpty(examplefiles.path){
+  examplefiles.path = /usr/share/doc/classified-ads/examples
+}
 examplefiles.files = doc/sysinfo.tcl doc/luikero.tcl doc/calendar.tcl
 INSTALLS += target \
         desktopfiles \
