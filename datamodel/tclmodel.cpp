@@ -248,7 +248,7 @@ QString TclModel::storeTCLProgLocalData(const Hash& aProgram,
             return query.lastError().text();
         } 
     }
-    return QString::null ; 
+    return QString() ; 
 }
 
 QByteArray TclModel::retrieveTCLProgLocalData(const Hash& aProgram) {

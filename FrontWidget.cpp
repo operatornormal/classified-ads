@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2021.
 
   This file is part of Classified Ads.
 
@@ -1229,11 +1229,21 @@ void FrontWidget::updateUiFromSelectedProfile() {
     if ( iSelectedProfile ) {
         ui.profileAddressValue->setText(iSelectedProfile->iFingerPrint.toString()) ;
         if ( iWindowSizeAdjusted == false ) {
-            ui.profileAddressValue->setMinimumWidth(ui.profileAddressValue->fontMetrics().width(iSelectedProfile->iFingerPrint.toString()));
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0))	  	  
+            ui.profileAddressValue->setMinimumWidth(ui.profileAddressValue->fontMetrics().horizontalAdvance(iSelectedProfile->iFingerPrint.toString()));	    
+
+            iParent.setMinimumWidth (
+                ui.profileAddressValue->fontMetrics().horizontalAdvance(iSelectedProfile->iFingerPrint.toString()) +
+                ui.imageButton->width() +
+                ui.profileAddressValue->width() -55 ) ;
+#else
+            ui.profileAddressValue->setMinimumWidth(ui.profileAddressValue->fontMetrics().width(iSelectedProfile->iFingerPrint.toString()));	    
+
             iParent.setMinimumWidth (
                 ui.profileAddressValue->fontMetrics().width(iSelectedProfile->iFingerPrint.toString()) +
                 ui.imageButton->width() +
                 ui.profileAddressValue->width() -55 ) ;
+#endif
             iWindowSizeAdjusted = true ;
         }
         ui.profileNickNameEdit->setText(iSelectedProfile->iNickName) ;
@@ -1247,7 +1257,8 @@ void FrontWidget::updateUiFromSelectedProfile() {
         if ( iSelectedProfile->iTimeOfPublish ) {
             QDateTime d ;
             d.setTime_t(iSelectedProfile->iTimeOfPublish) ;
-            ui.timeOfLastUpdateValue->setText(d.toString(Qt::SystemLocaleShortDate)) ;
+	    QLocale locale ; 
+            ui.timeOfLastUpdateValue->setText(locale.toString(d, QLocale::ShortFormat)) ;
         } else {
             ui.timeOfLastUpdateValue->setText("") ;
         }
@@ -1421,8 +1432,9 @@ void FrontWidget::updateUiFromViewedProfile() {
         ui.profileDetailsStateOfTheWorldValue->setText(iViewedProfile->iStateOfTheWorld);
         QDateTime d ;
         d.setTime_t(iViewedProfile->iTimeOfPublish) ;
-        ui.timeOfLastUpdateValue->setText(d.toString(Qt::SystemLocaleShortDate)) ;
-        QString toolTipText ( tr("Time of last update ") + " " + d.toString(Qt::SystemLocaleShortDate) ) ;
+	QLocale locale ; 
+        ui.timeOfLastUpdateValue->setText(locale.toString(d, QLocale::ShortFormat)) ;
+        QString toolTipText ( tr("Time of last update ") + " " + locale.toString(d, QLocale::ShortFormat) ) ;
         ui.profileDetailsNickNameValue->setToolTip(toolTipText) ;
         ui.profileDetailsGreetingValue->setToolTip(toolTipText) ;
         if ( !( iViewedProfile->iProfilePicture.isNull()) ) {

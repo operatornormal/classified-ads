@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2021.
 
   This file is part of Classified Ads.
 
@@ -771,8 +771,14 @@ void Connection::sslErrors ( const QList<QSslError> & errors  ) {
         case QSslError::AuthorityIssuerSerialNumberMismatch:
         case QSslError::HostNameMismatch:
         case QSslError::InvalidPurpose:
-            QLOG_STR("Ssl error ignored: " + e.errorString()) ;
-            break ;
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))	  
+        case QSslError::OcspUnauthorized:
+        case QSslError::OcspResponseCannotBeTrusted:
+        case QSslError::OcspResponseCertIdUnknown:
+        case QSslError::OcspResponseExpired:
+#endif
+	  QLOG_STR("Ssl error ignored: " + e.errorString()) ;
+	  break ;
         case QSslError::UnableToGetIssuerCertificate:
         case QSslError::UnableToDecryptCertificateSignature:
         case QSslError::UnableToDecodeIssuerPublicKey:
@@ -785,6 +791,16 @@ void Connection::sslErrors ( const QList<QSslError> & errors  ) {
         case QSslError::UnspecifiedError:
         case QSslError::NoSslSupport:
         case QSslError::CertificateBlacklisted:
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+        case QSslError::CertificateStatusUnknown:	  
+	case QSslError::OcspNoResponseFound:
+	case QSslError::OcspMalformedRequest:
+	case QSslError::OcspMalformedResponse:
+	case QSslError::OcspInternalError:
+	case QSslError::OcspTryLater:
+	case QSslError::OcspSigRequred:
+	case QSslError::OcspStatusUnknown:
+#endif
             QLOG_STR("Ssl error detected: " + e.errorString()) ;
             iNeedsToRun = false ;
             break ;

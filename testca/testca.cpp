@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2021.
 
   This file is part of Classified Ads.
 
@@ -1085,7 +1085,7 @@ void TestClassifiedAds::tryDbRecordSearchCompare() {
     small.iModifiedBefore = 1 ; 
     small.iByHavingNumberMoreThan = 2 ; 
     small.iByHavingNumberLessThan = 3 ; 
-    small.iBySearchPhrase = QString::null;
+    small.iBySearchPhrase = QString();
     medium = small ;
     medium.iBySearchPhrase = "king" ; 
     large = small ; 
@@ -1112,7 +1112,7 @@ void TestClassifiedAds::tryDbRecordSearchParse() {
     t.iModifiedBefore = std::numeric_limits<quint32>::max();
     t.iByHavingNumberMoreThan = std::numeric_limits<qint64>::min(); 
     t.iByHavingNumberLessThan = std::numeric_limits<qint64>::max();
-    t.iBySearchPhrase = QString::null ; 
+    t.iBySearchPhrase = QString() ; 
     t.iBySender = KNullHash ; 
 
     QByteArray bytesOfRecord ( 

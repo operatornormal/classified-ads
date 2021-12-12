@@ -1,5 +1,5 @@
 /*    -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2021.
 
   This file is part of Classified Ads.
 
@@ -714,7 +714,7 @@ void NetworkRequestExecutor::doSendRequestToNode(NetworkRequestQueueItem& aEntry
                             std::numeric_limits<quint32>::max(), // modified before
                             std::numeric_limits<qint64>::min(), // search number min
                             std::numeric_limits<qint64>::max(), // search number max
-                            QString::null, // searchphrase
+                            QString(), // searchphrase
                             KNullHash, // by sender
                             true) ) ; // is for publish, here "yes"
         foreach ( const CaDbRecord* r, dbRecordsToPublish ) {

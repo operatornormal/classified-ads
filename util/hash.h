@@ -1,5 +1,5 @@
-/*                                      -*-C++-*-
-    Classified Ads is Copyright (c) Antti Jarvinen 2013.
+/*      -*-C++-*- -*-coding: utf-8-unix;-*-
+    Classified Ads is Copyright (c) Antti Jarvinen 2013-2021.
 
     This file is part of Classified Ads.
 
@@ -43,10 +43,18 @@ public:
      * 32bits in size so with value 5 w get 5*32=160.
      */
     const static int KNumberOfIntsInHash = 5 ;
+  
     /**
      * constructor. produces zero-value hash.
      */
     Hash() ;
+  
+    /**
+     * Copy-constructor.
+     * @param aHashToCopyFrom take value of hash from this.
+     */
+    Hash(const Hash& aHashToCopyFrom) ;
+  
     /**
      * constructor.
      * @param aHash160bits is array of KNumberOfIntsInHash

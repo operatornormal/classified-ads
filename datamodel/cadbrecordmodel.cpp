@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2021.
 
   This file is part of Classified Ads.
 
@@ -168,7 +168,7 @@ QString CaDbRecordModel::publishDbRecord(CaDbRecord& aRecord,
         return QString("Sign operation failed") ; 
     }
 
-    return QString::null ;
+    return QString() ;
 }
 
 QList<CaDbRecord *> CaDbRecordModel::searchRecords(const Hash& aFromCollection,
@@ -722,7 +722,7 @@ QString CaDbRecordModel::persistDbRecordIntoDb(const CaDbRecord &aRecord,
     } else {
         QLOG_STR("query.exec == true") ; 
         updateFTS(aRecord,aIsNew) ; 
-        return QString::null ; // as a sign of success, return empty string
+        return QString() ; // as a sign of success, return empty string
     }
 }
 
@@ -778,7 +778,7 @@ QString CaDbRecordModel::isRecordNew(const CaDbRecord &aRecord,
             }
         }
     }
-    return QString::null ; // success
+    return QString() ; // success
 }
 
 bool CaDbRecordModel::tryVerifyRecord(CaDbRecord &aRecord,
