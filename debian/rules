@@ -1,5 +1,10 @@
 #!/usr/bin/make -f
+LC_ALL := C.UTF-8
+export LC_ALL
 export QT_SELECT := qt5
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+DPKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/buildflags.mk
 
 %:
 	dh $@ --buildsystem=qmake

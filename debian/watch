@@ -1,2 +1,3 @@
-version=3
-https://github.com/operatornormal/classified-ads/tags (?:.*/)?v?(\d[\d\.]*)\.tar\.gz
+version=4
+opts=filenamemangle=s/.+\/v?(\d\S+)\.tar\.gz/classified-ads-$1\.tar\.gz/ \
+  https://github.com/operatornormal/classified-ads/tags .*/v?(\d\S+)\.tar\.gz

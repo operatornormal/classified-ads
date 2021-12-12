@@ -31,8 +31,8 @@ Copyright: 2017 Göran Uddeborg <goeran@uddeborg.se>
 License: LGPL-2.1+
 
 Files: ui/classified-ads.appdata.xml
-Copyright: 2013 Antti Järvinen
-License: CC0
+Copyright: 2013-2021 Antti Järvinen <antti.jarvinen@katiska.org>
+License: CC0-1.0
 
 License: LGPL-2.1+
  Classified Ads is free software; you can redistribute it and/or
@@ -107,7 +107,7 @@ License: Nokia-nonfree
  Alternatively, this file may be used in accordance with the terms and
  conditions contained in a signed written agreement between you and Nokia.
 
-License: CC0
+License: CC0-1.0
  Creative Commons Legal Code
  .
  CC0 1.0 Universal
