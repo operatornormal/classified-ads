@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2021.
 
   This file is part of Classified Ads.
 
@@ -75,7 +75,7 @@ void NetworkConnectorEngine::run() {
         createConnectionsToNodesStoringPrivateMessages() ;
         if ( tryServeWishListItem() == false ) {
             // if there is nothing in wishlist, do "normal procedure"
-            // every 350 seconds
+            // every 50 seconds
             if ( timeOfLastNodeListUpdate+50 < QDateTime::currentDateTimeUtc().toTime_t() ) {
                 updateListOfNodesToConnect() ;
                 timeOfLastNodeListUpdate = QDateTime::currentDateTimeUtc().toTime_t() ;
@@ -95,7 +95,14 @@ void NetworkConnectorEngine::run() {
             // in the end, query open open connections
             iModel->lock() ;
             QList <Connection *> currentConnections = iModel->getConnections()  ;
-            connectedCount = currentConnections.size() ;
+	    connectedCount = 0 ;
+	    Connection *connectionEntry (NULL) ;
+	    // count only open connections
+	    foreach ( connectionEntry, currentConnections ) {
+	      if ( connectionEntry->connectionState() == Connection::Open ) {
+		connectedCount++ ;
+	      }
+	    }
             iModel->unlock() ;
         }
         // looks like we don't get "deleteLater()" signals processed

@@ -28,6 +28,9 @@
 #include <QFile>
 #include <assert.h>
 #include <QSqlQuery>
+#ifdef DEBUG
+#include <QLocale>
+#endif
 #include "../util/hash.h"
 #include <openssl/x509.h>
 #include <openssl/rsa.h>
@@ -38,6 +41,8 @@
 #include <QUuid>
 #include <QSslCertificate>
 #include <QSslKey>
+#include <QTimerEvent>
+#include <QDateTime>
 #include "../net/connection.h"
 #include "../net/protocol_message_formatter.h"
 #include "../net/node.h"
@@ -50,7 +55,6 @@
 #include "const.h"
 #include "searchmodel.h"
 #include "cadbrecordmodel.h"
-#include <QTimerEvent>
 
 /**
  * How many nodes to keep
@@ -63,7 +67,8 @@ NodeModel::NodeModel(MController *aController,
       iFingerPrintOfThisNode(NULL) ,
       iThisNodeCert(NULL),
       iThisNodeKey(NULL),
-      iTimerId(-1) {
+      iTimerId(-1),
+      iProgramStartTime(QDateTime::currentDateTimeUtc().toTime_t()) {
     LOG_STR("NodeModel::NodeModel()") ;
     connect(this,
             SIGNAL(  error(MController::CAErrorSituation,
@@ -601,9 +606,24 @@ QList<MNodeModelProtocolInterface::HostConnectQueueItem> NodeModel::getHotAddres
         retrieveListOfHotConnections() ; // fetch recent nodes from db
     }
 
-    if ( iHotAddresses.size() == 0 ) { // if no nodes found
+    // count actually connected nodes:
+    QList <Connection *> currentConnections = iModel.getConnections()  ;
+    int connectedCount = 0 ;
+    Connection *connectionEntry (NULL) ;
+    // count only open connections
+    foreach ( connectionEntry, currentConnections ) {
+      if ( connectionEntry->connectionState() == Connection::Open ) {
+	connectedCount++ ;
+      }
+    }
+    // count how long we've been running now:
+    quint32 seconds_from_program_start = QDateTime::currentDateTimeUtc().toTime_t() - iProgramStartTime ;
+
+    if ( iHotAddresses.size() == 0 || // if no nodes found, or prog has been running for 30 secs
+	 (seconds_from_program_start > 30 && connectedCount == 0 )) { // and no connection yet:
         // then try hard-coded one..
         //      QHostAddress seedNode("canode.katiska.org") ;
+        LOG_STR("NodeModel::getHotAddresses adding canode.katiska.org ") ;
         int seedPort ( 31111 ) ;
         const bool hasIpv6 =
             !Connection::Ipv6AddressesEqual(iController->getNode().ipv6Addr(),
@@ -622,7 +642,6 @@ QList<MNodeModelProtocolInterface::HostConnectQueueItem> NodeModel::getHotAddres
                     p.iNodeHash = KNullHash ;
                     iHotAddresses.append(p) ;
                     QLOG_STR("Added seednode IPv6 addr " + result.toString()) ;
-
                 }
                 if ( result.protocol() == QAbstractSocket::IPv4Protocol ) {
                     MNodeModelProtocolInterface::HostConnectQueueItem p ;
@@ -910,6 +929,32 @@ QList<Node *>* NodeModel::getNodesBeforeHash(const Hash& aHash,
     if ( aMaxNodes > iCurrentDbTableRowCount ) {
         aMaxNodes = iCurrentDbTableRowCount ; // don't try returning more than we have
     }
+
+    // find out latest connect time with any other node, use that in selecting
+    // only nodes that have been contacted in near past.
+    QSqlQuery max_connection_time_query (iModel.dataBaseConnection()) ;
+    quint32 max_last_conn_time(QDateTime::currentDateTimeUtc().toTime_t()) ;
+    ret = max_connection_time_query.prepare("select max(last_conn_time) from node") ;
+    if ( ret && max_connection_time_query.exec() ) {
+      while( ret &&
+	     max_connection_time_query.next() &&
+	     !max_connection_time_query.isNull(0)) {
+	max_last_conn_time = max_connection_time_query.value(0).toUInt() ;
+      }
+    }
+    quint32 start_of_connect_time_range_for_connect_candidates =
+      max_last_conn_time - ( 60 * 60 * 24 * 14 )  ; // 2 weeks
+
+#ifdef DEBUG
+    QLocale locale ;
+    QDateTime startTimeRange;
+    QDateTime endTimeRange;
+    startTimeRange.setSecsSinceEpoch(start_of_connect_time_range_for_connect_candidates) ;
+    endTimeRange.setSecsSinceEpoch(max_last_conn_time) ;
+    QLOG_STR("Fetching nodes between time range " +
+	     locale.toString(startTimeRange, QLocale::ShortFormat) +
+	     "-" + locale.toString(endTimeRange, QLocale::ShortFormat)) ;
+#endif
     QString conditional_recently_failed_condition ;
     if ( iRecentlyFailedNodes.size() > 0 ) {
         conditional_recently_failed_condition = " and hash1 not in ( " ;
@@ -922,9 +967,12 @@ QList<Node *>* NodeModel::getNodesBeforeHash(const Hash& aHash,
     }
     QLOG_STR("Failed nodes  " + conditional_recently_failed_condition) ;
     // this is fine, will use index as there is index for hash1
-    ret = query.prepare("select hash1,hash2,hash3,hash4,hash5,listenport,last_conn_time,does_listen,ipv4addr,ipv6addr1,ipv6addr2,ipv6addr3,ipv6addr4,last_nodelist_time,dns_name,tor_name from node where ( ipv4addr is not null or ipv6addr1 is not null ) and hash1 <= :hash_to_seek "+conditional_recently_failed_condition+" order by hash1 desc limit :maxrows") ;
+    ret = query.prepare("select hash1,hash2,hash3,hash4,hash5,listenport,last_conn_time,does_listen,ipv4addr,ipv6addr1,ipv6addr2,ipv6addr3,ipv6addr4,last_nodelist_time,dns_name,tor_name from node where ( ipv4addr is not null or ipv6addr1 is not null ) and hash1 <= :hash_to_seek and last_conn_time between :time_low_limit and :time_high_limit "+conditional_recently_failed_condition+" order by hash1 desc limit :maxrows") ;
     query.bindValue(":hash_to_seek", aHash.iHash160bits[0]);
     query.bindValue(":maxrows", aMaxNodes);
+    query.bindValue(":time_low_limit", start_of_connect_time_range_for_connect_candidates);
+    query.bindValue(":time_high_limit", max_last_conn_time);
+
     if ( ret && query.exec() ) {
         while ( ret &&
                 query.next() &&
@@ -979,7 +1027,9 @@ QList<Node *>* NodeModel::getNodesBeforeHash(const Hash& aHash,
         // reached. .. so in case we need to roll-over the
         // hash-space, this 2nd query here is our implementation
         // for the rolling-over.
-        ret = query2.prepare("select hash1,hash2,hash3,hash4,hash5,listenport,last_conn_time,does_listen,ipv4addr,ipv6addr1,ipv6addr2,ipv6addr3,ipv6addr4,last_nodelist_time from node where ( ipv4addr is not null or ipv6addr1 is not null ) " + conditional_recently_failed_condition + " order by hash1 desc limit :maxrows") ;
+        ret = query2.prepare("select hash1,hash2,hash3,hash4,hash5,listenport,last_conn_time,does_listen,ipv4addr,ipv6addr1,ipv6addr2,ipv6addr3,ipv6addr4,last_nodelist_time from node where ( ipv4addr is not null or ipv6addr1 is not null ) and last_conn_time between :time_low_limit and :time_high_limit " + conditional_recently_failed_condition + " order by hash1 desc limit :maxrows") ;
+	query2.bindValue(":time_low_limit", start_of_connect_time_range_for_connect_candidates);
+	query2.bindValue(":time_high_limit", max_last_conn_time);
         query2.bindValue(":maxrows", aMaxNodes - (unsigned)(retval->size()));
         if ( ret && query2.exec() ) {
             while ( ret &&
