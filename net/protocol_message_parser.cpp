@@ -1167,7 +1167,7 @@ bool  ProtocolMessageParser::parseSearchRequest( const QByteArray& aQueryBytes,
         }
         QString queryStr ;
         queryStr = QString::fromUtf8(aQueryBytes.mid(pos,strLen).constData(), strLen) ;
-        if ( queryStr.length() > 0 ) {
+        if ( queryStr.length() > -1 ) {
             retval = true ;
             bool searchAds = flags & 0x01 ;
             bool searchProfiles = flags & ( 0x01 << 1 ) ;
