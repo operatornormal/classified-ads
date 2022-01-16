@@ -1,5 +1,5 @@
 /*  -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2022.
 
   This file is part of Classified Ads.
 
@@ -38,10 +38,11 @@ static const char *KJsonSearchItemTypeProfile = "prof" ;
 static const char *KJsonSearchItemTypeComment = "comm" ;
 static const char *KJsonSearchItemFP = "fp" ;
 static const char *KJsonSearchItemSnippet = "text" ;
-
+static const char *KMagicalEmptySearchPhrase = "__ __" ;
 
 SearchModel::SearchModel(MModelProtocolInterface& aModel,
                          MController& aController) :
+    iMagicalEmptySearchPhrase(KMagicalEmptySearchPhrase),
     iModel(aModel),
     iIsFTSSupported(queryIfFTSSupported(aModel.dataBaseConnection())),
     iController(aController) {
@@ -100,7 +101,13 @@ void SearchModel::setSearchString(const QString& aSearch,
             // send queue - will be faster, will query only already-connected nodes. this
             // is all right.
             SendQueueItem itemToSpam ;
-            iSearchId.calculate(aSearch.toUtf8()) ;
+	    if ( aSearch.length() == 0 ) {
+	      // for empty string search generate a dummy id
+	      iSearchId.iHash160bits[0] = rand() ;
+	      iSearchString = iMagicalEmptySearchPhrase ; 
+	    } else {
+	      iSearchId.calculate(aSearch.toUtf8()) ;
+	    }
             itemToSpam.iItemType = RequestForSearchSend ;
             itemToSpam.iHash = iSearchId ;
             QLOG_STR("Starting network search, search id = " + QString::number(iSearchId.iHash160bits[0]) + " model = " + objectName()) ;
@@ -324,7 +331,8 @@ QList<SearchModel::SearchResultItem> SearchModel::performSearch(const QString& a
     if ( aSearchAds ) {
         QSqlQuery query(iModel.dataBaseConnection());
         bool ret ;
-	if ( aForString.isEmpty() ) {
+	if ( aForString.isEmpty() ||
+	     aForString == iMagicalEmptySearchPhrase ) {
 	  ret = query.prepare ("select classified_ad.hash1,classified_ad.hash2,"
 			       "classified_ad.hash3,classified_ad.hash4,"
 			       "classified_ad.hash5,"
@@ -377,7 +385,8 @@ QList<SearchModel::SearchResultItem> SearchModel::performSearch(const QString& a
     if ( aSearchProfiles ) {
         QSqlQuery query(iModel.dataBaseConnection());
         bool ret ;
-        if ( aForString.isEmpty() ) {
+        if ( aForString.isEmpty() ||
+	     aForString == iMagicalEmptySearchPhrase ) {
           ret = query.prepare ("select profile.hash1,profile.hash2,"
                                "profile.hash3,profile.hash4,"
                                "profile.hash5,"
@@ -430,7 +439,8 @@ QList<SearchModel::SearchResultItem> SearchModel::performSearch(const QString& a
     if ( aSearchComments ) {
         QSqlQuery query(iModel.dataBaseConnection());
         bool ret ;
-	if ( aForString.isEmpty() ) {
+	if ( aForString.isEmpty() ||
+	     aForString == iMagicalEmptySearchPhrase ) {
 	  ret = query.prepare ("select profilecomment.hash1,profilecomment.hash2,"
 			       "profilecomment.hash3,profilecomment.hash4,"
 			       "profilecomment.hash5,"
@@ -488,8 +498,7 @@ void SearchModel::getSearchCriteria(QString* aSearchStrPtr,
                                     bool* aSearchProfilesPtr,
                                     bool* aSearchCommentsPtr,
                                     Hash* aSearchIdPtr ) const {
-    if ( iSearchString.length() > 0 &&
-            ( iSearchAds || iSearchProfiles || iSearchComments ) ) {
+    if ( iSearchAds || iSearchProfiles || iSearchComments ) {
         *aSearchStrPtr = iSearchString ;
         *aSearchIdPtr = iSearchId ;
         *aSearchAdsPtr = iSearchAds ;
