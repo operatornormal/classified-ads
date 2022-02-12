@@ -8,23 +8,23 @@ msgstr ""
 "PO-Revision-Date: 2016-07-05 05:59-0400\n"
 "Last-Translator: Juhani Numminen <juhaninumminen0@gmail.com>\n"
 "Language-Team: Finnish\n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Zanata 3.9.6\n"
 "X-Language: fi_FI\n"
 "X-Qt-Contexts: true\n"
 
 # Context menu item text for menu, that appears when right-mouse is clicked on top of a file in a list. 
-#: ui/attachmentlistdialog.cpp:62
+#: ui/attachmentlistdialog.cpp:60
 msgctxt "AttachmentListDialog|"
 msgid "Save file to disk.."
 msgstr "Tallenna tiedostojärjestelmälle…"
 
 # In file open dialog this is text specifying what kind of files to include in listing, filtered by file name suffix. For example, user wants only PNG files, then text appearing in dialog filter field would say "PNG files (*.png)" and this work "files" here is the word after the word PNG.  
-#: ui/attachmentlistdialog.cpp:153 ui/attachmentlistdialog.cpp:155
+#: ui/attachmentlistdialog.cpp:151 ui/attachmentlistdialog.cpp:153
 msgctxt "AttachmentListDialog|"
 msgid "files"
 msgstr "tiedostot"
@@ -42,19 +42,19 @@ msgid "Save to TCL app library instead of regular file?"
 msgstr "Tallennetaanko TCL-ohjelmien kirjastoon vai tiedostojärjestelmälle?"
 
 # Dialog title text for dialog asking user to give a name to file for purpose of saving it to filesystem. 
-#: ui/attachmentlistdialog.cpp:170
+#: ui/attachmentlistdialog.cpp:155
 msgctxt "AttachmentListDialog|"
 msgid "Choose file name for saving"
 msgstr "Valitse nimi tiedostolle"
 
 # Dialog title text for error dialog. 
-#: ui/attachmentlistdialog.cpp:181
+#: ui/attachmentlistdialog.cpp:166
 msgctxt "AttachmentListDialog|"
 msgid "Error"
 msgstr "Vikaa"
 
 # This gives (no)  explanation about reason for "file open failure"?
-#: ui/attachmentlistdialog.cpp:182
+#: ui/attachmentlistdialog.cpp:167
 msgctxt "AttachmentListDialog|"
 msgid "File open error"
 msgstr "Vika tiedoston avaamisessa"
@@ -409,146 +409,146 @@ msgid "Publicly trusted"
 msgstr "Julkisesti luotettu"
 
 # Error message that is displayed when SSL key generation failed. Text is displayed in a dialog, after user dismisses the dialog, whole application will exit.
-#: datamodel/contentencryptionmodel.cpp:94
+#: datamodel/contentencryptionmodel.cpp:88
 msgctxt "ContentEncryptionModel|"
 msgid "SSL key generation went wrong, calling exit.."
 msgstr "SSL-avaimen rakentaminen epäonnistui, pakko poistua.."
 
 # Error message that is displayed when x509 certificate generation failed. Text is displayed in a dialog, after user dismisses the dialog, whole application will exit.
-#: datamodel/contentencryptionmodel.cpp:104
+#: datamodel/contentencryptionmodel.cpp:96
 msgctxt "ContentEncryptionModel|"
 msgid "x509 cert generation went wrong, calling exit.."
 msgstr "x509-sertifikaatin rakentaminen epäonnistui, pakko poistua.."
 
 # Error message that is displayed when RSA private key could not be saved to database. This is rather fatal error, the operator profile that user tried to create will be un-usable. 
-#: datamodel/contentencryptionmodel.cpp:202
-#: datamodel/contentencryptionmodel.cpp:300
+#: datamodel/contentencryptionmodel.cpp:194
+#: datamodel/contentencryptionmodel.cpp:292
 msgctxt "ContentEncryptionModel|"
 msgid "RSA Private key key saving went wrong"
 msgstr "Salaisen RSA-avaimen tallettaminen epäonnistui"
 
 # Error message text. This is displayed in situation where user tried to access content that he does not have encryption key for. This may appear frequently during normal operation and is no fatal error, only telling user that he is not going to see the content he was trying to access. 
-#: datamodel/contentencryptionmodel.cpp:650
+#: datamodel/contentencryptionmodel.cpp:639
 msgctxt "ContentEncryptionModel|"
 msgid "No suitable de-cryption key found"
 msgstr "Avaamiseen sopivaa salausavainta ei ole käytettävissä"
 
 # Window title text for whole application. 
-#: controller.cpp:194
+#: controller.cpp:109
 msgctxt "Controller|"
 msgid "Classified ads"
 msgstr "Luokitellut ilmoitukset"
 
 # Prompt text for password dialog
-#: controller.cpp:226
+#: controller.cpp:141
 msgctxt "Controller|"
 msgid "Enter password for protection of your messages:"
 msgstr "Anna salasana viestiesi sisällön turvaamiseksi"
 
 # Dialog text for a wait dialog (a progress-bar like thing will be shown next to this text and user is supposed to sit down and wait a moment..)
-#: controller.cpp:618
+#: controller.cpp:432
 msgctxt "Controller|"
 msgid "Fetching item from network.."
 msgstr "Kaivellaan kohdetta verkon syövereistä.."
 
 # Menu item text used in "File" menu item and when this particular item is selected, application will close
-#: controller.cpp:674
+#: controller.cpp:485
 msgctxt "Controller|"
 msgid "E&xit"
 msgstr "Sulje"
 
 # Menu item tooltip-text used in "File" menu entry and when this particular item is selected, application will close
-#: controller.cpp:676
+#: controller.cpp:487
 msgctxt "Controller|"
 msgid "Exit the application"
 msgstr "Sulje sovellus"
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a dialog telling why this application is and how to use it
-#: controller.cpp:678
+#: controller.cpp:489
 msgctxt "Controller|"
 msgid "&About"
 msgstr "Tietoja"
 
 # Tooltip-text of menu item text used in "File" menu and when this particular item is selected, application will show a dialog telling why this application is and how to use it
-#: controller.cpp:679
+#: controller.cpp:490
 msgctxt "Controller|"
 msgid "Show the application's About box"
 msgstr "Esitä selvitys sovelluksen tarkoituksesta"
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to change her password
-#: controller.cpp:681
+#: controller.cpp:492
 msgctxt "Controller|"
 msgid "&Change password"
 msgstr "Vaihda salasana"
 
 # Tooltip-item for a menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to change her password
-#: controller.cpp:682
+#: controller.cpp:493
 msgctxt "Controller|"
 msgid "Change password of current profile"
 msgstr "Valitse valitulle operaattori-profiilille uusi salasana"
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to enter password for a newly-created user profile
-#: controller.cpp:684
+#: controller.cpp:495
 msgctxt "Controller|"
 msgid "Create &new profile"
 msgstr "Luo uusi profiili"
 
 # Tooltip-text for a menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to enter password for a newly-created user profile
-#: controller.cpp:685
+#: controller.cpp:496
 msgctxt "Controller|"
 msgid "Makes a brand new user profile"
 msgstr "Luo  operaattorille uuden profiilin"
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to confirm deletion of currently open operator profile
-#: controller.cpp:687
+#: controller.cpp:498
 msgctxt "Controller|"
 msgid "&Delete current profile"
 msgstr "Poista valittu profiili"
 
 # Tooltip-text for a menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to confirm deletion of currently open profile
-#: controller.cpp:688
+#: controller.cpp:499
 msgctxt "Controller|"
 msgid "Deletes currently open profile"
 msgstr "Pysyvästi poistaa tämänhetkisen valitun profiilin"
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to enter password of another profile that user will use next
-#: controller.cpp:690
+#: controller.cpp:501
 msgctxt "Controller|"
 msgid "&Select another profile"
 msgstr "Valitse käyttöön toinen profiilii"
 
 # Tooltip-text for a menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to enter password of another profile that user will use next
-#: controller.cpp:691
+#: controller.cpp:502
 msgctxt "Controller|"
 msgid "If you have multitude of profiles"
 msgstr "Jos olet luonnut useamman profiilin, voit tästä valita toisen"
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a settings-dialog 
-#: controller.cpp:693
+#: controller.cpp:504
 msgctxt "Controller|"
 msgid "Settings.."
 msgstr "Asetukset.."
 
 # Tooltip-text for a menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to enter password of another profile that user will use next
-#: controller.cpp:694
+#: controller.cpp:505
 msgctxt "Controller|"
 msgid "Node-wide settings.."
 msgstr "Solmun asetukset.."
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a dialog detailing network connectivity of the node
-#: controller.cpp:696
+#: controller.cpp:507
 msgctxt "Controller|"
 msgid "Network status.."
 msgstr "Verkko-yhteydet.."
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a search-dialog
-#: controller.cpp:698
+#: controller.cpp:509
 msgctxt "Controller|"
 msgid "Search.."
 msgstr "Etsi.."
 
 # Menu bar title text for "File" menu. 
-#: controller.cpp:715
+#: controller.cpp:526
 msgctxt "Controller|"
 msgid "&File"
 msgstr "Tiedosto"
@@ -584,68 +584,68 @@ msgid "Display interpreter console"
 msgstr "TCL-tulkin komennot"
 
 # Password dialog prompt.
-#: controller.cpp:771
+#: controller.cpp:571
 msgctxt "Controller|"
 msgid "Enter new password:"
 msgstr "Anna uusi salasana:"
 
 # Password dialog prompt. In this case the password dialog is not used for giving initial password or change password but instead password is typed for the reason of selection of another operator profile to be used. 
-#: controller.cpp:799 controller.cpp:959
+#: controller.cpp:599 controller.cpp:708
 msgctxt "Controller|"
 msgid "Activate another profile with password"
 msgstr "Valitse uusi profiili antamalla haluamasi profiilin salasana"
 
 # Error message shown in dialog in situation where user tried to delete the last (one and only) operator profile in machine. There needs to be at least one profile and this error message is shown if user tries to get around that limitation. 
-#: controller.cpp:944
+#: controller.cpp:693
 msgctxt "Controller|"
 msgid "Can't delete only profile."
 msgstr "Viimeistä jäljellä olevaa profiilia ei voi poistaa."
 
 # Text shown in title of confirmation dialog. 
-#: controller.cpp:948
+#: controller.cpp:697
 msgctxt "Controller|"
 msgid "Permanently discard profile?"
 msgstr "Poistetaanko profiili lopullisesti?"
 
 # Text shown inside a confirmation dialog. Dialog will have buttons OK and Cancel and this is the question.
-#: controller.cpp:949
+#: controller.cpp:698
 msgctxt "Controller|"
 msgid "There will be NO way to access content of this profile later"
 msgstr ""
 "Tämän profiilin viestejä tai muuta sisältöä ei ole mahdollista nähdä enää"
 
 # Error message that is shown in a dialog in situation where previously stored encryption keys of the node could not be accessed. Rather fatal error, will render node un-usable. 
-#: controller.cpp:1012
+#: controller.cpp:761
 msgctxt "Controller|"
 msgid "Cant load node cert or key cert"
 msgstr "Solmun salausavaimen tai sertifikaatin lataaminen ei onnistunut"
 
 # Error message dialog title text for a dialog that is shown in a dialog in situation where something bad happened during a filesystem file operation. Actual explanation of the error is shown inside the dialog whose title text this is.  
-#: controller.cpp:1017
+#: controller.cpp:766
 msgctxt "Controller|"
 msgid "File error"
 msgstr "Tiedostokäsittelyyn liittyvä virhe"
 
 # Error message dialog title text for a dialog that is shown in a dialog in situation where something bad happened during database operation. Actual explanation of the error is shown inside the dialog whose title text this is.  
-#: controller.cpp:1022
+#: controller.cpp:771
 msgctxt "Controller|"
 msgid "Database error"
 msgstr "Tietokantavirhe"
 
 # Error message dialog title text for a dialog that is shown in a dialog in situation where something bad happened during a operation inside crypto-module. Actual explanation of the error is shown inside the dialog whose title text this is.  
-#: controller.cpp:1028 controller.cpp:1038
+#: controller.cpp:777 controller.cpp:787
 msgctxt "Controller|"
 msgid "Cryptographic module"
 msgstr "Salausjärjestelmän virhe"
 
 # Error message dialog title text for a dialog that is shown in a dialog in situation where something bad happened during operation inside database module. Actual explanation of the error is shown inside the dialog whose title text this is.  
-#: controller.cpp:1033
+#: controller.cpp:782
 msgctxt "Controller|"
 msgid "Database module"
 msgstr "Tietokannan vikatila"
 
 # Error message dialog title text for a dialog that is shown in a dialog in situation when password supplied by user was not good for any purpose. Actual explanation of the error is shown inside the dialog whose title text this is.  
-#: controller.cpp:1039
+#: controller.cpp:788
 msgctxt "Controller|"
 msgid "Bad password"
 msgstr "Kelpaamaton salasana"
@@ -657,85 +657,85 @@ msgid "TCL Interpreter"
 msgstr "TCL-Ohjelma"
 
 # Error message text inside a dialog when user had requested for an item to be opened but program could not find the requested item.   
-#: controller.cpp:1276
+#: controller.cpp:1004
 msgctxt "Controller|"
 msgid "Could not find item from network.."
 msgstr "Haluttua kohdetta ei verkosta löytynyt.."
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies SHA1 digest of the file.
-#: controller.cpp:1396
+#: controller.cpp:1117
 msgctxt "Controller|"
 msgid "SHA1: "
 msgstr "SHA1:"
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies mime-type of the file
-#: controller.cpp:1401
+#: controller.cpp:1122
 msgctxt "Controller|"
 msgid "Mime-Type: "
 msgstr "Mime-Tyyppi:"
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that gives longer explanation of the file
-#: controller.cpp:1407
+#: controller.cpp:1128
 msgctxt "Controller|"
 msgid "Description: "
 msgstr "Kuvaus:"
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies name of publisher of the file (in practice, who uploaded the file into classified ads)
-#: controller.cpp:1413
+#: controller.cpp:1134
 msgctxt "Controller|"
 msgid "Publisher: "
 msgstr "Julkaisija:"
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies name of the person (or organization) that owns (in copyright sense) the file or its contents. 
-#: controller.cpp:1419
+#: controller.cpp:1140
 msgctxt "Controller|"
 msgid "Content owner: "
 msgstr "Sisällön omistaja:"
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies the license of the file
-#: controller.cpp:1425
+#: controller.cpp:1146
 msgctxt "Controller|"
 msgid "License: "
 msgstr "Lisenssi:"
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies file name
-#: controller.cpp:1431
+#: controller.cpp:1152
 msgctxt "Controller|"
 msgid "Name: "
 msgstr "Nimi:"
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies file date
-#: controller.cpp:1438
+#: controller.cpp:1159
 msgctxt "Controller|"
 msgid "Date: "
 msgstr "Päivämäärä:"
 
 # Error message text shown inside dialog when user tries to select for operation a file that is much much too big. (there is currently 2MB size limit for shared files) 
-#: ui/dialogbase.cpp:48 ui/dialogbase.cpp:102
+#: ui/dialogbase.cpp:47 ui/dialogbase.cpp:101
 msgctxt "DialogBase|"
 msgid "File way too big"
 msgstr "Tiedosto on ihan liian iso"
 
 # Error message text shown inside dialog when user tries to select for operation a file that is just-and-just too big. (there is currently 2MB size limit for shared files) 
-#: ui/dialogbase.cpp:56 ui/dialogbase.cpp:110
+#: ui/dialogbase.cpp:55 ui/dialogbase.cpp:109
 msgctxt "DialogBase|"
 msgid "File too big"
 msgstr "Tiedosto on liian iso"
 
 # Error message text shown inside dialog when user tries to select for operation a file that can not be opened (for example due to file permission reasons)
-#: ui/dialogbase.cpp:86 ui/dialogbase.cpp:132
+#: ui/dialogbase.cpp:85 ui/dialogbase.cpp:131
 msgctxt "DialogBase|"
 msgid "File open error"
 msgstr "Ongelma tiedoston avaamisessa"
 
 # Dialog title text. Dialog prompts user to select the filesystem file that will be published inside classified ads. 
-#: ui/dialogbase.cpp:95
+#: ui/dialogbase.cpp:94
 msgctxt "DialogBase|"
 msgid "Select file to be published"
 msgstr "Valitse julkaistava tiedosto"
 
 # Text for file type filter field in file-selection-dialog
-#: ui/dialogbase.cpp:97
+#: ui/dialogbase.cpp:96
 msgctxt "DialogBase|"
 msgid "Files (*.*)"
 msgstr "Kaikki tiedostot (*.*)"
@@ -753,127 +753,127 @@ msgid "Operator addr is not valid"
 msgstr "Operaattorin osoite ei ole sopivaa muotoa"
 
 # Tab text. In "main window" of classified ads UI there a are 4 or 5 tabs, normally "Classified ads"; "My profile", "Contacts", "Private messages" and maybe something else. This is the text of the first tab. 
-#: FrontWidget.cpp:97
+#: FrontWidget.cpp:95
 msgctxt "FrontWidget|"
 msgid "Classified ads"
 msgstr "Luokitellut ilmoitukset"
 
 # Tab text. In "main window" of classified ads UI there a are 4 or 5 tabs, normally "Classified ads"; "My profile", "Contacts", "Private messages" and maybe something else. This is the text of the 2nd tab. 
-#: FrontWidget.cpp:98
+#: FrontWidget.cpp:96
 msgctxt "FrontWidget|"
 msgid "My profile"
 msgstr "Oma profiili"
 
 # Tab text. In "main window" of classified ads UI there a are 4 or 5 tabs, normally "Classified ads"; "My profile", "Contacts", "Private messages" and maybe something else. This is the text of the 3rd tab. 
-#: FrontWidget.cpp:99
+#: FrontWidget.cpp:97
 msgctxt "FrontWidget|"
 msgid "Contacts"
 msgstr "Osoitekirja"
 
 # Tab text. In "main window" of classified ads UI there a are 4 or 5 tabs, normally "Classified ads"; "My profile", "Contacts", "Private messages" and maybe something else. This is the text of the 4th tab. 
-#: FrontWidget.cpp:100
+#: FrontWidget.cpp:98
 msgctxt "FrontWidget|"
 msgid "Private messages"
 msgstr "Yksityiset viestit"
 
 # Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, a dialog will appear asking which file to share
-#: FrontWidget.cpp:162
+#: FrontWidget.cpp:160
 msgctxt "FrontWidget|"
 msgid "Add shared file.."
 msgstr "Lisää tiedosto jakoon"
 
 # Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, the selected file in the listing view will no longer be shared
-#: FrontWidget.cpp:163
+#: FrontWidget.cpp:161
 msgctxt "FrontWidget|"
 msgid "Stop advertising selected shared file"
 msgstr "Lakkaa mainostamasta valittua jaettua tiedostoa"
 
 # Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, the selected file in the listing view will be saved to filesystem
-#: FrontWidget.cpp:164
+#: FrontWidget.cpp:162
 msgctxt "FrontWidget|"
 msgid "Save file to disk.."
 msgstr "Tallenna tiedosto tiedostojärjestelmälle"
 
 # Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, information dialog about selected file will be shown
-#: FrontWidget.cpp:165
+#: FrontWidget.cpp:163
 msgctxt "FrontWidget|"
 msgid "View file information.."
 msgstr "Tarkastele tiedoston ominaisuuksia.."
 
 # Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, SHA digest of the selected file will be copied to clipboard. 
-#: FrontWidget.cpp:166
+#: FrontWidget.cpp:164
 msgctxt "FrontWidget|"
 msgid "Copy file address (SHA1) to clipboard.."
 msgstr "Kopioi tiedoston osoite (SHA1) leikepöydälle.."
 
 # Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, an editor will be displayed prompting user to enter text that will then be published  for other users to see. 
-#: FrontWidget.cpp:167
+#: FrontWidget.cpp:165
 msgctxt "FrontWidget|"
 msgid "Edit+publish new text document.."
 msgstr "Muokkaa ja julkaise uusi tekstidokumentti.."
 
 # Dialog title text for "file open" dialog
-#: FrontWidget.cpp:355
+#: FrontWidget.cpp:353
 msgctxt "FrontWidget|"
 msgid "Open File"
 msgstr "Avaa tiedosto"
 
 # Text for filter field of file selection dialog
-#: FrontWidget.cpp:357 FrontWidget.cpp:887
+#: FrontWidget.cpp:355 FrontWidget.cpp:885
 msgctxt "FrontWidget|"
 msgid "Files (*.*)"
 msgstr "Kaikki tiedostot (*.*)"
 
 # Error dialog title text. Actual error message will be shown inside dialog whose title is this text. 
-#: FrontWidget.cpp:361 FrontWidget.cpp:1200 FrontWidget.cpp:1357
+#: FrontWidget.cpp:359 FrontWidget.cpp:1185 FrontWidget.cpp:1328
 msgctxt "FrontWidget|"
 msgid "Error"
 msgstr "Vikaa.."
 
 # Error dialog content text. Shown when image file that user selected could not be opened (maybe because file permission problem or maybe image format issue or ..)
-#: FrontWidget.cpp:362
+#: FrontWidget.cpp:360
 msgctxt "FrontWidget|"
 msgid "Can't load image"
 msgstr "Kuvan avaaminen ei onnistu"
 
 # Error dialog title text. This dialog is shown when user  tries to comment another operator but required operator data is missing from local storage. 
-#: FrontWidget.cpp:628 FrontWidget.cpp:768
+#: FrontWidget.cpp:626 FrontWidget.cpp:766
 msgctxt "FrontWidget|"
 msgid "Profile not in database"
 msgstr "Profiilia ei tietovarastosta löydy"
 
 # Error dialog content text. This dialog is shown when user  tries to comment another operator but required operator data is missing from local storage. 
-#: FrontWidget.cpp:629 FrontWidget.cpp:769
+#: FrontWidget.cpp:627 FrontWidget.cpp:767
 msgctxt "FrontWidget|"
 msgid "Try viewing profile first to obtain data"
 msgstr "Yritä valita profiili katseltavaksi ensin, yritä sitten uudelleen"
 
 # File selection title text. Prompts user to select a file for publish purpose. 
-#: FrontWidget.cpp:885
+#: FrontWidget.cpp:883
 msgctxt "FrontWidget|"
 msgid "Select file to be published"
 msgstr "Valitse julkaistava tiedosto"
 
 # Error text shown in dialog. Shown in situation where user selected a file that really exceeds size limit (of 2MB)
-#: FrontWidget.cpp:892
+#: FrontWidget.cpp:890
 msgctxt "FrontWidget|"
 msgid "File way too big"
 msgstr "Tiedosto on aivan liian suuri"
 
 # Error text shown in dialog. Shown in situation where user selected a file that slightly exceeds size limit (of 2MB)
-#: FrontWidget.cpp:900
+#: FrontWidget.cpp:898
 msgctxt "FrontWidget|"
 msgid "File too big"
 msgstr "Tiedosto on liian suuri"
 
 # Error text shown in dialog. Shown in situation where user selected a file that could for some reason not be opened
-#: FrontWidget.cpp:944 FrontWidget.cpp:1201
+#: FrontWidget.cpp:942 FrontWidget.cpp:1186
 msgctxt "FrontWidget|"
 msgid "File open error"
 msgstr "Ongelma tiedoston avaamisessa"
 
 # Part of filter text field in file selection dialog. If for instance user tries to open PNG files, then the text in filter field will be "PNG files (*.png)" and this word is the 2nd word in the phrase. 
-#: FrontWidget.cpp:1169 FrontWidget.cpp:1175
+#: FrontWidget.cpp:1167 FrontWidget.cpp:1173
 msgctxt "FrontWidget|"
 msgid "files"
 msgstr "kaikki tiedostot"
@@ -891,13 +891,13 @@ msgid "Save to TCL app library instead of regular file?"
 msgstr "Tallennetaanko TCL-ohjelmien kirjastoon vai tiedostojärjestelmälle?"
 
 # File selection dialog title text. Dialog prompts user to select location+name for an file to be exported into filesystem.
-#: FrontWidget.cpp:1191
+#: FrontWidget.cpp:1176
 msgctxt "FrontWidget|"
 msgid "Choose file name for saving"
 msgstr "Valitse nimi tallennettavalle tiedostolle"
 
 # Text shown in placeholder for operators image in situation where user has not yet selected any image. In practice it prompts user to insert image by clicking at the text. 
-#: FrontWidget.cpp:1265
+#: FrontWidget.cpp:1236
 msgctxt "FrontWidget|"
 msgid ""
 "\n"
@@ -916,13 +916,13 @@ msgstr ""
 "Kuva\n"
 
 # Error message dialog content text shown when user tried to access article, that was not stored in local database
-#: FrontWidget.cpp:1358
+#: FrontWidget.cpp:1329
 msgctxt "FrontWidget|"
 msgid "Article not found from local storage"
 msgstr "Artikkelia ei paikallisesta tietokannasta löydy"
 
 # Tool-tip text. Shown on top of operators address when user hovers mouse on top of the address field. The  %1 will be replaced by nickname of an operator who trusts this particular operator. The %2 will be replaced by SHA1 digest of the operator who trusts the operator whose SHA1 is under mouse cursor.  
-#: FrontWidget.cpp:1384 FrontWidget.cpp:1932
+#: FrontWidget.cpp:1355 FrontWidget.cpp:1903
 #, qt-format
 msgctxt "FrontWidget|"
 msgid ""
@@ -933,13 +933,13 @@ msgstr ""
 "SHA1 %2"
 
 # Tool tip text. Shown when user howers mouse on top of operators nickname field. In code a date-string will be concatenated to this string, so in practice in the UI it will read "Time of last update 31 aug 2015" or similar. 
-#: FrontWidget.cpp:1421
+#: FrontWidget.cpp:1392
 msgctxt "FrontWidget|"
 msgid "Time of last update "
 msgstr "Viimeinen päivitysajankohta"
 
 # Text for image placeholder, shown in situation where another operator has not selected any image for her.This text is shown place of the missing image. 
-#: FrontWidget.cpp:1429
+#: FrontWidget.cpp:1400
 msgctxt "FrontWidget|"
 msgid ""
 "\n"
@@ -957,110 +957,110 @@ msgstr ""
 "Valittuna)\n"
 
 # Context menu item text. Context-menu is related to frequent-contacts column-view. 
-#: FrontWidget.cpp:1523
+#: FrontWidget.cpp:1494
 msgctxt "FrontWidget|"
 msgid "Edit contact.."
 msgstr "Muokkaa profiilin tietoja "
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a private message to operator who sent the classified ad currently on display
-#: FrontWidget.cpp:1563
+#: FrontWidget.cpp:1534
 msgctxt "FrontWidget|"
 msgid "&Reply to sender"
 msgstr "Vastaa lähettäjälle"
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a reply to classified ad currently on display
-#: FrontWidget.cpp:1564
+#: FrontWidget.cpp:1535
 msgctxt "FrontWidget|"
 msgid "Reply to &forum"
 msgstr "Vastaa foorumille"
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a new classified ad.
-#: FrontWidget.cpp:1565
+#: FrontWidget.cpp:1536
 msgctxt "FrontWidget|"
 msgid "&Post new ad"
 msgstr "Uusi ilmoitus"
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a public comment about operator who sent the classified ad currently on display
-#: FrontWidget.cpp:1566
+#: FrontWidget.cpp:1537
 msgctxt "FrontWidget|"
 msgid "&Public comment"
 msgstr "Uusi kommentti"
 
 # Push button text. Pushing the button will switch to view detailing operator who sent the classified ad currently on display
-#: FrontWidget.cpp:1567
+#: FrontWidget.cpp:1538
 msgctxt "FrontWidget|"
 msgid "&View profile"
 msgstr "Katsele profiilia"
 
 # Push button text. Pushing the button will open a a listing of files that are attached to classified ad currently on display
-#: FrontWidget.cpp:1568 FrontWidget.cpp:1706
+#: FrontWidget.cpp:1539 FrontWidget.cpp:1677
 msgctxt "FrontWidget|"
 msgid "Attachments.."
 msgstr "Liitetiedostot.."
 
 # Push button text. Pushing the button will open an editor prompting user to add to her contact-list the operator who sent the classified ad currently on display
-#: FrontWidget.cpp:1628
+#: FrontWidget.cpp:1599
 msgctxt "FrontWidget|"
 msgid "Add selected operator to contacts.."
 msgstr "Lisää valittu operaattori osoitekirjaan.."
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a private message to operator who sent the private message currently on display
-#: FrontWidget.cpp:1702
+#: FrontWidget.cpp:1673
 msgctxt "FrontWidget|"
 msgid "&Reply"
 msgstr "Vastaa"
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a private message to some operator. 
-#: FrontWidget.cpp:1703
+#: FrontWidget.cpp:1674
 msgctxt "FrontWidget|"
 msgid "&New message"
 msgstr "Uusi viesti"
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a public comment about operator who sent the private message currently on display
-#: FrontWidget.cpp:1704
+#: FrontWidget.cpp:1675
 msgctxt "FrontWidget|"
 msgid "&Send public comment to sender"
 msgstr "Esitä julkinen kommentti lähettäjästä"
 
 # Push button text. Pushing the button will open view that will show details of operator, who sent the private message currently on display. 
-#: FrontWidget.cpp:1705
+#: FrontWidget.cpp:1676
 msgctxt "FrontWidget|"
 msgid "&View profile of peer"
 msgstr "Näytä viesti-osapuolen profiili"
 
 # Context menu item text. Appears in "message listing view" when user right-clicks on messages view. When selected, the operator who sent the message that is selected is added to contacts. 
-#: FrontWidget.cpp:1740
+#: FrontWidget.cpp:1711
 msgctxt "FrontWidget|"
 msgid "Add selected to contacts.."
 msgstr "Lisää valittu osoitekirjaan"
 
 # Text field label. Label tells who sent particular classified ad. 
-#: FrontWidget.cpp:1942 FrontWidget.cpp:1944 FrontWidget.cpp:2008
-#: FrontWidget.cpp:2010
+#: FrontWidget.cpp:1913 FrontWidget.cpp:1915 FrontWidget.cpp:1979
+#: FrontWidget.cpp:1981
 msgctxt "FrontWidget|"
 msgid "From:"
 msgstr "Keneltä:"
 
 # Text field label. Label tells subject of classified ads. 
-#: FrontWidget.cpp:1946 FrontWidget.cpp:2013
+#: FrontWidget.cpp:1917 FrontWidget.cpp:1984
 msgctxt "FrontWidget|"
 msgid "Subject:"
 msgstr "Aihe:"
 
 # Text field label. Label tells whom a private message was sent to. 
-#: FrontWidget.cpp:2005
+#: FrontWidget.cpp:1976
 msgctxt "FrontWidget|"
 msgid "To:"
 msgstr "Kenelle:"
 
 # Error dialog content text. Shown in situation when user clicked on a link that contained SHA1 digest that was not valid. 
-#: FrontWidget.cpp:2317
+#: FrontWidget.cpp:2288
 msgctxt "FrontWidget|"
 msgid "Invalid SHA1 in URL"
 msgstr "Viallinen SHA1-tiiviste URLissa"
 
 # Error dialog content text. Shown in situation when user clicked on a link that was not correctly formatted. 
-#: FrontWidget.cpp:2344
+#: FrontWidget.cpp:2315
 msgctxt "FrontWidget|"
 msgid "Invalid URL"
 msgstr "Viallinen URL"
@@ -1114,31 +1114,31 @@ msgid "Recipient encryption key not found from storage"
 msgstr "Valitun profiilin salausavainta ei paikallisesta tietokannasta löydy"
 
 # Error message text. Will be shown in error message dialog in case when initial SSL key generation of node did not succeed. After user dismisses the dialog, the application will close.
-#: datamodel/nodemodel.cpp:125
+#: datamodel/nodemodel.cpp:115
 msgctxt "NodeModel|"
 msgid "SSL key generation went wrong, calling exit.."
 msgstr "SSL-avaimen luonti epäonnistui, poistutaan.."
 
 # Error message text. Will be shown in error message dialog in case when initial encryption key generation of user did not succeed. After user dismisses the dialog, the application will close.
-#: datamodel/nodemodel.cpp:135
+#: datamodel/nodemodel.cpp:123
 msgctxt "NodeModel|"
 msgid "x509 cert generation went wrong, calling exit.."
 msgstr "x509-sertifikaatin luonti epäonnistui, poistutaan.."
 
 # Error message text. Will be shown in error message dialog in case when SSL certificate of the node could not be loaded from storage. After user dismisses the dialog, the application will close.
-#: datamodel/nodemodel.cpp:1667
+#: datamodel/nodemodel.cpp:1596
 msgctxt "NodeModel|"
 msgid "Cant load SSL cert"
 msgstr "SSL-sertifikaatin lataaminen ei onnistu"
 
 # Error message text. Will be shown in error message dialog in case when SSL key of the node could not be retrieved from local storage. After user dismisses the dialog, the application will close.
-#: datamodel/nodemodel.cpp:1697
+#: datamodel/nodemodel.cpp:1626
 msgctxt "NodeModel|"
 msgid "Cant load SSL key"
 msgstr "SSL-avaimen lataaminen ei onnistu"
 
 # Error message text. Shown in dialog when user tries to enter a password that is too short. 
-#: ui/passwd_dialog.cpp:107
+#: ui/passwd_dialog.cpp:104
 msgctxt "PasswdDialog|"
 msgid "Min length 5 (use 10+)"
 msgstr "Vähimmäispituus on 5 (käytä silti ainakin 10)"
@@ -1306,8 +1306,14 @@ msgctxt "RingtonePlayer|"
 msgid "Could not initialize audio player."
 msgstr "Äänitoistimen alustus epäonnistui."
 
+# Tool-tip text for search dialog textbox of words to search for
+#: ui/searchdisplay.cpp:54
+msgctxt "SearchDisplay|"
+msgid "Leave empty to search any recent documents"
+msgstr "Jätä tyhjäksi hakeaksesi mitä tahansa uusia dokumenttejä"
+
 # Context menu item text. This context menu is shown when user right-clicks on top of search-results. This menu-item opens the currently-selected item from search results. 
-#: ui/searchdisplay.cpp:62
+#: ui/searchdisplay.cpp:64
 msgctxt "SearchDisplay|"
 msgid "Open.."
 msgstr "Avaa.."
@@ -1647,139 +1653,139 @@ msgid "File way too big"
 msgstr "Tiedosto on aivan liian suuri"
 
 # Button text for "incoming call" dialog. When user hits the button, call is answered. 
-#: net/voicecallengine.cpp:515
+#: net/voicecallengine.cpp:525
 msgctxt "VoiceCallEngine|"
 msgid "Accept"
 msgstr "Vastaa"
 
 # Button text for "incoming call" dialog. When user hits the button, incoming call is rejected. 
-#: net/voicecallengine.cpp:523
+#: net/voicecallengine.cpp:533
 msgctxt "VoiceCallEngine|"
 msgid "Reject"
 msgstr "Hylkää"
 
 # Button text for "ongoing call" dialog. When button is hit, call is closed. 
-#: net/voicecallengine.cpp:525
+#: net/voicecallengine.cpp:535
 msgctxt "VoiceCallEngine|"
 msgid "Close"
 msgstr "Sulje"
 
 # Tooltip text. Shown in listing of ongoing calls. This tooltip explains "operator address" column of the display. The text explained is SHA1-digest or operator name if known. 
-#: net/voicecallengine.cpp:541
+#: net/voicecallengine.cpp:551
 msgctxt "VoiceCallEngine|"
 msgid "Actual network address (SHA1) of the peer operator"
 msgstr "Osapuolen profiilin SHA1-tiiviste"
 
 # Tooltip text for list display that lists ongoing voice calls. The text explained is (IP) address of the remote node of the voice call participant. 
-#: net/voicecallengine.cpp:544
+#: net/voicecallengine.cpp:554
 msgctxt "VoiceCallEngine|"
 msgid "Network address of the remote node"
 msgstr "Osapuolen käyttämän solmun verkko-osoite"
 
 # Column header text for display that lists ongoing calls. This gives header text for column that shows name of the call participant
-#: net/voicecallengine.cpp:554
+#: net/voicecallengine.cpp:564
 msgctxt "VoiceCallEngine|"
 msgid "Operator"
 msgstr "Operaattori"
 
 # Column header text for display that lists ongoing calls. This gives header text for column that shows network address of the call participant
-#: net/voicecallengine.cpp:557
+#: net/voicecallengine.cpp:567
 msgctxt "VoiceCallEngine|"
 msgid "Node address"
 msgstr "Verkko-osoite"
 
 # Column header text for display that lists ongoing calls. This gives header text for column that shows state of the call (like open, closed, ringing etc)
-#: net/voicecallengine.cpp:560
+#: net/voicecallengine.cpp:570
 msgctxt "VoiceCallEngine|"
 msgid "Call status"
 msgstr "Puhelun tila"
 
 # Column header text for display that lists ongoing calls. This gives header text for column containing buttons for accepting, rejecting and ending a call. 
-#: net/voicecallengine.cpp:563
+#: net/voicecallengine.cpp:573
 msgctxt "VoiceCallEngine|"
 msgid "Controls"
 msgstr "Hallinta"
 
 # Column header text for display that lists ongoing calls. This gives header text for column that shows name column containing button for ending an ongoing call. 
-#: net/voicecallengine.cpp:566
+#: net/voicecallengine.cpp:576
 msgctxt "VoiceCallEngine|"
 msgid "Ending"
 msgstr "Päättäminen"
 
 # Call status text. When making a new outgoing call, this is status for new call that is not answered yet. 
-#: net/voicecallengine.cpp:603
+#: net/voicecallengine.cpp:613
 msgctxt "VoiceCallEngine|"
 msgid "Initializing"
 msgstr "Alustetaan"
 
 # Call status text. When receiving a new incoming call, this is status for new call that is not answered yet.
-#: net/voicecallengine.cpp:606
+#: net/voicecallengine.cpp:616
 msgctxt "VoiceCallEngine|"
 msgid "Incoming"
 msgstr "Saapuva"
 
 # Call status text. When voice call is in progress, this is the status.
-#: net/voicecallengine.cpp:609
+#: net/voicecallengine.cpp:619
 msgctxt "VoiceCallEngine|"
 msgid "Open"
 msgstr "Avoinna"
 
 # Call status text. When voice call is marked to be closed, this is its status.
-#: net/voicecallengine.cpp:612
+#: net/voicecallengine.cpp:622
 msgctxt "VoiceCallEngine|"
 msgid "Closing"
 msgstr "Suljetaan"
 
 # Call status text. When voice call is closed, this is the status text.
-#: net/voicecallengine.cpp:615
+#: net/voicecallengine.cpp:625
 msgctxt "VoiceCallEngine|"
 msgid "Closed"
 msgstr "Suljettu"
 
 # Call status text. When voice call attempt ends in error, this is text displayed.
-#: net/voicecallengine.cpp:618
+#: net/voicecallengine.cpp:628
 msgctxt "VoiceCallEngine|"
 msgid "Error"
 msgstr "Virhe"
 
 # Call status text. When there is no voice call to display, this text may be displayed instead. 
-#: net/voicecallengine.cpp:621
+#: net/voicecallengine.cpp:631
 msgctxt "VoiceCallEngine|"
 msgid "No call"
 msgstr "Ei puhelua"
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "general purpose" excuse, when no detailed reason is know.
-#: net/voicecallengine.cpp:824
+#: net/voicecallengine.cpp:834
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible"
 msgstr "Puhelu ei ole mahdollinen"
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is not dimmed and call is possible. 
-#: net/voicecallengine.cpp:830
+#: net/voicecallengine.cpp:840
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is possible"
 msgstr "Puhelu on mahdollinen"
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "SHA1 digest of operator is not known"
-#: net/voicecallengine.cpp:837
+#: net/voicecallengine.cpp:847
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible: operator address unknown"
 msgstr "Puhelu ei ole mahdollinen: operaattorin SHA1-tiiviste on tuntematon"
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "operators profile not found (from local database)"
-#: net/voicecallengine.cpp:843
+#: net/voicecallengine.cpp:853
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible: operator profile not found"
 msgstr "Puhelu ei ole mahdollinen: operaattorin profiilia ei löydy"
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "there is no network address included in node information of the profile"
-#: net/voicecallengine.cpp:846
+#: net/voicecallengine.cpp:856
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible: operator has no node information in profile"
 msgstr "Puhelu ei ole mahdollinen: operaattorin solmusta puuttuu verkko-osoite"
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "there is no (ipv4) network connection to node"
-#: net/voicecallengine.cpp:865
+#: net/voicecallengine.cpp:875
 #, qt-format
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible: operators IPv4 address %1 not connected"
@@ -1788,7 +1794,7 @@ msgstr ""
 "ei ole yhteyttä"
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "there is no (ipv6) network connection to node"
-#: net/voicecallengine.cpp:872
+#: net/voicecallengine.cpp:882
 #, qt-format
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible: operators IPv6 address %1 not connected"
@@ -1797,7 +1803,7 @@ msgstr ""
 "ei ole yhteyttä "
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is protocol mismatch. 
-#: net/voicecallengine.cpp:883
+#: net/voicecallengine.cpp:893
 msgctxt "VoiceCallEngine|"
 msgid ""
 "Audio call is not possible: local node has no IPv6 address, operator has "
@@ -1807,7 +1813,7 @@ msgstr ""
 "operaattorilla on vain IPv6"
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "operator does not publish network address of his node"
-#: net/voicecallengine.cpp:885
+#: net/voicecallengine.cpp:895
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible: operator does not publish network address"
 msgstr "Puhelu ei ole mahdollinen: operaattori ei julkaise verkko-osoitettaan"
@@ -1826,174 +1832,106 @@ msgstr "Luokitellut ilmoitukset on viestintään tarkoitettu tietokoneohjelma"
 
 # The long explanation of classified ads inside about-dialog. Note that this text must be valid html. Needs to start with <html> and end with </html> etc. This is easiest to edit like this: copy-paste the content in to a file, say /tmp/about.html. Then either open your favourite html-editor or open classified ads. In classified ads you can start constructing an ad, select from file-menu "open.." and select this file  ;do editing and save from file-menu. The saved file is immediately in correct format to be be copy-pasted into contents of this field.  
 #: ui/aboutDialog.ui:163
-#| msgid ""
-#| "<html><head/><body><p>Classified ads is free software. You may use, copy "
-#| "and modify it if you follow the conditions given in GNU lesser general "
-#| "public license version 2.1.</p><p>Classified ads is copyright © Antti "
-#| "Järvinen 2013. </p><p>Main feature of the the program is an "
-#| "&quot;advertisement&quot; - a piece of text belonging to selected "
-#| "classification. There are several pre-programmed classifications and "
-#| "operators are encouraged to invent new classifications for new purposes ; "
-#| "the selection boxes in classification-selection tab are editable. Other "
-#| "operators may then view the ads, publicly comment the ads, the operators "
-#| "and also send private messages to each others. </p><p>Another important "
-#| "feature of classified ads is that it is designed to be operated without "
-#| "any centralized server infrastucture - it is you and other operators "
-#| "whose computers store and transmit all the content visible inside "
-#| "classified ads. To get connected you need to know address of at least one "
-#| "existing computer (a <span style=\" font-style:italic;\">node</span>) so "
-#| "if your network connection dialog shows no connections, you may need to "
-#| "contact someone you know is using the software and ask for address of her "
-#| "node to make initial contact with the network. Once connected the "
-#| "software should maintain list of addresses of other nodes. </p><p>Due to "
-#| "its server-less design the whole system works best if you leave the "
-#| "program running always when you have your computer powered on ; while "
-#| "processing other operators requests it will hog some computing resources "
-#| "and generate network traffic also when you are not actively using the "
-#| "program youself - others are. </p><p>Operators concerned about privacy of "
-#| "the content should be aware of following items:</p><p>- Data storage "
-#| "implementation is variant of <span style=\" "
-#| "font-style:italic;\">distributed hash table</span>, practically meaning "
-#| "that content posted by you gets copied some more-or-less random nodes in "
-#| "the network. </p><p>- Any data item (ad, comment, binary file, private "
-#| "message etc.) is digitally signed. This makes it more difficult to try to "
-#| "pose as another operator. </p><p>- Operators are reliably identified only "
-#| "by the SHA1 hash of their generated encryption keys. SHA1 hash is "
-#| "displayed when viewing details of operator profiles. Other identifying "
-#| "information like nickname or city name are entered by operator himself "
-#| "and can be anything. The operator profile, as it is published to the "
-#| "network, is also signed with the encryption keys of the operator - if you "
-#| "identify an operator by her SHA1 hash, you have a mechanism for "
-#| "identifying if any content inside classified ads is posted by this "
-#| "operator or not. Classified ads internally checks for digital signatures, "
-#| "throwing away content that fails signature check and tries to provide "
-#| "SHA1 hash of the operator who posted the content.</p><p>- All classified "
-#| "ads are posted as plain text, no encryption is used. All public profiles "
-#| "are posted as plain text, no encryption is used. If profile is made "
-#| "private, it is encrypted to be readable only by selected other profiles. "
-#| "This applies also to binary files shared by operators private profiles "
-#| "and comments about private profiles after the profile was made private "
-#| "(previously plain-text comments or files don't get magically encrypted "
-#| "afterwards). Private messages are encrypted always to be readable only by "
-#| "recipient and sender. Attachments follow the privary rules of the "
-#| "document, they're attachted to. </p><p>- As is the case with all "
-#| "internet-communications, this small fact is true for classified ads too : "
-#| "<span style=\" font-style:italic;\">once something gets posted online, "
-#| "there is no way to remove it from network</span>. </p><p>- Data "
-#| "encryption implementation for content is OpenSSL, relying mostly on "
-#| "algorithms RSA-2048 and AES-256. </p><p>- While connections between nodes "
-#| "are implemented using SSL, other nodes inside network do get to know what "
-#| "content is being transmitted in neighboring nodes. While there is no "
-#| "central point for easily collecting this information about particular "
-#| "classification or operator, operators still should expect no privacy "
-#| "regarding their doings online, although some effort has been been put "
-#| "into hiding <span style=\" font-style:italic;\">contents</span> of "
-#| "private messages and private profiles. </p><p>Programming was (mostly) "
-#| "done by Antti Järvinen, artwork by Meeri Järvinen.</p><p>This product "
-#| "includes software developed by the OpenSSL Project for use in the OpenSSL "
-#| "Toolkit (http://www.openssl.org/).</p><p>Happy "
-#| "advertising!</p><p><br/></p></body></html>"
 msgctxt "aboutDialog|"
 msgid ""
 "<html><head/><body><p>Classified ads is free software. You may use, copy and "
 "modify it if you follow the conditions given in GNU lesser general public "
 "license version 2.1.</p><p>Classified ads is copyright © Antti Järvinen "
 "2013. </p><p>Main feature of the program is an &quot;advertisement&quot; - a "
-"piece of text belonging to selected classification. There are several "
-"pre-programmed classifications and operators are encouraged to invent new "
-"classifications for new purposes ; the selection boxes in "
-"classification-selection tab are editable. Other operators may then view the "
-"ads, publicly comment the ads, the operators and also send private messages "
-"to each others. </p><p>Another important feature of classified ads is that "
-"it is designed to be operated without any centralized server infrastructure "
-"- it is you and other operators whose computers store and transmit all the "
+"piece of text belonging to selected classification. There are several pre-"
+"programmed classifications and operators are encouraged to invent new "
+"classifications for new purposes ; the selection boxes in classification-"
+"selection tab are editable. Other operators may then view the ads, publicly "
+"comment the ads, the operators and also send private messages to each "
+"others. </p><p>Another important feature of classified ads is that it is "
+"designed to be operated without any centralized server infrastructure - it "
+"is you and other operators whose computers store and transmit all the "
 "content visible inside classified ads. To get connected you need to know "
-"address of at least one existing computer (a <span style=\" "
-"font-style:italic;\">node</span>) so if your network connection dialog shows "
-"no connections, you may need to contact someone you know is using the "
-"software and ask for address of her node to make initial contact with the "
-"network. Once connected the software should maintain list of addresses of "
-"other nodes. </p><p>Due to its server-less design the whole system works "
-"best if you leave the program running always when you have your computer "
-"powered on ; while processing other operators requests it will hog some "
-"computing resources and generate network traffic also when you are not "
-"actively using the program yourself - others are. </p><p>Operators concerned "
-"about privacy of the content should be aware of following items:</p><p>- "
-"Data storage implementation is variant of <span style=\" "
-"font-style:italic;\">distributed hash table</span>, practically meaning that "
-"content posted by you gets copied some more-or-less random nodes in the "
-"network. </p><p>- Any data item (ad, comment, binary file, private message "
-"etc.) is digitally signed. This makes it more difficult to try to pose as "
-"another operator. </p><p>- Operators are reliably identified only by the "
-"SHA1 hash of their generated encryption keys. SHA1 hash is displayed when "
-"viewing details of operator profiles. Other identifying information like "
-"nickname or city name are entered by operator himself and can be anything. "
-"The operator profile, as it is published to the network, is also signed with "
-"the encryption keys of the operator - if you identify an operator by her "
-"SHA1 hash, you have a mechanism for identifying if any content inside "
-"classified ads is posted by this operator or not. Classified ads internally "
-"checks for digital signatures, throwing away content that fails signature "
-"check and tries to provide SHA1 hash of the operator who posted the "
-"content.</p><p>- All classified ads are posted as plain text, no encryption "
-"is used. All public profiles are posted as plain text, no encryption is "
-"used. If profile is made private, it is encrypted to be readable only by "
-"selected other profiles. This applies also to binary files shared by "
-"operators private profiles and comments about private profiles after the "
-"profile was made private (previously plain-text comments or files don't get "
-"magically encrypted afterwards). Private messages are encrypted always to be "
-"readable only by recipient and sender. Attachments follow the privacy rules "
-"of the document, they're attached to. </p><p>- As is the case with all "
-"internet-communications, this small fact is true for classified ads too : "
-"<span style=\" font-style:italic;\">once something gets posted online, there "
-"is no way to remove it from network</span>. </p><p>- Data encryption "
+"address of at least one existing computer (a <span style=\" font-style:"
+"italic;\">node</span>) so if your network connection dialog shows no "
+"connections, you may need to contact someone you know is using the software "
+"and ask for address of her node to make initial contact with the network. "
+"Once connected the software should maintain list of addresses of other "
+"nodes. </p><p>Due to its server-less design the whole system works best if "
+"you leave the program running always when you have your computer powered "
+"on ; while processing other operators requests it will hog some computing "
+"resources and generate network traffic also when you are not actively using "
+"the program yourself - others are. </p><p>Operators concerned about privacy "
+"of the content should be aware of following items:</p><p>- Data storage "
+"implementation is variant of <span style=\" font-style:italic;\">distributed "
+"hash table</span>, practically meaning that content posted by you gets "
+"copied some more-or-less random nodes in the network. </p><p>- Any data item "
+"(ad, comment, binary file, private message etc.) is digitally signed. This "
+"makes it more difficult to try to pose as another operator. </p><p>- "
+"Operators are reliably identified only by the SHA1 hash of their generated "
+"encryption keys. SHA1 hash is displayed when viewing details of operator "
+"profiles. Other identifying information like nickname or city name are "
+"entered by operator himself and can be anything. The operator profile, as it "
+"is published to the network, is also signed with the encryption keys of the "
+"operator - if you identify an operator by her SHA1 hash, you have a "
+"mechanism for identifying if any content inside classified ads is posted by "
+"this operator or not. Classified ads internally checks for digital "
+"signatures, throwing away content that fails signature check and tries to "
+"provide SHA1 hash of the operator who posted the content.</p><p>- All "
+"classified ads are posted as plain text, no encryption is used. All public "
+"profiles are posted as plain text, no encryption is used. If profile is made "
+"private, it is encrypted to be readable only by selected other profiles. "
+"This applies also to binary files shared by operators private profiles and "
+"comments about private profiles after the profile was made private "
+"(previously plain-text comments or files don't get magically encrypted "
+"afterwards). Private messages are encrypted always to be readable only by "
+"recipient and sender. Attachments follow the privacy rules of the document, "
+"they're attached to. </p><p>- As is the case with all internet-"
+"communications, this small fact is true for classified ads too : <span "
+"style=\" font-style:italic;\">once something gets posted online, there is no "
+"way to remove it from network</span>. </p><p>- Data encryption "
 "implementation for content is OpenSSL, relying mostly on algorithms RSA-2048 "
 "and AES-256. </p><p>- While connections between nodes are implemented using "
 "SSL, other nodes inside network do get to know what content is being "
 "transmitted in neighboring nodes. While there is no central point for easily "
 "collecting this information about particular classification or operator, "
 "operators still should expect no privacy regarding their doings online, "
-"although some effort has been been put into hiding <span style=\" "
-"font-style:italic;\">contents</span> of private messages and private "
-"profiles. </p><p>Programming was (mostly) done by Antti Järvinen, artwork by "
-"Meeri Järvinen.</p><p>This product includes software developed by the "
-"OpenSSL Project for use in the OpenSSL Toolkit "
-"(http://www.openssl.org/).</p><p>Happy "
-"advertising!</p><p><br/></p></body></html>"
+"although some effort has been been put into hiding <span style=\" font-style:"
+"italic;\">contents</span> of private messages and private profiles. </"
+"p><p>Programming was (mostly) done by Antti Järvinen, artwork by Meeri "
+"Järvinen.</p><p>This product includes software developed by the OpenSSL "
+"Project for use in the OpenSSL Toolkit (http://www.openssl.org/).</"
+"p><p>Happy advertising!</p><p><br/></p></body></html>"
 msgstr ""
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta "
-"http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /><style "
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta http-"
+"equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /><style "
 "type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Ubuntu'; font-size:9pt; "
-"font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; "
-"margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Luokitellut "
-"ilmoitukset on vapaasti käytettävä ohjelmisto. Voi käyttää, kopioida ja "
-"muokata sitä noudattaen LGPL-lisenssin (GNU Lesser General Public License "
-"2.1) ehtoja.</p>\n"
+"</style></head><body style=\" font-family:'Ubuntu'; font-size:9pt; font-"
+"weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\">Luokitellut ilmoitukset on "
+"vapaasti käytettävä ohjelmisto. Voi käyttää, kopioida ja muokata sitä "
+"noudattaen LGPL-lisenssin (GNU Lesser General Public License 2.1) ehtoja.</"
+"p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
-"margin-left:0px; margin-right:0px; -qt-block-indent:0; "
-"text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; "
-"margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Tämän ohjelman "
+"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"
+"\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\">Tämän ohjelman "
 "kopiointioikeudet omistaa Antti Järvinen, vuodesta 2013. </p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
-"margin-left:0px; margin-right:0px; -qt-block-indent:0; "
-"text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; "
-"margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Ohjelman keskeinen "
+"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"
+"\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\">Ohjelman keskeinen "
 "ominaisuus on &quot;ilmoitus&quot; - teksti, joka kuuluu johonkin "
 "luokitteluun. Ohjelma sisältää joukon valmiita luokitteluita ja käyttäjiä "
-"rohkaistaan keksimään uusia ; luokittelu-valintoihin "
-"&quot;ilmoitukset&quot;-välilehdellä voi kirjoittaa mitä hyvänsä. Muut "
-"käyttäjät voivat katsella ilmoituksia, julkisesti kommentoida ilmoituksia ja "
-"lähettää viestejä toisilleen.</p>\n"
+"rohkaistaan keksimään uusia ; luokittelu-valintoihin &quot;ilmoitukset&quot;-"
+"välilehdellä voi kirjoittaa mitä hyvänsä. Muut käyttäjät voivat katsella "
+"ilmoituksia, julkisesti kommentoida ilmoituksia ja lähettää viestejä "
+"toisilleen.</p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
-"margin-left:0px; margin-right:0px; -qt-block-indent:0; "
-"text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; "
-"margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Ohjelman toinen "
-"keskeinen ominaisuus on, ettei se käytä keskitettyä tietovarastoa millään "
+"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"
+"\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\">Ohjelman toinen keskeinen "
+"ominaisuus on, ettei se käytä keskitettyä tietovarastoa millään "
 "verkkopalvelimella - yksittäisten käyttäjien tietokoneet, joilta ohjelmistoa "
 "käytetään tallettavat ja välittävät kaiken ohjelman sisällä esitettävän "
 "sisällön. Liittyäksesi tähän verkkoon sinun on tiedettävä ainakin yhden "
@@ -2005,67 +1943,66 @@ msgstr ""
 "kerran liitetty verkkoon, se pyrkii itse ylläpitämään listan verkon muista "
 "koneista.</p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
-"margin-left:0px; margin-right:0px; -qt-block-indent:0; "
-"text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; "
-"margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Johtuen "
-"suunnitelusta, johon verkkopalvelimet eivät kuulu tämä järjestelmä toimii "
-"parhaiten, jos jätät tämän ohjelman päälle myös silloin, kun et itse "
-"aktiivisesti käytä järjestelmää. Ohjelma vie jonkin verran "
-"tietojenkäsittelykapasiteettia koneeltasi ja aiheuttaa verkkoliikennettä "
-"myös silloin kun et itse ohjelmaa käytä - mutta muut käyttäjät käyttävät. "
-"</p>\n"
+"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"
+"\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\">Johtuen suunnitelusta, "
+"johon verkkopalvelimet eivät kuulu tämä järjestelmä toimii parhaiten, jos "
+"jätät tämän ohjelman päälle myös silloin, kun et itse aktiivisesti käytä "
+"järjestelmää. Ohjelma vie jonkin verran tietojenkäsittelykapasiteettia "
+"koneeltasi ja aiheuttaa verkkoliikennettä myös silloin kun et itse ohjelmaa "
+"käytä - mutta muut käyttäjät käyttävät. </p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
-"margin-left:0px; margin-right:0px; -qt-block-indent:0; "
-"text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; "
-"margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Yksityisyydestään "
+"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"
+"\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\">Yksityisyydestään "
 "huolestuneet käyttäjät huomatkoot seuraavat seikat:</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; "
-"margin-right:0px; -qt-block-indent:0; text-indent:0px;\">- Tietovarasto on "
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\">- Tietovarasto on "
 "toteutettu hajautettuna tiivistetaulukkona (distributed hash table DHT), "
 "mikä käytännössä tarkoittaa että verkkoon postitetut ilmoitukset ja muu "
 "sisältö päätyvät enemmän tai vähemmän satunnaisille verkon solmuille "
 "säilytettäväksi, DHT-algoritmin mukaisesti.</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; "
-"margin-right:0px; -qt-block-indent:0; text-indent:0px;\">- Kaikki verkon "
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\">- Kaikki verkon "
 "tallettamat tietoalkiot (ilmoitukset, kommentit, tiedostot, yksityiset "
 "viestit jne.) ovat digitaalisesti allekirjoitettuja. Tästä syystä on "
 "hankalaa pyrkiä esiintymään eri operaattorina kuin oikeasti on. </p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; "
-"margin-right:0px; -qt-block-indent:0; text-indent:0px;\">- Operaattorin "
-"ainoa luotettava tunniste on hänen salausavaimensa SHA1-tiiviste. "
-"SHA1-tiiviste on nähtävillä operaattorin tiedot esittävällä välilehdellä. "
-"Muut tiedot kuten liikanimi tai kaupungin nimi ovat operaattorin "
-"syötettävissä ja luonnollisesti voivat olla ihan mitä tahansa. Operaattorin "
-"profiilin tiedot verkkoon julkaistuna ovat myös allekirjoitetut, käyttäen "
-"operaattorin salausavainta - mikäli haluat kohtuullisella luotettavuudella "
-"tietää onko joku verkon sisältö tietyn operaattorin julkaisemaa vai ei, tämä "
-"tapahtuu tarkastamalla lähettäjän SHA1-tiiviste. Luokitellut ilmoitukset "
-"tarkastaa saapuvien tietoalkioiden allekirjoitukset ja jättää tallettamatta "
-"sisällöt, joiden allekirjoitus ei vastaa sisältöä. </p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; "
-"margin-right:0px; -qt-block-indent:0; text-indent:0px;\">- Kaikki "
-"luokitellut ilmoitukset julkaistaan ilman salausta ja ovat kaikkien "
-"luettavissa. Kaikki julkiset profiilit julkaistaan ilman salausta, ja ovat "
-"kaikkien luettavissa. Mikäli profiili merkitään yksityiseksi, se salataan "
-"siten, että lueteltujen operaattoreiden salausavainta käyttäen profiilin "
-"tiedot ovat luettavissa. Tämä pätee myös profiiliin liittyviin kommentteihin "
-"ja jaettuihin tiedostoihin. Muutos ei ole takautuva, eli jos profiili on "
-"aiemmin ollut julkinen, sen kommentit ja tiedostot eivät automaattisesti "
-"muutu salatuiksi kun profiili muutetaan yksityiseksi. Yksityiset viestit "
-"kuljetetaan aina salattuna. Liitetiedostot noudattavat sen dokumentin "
-"yksityisyyssääntöjä, mihin ne on liitetty.</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; "
-"margin-right:0px; -qt-block-indent:0; text-indent:0px;\">- Kuten kaiken "
-"internet-viestinnän kanssa tosi on, myös tämä pätee: jos jotain sisältöä "
-"verkkoon lähetetään, <span style=\" font-style:italic;\">ei ole olemassa "
-"keinoa pysyvästi sitä poistaa.</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; "
-"margin-right:0px; -qt-block-indent:0; text-indent:0px;\">- Salaustoteutus on "
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\">- Operaattorin ainoa "
+"luotettava tunniste on hänen salausavaimensa SHA1-tiiviste. SHA1-tiiviste on "
+"nähtävillä operaattorin tiedot esittävällä välilehdellä. Muut tiedot kuten "
+"liikanimi tai kaupungin nimi ovat operaattorin syötettävissä ja "
+"luonnollisesti voivat olla ihan mitä tahansa. Operaattorin profiilin tiedot "
+"verkkoon julkaistuna ovat myös allekirjoitetut, käyttäen operaattorin "
+"salausavainta - mikäli haluat kohtuullisella luotettavuudella tietää onko "
+"joku verkon sisältö tietyn operaattorin julkaisemaa vai ei, tämä tapahtuu "
+"tarkastamalla lähettäjän SHA1-tiiviste. Luokitellut ilmoitukset tarkastaa "
+"saapuvien tietoalkioiden allekirjoitukset ja jättää tallettamatta sisällöt, "
+"joiden allekirjoitus ei vastaa sisältöä. </p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\">- Kaikki luokitellut "
+"ilmoitukset julkaistaan ilman salausta ja ovat kaikkien luettavissa. Kaikki "
+"julkiset profiilit julkaistaan ilman salausta, ja ovat kaikkien luettavissa. "
+"Mikäli profiili merkitään yksityiseksi, se salataan siten, että lueteltujen "
+"operaattoreiden salausavainta käyttäen profiilin tiedot ovat luettavissa. "
+"Tämä pätee myös profiiliin liittyviin kommentteihin ja jaettuihin "
+"tiedostoihin. Muutos ei ole takautuva, eli jos profiili on aiemmin ollut "
+"julkinen, sen kommentit ja tiedostot eivät automaattisesti muutu salatuiksi "
+"kun profiili muutetaan yksityiseksi. Yksityiset viestit kuljetetaan aina "
+"salattuna. Liitetiedostot noudattavat sen dokumentin yksityisyyssääntöjä, "
+"mihin ne on liitetty.</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\">- Kuten kaiken internet-"
+"viestinnän kanssa tosi on, myös tämä pätee: jos jotain sisältöä verkkoon "
+"lähetetään, <span style=\" font-style:italic;\">ei ole olemassa keinoa "
+"pysyvästi sitä poistaa.</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\">- Salaustoteutus on "
 "OpenSSL, useimmin käytetyt algoritmit ovat RSA-2048 ja AES-256.</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; "
-"margin-right:0px; -qt-block-indent:0; text-indent:0px;\">- Solmujen välinen "
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\">- Solmujen välinen "
 "liikenne kulkee SSL-socketissa eli tietoliikenteen seuraaminen verkon "
 "ulkopuolelta on haastavaa. Vierekkäiset solmut kuitenkin näkevät toistensa "
 "tietoliikenteenteen sisällön.  Vaikka tietoliikenteen sisältöjen keräämiseen "
@@ -2074,27 +2011,27 @@ msgstr ""
 "yksityisten viestien <span style=\" font-style:italic;\">sisältöjen</span> "
 "suojaamiseksi onkin nähty. </p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
-"margin-left:0px; margin-right:0px; -qt-block-indent:0; "
-"text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; "
-"margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Ohjelmointityön on "
+"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"
+"\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\">Ohjelmointityön on "
 "enimmäkseen tehnyt Antti Järvinen, taideteokset Meeri Järvinen.</p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
-"margin-left:0px; margin-right:0px; -qt-block-indent:0; "
-"text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; "
-"margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Tämä tuote sisältää "
+"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"
+"\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\">Tämä tuote sisältää "
 "OpenSSL-projektin kehittämän ohjelmiston, joka on alunperin tarkoitettu "
 "OpenSSL Toolkit-ohjelmistoa varten (http://www.openssl.org).</p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
-"margin-left:0px; margin-right:0px; -qt-block-indent:0; "
-"text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; "
-"margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Riemullista "
-"ilmoittelua!</p>\n"
+"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"
+"\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\">Riemullista ilmoittelua!</"
+"p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
-"margin-left:0px; margin-right:0px; -qt-block-indent:0; "
-"text-indent:0px;\"><br /></p></body></html>"
+"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"
+"\"><br /></p></body></html>"
 
 # Dialog title text. Dialog in question produces list of file attachments. 
 #: ui/attachmentListDialog.ui:26
@@ -2404,21 +2341,21 @@ msgstr "BTC-osoite"
 #: frontWidget.ui:829
 msgctxt "frontWidget|"
 msgid ""
-"<html><head/><body><p align=\"center\"><span style=\" "
-"font-size:16pt;\"><br/></span></p><p align=\"center\"><span style=\" "
-"font-size:16pt;\"><br/></span></p><p align=\"center\"><span style=\" "
-"font-size:16pt;\"><br/></span></p><p align=\"center\"><span style=\" "
-"font-size:16pt;\">No</span></p><p align=\"center\"><span style=\" "
-"font-size:16pt;\">Image</span></p><p align=\"center\"><span style=\" "
-"font-size:16pt;\">Inserted</span></p></body></html>"
+"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt;\"><br/"
+"></span></p><p align=\"center\"><span style=\" font-size:16pt;\"><br/></"
+"span></p><p align=\"center\"><span style=\" font-size:16pt;\"><br/></span></"
+"p><p align=\"center\"><span style=\" font-size:16pt;\">No</span></p><p "
+"align=\"center\"><span style=\" font-size:16pt;\">Image</span></p><p "
+"align=\"center\"><span style=\" font-size:16pt;\">Inserted</span></p></"
+"body></html>"
 msgstr ""
-"<html><head/><body><p align=\"center\"><span style=\" "
-"font-size:16pt;\"><br/></span></p><p align=\"center\"><span style=\" "
-"font-size:16pt;\"><br/></span></p><p align=\"center\"><span style=\" "
-"font-size:16pt;\"><br/></span></p><p align=\"center\"><span style=\" "
-"font-size:16pt;\">Ei</span></p><p align=\"center\"><span style=\" "
-"font-size:16pt;\">Kuvaa</span></p><p align=\"center\"><span style=\" "
-"font-size:16pt;\">Valittuna</span></p></body></html>"
+"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt;\"><br/"
+"></span></p><p align=\"center\"><span style=\" font-size:16pt;\"><br/></"
+"span></p><p align=\"center\"><span style=\" font-size:16pt;\"><br/></span></"
+"p><p align=\"center\"><span style=\" font-size:16pt;\">Ei</span></p><p "
+"align=\"center\"><span style=\" font-size:16pt;\">Kuvaa</span></p><p "
+"align=\"center\"><span style=\" font-size:16pt;\">Valittuna</span></p></"
+"body></html>"
 
 # Button text inside "defails of operator profile" tab. When the button is clicked, a new-message editor is opened. 
 #: frontWidget.ui:874
@@ -2746,7 +2683,6 @@ msgstr "Ensimmäiset 100 osumaa:"
 
 # Push-button label inside "add profiles to list of readers" dialog. When user hits this button, operators that are selected from neighboring list will be added to list of readers of operators profile.
 #: ui/profileReadersDialog.ui:66
-#| msgid "Add seleted to list of readers"
 msgctxt "profileReadersDialog|"
 msgid "Add selected to list of readers"
 msgstr "Lisää valitut profiilin lukijoiksi"
@@ -2900,61 +2836,61 @@ msgid "Nr of db records to keep"
 msgstr "Jaetun tietokannan tietuemäärä"
 
 # Label for combo-box where user can choose between voice call ringtones. 
-#: ui/settingsDialog.ui:349
+#: ui/settingsDialog.ui:316
 msgctxt "settingsDialog|"
 msgid "Ringtone"
 msgstr "Puhelun hälytysääni"
 
 # Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is performed with a bow.
-#: ui/settingsDialog.ui:357
+#: ui/settingsDialog.ui:324
 msgctxt "settingsDialog|"
 msgid "Bow"
 msgstr "Jousella"
 
 # Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is electrical.
-#: ui/settingsDialog.ui:362
+#: ui/settingsDialog.ui:329
 msgctxt "settingsDialog|"
 msgid "Electrical"
 msgstr "Sähköisesti"
 
 # Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is performed in acoustic manner
-#: ui/settingsDialog.ui:367
+#: ui/settingsDialog.ui:334
 msgctxt "settingsDialog|"
 msgid "Acoustic"
 msgstr "Akustisesti"
 
 # Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is only a beep
-#: ui/settingsDialog.ui:372
+#: ui/settingsDialog.ui:339
 msgctxt "settingsDialog|"
 msgid "Beep"
 msgstr "Piippaus"
 
 # Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is silent
-#: ui/settingsDialog.ui:377
+#: ui/settingsDialog.ui:344
 msgctxt "settingsDialog|"
 msgid "Silence"
 msgstr "Hiljaisuus"
 
 # Combox-box label text. Combo-box is for selecting which audio calls to accept, selections are like "all ; no calls at all ; from some operators ; .."
-#: ui/settingsDialog.ui:389
+#: ui/settingsDialog.ui:356
 msgctxt "settingsDialog|"
 msgid "Accept voice calls"
 msgstr "Hyväksy puhelut"
 
 # Combobox item text for selecting which audio calls to accept. Selecting this item lets all calls in. 
-#: ui/settingsDialog.ui:397
+#: ui/settingsDialog.ui:364
 msgctxt "settingsDialog|"
 msgid "All"
 msgstr "Kaikki"
 
 # Combobox item text for selecting which audio calls to accept. Selecting this item lets in calls from trusted operators.
-#: ui/settingsDialog.ui:402
+#: ui/settingsDialog.ui:369
 msgctxt "settingsDialog|"
 msgid "From trusted operators"
 msgstr "Vain luotetuilta operaattoreilta"
 
 # Combobox item text for selecting which audio calls to accept. Selecting this item rejects all calls. 
-#: ui/settingsDialog.ui:407
+#: ui/settingsDialog.ui:374
 msgctxt "settingsDialog|"
 msgid "Accept no voice calls"
 msgstr "Ei ainuttakaan"
