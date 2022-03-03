@@ -1,6 +1,6 @@
 Name:		classified-ads
-Version:	0.13
-Release:	4%{?dist}
+Version:	0.14
+Release:	1%{?dist}
 Summary:	Classified ads is distributed, server-less messaging system
 
 License:	LGPLv2
@@ -59,6 +59,9 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/classified-ads.deskt
 %{_datadir}/doc/classified-ads/examples/calendar.tcl
 
 %changelog
+* Mon Feb 28 2022 Antti Järvinen <antti.jarvinen@katiska.org> - 0.14-1
+- New upstream release
+
 * Sun Feb 10 2019 Kalev Lember <klember@redhat.com> - 0.13-4
 - Rebuilt for miniupnpc soname bump
 
