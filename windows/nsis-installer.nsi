@@ -8,7 +8,7 @@
 # define name of installer
 outFile "Classified-ads-Win32.exe"
 !define MUI_ICON "turt-transparent-128x128.ico"
-!define VERSION "0.13" 
+!define VERSION "0.14" 
 # ask to be admin in order to create start menu shortcuts to all users
 RequestExecutionLevel admin
 Name "Classified ads ${VERSION}" 
@@ -38,37 +38,45 @@ CreateDirectory "$INSTDIR\de\LC_MESSAGES"
 file /oname=$INSTDIR\de\LC_MESSAGES\classified-ads.mo ..\po\de.mo
 CreateDirectory "$INSTDIR\es\LC_MESSAGES"
 file /oname=$INSTDIR\es\LC_MESSAGES\classified-ads.mo ..\po\es.mo
-file /oname=qt_ca.qm ..\release\translations\qt_ca.qm
-file /oname=qt_cs.qm ..\release\translations\qt_cs.qm
-file /oname=qt_de.qm ..\release\translations\qt_de.qm
-file /oname=qt_fi.qm ..\release\translations\qt_fi.qm
-file /oname=qt_hu.qm ..\release\translations\qt_hu.qm
-file /oname=qt_it.qm ..\release\translations\qt_it.qm
-file /oname=qt_ja.qm ..\release\translations\qt_ja.qm
-file /oname=qt_lv.qm ..\release\translations\qt_lv.qm
-file /oname=qt_ru.qm ..\release\translations\qt_ru.qm
-file /oname=qt_sk.qm ..\release\translations\qt_sk.qm
-file /oname=qt_uk.qm ..\release\translations\qt_uk.qm
+file /oname=qt_ar.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_ar.qm
+file /oname=qt_bg.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_bg.qm
+file /oname=qt_ca.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_ca.qm
+file /oname=qt_cs.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_cs.qm
+file /oname=qt_da.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_da.qm
+file /oname=qt_de.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_de.qm
+file /oname=qt_en.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_en.qm
+file /oname=qt_es.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_es.qm
+file /oname=qt_fa.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_fa.qm
+file /oname=qt_fi.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_fi.qm
+file /oname=qt_fr.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_fr.qm
+file /oname=qt_gd.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_gd.qm
+file /oname=qt_gl.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_gl.qm
+file /oname=qt_he.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_he.qm
+file /oname=qt_hu.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_hu.qm
+file /oname=qt_it.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_it.qm
+file /oname=qt_ja.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_ja.qm
+file /oname=qt_ko.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_ko.qm
+file /oname=qt_lt.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_lt.qm
+file /oname=qt_lv.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_lv.qm
+file /oname=qt_nl.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_nl.qm
+file /oname=qt_pl.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_pl.qm
+file /oname=qt_pt_BR.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_pt_BR.qm
+file /oname=qt_pt_PT.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_pt_PT.qm
+file /oname=qt_ru.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_ru.qm
+file /oname=qt_sk.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_sk.qm
+file /oname=qt_sl.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_sl.qm
+file /oname=qt_sv.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_sv.qm
+file /oname=qt_uk.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_uk.qm
+file /oname=qt_zh_CN.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_zh_CN.qm
+file /oname=qt_zh_TW.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_zh_TW.qm
 CreateDirectory "$INSTDIR\examples"
 file /oname=$INSTDIR\examples\sysinfo.tcl ..\doc\sysinfo.tcl
 file /oname=$INSTDIR\examples\luikero.tcl ..\doc\luikero.tcl
 file /oname=$INSTDIR\examples\calendar.tcl ..\doc\calendar.tcl
-CreateDirectory "$INSTDIR\bearer"
-CreateDirectory "$INSTDIR\iconengines"
-CreateDirectory "$INSTDIR\imageformats"
-CreateDirectory "$INSTDIR\printsupport"
-CreateDirectory "$INSTDIR\platforms"
-CreateDirectory "$INSTDIR\sqldrivers"
-CreateDirectory "$INSTDIR\audio"
-file /oname=miniupnpc.dll ..\..\miniupnpc-1.9\miniupnpc.dll
+file /oname=miniupnpc.dll ..\release\miniupnpc.dll
 CreateShortCut "$SMPROGRAMS\Classified-ads\Classified-ads.lnk" "$INSTDIR\Classified-ads.exe"
+
 file /oname=D3Dcompiler_47.dll deps\D3Dcompiler_47.dll
-file /oname=libEGL.dll deps\libEGL.dll
-file /oname=libGLESV2.dll deps\libGLESV2.dll
-file /oname=libgcc_s_dw2-1.dll deps\libgcc_s_dw2-1.dll
-file /oname=libstdc++-6.dll deps\libstdc++-6.dll
-file /oname=libwinpthread-1.dll deps\libwinpthread-1.dll
-file /oname=opengl32sw.dll deps\opengl32sw.dll
 file /oname=Qt5Core.dll deps\Qt5Core.dll
 file /oname=Qt5Gui.dll deps\Qt5Gui.dll
 file /oname=Qt5Multimedia.dll deps\Qt5Multimedia.dll
@@ -77,29 +85,136 @@ file /oname=Qt5PrintSupport.dll deps\Qt5PrintSupport.dll
 file /oname=Qt5Sql.dll deps\Qt5Sql.dll
 file /oname=Qt5Svg.dll deps\Qt5Svg.dll
 file /oname=Qt5Widgets.dll deps\Qt5Widgets.dll
-file /oname=bearer\qgenericbearer.dll ..\release\bearer\qgenericbearer.dll
-file /oname=bearer\qnativewifibearer.dll ..\release\bearer\qnativewifibearer.dll
-file /oname=iconengines\qsvgicon.dll ..\release\iconengines\qsvgicon.dll
-file /oname=imageformats\qdds.dll ..\release\imageformats\qdds.dll
-file /oname=imageformats\qgif.dll ..\release\imageformats\qgif.dll
-file /oname=imageformats\qicns.dll ..\release\imageformats\qicns.dll
-file /oname=imageformats\qico.dll ..\release\imageformats\qico.dll
-file /oname=imageformats\qjp2.dll ..\release\imageformats\qjp2.dll
-file /oname=imageformats\qjpeg.dll ..\release\imageformats\qjpeg.dll
-file /oname=imageformats\qmng.dll ..\release\imageformats\qmng.dll
-file /oname=imageformats\qsvg.dll ..\release\imageformats\qsvg.dll
-file /oname=imageformats\qtga.dll ..\release\imageformats\qtga.dll
-file /oname=imageformats\qtiff.dll ..\release\imageformats\qtiff.dll
-file /oname=imageformats\qwbmp.dll ..\release\imageformats\qwbmp.dll
-file /oname=imageformats\qwebp.dll ..\release\imageformats\qwebp.dll
-file /oname=platforms\qwindows.dll ..\release\platforms\qwindows.dll
-file /oname=printsupport\windowsprintersupport.dll ..\release\printsupport\windowsprintersupport.dll
-file /oname=sqldrivers\qsqlite.dll ..\release\sqldrivers\qsqlite.dll
-file /oname=audio\qtaudio_windows.dll ..\release\audio\qtaudio_windows.dll
-file /oname=libeay32.dll ..\release\libeay32.dll
-file /oname=ssleay32.dll ..\release\ssleay32.dll
+file /oname=libEGL.dll deps\libEGL.dll
+file /oname=libGLESV2.dll deps\libGLESV2.dll
+file /oname=libgcc_s_dw2-1.dll deps\libgcc_s_dw2-1.dll
+file /oname=libstdc++-6.dll deps\libstdc++-6.dll
+file /oname=libwinpthread-1.dll deps\libwinpthread-1.dll
+file /oname=opengl32sw.dll deps\opengl32sw.dll
+
+file /oname=libcrypto-1_1.dll ..\release\libcrypto-1_1.dll
 file /oname=libiconv-2.dll ..\release\libiconv-2.dll
 file /oname=libintl-8.dll ..\release\libintl-8.dll
+file /oname=libssl-1_1.dll ..\release\libssl-1_1.dll
+file /oname=tcl86.dll ..\release\tcl86.dll
+file /oname=tk86.dll ..\release\tk86.dll
+file /oname=zlib1.dll ..\release\zlib1.dll
+
+CreateDirectory "$INSTDIR\audio"
+CreateDirectory "$INSTDIR\bearer"
+CreateDirectory "$INSTDIR\canbus"
+CreateDirectory "$INSTDIR\designer"
+CreateDirectory "$INSTDIR\gamepads"
+CreateDirectory "$INSTDIR\generic"
+CreateDirectory "$INSTDIR\geometryloaders"
+CreateDirectory "$INSTDIR\geoservices"
+CreateDirectory "$INSTDIR\iconengines"
+CreateDirectory "$INSTDIR\imageformats"
+CreateDirectory "$INSTDIR\mediaservice"
+CreateDirectory "$INSTDIR\platforminputcontexts"
+CreateDirectory "$INSTDIR\platforms"
+CreateDirectory "$INSTDIR\platformthemes"
+CreateDirectory "$INSTDIR\playlistformats"
+CreateDirectory "$INSTDIR\position"
+CreateDirectory "$INSTDIR\printsupport"
+CreateDirectory "$INSTDIR\qmltooling"
+CreateDirectory "$INSTDIR\renderplugins"
+CreateDirectory "$INSTDIR\sceneparsers"
+CreateDirectory "$INSTDIR\sensorgestures"
+CreateDirectory "$INSTDIR\sensors"
+CreateDirectory "$INSTDIR\sqldrivers"
+CreateDirectory "$INSTDIR\styles"
+CreateDirectory "$INSTDIR\texttospeech"
+CreateDirectory "$INSTDIR\virtualkeyboard"
+file /oname=$INSTDIR\audio\qtaudio_windows.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\audio\qtaudio_windows.dll
+file /oname=$INSTDIR\audio\qtaudio_windowsd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\audio\qtaudio_windowsd.dll
+file /oname=$INSTDIR\bearer\qgenericbearer.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\bearer\qgenericbearer.dll
+file /oname=$INSTDIR\bearer\qgenericbearerd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\bearer\qgenericbearerd.dll
+file /oname=$INSTDIR\designer\qaxwidget.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\designer\qaxwidget.dll
+file /oname=$INSTDIR\designer\qquickwidget.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\designer\qquickwidget.dll
+file /oname=$INSTDIR\gamepads\xinputgamepad.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\gamepads\xinputgamepad.dll
+file /oname=$INSTDIR\gamepads\xinputgamepadd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\gamepads\xinputgamepadd.dll
+file /oname=$INSTDIR\generic\qtuiotouchplugin.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\generic\qtuiotouchplugin.dll
+file /oname=$INSTDIR\generic\qtuiotouchplugind.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\generic\qtuiotouchplugind.dll
+file /oname=$INSTDIR\geometryloaders\defaultgeometryloader.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\geometryloaders\defaultgeometryloader.dll
+file /oname=$INSTDIR\geometryloaders\defaultgeometryloaderd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\geometryloaders\defaultgeometryloaderd.dll
+file /oname=$INSTDIR\geometryloaders\gltfgeometryloader.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\geometryloaders\gltfgeometryloader.dll
+file /oname=$INSTDIR\geometryloaders\gltfgeometryloaderd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\geometryloaders\gltfgeometryloaderd.dll
+file /oname=$INSTDIR\iconengines\qsvgicon.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\iconengines\qsvgicon.dll
+file /oname=$INSTDIR\iconengines\qsvgicond.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\iconengines\qsvgicond.dll
+file /oname=$INSTDIR\imageformats\qgif.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qgif.dll
+file /oname=$INSTDIR\imageformats\qgifd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qgifd.dll
+file /oname=$INSTDIR\imageformats\qicns.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qicns.dll
+file /oname=$INSTDIR\imageformats\qicnsd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qicnsd.dll
+file /oname=$INSTDIR\imageformats\qico.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qico.dll
+file /oname=$INSTDIR\imageformats\qicod.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qicod.dll
+file /oname=$INSTDIR\imageformats\qjpeg.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qjpeg.dll
+file /oname=$INSTDIR\imageformats\qjpegd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qjpegd.dll
+file /oname=$INSTDIR\imageformats\qsvg.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qsvg.dll
+file /oname=$INSTDIR\imageformats\qsvgd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qsvgd.dll
+file /oname=$INSTDIR\imageformats\qtga.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qtga.dll
+file /oname=$INSTDIR\imageformats\qtgad.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qtgad.dll
+file /oname=$INSTDIR\imageformats\qtiff.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qtiff.dll
+file /oname=$INSTDIR\imageformats\qtiffd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qtiffd.dll
+file /oname=$INSTDIR\imageformats\qwbmp.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qwbmp.dll
+file /oname=$INSTDIR\imageformats\qwbmpd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qwbmpd.dll
+file /oname=$INSTDIR\imageformats\qwebp.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qwebp.dll
+file /oname=$INSTDIR\imageformats\qwebpd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qwebpd.dll
+file /oname=$INSTDIR\mediaservice\dsengine.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\mediaservice\dsengine.dll
+file /oname=$INSTDIR\mediaservice\dsengined.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\mediaservice\dsengined.dll
+file /oname=$INSTDIR\mediaservice\qtmedia_audioengine.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\mediaservice\qtmedia_audioengine.dll
+file /oname=$INSTDIR\mediaservice\qtmedia_audioengined.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\mediaservice\qtmedia_audioengined.dll
+file /oname=$INSTDIR\platforminputcontexts\qtvirtualkeyboardplugin.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\platforminputcontexts\qtvirtualkeyboardplugin.dll
+file /oname=$INSTDIR\platforminputcontexts\qtvirtualkeyboardplugind.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\platforminputcontexts\qtvirtualkeyboardplugind.dll
+file /oname=$INSTDIR\platforms\qdirect2d.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\platforms\qdirect2d.dll
+file /oname=$INSTDIR\platforms\qdirect2dd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\platforms\qdirect2dd.dll
+file /oname=$INSTDIR\platforms\qminimal.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\platforms\qminimal.dll
+file /oname=$INSTDIR\platforms\qminimald.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\platforms\qminimald.dll
+file /oname=$INSTDIR\platforms\qoffscreen.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\platforms\qoffscreen.dll
+file /oname=$INSTDIR\platforms\qoffscreend.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\platforms\qoffscreend.dll
+file /oname=$INSTDIR\platforms\qwebgl.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\platforms\qwebgl.dll
+file /oname=$INSTDIR\platforms\qwebgld.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\platforms\qwebgld.dll
+file /oname=$INSTDIR\platforms\qwindows.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\platforms\qwindows.dll
+file /oname=$INSTDIR\platforms\qwindowsd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\platforms\qwindowsd.dll
+file /oname=$INSTDIR\platformthemes\qxdgdesktopportal.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\platformthemes\qxdgdesktopportal.dll
+file /oname=$INSTDIR\platformthemes\qxdgdesktopportald.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\platformthemes\qxdgdesktopportald.dll
+file /oname=$INSTDIR\playlistformats\qtmultimedia_m3u.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\playlistformats\qtmultimedia_m3u.dll
+file /oname=$INSTDIR\playlistformats\qtmultimedia_m3ud.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\playlistformats\qtmultimedia_m3ud.dll
+file /oname=$INSTDIR\position\qtposition_positionpoll.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\position\qtposition_positionpoll.dll
+file /oname=$INSTDIR\position\qtposition_positionpolld.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\position\qtposition_positionpolld.dll
+file /oname=$INSTDIR\position\qtposition_serialnmea.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\position\qtposition_serialnmea.dll
+file /oname=$INSTDIR\position\qtposition_serialnmead.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\position\qtposition_serialnmead.dll
+file /oname=$INSTDIR\printsupport\windowsprintersupport.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\printsupport\windowsprintersupport.dll
+file /oname=$INSTDIR\printsupport\windowsprintersupportd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\printsupport\windowsprintersupportd.dll
+file /oname=$INSTDIR\renderplugins\scene2d.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\renderplugins\scene2d.dll
+file /oname=$INSTDIR\renderplugins\scene2dd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\renderplugins\scene2dd.dll
+file /oname=$INSTDIR\sensorgestures\qtsensorgestures_plugin.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\sensorgestures\qtsensorgestures_plugin.dll
+file /oname=$INSTDIR\sensorgestures\qtsensorgestures_plugind.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\sensorgestures\qtsensorgestures_plugind.dll
+file /oname=$INSTDIR\sensorgestures\qtsensorgestures_shakeplugin.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\sensorgestures\qtsensorgestures_shakeplugin.dll
+file /oname=$INSTDIR\sensorgestures\qtsensorgestures_shakeplugind.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\sensorgestures\qtsensorgestures_shakeplugind.dll
+file /oname=$INSTDIR\sensors\qtsensors_generic.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\sensors\qtsensors_generic.dll
+file /oname=$INSTDIR\sensors\qtsensors_genericd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\sensors\qtsensors_genericd.dll
+file /oname=$INSTDIR\sqldrivers\qsqlite.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\sqldrivers\qsqlite.dll
+file /oname=$INSTDIR\sqldrivers\qsqlited.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\sqldrivers\qsqlited.dll
+file /oname=$INSTDIR\sqldrivers\qsqlodbc.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\sqldrivers\qsqlodbc.dll
+file /oname=$INSTDIR\sqldrivers\qsqlodbcd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\sqldrivers\qsqlodbcd.dll
+file /oname=$INSTDIR\sqldrivers\qsqlpsql.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\sqldrivers\qsqlpsql.dll
+file /oname=$INSTDIR\sqldrivers\qsqlpsqld.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\sqldrivers\qsqlpsqld.dll
+file /oname=$INSTDIR\styles\qwindowsvistastyle.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\styles\qwindowsvistastyle.dll
+file /oname=$INSTDIR\styles\qwindowsvistastyled.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\styles\qwindowsvistastyled.dll
+file /oname=$INSTDIR\texttospeech\qtexttospeech_sapi.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\texttospeech\qtexttospeech_sapi.dll
+file /oname=$INSTDIR\texttospeech\qtexttospeech_sapid.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\texttospeech\qtexttospeech_sapid.dll
+file /oname=$INSTDIR\virtualkeyboard\qtvirtualkeyboard_hangul.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\virtualkeyboard\qtvirtualkeyboard_hangul.dll
+file /oname=$INSTDIR\virtualkeyboard\qtvirtualkeyboard_hanguld.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\virtualkeyboard\qtvirtualkeyboard_hanguld.dll
+file /oname=$INSTDIR\virtualkeyboard\qtvirtualkeyboard_openwnn.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\virtualkeyboard\qtvirtualkeyboard_openwnn.dll
+file /oname=$INSTDIR\virtualkeyboard\qtvirtualkeyboard_openwnnd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\virtualkeyboard\qtvirtualkeyboard_openwnnd.dll
+file /oname=$INSTDIR\virtualkeyboard\qtvirtualkeyboard_pinyin.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\virtualkeyboard\qtvirtualkeyboard_pinyin.dll
+file /oname=$INSTDIR\virtualkeyboard\qtvirtualkeyboard_pinyind.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\virtualkeyboard\qtvirtualkeyboard_pinyind.dll
+file /oname=$INSTDIR\virtualkeyboard\qtvirtualkeyboard_tcime.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\virtualkeyboard\qtvirtualkeyboard_tcime.dll
+file /oname=$INSTDIR\virtualkeyboard\qtvirtualkeyboard_tcimed.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\virtualkeyboard\qtvirtualkeyboard_tcimed.dll
+file /oname=$INSTDIR\virtualkeyboard\qtvirtualkeyboard_thai.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\virtualkeyboard\qtvirtualkeyboard_thai.dll
+file /oname=$INSTDIR\virtualkeyboard\qtvirtualkeyboard_thaid.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\virtualkeyboard\qtvirtualkeyboard_thaid.dll
+
 file /oname=LICENSE ..\LICENSE
 #
 # TCL-related directories and files
@@ -132,20 +247,18 @@ CreateDirectory "$INSTDIR\tcl8.6\tzdata\Pacific"
 CreateDirectory "$INSTDIR\tcl8.6\tzdata\SystemV"
 CreateDirectory "$INSTDIR\tcl8.6\tzdata\US"
 CreateDirectory "$INSTDIR\tk8.6"
+CreateDirectory "$INSTDIR\tk8.6\demos"
+CreateDirectory "$INSTDIR\tk8.6\demos\images"
 CreateDirectory "$INSTDIR\tk8.6\images"
 CreateDirectory "$INSTDIR\tk8.6\msgs"
 CreateDirectory "$INSTDIR\tk8.6\ttk"
-CreateDirectory "$INSTDIR\tcl8"
-CreateDirectory "$INSTDIR\tcl8\8.4"
-CreateDirectory "$INSTDIR\tcl8\8.4\platform"
-CreateDirectory "$INSTDIR\tcl8\8.5"
-CreateDirectory "$INSTDIR\tcl8\8.6"
-CreateDirectory "$INSTDIR\tcl8\8.6\tdbc"
+
 # and files
 file /oname=$INSTDIR\tcl8.6\auto.tcl ..\release\tcl8.6\auto.tcl
 file /oname=$INSTDIR\tcl8.6\clock.tcl ..\release\tcl8.6\clock.tcl
 file /oname=$INSTDIR\tcl8.6\encoding\ascii.enc ..\release\tcl8.6\encoding\ascii.enc
 file /oname=$INSTDIR\tcl8.6\encoding\big5.enc ..\release\tcl8.6\encoding\big5.enc
+file /oname=$INSTDIR\tcl8.6\encoding\cns11643.enc ..\release\tcl8.6\encoding\cns11643.enc
 file /oname=$INSTDIR\tcl8.6\encoding\cp1250.enc ..\release\tcl8.6\encoding\cp1250.enc
 file /oname=$INSTDIR\tcl8.6\encoding\cp1251.enc ..\release\tcl8.6\encoding\cp1251.enc
 file /oname=$INSTDIR\tcl8.6\encoding\cp1252.enc ..\release\tcl8.6\encoding\cp1252.enc
@@ -189,6 +302,7 @@ file /oname=$INSTDIR\tcl8.6\encoding\iso2022-kr.enc ..\release\tcl8.6\encoding\i
 file /oname=$INSTDIR\tcl8.6\encoding\iso2022.enc ..\release\tcl8.6\encoding\iso2022.enc
 file /oname=$INSTDIR\tcl8.6\encoding\iso8859-1.enc ..\release\tcl8.6\encoding\iso8859-1.enc
 file /oname=$INSTDIR\tcl8.6\encoding\iso8859-10.enc ..\release\tcl8.6\encoding\iso8859-10.enc
+file /oname=$INSTDIR\tcl8.6\encoding\iso8859-11.enc ..\release\tcl8.6\encoding\iso8859-11.enc
 file /oname=$INSTDIR\tcl8.6\encoding\iso8859-13.enc ..\release\tcl8.6\encoding\iso8859-13.enc
 file /oname=$INSTDIR\tcl8.6\encoding\iso8859-14.enc ..\release\tcl8.6\encoding\iso8859-14.enc
 file /oname=$INSTDIR\tcl8.6\encoding\iso8859-15.enc ..\release\tcl8.6\encoding\iso8859-15.enc
@@ -535,6 +649,7 @@ file /oname=$INSTDIR\tcl8.6\tzdata\America\Noronha ..\release\tcl8.6\tzdata\Amer
 file /oname=$INSTDIR\tcl8.6\tzdata\America\North_Dakota\Beulah ..\release\tcl8.6\tzdata\America\North_Dakota\Beulah
 file /oname=$INSTDIR\tcl8.6\tzdata\America\North_Dakota\Center ..\release\tcl8.6\tzdata\America\North_Dakota\Center
 file /oname=$INSTDIR\tcl8.6\tzdata\America\North_Dakota\New_Salem ..\release\tcl8.6\tzdata\America\North_Dakota\New_Salem
+file /oname=$INSTDIR\tcl8.6\tzdata\America\Nuuk ..\release\tcl8.6\tzdata\America\Nuuk
 file /oname=$INSTDIR\tcl8.6\tzdata\America\Ojinaga ..\release\tcl8.6\tzdata\America\Ojinaga
 file /oname=$INSTDIR\tcl8.6\tzdata\America\Panama ..\release\tcl8.6\tzdata\America\Panama
 file /oname=$INSTDIR\tcl8.6\tzdata\America\Pangnirtung ..\release\tcl8.6\tzdata\America\Pangnirtung
@@ -545,6 +660,7 @@ file /oname=$INSTDIR\tcl8.6\tzdata\America\Porto_Acre ..\release\tcl8.6\tzdata\A
 file /oname=$INSTDIR\tcl8.6\tzdata\America\Porto_Velho ..\release\tcl8.6\tzdata\America\Porto_Velho
 file /oname=$INSTDIR\tcl8.6\tzdata\America\Port_of_Spain ..\release\tcl8.6\tzdata\America\Port_of_Spain
 file /oname=$INSTDIR\tcl8.6\tzdata\America\Puerto_Rico ..\release\tcl8.6\tzdata\America\Puerto_Rico
+file /oname=$INSTDIR\tcl8.6\tzdata\America\Punta_Arenas ..\release\tcl8.6\tzdata\America\Punta_Arenas
 file /oname=$INSTDIR\tcl8.6\tzdata\America\Rainy_River ..\release\tcl8.6\tzdata\America\Rainy_River
 file /oname=$INSTDIR\tcl8.6\tzdata\America\Rankin_Inlet ..\release\tcl8.6\tzdata\America\Rankin_Inlet
 file /oname=$INSTDIR\tcl8.6\tzdata\America\Recife ..\release\tcl8.6\tzdata\America\Recife
@@ -600,6 +716,7 @@ file /oname=$INSTDIR\tcl8.6\tzdata\Asia\Aqtau ..\release\tcl8.6\tzdata\Asia\Aqta
 file /oname=$INSTDIR\tcl8.6\tzdata\Asia\Aqtobe ..\release\tcl8.6\tzdata\Asia\Aqtobe
 file /oname=$INSTDIR\tcl8.6\tzdata\Asia\Ashgabat ..\release\tcl8.6\tzdata\Asia\Ashgabat
 file /oname=$INSTDIR\tcl8.6\tzdata\Asia\Ashkhabad ..\release\tcl8.6\tzdata\Asia\Ashkhabad
+file /oname=$INSTDIR\tcl8.6\tzdata\Asia\Atyrau ..\release\tcl8.6\tzdata\Asia\Atyrau
 file /oname=$INSTDIR\tcl8.6\tzdata\Asia\Baghdad ..\release\tcl8.6\tzdata\Asia\Baghdad
 file /oname=$INSTDIR\tcl8.6\tzdata\Asia\Bahrain ..\release\tcl8.6\tzdata\Asia\Bahrain
 file /oname=$INSTDIR\tcl8.6\tzdata\Asia\Baku ..\release\tcl8.6\tzdata\Asia\Baku
@@ -620,6 +737,7 @@ file /oname=$INSTDIR\tcl8.6\tzdata\Asia\Dhaka ..\release\tcl8.6\tzdata\Asia\Dhak
 file /oname=$INSTDIR\tcl8.6\tzdata\Asia\Dili ..\release\tcl8.6\tzdata\Asia\Dili
 file /oname=$INSTDIR\tcl8.6\tzdata\Asia\Dubai ..\release\tcl8.6\tzdata\Asia\Dubai
 file /oname=$INSTDIR\tcl8.6\tzdata\Asia\Dushanbe ..\release\tcl8.6\tzdata\Asia\Dushanbe
+file /oname=$INSTDIR\tcl8.6\tzdata\Asia\Famagusta ..\release\tcl8.6\tzdata\Asia\Famagusta
 file /oname=$INSTDIR\tcl8.6\tzdata\Asia\Gaza ..\release\tcl8.6\tzdata\Asia\Gaza
 file /oname=$INSTDIR\tcl8.6\tzdata\Asia\Harbin ..\release\tcl8.6\tzdata\Asia\Harbin
 file /oname=$INSTDIR\tcl8.6\tzdata\Asia\Hebron ..\release\tcl8.6\tzdata\Asia\Hebron
@@ -658,6 +776,7 @@ file /oname=$INSTDIR\tcl8.6\tzdata\Asia\Phnom_Penh ..\release\tcl8.6\tzdata\Asia
 file /oname=$INSTDIR\tcl8.6\tzdata\Asia\Pontianak ..\release\tcl8.6\tzdata\Asia\Pontianak
 file /oname=$INSTDIR\tcl8.6\tzdata\Asia\Pyongyang ..\release\tcl8.6\tzdata\Asia\Pyongyang
 file /oname=$INSTDIR\tcl8.6\tzdata\Asia\Qatar ..\release\tcl8.6\tzdata\Asia\Qatar
+file /oname=$INSTDIR\tcl8.6\tzdata\Asia\Qostanay ..\release\tcl8.6\tzdata\Asia\Qostanay
 file /oname=$INSTDIR\tcl8.6\tzdata\Asia\Qyzylorda ..\release\tcl8.6\tzdata\Asia\Qyzylorda
 file /oname=$INSTDIR\tcl8.6\tzdata\Asia\Rangoon ..\release\tcl8.6\tzdata\Asia\Rangoon
 file /oname=$INSTDIR\tcl8.6\tzdata\Asia\Riyadh ..\release\tcl8.6\tzdata\Asia\Riyadh
@@ -685,6 +804,7 @@ file /oname=$INSTDIR\tcl8.6\tzdata\Asia\Ust-Nera ..\release\tcl8.6\tzdata\Asia\U
 file /oname=$INSTDIR\tcl8.6\tzdata\Asia\Vientiane ..\release\tcl8.6\tzdata\Asia\Vientiane
 file /oname=$INSTDIR\tcl8.6\tzdata\Asia\Vladivostok ..\release\tcl8.6\tzdata\Asia\Vladivostok
 file /oname=$INSTDIR\tcl8.6\tzdata\Asia\Yakutsk ..\release\tcl8.6\tzdata\Asia\Yakutsk
+file /oname=$INSTDIR\tcl8.6\tzdata\Asia\Yangon ..\release\tcl8.6\tzdata\Asia\Yangon
 file /oname=$INSTDIR\tcl8.6\tzdata\Asia\Yekaterinburg ..\release\tcl8.6\tzdata\Asia\Yekaterinburg
 file /oname=$INSTDIR\tcl8.6\tzdata\Asia\Yerevan ..\release\tcl8.6\tzdata\Asia\Yerevan
 file /oname=$INSTDIR\tcl8.6\tzdata\Atlantic\Azores ..\release\tcl8.6\tzdata\Atlantic\Azores
@@ -824,6 +944,7 @@ file /oname=$INSTDIR\tcl8.6\tzdata\Europe\Rome ..\release\tcl8.6\tzdata\Europe\R
 file /oname=$INSTDIR\tcl8.6\tzdata\Europe\Samara ..\release\tcl8.6\tzdata\Europe\Samara
 file /oname=$INSTDIR\tcl8.6\tzdata\Europe\San_Marino ..\release\tcl8.6\tzdata\Europe\San_Marino
 file /oname=$INSTDIR\tcl8.6\tzdata\Europe\Sarajevo ..\release\tcl8.6\tzdata\Europe\Sarajevo
+file /oname=$INSTDIR\tcl8.6\tzdata\Europe\Saratov ..\release\tcl8.6\tzdata\Europe\Saratov
 file /oname=$INSTDIR\tcl8.6\tzdata\Europe\Simferopol ..\release\tcl8.6\tzdata\Europe\Simferopol
 file /oname=$INSTDIR\tcl8.6\tzdata\Europe\Skopje ..\release\tcl8.6\tzdata\Europe\Skopje
 file /oname=$INSTDIR\tcl8.6\tzdata\Europe\Sofia ..\release\tcl8.6\tzdata\Europe\Sofia
@@ -895,6 +1016,7 @@ file /oname=$INSTDIR\tcl8.6\tzdata\Pacific\Guadalcanal ..\release\tcl8.6\tzdata\
 file /oname=$INSTDIR\tcl8.6\tzdata\Pacific\Guam ..\release\tcl8.6\tzdata\Pacific\Guam
 file /oname=$INSTDIR\tcl8.6\tzdata\Pacific\Honolulu ..\release\tcl8.6\tzdata\Pacific\Honolulu
 file /oname=$INSTDIR\tcl8.6\tzdata\Pacific\Johnston ..\release\tcl8.6\tzdata\Pacific\Johnston
+file /oname=$INSTDIR\tcl8.6\tzdata\Pacific\Kanton ..\release\tcl8.6\tzdata\Pacific\Kanton
 file /oname=$INSTDIR\tcl8.6\tzdata\Pacific\Kiritimati ..\release\tcl8.6\tzdata\Pacific\Kiritimati
 file /oname=$INSTDIR\tcl8.6\tzdata\Pacific\Kosrae ..\release\tcl8.6\tzdata\Pacific\Kosrae
 file /oname=$INSTDIR\tcl8.6\tzdata\Pacific\Kwajalein ..\release\tcl8.6\tzdata\Pacific\Kwajalein
@@ -1049,15 +1171,7 @@ file /oname=$INSTDIR\tk8.6\ttk\winTheme.tcl ..\release\tk8.6\ttk\winTheme.tcl
 file /oname=$INSTDIR\tk8.6\ttk\xpTheme.tcl ..\release\tk8.6\ttk\xpTheme.tcl
 file /oname=$INSTDIR\tk8.6\unsupported.tcl ..\release\tk8.6\unsupported.tcl
 file /oname=$INSTDIR\tk8.6\xmfbox.tcl ..\release\tk8.6\xmfbox.tcl
-file /oname=$INSTDIR\zlib1.dll ..\release\zlib1.dll
-file /oname=$INSTDIR\tcl86.dll ..\release\tcl86.dll
-file /oname=$INSTDIR\tk86.dll ..\release\tk86.dll
-file /oname=$INSTDIR\tcl8\8.4\platform\shell-1.1.4.tm ..\release\tcl8\8.4\platform\shell-1.1.4.tm 
-file /oname=$INSTDIR\tcl8\8.4\platform-1.0.14.tm ..\release\tcl8\8.4\platform-1.0.14.tm 
-file /oname=$INSTDIR\tcl8\8.5\msgcat-1.6.0.tm ..\release\tcl8\8.5\msgcat-1.6.0.tm
-file /oname=$INSTDIR\tcl8\8.5\tcltest-2.4.0.tm ..\release\tcl8\8.5\tcltest-2.4.0.tm
-file /oname=$INSTDIR\tcl8\8.6\http-2.8.9.tm ..\release\tcl8\8.6\http-2.8.9.tm
-file /oname=$INSTDIR\tcl8\8.6\tdbc\sqlite3-1.0.4.tm ..\release\tcl8\8.6\tdbc\sqlite3-1.0.4.tm
+
 # end of TCL-related files and directories
 WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Classified-ads" "DisplayName" "Classified-ads (remove only)"
 WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Classified-ads" "UninstallString" "$INSTDIR\Uninstall.exe"
@@ -1105,94 +1219,75 @@ delete "$SMPROGRAMS\Classified-ads\uninstall.lnk"
 delete "$SMPROGRAMS\Classified-ads\Classified-ads.lnk"
 RMDIR "$SMPROGRAMS\Classified-ads"
 delete "$INSTDIR\classified-ads.exe"
-delete "$INSTDIR\qt_ca.qm"
-delete "$INSTDIR\qt_cs.qm"
-delete "$INSTDIR\qt_de.qm"
-delete "$INSTDIR\qt_fi.qm"
-delete "$INSTDIR\qt_hu.qm"
-delete "$INSTDIR\qt_it.qm"
-delete "$INSTDIR\qt_ja.qm"
-delete "$INSTDIR\qt_lv.qm"
-delete "$INSTDIR\qt_ru.qm"
-delete "$INSTDIR\qt_sk.qm"
-delete "$INSTDIR\qt_uk.qm"
-delete "$INSTDIR\examples\sysinfo.tcl"
-delete "$INSTDIR\examples\luikero.tcl"
-delete "$INSTDIR\examples\calendar.tcl"
-RMDIR "$INSTDIR\examples"
-delete "$INSTDIR\D3Dcompiler_47.dll"
-delete "$INSTDIR\libEGL.dll"
-delete "$INSTDIR\libGLESV2.dll"
-delete "$INSTDIR\libgcc_s_dw2-1.dll"
-delete "$INSTDIR\libstdc++-6.dll"
-delete "$INSTDIR\libwinpthread-1.dll"
-delete "$INSTDIR\opengl32sw.dll"
-delete "$INSTDIR\Qt5Multimedia.dll"
-delete "$INSTDIR\Qt5Core.dll"
-delete "$INSTDIR\Qt5Gui.dll"
-delete "$INSTDIR\Qt5Network.dll"
-delete "$INSTDIR\Qt5PrintSupport.dll"
-delete "$INSTDIR\Qt5Sql.dll"
-delete "$INSTDIR\Qt5Svg.dll"
-delete "$INSTDIR\Qt5Widgets.dll"
-delete "$INSTDIR\LICENSE"
-delete "$INSTDIR\bearer\qgenericbearer.dll"
-delete "$INSTDIR\bearer\qnativewifibearer.dll"
-delete "$INSTDIR\iconengines\qsvgicon.dll"
-delete "$INSTDIR\imageformats\qdds.dll"
-delete "$INSTDIR\imageformats\qgif.dll"
-delete "$INSTDIR\imageformats\qicns.dll"
-delete "$INSTDIR\imageformats\qico.dll"
-delete "$INSTDIR\imageformats\qjp2.dll"
-delete "$INSTDIR\imageformats\qjpeg.dll"
-delete "$INSTDIR\imageformats\qmng.dll"
-delete "$INSTDIR\imageformats\qsvg.dll"
-delete "$INSTDIR\imageformats\qtga.dll"
-delete "$INSTDIR\imageformats\qtiff.dll"
-delete "$INSTDIR\imageformats\qwbmp.dll"
-delete "$INSTDIR\imageformats\qwebp.dll"
-delete "$INSTDIR\platforms\qwindows.dll"
-delete "$INSTDIR\printsupport\windowsprintersupport.dll"
-delete "$INSTDIR\sqldrivers\qsqlite.dll"
-delete "$INSTDIR\audio\qtaudio_windows.dll"
-delete "$INSTDIR\libeay32.dll"
-delete "$INSTDIR\ssleay32.dll"
-delete "$INSTDIR\miniupnpc.dll"
-delete "$INSTDIR\libiconv-2.dll"
-delete "$INSTDIR\libintl-8.dll"
 delete "$INSTDIR\fi\LC_MESSAGES\classified-ads.mo"
 delete "$INSTDIR\sv\LC_MESSAGES\classified-ads.mo"
 delete "$INSTDIR\da\LC_MESSAGES\classified-ads.mo"
 delete "$INSTDIR\uk\LC_MESSAGES\classified-ads.mo"
 delete "$INSTDIR\de\LC_MESSAGES\classified-ads.mo"
 delete "$INSTDIR\es\LC_MESSAGES\classified-ads.mo"
-RMDIR "$INSTDIR\sv\LC_MESSAGES"
-RMDIR "$INSTDIR\sv"
-RMDIR "$INSTDIR\fi\LC_MESSAGES"
-RMDIR "$INSTDIR\fi"
-RMDIR "$INSTDIR\da\LC_MESSAGES"
-RMDIR "$INSTDIR\da"
-RMDIR "$INSTDIR\uk\LC_MESSAGES"
-RMDIR "$INSTDIR\uk"
-RMDIR "$INSTDIR\de\LC_MESSAGES"
-RMDIR "$INSTDIR\de"
-RMDIR "$INSTDIR\es\LC_MESSAGES"
-RMDIR "$INSTDIR\es"
-RMDIR "$INSTDIR\bearer"
-RMDIR "$INSTDIR\iconengines"
-RMDIR "$INSTDIR\imageformats"
-RMDIR "$INSTDIR\printsupport"
-RMDIR "$INSTDIR\platforms"
-RMDIR "$INSTDIR\sqldrivers"
-RMDIR "$INSTDIR\audio"
-#
-# Removal of TCL-related files and directories
-#
-# files first
+delete "$INSTDIR\qt_ar.qm"
+delete "$INSTDIR\qt_bg.qm"
+delete "$INSTDIR\qt_ca.qm"
+delete "$INSTDIR\qt_cs.qm"
+delete "$INSTDIR\qt_da.qm"
+delete "$INSTDIR\qt_de.qm"
+delete "$INSTDIR\qt_en.qm"
+delete "$INSTDIR\qt_es.qm"
+delete "$INSTDIR\qt_fa.qm"
+delete "$INSTDIR\qt_fi.qm"
+delete "$INSTDIR\qt_fr.qm"
+delete "$INSTDIR\qt_gd.qm"
+delete "$INSTDIR\qt_gl.qm"
+delete "$INSTDIR\qt_he.qm"
+delete "$INSTDIR\qt_hu.qm"
+delete "$INSTDIR\qt_it.qm"
+delete "$INSTDIR\qt_ja.qm"
+delete "$INSTDIR\qt_ko.qm"
+delete "$INSTDIR\qt_lt.qm"
+delete "$INSTDIR\qt_lv.qm"
+delete "$INSTDIR\qt_nl.qm"
+delete "$INSTDIR\qt_pl.qm"
+delete "$INSTDIR\qt_pt_BR.qm"
+delete "$INSTDIR\qt_pt_PT.qm"
+delete "$INSTDIR\qt_ru.qm"
+delete "$INSTDIR\qt_sk.qm"
+delete "$INSTDIR\qt_sl.qm"
+delete "$INSTDIR\qt_sv.qm"
+delete "$INSTDIR\qt_uk.qm"
+delete "$INSTDIR\qt_zh_CN.qm"
+delete "$INSTDIR\qt_zh_TW.qm"
+delete "$INSTDIR\miniupnpc.dll"
+delete "$INSTDIR\D3Dcompiler_47.dll"
+delete "$INSTDIR\Qt5Core.dll"
+delete "$INSTDIR\Qt5Gui.dll"
+delete "$INSTDIR\Qt5Multimedia.dll"
+delete "$INSTDIR\Qt5Network.dll"
+delete "$INSTDIR\Qt5PrintSupport.dll"
+delete "$INSTDIR\Qt5Sql.dll"
+delete "$INSTDIR\Qt5Svg.dll"
+delete "$INSTDIR\Qt5Widgets.dll"
+delete "$INSTDIR\libEGL.dll"
+delete "$INSTDIR\libGLESV2.dll"
+delete "$INSTDIR\libgcc_s_dw2-1.dll"
+delete "$INSTDIR\libstdc++-6.dll"
+delete "$INSTDIR\libwinpthread-1.dll"
+delete "$INSTDIR\opengl32sw.dll"
+delete "$INSTDIR\libcrypto-1_1.dll"
+delete "$INSTDIR\libiconv-2.dll"
+delete "$INSTDIR\libintl-8.dll"
+delete "$INSTDIR\libssl-1_1.dll"
+delete "$INSTDIR\tcl86.dll"
+delete "$INSTDIR\tk86.dll"
+delete "$INSTDIR\zlib1.dll"
+delete "$INSTDIR\LICENSE"
+delete "$INSTDIR\examples\sysinfo.tcl"
+delete "$INSTDIR\examples\luikero.tcl"
+delete "$INSTDIR\examples\calendar.tcl"
 delete "$INSTDIR\tcl8.6\auto.tcl"
 delete "$INSTDIR\tcl8.6\clock.tcl"
 delete "$INSTDIR\tcl8.6\encoding\ascii.enc"
 delete "$INSTDIR\tcl8.6\encoding\big5.enc"
+delete "$INSTDIR\tcl8.6\encoding\cns11643.enc"
 delete "$INSTDIR\tcl8.6\encoding\cp1250.enc"
 delete "$INSTDIR\tcl8.6\encoding\cp1251.enc"
 delete "$INSTDIR\tcl8.6\encoding\cp1252.enc"
@@ -1236,6 +1331,7 @@ delete "$INSTDIR\tcl8.6\encoding\iso2022-kr.enc"
 delete "$INSTDIR\tcl8.6\encoding\iso2022.enc"
 delete "$INSTDIR\tcl8.6\encoding\iso8859-1.enc"
 delete "$INSTDIR\tcl8.6\encoding\iso8859-10.enc"
+delete "$INSTDIR\tcl8.6\encoding\iso8859-11.enc"
 delete "$INSTDIR\tcl8.6\encoding\iso8859-13.enc"
 delete "$INSTDIR\tcl8.6\encoding\iso8859-14.enc"
 delete "$INSTDIR\tcl8.6\encoding\iso8859-15.enc"
@@ -1582,6 +1678,7 @@ delete "$INSTDIR\tcl8.6\tzdata\America\Noronha"
 delete "$INSTDIR\tcl8.6\tzdata\America\North_Dakota\Beulah"
 delete "$INSTDIR\tcl8.6\tzdata\America\North_Dakota\Center"
 delete "$INSTDIR\tcl8.6\tzdata\America\North_Dakota\New_Salem"
+delete "$INSTDIR\tcl8.6\tzdata\America\Nuuk"
 delete "$INSTDIR\tcl8.6\tzdata\America\Ojinaga"
 delete "$INSTDIR\tcl8.6\tzdata\America\Panama"
 delete "$INSTDIR\tcl8.6\tzdata\America\Pangnirtung"
@@ -1592,6 +1689,7 @@ delete "$INSTDIR\tcl8.6\tzdata\America\Porto_Acre"
 delete "$INSTDIR\tcl8.6\tzdata\America\Porto_Velho"
 delete "$INSTDIR\tcl8.6\tzdata\America\Port_of_Spain"
 delete "$INSTDIR\tcl8.6\tzdata\America\Puerto_Rico"
+delete "$INSTDIR\tcl8.6\tzdata\America\Punta_Arenas"
 delete "$INSTDIR\tcl8.6\tzdata\America\Rainy_River"
 delete "$INSTDIR\tcl8.6\tzdata\America\Rankin_Inlet"
 delete "$INSTDIR\tcl8.6\tzdata\America\Recife"
@@ -1647,6 +1745,7 @@ delete "$INSTDIR\tcl8.6\tzdata\Asia\Aqtau"
 delete "$INSTDIR\tcl8.6\tzdata\Asia\Aqtobe"
 delete "$INSTDIR\tcl8.6\tzdata\Asia\Ashgabat"
 delete "$INSTDIR\tcl8.6\tzdata\Asia\Ashkhabad"
+delete "$INSTDIR\tcl8.6\tzdata\Asia\Atyrau"
 delete "$INSTDIR\tcl8.6\tzdata\Asia\Baghdad"
 delete "$INSTDIR\tcl8.6\tzdata\Asia\Bahrain"
 delete "$INSTDIR\tcl8.6\tzdata\Asia\Baku"
@@ -1667,6 +1766,7 @@ delete "$INSTDIR\tcl8.6\tzdata\Asia\Dhaka"
 delete "$INSTDIR\tcl8.6\tzdata\Asia\Dili"
 delete "$INSTDIR\tcl8.6\tzdata\Asia\Dubai"
 delete "$INSTDIR\tcl8.6\tzdata\Asia\Dushanbe"
+delete "$INSTDIR\tcl8.6\tzdata\Asia\Famagusta"
 delete "$INSTDIR\tcl8.6\tzdata\Asia\Gaza"
 delete "$INSTDIR\tcl8.6\tzdata\Asia\Harbin"
 delete "$INSTDIR\tcl8.6\tzdata\Asia\Hebron"
@@ -1705,6 +1805,7 @@ delete "$INSTDIR\tcl8.6\tzdata\Asia\Phnom_Penh"
 delete "$INSTDIR\tcl8.6\tzdata\Asia\Pontianak"
 delete "$INSTDIR\tcl8.6\tzdata\Asia\Pyongyang"
 delete "$INSTDIR\tcl8.6\tzdata\Asia\Qatar"
+delete "$INSTDIR\tcl8.6\tzdata\Asia\Qostanay"
 delete "$INSTDIR\tcl8.6\tzdata\Asia\Qyzylorda"
 delete "$INSTDIR\tcl8.6\tzdata\Asia\Rangoon"
 delete "$INSTDIR\tcl8.6\tzdata\Asia\Riyadh"
@@ -1732,6 +1833,7 @@ delete "$INSTDIR\tcl8.6\tzdata\Asia\Ust-Nera"
 delete "$INSTDIR\tcl8.6\tzdata\Asia\Vientiane"
 delete "$INSTDIR\tcl8.6\tzdata\Asia\Vladivostok"
 delete "$INSTDIR\tcl8.6\tzdata\Asia\Yakutsk"
+delete "$INSTDIR\tcl8.6\tzdata\Asia\Yangon"
 delete "$INSTDIR\tcl8.6\tzdata\Asia\Yekaterinburg"
 delete "$INSTDIR\tcl8.6\tzdata\Asia\Yerevan"
 delete "$INSTDIR\tcl8.6\tzdata\Atlantic\Azores"
@@ -1871,6 +1973,7 @@ delete "$INSTDIR\tcl8.6\tzdata\Europe\Rome"
 delete "$INSTDIR\tcl8.6\tzdata\Europe\Samara"
 delete "$INSTDIR\tcl8.6\tzdata\Europe\San_Marino"
 delete "$INSTDIR\tcl8.6\tzdata\Europe\Sarajevo"
+delete "$INSTDIR\tcl8.6\tzdata\Europe\Saratov"
 delete "$INSTDIR\tcl8.6\tzdata\Europe\Simferopol"
 delete "$INSTDIR\tcl8.6\tzdata\Europe\Skopje"
 delete "$INSTDIR\tcl8.6\tzdata\Europe\Sofia"
@@ -1942,6 +2045,7 @@ delete "$INSTDIR\tcl8.6\tzdata\Pacific\Guadalcanal"
 delete "$INSTDIR\tcl8.6\tzdata\Pacific\Guam"
 delete "$INSTDIR\tcl8.6\tzdata\Pacific\Honolulu"
 delete "$INSTDIR\tcl8.6\tzdata\Pacific\Johnston"
+delete "$INSTDIR\tcl8.6\tzdata\Pacific\Kanton"
 delete "$INSTDIR\tcl8.6\tzdata\Pacific\Kiritimati"
 delete "$INSTDIR\tcl8.6\tzdata\Pacific\Kosrae"
 delete "$INSTDIR\tcl8.6\tzdata\Pacific\Kwajalein"
@@ -2096,20 +2200,114 @@ delete "$INSTDIR\tk8.6\ttk\winTheme.tcl"
 delete "$INSTDIR\tk8.6\ttk\xpTheme.tcl"
 delete "$INSTDIR\tk8.6\unsupported.tcl"
 delete "$INSTDIR\tk8.6\xmfbox.tcl"
-delete "$INSTDIR\zlib1.dll"
-delete "$INSTDIR\tcl86.dll"
-delete "$INSTDIR\tk86.dll"
-delete "$INSTDIR\tcl8\8.4\platform\shell-1.1.4.tm"
-delete "$INSTDIR\tcl8\8.4\platform-1.0.14.tm"
-delete "$INSTDIR\tcl8\8.5\msgcat-1.6.0.tm"
-delete "$INSTDIR\tcl8\8.5\tcltest-2.4.0.tm"
-delete "$INSTDIR\tcl8\8.6\http-2.8.9.tm"
-delete "$INSTDIR\tcl8\8.6\tdbc\sqlite3-1.0.4.tm"
+
+delete "$INSTDIR\audio\qtaudio_windows.dll"
+delete "$INSTDIR\audio\qtaudio_windowsd.dll"
+delete "$INSTDIR\bearer\qgenericbearer.dll"
+delete "$INSTDIR\bearer\qgenericbearerd.dll"
+delete "$INSTDIR\designer\qaxwidget.dll"
+delete "$INSTDIR\designer\qquickwidget.dll"
+delete "$INSTDIR\gamepads\xinputgamepad.dll"
+delete "$INSTDIR\gamepads\xinputgamepadd.dll"
+delete "$INSTDIR\generic\qtuiotouchplugin.dll"
+delete "$INSTDIR\generic\qtuiotouchplugind.dll"
+delete "$INSTDIR\geometryloaders\defaultgeometryloader.dll"
+delete "$INSTDIR\geometryloaders\defaultgeometryloaderd.dll"
+delete "$INSTDIR\geometryloaders\gltfgeometryloader.dll"
+delete "$INSTDIR\geometryloaders\gltfgeometryloaderd.dll"
+delete "$INSTDIR\iconengines\qsvgicon.dll"
+delete "$INSTDIR\iconengines\qsvgicond.dll"
+delete "$INSTDIR\imageformats\qgif.dll"
+delete "$INSTDIR\imageformats\qgifd.dll"
+delete "$INSTDIR\imageformats\qicns.dll"
+delete "$INSTDIR\imageformats\qicnsd.dll"
+delete "$INSTDIR\imageformats\qico.dll"
+delete "$INSTDIR\imageformats\qicod.dll"
+delete "$INSTDIR\imageformats\qjpeg.dll"
+delete "$INSTDIR\imageformats\qjpegd.dll"
+delete "$INSTDIR\imageformats\qsvg.dll"
+delete "$INSTDIR\imageformats\qsvgd.dll"
+delete "$INSTDIR\imageformats\qtga.dll"
+delete "$INSTDIR\imageformats\qtgad.dll"
+delete "$INSTDIR\imageformats\qtiff.dll"
+delete "$INSTDIR\imageformats\qtiffd.dll"
+delete "$INSTDIR\imageformats\qwbmp.dll"
+delete "$INSTDIR\imageformats\qwbmpd.dll"
+delete "$INSTDIR\imageformats\qwebp.dll"
+delete "$INSTDIR\imageformats\qwebpd.dll"
+delete "$INSTDIR\mediaservice\dsengine.dll"
+delete "$INSTDIR\mediaservice\dsengined.dll"
+delete "$INSTDIR\mediaservice\qtmedia_audioengine.dll"
+delete "$INSTDIR\mediaservice\qtmedia_audioengined.dll"
+delete "$INSTDIR\platforminputcontexts\qtvirtualkeyboardplugin.dll"
+delete "$INSTDIR\platforminputcontexts\qtvirtualkeyboardplugind.dll"
+delete "$INSTDIR\platforms\qdirect2d.dll"
+delete "$INSTDIR\platforms\qdirect2dd.dll"
+delete "$INSTDIR\platforms\qminimal.dll"
+delete "$INSTDIR\platforms\qminimald.dll"
+delete "$INSTDIR\platforms\qoffscreen.dll"
+delete "$INSTDIR\platforms\qoffscreend.dll"
+delete "$INSTDIR\platforms\qwebgl.dll"
+delete "$INSTDIR\platforms\qwebgld.dll"
+delete "$INSTDIR\platforms\qwindows.dll"
+delete "$INSTDIR\platforms\qwindowsd.dll"
+delete "$INSTDIR\platformthemes\qxdgdesktopportal.dll"
+delete "$INSTDIR\platformthemes\qxdgdesktopportald.dll"
+delete "$INSTDIR\playlistformats\qtmultimedia_m3u.dll"
+delete "$INSTDIR\playlistformats\qtmultimedia_m3ud.dll"
+delete "$INSTDIR\position\qtposition_positionpoll.dll"
+delete "$INSTDIR\position\qtposition_positionpolld.dll"
+delete "$INSTDIR\position\qtposition_serialnmea.dll"
+delete "$INSTDIR\position\qtposition_serialnmead.dll"
+delete "$INSTDIR\printsupport\windowsprintersupport.dll"
+delete "$INSTDIR\printsupport\windowsprintersupportd.dll"
+delete "$INSTDIR\renderplugins\scene2d.dll"
+delete "$INSTDIR\renderplugins\scene2dd.dll"
+delete "$INSTDIR\sensorgestures\qtsensorgestures_plugin.dll"
+delete "$INSTDIR\sensorgestures\qtsensorgestures_plugind.dll"
+delete "$INSTDIR\sensorgestures\qtsensorgestures_shakeplugin.dll"
+delete "$INSTDIR\sensorgestures\qtsensorgestures_shakeplugind.dll"
+delete "$INSTDIR\sensors\qtsensors_generic.dll"
+delete "$INSTDIR\sensors\qtsensors_genericd.dll"
+delete "$INSTDIR\sqldrivers\qsqlite.dll"
+delete "$INSTDIR\sqldrivers\qsqlited.dll"
+delete "$INSTDIR\sqldrivers\qsqlodbc.dll"
+delete "$INSTDIR\sqldrivers\qsqlodbcd.dll"
+delete "$INSTDIR\sqldrivers\qsqlpsql.dll"
+delete "$INSTDIR\sqldrivers\qsqlpsqld.dll"
+delete "$INSTDIR\styles\qwindowsvistastyle.dll"
+delete "$INSTDIR\styles\qwindowsvistastyled.dll"
+delete "$INSTDIR\texttospeech\qtexttospeech_sapi.dll"
+delete "$INSTDIR\texttospeech\qtexttospeech_sapid.dll"
+delete "$INSTDIR\virtualkeyboard\qtvirtualkeyboard_hangul.dll"
+delete "$INSTDIR\virtualkeyboard\qtvirtualkeyboard_hanguld.dll"
+delete "$INSTDIR\virtualkeyboard\qtvirtualkeyboard_openwnn.dll"
+delete "$INSTDIR\virtualkeyboard\qtvirtualkeyboard_openwnnd.dll"
+delete "$INSTDIR\virtualkeyboard\qtvirtualkeyboard_pinyin.dll"
+delete "$INSTDIR\virtualkeyboard\qtvirtualkeyboard_pinyind.dll"
+delete "$INSTDIR\virtualkeyboard\qtvirtualkeyboard_tcime.dll"
+delete "$INSTDIR\virtualkeyboard\qtvirtualkeyboard_tcimed.dll"
+delete "$INSTDIR\virtualkeyboard\qtvirtualkeyboard_thai.dll"
+delete "$INSTDIR\virtualkeyboard\qtvirtualkeyboard_thaid.dll"
+
 # then directories
-RMDIR "$INSTDIR\tk8.6\images"
-RMDIR "$INSTDIR\tk8.6\msgs"
-RMDIR "$INSTDIR\tk8.6\ttk"
-RMDIR "$INSTDIR\tk8.6"
+RMDIR "$INSTDIR\fi\LC_MESSAGES"
+RMDIR "$INSTDIR\sv\LC_MESSAGES"
+RMDIR "$INSTDIR\da\LC_MESSAGES"
+RMDIR "$INSTDIR\uk\LC_MESSAGES"
+RMDIR "$INSTDIR\de\LC_MESSAGES"
+RMDIR "$INSTDIR\es\LC_MESSAGES"
+RMDIR "$INSTDIR\fi"
+RMDIR "$INSTDIR\sv"
+RMDIR "$INSTDIR\da"
+RMDIR "$INSTDIR\uk"
+RMDIR "$INSTDIR\de"
+RMDIR "$INSTDIR\es"
+RMDIR "$INSTDIR\examples"
+RMDIR "$INSTDIR\tcl8.6\encoding"
+RMDIR "$INSTDIR\tcl8.6\http1.0"
+RMDIR "$INSTDIR\tcl8.6\msgs"
+RMDIR "$INSTDIR\tcl8.6\opt0.4"
 RMDIR "$INSTDIR\tcl8.6\tzdata\Africa"
 RMDIR "$INSTDIR\tcl8.6\tzdata\America\Argentina"
 RMDIR "$INSTDIR\tcl8.6\tzdata\America\Indiana"
@@ -2132,17 +2330,41 @@ RMDIR "$INSTDIR\tcl8.6\tzdata\Pacific"
 RMDIR "$INSTDIR\tcl8.6\tzdata\SystemV"
 RMDIR "$INSTDIR\tcl8.6\tzdata\US"
 RMDIR "$INSTDIR\tcl8.6\tzdata"
-RMDIR "$INSTDIR\tcl8.6\encoding"
-RMDIR "$INSTDIR\tcl8.6\http1.0"
-RMDIR "$INSTDIR\tcl8.6\msgs"
-RMDIR "$INSTDIR\tcl8.6\opt0.4"
+RMDIR "$INSTDIR\tk8.6\demos\images"
+RMDIR "$INSTDIR\tk8.6\demos"
+RMDIR "$INSTDIR\tk8.6\images"
+RMDIR "$INSTDIR\tk8.6\msgs"
+RMDIR "$INSTDIR\tk8.6\ttk"
 RMDIR "$INSTDIR\tcl8.6"
-RMDIR "$INSTDIR\tcl8\8.6\tdbc"
-RMDIR "$INSTDIR\tcl8\8.6"
-RMDIR "$INSTDIR\tcl8\8.4\platform"
-RMDIR "$INSTDIR\tcl8\8.4"
-RMDIR "$INSTDIR\tcl8\8.5"
-RMDIR "$INSTDIR\tcl8"
+RMDIR "$INSTDIR\tk8.6"
+
+RMDIR "$INSTDIR\audio"
+RMDIR "$INSTDIR\bearer"
+RMDIR "$INSTDIR\canbus"
+RMDIR "$INSTDIR\designer"
+RMDIR "$INSTDIR\gamepads"
+RMDIR "$INSTDIR\generic"
+RMDIR "$INSTDIR\geometryloaders"
+RMDIR "$INSTDIR\geoservices"
+RMDIR "$INSTDIR\iconengines"
+RMDIR "$INSTDIR\imageformats"
+RMDIR "$INSTDIR\mediaservice"
+RMDIR "$INSTDIR\platforminputcontexts"
+RMDIR "$INSTDIR\platforms"
+RMDIR "$INSTDIR\platformthemes"
+RMDIR "$INSTDIR\playlistformats"
+RMDIR "$INSTDIR\position"
+RMDIR "$INSTDIR\printsupport"
+RMDIR "$INSTDIR\qmltooling"
+RMDIR "$INSTDIR\renderplugins"
+RMDIR "$INSTDIR\sceneparsers"
+RMDIR "$INSTDIR\sensorgestures"
+RMDIR "$INSTDIR\sensors"
+RMDIR "$INSTDIR\sqldrivers"
+RMDIR "$INSTDIR\styles"
+RMDIR "$INSTDIR\texttospeech"
+RMDIR "$INSTDIR\virtualkeyboard"
+
 # end of removal of TCL-related files
 RMDIR "$INSTDIR"
 DeleteRegKey HKEY_LOCAL_MACHINE "SOFTWARE\Classified-ads"
