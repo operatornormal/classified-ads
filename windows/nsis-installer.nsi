@@ -127,93 +127,45 @@ CreateDirectory "$INSTDIR\styles"
 CreateDirectory "$INSTDIR\texttospeech"
 CreateDirectory "$INSTDIR\virtualkeyboard"
 file /oname=$INSTDIR\audio\qtaudio_windows.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\audio\qtaudio_windows.dll
-file /oname=$INSTDIR\audio\qtaudio_windowsd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\audio\qtaudio_windowsd.dll
 file /oname=$INSTDIR\bearer\qgenericbearer.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\bearer\qgenericbearer.dll
-file /oname=$INSTDIR\bearer\qgenericbearerd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\bearer\qgenericbearerd.dll
 file /oname=$INSTDIR\designer\qaxwidget.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\designer\qaxwidget.dll
 file /oname=$INSTDIR\designer\qquickwidget.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\designer\qquickwidget.dll
 file /oname=$INSTDIR\gamepads\xinputgamepad.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\gamepads\xinputgamepad.dll
-file /oname=$INSTDIR\gamepads\xinputgamepadd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\gamepads\xinputgamepadd.dll
 file /oname=$INSTDIR\generic\qtuiotouchplugin.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\generic\qtuiotouchplugin.dll
-file /oname=$INSTDIR\generic\qtuiotouchplugind.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\generic\qtuiotouchplugind.dll
 file /oname=$INSTDIR\geometryloaders\defaultgeometryloader.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\geometryloaders\defaultgeometryloader.dll
-file /oname=$INSTDIR\geometryloaders\defaultgeometryloaderd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\geometryloaders\defaultgeometryloaderd.dll
 file /oname=$INSTDIR\geometryloaders\gltfgeometryloader.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\geometryloaders\gltfgeometryloader.dll
-file /oname=$INSTDIR\geometryloaders\gltfgeometryloaderd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\geometryloaders\gltfgeometryloaderd.dll
 file /oname=$INSTDIR\iconengines\qsvgicon.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\iconengines\qsvgicon.dll
-file /oname=$INSTDIR\iconengines\qsvgicond.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\iconengines\qsvgicond.dll
 file /oname=$INSTDIR\imageformats\qgif.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qgif.dll
-file /oname=$INSTDIR\imageformats\qgifd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qgifd.dll
 file /oname=$INSTDIR\imageformats\qicns.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qicns.dll
-file /oname=$INSTDIR\imageformats\qicnsd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qicnsd.dll
 file /oname=$INSTDIR\imageformats\qico.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qico.dll
-file /oname=$INSTDIR\imageformats\qicod.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qicod.dll
 file /oname=$INSTDIR\imageformats\qjpeg.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qjpeg.dll
-file /oname=$INSTDIR\imageformats\qjpegd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qjpegd.dll
 file /oname=$INSTDIR\imageformats\qsvg.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qsvg.dll
-file /oname=$INSTDIR\imageformats\qsvgd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qsvgd.dll
 file /oname=$INSTDIR\imageformats\qtga.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qtga.dll
-file /oname=$INSTDIR\imageformats\qtgad.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qtgad.dll
 file /oname=$INSTDIR\imageformats\qtiff.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qtiff.dll
-file /oname=$INSTDIR\imageformats\qtiffd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qtiffd.dll
 file /oname=$INSTDIR\imageformats\qwbmp.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qwbmp.dll
-file /oname=$INSTDIR\imageformats\qwbmpd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qwbmpd.dll
 file /oname=$INSTDIR\imageformats\qwebp.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qwebp.dll
-file /oname=$INSTDIR\imageformats\qwebpd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\imageformats\qwebpd.dll
 file /oname=$INSTDIR\mediaservice\dsengine.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\mediaservice\dsengine.dll
-file /oname=$INSTDIR\mediaservice\dsengined.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\mediaservice\dsengined.dll
 file /oname=$INSTDIR\mediaservice\qtmedia_audioengine.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\mediaservice\qtmedia_audioengine.dll
-file /oname=$INSTDIR\mediaservice\qtmedia_audioengined.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\mediaservice\qtmedia_audioengined.dll
 file /oname=$INSTDIR\platforminputcontexts\qtvirtualkeyboardplugin.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\platforminputcontexts\qtvirtualkeyboardplugin.dll
-file /oname=$INSTDIR\platforminputcontexts\qtvirtualkeyboardplugind.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\platforminputcontexts\qtvirtualkeyboardplugind.dll
 file /oname=$INSTDIR\platforms\qdirect2d.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\platforms\qdirect2d.dll
-file /oname=$INSTDIR\platforms\qdirect2dd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\platforms\qdirect2dd.dll
 file /oname=$INSTDIR\platforms\qminimal.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\platforms\qminimal.dll
-file /oname=$INSTDIR\platforms\qminimald.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\platforms\qminimald.dll
 file /oname=$INSTDIR\platforms\qoffscreen.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\platforms\qoffscreen.dll
-file /oname=$INSTDIR\platforms\qoffscreend.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\platforms\qoffscreend.dll
 file /oname=$INSTDIR\platforms\qwebgl.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\platforms\qwebgl.dll
-file /oname=$INSTDIR\platforms\qwebgld.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\platforms\qwebgld.dll
 file /oname=$INSTDIR\platforms\qwindows.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\platforms\qwindows.dll
-file /oname=$INSTDIR\platforms\qwindowsd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\platforms\qwindowsd.dll
 file /oname=$INSTDIR\platformthemes\qxdgdesktopportal.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\platformthemes\qxdgdesktopportal.dll
-file /oname=$INSTDIR\platformthemes\qxdgdesktopportald.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\platformthemes\qxdgdesktopportald.dll
 file /oname=$INSTDIR\playlistformats\qtmultimedia_m3u.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\playlistformats\qtmultimedia_m3u.dll
-file /oname=$INSTDIR\playlistformats\qtmultimedia_m3ud.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\playlistformats\qtmultimedia_m3ud.dll
 file /oname=$INSTDIR\position\qtposition_positionpoll.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\position\qtposition_positionpoll.dll
-file /oname=$INSTDIR\position\qtposition_positionpolld.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\position\qtposition_positionpolld.dll
 file /oname=$INSTDIR\position\qtposition_serialnmea.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\position\qtposition_serialnmea.dll
-file /oname=$INSTDIR\position\qtposition_serialnmead.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\position\qtposition_serialnmead.dll
 file /oname=$INSTDIR\printsupport\windowsprintersupport.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\printsupport\windowsprintersupport.dll
-file /oname=$INSTDIR\printsupport\windowsprintersupportd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\printsupport\windowsprintersupportd.dll
 file /oname=$INSTDIR\renderplugins\scene2d.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\renderplugins\scene2d.dll
-file /oname=$INSTDIR\renderplugins\scene2dd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\renderplugins\scene2dd.dll
-file /oname=$INSTDIR\sensorgestures\qtsensorgestures_plugin.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\sensorgestures\qtsensorgestures_plugin.dll
-file /oname=$INSTDIR\sensorgestures\qtsensorgestures_plugind.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\sensorgestures\qtsensorgestures_plugind.dll
-file /oname=$INSTDIR\sensorgestures\qtsensorgestures_shakeplugin.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\sensorgestures\qtsensorgestures_shakeplugin.dll
-file /oname=$INSTDIR\sensorgestures\qtsensorgestures_shakeplugind.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\sensorgestures\qtsensorgestures_shakeplugind.dll
-file /oname=$INSTDIR\sensors\qtsensors_generic.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\sensors\qtsensors_generic.dll
-file /oname=$INSTDIR\sensors\qtsensors_genericd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\sensors\qtsensors_genericd.dll
 file /oname=$INSTDIR\sqldrivers\qsqlite.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\sqldrivers\qsqlite.dll
-file /oname=$INSTDIR\sqldrivers\qsqlited.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\sqldrivers\qsqlited.dll
-file /oname=$INSTDIR\sqldrivers\qsqlodbc.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\sqldrivers\qsqlodbc.dll
-file /oname=$INSTDIR\sqldrivers\qsqlodbcd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\sqldrivers\qsqlodbcd.dll
-file /oname=$INSTDIR\sqldrivers\qsqlpsql.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\sqldrivers\qsqlpsql.dll
-file /oname=$INSTDIR\sqldrivers\qsqlpsqld.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\sqldrivers\qsqlpsqld.dll
 file /oname=$INSTDIR\styles\qwindowsvistastyle.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\styles\qwindowsvistastyle.dll
-file /oname=$INSTDIR\styles\qwindowsvistastyled.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\styles\qwindowsvistastyled.dll
 file /oname=$INSTDIR\texttospeech\qtexttospeech_sapi.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\texttospeech\qtexttospeech_sapi.dll
-file /oname=$INSTDIR\texttospeech\qtexttospeech_sapid.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\texttospeech\qtexttospeech_sapid.dll
 file /oname=$INSTDIR\virtualkeyboard\qtvirtualkeyboard_hangul.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\virtualkeyboard\qtvirtualkeyboard_hangul.dll
-file /oname=$INSTDIR\virtualkeyboard\qtvirtualkeyboard_hanguld.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\virtualkeyboard\qtvirtualkeyboard_hanguld.dll
 file /oname=$INSTDIR\virtualkeyboard\qtvirtualkeyboard_openwnn.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\virtualkeyboard\qtvirtualkeyboard_openwnn.dll
-file /oname=$INSTDIR\virtualkeyboard\qtvirtualkeyboard_openwnnd.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\virtualkeyboard\qtvirtualkeyboard_openwnnd.dll
 file /oname=$INSTDIR\virtualkeyboard\qtvirtualkeyboard_pinyin.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\virtualkeyboard\qtvirtualkeyboard_pinyin.dll
-file /oname=$INSTDIR\virtualkeyboard\qtvirtualkeyboard_pinyind.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\virtualkeyboard\qtvirtualkeyboard_pinyind.dll
 file /oname=$INSTDIR\virtualkeyboard\qtvirtualkeyboard_tcime.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\virtualkeyboard\qtvirtualkeyboard_tcime.dll
-file /oname=$INSTDIR\virtualkeyboard\qtvirtualkeyboard_tcimed.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\virtualkeyboard\qtvirtualkeyboard_tcimed.dll
 file /oname=$INSTDIR\virtualkeyboard\qtvirtualkeyboard_thai.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\virtualkeyboard\qtvirtualkeyboard_thai.dll
-file /oname=$INSTDIR\virtualkeyboard\qtvirtualkeyboard_thaid.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\virtualkeyboard\qtvirtualkeyboard_thaid.dll
 
 file /oname=LICENSE ..\LICENSE
 #
@@ -2263,18 +2215,8 @@ delete "$INSTDIR\printsupport\windowsprintersupport.dll"
 delete "$INSTDIR\printsupport\windowsprintersupportd.dll"
 delete "$INSTDIR\renderplugins\scene2d.dll"
 delete "$INSTDIR\renderplugins\scene2dd.dll"
-delete "$INSTDIR\sensorgestures\qtsensorgestures_plugin.dll"
-delete "$INSTDIR\sensorgestures\qtsensorgestures_plugind.dll"
-delete "$INSTDIR\sensorgestures\qtsensorgestures_shakeplugin.dll"
-delete "$INSTDIR\sensorgestures\qtsensorgestures_shakeplugind.dll"
-delete "$INSTDIR\sensors\qtsensors_generic.dll"
-delete "$INSTDIR\sensors\qtsensors_genericd.dll"
 delete "$INSTDIR\sqldrivers\qsqlite.dll"
 delete "$INSTDIR\sqldrivers\qsqlited.dll"
-delete "$INSTDIR\sqldrivers\qsqlodbc.dll"
-delete "$INSTDIR\sqldrivers\qsqlodbcd.dll"
-delete "$INSTDIR\sqldrivers\qsqlpsql.dll"
-delete "$INSTDIR\sqldrivers\qsqlpsqld.dll"
 delete "$INSTDIR\styles\qwindowsvistastyle.dll"
 delete "$INSTDIR\styles\qwindowsvistastyled.dll"
 delete "$INSTDIR\texttospeech\qtexttospeech_sapi.dll"
