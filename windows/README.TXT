@@ -4,7 +4,7 @@ Here are briefly the steps for setting up dev env for windows:
 2. install, also select tools/MinGW 32 bit from "components" section. Do not select MSVC (microsoft visual studio) components
    or 64-bit components.
 3. get openssl, instructions are in http://wiki.qt.io/Compiling_OpenSSL_with_MinGW
-3.1 e.g. -> install msys, the 32-bit version from https://repo.msys2.org/distrib/i686/msys2-i686-20200517.exe
+3.1 e.g. -> install msys, the 32-bit version from https://repo.msys2.org/distrib/i686/msys2-i686-20200517.exe and yes, 64-bit version of msys2 does not work. Installation instructions for classified ads using 64-bit version of msys2 would be hightly appreciated.
 3.2 get https://www.openssl.org/source/openssl-1.1.1n.tar.gz
 3.3 get necessary goodies into msys, in msys-shell say
      $ sed -ie 's/SigLevel    = Required DatabaseOptional/SigLevel    = Never/g' /etc/pacman.conf
@@ -15,8 +15,8 @@ Here are briefly the steps for setting up dev env for windows:
      # trust chain of pacman then please do so, the key is available
      # from https://pgp.surfnet.nl/pks/lookup?op=get&search=0xFA11531AA0AA7F57
      $ pacmac -Sy
-     $ pacman --needed -S bash pacman pacman-mirrors msys2-runtime
-     Restart the windows. Don't ask me why but that's how it worked. Restart msys2 shell again. 
+     $ pacman --needed -S bash pacman pacman-mirrors msys-runtime
+     Restart the windows. Don't ask me why but that's how it worked. Restart msys shell again. 
      $ pacman --needed -S tar perl make
     add gcc from qt into path:
      $ export PATH=/d/ca_build/qt5_12/Tools/mingw730_32/bin:$PATH
