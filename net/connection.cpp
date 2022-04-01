@@ -771,7 +771,8 @@ void Connection::sslErrors ( const QList<QSslError> & errors  ) {
         case QSslError::AuthorityIssuerSerialNumberMismatch:
         case QSslError::HostNameMismatch:
         case QSslError::InvalidPurpose:
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))	  
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 13, 0))
+	// qt 5.12 has no Ocsp*
         case QSslError::OcspUnauthorized:
         case QSslError::OcspResponseCannotBeTrusted:
         case QSslError::OcspResponseCertIdUnknown:
@@ -791,7 +792,8 @@ void Connection::sslErrors ( const QList<QSslError> & errors  ) {
         case QSslError::UnspecifiedError:
         case QSslError::NoSslSupport:
         case QSslError::CertificateBlacklisted:
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 13, 0))
+	// qt 5.12 has no Ocsp*
         case QSslError::CertificateStatusUnknown:	  
 	case QSslError::OcspNoResponseFound:
 	case QSslError::OcspMalformedRequest:

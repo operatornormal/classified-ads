@@ -1,5 +1,5 @@
 #
-# Classified Ads is Copyright (c) Antti Järvinen 2013-2021.
+# Classified Ads is Copyright (c) Antti Järvinen 2013-2022.
 #
 # This file is part of Classified Ads.
 #
@@ -50,7 +50,7 @@ unix {
     QMAKE_CLEAN += po/*.mo check testca/testca testca/Makefile
 }
 win32 {
-    translations_compile.commands = $(MAKE) -C po MSGFMT_PATH=/msys32/usr/local/bin/
+    translations_compile.commands = $(MAKE) -C po MSGFMT_PATH=/msys32/usr/bin/
     QMAKE_CLEAN += po\*.mo
 }
 HEADERS = mcontroller.h controller.h FrontWidget.h net/node.h util/hash.h \
@@ -142,25 +142,27 @@ lessThan(QT_MAJOR_VERSION, 5) {
 LIBS += -lopus
 # following line is needed for fedora linux, natpnp needs miniupnpc
 unix:INCLUDEPATH += /usr/include/miniupnpc
-win32:LIBS += "-L..\openssl-1.0.2o"
+win32:LIBS += "-L..\openssl-1.1.1n"
 win32:LIBS += "-lcrypto"
 win32:LIBS += "-lssl"
-win32:LIBS += "..\miniupnpc-2.1\miniupnpc.lib" 
-win32:LIBS += "-Lc:\msys32\usr\local\lib"
+win32:LIBS += "..\miniupnpc-2.2.3\miniupnpc.lib" 
+win32:LIBS += "-L\msys32\usr\local\lib"
+win32:LIBS += "-L\msys32\usr\lib"
 win32:LIBS += "-lintl"
-win32:LIBS += "-L..\opus-1.2\binary\lib"
-win32:LIBS += "-Lc:\msys32\opt\tcl\lib"
+win32:LIBS += "-L..\opus-1.3\binary\lib"
+win32:LIBS += "-L\msys32\opt\tcl\lib"
 lessThan(QT_MAJOR_VERSION, 5) {
     win32:LIBS += "-L" 
     win32:LIBS += "..\qjson-master\build\src"
     win32:LIBS += "-lqjson"
 }
 win32:LIBS += "-lWs2_32" "-lGdi32" "-lIphlpapi"
-win32:INCLUDEPATH += "..\openssl-1.0.2o\include"
-win32:INCLUDEPATH += "..\miniupnpc-2.1"
-win32:INCLUDEPATH += "c:\msys32\usr\local\include"
-win32:INCLUDEPATH += "..\opus-1.2\binary\include"
-win32:INCLUDEPATH += "c:\msys32\opt\tcl\include"
+win32:INCLUDEPATH += "..\openssl-1.1.1n\include"
+win32:INCLUDEPATH += "..\miniupnpc-2.2.3\include"
+win32:INCLUDEPATH += "\msys32\usr\include"
+win32:INCLUDEPATH += "\msys32\usr\local\include"
+win32:INCLUDEPATH += "..\opus-1.3\binary\include"
+win32:INCLUDEPATH += "\msys32\opt\tcl\include"
 lessThan(QT_MAJOR_VERSION, 5) {
     win32:INCLUDEPATH += "..\qjson-master\include"
 }
