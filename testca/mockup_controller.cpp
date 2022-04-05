@@ -1,5 +1,5 @@
 /*   -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2022.
 
   This file is part of Classified Ads.
 
@@ -29,6 +29,8 @@
 #include "../datamodel/binaryfile.h"
 #include "mockup_voicecallengine.h"
 #include "../tcl/tclWrapper.h"
+#include <QDir>
+#include <QUuid>
 
 MockUpController::MockUpController() :
     iNode(NULL),
@@ -180,9 +182,10 @@ TclWrapper& MockUpController::tclWrapper() {
 QString MockUpController::getFileName(bool& aSuccess,
                                       bool /*aIsSaveFile*/ , 
                                       QString /*aSuggestedFileName*/) {
-    aSuccess = true ; 
-    char fileNameBuffer[L_tmpnam+1] ; // buffer for file name, macro
-                                      // L_tmpnam should be in stdio.h telling
-                                      // max len of returned name. 
-    return QString(tmpnam_r(fileNameBuffer)) ; 
+    aSuccess = true ;
+    // mimic a temporary file name here:
+    QString s ( QDir::tempPath() );
+    s.append(QDir::separator()) ;
+    s.append(QUuid::createUuid().toString(QUuid::WithoutBraces)) ;
+    return s ; 
 }
