@@ -1,5 +1,5 @@
 /*    -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2021.
 
   This file is part of Classified Ads.
 
@@ -137,7 +137,7 @@ public:
                                       const quint32 aModifiedBefore = std::numeric_limits<quint32>::max(),
                                       const qint64 aByHavingNumberMoreThan = std::numeric_limits<qint64>::min(),
                                       const qint64 aByHavingNumberLessThan = std::numeric_limits<qint64>::max(),
-                                      const QString& aBySearchPhrase = QString::null,
+                                      const QString& aBySearchPhrase = QString(),
                                       const Hash& aBySender = KNullHash,
                                       const bool aForPublish = false ) ; 
                                      

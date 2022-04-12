@@ -1,25 +1,26 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-       Classified Ads is Copyright (c) Antti Järvinen 2013.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2021.
 
-       This file is part of Classified Ads.
+  This file is part of Classified Ads.
 
-    Classified Ads is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  Classified Ads is free software; you can redistribute it and/or
+  modify it under the terms of the GNU Lesser General Public
+  License as published by the Free Software Foundation; either
+  version 2.1 of the License, or (at your option) any later version.
 
-    Classified Ads is distributed in the hope that it will be useful,
-       but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Classified Ads is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with Classified Ads; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+  You should have received a copy of the GNU Lesser General Public
+  License along with Classified Ads; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include <QSqlQuery>
 #include <QSqlError>
+#include <QLocale>
 #include "calistingmodel.h"
 #include "camodel.h"
 #include "mmodelprotocolinterface.h"
@@ -68,6 +69,7 @@ void CAListingModel::setClassification(const Hash&  aForumToList ) {
 
     LOG_STR2("CAListingModel::setClassification hash %s", qPrintable(aForumToList.toString())) ;
     iCaModel.clear() ;
+    QLocale locale ; 
     iItemAndArticleHashRelation->clear() ;
     iForumToList = aForumToList ;
     if ( aForumToList != KNullHash ) {
@@ -114,7 +116,7 @@ void CAListingModel::setClassification(const Hash&  aForumToList ) {
                 display_name_item->setData(articleFp.toQVariant(),Qt::UserRole) ;
                 row_in_model << display_name_item ;
                 d.setTime_t(time_of_publish) ;
-                QStandardItem* date_item = new QStandardItem ( (d.toString(Qt::SystemLocaleShortDate) ) ) ;
+                QStandardItem* date_item = new QStandardItem ( locale.toString(d, QLocale::ShortFormat) ) ;
                 row_in_model << date_item ;
                 if ( !has_reply_to ) {
                     LOG_STR("Appending row to ca-model") ;
@@ -166,6 +168,7 @@ bool CAListingModel::insertCaIntoModel(const Hash& aArticleFingerPrint) {
 
     QSqlQuery q (iController->model().dataBaseConnection());
     bool operation_success ;
+    QLocale locale ; 
     operation_success = q.prepare("select display_name,time_of_publish,reply_to from classified_ad where "
                                   "hash1=:hash1 and hash2=:hash2 and "
                                   "hash3=:hash3 and hash4=:hash4 and "
@@ -201,7 +204,7 @@ bool CAListingModel::insertCaIntoModel(const Hash& aArticleFingerPrint) {
             display_name_item->setData(aArticleFingerPrint.toQVariant(),Qt::UserRole) ;
             row_in_model << display_name_item ;
             d.setTime_t(time_of_publish) ;
-            QStandardItem* date_item = new QStandardItem ( d.toString(Qt::SystemLocaleShortDate) ) ;
+            QStandardItem* date_item = new QStandardItem ( locale.toString(d, QLocale::ShortFormat) ) ;
             row_in_model << date_item ;
             if ( !has_reply_to ) {
                 LOG_STR("Appending row to ca-model from notify") ;

@@ -1,5 +1,5 @@
 /*    -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Jarvinen 2013-2018.
+  Classified Ads is Copyright (c) Antti Jarvinen 2013-2021.
 
   This file is part of Classified Ads.
 
@@ -295,5 +295,6 @@ private:
      */
     QList<QPair<Hash,unsigned> > iRecentlyFailedNodes ;
     int iTimerId ; /**< periodical timer */
+    const quint32 iProgramStartTime ; /**< Time when program was started by user */
 } ;
 #endif

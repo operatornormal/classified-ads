@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2022.
 
   This file is part of Classified Ads.
 
@@ -174,6 +174,15 @@ public:
                            bool* aSearchProfilesPtr,
                            bool* aSearchCommentsPtr,
                            Hash* aSearchIdPtr ) const ;
+public: // data
+    /**
+     * Magic data that is sent over network search if user gives 
+     * empty search string. This causes search with no "match" condition
+     * in new version and most likely empty search results in old
+     * version of this SW without breaking the protocol. Value is
+     * assigned in constructor. 
+     */
+    const QString iMagicalEmptySearchPhrase ; 
 signals:
     void error(MController::CAErrorSituation aError,
                const QString& aExplanation) ;

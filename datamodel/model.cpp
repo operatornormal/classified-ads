@@ -1,5 +1,5 @@
 /*   -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2021.
 
   This file is part of Classified Ads.
 
@@ -32,6 +32,9 @@
 #include <QSslCertificate>
 #include <QThread>
 #include <QSslKey>
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+#include <QRandomGenerator>
+#endif
 #include "../net/connection.h"
 #include "../net/protocol_message_formatter.h"
 #include "../net/node.h"
@@ -839,8 +842,6 @@ void Model::initPseudoRandom() {
                 RAND_seed(&pbData, RANDOM_LEN);
                 unsigned int *pointer1intothemiddle = reinterpret_cast<unsigned int *>(pbData);
                 srand(*pointer1intothemiddle) ;
-                pointer1intothemiddle++ ;
-                qsrand(*pointer1intothemiddle) ;
             } else {
                 printf("Win32 seed: Error during CryptGenRandom.\n");
             }
@@ -851,7 +852,14 @@ void Model::initPseudoRandom() {
             }
         }
 #else
-        // oh dear. emphasis is on word pseudo.
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+	// since version 5.10 there is random number generator
+  	quint32 seed[256] ;
+	QRandomGenerator::global()->fillRange(seed) ;
+	srand(seed[0]) ;
+	RAND_seed(&seed[0], sizeof(seed));
+#else
+        // Old QT. Oh dear. emphasis is on word pseudo.
         QUuid u = QUuid::createUuid() ;
         QString eight_letters = u.toString() ;
         eight_letters.remove(0,25) ;
@@ -862,9 +870,8 @@ void Model::initPseudoRandom() {
         sscanf(buf, "%x", &seed) ;
         LOG_STR2("Random seed %x", seed) ;
         srand(seed) ;
-        qsrand(rand()) ; // note that in qt different threads may have
-        // their own random seeds??
         RAND_seed(&seed, sizeof(seed));
+#endif // QT_VERSION >= 5.10
 #endif
     }
     if ( randomFileName.length() > 2 ) {
@@ -887,7 +894,6 @@ void Model::initPseudoRandom() {
             pointer2intothemiddle++ ;
             pointer2intothemiddle++ ;
             srand(*pointer1intothemiddle) ;
-            qsrand(*pointer2intothemiddle) ; // note that in qt different threads may have
             randomFile.close() ;
         } else {
             QLOG_STR("FATAL: Can't open " + randomFileName) ;

@@ -1,5 +1,5 @@
-/*                                      -*-C++-*-
-    Classified Ads is Copyright (c) Antti Jarvinen 2013.
+/*      -*-C++-*- -*-coding: utf-8-unix;-*-
+    Classified Ads is Copyright (c) Antti Järvinen 2013-2021.
 
     This file is part of Classified Ads.
 
@@ -27,10 +27,18 @@
 
 Hash::Hash() {
     iHash160bits[0] =
-        iHash160bits[1] =
-            iHash160bits[2] =
-                iHash160bits[3] =
-                    iHash160bits[4] = 0 ;
+    iHash160bits[1] =
+    iHash160bits[2] =
+    iHash160bits[3] =
+    iHash160bits[4] = 0 ;
+}
+
+Hash::Hash(const Hash& aHashToCopyFrom) {
+    iHash160bits[0] = aHashToCopyFrom.iHash160bits[0] ;
+    iHash160bits[1] = aHashToCopyFrom.iHash160bits[1] ;
+    iHash160bits[2] = aHashToCopyFrom.iHash160bits[2] ;
+    iHash160bits[3] = aHashToCopyFrom.iHash160bits[3] ;
+    iHash160bits[4] = aHashToCopyFrom.iHash160bits[4] ;
 }
 
 Hash::Hash(const quint32 aHash160bits[KNumberOfIntsInHash]) {

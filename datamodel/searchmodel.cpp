@@ -1,5 +1,5 @@
 /*  -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2022.
 
   This file is part of Classified Ads.
 
@@ -38,10 +38,11 @@ static const char *KJsonSearchItemTypeProfile = "prof" ;
 static const char *KJsonSearchItemTypeComment = "comm" ;
 static const char *KJsonSearchItemFP = "fp" ;
 static const char *KJsonSearchItemSnippet = "text" ;
-
+static const char *KMagicalEmptySearchPhrase = "__ __" ;
 
 SearchModel::SearchModel(MModelProtocolInterface& aModel,
                          MController& aController) :
+    iMagicalEmptySearchPhrase(KMagicalEmptySearchPhrase),
     iModel(aModel),
     iIsFTSSupported(queryIfFTSSupported(aModel.dataBaseConnection())),
     iController(aController) {
@@ -86,8 +87,7 @@ void SearchModel::setSearchString(const QString& aSearch,
     iSearchProfiles = aSearchProfiles ;
     iSearchComments = aSearchComments ;
     iDisplayedResults.clear() ;
-    if ( aSearch.length() > 0 &&
-            ( aSearchAds || aSearchProfiles || aSearchComments ) ) {
+    if ( aSearchAds || aSearchProfiles || aSearchComments ) {
         // ok, user has something to search for
         if ( aNetworkSearch == false ) {
             // then search locally
@@ -101,7 +101,13 @@ void SearchModel::setSearchString(const QString& aSearch,
             // send queue - will be faster, will query only already-connected nodes. this
             // is all right.
             SendQueueItem itemToSpam ;
-            iSearchId.calculate(aSearch.toUtf8()) ;
+	    if ( aSearch.length() == 0 ) {
+	      // for empty string search generate a dummy id
+	      iSearchId.iHash160bits[0] = rand() ;
+	      iSearchString = iMagicalEmptySearchPhrase ; 
+	    } else {
+	      iSearchId.calculate(aSearch.toUtf8()) ;
+	    }
             itemToSpam.iItemType = RequestForSearchSend ;
             itemToSpam.iHash = iSearchId ;
             QLOG_STR("Starting network search, search id = " + QString::number(iSearchId.iHash160bits[0]) + " model = " + objectName()) ;
@@ -325,16 +331,26 @@ QList<SearchModel::SearchResultItem> SearchModel::performSearch(const QString& a
     if ( aSearchAds ) {
         QSqlQuery query(iModel.dataBaseConnection());
         bool ret ;
-        ret = query.prepare ("select classified_ad.hash1,classified_ad.hash2,"
-                             "classified_ad.hash3,classified_ad.hash4,"
-                             "classified_ad.hash5,"
-                             "classified_ad_search.subject from classified_ad , "
-                             "classified_ad_search  where "
-                             "classified_ad.hash1=classified_ad_search.docid and "
-                             "classified_ad_search MATCH :searchcriteria" ) ;
+	if ( aForString.isEmpty() ||
+	     aForString == iMagicalEmptySearchPhrase ) {
+	  ret = query.prepare ("select classified_ad.hash1,classified_ad.hash2,"
+			       "classified_ad.hash3,classified_ad.hash4,"
+			       "classified_ad.hash5,"
+			       "classified_ad.display_name from classified_ad "
+			       "order by time_of_publish desc limit 20" ) ;
+	} else {
+	  ret = query.prepare ("select classified_ad.hash1,classified_ad.hash2,"
+			       "classified_ad.hash3,classified_ad.hash4,"
+			       "classified_ad.hash5,"
+			       "classified_ad_search.subject from classified_ad , "
+			       "classified_ad_search  where "
+			       "classified_ad.hash1=classified_ad_search.docid and "
+			       "classified_ad_search MATCH :searchcriteria" ) ;
+	  if ( ret ) {
+	    query.bindValue(":searchcriteria", aForString.toUtf8() ) ;
+	  }
+	}
         if ( ret ) {
-            query.bindValue(":searchcriteria", aForString.toUtf8() ) ;
-
             ret = query.exec() ;
             if ( !ret ) {
                 QLOG_STR(query.lastError().text() + " "+ __FILE__ + QString::number(__LINE__)) ;
@@ -369,16 +385,26 @@ QList<SearchModel::SearchResultItem> SearchModel::performSearch(const QString& a
     if ( aSearchProfiles ) {
         QSqlQuery query(iModel.dataBaseConnection());
         bool ret ;
-        ret = query.prepare ("select profile.hash1,profile.hash2,"
-                             "profile.hash3,profile.hash4,"
-                             "profile.hash5,"
-                             "profile.display_name from profile , "
-                             "profile_search  where "
-                             "profile.hash1=profile_search.docid and "
-                             "profile_search MATCH :searchcriteria" ) ;
+        if ( aForString.isEmpty() ||
+	     aForString == iMagicalEmptySearchPhrase ) {
+          ret = query.prepare ("select profile.hash1,profile.hash2,"
+                               "profile.hash3,profile.hash4,"
+                               "profile.hash5,"
+                               "profile.display_name from profile where is_private = 0 order by time_of_publish desc limit 20" ) ;
+        }
+        else {
+  	  ret = query.prepare ("select profile.hash1,profile.hash2,"
+                               "profile.hash3,profile.hash4,"
+                               "profile.hash5,"
+                               "profile.display_name from profile , "
+                               "profile_search  where "
+                               "profile.hash1=profile_search.docid and "
+                               "profile_search MATCH :searchcriteria" ) ;
+	  if ( ret ) {
+	    query.bindValue(":searchcriteria", aForString.toUtf8() ) ;
+	  }
+        }
         if ( ret ) {
-            query.bindValue(":searchcriteria", aForString.toUtf8() ) ;
-
             ret = query.exec() ;
             if ( !ret ) {
                 QLOG_STR(query.lastError().text() + " "+ __FILE__ + QString::number(__LINE__)) ;
@@ -413,16 +439,28 @@ QList<SearchModel::SearchResultItem> SearchModel::performSearch(const QString& a
     if ( aSearchComments ) {
         QSqlQuery query(iModel.dataBaseConnection());
         bool ret ;
-        ret = query.prepare ("select profilecomment.hash1,profilecomment.hash2,"
-                             "profilecomment.hash3,profilecomment.hash4,"
-                             "profilecomment.hash5,"
-                             "profilecomment.display_name from profilecomment , "
-                             "profilecomment_search  where "
-                             "profilecomment.hash1=profilecomment_search.docid and "
-                             "profilecomment_search MATCH :searchcriteria" ) ;
-        if ( ret ) {
+	if ( aForString.isEmpty() ||
+	     aForString == iMagicalEmptySearchPhrase ) {
+	  ret = query.prepare ("select profilecomment.hash1,profilecomment.hash2,"
+			       "profilecomment.hash3,profilecomment.hash4,"
+			       "profilecomment.hash5,"
+			       "profilecomment.display_name from profilecomment "
+			       "order by time_of_publish desc limit 20" ) ;
+	} else {
+	  ret = query.prepare ("select profilecomment.hash1,profilecomment.hash2,"
+			       "profilecomment.hash3,profilecomment.hash4,"
+			       "profilecomment.hash5,"
+			       "profilecomment.display_name from profilecomment , "
+			       "profilecomment_search  where "
+			       "profilecomment.hash1=profilecomment_search.docid and "
+			       "profilecomment_search MATCH :searchcriteria" ) ;
+	  if ( ret ) {
             query.bindValue(":searchcriteria", aForString.toUtf8() ) ;
+	  }
+	}
+	
 
+        if ( ret ) {
             ret = query.exec() ;
             if ( !ret ) {
                 QLOG_STR(query.lastError().text() + " "+ __FILE__ + QString::number(__LINE__)) ;
@@ -460,8 +498,7 @@ void SearchModel::getSearchCriteria(QString* aSearchStrPtr,
                                     bool* aSearchProfilesPtr,
                                     bool* aSearchCommentsPtr,
                                     Hash* aSearchIdPtr ) const {
-    if ( iSearchString.length() > 0 &&
-            ( iSearchAds || iSearchProfiles || iSearchComments ) ) {
+    if ( iSearchAds || iSearchProfiles || iSearchComments ) {
         *aSearchStrPtr = iSearchString ;
         *aSearchIdPtr = iSearchId ;
         *aSearchAdsPtr = iSearchAds ;
