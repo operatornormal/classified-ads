@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2021.
 
   This file is part of Classified Ads.
 
@@ -230,7 +230,7 @@ bool CaDbRecord::SearchStructure::fromJSon(const QByteArray& aJSon) {
         iModifiedBefore = std::numeric_limits<quint32>::max();
         iByHavingNumberMoreThan = std::numeric_limits<qint64>::min(); 
         iByHavingNumberLessThan = std::numeric_limits<qint64>::max();
-        iBySearchPhrase = QString::null ; 
+        iBySearchPhrase = QString() ; 
         iBySender = KNullHash ; 
         // then go on checking what we have in json:
         if ( result.contains(KCaDbSearchJSonCollection ) ) {

@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2021.
 
   This file is part of Classified Ads.
 
@@ -112,7 +112,7 @@ Hash ContentEncryptionModel::generateKeyPair() {
     // and after 100 years someone needs to find a way to
     // 1) crack this encryption, or
     // 2) write feature for migrating the stuff to another node with a new cert
-    X509_gmtime_adj(X509_get_notAfter(x509), 60L  * 60L  * 24L  * 365L * (long long)(80+(qrand()%20)) + (long long)((qrand() % 10000)) );
+    X509_gmtime_adj(X509_get_notAfter(x509), 60L  * 60L  * 24L  * 365L * (long long)(80+(rand()%20)) + (long long)((rand() % 10000)) );
 
 
     X509_set_pubkey(x509, pkey);

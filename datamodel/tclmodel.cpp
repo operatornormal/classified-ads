@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2021.
 
   This file is part of Classified Ads.
 
@@ -248,7 +248,7 @@ QString TclModel::storeTCLProgLocalData(const Hash& aProgram,
             return query.lastError().text();
         } 
     }
-    return QString::null ; 
+    return QString() ; 
 }
 
 QByteArray TclModel::retrieveTCLProgLocalData(const Hash& aProgram) {
@@ -292,7 +292,28 @@ void TclModel::installExamplePrograms() {
 #else
         // in unix this path appears in classified-ads.pro and 
         // is used by "make install" phase.
-        QDir examplesDir ("/usr/share/doc/classified-ads/examples") ; 
+        QDir examplesDir ("/usr/share/doc/classified-ads/examples") ;
+        if ( !examplesDir.exists() ) {
+	  // some linux distributions want version number inside path,
+	  // like "/usr/share/doc/classified-ads-v2.0" so
+	  // lets try find one with version number:
+	  QDir directoryEnumerator("/usr/share/doc") ;
+	  QStringList filePattern ;
+	  filePattern << "classified-ads*" ;
+
+	  QFileInfoList list = directoryEnumerator.entryInfoList(filePattern,
+								 QDir::Dirs);
+	  for (int i = 0; i < list.size(); ++i) {
+	    QFileInfo fileInfo = list.at(i);
+	    QLOG_STR("Selecting example files dir " + fileInfo.fileName()) ;
+	    examplesDir.setPath(fileInfo.absoluteFilePath() +
+				"/examples") ;
+	    // break out with first match ; idea is that no multiple
+	    // versions of this sw can be installed at once ; first
+	    // match is only match
+	    break ; 
+	  }
+        }
 #endif
         if ( !examplesDir.exists() ) {
             return ; // no examples, obviously

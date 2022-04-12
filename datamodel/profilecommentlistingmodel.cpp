@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2021.
 
   This file is part of Classified Ads.
 
@@ -74,7 +74,8 @@ QVariant ProfileCommentListingModel::data(const QModelIndex &index, int role) co
         }
         QDateTime d ;
         d.setTime_t(iProfileComments.at(index.row()).iCommentTimeStamp) ;
-        headerTextForListings = headerTextForListings + " | " + d.toString(Qt::SystemLocaleShortDate) ;
+	QLocale locale ; 
+        headerTextForListings = headerTextForListings + " | " + locale.toString(d, QLocale::ShortFormat) ;
         headerTextForListings = headerTextForListings + " | " + iProfileComments.at(index.row()).iCommentSubject ;
         return headerTextForListings ;
     }
@@ -120,7 +121,8 @@ QVariant ProfileCommentListingModel::data(const QModelIndex &index, int role) co
         if(role == Qt::DisplayRole) {
             QDateTime d ;
             d.setTime_t(iProfileComments.at(index.row()).iCommentTimeStamp) ;
-            return d.toString(Qt::SystemLocaleShortDate) ;
+	    QLocale locale ; 
+            return locale.toString(d, QLocale::ShortFormat) ; 
         } else {
             return QVariant();
         }

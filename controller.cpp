@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2021.
 
   This file is part of Classified Ads.
 
@@ -1436,7 +1436,8 @@ void Controller::displayFileInfoOnUi(const BinaryFile& aFileMetadata) {
     QDateTime d ;
     d.setTime_t(aFileMetadata.iTimeOfPublish) ;
     info.append(tr("Date: ")) ;
-    info.append(d.toString(Qt::SystemLocaleShortDate)) ;
+    QLocale locale; // loads system default settings
+    info.append(locale.toString(d, QLocale::ShortFormat)) ;
     info.append("\n") ;
 
     infoMessage.setText(info.join("")) ;
@@ -1582,9 +1583,9 @@ QString Controller::getFileName(bool& aSuccess,
                                 QString aSuggestedFileName ) {
     if ( iGetFileNameDialog || iGetFileNameSemaphore.available() == 0 ) {
         aSuccess = false ; 
-        return QString::null ; 
+        return QString() ; 
     }
-    iGetFileNameResult = QString::null ; 
+    iGetFileNameResult = QString() ; 
     iGetFileNameSuccess = false ; 
     // lock mutex once
     QLOG_STR("iGetFileNameMutex.acquire") ; 

@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2021.
 
   This file is part of Classified Ads.
 
@@ -131,7 +131,8 @@ QVariant PrivateMessageSearchModel::data(const QModelIndex &index, int role) con
         if(role == Qt::DisplayRole) {
             QDateTime d ;
             d.setTime_t(iPrivateMessages.at(index.row()).iMessageTimeStamp) ;
-            return d.toString(Qt::SystemLocaleShortDate) ;
+	    QLocale locale ;
+	    return locale.toString(d, QLocale::ShortFormat) ; 
         } else {
             return QVariant();
         }

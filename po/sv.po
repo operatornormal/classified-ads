@@ -9,10 +9,10 @@ msgstr ""
 "PO-Revision-Date: 2017-01-20 04:42-0500\n"
 "Last-Translator: Göran Uddeborg <goeran@uddeborg.se>\n"
 "Language-Team: Swedish\n"
+"Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: sv\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Zanata 3.9.6\n"
 "X-Language: sv_SE\n"
@@ -28,6 +28,18 @@ msgstr "Spara till filsystem.."
 msgctxt "AttachmentListDialog|"
 msgid "files"
 msgstr "filer"
+
+# Appears as dialog title where text asks if user wants to save into "application library" or into local file
+#: ui/attachmentlistdialog.cpp:162
+msgctxt "AttachmentListDialog|"
+msgid "Save location"
+msgstr ""
+
+# Dialog text regarding TCL app save location
+#: ui/attachmentlistdialog.cpp:163
+msgctxt "AttachmentListDialog|"
+msgid "Save to TCL app library instead of regular file?"
+msgstr ""
 
 #: ui/attachmentlistdialog.cpp:155
 msgctxt "AttachmentListDialog|"
@@ -457,6 +469,36 @@ msgctxt "Controller|"
 msgid "&File"
 msgstr "&Arkiv"
 
+# Menu title. Menu contains menu-items related to TCL-programs.
+#: controller.cpp:729
+msgctxt "Controller|"
+msgid "&TCL Programs"
+msgstr ""
+
+# Menu item from menu of TCL-related items. Selecting this menu item opens library of TCL programs. 
+#: controller.cpp:730
+msgctxt "Controller|"
+msgid "&Local library"
+msgstr ""
+
+# Tooltip-text for menu item that opens local TCL program library.
+#: controller.cpp:731
+msgctxt "Controller|"
+msgid "Locally stored TCL programs"
+msgstr ""
+
+# Difficult to translate: after selecting this menu-item you can write ad-hoc TCL programs to TCL interpreter that may be already executing existing program or is empty. Practically gives TCL command line access to possibly running interpreter.
+#: controller.cpp:734
+msgctxt "Controller|"
+msgid "TCL &Console"
+msgstr ""
+
+# Tooltip for menu-item that displays dialog where you can type in ad-hoc TCL-programs.
+#: controller.cpp:735
+msgctxt "Controller|"
+msgid "Display interpreter console"
+msgstr ""
+
 #: controller.cpp:571
 msgctxt "Controller|"
 msgid "Enter new password:"
@@ -481,8 +523,8 @@ msgstr "Radera profil?"
 msgctxt "Controller|"
 msgid "There will be NO way to access content of this profile later"
 msgstr ""
-"Det kommer INTE finnas något sätt att komma åt innehållet i den här profilen"
-" senare"
+"Det kommer INTE finnas något sätt att komma åt innehållet i den här profilen "
+"senare"
 
 #: controller.cpp:761
 msgctxt "Controller|"
@@ -513,6 +555,12 @@ msgstr "Databasmodul"
 msgctxt "Controller|"
 msgid "Bad password"
 msgstr "Fel lösenord"
+
+# Dialog title for error dialog that displays error message originating from TCL-interpereter. 
+#: controller.cpp:1043
+msgctxt "Controller|"
+msgid "TCL Interpreter"
+msgstr ""
 
 #: controller.cpp:1004
 msgctxt "Controller|"
@@ -698,6 +746,18 @@ msgstr "Fel med öppningen av filen"
 msgctxt "FrontWidget|"
 msgid "files"
 msgstr "filer"
+
+# Dialog title for dialog that asks whether user wants to save TCL program into local library or into filesystem file
+#: FrontWidget.cpp:1183
+msgctxt "FrontWidget|"
+msgid "Save location"
+msgstr ""
+
+# Dialog text in question dialog asking if user wants to save TCL app into local library or into filesystem file
+#: FrontWidget.cpp:1184
+msgctxt "FrontWidget|"
+msgid "Save to TCL app library instead of regular file?"
+msgstr ""
 
 #: FrontWidget.cpp:1176
 msgctxt "FrontWidget|"
@@ -927,8 +987,8 @@ msgid ""
 "Should you forget this word, there is no easy way to recover any of your "
 "content"
 msgstr ""
-"Skulle du glömma det här ordet finns det inte något enkelt sätt återfå något"
-" av ditt innehåll"
+"Skulle du glömma det här ordet finns det inte något enkelt sätt återfå något "
+"av ditt innehåll"
 
 #: ui/passwordDialog.ui:29
 msgctxt "PasswordDialog|"
@@ -947,6 +1007,14 @@ msgstr ""
 msgctxt "PasswordDialog|"
 msgid "OK"
 msgstr "OK"
+
+#: ui/passwordDialog.ui:68
+#, fuzzy
+#| msgctxt "Controller|"
+#| msgid "Bad password"
+msgctxt "PasswordDialog|"
+msgid "Show password"
+msgstr "Fel lösenord"
 
 #: datamodel/privmsgsearchmodel.cpp:110
 #, qt-format
@@ -1048,10 +1116,64 @@ msgctxt "RingtonePlayer|"
 msgid "Could not initialize audio player."
 msgstr "Kunde inte initiera audiospelaren."
 
-#: ui/searchdisplay.cpp:62
+# Tool-tip text for search dialog textbox of words to search for
+#: ui/searchdisplay.cpp:54
+msgctxt "SearchDisplay|"
+msgid "Leave empty to search any recent documents"
+msgstr "Lämna tomt för att söka efter de senaste dokumenten"
+
+#: ui/searchdisplay.cpp:64
 msgctxt "SearchDisplay|"
 msgid "Open.."
 msgstr "Öppna.."
+
+# Button text. When button is pressed, TCL program is started. 
+#: ui/tclPrograms.cpp:42
+msgctxt "TclProgramsDialog|"
+msgid "Evaluate"
+msgstr ""
+
+# Button text. If button is pressed, TCL program being executed is stopped.
+#: ui/tclPrograms.cpp:43
+msgctxt "TclProgramsDialog|"
+msgid "Stop program"
+msgstr ""
+
+# Button text for button that permanently removes TCL program from local library
+#: ui/tclPrograms.cpp:49
+msgctxt "TclProgramsDialog|"
+msgid "Delete program"
+msgstr ""
+
+# Dialog title for dialog that asks user to type in name of TCL program. 
+#: ui/tclPrograms.cpp:99
+msgctxt "TclProgramsDialog|"
+msgid "TCL Program name"
+msgstr ""
+
+#: ui/tclPrograms.cpp:100
+#, fuzzy
+#| msgctxt "Controller|"
+#| msgid "Name: "
+msgctxt "TclProgramsDialog|"
+msgid "Name:"
+msgstr "Namn: "
+
+#: ui/tclPrograms.cpp:140
+#, fuzzy
+#| msgctxt "metadataQuery|"
+#| msgid "File information"
+msgctxt "TclProgramsDialog|"
+msgid "Deletion confirmation"
+msgstr "Filinformation"
+
+#: ui/tclPrograms.cpp:141
+#, fuzzy, qt-format
+#| msgctxt "Controller|"
+#| msgid "Permanently discard profile?"
+msgctxt "TclProgramsDialog|"
+msgid "Permanently delete program %1?"
+msgstr "Radera profil?"
 
 #: textedit/textedit.cpp:127
 msgctxt "TextEdit|"
@@ -1404,8 +1526,7 @@ msgstr "Audioanrop är inte möjligt: operatorprofilen finns inte"
 
 #: net/voicecallengine.cpp:856
 msgctxt "VoiceCallEngine|"
-msgid ""
-"Audio call is not possible: operator has no node information in profile"
+msgid "Audio call is not possible: operator has no node information in profile"
 msgstr ""
 "Audioanrop är inte möjligt: operatorn har ingen nodinformation i profilen"
 
@@ -1413,15 +1534,13 @@ msgstr ""
 #, qt-format
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible: operators IPv4 address %1 not connected"
-msgstr ""
-"Audioanrop är inte möjligt: operatorns IPv4-adress %1 är inte ansluten"
+msgstr "Audioanrop är inte möjligt: operatorns IPv4-adress %1 är inte ansluten"
 
 #: net/voicecallengine.cpp:882
 #, qt-format
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible: operators IPv6 address %1 not connected"
-msgstr ""
-"Audioanrop är inte möjligt: operatorns IPv6-adress %1 är inte ansluten"
+msgstr "Audioanrop är inte möjligt: operatorns IPv6-adress %1 är inte ansluten"
 
 #: net/voicecallengine.cpp:893
 msgctxt "VoiceCallEngine|"
@@ -1451,11 +1570,11 @@ msgstr " Rubrikannonser är en programvara för kommunikation över internet"
 #: ui/aboutDialog.ui:163
 msgctxt "aboutDialog|"
 msgid ""
-"<html><head/><body><p>Classified ads is free software. You may use, copy and"
-" modify it if you follow the conditions given in GNU lesser general public "
+"<html><head/><body><p>Classified ads is free software. You may use, copy and "
+"modify it if you follow the conditions given in GNU lesser general public "
 "license version 2.1.</p><p>Classified ads is copyright © Antti Järvinen "
-"2013. </p><p>Main feature of the program is an &quot;advertisement&quot; - a"
-" piece of text belonging to selected classification. There are several pre-"
+"2013. </p><p>Main feature of the program is an &quot;advertisement&quot; - a "
+"piece of text belonging to selected classification. There are several pre-"
 "programmed classifications and operators are encouraged to invent new "
 "classifications for new purposes ; the selection boxes in classification-"
 "selection tab are editable. Other operators may then view the ads, publicly "
@@ -1464,35 +1583,35 @@ msgid ""
 "designed to be operated without any centralized server infrastructure - it "
 "is you and other operators whose computers store and transmit all the "
 "content visible inside classified ads. To get connected you need to know "
-"address of at least one existing computer (a <span style=\" font-"
-"style:italic;\">node</span>) so if your network connection dialog shows no "
+"address of at least one existing computer (a <span style=\" font-style:"
+"italic;\">node</span>) so if your network connection dialog shows no "
 "connections, you may need to contact someone you know is using the software "
 "and ask for address of her node to make initial contact with the network. "
 "Once connected the software should maintain list of addresses of other "
 "nodes. </p><p>Due to its server-less design the whole system works best if "
-"you leave the program running always when you have your computer powered on "
-"; while processing other operators requests it will hog some computing "
+"you leave the program running always when you have your computer powered "
+"on ; while processing other operators requests it will hog some computing "
 "resources and generate network traffic also when you are not actively using "
 "the program yourself - others are. </p><p>Operators concerned about privacy "
 "of the content should be aware of following items:</p><p>- Data storage "
-"implementation is variant of <span style=\" font-style:italic;\">distributed"
-" hash table</span>, practically meaning that content posted by you gets "
-"copied some more-or-less random nodes in the network. </p><p>- Any data item"
-" (ad, comment, binary file, private message etc.) is digitally signed. This "
+"implementation is variant of <span style=\" font-style:italic;\">distributed "
+"hash table</span>, practically meaning that content posted by you gets "
+"copied some more-or-less random nodes in the network. </p><p>- Any data item "
+"(ad, comment, binary file, private message etc.) is digitally signed. This "
 "makes it more difficult to try to pose as another operator. </p><p>- "
 "Operators are reliably identified only by the SHA1 hash of their generated "
 "encryption keys. SHA1 hash is displayed when viewing details of operator "
 "profiles. Other identifying information like nickname or city name are "
-"entered by operator himself and can be anything. The operator profile, as it"
-" is published to the network, is also signed with the encryption keys of the"
-" operator - if you identify an operator by her SHA1 hash, you have a "
+"entered by operator himself and can be anything. The operator profile, as it "
+"is published to the network, is also signed with the encryption keys of the "
+"operator - if you identify an operator by her SHA1 hash, you have a "
 "mechanism for identifying if any content inside classified ads is posted by "
 "this operator or not. Classified ads internally checks for digital "
 "signatures, throwing away content that fails signature check and tries to "
 "provide SHA1 hash of the operator who posted the content.</p><p>- All "
 "classified ads are posted as plain text, no encryption is used. All public "
-"profiles are posted as plain text, no encryption is used. If profile is made"
-" private, it is encrypted to be readable only by selected other profiles. "
+"profiles are posted as plain text, no encryption is used. If profile is made "
+"private, it is encrypted to be readable only by selected other profiles. "
 "This applies also to binary files shared by operators private profiles and "
 "comments about private profiles after the profile was made private "
 "(previously plain-text comments or files don't get magically encrypted "
@@ -1500,89 +1619,87 @@ msgid ""
 "recipient and sender. Attachments follow the privacy rules of the document, "
 "they're attached to. </p><p>- As is the case with all internet-"
 "communications, this small fact is true for classified ads too : <span "
-"style=\" font-style:italic;\">once something gets posted online, there is no"
-" way to remove it from network</span>. </p><p>- Data encryption "
-"implementation for content is OpenSSL, relying mostly on algorithms RSA-2048"
-" and AES-256. </p><p>- While connections between nodes are implemented using"
-" SSL, other nodes inside network do get to know what content is being "
-"transmitted in neighboring nodes. While there is no central point for easily"
-" collecting this information about particular classification or operator, "
+"style=\" font-style:italic;\">once something gets posted online, there is no "
+"way to remove it from network</span>. </p><p>- Data encryption "
+"implementation for content is OpenSSL, relying mostly on algorithms RSA-2048 "
+"and AES-256. </p><p>- While connections between nodes are implemented using "
+"SSL, other nodes inside network do get to know what content is being "
+"transmitted in neighboring nodes. While there is no central point for easily "
+"collecting this information about particular classification or operator, "
 "operators still should expect no privacy regarding their doings online, "
-"although some effort has been been put into hiding <span style=\" font-"
-"style:italic;\">contents</span> of private messages and private profiles. "
-"</p><p>Programming was (mostly) done by Antti Järvinen, artwork by Meeri "
+"although some effort has been been put into hiding <span style=\" font-style:"
+"italic;\">contents</span> of private messages and private profiles. </"
+"p><p>Programming was (mostly) done by Antti Järvinen, artwork by Meeri "
 "Järvinen.</p><p>This product includes software developed by the OpenSSL "
-"Project for use in the OpenSSL Toolkit "
-"(http://www.openssl.org/).</p><p>Happy "
-"advertising!</p><p><br/></p></body></html>"
+"Project for use in the OpenSSL Toolkit (http://www.openssl.org/).</"
+"p><p>Happy advertising!</p><p><br/></p></body></html>"
 msgstr ""
 "<html><head/><body><p>Rubrikannonser är fri programvara.  Du får använda, "
 "kopiera och ändra det om du följer villkoren som anges i GNU lesser general "
 "public license version 2.1.</p><p>Rubrikannonser är copyright © Antti "
-"Järvinen 2013. </p><p>Huvudfunktionen hos programmet är en "
-"&quot;annons&quot; — ett stycke text som tillhör en vald rubrik.  Det finns "
-"flera förprogrammerade rubriker och operatörer uppmuntras att hitta på nya "
-"rubriker för nya ändamål; valrutorna i fliken för rubrikval är redigerbara."
-"  Andra operatörer kan sedan se annonserna, publikt kommentera annonserna, "
-"operatörerna och även skicka privata meddelanden till varandra. </p><p>Andra"
-" viktiga funktioner hos rubrikannonser är att det är gjort för att användas "
+"Järvinen 2013. </p><p>Huvudfunktionen hos programmet är en &quot;"
+"annons&quot; — ett stycke text som tillhör en vald rubrik.  Det finns flera "
+"förprogrammerade rubriker och operatörer uppmuntras att hitta på nya "
+"rubriker för nya ändamål; valrutorna i fliken för rubrikval är redigerbara.  "
+"Andra operatörer kan sedan se annonserna, publikt kommentera annonserna, "
+"operatörerna och även skicka privata meddelanden till varandra. </p><p>Andra "
+"viktiga funktioner hos rubrikannonser är att det är gjort för att användas "
 "utan någon centraliserad serverinfrastruktur — det är du och andra "
-"operatörer vars datorer lagrar och överför allt innehåll som är synligt inom"
-" rubrikannonser.  För att bli ansluten behöver du känna till en adress till "
-"åtminstone en befintlig dator (en <span style=\" font-"
-"style:italic;\">nod</span>) så om din dialog för nätverksanslutning inte "
-"visar några anslutningar kan du behöva kontakta någon du känner som använder"
-" programmet och be om adressen till hennes nod för att göra en initial "
-"kontakt med nätverket.  Så fort du är ansluten bör programmet underhålla en "
-"lista på adresser till andra noder. </p><p>På grund av sin serverfria design"
-" fungerar hela systemet bäst om du låter programmet vara hela tiden när du "
-"har datorn påslagen; medan det bearbetar andra operatörers begäranden kommer"
-" det lägga beslag på lite beräkningsresurser och generera nätverkstrafik "
-"även när du inte aktivt använder programmet själv — andra gör det. "
-"</p><p>Operatörer som är bekymrade för den privata integriteten hos "
-"innehållet bör vara medvetna om följande punkter:</p><p>– "
-"Datalagringsimplementationen är en variant på <span style=\" font-"
-"style:italic;\">distribuerade hash-tabeller</span>, i praktiken betyder det "
-"att innehåll som postas av dig kopieras till några mer eller mindre slumpvis"
-" valda noder i nätverket. </p><p>– Alla dataposter (annons, kommentar, "
-"binärfil, privat meddelande etc.) är digitalt signerade.  Detta gör det "
-"svårare att försöka låtsas vara någon annan operatör. </p><p>– Operatörer "
-"identifieras pålitligt endast av SHA1-kontrollsumman av sina genererade "
-"krypteringsnycklar.  SHA1-kontrollsummor visas när man tittar på detaljerna "
-"för operatorprofiler.  Annan identifikationsinformation som smeknamn eller "
-"ortnamn anges själv av operatorn och kan vara vad som helst.  "
-"Operatorprofilen, så som den publiceras på nätverket, signeras även med "
-"operatorns krypteringsnycklar — om du identifierar en operatör med dennes "
-"SHA1-kontrollsumma har du en mekanism för att identifiera om något innehåll "
-"inuti en rubrikannons postats av operatorn eller inte.  Rubrikannonser "
-"kontrollerar internt digitala signaturer, kastar bort innehåll som inte "
-"klarar signaturkontrollen och försöker tillhandahålla SHA1-kontrollsummor "
-"för operatörer som postat innehållet.</p><p>– Alla rubrikannonser skickas "
-"som klartext, ingen kryptering används.  Alla publika profiler postas som "
-"klartext, ingen kryptering används.  Om en profil görs privat krypteras den "
-"för att vara läsbar endast av utvalda andra profiler.  Detta gäller även "
-"binärfiler som delas av operatörers privata profiler och kommentarer om "
-"privata profiler efter att profilen gjordes privat (tidigare "
-"klartextkommentarer eller filer blir inte magiskt krypterade i efterhand).  "
-"Privata meddelanden är alltid krypterade för att vara läsbara endast av "
-"mottagaren och avsändaren.  Bilagor följer reglerna för dokumentet de är "
-"bifogade till. </p><p>– Så som är fallet med all internetkommunikation är "
-"följande sant för rubrikannonser också: <span style=\" font-"
-"style:italic;\">när en gång något postats online finns det inget sätt att ta"
-" bort det från nätverket</span>. </p><p>– Implementationen av datakryptering"
-" för innehållet är OpenSSL, baserat huvudsakligen på algoritmerna RSA-2048 "
-"och AES-256. </p><p>– Medan anslutningar mellan noder implementeras med SSL "
-"får andra noder inuti nätverket reda på vilken information som skickas i "
-"grannoder.  Medan det inte finns någon centralpunkt för att enkelt samla "
-"denna information om en viss rubrik eller operatör bör operatörer ändå inte "
-"förvänta sig något privatskydd vad gäller vad de gör online, även om vissa "
-"ansträngningar har gjorts för att dölja <span style=\" font-"
-"style:italic;\">innehåll</span> i privata meddelanden och privata profiler."
-"  </p><p>Programmeringen gjordes (huvudsakligen) av Antti Järvinen, "
-"utsmyckningar av Meeri Järvinen.</p><p>Denna produkt innehåller programvara "
-"utvecklad av projektet OpenSSL för att användas i OpenSSL Toolkit "
-"(http://www.openssl.org/).</p><p>Lycka till med "
-"annonserandet!</p><p><br/></p></body></html>"
+"operatörer vars datorer lagrar och överför allt innehåll som är synligt inom "
+"rubrikannonser.  För att bli ansluten behöver du känna till en adress till "
+"åtminstone en befintlig dator (en <span style=\" font-style:italic;\">nod</"
+"span>) så om din dialog för nätverksanslutning inte visar några anslutningar "
+"kan du behöva kontakta någon du känner som använder programmet och be om "
+"adressen till hennes nod för att göra en initial kontakt med nätverket.  Så "
+"fort du är ansluten bör programmet underhålla en lista på adresser till "
+"andra noder. </p><p>På grund av sin serverfria design fungerar hela systemet "
+"bäst om du låter programmet vara hela tiden när du har datorn påslagen; "
+"medan det bearbetar andra operatörers begäranden kommer det lägga beslag på "
+"lite beräkningsresurser och generera nätverkstrafik även när du inte aktivt "
+"använder programmet själv — andra gör det. </p><p>Operatörer som är "
+"bekymrade för den privata integriteten hos innehållet bör vara medvetna om "
+"följande punkter:</p><p>– Datalagringsimplementationen är en variant på "
+"<span style=\" font-style:italic;\">distribuerade hash-tabeller</span>, i "
+"praktiken betyder det att innehåll som postas av dig kopieras till några mer "
+"eller mindre slumpvis valda noder i nätverket. </p><p>– Alla dataposter "
+"(annons, kommentar, binärfil, privat meddelande etc.) är digitalt "
+"signerade.  Detta gör det svårare att försöka låtsas vara någon annan "
+"operatör. </p><p>– Operatörer identifieras pålitligt endast av SHA1-"
+"kontrollsumman av sina genererade krypteringsnycklar.  SHA1-kontrollsummor "
+"visas när man tittar på detaljerna för operatorprofiler.  Annan "
+"identifikationsinformation som smeknamn eller ortnamn anges själv av "
+"operatorn och kan vara vad som helst.  Operatorprofilen, så som den "
+"publiceras på nätverket, signeras även med operatorns krypteringsnycklar — "
+"om du identifierar en operatör med dennes SHA1-kontrollsumma har du en "
+"mekanism för att identifiera om något innehåll inuti en rubrikannons postats "
+"av operatorn eller inte.  Rubrikannonser kontrollerar internt digitala "
+"signaturer, kastar bort innehåll som inte klarar signaturkontrollen och "
+"försöker tillhandahålla SHA1-kontrollsummor för operatörer som postat "
+"innehållet.</p><p>– Alla rubrikannonser skickas som klartext, ingen "
+"kryptering används.  Alla publika profiler postas som klartext, ingen "
+"kryptering används.  Om en profil görs privat krypteras den för att vara "
+"läsbar endast av utvalda andra profiler.  Detta gäller även binärfiler som "
+"delas av operatörers privata profiler och kommentarer om privata profiler "
+"efter att profilen gjordes privat (tidigare klartextkommentarer eller filer "
+"blir inte magiskt krypterade i efterhand).  Privata meddelanden är alltid "
+"krypterade för att vara läsbara endast av mottagaren och avsändaren.  "
+"Bilagor följer reglerna för dokumentet de är bifogade till. </p><p>– Så som "
+"är fallet med all internetkommunikation är följande sant för rubrikannonser "
+"också: <span style=\" font-style:italic;\">när en gång något postats online "
+"finns det inget sätt att ta bort det från nätverket</span>. </p><p>– "
+"Implementationen av datakryptering för innehållet är OpenSSL, baserat "
+"huvudsakligen på algoritmerna RSA-2048 och AES-256. </p><p>– Medan "
+"anslutningar mellan noder implementeras med SSL får andra noder inuti "
+"nätverket reda på vilken information som skickas i grannoder.  Medan det "
+"inte finns någon centralpunkt för att enkelt samla denna information om en "
+"viss rubrik eller operatör bör operatörer ändå inte förvänta sig något "
+"privatskydd vad gäller vad de gör online, även om vissa ansträngningar har "
+"gjorts för att dölja <span style=\" font-style:italic;\">innehåll</span> i "
+"privata meddelanden och privata profiler.  </p><p>Programmeringen gjordes "
+"(huvudsakligen) av Antti Järvinen, utsmyckningar av Meeri Järvinen.</"
+"p><p>Denna produkt innehåller programvara utvecklad av projektet OpenSSL för "
+"att användas i OpenSSL Toolkit (http://www.openssl.org/).</p><p>Lycka till "
+"med annonserandet!</p><p><br/></p></body></html>"
 
 #: ui/attachmentListDialog.ui:26
 msgctxt "attachmentListDialog|"
@@ -1627,11 +1744,11 @@ msgstr "Lokal smeknamn"
 #: ui/editContact.ui:65
 msgctxt "editContactDialog|"
 msgid ""
-"<html><head/><body><p>Settings some trusted is public information to readers"
-" of your profile</p></body></html>"
+"<html><head/><body><p>Settings some trusted is public information to readers "
+"of your profile</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Inställningen om förtroende är publik för de som läser"
-" din profil</p></body></html>"
+"<html><head/><body><p>Inställningen om förtroende är publik för de som läser "
+"din profil</p></body></html>"
 
 #: ui/editContact.ui:68
 msgctxt "editContactDialog|"
@@ -1844,21 +1961,21 @@ msgstr "BTC-adress"
 #: frontWidget.ui:829
 msgctxt "frontWidget|"
 msgid ""
-"<html><head/><body><p align=\"center\"><span style=\" font-"
-"size:16pt;\"><br/></span></p><p align=\"center\"><span style=\" font-"
-"size:16pt;\"><br/></span></p><p align=\"center\"><span style=\" font-"
-"size:16pt;\"><br/></span></p><p align=\"center\"><span style=\" font-"
-"size:16pt;\">No</span></p><p align=\"center\"><span style=\" font-"
-"size:16pt;\">Image</span></p><p align=\"center\"><span style=\" font-"
-"size:16pt;\">Inserted</span></p></body></html>"
+"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt;\"><br/"
+"></span></p><p align=\"center\"><span style=\" font-size:16pt;\"><br/></"
+"span></p><p align=\"center\"><span style=\" font-size:16pt;\"><br/></span></"
+"p><p align=\"center\"><span style=\" font-size:16pt;\">No</span></p><p "
+"align=\"center\"><span style=\" font-size:16pt;\">Image</span></p><p "
+"align=\"center\"><span style=\" font-size:16pt;\">Inserted</span></p></"
+"body></html>"
 msgstr ""
-"<html><head/><body><p align=\"center\"><span style=\" font-"
-"size:16pt;\"><br/></span></p><p align=\"center\"><span style=\" font-"
-"size:16pt;\"><br/></span></p><p align=\"center\"><span style=\" font-"
-"size:16pt;\"><br/></span></p><p align=\"center\"><span style=\" font-"
-"size:16pt;\">Ingen</span></p><p align=\"center\"><span style=\" font-"
-"size:16pt;\">bild</span></p><p align=\"center\"><span style=\" font-"
-"size:16pt;\">infogad</span></p></body></html>"
+"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt;\"><br/"
+"></span></p><p align=\"center\"><span style=\" font-size:16pt;\"><br/></"
+"span></p><p align=\"center\"><span style=\" font-size:16pt;\"><br/></span></"
+"p><p align=\"center\"><span style=\" font-size:16pt;\">Ingen</span></p><p "
+"align=\"center\"><span style=\" font-size:16pt;\">bild</span></p><p "
+"align=\"center\"><span style=\" font-size:16pt;\">infogad</span></p></body></"
+"html>"
 
 #: frontWidget.ui:874
 msgctxt "frontWidget|"
@@ -2213,8 +2330,8 @@ msgid ""
 "If you have permanent DNS name for your machine, you may type it here to be "
 "used to reference your node"
 msgstr ""
-"Om du har ett permanent DNS-namn på din maskin kan du skriva det här för att"
-" användas till att referera din nod"
+"Om du har ett permanent DNS-namn på din maskin kan du skriva det här för att "
+"användas till att referera din nod"
 
 #: ui/settingsDialog.ui:103
 msgctxt "settingsDialog|"
@@ -2247,13 +2364,21 @@ msgid ""
 "Number of classified ads to keep in storage, total, including all "
 "classifications. Oldest referenced will be deleted first."
 msgstr ""
-"Antal rubrikannonser att spara lagrade, totalt, inklusive alla rubriker.  De"
-" äldsta refererade kommer tas bort först."
+"Antal rubrikannonser att spara lagrade, totalt, inklusive alla rubriker.  De "
+"äldsta refererade kommer tas bort först."
 
 #: ui/settingsDialog.ui:274
 msgctxt "settingsDialog|"
 msgid "Nr of profile comments to keep"
 msgstr "Antal kommentarer"
+
+#: ui/settingsDialog.ui:313
+#, fuzzy
+#| msgctxt "settingsDialog|"
+#| msgid "Nr of profiles to keep"
+msgctxt "settingsDialog|"
+msgid "Nr of db records to keep"
+msgstr "Antal profiler att spara"
 
 #: ui/settingsDialog.ui:316
 msgctxt "settingsDialog|"
@@ -2347,3 +2472,53 @@ msgstr "Lägg manuellt till en förbindelse"
 msgctxt "statusDialog|"
 msgid "Close"
 msgstr "Stäng"
+
+# Dialog title text for dialog that displays TCL interpreter console.
+#: ui/tclConsole.ui:26
+msgctxt "tclConsoleDialog|"
+msgid "TCL Interpreter console"
+msgstr ""
+
+# Button text for button that runs TCL commands that user has typed
+#: ui/tclConsole.ui:51
+msgctxt "tclConsoleDialog|"
+msgid "Evaluate"
+msgstr ""
+
+#: ui/tclConsole.ui:58
+#, fuzzy
+#| msgctxt "VoiceCallEngine|"
+#| msgid "Close"
+msgctxt "tclConsoleDialog|"
+msgid "Close"
+msgstr "Stäng"
+
+# label for text field that shows TCL interpreter output
+#: ui/tclConsole.ui:69
+msgctxt "tclConsoleDialog|"
+msgid "Interpreter output"
+msgstr ""
+
+# label for text field that shows TCL interpreter input
+#: ui/tclConsole.ui:79
+msgctxt "tclConsoleDialog|"
+msgid "Command input"
+msgstr ""
+
+# Dialog title text for dialog that lists stored TCL programs
+#: ui/tclPrograms.ui:26
+msgctxt "tclProgramsDialog|"
+msgid "TCL programs"
+msgstr ""
+
+# Label for list-item that lists stored TCL programs.
+#: ui/tclPrograms.ui:48
+msgctxt "tclProgramsDialog|"
+msgid "Stored programs"
+msgstr ""
+
+# Label for text item that shows program text of locally stored TCL program
+#: ui/tclPrograms.ui:68
+msgctxt "tclProgramsDialog|"
+msgid "Program code"
+msgstr ""

@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2021.
 
   This file is part of Classified Ads.
 
@@ -1653,7 +1653,7 @@ int TclCallbacks::saveFileImpl(ClientData /*aCData*/, Tcl_Interp *aInterp, int a
                                     true,
                                     fileName.length() > 0 ?
                                     fileName : 
-                                    QString::null ) ;
+                                    QString() ) ;
         if ( successInGettingFileName && fileName.length() > 0 ) {
             QFile f ( fileName ) ;
             if ( f.open(QIODevice::WriteOnly) ) {
@@ -1693,7 +1693,7 @@ int TclCallbacks::openFileImpl(ClientData /*aCData*/, Tcl_Interp *aInterp, int a
                                 false,
                                 fileName.length() > 0 ?
                                 fileName : 
-                                QString::null ) ;
+                                QString() ) ;
     if ( successInGettingFileName && fileName.length() > 0 ) {
         QFile f ( fileName ) ;
         if ( f.open(QIODevice::ReadOnly) ) {

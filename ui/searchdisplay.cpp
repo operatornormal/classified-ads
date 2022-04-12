@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2018.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2022.
 
   This file is part of Classified Ads.
 
@@ -51,6 +51,7 @@ SearchDisplay::SearchDisplay(QWidget *aParent,
              this,
              SLOT(openButtonClicked())) ;
     ui.wordsEdit->setFocus() ;
+    ui.wordsEdit->setToolTip(tr("Leave empty to search any recent documents")) ;
     connect(ui.resultsView->selectionModel(),
             SIGNAL(currentChanged ( const QModelIndex & , const QModelIndex & ) ),
             this,

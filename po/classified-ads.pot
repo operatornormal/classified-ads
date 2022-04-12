@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: classified-ads 0.12\n"
+"Project-Id-Version: classified-ads 0.14\n"
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
-"PO-Revision-Date: 2017-03-21 20:48+0200\n"
+"PO-Revision-Date: 2022-02-12 13:10+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -1280,8 +1280,14 @@ msgctxt "RingtonePlayer|"
 msgid "Could not initialize audio player."
 msgstr ""
 
+# Tool-tip text for search dialog textbox of words to search for
+#: ui/searchdisplay.cpp:54
+msgctxt "SearchDisplay|"
+msgid "Leave empty to search any recent documents"
+msgstr ""
+
 # Context menu item text. This context menu is shown when user right-clicks on top of search-results. This menu-item opens the currently-selected item from search results. 
-#: ui/searchdisplay.cpp:62
+#: ui/searchdisplay.cpp:64
 msgctxt "SearchDisplay|"
 msgid "Open.."
 msgstr ""
