@@ -1,3 +1,14 @@
+classified-ads (0.14-1) UNRELEASED; urgency=medium
+
+  * New upstream version 0.14
+  * Standards-version 4.6.0
+  * Fixed lintian warnings about missing CC0 license in d/copyright
+  * Hardening options in d/rules
+  * New watch-file syntax for github
+  * Compile using C.UTF-8 aiming to reproducible build
+
+ -- Antti Järvinen <antti.jarvinen@katiska.org>  Tue, 12 Apr 2022 20:29:25 +0300
+
 classified-ads (0.13-1) unstable; urgency=medium
 
   * New upstream version 0.13

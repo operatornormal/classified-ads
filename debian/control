@@ -18,7 +18,7 @@ Build-Depends: debhelper (>= 10),
                libbz2-dev,
                xvfb,
                xauth
-Standards-Version: 4.1.4
+Standards-Version: 4.6.0
 Homepage: http://katiska.org/classified-ads/
 Vcs-Git: https://github.com/operatornormal/classified-ads.git -b debian
 Vcs-Browser: https://github.com/operatornormal/classified-ads
