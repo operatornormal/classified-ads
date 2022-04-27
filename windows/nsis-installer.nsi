@@ -126,6 +126,16 @@ CreateDirectory "$INSTDIR\sqldrivers"
 CreateDirectory "$INSTDIR\styles"
 CreateDirectory "$INSTDIR\texttospeech"
 CreateDirectory "$INSTDIR\virtualkeyboard"
+CreateDirectory "$INSTDIR\sensorgestures"
+CreateDirectory "$INSTDIR\sensors"
+CreateDirectory "$INSTDIR\sqldrivers"
+CreateDirectory "$INSTDIR\tcl8"
+CreateDirectory "$INSTDIR\tcl8\8.4"
+CreateDirectory "$INSTDIR\tcl8\8.4\platform"
+CreateDirectory "$INSTDIR\tcl8\8.5"
+CreateDirectory "$INSTDIR\tcl8\8.6"
+CreateDirectory "$INSTDIR\tcl8\8.6\tdbc"
+
 file /oname=$INSTDIR\audio\qtaudio_windows.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\audio\qtaudio_windows.dll
 file /oname=$INSTDIR\bearer\qgenericbearer.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\bearer\qgenericbearer.dll
 file /oname=$INSTDIR\designer\qaxwidget.dll \ca_build\qt5_12\5.12.12\mingw73_32\plugins\\designer\qaxwidget.dll
@@ -1123,6 +1133,13 @@ file /oname=$INSTDIR\tk8.6\ttk\winTheme.tcl ..\release\tk8.6\ttk\winTheme.tcl
 file /oname=$INSTDIR\tk8.6\ttk\xpTheme.tcl ..\release\tk8.6\ttk\xpTheme.tcl
 file /oname=$INSTDIR\tk8.6\unsupported.tcl ..\release\tk8.6\unsupported.tcl
 file /oname=$INSTDIR\tk8.6\xmfbox.tcl ..\release\tk8.6\xmfbox.tcl
+
+file /oname=$INSTDIR\tcl8\8.4\platform-1.0.18.tm ..\release\tcl8\8.4\platform-1.0.18.tm
+file /oname=$INSTDIR\tcl8\8.4\platform\shell-1.1.4.tm ..\release\tcl8\8.4\platform\shell-1.1.4.tm
+file /oname=$INSTDIR\tcl8\8.5\msgcat-1.6.1.tm ..\release\tcl8\8.5\msgcat-1.6.1.tm
+file /oname=$INSTDIR\tcl8\8.5\tcltest-2.5.3.tm ..\release\tcl8\8.5\tcltest-2.5.3.tm
+file /oname=$INSTDIR\tcl8\8.6\http-2.9.5.tm ..\release\tcl8\8.6\http-2.9.5.tm
+file /oname=$INSTDIR\tcl8\8.6\tdbc\sqlite3-1.1.3.tm ..\release\tcl8\8.6\tdbc\sqlite3-1.1.3.tm
 
 # end of TCL-related files and directories
 WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Classified-ads" "DisplayName" "Classified-ads (remove only)"
@@ -2232,7 +2249,39 @@ delete "$INSTDIR\virtualkeyboard\qtvirtualkeyboard_tcimed.dll"
 delete "$INSTDIR\virtualkeyboard\qtvirtualkeyboard_thai.dll"
 delete "$INSTDIR\virtualkeyboard\qtvirtualkeyboard_thaid.dll"
 
+
+delete "$INSTDIR\sensorgestures\qtsensorgestures_plugin.dll"
+delete "$INSTDIR\sensorgestures\qtsensorgestures_plugind.dll"
+delete "$INSTDIR\sensorgestures\qtsensorgestures_shakeplugin.dll"
+delete "$INSTDIR\sensorgestures\qtsensorgestures_shakeplugind.dll"
+delete "$INSTDIR\sensors\qtsensors_generic.dll"
+delete "$INSTDIR\sensors\qtsensors_genericd.dll"
+delete "$INSTDIR\sqldrivers\qsqlodbc.dll"
+delete "$INSTDIR\sqldrivers\qsqlodbcd.dll"
+delete "$INSTDIR\sqldrivers\qsqlpsql.dll"
+delete "$INSTDIR\sqldrivers\qsqlpsqld.dll"
+delete "$INSTDIR\tcl8\8.4\platform-1.0.18.tm"
+delete "$INSTDIR\tcl8\8.4\platform\shell-1.1.4.tm"
+delete "$INSTDIR\tcl8\8.5\msgcat-1.6.1.tm"
+delete "$INSTDIR\tcl8\8.5\tcltest-2.5.3.tm"
+delete "$INSTDIR\tcl8\8.6\http-2.9.5.tm"
+delete "$INSTDIR\tcl8\8.6\tdbc\sqlite3-1.1.3.tm"
+
+
+
+
 # then directories
+RMDIR "$INSTDIR\sensorgestures"
+RMDIR "$INSTDIR\sensors"
+RMDIR "$INSTDIR\sqldrivers"
+RMDIR "$INSTDIR\tcl8\8.4\platform"
+RMDIR "$INSTDIR\tcl8\8.4"
+RMDIR "$INSTDIR\tcl8\8.5"
+RMDIR "$INSTDIR\tcl8\8.6\tdbc"
+RMDIR "$INSTDIR\tcl8\8.6"
+RMDIR "$INSTDIR\tcl8"
+
+
 RMDIR "$INSTDIR\fi\LC_MESSAGES"
 RMDIR "$INSTDIR\sv\LC_MESSAGES"
 RMDIR "$INSTDIR\da\LC_MESSAGES"
