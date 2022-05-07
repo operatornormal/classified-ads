@@ -3,7 +3,7 @@ Upstream-Name: Classified Ads
 Source: https://github.com/operatornormal/classified-ads
 
 Files: *
-Copyright: 2013-2018 Antti Järvinen <antti.jarvinen@katiska.org>
+Copyright: 2013-2022 Antti Järvinen <antti.jarvinen@katiska.org>
 License: LGPL-2.1+
 
 Files: textedit/* images/*
