@@ -61,8 +61,8 @@
 #include "searchmodel.h"
 #include "trusttreemodel.h"
 #ifdef WIN32
-#include <Wincrypt.h>
 #include <windows.h>
+#include <Wincrypt.h>
 #endif
 #include "tclmodel.h"
 
