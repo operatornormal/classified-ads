@@ -816,15 +816,15 @@ void Model::initPseudoRandom() {
   /* Load Multiple providers into the default (NULL) library context */
   iLegacyCryptoProvider = OSSL_PROVIDER_load(NULL, "legacy");
   if (iLegacyCryptoProvider == NULL) {
+    emit error(MController::ContentEncryptionError, "OpenSSL failed to load Legacy provider");
     printf("Failed to load Legacy provider\n");
-    exit(EXIT_FAILURE);
   }
   iDefaultCryptoProvider = OSSL_PROVIDER_load(NULL, "default");
   if (iDefaultCryptoProvider == NULL) {
     printf("Failed to load Default provider\n");
+    emit error(MController::ContentEncryptionError, "OpenSSL failed to load Default provider");    
     OSSL_PROVIDER_unload(iLegacyCryptoProvider);
     iLegacyCryptoProvider = NULL;
-    exit(EXIT_FAILURE);
   }
 #endif
   // first initialize random numbah generator
