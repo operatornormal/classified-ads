@@ -1,3 +1,10 @@
+classified-ads (0.15-1) unstable; urgency=medium
+
+  * New upstream version 0.15, essential with OpenSSL 3.x
+  * d/compat is 10->12.
+
+ -- Antti Järvinen <antti.jarvinen@katiska.org>  Sun, 12 Jun 2022 17:51:20 +0300
+
 classified-ads (0.14-1) unstable; urgency=medium
 
   * New upstream version 0.14
