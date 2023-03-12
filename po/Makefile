@@ -1,5 +1,5 @@
 #
-# Classified Ads is Copyright (c) Antti Järvinen 2013-2017.
+# Classified Ads is Copyright (c) Antti Järvinen 2013-2023.
 #
 # This file is part of Classified Ads.
 #
