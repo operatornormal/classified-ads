@@ -1,20 +1,22 @@
 # Antti Järvinen <antti.jarvinen@katiska.org>, 2016. #zanata
 # Göran Uddeborg <goeran@uddeborg.se>, 2016. #zanata
 # Göran Uddeborg <goeran@uddeborg.se>, 2017. #zanata
+# Luna Jernberg <bittin@reimu.nl>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: classified-ads 0.10\n"
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
-"PO-Revision-Date: 2017-01-20 04:42-0500\n"
-"Last-Translator: Göran Uddeborg <goeran@uddeborg.se>\n"
-"Language-Team: Swedish\n"
+"PO-Revision-Date: 2023-03-17 13:20+0000\n"
+"Last-Translator: Luna Jernberg <bittin@reimu.nl>\n"
+"Language-Team: Swedish <https://translate.fedoraproject.org/projects/"
+"classified-ads/master/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Zanata 3.9.6\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.15.2\n"
 "X-Language: sv_SE\n"
 "X-Qt-Contexts: true\n"
 
@@ -33,13 +35,13 @@ msgstr "filer"
 #: ui/attachmentlistdialog.cpp:162
 msgctxt "AttachmentListDialog|"
 msgid "Save location"
-msgstr ""
+msgstr "Spara plats"
 
 # Dialog text regarding TCL app save location
 #: ui/attachmentlistdialog.cpp:163
 msgctxt "AttachmentListDialog|"
 msgid "Save to TCL app library instead of regular file?"
-msgstr ""
+msgstr "Spara till TCL-appbibliotek istället för vanlig fil?"
 
 #: ui/attachmentlistdialog.cpp:155
 msgctxt "AttachmentListDialog|"
@@ -473,31 +475,31 @@ msgstr "&Arkiv"
 #: controller.cpp:729
 msgctxt "Controller|"
 msgid "&TCL Programs"
-msgstr ""
+msgstr "&TCL Program"
 
 # Menu item from menu of TCL-related items. Selecting this menu item opens library of TCL programs. 
 #: controller.cpp:730
 msgctxt "Controller|"
 msgid "&Local library"
-msgstr ""
+msgstr "&Lokalt bibliotek"
 
 # Tooltip-text for menu item that opens local TCL program library.
 #: controller.cpp:731
 msgctxt "Controller|"
 msgid "Locally stored TCL programs"
-msgstr ""
+msgstr "Lokalt lagrade TCL-program"
 
 # Difficult to translate: after selecting this menu-item you can write ad-hoc TCL programs to TCL interpreter that may be already executing existing program or is empty. Practically gives TCL command line access to possibly running interpreter.
 #: controller.cpp:734
 msgctxt "Controller|"
 msgid "TCL &Console"
-msgstr ""
+msgstr "TCL &Konsol"
 
 # Tooltip for menu-item that displays dialog where you can type in ad-hoc TCL-programs.
 #: controller.cpp:735
 msgctxt "Controller|"
 msgid "Display interpreter console"
-msgstr ""
+msgstr "Visa programtolk konsol"
 
 #: controller.cpp:571
 msgctxt "Controller|"
@@ -560,7 +562,7 @@ msgstr "Fel lösenord"
 #: controller.cpp:1043
 msgctxt "Controller|"
 msgid "TCL Interpreter"
-msgstr ""
+msgstr "TCL programtolk"
 
 #: controller.cpp:1004
 msgctxt "Controller|"
@@ -751,13 +753,13 @@ msgstr "filer"
 #: FrontWidget.cpp:1183
 msgctxt "FrontWidget|"
 msgid "Save location"
-msgstr ""
+msgstr "Spara plats"
 
 # Dialog text in question dialog asking if user wants to save TCL app into local library or into filesystem file
 #: FrontWidget.cpp:1184
 msgctxt "FrontWidget|"
 msgid "Save to TCL app library instead of regular file?"
-msgstr ""
+msgstr "Spara till TCL-appbibliotek istället för vanlig fil?"
 
 #: FrontWidget.cpp:1176
 msgctxt "FrontWidget|"
@@ -1009,12 +1011,9 @@ msgid "OK"
 msgstr "OK"
 
 #: ui/passwordDialog.ui:68
-#, fuzzy
-#| msgctxt "Controller|"
-#| msgid "Bad password"
 msgctxt "PasswordDialog|"
 msgid "Show password"
-msgstr "Fel lösenord"
+msgstr "Visa lösenord"
 
 #: datamodel/privmsgsearchmodel.cpp:110
 #, qt-format
@@ -1131,49 +1130,41 @@ msgstr "Öppna.."
 #: ui/tclPrograms.cpp:42
 msgctxt "TclProgramsDialog|"
 msgid "Evaluate"
-msgstr ""
+msgstr "Utvärdera"
 
 # Button text. If button is pressed, TCL program being executed is stopped.
 #: ui/tclPrograms.cpp:43
 msgctxt "TclProgramsDialog|"
 msgid "Stop program"
-msgstr ""
+msgstr "Stoppa program"
 
 # Button text for button that permanently removes TCL program from local library
 #: ui/tclPrograms.cpp:49
 msgctxt "TclProgramsDialog|"
 msgid "Delete program"
-msgstr ""
+msgstr "Ta bort program"
 
 # Dialog title for dialog that asks user to type in name of TCL program. 
 #: ui/tclPrograms.cpp:99
 msgctxt "TclProgramsDialog|"
 msgid "TCL Program name"
-msgstr ""
+msgstr "TCL programnamn"
 
 #: ui/tclPrograms.cpp:100
-#, fuzzy
-#| msgctxt "Controller|"
-#| msgid "Name: "
 msgctxt "TclProgramsDialog|"
 msgid "Name:"
-msgstr "Namn: "
+msgstr "Namn:"
 
 #: ui/tclPrograms.cpp:140
-#, fuzzy
-#| msgctxt "metadataQuery|"
-#| msgid "File information"
 msgctxt "TclProgramsDialog|"
 msgid "Deletion confirmation"
-msgstr "Filinformation"
+msgstr "Bekräftelse på borttagning"
 
 #: ui/tclPrograms.cpp:141
-#, fuzzy, qt-format
-#| msgctxt "Controller|"
-#| msgid "Permanently discard profile?"
+#, qt-format
 msgctxt "TclProgramsDialog|"
 msgid "Permanently delete program %1?"
-msgstr "Radera profil?"
+msgstr "Permanent ta bort program %1?"
 
 #: textedit/textedit.cpp:127
 msgctxt "TextEdit|"
@@ -1618,17 +1609,17 @@ msgid ""
 "afterwards). Private messages are encrypted always to be readable only by "
 "recipient and sender. Attachments follow the privacy rules of the document, "
 "they're attached to. </p><p>- As is the case with all internet-"
-"communications, this small fact is true for classified ads too : <span "
-"style=\" font-style:italic;\">once something gets posted online, there is no "
-"way to remove it from network</span>. </p><p>- Data encryption "
-"implementation for content is OpenSSL, relying mostly on algorithms RSA-2048 "
-"and AES-256. </p><p>- While connections between nodes are implemented using "
-"SSL, other nodes inside network do get to know what content is being "
-"transmitted in neighboring nodes. While there is no central point for easily "
-"collecting this information about particular classification or operator, "
-"operators still should expect no privacy regarding their doings online, "
-"although some effort has been been put into hiding <span style=\" font-style:"
-"italic;\">contents</span> of private messages and private profiles. </"
+"communications, this small fact is true for classified ads too : <span style="
+"\" font-style:italic;\">once something gets posted online, there is no way "
+"to remove it from network</span>. </p><p>- Data encryption implementation "
+"for content is OpenSSL, relying mostly on algorithms RSA-2048 and AES-256. </"
+"p><p>- While connections between nodes are implemented using SSL, other "
+"nodes inside network do get to know what content is being transmitted in "
+"neighboring nodes. While there is no central point for easily collecting "
+"this information about particular classification or operator, operators "
+"still should expect no privacy regarding their doings online, although some "
+"effort has been been put into hiding <span style=\" font-style:italic;"
+"\">contents</span> of private messages and private profiles. </"
 "p><p>Programming was (mostly) done by Antti Järvinen, artwork by Meeri "
 "Järvinen.</p><p>This product includes software developed by the OpenSSL "
 "Project for use in the OpenSSL Toolkit (http://www.openssl.org/).</"
@@ -1964,18 +1955,16 @@ msgid ""
 "<html><head/><body><p align=\"center\"><span style=\" font-size:16pt;\"><br/"
 "></span></p><p align=\"center\"><span style=\" font-size:16pt;\"><br/></"
 "span></p><p align=\"center\"><span style=\" font-size:16pt;\"><br/></span></"
-"p><p align=\"center\"><span style=\" font-size:16pt;\">No</span></p><p "
-"align=\"center\"><span style=\" font-size:16pt;\">Image</span></p><p "
-"align=\"center\"><span style=\" font-size:16pt;\">Inserted</span></p></"
-"body></html>"
+"p><p align=\"center\"><span style=\" font-size:16pt;\">No</span></p><p align="
+"\"center\"><span style=\" font-size:16pt;\">Image</span></p><p align=\"center"
+"\"><span style=\" font-size:16pt;\">Inserted</span></p></body></html>"
 msgstr ""
 "<html><head/><body><p align=\"center\"><span style=\" font-size:16pt;\"><br/"
 "></span></p><p align=\"center\"><span style=\" font-size:16pt;\"><br/></"
 "span></p><p align=\"center\"><span style=\" font-size:16pt;\"><br/></span></"
 "p><p align=\"center\"><span style=\" font-size:16pt;\">Ingen</span></p><p "
-"align=\"center\"><span style=\" font-size:16pt;\">bild</span></p><p "
-"align=\"center\"><span style=\" font-size:16pt;\">infogad</span></p></body></"
-"html>"
+"align=\"center\"><span style=\" font-size:16pt;\">bild</span></p><p align="
+"\"center\"><span style=\" font-size:16pt;\">infogad</span></p></body></html>"
 
 #: frontWidget.ui:874
 msgctxt "frontWidget|"
@@ -2373,12 +2362,9 @@ msgid "Nr of profile comments to keep"
 msgstr "Antal kommentarer"
 
 #: ui/settingsDialog.ui:313
-#, fuzzy
-#| msgctxt "settingsDialog|"
-#| msgid "Nr of profiles to keep"
 msgctxt "settingsDialog|"
 msgid "Nr of db records to keep"
-msgstr "Antal profiler att spara"
+msgstr "Nummer av db-poster att behålla"
 
 #: ui/settingsDialog.ui:316
 msgctxt "settingsDialog|"
@@ -2477,18 +2463,15 @@ msgstr "Stäng"
 #: ui/tclConsole.ui:26
 msgctxt "tclConsoleDialog|"
 msgid "TCL Interpreter console"
-msgstr ""
+msgstr "TCL programtolk konsol"
 
 # Button text for button that runs TCL commands that user has typed
 #: ui/tclConsole.ui:51
 msgctxt "tclConsoleDialog|"
 msgid "Evaluate"
-msgstr ""
+msgstr "Utvärdera"
 
 #: ui/tclConsole.ui:58
-#, fuzzy
-#| msgctxt "VoiceCallEngine|"
-#| msgid "Close"
 msgctxt "tclConsoleDialog|"
 msgid "Close"
 msgstr "Stäng"
@@ -2497,28 +2480,28 @@ msgstr "Stäng"
 #: ui/tclConsole.ui:69
 msgctxt "tclConsoleDialog|"
 msgid "Interpreter output"
-msgstr ""
+msgstr "Tolk utdata"
 
 # label for text field that shows TCL interpreter input
 #: ui/tclConsole.ui:79
 msgctxt "tclConsoleDialog|"
 msgid "Command input"
-msgstr ""
+msgstr "Kommandoinmatning"
 
 # Dialog title text for dialog that lists stored TCL programs
 #: ui/tclPrograms.ui:26
 msgctxt "tclProgramsDialog|"
 msgid "TCL programs"
-msgstr ""
+msgstr "TCL program"
 
 # Label for list-item that lists stored TCL programs.
 #: ui/tclPrograms.ui:48
 msgctxt "tclProgramsDialog|"
 msgid "Stored programs"
-msgstr ""
+msgstr "Lagrade program"
 
 # Label for text item that shows program text of locally stored TCL program
 #: ui/tclPrograms.ui:68
 msgctxt "tclProgramsDialog|"
 msgid "Program code"
-msgstr ""
+msgstr "Programkod"
