@@ -2,21 +2,23 @@
 # Antti Järvinen <antti.jarvinen@katiska.org>, 2016. #zanata
 # Yuri Chornoivan <yurchor@ukr.net>, 2016. #zanata
 # Yuri Chornoivan <yurchor@ukr.net>, 2017. #zanata
+# Tymofii Lytvynenko <tymofii.lytvynenko@outlook.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: classified-ads 0.12\n"
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
-"PO-Revision-Date: 2017-03-23 01:32-0400\n"
-"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
-"Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
+"PO-Revision-Date: 2023-03-31 20:20+0000\n"
+"Last-Translator: Tymofii Lytvynenko <tymofii.lytvynenko@outlook.com>\n"
+"Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
+"classified-ads/master/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
-"X-Generator: Zanata 3.9.6\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.15.2\n"
 "X-Language: fi_FI\n"
 "X-Qt-Contexts: true\n"
 
@@ -1110,7 +1112,7 @@ msgstr "Не вдалося ініціалізувати звуковий про
 #: ui/searchdisplay.cpp:54
 msgctxt "SearchDisplay|"
 msgid "Leave empty to search any recent documents"
-msgstr ""
+msgstr "Залиште порожнім, щоб знайти останні документи"
 
 #: ui/searchdisplay.cpp:64
 msgctxt "SearchDisplay|"
