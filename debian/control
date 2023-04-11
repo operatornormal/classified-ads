@@ -3,6 +3,7 @@ Section: net
 Priority: optional
 Maintainer: Antti Järvinen <antti.jarvinen@katiska.org>
 Build-Depends: debhelper (>= 12),
+               debhelper-compat (=13),
                libgcrypt-dev,
                libminiupnpc-dev,
                libnatpmp-dev,
@@ -18,7 +19,7 @@ Build-Depends: debhelper (>= 12),
                libbz2-dev,
                xvfb,
                xauth
-Standards-Version: 4.6.0
+Standards-Version: 4.6.2
 Homepage: http://katiska.org/classified-ads/
 Vcs-Git: https://github.com/operatornormal/classified-ads.git -b debian
 Vcs-Browser: https://github.com/operatornormal/classified-ads

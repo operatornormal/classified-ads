@@ -28,6 +28,7 @@ License: LGPL-2.1+
 
 Files: po/sv.po
 Copyright: 2017 Göran Uddeborg <goeran@uddeborg.se>
+	   2023 Luna Jernberg <droidbittin@gmail.com>
 License: LGPL-2.1+
 
 Files: ui/classified-ads.appdata.xml
