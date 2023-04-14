@@ -1,5 +1,5 @@
 Name:		classified-ads
-Version:	0.14
+Version:	0.16
 Release:	1%{?dist}
 Summary:	Classified ads is distributed, server-less messaging system
 
@@ -59,6 +59,12 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/classified-ads.deskt
 %{_datadir}/doc/classified-ads/examples/calendar.tcl
 
 %changelog
+* Sun Mar 12 2023 Antti Järvinen <antti.jarvinen@katiska.org> - 0.16-1
+- New upstream release 0.16. Protocol connectivity fixes and translations.
+
+* Sun Jun 12 2022 Antti Järvinen <antti.jarvinen@katiska.org> - 0.15-1
+- New upstream release 0.15. Critical when used with OpenSSL 3.x.
+
 * Mon Feb 28 2022 Antti Järvinen <antti.jarvinen@katiska.org> - 0.14-1
 - New upstream release
 

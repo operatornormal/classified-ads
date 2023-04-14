@@ -1,5 +1,5 @@
 /*   -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2022.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2023.
 
   This file is part of Classified Ads.
 
@@ -61,8 +61,8 @@
 #include "searchmodel.h"
 #include "trusttreemodel.h"
 #ifdef WIN32
-#include <Wincrypt.h>
 #include <windows.h>
+#include <Wincrypt.h>
 #endif
 #include "tclmodel.h"
 
@@ -998,7 +998,10 @@ void Model::connectionStateChanged(Connection::ConnectionState aState,
         if (c != aConnection && c->connectionState() == Connection::Open &&
             aConnection->getPeerHash() == c->getPeerHash()) {
           LOG_STR("Double connection to same node detected");
-          aConnection->iNeedsToRun = false;
+	  if ( c->iNeedsToRun == true ) { // if it is in running state
+	    aConnection->iNeedsToRun = false; // then close this one
+	    LOG_STR("New connection was closed");	    
+	  }
           break;
         }
       }
