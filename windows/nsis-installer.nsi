@@ -8,7 +8,7 @@
 # define name of installer
 outFile "Classified-ads-Win32.exe"
 !define MUI_ICON "turt-transparent-128x128.ico"
-!define VERSION "0.14" 
+!define VERSION "0.16" 
 # ask to be admin in order to create start menu shortcuts to all users
 RequestExecutionLevel admin
 Name "Classified ads ${VERSION}" 
@@ -38,6 +38,10 @@ CreateDirectory "$INSTDIR\de\LC_MESSAGES"
 file /oname=$INSTDIR\de\LC_MESSAGES\classified-ads.mo ..\po\de.mo
 CreateDirectory "$INSTDIR\es\LC_MESSAGES"
 file /oname=$INSTDIR\es\LC_MESSAGES\classified-ads.mo ..\po\es.mo
+CreateDirectory "$INSTDIR\ka\LC_MESSAGES"
+file /oname=$INSTDIR\ka\LC_MESSAGES\classified-ads.mo ..\po\ka.mo
+CreateDirectory "$INSTDIR\fr\LC_MESSAGES"
+file /oname=$INSTDIR\fr\LC_MESSAGES\classified-ads.mo ..\po\fr.mo
 file /oname=qt_ar.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_ar.qm
 file /oname=qt_bg.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_bg.qm
 file /oname=qt_ca.qm \ca_build\qt5_12\5.12.12\mingw73_32\translations\qt_ca.qm
@@ -1194,6 +1198,8 @@ delete "$INSTDIR\da\LC_MESSAGES\classified-ads.mo"
 delete "$INSTDIR\uk\LC_MESSAGES\classified-ads.mo"
 delete "$INSTDIR\de\LC_MESSAGES\classified-ads.mo"
 delete "$INSTDIR\es\LC_MESSAGES\classified-ads.mo"
+delete "$INSTDIR\ka\LC_MESSAGES\classified-ads.mo"
+delete "$INSTDIR\fr\LC_MESSAGES\classified-ads.mo"
 delete "$INSTDIR\qt_ar.qm"
 delete "$INSTDIR\qt_bg.qm"
 delete "$INSTDIR\qt_ca.qm"
@@ -2288,12 +2294,16 @@ RMDIR "$INSTDIR\da\LC_MESSAGES"
 RMDIR "$INSTDIR\uk\LC_MESSAGES"
 RMDIR "$INSTDIR\de\LC_MESSAGES"
 RMDIR "$INSTDIR\es\LC_MESSAGES"
+RMDIR "$INSTDIR\ka\LC_MESSAGES"
+RMDIR "$INSTDIR\fr\LC_MESSAGES"
 RMDIR "$INSTDIR\fi"
 RMDIR "$INSTDIR\sv"
 RMDIR "$INSTDIR\da"
 RMDIR "$INSTDIR\uk"
 RMDIR "$INSTDIR\de"
 RMDIR "$INSTDIR\es"
+RMDIR "$INSTDIR\ka"
+RMDIR "$INSTDIR\fr"
 RMDIR "$INSTDIR\examples"
 RMDIR "$INSTDIR\tcl8.6\encoding"
 RMDIR "$INSTDIR\tcl8.6\http1.0"

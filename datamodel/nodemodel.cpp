@@ -1,5 +1,5 @@
 /*  -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2021.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2023.
 
   This file is part of Classified Ads.
 
@@ -629,7 +629,6 @@ QList<MNodeModelProtocolInterface::HostConnectQueueItem> NodeModel::getHotAddres
             !Connection::Ipv6AddressesEqual(iController->getNode().ipv6Addr(),
                                             KNullIpv6Addr) ;
 
-        QHostAddress addrToConnect ;
         QHostInfo info = QHostInfo::fromName("canode.katiska.org") ;
         if ( info.error() == QHostInfo::NoError ) {
             // check for ipv6 addr if we have one
@@ -654,6 +653,34 @@ QList<MNodeModelProtocolInterface::HostConnectQueueItem> NodeModel::getHotAddres
             }
         } else {
             QLOG_STR("DNS lookup error for canode.katiska.org") ;
+        }
+	// and secondary seed node at port 443
+        LOG_STR("NodeModel::getHotAddresses adding canode2.katiska.org ") ;
+        seedPort = 443  ;
+        QHostInfo info2 = QHostInfo::fromName("canode2.katiska.org") ;
+        if ( info2.error() == QHostInfo::NoError ) {
+            // check for ipv6 addr if we have one
+            foreach ( const QHostAddress& result,
+                      info2.addresses() ) {
+                if ( result.protocol() == QAbstractSocket::IPv6Protocol && hasIpv6 ) {
+                    MNodeModelProtocolInterface::HostConnectQueueItem p ;
+                    p.iAddress = result ;
+                    p.iPort = seedPort ;
+                    p.iNodeHash = KNullHash ;
+                    iHotAddresses.append(p) ;
+                    QLOG_STR("Added seednode IPv6 addr " + result.toString()) ;
+                }
+                if ( result.protocol() == QAbstractSocket::IPv4Protocol ) {
+                    MNodeModelProtocolInterface::HostConnectQueueItem p ;
+                    p.iAddress = result ;
+                    p.iPort = seedPort ;
+                    p.iNodeHash = KNullHash ;
+                    iHotAddresses.append(p) ;
+                    QLOG_STR("Added seednode IPv4 addr " + result.toString()) ;
+                }
+            }
+        } else {
+            QLOG_STR("DNS lookup error for canode2.katiska.org") ;
         }
     }
     return iHotAddresses ;

@@ -1,902 +1,904 @@
-# Antti Järvinen <antti.jarvinen@katiska.org>, 2016. #zanata
-# Juhani Numminen <juhaninumminen0@gmail.com>, 2016. #zanata
+# Georgian translation for classified-ads.
+# Copyright (C) 2023 classified-ads's authors
+# This file is distributed under the same license as the classified-ads package.
+# Temuri Doghonadze <temuri.doghonadze@gmail.com>, 2023.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: classified-ads 0.12\n"
+"Project-Id-Version: classified-ads 0.14\n"
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
-"PO-Revision-Date: 2016-07-05 05:59-0400\n"
-"Last-Translator: Juhani Numminen <juhaninumminen0@gmail.com>\n"
-"Language-Team: Finnish\n"
-"Language: fi\n"
+"PO-Revision-Date: 2023-02-23 19:58+0100\n"
+"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
+"Language-Team: Georgian <(nothing)>\n"
+"Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Zanata 3.9.6\n"
-"X-Language: fi_FI\n"
-"X-Qt-Contexts: true\n"
+"X-Generator: Poedit 3.2.2\n"
 
-# Context menu item text for menu, that appears when right-mouse is clicked on top of a file in a list. 
+# Context menu item text for menu, that appears when right-mouse is clicked on top of a file in a list.
 #: ui/attachmentlistdialog.cpp:60
 msgctxt "AttachmentListDialog|"
 msgid "Save file to disk.."
-msgstr "Tallenna tiedostojärjestelmälle…"
+msgstr "დისკზე შენახვა..."
 
-# In file open dialog this is text specifying what kind of files to include in listing, filtered by file name suffix. For example, user wants only PNG files, then text appearing in dialog filter field would say "PNG files (*.png)" and this work "files" here is the word after the word PNG.  
+# In file open dialog this is text specifying what kind of files to include in listing, filtered by file name suffix. For example, user wants only PNG files, then text appearing in dialog filter field would say "PNG files (*.png)" and this work "files" here is the word after the word PNG.
 #: ui/attachmentlistdialog.cpp:151 ui/attachmentlistdialog.cpp:153
 msgctxt "AttachmentListDialog|"
 msgid "files"
-msgstr "tiedostot"
+msgstr "ფაილები"
 
 # Appears as dialog title where text asks if user wants to save into "application library" or into local file
 #: ui/attachmentlistdialog.cpp:162
 msgctxt "AttachmentListDialog|"
 msgid "Save location"
-msgstr "Mihin tallennetaan"
+msgstr "მდებარეობის შენახვა"
 
 # Dialog text regarding TCL app save location
 #: ui/attachmentlistdialog.cpp:163
 msgctxt "AttachmentListDialog|"
 msgid "Save to TCL app library instead of regular file?"
-msgstr "Tallennetaanko TCL-ohjelmien kirjastoon vai tiedostojärjestelmälle?"
+msgstr "შევინახო TCL აპის ბიბლიოთეკაში ჩვეულებრივი ფაილის მაგიერ?"
 
-# Dialog title text for dialog asking user to give a name to file for purpose of saving it to filesystem. 
+# Dialog title text for dialog asking user to give a name to file for purpose of saving it to filesystem.
 #: ui/attachmentlistdialog.cpp:155
 msgctxt "AttachmentListDialog|"
 msgid "Choose file name for saving"
-msgstr "Valitse nimi tiedostolle"
+msgstr "აირჩიეთ შესანახი ფაილის სახელი"
 
-# Dialog title text for error dialog. 
+# Dialog title text for error dialog.
 #: ui/attachmentlistdialog.cpp:166
 msgctxt "AttachmentListDialog|"
 msgid "Error"
-msgstr "Vikaa"
+msgstr "შეცდომა"
 
 # This gives (no)  explanation about reason for "file open failure"?
 #: ui/attachmentlistdialog.cpp:167
 msgctxt "AttachmentListDialog|"
 msgid "File open error"
-msgstr "Vika tiedoston avaamisessa"
+msgstr "ფაილის გახსნის შეცდომა"
 
-# Error message text displayed when audio output fails immediately due to format conflict. 
+# Error message text displayed when audio output fails immediately due to format conflict.
 #: call/audioplayer.cpp:65
 msgctxt "AudioPlayer|"
 msgid "raw audio format not supported by backend, cannot play audio."
-msgstr "Ääniformaatti ei ole tuettu, ääniä ei voi soittaa."
+msgstr ""
+"უკანაბოლოს დაუმუშავებელი ხმის მხარდაჭერა არ გააჩნია. ხმას ვერ დავუკრავ."
 
-# Error message text shown in dialog when audio output is not possible. Possible reason could be missing soundcard or other disastrous failure. 
+# Error message text shown in dialog when audio output is not possible. Possible reason could be missing soundcard or other disastrous failure.
 #: call/audioplayer.cpp:83
 msgctxt "AudioPlayer|"
 msgid "Could not initialize audio player."
-msgstr "Äänitoistimen alustus epäonnistui."
+msgstr "აუდიოს დამკვრელის ინიციალიზაციის შეცდომა."
 
-# Title text in a listing view where list of shared files are listed. This particular text gives text for column, where "name or fingerprint of file" is listed. Fingerprint in practice means SHA1 digest. 
+# Title text in a listing view where list of shared files are listed. This particular text gives text for column, where "name or fingerprint of file" is listed. Fingerprint in practice means SHA1 digest.
 #: datamodel/binaryfilelistingmodel.cpp:173
 msgctxt "BinaryFileListingModel|"
 msgid "Name or fingerprint of file"
-msgstr "Tiedoston nimi tai SHA1 tiiviste"
+msgstr "ფაილის სახელი ან ანაბეჭდი"
 
-# Header text for a column-list. The column that gets its header text from this string, is the date-column of an classified ad. 
+# Header text for a column-list. The column that gets its header text from this string, is the date-column of an classified ad.
 #: datamodel/calistingmodel.cpp:50 datamodel/calistingmodel.cpp:143
 msgctxt "CAListingModel|"
 msgid "Date"
-msgstr "Aika"
+msgstr "თარიღი"
 
-# Header text for a column-list. The column that gets its header text from this string, is the subject-column of an classified ad. 
+# Header text for a column-list. The column that gets its header text from this string, is the subject-column of an classified ad.
 #: datamodel/calistingmodel.cpp:51 datamodel/calistingmodel.cpp:142
 msgctxt "CAListingModel|"
 msgid "Subject"
-msgstr "Aihe"
+msgstr "თემა"
 
-# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Cars in Estonia" and this combobox text here is the first word of that phrase. 
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Cars in Estonia" and this combobox text here is the first word of that phrase.
 #: datamodel/camodel.cpp:127
 msgctxt "ClassifiedAdsModel|"
 msgid "Buying"
-msgstr "Ostetaan"
+msgstr "ყიდვა"
 
-# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Selling of Cars in Estonia" and this combobox text here is the first word of that phrase. 
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Selling of Cars in Estonia" and this combobox text here is the first word of that phrase.
 #: datamodel/camodel.cpp:129
 msgctxt "ClassifiedAdsModel|"
 msgid "Selling"
-msgstr "Myydään"
+msgstr "გაყიდვა"
 
-# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Giving away of Cars in Estonia" and this combobox text here is the first+2nd word of that phrase. 
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Giving away of Cars in Estonia" and this combobox text here is the first+2nd word of that phrase.
 #: datamodel/camodel.cpp:131
 msgctxt "ClassifiedAdsModel|"
 msgid "Giving away"
-msgstr "Annetaan"
+msgstr "გაჩუქება"
 
-# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Wanting of Cars in Estonia" and this combobox text here is the first word of that phrase. 
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Wanting of Cars in Estonia" and this combobox text here is the first word of that phrase.
 #: datamodel/camodel.cpp:133
 msgctxt "ClassifiedAdsModel|"
 msgid "Wanting"
-msgstr "Halutaan"
+msgstr "ნდომა"
 
-# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Renting of Cars in Estonia" and this combobox text here is the first word of that phrase. 
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Renting of Cars in Estonia" and this combobox text here is the first word of that phrase.
 #: datamodel/camodel.cpp:135
 msgctxt "ClassifiedAdsModel|"
 msgid "Renting"
-msgstr "Vuokrataan"
+msgstr "გაქირავება"
 
-# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Announcement of Cars in Estonia" and this combobox text here is the first word of that phrase. 
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Announcement of Cars in Estonia" and this combobox text here is the first word of that phrase.
 #: datamodel/camodel.cpp:137
 msgctxt "ClassifiedAdsModel|"
 msgid "Announcement"
-msgstr "Ilmoitetaan"
+msgstr "განცხადება"
 
-# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Cars in Estonia" and this combobox text here is the 3rd word of that phrase. 
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Cars in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:210
 msgctxt "ClassifiedAdsModel|"
 msgid "Cars"
-msgstr "Autoja"
+msgstr "მანქანები"
 
-# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Boats in Estonia" and this combobox text here is the 3rd word of that phrase. 
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Boats in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:212
 msgctxt "ClassifiedAdsModel|"
 msgid "Boats"
-msgstr "Veneitä"
+msgstr "ნავები"
 
-# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Bikes in Estonia" and this combobox text here is the 3rd word of that phrase. 
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Bikes in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:214
 msgctxt "ClassifiedAdsModel|"
 msgid "Bikes"
-msgstr "Pyöriä"
+msgstr "მოტოციკლეტები"
 
-# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Other vehicles in Estonia" and this combobox text here is the 3rd+4th word of that phrase. 
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Other vehicles in Estonia" and this combobox text here is the 3rd+4th word of that phrase.
 #: datamodel/camodel.cpp:216
 msgctxt "ClassifiedAdsModel|"
 msgid "Other vehicles"
-msgstr "Muita ajoneuvoja"
+msgstr "სხვა ტრანსპორტი"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of vehicle parts in Estonia" and this combobox text here is the 3rd+4th word of that phrase.
 #: datamodel/camodel.cpp:218
 msgctxt "ClassifiedAdsModel|"
 msgid "Vehicle parts"
-msgstr "Ajoneuvon osia"
+msgstr "მანქანის ნაწილები"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Habitation in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:220
 msgctxt "ClassifiedAdsModel|"
 msgid "Habitation"
-msgstr "Asumuksia"
+msgstr "საცხოვრებელი"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Household appliances in Estonia" and this combobox text here is the 3rd+4th word of that phrase.
 #: datamodel/camodel.cpp:222
 msgctxt "ClassifiedAdsModel|"
 msgid "Household appliances"
-msgstr "Kodin tavaroita"
+msgstr "სახლის აპარატურა"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Furniture in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:224
 msgctxt "ClassifiedAdsModel|"
 msgid "Furniture"
-msgstr "Huonekaluja"
+msgstr "ჭურჭელი"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Clothing in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:226
 msgctxt "ClassifiedAdsModel|"
 msgid "Clothing"
-msgstr "Vaatteita"
+msgstr "ტანსაცმელი"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Tools in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:228
 msgctxt "ClassifiedAdsModel|"
 msgid "Tools"
-msgstr "Työkaluja"
+msgstr "ხელსაწყოები"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Tools in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:230
 msgctxt "ClassifiedAdsModel|"
 msgid "Sports"
-msgstr "Urheiluvälineitä"
+msgstr "სპორტი"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Music in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:232
 msgctxt "ClassifiedAdsModel|"
 msgid "Music"
-msgstr "Musiikkivälineitä"
+msgstr "მუსიკა"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Books in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:234
 msgctxt "ClassifiedAdsModel|"
 msgid "Books"
-msgstr "Kirjoja"
+msgstr "წიგნები"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Movies in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:236
 msgctxt "ClassifiedAdsModel|"
 msgid "Movies"
-msgstr "Elokuvia"
+msgstr "ფილმები"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Animals in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:238
 msgctxt "ClassifiedAdsModel|"
 msgid "Animals"
-msgstr "Eläimiä"
+msgstr "ცხოველები"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Electronics in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:240
 msgctxt "ClassifiedAdsModel|"
 msgid "Electronics"
-msgstr "Sähkölaitteita"
+msgstr "ელექტრონიკა"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Announcement of Jobs in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:242
 msgctxt "ClassifiedAdsModel|"
 msgid "Jobs"
-msgstr "Työpaikkoja"
+msgstr "დავალებები"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Wanting of Transportation in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:244
 msgctxt "ClassifiedAdsModel|"
 msgid "Transportation"
-msgstr "Kuljetuksia"
+msgstr "ტრანსპორტი"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Services in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:246
 msgctxt "ClassifiedAdsModel|"
 msgid "Services"
-msgstr "Palveluita"
+msgstr "სერვისები"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Selling of Healthcare in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:248
 msgctxt "ClassifiedAdsModel|"
 msgid "Healthcare"
-msgstr "Terveydenhoitoa"
+msgstr "ჯანდაცვა"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Selling of Foodstuff in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:250
 msgctxt "ClassifiedAdsModel|"
 msgid "Foodstuff"
-msgstr "Ruokatarvikkeita"
+msgstr "საჭმელი"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Selling of Software in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:252
 msgctxt "ClassifiedAdsModel|"
 msgid "Software"
-msgstr "Ohjelmistoja"
+msgstr "პროგრამები"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Announcement of Events in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:254
 msgctxt "ClassifiedAdsModel|"
 msgid "Events"
-msgstr "Tapahtumia"
+msgstr "მოვლენები"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Giving away of Education in Estonia" and this combobox text here is the 4th word of that phrase.
 #: datamodel/camodel.cpp:256
 msgctxt "ClassifiedAdsModel|"
 msgid "Education"
-msgstr "Koulutusta"
+msgstr "განათლება"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Announcement of Finance in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:258
 msgctxt "ClassifiedAdsModel|"
 msgid "Finance"
-msgstr "Raha-asioita"
+msgstr "ფინანსები"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Selling of Jewelry in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:260
 msgctxt "ClassifiedAdsModel|"
 msgid "Jewelry"
-msgstr "Koruja"
+msgstr "სამკაულები"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Announcement of religious rituals in Estonia" and this combobox text here is the 3rd+4th word of that phrase.
 #: datamodel/camodel.cpp:262
 msgctxt "ClassifiedAdsModel|"
 msgid "Religious rituals"
-msgstr "Uskonnollisia toimituksia"
+msgstr "რელიგიური რიტუალები"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Announcement of Philosophy in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:264
 msgctxt "ClassifiedAdsModel|"
 msgid "Philosophy"
-msgstr "Filosofiaa"
+msgstr "ფილოსოფია"
 
-# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Announcement of Philosophy in Any country" and this combobox text here is end part "Any country" specifying the location where announcement. 
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Announcement of Philosophy in Any country" and this combobox text here is end part "Any country" specifying the location where announcement.
 #: datamodel/camodel.cpp:908
 msgctxt "ClassifiedAdsModel|"
 msgid "Any country"
-msgstr "Missä maassa vain"
+msgstr "ნებისმიერი ქვეყანა"
 
-# Tool tip text. When user hovers mouse cursor on top of network address field in a dialog, this text will appear. 
+# Tool tip text. When user hovers mouse cursor on top of network address field in a dialog, this text will appear.
 #: datamodel/connectionlistingmodel.cpp:142
 msgctxt "ConnectionListingModel|"
 msgid "Peer network address"
-msgstr "Solmun verkko-osoite"
+msgstr "პარტნიორის ქსელური მისამართი"
 
-# Tool tip text. When user hovers mouse cursor on top of field specifying if connection is inbound/outbound this text will appear. 
+# Tool tip text. When user hovers mouse cursor on top of field specifying if connection is inbound/outbound this text will appear.
 #: datamodel/connectionlistingmodel.cpp:145
 msgctxt "ConnectionListingModel|"
 msgid "Inbound connections are those where peer initiated connection"
 msgstr ""
-"Sisääntulevat yhteydet ovat sellaisia, missä etäjärjestelmä aloitti yhteyden"
+"შემომავალი დაკავშირებები პარტნიორის მიერ განხორციელებულ შეერთებებს ეწოდებათ"
 
-# Tool tip text. When user hovers mouse cursor on top of traffic-counter field in a dialog, this text will appear. 
+# Tool tip text. When user hovers mouse cursor on top of traffic-counter field in a dialog, this text will appear.
 #: datamodel/connectionlistingmodel.cpp:148
 msgctxt "ConnectionListingModel|"
 msgid "Data transferred from peer to your node"
-msgstr "Sinun tietokoneeseesi tästä solmusta siirretty tietomäärä"
+msgstr "პარტნიორიდან თქვენს კვანძზე გადმოწერილი ინფორმაცია"
 
 # Tool tip text. When user hovers mouse cursor on top of traffic-counter field in a dialog, this text will appear.
 #: datamodel/connectionlistingmodel.cpp:151
 msgctxt "ConnectionListingModel|"
 msgid "Data transferred to peer from your node"
-msgstr "Sinun tietokoneestasi tähän verkon solmuun siirretty tietomäärä"
+msgstr "თქვენი კვანძიდან პარტნიორისთვის მიწოდებული ინფორმაცია"
 
 # Tool tip text. When user hovers mouse cursor on top of time-field in a dialog, this text will appear.
 #: datamodel/connectionlistingmodel.cpp:154
 msgctxt "ConnectionListingModel|"
 msgid "Time when connection was opened"
-msgstr "Yhteyden avaamisaika"
+msgstr "დრო, როცა შეერთება გაიხსნა"
 
 # Column header text. Column view is used for listing network connections currently open, this text here gives title for column that shows network address (like IP-address)
 #: datamodel/connectionlistingmodel.cpp:164
 msgctxt "ConnectionListingModel|"
 msgid "Address"
-msgstr "Verkko-osoite"
+msgstr "მისამართი"
 
 # Column header text. Column view is used for listing network connections currently open, this text here gives title for column that shows direction (inbound/outbound) of the connection
 #: datamodel/connectionlistingmodel.cpp:167
 msgctxt "ConnectionListingModel|"
 msgid "Inbound"
-msgstr "Sisääntuleva"
+msgstr "შემომავალი"
 
 # Column header text. Column view is used for listing network connections currently open, this text here gives title for column that shows number of bytes transferred inside
 #: datamodel/connectionlistingmodel.cpp:170
 msgctxt "ConnectionListingModel|"
 msgid "Bytes in"
-msgstr "Oktettia sisään"
+msgstr "შემ. ბაიტები"
 
 # Column header text. Column view is used for listing network connections currently open, this text here gives title for column that shows number of bytes transferred outside
 #: datamodel/connectionlistingmodel.cpp:173
 msgctxt "ConnectionListingModel|"
 msgid "Bytes out"
-msgstr "Oktettia ulos"
+msgstr "გამ. ბაიტები"
 
-# Column header text. Column view is used for listing network connections currently open, this text here gives title for column that shows time when connection was opened. 
+# Column header text. Column view is used for listing network connections currently open, this text here gives title for column that shows time when connection was opened.
 #: datamodel/connectionlistingmodel.cpp:176
 msgctxt "ConnectionListingModel|"
 msgid "Open time"
-msgstr "Avaamisaika"
+msgstr "გახსნის დრო"
 
 # Text in contact listing column view. This text appears in column telling if user is to be trusted or not and this value here denotes the positive case "user is trusted".
 #: datamodel/contactlistingmodel.cpp:73
 msgctxt "ContactListingModel|"
 msgid "Yes"
-msgstr "Tosi on"
+msgstr "დიახ"
 
 # Text in contact listing column view. This text appears in column telling if user is to be trusted or not and this value here denotes the negative case "user trust is unknown".
 #: datamodel/contactlistingmodel.cpp:75
 msgctxt "ContactListingModel|"
 msgid "Unknown"
-msgstr "Tuntematon"
+msgstr "უცნობი"
 
-# Tool tip text. When user hovers mouse cursor on top of field where operators SHA1 digest is shown, this text appears. The field is part of contact listing view, where users frequent contacts are shown. 
+# Tool tip text. When user hovers mouse cursor on top of field where operators SHA1 digest is shown, this text appears. The field is part of contact listing view, where users frequent contacts are shown.
 #: datamodel/contactlistingmodel.cpp:98
 msgctxt "ContactListingModel|"
 msgid "Actual network address (SHA1) of the contact"
-msgstr "Operaattorin varsinainen verkko-osoite (SHA1)"
+msgstr "კონტაქტის მიმდინარე ქსელური მისამართი (SHA1)"
 
 # Tool tip text. When user hovers mouse cursor on top of field where operators locally given nickname is shown, this text appears. The field is part of contact listing view, where users frequent contacts are shown.
 #: datamodel/contactlistingmodel.cpp:101
 msgctxt "ContactListingModel|"
 msgid "Locally given nickname ; user may set her own nickname himself"
-msgstr "Antamasi liikanimi; operaattori voi antaa itselleen eri liikanimen"
+msgstr ""
+"ლოკალური მეტსახელი. მომხმარებლებს თავისი მეტსახელების მითითება შეუძლიათ"
 
 # Tool tip text. When user hovers mouse cursor on top of field where operators trustworthiness (boolean value) in users opinion is shown, this text appears. The field is part of contact listing view, where users frequent contacts are shown.
 #: datamodel/contactlistingmodel.cpp:104
 msgctxt "ContactListingModel|"
 msgid "Public statement if this operator to be trusted in transactions"
-msgstr "Julkinen lausunto operaattorin luotettavuudesta asioiden hoitamisessa"
+msgstr "საჯარო განცხადება, შეიძლება თუ არა ამ ოპერატორის ტრანზაქციების ნდობა"
 
 # Column header text. Used in column view where operators frequent contacts are shown. This text gives title to column that shows operators network address (the SHA digest of operator)
 #: datamodel/contactlistingmodel.cpp:114
 msgctxt "ContactListingModel|"
 msgid "Address"
-msgstr "Osoite"
+msgstr "მისამართი"
 
 # Column header text. Used in column view where operators frequent contacts are shown. This text gives title to column that shows operators nickname
 #: datamodel/contactlistingmodel.cpp:117
 msgctxt "ContactListingModel|"
 msgid "Nickname"
-msgstr "Liikanimi"
+msgstr "მეტსახელი"
 
-# Column header text. Used in column view where operators frequent contacts are shown. This text gives title to column that shows operators trustworthiness. 
+# Column header text. Used in column view where operators frequent contacts are shown. This text gives title to column that shows operators trustworthiness.
 #: datamodel/contactlistingmodel.cpp:120
 msgctxt "ContactListingModel|"
 msgid "Publicly trusted"
-msgstr "Julkisesti luotettu"
+msgstr "საჯაროდ სანდო"
 
 # Error message that is displayed when SSL key generation failed. Text is displayed in a dialog, after user dismisses the dialog, whole application will exit.
 #: datamodel/contentencryptionmodel.cpp:88
 msgctxt "ContentEncryptionModel|"
 msgid "SSL key generation went wrong, calling exit.."
-msgstr "SSL-avaimen rakentaminen epäonnistui, pakko poistua.."
+msgstr "SSL გასაღების გენერაციის შეცდომა. პროგრამიდან გასვლა.."
 
 # Error message that is displayed when x509 certificate generation failed. Text is displayed in a dialog, after user dismisses the dialog, whole application will exit.
 #: datamodel/contentencryptionmodel.cpp:96
 msgctxt "ContentEncryptionModel|"
 msgid "x509 cert generation went wrong, calling exit.."
-msgstr "x509-sertifikaatin rakentaminen epäonnistui, pakko poistua.."
+msgstr "x509 სერტიფიკატის გენერაციის შეცდომა. პროგრამიდან გასვლა.."
 
-# Error message that is displayed when RSA private key could not be saved to database. This is rather fatal error, the operator profile that user tried to create will be un-usable. 
+# Error message that is displayed when RSA private key could not be saved to database. This is rather fatal error, the operator profile that user tried to create will be un-usable.
 #: datamodel/contentencryptionmodel.cpp:194
 #: datamodel/contentencryptionmodel.cpp:292
 msgctxt "ContentEncryptionModel|"
 msgid "RSA Private key key saving went wrong"
-msgstr "Salaisen RSA-avaimen tallettaminen epäonnistui"
+msgstr "RSA პირადი გასაღების შენახვის შეცდომა"
 
-# Error message text. This is displayed in situation where user tried to access content that he does not have encryption key for. This may appear frequently during normal operation and is no fatal error, only telling user that he is not going to see the content he was trying to access. 
+# Error message text. This is displayed in situation where user tried to access content that he does not have encryption key for. This may appear frequently during normal operation and is no fatal error, only telling user that he is not going to see the content he was trying to access.
 #: datamodel/contentencryptionmodel.cpp:639
 msgctxt "ContentEncryptionModel|"
 msgid "No suitable de-cryption key found"
-msgstr "Avaamiseen sopivaa salausavainta ei ole käytettävissä"
+msgstr "შესაბამისი გაშიფვრის გასაღები ვერ ვიპოვე"
 
-# Window title text for whole application. 
+# Window title text for whole application.
 #: controller.cpp:109
 msgctxt "Controller|"
 msgid "Classified ads"
-msgstr "Luokitellut ilmoitukset"
+msgstr "Classified ads"
 
 # Prompt text for password dialog
 #: controller.cpp:141
 msgctxt "Controller|"
 msgid "Enter password for protection of your messages:"
-msgstr "Anna salasana viestiesi sisällön turvaamiseksi"
+msgstr "შეიყვანეთ პაროლი თქვენი შეტყობინებების დასაცავად:"
 
 # Dialog text for a wait dialog (a progress-bar like thing will be shown next to this text and user is supposed to sit down and wait a moment..)
 #: controller.cpp:432
 msgctxt "Controller|"
 msgid "Fetching item from network.."
-msgstr "Kaivellaan kohdetta verkon syövereistä.."
+msgstr "ჩანაწერის ქსელიდან გამოთხოვა.."
 
 # Menu item text used in "File" menu item and when this particular item is selected, application will close
 #: controller.cpp:485
 msgctxt "Controller|"
 msgid "E&xit"
-msgstr "Sulje"
+msgstr "&გამოსვლა"
 
 # Menu item tooltip-text used in "File" menu entry and when this particular item is selected, application will close
 #: controller.cpp:487
 msgctxt "Controller|"
 msgid "Exit the application"
-msgstr "Sulje sovellus"
+msgstr "აპლიკაციიდან გასვლა"
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a dialog telling why this application is and how to use it
 #: controller.cpp:489
 msgctxt "Controller|"
 msgid "&About"
-msgstr "Tietoja"
+msgstr "შ&ესახებ"
 
 # Tooltip-text of menu item text used in "File" menu and when this particular item is selected, application will show a dialog telling why this application is and how to use it
 #: controller.cpp:490
 msgctxt "Controller|"
 msgid "Show the application's About box"
-msgstr "Esitä selvitys sovelluksen tarkoituksesta"
+msgstr "პროგრამის შესახებ ინფორმაციის ფანჯრის ჩვენება"
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to change her password
 #: controller.cpp:492
 msgctxt "Controller|"
 msgid "&Change password"
-msgstr "Vaihda salasana"
+msgstr "&პაროლის შეცვლა"
 
 # Tooltip-item for a menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to change her password
 #: controller.cpp:493
 msgctxt "Controller|"
 msgid "Change password of current profile"
-msgstr "Valitse valitulle operaattori-profiilille uusi salasana"
+msgstr "მიმდინარე პროფილის პაროლის შეცვლა"
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to enter password for a newly-created user profile
 #: controller.cpp:495
 msgctxt "Controller|"
 msgid "Create &new profile"
-msgstr "Luo uusi profiili"
+msgstr "ახალი &პროფილის შექმნა"
 
 # Tooltip-text for a menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to enter password for a newly-created user profile
 #: controller.cpp:496
 msgctxt "Controller|"
 msgid "Makes a brand new user profile"
-msgstr "Luo  operaattorille uuden profiilin"
+msgstr "ახალი მომხმარებლის პროფილის შექმნა"
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to confirm deletion of currently open operator profile
 #: controller.cpp:498
 msgctxt "Controller|"
 msgid "&Delete current profile"
-msgstr "Poista valittu profiili"
+msgstr "&მიმდინარე პროფილის წაშლა"
 
 # Tooltip-text for a menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to confirm deletion of currently open profile
 #: controller.cpp:499
 msgctxt "Controller|"
 msgid "Deletes currently open profile"
-msgstr "Pysyvästi poistaa tämänhetkisen valitun profiilin"
+msgstr "ამჟამად გახსნილი პროფილის წაშლა"
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to enter password of another profile that user will use next
 #: controller.cpp:501
 msgctxt "Controller|"
 msgid "&Select another profile"
-msgstr "Valitse käyttöön toinen profiilii"
+msgstr "&აირჩიეთ სხვა პროფილი"
 
 # Tooltip-text for a menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to enter password of another profile that user will use next
 #: controller.cpp:502
 msgctxt "Controller|"
 msgid "If you have multitude of profiles"
-msgstr "Jos olet luonnut useamman profiilin, voit tästä valita toisen"
+msgstr "თუ გაქვთ ბევრი პროფილი"
 
-# Menu item text used in "File" menu and when this particular item is selected, application will show a settings-dialog 
+# Menu item text used in "File" menu and when this particular item is selected, application will show a settings-dialog
 #: controller.cpp:504
 msgctxt "Controller|"
 msgid "Settings.."
-msgstr "Asetukset.."
+msgstr "მორგება..."
 
 # Tooltip-text for a menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to enter password of another profile that user will use next
 #: controller.cpp:505
 msgctxt "Controller|"
 msgid "Node-wide settings.."
-msgstr "Solmun asetukset.."
+msgstr "კვანძის პარამეტრები.."
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a dialog detailing network connectivity of the node
 #: controller.cpp:507
 msgctxt "Controller|"
 msgid "Network status.."
-msgstr "Verkko-yhteydet.."
+msgstr "ქსელის მდგომარეობა.."
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a search-dialog
 #: controller.cpp:509
 msgctxt "Controller|"
 msgid "Search.."
-msgstr "Etsi.."
+msgstr "საძიებო სიტყვა..."
 
-# Menu bar title text for "File" menu. 
+# Menu bar title text for "File" menu.
 #: controller.cpp:526
 msgctxt "Controller|"
 msgid "&File"
-msgstr "Tiedosto"
+msgstr "&ფაილი"
 
 # Menu title. Menu contains menu-items related to TCL-programs.
 #: controller.cpp:729
 msgctxt "Controller|"
 msgid "&TCL Programs"
-msgstr "TCL-Ohjelmat"
+msgstr "&TCL-ის პროგრამები"
 
-# Menu item from menu of TCL-related items. Selecting this menu item opens library of TCL programs. 
+# Menu item from menu of TCL-related items. Selecting this menu item opens library of TCL programs.
 #: controller.cpp:730
 msgctxt "Controller|"
 msgid "&Local library"
-msgstr "TCL-Ohjelmakirjasto"
+msgstr "&ლოკალური ბიბლიოთეკა"
 
 # Tooltip-text for menu item that opens local TCL program library.
 #: controller.cpp:731
 msgctxt "Controller|"
 msgid "Locally stored TCL programs"
-msgstr "Paikallisen ohjelmakirjaston TCL-ohjelmat."
+msgstr "ლოკალურად დამახსოვრებული TCL-ის პროგრამები"
 
 # Difficult to translate: after selecting this menu-item you can write ad-hoc TCL programs to TCL interpreter that may be already executing existing program or is empty. Practically gives TCL command line access to possibly running interpreter.
 #: controller.cpp:734
 msgctxt "Controller|"
 msgid "TCL &Console"
-msgstr "TCL-Komentokehote"
+msgstr "TCL-ის &კონსოლი"
 
 # Tooltip for menu-item that displays dialog where you can type in ad-hoc TCL-programs.
 #: controller.cpp:735
 msgctxt "Controller|"
 msgid "Display interpreter console"
-msgstr "TCL-tulkin komennot"
+msgstr "ინტერპრეტატორის კონსოლის ჩვენება"
 
 # Password dialog prompt.
 #: controller.cpp:571
 msgctxt "Controller|"
 msgid "Enter new password:"
-msgstr "Anna uusi salasana:"
+msgstr "შეიყვანეთ ახალი პაროლი:"
 
-# Password dialog prompt. In this case the password dialog is not used for giving initial password or change password but instead password is typed for the reason of selection of another operator profile to be used. 
+# Password dialog prompt. In this case the password dialog is not used for giving initial password or change password but instead password is typed for the reason of selection of another operator profile to be used.
 #: controller.cpp:599 controller.cpp:708
 msgctxt "Controller|"
 msgid "Activate another profile with password"
-msgstr "Valitse uusi profiili antamalla haluamasi profiilin salasana"
+msgstr "პაროლით სხვა პროფილის აქტივაცია"
 
-# Error message shown in dialog in situation where user tried to delete the last (one and only) operator profile in machine. There needs to be at least one profile and this error message is shown if user tries to get around that limitation. 
+# Error message shown in dialog in situation where user tried to delete the last (one and only) operator profile in machine. There needs to be at least one profile and this error message is shown if user tries to get around that limitation.
 #: controller.cpp:693
 msgctxt "Controller|"
 msgid "Can't delete only profile."
-msgstr "Viimeistä jäljellä olevaa profiilia ei voi poistaa."
+msgstr "დარჩენილ პროფილს ვერ წაშლით."
 
-# Text shown in title of confirmation dialog. 
+# Text shown in title of confirmation dialog.
 #: controller.cpp:697
 msgctxt "Controller|"
 msgid "Permanently discard profile?"
-msgstr "Poistetaanko profiili lopullisesti?"
+msgstr "წავშალო პროფილი სამუდამოდ?"
 
 # Text shown inside a confirmation dialog. Dialog will have buttons OK and Cancel and this is the question.
 #: controller.cpp:698
 msgctxt "Controller|"
 msgid "There will be NO way to access content of this profile later"
-msgstr ""
-"Tämän profiilin viestejä tai muuta sisältöä ei ole mahdollista nähdä enää"
+msgstr "ამ პროფილის შემცველობასთან წვდომა აღარ გექნებათ"
 
-# Error message that is shown in a dialog in situation where previously stored encryption keys of the node could not be accessed. Rather fatal error, will render node un-usable. 
+# Error message that is shown in a dialog in situation where previously stored encryption keys of the node could not be accessed. Rather fatal error, will render node un-usable.
 #: controller.cpp:761
 msgctxt "Controller|"
 msgid "Cant load node cert or key cert"
-msgstr "Solmun salausavaimen tai sertifikaatin lataaminen ei onnistunut"
+msgstr "კვანძის ან გასაღების სერტიფიკატის ჩატვირთვის შეცდომა"
 
-# Error message dialog title text for a dialog that is shown in a dialog in situation where something bad happened during a filesystem file operation. Actual explanation of the error is shown inside the dialog whose title text this is.  
+# Error message dialog title text for a dialog that is shown in a dialog in situation where something bad happened during a filesystem file operation. Actual explanation of the error is shown inside the dialog whose title text this is.
 #: controller.cpp:766
 msgctxt "Controller|"
 msgid "File error"
-msgstr "Tiedostokäsittelyyn liittyvä virhe"
+msgstr "ფაილის შეცდომა"
 
-# Error message dialog title text for a dialog that is shown in a dialog in situation where something bad happened during database operation. Actual explanation of the error is shown inside the dialog whose title text this is.  
+# Error message dialog title text for a dialog that is shown in a dialog in situation where something bad happened during database operation. Actual explanation of the error is shown inside the dialog whose title text this is.
 #: controller.cpp:771
 msgctxt "Controller|"
 msgid "Database error"
-msgstr "Tietokantavirhe"
+msgstr "მონაცემთა ბაზის შეცდომა"
 
-# Error message dialog title text for a dialog that is shown in a dialog in situation where something bad happened during a operation inside crypto-module. Actual explanation of the error is shown inside the dialog whose title text this is.  
+# Error message dialog title text for a dialog that is shown in a dialog in situation where something bad happened during a operation inside crypto-module. Actual explanation of the error is shown inside the dialog whose title text this is.
 #: controller.cpp:777 controller.cpp:787
 msgctxt "Controller|"
 msgid "Cryptographic module"
-msgstr "Salausjärjestelmän virhe"
+msgstr "კრიპტოგრაფიის მოდული"
 
-# Error message dialog title text for a dialog that is shown in a dialog in situation where something bad happened during operation inside database module. Actual explanation of the error is shown inside the dialog whose title text this is.  
+# Error message dialog title text for a dialog that is shown in a dialog in situation where something bad happened during operation inside database module. Actual explanation of the error is shown inside the dialog whose title text this is.
 #: controller.cpp:782
 msgctxt "Controller|"
 msgid "Database module"
-msgstr "Tietokannan vikatila"
+msgstr "ბაზის მოდული"
 
-# Error message dialog title text for a dialog that is shown in a dialog in situation when password supplied by user was not good for any purpose. Actual explanation of the error is shown inside the dialog whose title text this is.  
+# Error message dialog title text for a dialog that is shown in a dialog in situation when password supplied by user was not good for any purpose. Actual explanation of the error is shown inside the dialog whose title text this is.
 #: controller.cpp:788
 msgctxt "Controller|"
 msgid "Bad password"
-msgstr "Kelpaamaton salasana"
+msgstr "არასწორი პაროლი"
 
-# Dialog title for error dialog that displays error message originating from TCL-interpereter. 
+# Dialog title for error dialog that displays error message originating from TCL-interpereter.
 #: controller.cpp:1043
 msgctxt "Controller|"
 msgid "TCL Interpreter"
-msgstr "TCL-Ohjelma"
+msgstr "TCL ინტერპრეტატორი"
 
-# Error message text inside a dialog when user had requested for an item to be opened but program could not find the requested item.   
+# Error message text inside a dialog when user had requested for an item to be opened but program could not find the requested item.
 #: controller.cpp:1004
 msgctxt "Controller|"
 msgid "Could not find item from network.."
-msgstr "Haluttua kohdetta ei verkosta löytynyt.."
+msgstr "ქსელიდან ჩანაწერი ვერ ვიპოვე.."
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies SHA1 digest of the file.
 #: controller.cpp:1117
 msgctxt "Controller|"
 msgid "SHA1: "
-msgstr "SHA1:"
+msgstr "SHA1: "
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies mime-type of the file
 #: controller.cpp:1122
 msgctxt "Controller|"
 msgid "Mime-Type: "
-msgstr "Mime-Tyyppi:"
+msgstr "MIME ტიპი: "
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that gives longer explanation of the file
 #: controller.cpp:1128
 msgctxt "Controller|"
 msgid "Description: "
-msgstr "Kuvaus:"
+msgstr "აღწერა: "
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies name of publisher of the file (in practice, who uploaded the file into classified ads)
 #: controller.cpp:1134
 msgctxt "Controller|"
 msgid "Publisher: "
-msgstr "Julkaisija:"
+msgstr "გამომცემელი: "
 
-# Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies name of the person (or organization) that owns (in copyright sense) the file or its contents. 
+# Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies name of the person (or organization) that owns (in copyright sense) the file or its contents.
 #: controller.cpp:1140
 msgctxt "Controller|"
 msgid "Content owner: "
-msgstr "Sisällön omistaja:"
+msgstr "შემცველობის მფლობელი: "
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies the license of the file
 #: controller.cpp:1146
 msgctxt "Controller|"
 msgid "License: "
-msgstr "Lisenssi:"
+msgstr "ლიცენზია: "
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies file name
 #: controller.cpp:1152
 msgctxt "Controller|"
 msgid "Name: "
-msgstr "Nimi:"
+msgstr "სახელი: "
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies file date
 #: controller.cpp:1159
 msgctxt "Controller|"
 msgid "Date: "
-msgstr "Päivämäärä:"
+msgstr "თარიღი: "
 
-# Error message text shown inside dialog when user tries to select for operation a file that is much much too big. (there is currently 2MB size limit for shared files) 
+# Error message text shown inside dialog when user tries to select for operation a file that is much much too big. (there is currently 2MB size limit for shared files)
 #: ui/dialogbase.cpp:47 ui/dialogbase.cpp:101
 msgctxt "DialogBase|"
 msgid "File way too big"
-msgstr "Tiedosto on ihan liian iso"
+msgstr "ფაილი .ძალიან დიდია"
 
-# Error message text shown inside dialog when user tries to select for operation a file that is just-and-just too big. (there is currently 2MB size limit for shared files) 
+# Error message text shown inside dialog when user tries to select for operation a file that is just-and-just too big. (there is currently 2MB size limit for shared files)
 #: ui/dialogbase.cpp:55 ui/dialogbase.cpp:109
 msgctxt "DialogBase|"
 msgid "File too big"
-msgstr "Tiedosto on liian iso"
+msgstr "ფაილი ზედმეტად დიდია"
 
 # Error message text shown inside dialog when user tries to select for operation a file that can not be opened (for example due to file permission reasons)
 #: ui/dialogbase.cpp:85 ui/dialogbase.cpp:131
 msgctxt "DialogBase|"
 msgid "File open error"
-msgstr "Ongelma tiedoston avaamisessa"
+msgstr "ფაილის გახსნის შეცდომა"
 
-# Dialog title text. Dialog prompts user to select the filesystem file that will be published inside classified ads. 
+# Dialog title text. Dialog prompts user to select the filesystem file that will be published inside classified ads.
 #: ui/dialogbase.cpp:94
 msgctxt "DialogBase|"
 msgid "Select file to be published"
-msgstr "Valitse julkaistava tiedosto"
+msgstr "აირჩიეთ გამოსაქვეყნებელი ფაილი"
 
 # Text for file type filter field in file-selection-dialog
 #: ui/dialogbase.cpp:96
 msgctxt "DialogBase|"
 msgid "Files (*.*)"
-msgstr "Kaikki tiedostot (*.*)"
+msgstr "ფაილები (*.*)"
 
-# Title text of error dialog. 
+# Title text of error dialog.
 #: ui/editcontact.cpp:72
 msgctxt "EditContactDialog|"
 msgid "Error"
-msgstr "Vikaa"
+msgstr "შეცდომა"
 
-# Contet text of error dialog. Shown after user has tried to enter operator address with intent of adding it to contact-list and the operator address fails format validation. 
+# Contet text of error dialog. Shown after user has tried to enter operator address with intent of adding it to contact-list and the operator address fails format validation.
 #: ui/editcontact.cpp:73
 msgctxt "EditContactDialog|"
 msgid "Operator addr is not valid"
-msgstr "Operaattorin osoite ei ole sopivaa muotoa"
+msgstr "ოპერატორის მისამართი არასწორია"
 
-# Tab text. In "main window" of classified ads UI there a are 4 or 5 tabs, normally "Classified ads"; "My profile", "Contacts", "Private messages" and maybe something else. This is the text of the first tab. 
+# Tab text. In "main window" of classified ads UI there a are 4 or 5 tabs, normally "Classified ads"; "My profile", "Contacts", "Private messages" and maybe something else. This is the text of the first tab.
 #: FrontWidget.cpp:95
 msgctxt "FrontWidget|"
 msgid "Classified ads"
-msgstr "Luokitellut ilmoitukset"
+msgstr "Classified ads"
 
-# Tab text. In "main window" of classified ads UI there a are 4 or 5 tabs, normally "Classified ads"; "My profile", "Contacts", "Private messages" and maybe something else. This is the text of the 2nd tab. 
+# Tab text. In "main window" of classified ads UI there a are 4 or 5 tabs, normally "Classified ads"; "My profile", "Contacts", "Private messages" and maybe something else. This is the text of the 2nd tab.
 #: FrontWidget.cpp:96
 msgctxt "FrontWidget|"
 msgid "My profile"
-msgstr "Oma profiili"
+msgstr "ჩემი პროფილი"
 
-# Tab text. In "main window" of classified ads UI there a are 4 or 5 tabs, normally "Classified ads"; "My profile", "Contacts", "Private messages" and maybe something else. This is the text of the 3rd tab. 
+# Tab text. In "main window" of classified ads UI there a are 4 or 5 tabs, normally "Classified ads"; "My profile", "Contacts", "Private messages" and maybe something else. This is the text of the 3rd tab.
 #: FrontWidget.cpp:97
 msgctxt "FrontWidget|"
 msgid "Contacts"
-msgstr "Osoitekirja"
+msgstr "კონტაქტები"
 
-# Tab text. In "main window" of classified ads UI there a are 4 or 5 tabs, normally "Classified ads"; "My profile", "Contacts", "Private messages" and maybe something else. This is the text of the 4th tab. 
+# Tab text. In "main window" of classified ads UI there a are 4 or 5 tabs, normally "Classified ads"; "My profile", "Contacts", "Private messages" and maybe something else. This is the text of the 4th tab.
 #: FrontWidget.cpp:98
 msgctxt "FrontWidget|"
 msgid "Private messages"
-msgstr "Yksityiset viestit"
+msgstr "პირადი შეტყობინებები"
 
 # Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, a dialog will appear asking which file to share
 #: FrontWidget.cpp:160
 msgctxt "FrontWidget|"
 msgid "Add shared file.."
-msgstr "Lisää tiedosto jakoon"
+msgstr "გაზიარებული ფაილის დამატება..."
 
 # Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, the selected file in the listing view will no longer be shared
 #: FrontWidget.cpp:161
 msgctxt "FrontWidget|"
 msgid "Stop advertising selected shared file"
-msgstr "Lakkaa mainostamasta valittua jaettua tiedostoa"
+msgstr "მონიშნული გაზიარებული ფაილის გამოქვეყნების შეწყვეტა"
 
 # Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, the selected file in the listing view will be saved to filesystem
 #: FrontWidget.cpp:162
 msgctxt "FrontWidget|"
 msgid "Save file to disk.."
-msgstr "Tallenna tiedosto tiedostojärjestelmälle"
+msgstr "დისკზე შენახვა.."
 
 # Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, information dialog about selected file will be shown
 #: FrontWidget.cpp:163
 msgctxt "FrontWidget|"
 msgid "View file information.."
-msgstr "Tarkastele tiedoston ominaisuuksia.."
+msgstr "ფაილის ინფორმაციის ნახვა.."
 
-# Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, SHA digest of the selected file will be copied to clipboard. 
+# Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, SHA digest of the selected file will be copied to clipboard.
 #: FrontWidget.cpp:164
 msgctxt "FrontWidget|"
 msgid "Copy file address (SHA1) to clipboard.."
-msgstr "Kopioi tiedoston osoite (SHA1) leikepöydälle.."
+msgstr "ფაილის მისამართის (SHA1) ბუფერში კოპირება.."
 
-# Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, an editor will be displayed prompting user to enter text that will then be published  for other users to see. 
+# Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, an editor will be displayed prompting user to enter text that will then be published  for other users to see.
 #: FrontWidget.cpp:165
 msgctxt "FrontWidget|"
 msgid "Edit+publish new text document.."
-msgstr "Muokkaa ja julkaise uusi tekstidokumentti.."
+msgstr "შემდეგი ტექსტური დოკუმენტის ჩასწორება+გამოქვეყნება.."
 
 # Dialog title text for "file open" dialog
 #: FrontWidget.cpp:353
 msgctxt "FrontWidget|"
 msgid "Open File"
-msgstr "Avaa tiedosto"
+msgstr "ფაილის გახსნა"
 
 # Text for filter field of file selection dialog
 #: FrontWidget.cpp:355 FrontWidget.cpp:885
 msgctxt "FrontWidget|"
 msgid "Files (*.*)"
-msgstr "Kaikki tiedostot (*.*)"
+msgstr "ფაილები (*.*)"
 
-# Error dialog title text. Actual error message will be shown inside dialog whose title is this text. 
+# Error dialog title text. Actual error message will be shown inside dialog whose title is this text.
 #: FrontWidget.cpp:359 FrontWidget.cpp:1185 FrontWidget.cpp:1328
 msgctxt "FrontWidget|"
 msgid "Error"
-msgstr "Vikaa.."
+msgstr "შეცდომა"
 
 # Error dialog content text. Shown when image file that user selected could not be opened (maybe because file permission problem or maybe image format issue or ..)
 #: FrontWidget.cpp:360
 msgctxt "FrontWidget|"
 msgid "Can't load image"
-msgstr "Kuvan avaaminen ei onnistu"
+msgstr "გამოსახულების ჩატვირთვის შეცდომა"
 
-# Error dialog title text. This dialog is shown when user  tries to comment another operator but required operator data is missing from local storage. 
+# Error dialog title text. This dialog is shown when user  tries to comment another operator but required operator data is missing from local storage.
 #: FrontWidget.cpp:626 FrontWidget.cpp:766
 msgctxt "FrontWidget|"
 msgid "Profile not in database"
-msgstr "Profiilia ei tietovarastosta löydy"
+msgstr "პროფილი ბაზაში არაა"
 
-# Error dialog content text. This dialog is shown when user  tries to comment another operator but required operator data is missing from local storage. 
+# Error dialog content text. This dialog is shown when user  tries to comment another operator but required operator data is missing from local storage.
 #: FrontWidget.cpp:627 FrontWidget.cpp:767
 msgctxt "FrontWidget|"
 msgid "Try viewing profile first to obtain data"
-msgstr "Yritä valita profiili katseltavaksi ensin, yritä sitten uudelleen"
+msgstr "მონაცემების მისაღებად ჯერ სცადეთ, ნახოთ პროფილი"
 
-# File selection title text. Prompts user to select a file for publish purpose. 
+# File selection title text. Prompts user to select a file for publish purpose.
 #: FrontWidget.cpp:883
 msgctxt "FrontWidget|"
 msgid "Select file to be published"
-msgstr "Valitse julkaistava tiedosto"
+msgstr "აირჩიეთ გამოსაქვეყნებელი ფაილი"
 
 # Error text shown in dialog. Shown in situation where user selected a file that really exceeds size limit (of 2MB)
 #: FrontWidget.cpp:890
 msgctxt "FrontWidget|"
 msgid "File way too big"
-msgstr "Tiedosto on aivan liian suuri"
+msgstr "ფაილი .ძალიან დიდია"
 
 # Error text shown in dialog. Shown in situation where user selected a file that slightly exceeds size limit (of 2MB)
 #: FrontWidget.cpp:898
 msgctxt "FrontWidget|"
 msgid "File too big"
-msgstr "Tiedosto on liian suuri"
+msgstr "ფაილი ზედმეტად დიდია"
 
 # Error text shown in dialog. Shown in situation where user selected a file that could for some reason not be opened
 #: FrontWidget.cpp:942 FrontWidget.cpp:1186
 msgctxt "FrontWidget|"
 msgid "File open error"
-msgstr "Ongelma tiedoston avaamisessa"
+msgstr "ფაილის გახსნის შეცდომა"
 
-# Part of filter text field in file selection dialog. If for instance user tries to open PNG files, then the text in filter field will be "PNG files (*.png)" and this word is the 2nd word in the phrase. 
+# Part of filter text field in file selection dialog. If for instance user tries to open PNG files, then the text in filter field will be "PNG files (*.png)" and this word is the 2nd word in the phrase.
 #: FrontWidget.cpp:1167 FrontWidget.cpp:1173
 msgctxt "FrontWidget|"
 msgid "files"
-msgstr "kaikki tiedostot"
+msgstr "ფაილი"
 
 # Dialog title for dialog that asks whether user wants to save TCL program into local library or into filesystem file
 #: FrontWidget.cpp:1183
 msgctxt "FrontWidget|"
 msgid "Save location"
-msgstr "Mihin tallennetaan"
+msgstr "მდებარეობის შენახვა"
 
 # Dialog text in question dialog asking if user wants to save TCL app into local library or into filesystem file
 #: FrontWidget.cpp:1184
 msgctxt "FrontWidget|"
 msgid "Save to TCL app library instead of regular file?"
-msgstr "Tallennetaanko TCL-ohjelmien kirjastoon vai tiedostojärjestelmälle?"
+msgstr "შევინახო TCL აპის ბიბლიოთეკაში ჩვეულებრივი ფაილის მაგიერ?"
 
 # File selection dialog title text. Dialog prompts user to select location+name for an file to be exported into filesystem.
 #: FrontWidget.cpp:1176
 msgctxt "FrontWidget|"
 msgid "Choose file name for saving"
-msgstr "Valitse nimi tallennettavalle tiedostolle"
+msgstr "აირჩიეთ შესანახი ფაილის სახელი"
 
-# Text shown in placeholder for operators image in situation where user has not yet selected any image. In practice it prompts user to insert image by clicking at the text. 
+# Text shown in placeholder for operators image in situation where user has not yet selected any image. In practice it prompts user to insert image by clicking at the text.
 #: FrontWidget.cpp:1236
 msgctxt "FrontWidget|"
 msgid ""
@@ -911,17 +913,17 @@ msgstr ""
 "\n"
 "\n"
 "\n"
-"Klikkaa\n"
-"Lisätäksesi\n"
-"Kuva\n"
+"დააწკაპუნეთ\n"
+"სურათის\n"
+"დასამატებლად\n"
 
 # Error message dialog content text shown when user tried to access article, that was not stored in local database
 #: FrontWidget.cpp:1329
 msgctxt "FrontWidget|"
 msgid "Article not found from local storage"
-msgstr "Artikkelia ei paikallisesta tietokannasta löydy"
+msgstr "ლოკალურ საცავში სტატია ვერ ვიპოვე"
 
-# Tool-tip text. Shown on top of operators address when user hovers mouse on top of the address field. The  %1 will be replaced by nickname of an operator who trusts this particular operator. The %2 will be replaced by SHA1 digest of the operator who trusts the operator whose SHA1 is under mouse cursor.  
+# Tool-tip text. Shown on top of operators address when user hovers mouse on top of the address field. The  %1 will be replaced by nickname of an operator who trusts this particular operator. The %2 will be replaced by SHA1 digest of the operator who trusts the operator whose SHA1 is under mouse cursor.
 #: FrontWidget.cpp:1355 FrontWidget.cpp:1903
 #, qt-format
 msgctxt "FrontWidget|"
@@ -929,16 +931,16 @@ msgid ""
 "Trusted by %1\n"
 "SHA1 %2"
 msgstr ""
-"Johon luottaa %1\n"
+"%1-ის ნდობა\n"
 "SHA1 %2"
 
-# Tool tip text. Shown when user howers mouse on top of operators nickname field. In code a date-string will be concatenated to this string, so in practice in the UI it will read "Time of last update 31 aug 2015" or similar. 
+# Tool tip text. Shown when user howers mouse on top of operators nickname field. In code a date-string will be concatenated to this string, so in practice in the UI it will read "Time of last update 31 aug 2015" or similar.
 #: FrontWidget.cpp:1392
 msgctxt "FrontWidget|"
 msgid "Time of last update "
-msgstr "Viimeinen päivitysajankohta"
+msgstr "ბოლო განახლების დრო "
 
-# Text for image placeholder, shown in situation where another operator has not selected any image for her.This text is shown place of the missing image. 
+# Text for image placeholder, shown in situation where another operator has not selected any image for her.This text is shown place of the missing image.
 #: FrontWidget.cpp:1400
 msgctxt "FrontWidget|"
 msgid ""
@@ -952,202 +954,202 @@ msgstr ""
 "\n"
 "\n"
 "\n"
-"(Ei\n"
-"Kuvaa\n"
-"Valittuna)\n"
+"(გამოსახულება\n"
+"არჩეული\n"
+"არაა)\n"
 
-# Context menu item text. Context-menu is related to frequent-contacts column-view. 
+# Context menu item text. Context-menu is related to frequent-contacts column-view.
 #: FrontWidget.cpp:1494
 msgctxt "FrontWidget|"
 msgid "Edit contact.."
-msgstr "Muokkaa profiilin tietoja "
+msgstr "კონტაქტის ჩასწორება.."
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a private message to operator who sent the classified ad currently on display
 #: FrontWidget.cpp:1534
 msgctxt "FrontWidget|"
 msgid "&Reply to sender"
-msgstr "Vastaa lähettäjälle"
+msgstr "&გამომგზავნისთვის პასუხი"
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a reply to classified ad currently on display
 #: FrontWidget.cpp:1535
 msgctxt "FrontWidget|"
 msgid "Reply to &forum"
-msgstr "Vastaa foorumille"
+msgstr "&ფორუმზე პასუხი"
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a new classified ad.
 #: FrontWidget.cpp:1536
 msgctxt "FrontWidget|"
 msgid "&Post new ad"
-msgstr "Uusi ilmoitus"
+msgstr "&ახალი განცხადების დაპოსტვა"
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a public comment about operator who sent the classified ad currently on display
 #: FrontWidget.cpp:1537
 msgctxt "FrontWidget|"
 msgid "&Public comment"
-msgstr "Uusi kommentti"
+msgstr "&საჯარო კომენტარი"
 
 # Push button text. Pushing the button will switch to view detailing operator who sent the classified ad currently on display
 #: FrontWidget.cpp:1538
 msgctxt "FrontWidget|"
 msgid "&View profile"
-msgstr "Katsele profiilia"
+msgstr "&პროფილის ნახვა"
 
 # Push button text. Pushing the button will open a a listing of files that are attached to classified ad currently on display
 #: FrontWidget.cpp:1539 FrontWidget.cpp:1677
 msgctxt "FrontWidget|"
 msgid "Attachments.."
-msgstr "Liitetiedostot.."
+msgstr "დანართები.."
 
 # Push button text. Pushing the button will open an editor prompting user to add to her contact-list the operator who sent the classified ad currently on display
 #: FrontWidget.cpp:1599
 msgctxt "FrontWidget|"
 msgid "Add selected operator to contacts.."
-msgstr "Lisää valittu operaattori osoitekirjaan.."
+msgstr "კონტაქტებისთვის მონიშნული ოპერატორის დამატება.."
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a private message to operator who sent the private message currently on display
 #: FrontWidget.cpp:1673
 msgctxt "FrontWidget|"
 msgid "&Reply"
-msgstr "Vastaa"
+msgstr "&პასუხი"
 
-# Push button text. Pushing the button will open an editor prompting user to edit+send a private message to some operator. 
+# Push button text. Pushing the button will open an editor prompting user to edit+send a private message to some operator.
 #: FrontWidget.cpp:1674
 msgctxt "FrontWidget|"
 msgid "&New message"
-msgstr "Uusi viesti"
+msgstr "ახალი &შეტყობინება"
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a public comment about operator who sent the private message currently on display
 #: FrontWidget.cpp:1675
 msgctxt "FrontWidget|"
 msgid "&Send public comment to sender"
-msgstr "Esitä julkinen kommentti lähettäjästä"
+msgstr "&გამომგზავნისთვის საჯარო კომენტარის გაგზავნა"
 
-# Push button text. Pushing the button will open view that will show details of operator, who sent the private message currently on display. 
+# Push button text. Pushing the button will open view that will show details of operator, who sent the private message currently on display.
 #: FrontWidget.cpp:1676
 msgctxt "FrontWidget|"
 msgid "&View profile of peer"
-msgstr "Näytä viesti-osapuolen profiili"
+msgstr "პარტნიორის პროფილის &ნახვა"
 
-# Context menu item text. Appears in "message listing view" when user right-clicks on messages view. When selected, the operator who sent the message that is selected is added to contacts. 
+# Context menu item text. Appears in "message listing view" when user right-clicks on messages view. When selected, the operator who sent the message that is selected is added to contacts.
 #: FrontWidget.cpp:1711
 msgctxt "FrontWidget|"
 msgid "Add selected to contacts.."
-msgstr "Lisää valittu osoitekirjaan"
+msgstr "მონიშნულის კონტაქტებისთვის დამატება..."
 
-# Text field label. Label tells who sent particular classified ad. 
+# Text field label. Label tells who sent particular classified ad.
 #: FrontWidget.cpp:1913 FrontWidget.cpp:1915 FrontWidget.cpp:1979
 #: FrontWidget.cpp:1981
 msgctxt "FrontWidget|"
 msgid "From:"
-msgstr "Keneltä:"
+msgstr "ვისგან:"
 
-# Text field label. Label tells subject of classified ads. 
+# Text field label. Label tells subject of classified ads.
 #: FrontWidget.cpp:1917 FrontWidget.cpp:1984
 msgctxt "FrontWidget|"
 msgid "Subject:"
-msgstr "Aihe:"
+msgstr "სათაური:"
 
-# Text field label. Label tells whom a private message was sent to. 
+# Text field label. Label tells whom a private message was sent to.
 #: FrontWidget.cpp:1976
 msgctxt "FrontWidget|"
 msgid "To:"
-msgstr "Kenelle:"
+msgstr "ვის:"
 
-# Error dialog content text. Shown in situation when user clicked on a link that contained SHA1 digest that was not valid. 
+# Error dialog content text. Shown in situation when user clicked on a link that contained SHA1 digest that was not valid.
 #: FrontWidget.cpp:2288
 msgctxt "FrontWidget|"
 msgid "Invalid SHA1 in URL"
-msgstr "Viallinen SHA1-tiiviste URLissa"
+msgstr "ბმულის SHA1 არასწორია"
 
-# Error dialog content text. Shown in situation when user clicked on a link that was not correctly formatted. 
+# Error dialog content text. Shown in situation when user clicked on a link that was not correctly formatted.
 #: FrontWidget.cpp:2315
 msgctxt "FrontWidget|"
 msgid "Invalid URL"
-msgstr "Viallinen URL"
+msgstr "არასწორი URL"
 
-# Error dialog content text. Shown in situation when user entered a link that could not be parsed.  
+# Error dialog content text. Shown in situation when user entered a link that could not be parsed.
 #: ui/insertlinkdialog.cpp:69
 msgctxt "InsertLinkDialog|"
 msgid "Invalid URL"
-msgstr "Väärän mallinen URL"
+msgstr "არასწორი URL"
 
-# Error dialog content text. Shown in situation when user tried to add connection to node whose name was not found via nameserver. 
+# Error dialog content text. Shown in situation when user tried to add connection to node whose name was not found via nameserver.
 #: ui/manualconnection.cpp:53
 msgctxt "ManualConnectionDialog|"
 msgid "DNS lookup failure"
-msgstr "Nimeä ei löydy nimipalvelusta (DNS)"
+msgstr "DNS ძებნის შეცდომა"
 
-# Error dialog title text. Actual error message will be shown inside the dialog. 
+# Error dialog title text. Actual error message will be shown inside the dialog.
 #: ui/newprivmsgdialog.cpp:88 ui/newprivmsgdialog.cpp:138
 msgctxt "NewPrivMessageDialog|"
 msgid "Error"
-msgstr "Vikaa"
+msgstr "შეცდომა"
 
-# Error dialog content text. Dialog is shown when user tries to send a message to operator, whose SHA1 digest (as entered by user) does not parse as SHA1 digest. 
+# Error dialog content text. Dialog is shown when user tries to send a message to operator, whose SHA1 digest (as entered by user) does not parse as SHA1 digest.
 #: ui/newprivmsgdialog.cpp:89
 msgctxt "NewPrivMessageDialog|"
 msgid "Recipient addr is not valid"
-msgstr "Vastaanottajan osoite ei ole kelvollinen"
+msgstr "მიმღების მისამართი არასწორია"
 
-# Error dialog content text. Dialog is shown when user tries to send a message to operator, whose encryption keys are present in local storage. 
+# Error dialog content text. Dialog is shown when user tries to send a message to operator, whose encryption keys are present in local storage.
 #: ui/newprivmsgdialog.cpp:139
 msgctxt "NewPrivMessageDialog|"
 msgid "Recipient encryption key not found from storage"
-msgstr "Vastaanottajan salausavainta ei paikallisesta tietokannasta löydy"
+msgstr "საცავში მიმღების დაშიფვრის გასაღები აღმოჩენილი არაა"
 
 # Error dialog title text. Actual error message will be shown inside the dialog.
 #: ui/newprofilecommentdialog.cpp:89 ui/newprofilecommentdialog.cpp:126
 msgctxt "NewProfileCommentDialog|"
 msgid "Error"
-msgstr "Vikaa"
+msgstr "შეცდომა"
 
 # Error dialog content text. Dialog is shown when user tries to comment an operator, whose SHA1 digest (as entered by user) does not parse as SHA1 digest.
 #: ui/newprofilecommentdialog.cpp:90
 msgctxt "NewProfileCommentDialog|"
 msgid "Commented profile addr is not valid"
-msgstr "Kommentoidun profiilin osoite ei ole kelvollinen"
+msgstr "კომენარის დასატოვებელი პროფილის მისამართი არასწორია"
 
 # Error dialog content text. Dialog is shown when user tries to send a message to operator, whose encryption keys are present in local storage.
 #: ui/newprofilecommentdialog.cpp:127
 msgctxt "NewProfileCommentDialog|"
 msgid "Recipient encryption key not found from storage"
-msgstr "Valitun profiilin salausavainta ei paikallisesta tietokannasta löydy"
+msgstr "საცავში მიმღების დაშიფვრის გასაღები აღმოჩენილი არაა"
 
 # Error message text. Will be shown in error message dialog in case when initial SSL key generation of node did not succeed. After user dismisses the dialog, the application will close.
 #: datamodel/nodemodel.cpp:115
 msgctxt "NodeModel|"
 msgid "SSL key generation went wrong, calling exit.."
-msgstr "SSL-avaimen luonti epäonnistui, poistutaan.."
+msgstr "SSL გასაღების გენერაციის შეცდომა. პროგრამიდან გასვლა.."
 
 # Error message text. Will be shown in error message dialog in case when initial encryption key generation of user did not succeed. After user dismisses the dialog, the application will close.
 #: datamodel/nodemodel.cpp:123
 msgctxt "NodeModel|"
 msgid "x509 cert generation went wrong, calling exit.."
-msgstr "x509-sertifikaatin luonti epäonnistui, poistutaan.."
+msgstr "x509 სერტიფიკატის გენერაციის შეცდომა. პროგრამიდან გასვლა.."
 
 # Error message text. Will be shown in error message dialog in case when SSL certificate of the node could not be loaded from storage. After user dismisses the dialog, the application will close.
 #: datamodel/nodemodel.cpp:1596
 msgctxt "NodeModel|"
 msgid "Cant load SSL cert"
-msgstr "SSL-sertifikaatin lataaminen ei onnistu"
+msgstr "SSL სერტიფიკატის ჩატვირთვის შეცდომა"
 
 # Error message text. Will be shown in error message dialog in case when SSL key of the node could not be retrieved from local storage. After user dismisses the dialog, the application will close.
 #: datamodel/nodemodel.cpp:1626
 msgctxt "NodeModel|"
 msgid "Cant load SSL key"
-msgstr "SSL-avaimen lataaminen ei onnistu"
+msgstr "SSL გასაღების ჩატვირთვის შეცდომა"
 
-# Error message text. Shown in dialog when user tries to enter a password that is too short. 
+# Error message text. Shown in dialog when user tries to enter a password that is too short.
 #: ui/passwd_dialog.cpp:104
 msgctxt "PasswdDialog|"
 msgid "Min length 5 (use 10+)"
-msgstr "Vähimmäispituus on 5 (käytä silti ainakin 10)"
+msgstr "მინ. სიგრძეა 5 (გამოიყენეთ 10+)"
 
-# Password dialog title text. 
+# Password dialog title text.
 #: ui/passwordDialog.ui:14
 msgctxt "PasswordDialog|"
 msgid "Password required"
-msgstr "Salasana on pakollinen"
+msgstr "პაროლი აუცილებელია"
 
 # Tooltip text for password dialog. Shown when user hovers on top of password dialog.
 #: ui/passwordDialog.ui:17
@@ -1156,14 +1158,13 @@ msgid ""
 "Should you forget this word, there is no easy way to recover any of your "
 "content"
 msgstr ""
-"Unohdapa tämä salasana ja viestiesi lukemiseen vain ei ole olemassa mitään "
-"helppoa menetelmää"
+"თუ ეს სიტყვა დაგავიწყდათ, იოლი გზა თქვენი შემცველობის აღსადგენად არ არსებობს"
 
-# Prompt text for password dialog. 
+# Prompt text for password dialog.
 #: ui/passwordDialog.ui:29
 msgctxt "PasswordDialog|"
 msgid "Enter password for protection of your messages"
-msgstr "Valitse salasana viestiesi turvaamiseksi"
+msgstr "შეიყვანეთ პაროლი თქვენი შეტყობინებების დასაცავად"
 
 # Tooltip text for password dialog. Shown when user hovers on top of password field
 #: ui/passwordDialog.ui:42
@@ -1171,22 +1172,21 @@ msgctxt "PasswordDialog|"
 msgid ""
 "If you forget this word, there is no simple way to recover your contents"
 msgstr ""
-"Jos unohdat tämän sanan, viestiesi lukemiseksi ei ole olemassa mitään "
-"helppoa menetelmää"
+"თუ ეს სიტყვა დაგავიწყდათ, იოლი გზა თქვენი შემცველობის აღსადგენად არ არსებობს"
 
-# Password dialog button text 
+# Password dialog button text
 #: ui/passwordDialog.ui:55
 msgctxt "PasswordDialog|"
 msgid "OK"
-msgstr "OK"
+msgstr "დიახ"
 
-# Check-box item text. If check-box is selected, password is shown in text editor, if not selected then "hidden text" editor is used that does not show the word being typed. 
+# Check-box item text. If check-box is selected, password is shown in text editor, if not selected then "hidden text" editor is used that does not show the word being typed.
 #: ui/passwordDialog.ui:68
 msgctxt "PasswordDialog|"
 msgid "Show password"
-msgstr "Näytä salasana"
+msgstr "პაროლის ჩვენება"
 
-# Tooltip text. Shown when user hovers mouse cursor on top of message sender name. First %1 will be replaced with nickname of the operator whose message is hovered, %2 will be replaced by nickname of operator who has expressed positive trust towards the operator who sent the message. 
+# Tooltip text. Shown when user hovers mouse cursor on top of message sender name. First %1 will be replaced with nickname of the operator whose message is hovered, %2 will be replaced by nickname of operator who has expressed positive trust towards the operator who sent the message.
 #: datamodel/privmsgsearchmodel.cpp:110
 #, qt-format
 msgctxt "PrivateMessageSearchModel|"
@@ -1195,594 +1195,596 @@ msgid ""
 "Trusted by %2"
 msgstr ""
 "%1\n"
-"johon luottaa %2"
+"%2 ენდობა"
 
 # Tooltip text. Used in column view that lists private messages of operator. Explains the field that gives title to column that specifies direction (sent or received) of the message.
 #: datamodel/privmsgsearchmodel.cpp:237
 msgctxt "PrivateMessageSearchModel|"
 msgid "Direction of message, sent/received"
-msgstr "Viestin suunta, lähetetty/vastaanotettu"
+msgstr "შეტყობინების მიმართულება გაგზავნილი/მიღებული"
 
 # Column title text. Used in column view that lists private messages of operator. This field gives title to column that specifies direction (sent/received) of the message.
 #: datamodel/privmsgsearchmodel.cpp:247
 msgctxt "PrivateMessageSearchModel|"
 msgid "Dir"
-msgstr "Suunta"
+msgstr "საქაღალდე"
 
 # Column title text. Used in column view that lists private messages of operator. This field gives title to column that specifies messaging peer (another operator) of the message.
 #: datamodel/privmsgsearchmodel.cpp:250
 msgctxt "PrivateMessageSearchModel|"
 msgid "Peer"
-msgstr "Osapuoli"
+msgstr "პარტნიორი"
 
 # Column title text. Used in column view that lists private messages of operator. This field gives title to column that specifies time of the message.
 #: datamodel/privmsgsearchmodel.cpp:253
 msgctxt "PrivateMessageSearchModel|"
 msgid "Time"
-msgstr "Aika"
+msgstr "დრო"
 
 # Column title text. Used in column view that lists private messages of operator. This field gives title to column that specifies subject of the message.
 #: datamodel/privmsgsearchmodel.cpp:256
 msgctxt "PrivateMessageSearchModel|"
 msgid "Subject"
-msgstr "Aihe"
+msgstr "თემა"
 
 # Push button text. Clicking the button will open a dialog prompting user to add a new comment
 #: ui/profilecommentdisplay.cpp:54
 msgctxt "ProfileCommentDisplay|"
 msgid "&Add comment..."
-msgstr "Lisää kommentti..."
+msgstr "&კომენტარის დამატება..."
 
-# Context menu item text. Context menu is shown when user right-clicks on file listing view. When this item is selected, a file selection dialog is opened. 
+# Context menu item text. Context menu is shown when user right-clicks on file listing view. When this item is selected, a file selection dialog is opened.
 #: ui/profilecommentdisplay.cpp:65
 msgctxt "ProfileCommentDisplay|"
 msgid "Save attachment to disk.."
-msgstr "Tallenna liite tiedostojärjestelmälle.."
+msgstr "მიმაგრებული ფაილის შენახვა..."
 
 # Error dialog title text
 #: ui/profilecommentdisplay.cpp:92
 msgctxt "ProfileCommentDisplay|"
 msgid "Error"
-msgstr "Vikaa"
+msgstr "შეცდომა"
 
 # Error dialog content text. Shown after user tried to access a profile comment and the comment could not be found
 #: ui/profilecommentdisplay.cpp:93
 msgctxt "ProfileCommentDisplay|"
 msgid "Article not found from local storage"
-msgstr "Kommenttia ei paikallisesta tietokannasta löydy"
+msgstr "ლოკალურ საცავში სტატია ვერ ვიპოვე"
 
-# Text field label text. The text field whose label this is will show number how many attachements there are in the comment. 
+# Text field label text. The text field whose label this is will show number how many attachements there are in the comment.
 #: ui/profilecommentitemdelegate.cpp:93
 msgctxt "ProfileCommentItemDelegate|"
 msgid "Attachments: "
-msgstr "Liitteet: "
+msgstr "დანართები: "
 
-# Column view column title text. The column view in question lists profile comments. This text gives title to column that tells who sent the comment. 
+# Column view column title text. The column view in question lists profile comments. This text gives title to column that tells who sent the comment.
 #: datamodel/profilecommentlistingmodel.cpp:219
 msgctxt "ProfileCommentListingModel|"
 msgid "Sender"
-msgstr "Lähettäjä"
+msgstr "გამომგზავნი"
 
 # Column view column title text. The column view in question lists profile comments. This text gives title to column that tells when comment was sent.
 #: datamodel/profilecommentlistingmodel.cpp:222
 msgctxt "ProfileCommentListingModel|"
 msgid "Time"
-msgstr "Aika"
+msgstr "დრო"
 
-# Column view column title text. The column view in question lists profile comments. This text gives title to column that tells subject of the comment. 
+# Column view column title text. The column view in question lists profile comments. This text gives title to column that tells subject of the comment.
 #: datamodel/profilecommentlistingmodel.cpp:225
 msgctxt "ProfileCommentListingModel|"
 msgid "Subject"
-msgstr "Aihe"
+msgstr "თემა"
 
-# Error message text. Shown inside a dialog after user tried to send a comment to operator who had sent a comment and it turns out that necessary encryption keys of the commenting operator are not found and the replying comment can't be sent. 
+# Error message text. Shown inside a dialog after user tried to send a comment to operator who had sent a comment and it turns out that necessary encryption keys of the commenting operator are not found and the replying comment can't be sent.
 #: datamodel/profilecommentmodel.cpp:67
 msgctxt "ProfileCommentModel|"
 msgid "Profile related to comment not found from database"
-msgstr ""
-"Kommenttiin liittyvän profiilin tietoja ei paikallisesta tietokannasta löydy"
+msgstr "პროფილის შესაბამისი კომენტარი ბაზაში ვერ ვიპოვე"
 
 # Context menu item text. This context-menu is shown when user right-clicks list of operators that is shown in dialog that is made for listing operators (who are readers of another profile)
 #: ui/profilereadersdialog.cpp:73
 msgctxt "ProfileReadersDialog|"
 msgid "View profile"
-msgstr "Tarkastele profiilia"
+msgstr "პროფილის ნახვა"
 
-# Column view column title text. The column view lists readers (operators) of another profile. 
+# Column view column title text. The column view lists readers (operators) of another profile.
 #: datamodel/profilereaderslistingmodel.cpp:174
 msgctxt "ProfileReadersListingModel|"
 msgid "Name or fingerprint of reader"
-msgstr "Lukijan nimi tai SHA1-tiiviste"
+msgstr "მკითხველის სახელი ან ანაბეჭდი"
 
 # Error message text, displayed in dialog if audio hardware does not support the format. Should be rare occasion or then gross error like missing soundcard.
 #: call/ringtoneplayer.cpp:77
 msgctxt "RingtonePlayer|"
 msgid "raw audio format not supported by backend, cannot play audio."
-msgstr "Ääniformaatti ei ole tuettu, ääniä ei voi soittaa."
+msgstr ""
+"უკანაბოლოს დაუმუშავებელი ხმის მხარდაჭერა არ გააჩნია. ხმას ვერ დავუკრავ."
 
-# Error message text shown in dialog if audio output API returned error in initialization. Should be rare error, or missing audio hardware .. or audio subsystem configuration error. 
+# Error message text shown in dialog if audio output API returned error in initialization. Should be rare error, or missing audio hardware .. or audio subsystem configuration error.
 #: call/ringtoneplayer.cpp:93
 msgctxt "RingtonePlayer|"
 msgid "Could not initialize audio player."
-msgstr "Äänitoistimen alustus epäonnistui."
+msgstr "აუდიოს დამკვრელის ინიციალიზაციის შეცდომა."
 
 # Tool-tip text for search dialog textbox of words to search for
 #: ui/searchdisplay.cpp:54
 msgctxt "SearchDisplay|"
 msgid "Leave empty to search any recent documents"
-msgstr "Jätä tyhjäksi hakeaksesi mitä tahansa uusia dokumenttejä"
+msgstr "უახლესი დოკუმენტების მოსაძებნად ცარიელი დატოვეთ"
 
-# Context menu item text. This context menu is shown when user right-clicks on top of search-results. This menu-item opens the currently-selected item from search results. 
+# Context menu item text. This context menu is shown when user right-clicks on top of search-results. This menu-item opens the currently-selected item from search results.
 #: ui/searchdisplay.cpp:64
 msgctxt "SearchDisplay|"
 msgid "Open.."
-msgstr "Avaa.."
+msgstr "გახსნა.."
 
-# Button text. When button is pressed, TCL program is started. 
+# Button text. When button is pressed, TCL program is started.
 #: ui/tclPrograms.cpp:42
 msgctxt "TclProgramsDialog|"
 msgid "Evaluate"
-msgstr "Suorita"
+msgstr "შეფასება"
 
 # Button text. If button is pressed, TCL program being executed is stopped.
 #: ui/tclPrograms.cpp:43
 msgctxt "TclProgramsDialog|"
 msgid "Stop program"
-msgstr "Pysäytä ohjelma"
+msgstr "პროგრამის დასრულება"
 
 # Button text for button that permanently removes TCL program from local library
 #: ui/tclPrograms.cpp:49
 msgctxt "TclProgramsDialog|"
 msgid "Delete program"
-msgstr "Poista ohjelma"
+msgstr "პროგრამის წაშლა"
 
-# Dialog title for dialog that asks user to type in name of TCL program. 
+# Dialog title for dialog that asks user to type in name of TCL program.
 #: ui/tclPrograms.cpp:99
 msgctxt "TclProgramsDialog|"
 msgid "TCL Program name"
-msgstr "TCL-Ohjelman nimi"
+msgstr "TCL-ის პროგრამის სახელი"
 
-# Text-input label text. Text input will contain name of TCL program. 
+# Text-input label text. Text input will contain name of TCL program.
 #: ui/tclPrograms.cpp:100
 msgctxt "TclProgramsDialog|"
 msgid "Name:"
-msgstr "Nimi:"
+msgstr "სახელი:"
 
-# Dialog title text for situation where user is about to delete a TCL program. Dialog includes question and yes+no buttons. 
+# Dialog title text for situation where user is about to delete a TCL program. Dialog includes question and yes+no buttons.
 #: ui/tclPrograms.cpp:140
 msgctxt "TclProgramsDialog|"
 msgid "Deletion confirmation"
-msgstr "Poistovarmistus"
+msgstr "წაშლის დადასტურება"
 
 # Dialog text from deletion-confirmation dialog
 #: ui/tclPrograms.cpp:141
 #, qt-format
 msgctxt "TclProgramsDialog|"
 msgid "Permanently delete program %1?"
-msgstr "Poistetaanko pysyvästi ohjelma %1?"
+msgstr "სამუდამოდ წავშალო პროგრამა %1?"
 
-# Menu title text. This is the help menu. 
+# Menu title text. This is the help menu.
 #: textedit/textedit.cpp:127
 msgctxt "TextEdit|"
 msgid "Help"
-msgstr "Apua"
+msgstr "დახმარება"
 
-# Menu-item text used in "help" menu. Selecting this item opens "about" dialog about Qt library. 
+# Menu-item text used in "help" menu. Selecting this item opens "about" dialog about Qt library.
 #: textedit/textedit.cpp:129
 msgctxt "TextEdit|"
 msgid "About &Qt"
-msgstr "Tietoja Qt:stä"
+msgstr "&Qt-ის შესახებ"
 
-# Window title text for container-window containing actions. It seems to me that this text actually does not appear anywhere in the UI due to way, how container-windows are used. 
+# Window title text for container-window containing actions. It seems to me that this text actually does not appear anywhere in the UI due to way, how container-windows are used.
 #: textedit/textedit.cpp:186
 msgctxt "TextEdit|"
 msgid "Edit Actions"
-msgstr "Muokkaa toimintoja"
+msgstr "ქმედებების ჩასწორება"
 
-# Menu text. This gives text to "file" menu of a text editor. 
+# Menu text. This gives text to "file" menu of a text editor.
 #: textedit/textedit.cpp:188
 msgctxt "TextEdit|"
 msgid "&File"
-msgstr "Tiedosto"
+msgstr "&ფაილი"
 
 # Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "open a filesystem file"
 #: textedit/textedit.cpp:194
 msgctxt "TextEdit|"
 msgid "&Open..."
-msgstr "Avaa.."
+msgstr "&გახსნა..."
 
-# Menu item text inside menu in text editor. When selected, the text being edited will be saved into local filesystem file. 
+# Menu item text inside menu in text editor. When selected, the text being edited will be saved into local filesystem file.
 #: textedit/textedit.cpp:203
 msgctxt "TextEdit|"
 msgid "&Save locally before send"
-msgstr "Tallenna paikallisesti ennen lähettämistä"
+msgstr "&გაგზავნამდე ლოკალურად შენახვა"
 
-# Menu item text inside menu in text editor. When selected, the text being edited will be saved into local filesystem file and user will be queried for file name. 
+# Menu item text inside menu in text editor. When selected, the text being edited will be saved into local filesystem file and user will be queried for file name.
 #: textedit/textedit.cpp:210
 msgctxt "TextEdit|"
 msgid "Save locally &As..."
-msgstr "Tallenna paikallisesti nimellä.."
+msgstr "ფაილის ლოკალურად შენახვა, &როგორც..."
 
 # Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "print"
 #: textedit/textedit.cpp:218
 msgctxt "TextEdit|"
 msgid "&Print..."
-msgstr "Tulosta.."
+msgstr "&ბეჭდვა..."
 
 # Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "open print preview"
 #: textedit/textedit.cpp:226
 msgctxt "TextEdit|"
 msgid "Print Preview..."
-msgstr "Tulostuksen esikatselu.."
+msgstr "დასაბეჭდის გადახედვა..."
 
 # Menu-item text. Used in file-menu for triggering "export as pdf" operation
 #: textedit/textedit.cpp:231
 msgctxt "TextEdit|"
 msgid "&Export PDF..."
-msgstr "Vie PDF-muodossa.."
+msgstr "&PDF-ად გატანა..."
 
 # Menu text for "edit" menu of text editor.
 #: textedit/textedit.cpp:244
 msgctxt "TextEdit|"
 msgid "&Edit"
-msgstr "Muokkaa"
+msgstr "&ჩასწორება"
 
 # Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "undo"
 #: textedit/textedit.cpp:249
 msgctxt "TextEdit|"
 msgid "&Undo"
-msgstr "Peru"
+msgstr "&დაბრუნება"
 
 # Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "re-do"
 #: textedit/textedit.cpp:254
 msgctxt "TextEdit|"
 msgid "&Redo"
-msgstr "Tee uudelleen"
+msgstr "&თავიდან გაკეთება"
 
 # Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "cut" (to clipboard)
 #: textedit/textedit.cpp:261
 msgctxt "TextEdit|"
 msgid "Cu&t"
-msgstr "Leikkaa"
+msgstr "ამ&ოჭრა"
 
 # Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "copy to clipboard"
 #: textedit/textedit.cpp:267
 msgctxt "TextEdit|"
 msgid "&Copy"
-msgstr "Kopioi"
+msgstr "&კოპირება"
 
 # Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "paste from clipboard"
 #: textedit/textedit.cpp:273
 msgctxt "TextEdit|"
 msgid "&Paste"
-msgstr "Liitä"
+msgstr "&ჩასმა"
 
-# Menu item text inside text editor "edit" menu. After this menu-item is selected, a dialog is opened, prompting user to enter a link (URL) to be included in the text. 
+# Menu item text inside text editor "edit" menu. After this menu-item is selected, a dialog is opened, prompting user to enter a link (URL) to be included in the text.
 #: textedit/textedit.cpp:283
 msgctxt "TextEdit|"
 msgid "Insert link"
-msgstr "Lisää viite"
+msgstr "ბმულის ჩასმა"
 
 # Menu-item text for embedding an image
 #: textedit/textedit.cpp:287
 msgctxt "TextEdit|"
 msgid "Embed image"
-msgstr "Sisällytä kuva"
+msgstr "გამოსახულების ჩაშენება"
 
-# Menu text. Gives name for a "format" menu inside a text editor. 
+# Menu text. Gives name for a "format" menu inside a text editor.
 #: textedit/textedit.cpp:294
 msgctxt "TextEdit|"
 msgid "F&ormat"
-msgstr "Muotoile"
+msgstr "&ფორმატი"
 
 # Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "toggle bold text style"
 #: textedit/textedit.cpp:298
 msgctxt "TextEdit|"
 msgid "&Bold"
-msgstr "Lihavoitu"
+msgstr "&სქელი"
 
 # Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "toggle italic text"
 #: textedit/textedit.cpp:310
 msgctxt "TextEdit|"
 msgid "&Italic"
-msgstr "Kursivoitu"
+msgstr "&დახრილი"
 
 # Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "toggle underline"
 #: textedit/textedit.cpp:322
 msgctxt "TextEdit|"
 msgid "&Underline"
-msgstr "Alleviivattu"
+msgstr "&ხაზგასმა"
 
 # Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "left-justify"
 #: textedit/textedit.cpp:341 textedit/textedit.cpp:347
 msgctxt "TextEdit|"
 msgid "&Left"
-msgstr "Tasattu vasemmalle"
+msgstr "მარ&ცხნივ"
 
 # Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "toggle centered text"
 #: textedit/textedit.cpp:342 textedit/textedit.cpp:346
 msgctxt "TextEdit|"
 msgid "C&enter"
-msgstr "Keskitetty"
+msgstr "&ცენტრზე სწორება"
 
 # Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "right-justify"
 #: textedit/textedit.cpp:343 textedit/textedit.cpp:345
 msgctxt "TextEdit|"
 msgid "&Right"
-msgstr "Tasattu oikealle"
+msgstr "&მარჯვენა"
 
 # Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "justify both right+left"
 #: textedit/textedit.cpp:349
 msgctxt "TextEdit|"
 msgid "&Justify"
-msgstr "Tasattu molempiin laitoihin"
+msgstr "ტექსტის მარჯვნივ და მარცხნივ გასწორება"
 
 # Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "color selection"
 #: textedit/textedit.cpp:376
 msgctxt "TextEdit|"
 msgid "&Color..."
-msgstr "Väri.."
+msgstr "&ფერი..."
 
 # Combobox item text. The combobox is used to select text style. The text style selected with this text is "standard"
 #: textedit/textedit.cpp:383
 msgctxt "TextEdit|"
 msgid "Standard"
-msgstr "Normaalimuoto"
+msgstr "სტანდარტული"
 
 # Combobox item text. The combobox is used to select text style. The text style selected with this text is "bullet list (disc)"
 #: textedit/textedit.cpp:384
 msgctxt "TextEdit|"
 msgid "Bullet List (Disc)"
-msgstr "Pisteellinen lista (palloilla)"
+msgstr "დაუნომრავი სია (დისკი)"
 
 # Combobox item text. The combobox is used to select text style. The text style selected with this text is "bullet list (circle)"
 #: textedit/textedit.cpp:385
 msgctxt "TextEdit|"
 msgid "Bullet List (Circle)"
-msgstr "Pisteellinen lista (ympyröillä)"
+msgstr "დაუნომრავი სია (წრე)"
 
 # Combobox item text. The combobox is used to select text style. The text style selected with this text is "bullet list (square)"
 #: textedit/textedit.cpp:386
 msgctxt "TextEdit|"
 msgid "Bullet List (Square)"
-msgstr "Pisteellinen lista (laatikoilla)"
+msgstr "დაუნომრავი სია (ოთხკუთხედი"
 
 # Combobox item text. The combobox is used to select text style. The text style selected with this text is "ordered list (decimal)"
 #: textedit/textedit.cpp:387
 msgctxt "TextEdit|"
 msgid "Ordered List (Decimal)"
-msgstr "Numeroitu lista (desimaaliluvuin)"
+msgstr "დალაგებული სია (ათობითი)"
 
 # Combobox item text. The combobox is used to select text style. The text style selected with this text is "ordered list (alpha lower)"
 #: textedit/textedit.cpp:388
 msgctxt "TextEdit|"
 msgid "Ordered List (Alpha lower)"
-msgstr "Numeroitu lista (pienin kirjaimin)"
+msgstr "დალაგებული სია (ანბანი დაბალი რეგისტრი)"
 
 # Combobox item text. The combobox is used to select text style. The text style selected with this text is "ordered list (alpha upper)"
 #: textedit/textedit.cpp:389
 msgctxt "TextEdit|"
 msgid "Ordered List (Alpha upper)"
-msgstr "Numeroitu lista (suurin kirjaimin)"
+msgstr "დალაგებული სია (ანბანი მაღალი რეგისტრი)"
 
 # Combobox item text. The combobox is used to select text style. The text style selected with this text is "ordered list (roman lower)"
 #: textedit/textedit.cpp:390
 msgctxt "TextEdit|"
 msgid "Ordered List (Roman lower)"
-msgstr "Numeroitu lista (pienin roomalaisin)"
+msgstr "დალაგებული სია (რომაული დაბალი რეგისტრი)"
 
 # Combobox item text. The combobox is used to select text style. The text style selected with this text is "ordered list (roman upper)"
 #: textedit/textedit.cpp:391
 msgctxt "TextEdit|"
 msgid "Ordered List (Roman upper)"
-msgstr "Numeroitu lista (suurilla roomalaisilla)"
+msgstr "დალაგებული სია (რომაული მაღალი რეგისტრი)"
 
-# Warning dialog title text. This dialog is shown if user tries to exit without saving her text. 
+# Warning dialog title text. This dialog is shown if user tries to exit without saving her text.
 #: textedit/textedit.cpp:442
 msgctxt "TextEdit|"
 msgid "Application"
-msgstr "Tekstimuokkain"
+msgstr "აპლიკაცია"
 
-# Warning dialog title content text. Text asks what to do with modifications. The dialog has buttons Save,Discard and Cancel and this text is the question. 
+# Warning dialog title content text. Text asks what to do with modifications. The dialog has buttons Save,Discard and Cancel and this text is the question.
 #: textedit/textedit.cpp:443
 msgctxt "TextEdit|"
 msgid ""
 "The document has been modified.\n"
 "Do you want to save your changes?"
-msgstr "Tiedostoa on muutettu, haluatko tallettaa muutokset?"
+msgstr ""
+"დოკუმენტი შეიცვალა\n"
+"გნებავთ ცვლილებების შენახვა?"
 
-# File selection dialog title text. Dialog will prompt user to select a document for opening. 
+# File selection dialog title text. Dialog will prompt user to select a document for opening.
 #: textedit/textedit.cpp:467
 msgctxt "TextEdit|"
 msgid "Open File..."
-msgstr "Avaa tiedosto.."
+msgstr "ფაილის გახსნა..."
 
 # Text for file selection filter field to be used inside file selection dialog. There are 2 parts, separated by ";;" and those semicolons must be left in place. Also the filter parts like (*.htm) must not be edited. The explanations like "HTML-Files" may be edited.
 #: textedit/textedit.cpp:468
 msgctxt "TextEdit|"
 msgid "HTML-Files (*.htm *.html);;All Files (*)"
-msgstr "HTML-Tiedostot (*.htm *.html);;Kaikki tiedostot (*)"
+msgstr "HTML-ფაილები (*.htm *.html);;ყველა ფაილი(*)"
 
-# File selection dialog title text. Dialog in question prompts user to select name for file to be persisted. 
+# File selection dialog title text. Dialog in question prompts user to select name for file to be persisted.
 #: textedit/textedit.cpp:485
 msgctxt "TextEdit|"
 msgid "Save as..."
-msgstr "Tallenna nimellä.."
+msgstr "შენახვა როგორც..."
 
 # Text for file selection filter field to be used inside file selection dialog. There are 3 parts, separated by ";;" and those semicolons must be left in place. Also the filter parts like (*.odt) must not be edited. The explanations like "ODF-files" may be edited.
 #: textedit/textedit.cpp:486
 msgctxt "TextEdit|"
 msgid "ODF files (*.odt);;HTML-Files (*.htm *.html);;All Files (*)"
-msgstr ""
-"ODF Tiedostot (*.odt);;HTML-Tiedostot (*.htm *.html);;Kaikki tiedostot (*)"
+msgstr "ODF ფაილები (*.odt);;HTML-ფაილები (*.htm *.html);;ყველა ფაილი (*)"
 
-# Dialog title text. The dialog is printer dialog asking user how to print the text currently in editor. 
+# Dialog title text. The dialog is printer dialog asking user how to print the text currently in editor.
 #: textedit/textedit.cpp:501
 msgctxt "TextEdit|"
 msgid "Print Document"
-msgstr "Tulosta dokumentti"
+msgstr "დოკუმენტის დაბეჭდვა"
 
 # File selection dialog title text. Dialog will prompt user to select a document for opening.
 #: textedit/textedit.cpp:559
 msgctxt "TextEdit|"
 msgid "Open File"
-msgstr "Avaa tiedosto"
+msgstr "ფაილის გახსნა"
 
 # Text for file selection filter field to be used inside file selection dialog. The filter parts like (*.odt) must not be edited. The explanations like "Files" may be edited.
 #: textedit/textedit.cpp:561
 msgctxt "TextEdit|"
 msgid "Files (*.*)"
-msgstr "Kaikki tiedostot (*.*)"
+msgstr "ფაილები (*.*)"
 
-# Error dialog title text. 
+# Error dialog title text.
 #: textedit/textedit.cpp:566
 msgctxt "TextEdit|"
 msgid "Error"
-msgstr "Tapahtui virhe"
+msgstr "შეცდომა"
 
-# Error dialog content text. 
+# Error dialog content text.
 #: textedit/textedit.cpp:567
 msgctxt "TextEdit|"
 msgid "Can't load image"
-msgstr "Kuvan avaaminen ei onnistu"
+msgstr "გამოსახულების ჩატვირთვის შეცდომა"
 
 # Error message  displayed inside error dialog after user tried to select for operation a file whose size greatly exceeds file size limit.
 #: textedit/textedit.cpp:621 textedit/textedit.cpp:631
 msgctxt "TextEdit|"
 msgid "File way too big"
-msgstr "Tiedosto on aivan liian suuri"
+msgstr "ფაილი .ძალიან დიდია"
 
-# Button text for "incoming call" dialog. When user hits the button, call is answered. 
+# Button text for "incoming call" dialog. When user hits the button, call is answered.
 #: net/voicecallengine.cpp:525
 msgctxt "VoiceCallEngine|"
 msgid "Accept"
-msgstr "Vastaa"
+msgstr "თანხმობა"
 
-# Button text for "incoming call" dialog. When user hits the button, incoming call is rejected. 
+# Button text for "incoming call" dialog. When user hits the button, incoming call is rejected.
 #: net/voicecallengine.cpp:533
 msgctxt "VoiceCallEngine|"
 msgid "Reject"
-msgstr "Hylkää"
+msgstr "უარყოფა"
 
-# Button text for "ongoing call" dialog. When button is hit, call is closed. 
+# Button text for "ongoing call" dialog. When button is hit, call is closed.
 #: net/voicecallengine.cpp:535
 msgctxt "VoiceCallEngine|"
 msgid "Close"
-msgstr "Sulje"
+msgstr "დაკეტვა"
 
-# Tooltip text. Shown in listing of ongoing calls. This tooltip explains "operator address" column of the display. The text explained is SHA1-digest or operator name if known. 
+# Tooltip text. Shown in listing of ongoing calls. This tooltip explains "operator address" column of the display. The text explained is SHA1-digest or operator name if known.
 #: net/voicecallengine.cpp:551
 msgctxt "VoiceCallEngine|"
 msgid "Actual network address (SHA1) of the peer operator"
-msgstr "Osapuolen profiilin SHA1-tiiviste"
+msgstr "პარტნიორი ოპერატორის მიმდინარე ქსელური მისამართი (SHA1)"
 
-# Tooltip text for list display that lists ongoing voice calls. The text explained is (IP) address of the remote node of the voice call participant. 
+# Tooltip text for list display that lists ongoing voice calls. The text explained is (IP) address of the remote node of the voice call participant.
 #: net/voicecallengine.cpp:554
 msgctxt "VoiceCallEngine|"
 msgid "Network address of the remote node"
-msgstr "Osapuolen käyttämän solmun verkko-osoite"
+msgstr "დაშორებული კვანძის ქსელური მისამართი"
 
 # Column header text for display that lists ongoing calls. This gives header text for column that shows name of the call participant
 #: net/voicecallengine.cpp:564
 msgctxt "VoiceCallEngine|"
 msgid "Operator"
-msgstr "Operaattori"
+msgstr "ოპერატორი"
 
 # Column header text for display that lists ongoing calls. This gives header text for column that shows network address of the call participant
 #: net/voicecallengine.cpp:567
 msgctxt "VoiceCallEngine|"
 msgid "Node address"
-msgstr "Verkko-osoite"
+msgstr "კვანძის მისამართი"
 
 # Column header text for display that lists ongoing calls. This gives header text for column that shows state of the call (like open, closed, ringing etc)
 #: net/voicecallengine.cpp:570
 msgctxt "VoiceCallEngine|"
 msgid "Call status"
-msgstr "Puhelun tila"
+msgstr "ზარის მდგომარეობა"
 
-# Column header text for display that lists ongoing calls. This gives header text for column containing buttons for accepting, rejecting and ending a call. 
+# Column header text for display that lists ongoing calls. This gives header text for column containing buttons for accepting, rejecting and ending a call.
 #: net/voicecallengine.cpp:573
 msgctxt "VoiceCallEngine|"
 msgid "Controls"
-msgstr "Hallinta"
+msgstr "მმართველები"
 
-# Column header text for display that lists ongoing calls. This gives header text for column that shows name column containing button for ending an ongoing call. 
+# Column header text for display that lists ongoing calls. This gives header text for column that shows name column containing button for ending an ongoing call.
 #: net/voicecallengine.cpp:576
 msgctxt "VoiceCallEngine|"
 msgid "Ending"
-msgstr "Päättäminen"
+msgstr "დასრულება"
 
-# Call status text. When making a new outgoing call, this is status for new call that is not answered yet. 
+# Call status text. When making a new outgoing call, this is status for new call that is not answered yet.
 #: net/voicecallengine.cpp:613
 msgctxt "VoiceCallEngine|"
 msgid "Initializing"
-msgstr "Alustetaan"
+msgstr "ინიციალიზაცია"
 
 # Call status text. When receiving a new incoming call, this is status for new call that is not answered yet.
 #: net/voicecallengine.cpp:616
 msgctxt "VoiceCallEngine|"
 msgid "Incoming"
-msgstr "Saapuva"
+msgstr "შემომავალი"
 
 # Call status text. When voice call is in progress, this is the status.
 #: net/voicecallengine.cpp:619
 msgctxt "VoiceCallEngine|"
 msgid "Open"
-msgstr "Avoinna"
+msgstr "გახსნა"
 
 # Call status text. When voice call is marked to be closed, this is its status.
 #: net/voicecallengine.cpp:622
 msgctxt "VoiceCallEngine|"
 msgid "Closing"
-msgstr "Suljetaan"
+msgstr "დახურვა"
 
 # Call status text. When voice call is closed, this is the status text.
 #: net/voicecallengine.cpp:625
 msgctxt "VoiceCallEngine|"
 msgid "Closed"
-msgstr "Suljettu"
+msgstr "დახურულია"
 
 # Call status text. When voice call attempt ends in error, this is text displayed.
 #: net/voicecallengine.cpp:628
 msgctxt "VoiceCallEngine|"
 msgid "Error"
-msgstr "Virhe"
+msgstr "შეცდომა"
 
-# Call status text. When there is no voice call to display, this text may be displayed instead. 
+# Call status text. When there is no voice call to display, this text may be displayed instead.
 #: net/voicecallengine.cpp:631
 msgctxt "VoiceCallEngine|"
 msgid "No call"
-msgstr "Ei puhelua"
+msgstr "ზარის გარეშე"
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "general purpose" excuse, when no detailed reason is know.
 #: net/voicecallengine.cpp:834
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible"
-msgstr "Puhelu ei ole mahdollinen"
+msgstr "ხმოვანი ზარი შეუძლებელია"
 
-# Tooltip text for button that initiates a new call. This gives an excuse why button is not dimmed and call is possible. 
+# Tooltip text for button that initiates a new call. This gives an excuse why button is not dimmed and call is possible.
 #: net/voicecallengine.cpp:840
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is possible"
-msgstr "Puhelu on mahdollinen"
+msgstr "ხმოვანი ზარი შესაძლებელია"
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "SHA1 digest of operator is not known"
 #: net/voicecallengine.cpp:847
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible: operator address unknown"
-msgstr "Puhelu ei ole mahdollinen: operaattorin SHA1-tiiviste on tuntematon"
+msgstr "ხმოვანი ზარი შეუძლებელია: ოპერატორის მისამართი უცნობია"
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "operators profile not found (from local database)"
 #: net/voicecallengine.cpp:853
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible: operator profile not found"
-msgstr "Puhelu ei ole mahdollinen: operaattorin profiilia ei löydy"
+msgstr "ხმოვანი ზარი შეუძლებელია: ოპერატორის პროფილი ვერ ვიპოვე"
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "there is no network address included in node information of the profile"
 #: net/voicecallengine.cpp:856
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible: operator has no node information in profile"
-msgstr "Puhelu ei ole mahdollinen: operaattorin solmusta puuttuu verkko-osoite"
+msgstr ""
+"ხმოვანი ზარი შეუძლებელია: ოპერატორს პროფილში კვანძის ინფორმაცია არ გააჩნია"
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "there is no (ipv4) network connection to node"
 #: net/voicecallengine.cpp:875
@@ -1790,8 +1792,7 @@ msgstr "Puhelu ei ole mahdollinen: operaattorin solmusta puuttuu verkko-osoite"
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible: operators IPv4 address %1 not connected"
 msgstr ""
-"Puhelu ei ole mahdollinen: operaattorin solmun IPv4-verkko-osoitteeseen %1 "
-"ei ole yhteyttä"
+"ხმოვანი ზარი შეუძლებელია: ოპერატორის IPv4 მისამართი, %1, მიერთებული არაა"
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "there is no (ipv6) network connection to node"
 #: net/voicecallengine.cpp:882
@@ -1799,38 +1800,37 @@ msgstr ""
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible: operators IPv6 address %1 not connected"
 msgstr ""
-"Puhelu ei ole mahdollinen: operaattorin solmun IPv6-verkko-osoitteeseen %1 "
-"ei ole yhteyttä "
+"ხმოვანი ზარი შეუძლებელია: ოპერატორის IPv6 მისამართი, %1, მიერთებული არაა"
 
-# Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is protocol mismatch. 
+# Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is protocol mismatch.
 #: net/voicecallengine.cpp:893
 msgctxt "VoiceCallEngine|"
 msgid ""
 "Audio call is not possible: local node has no IPv6 address, operator has "
 "only IPv6 addr"
 msgstr ""
-"Puhelu ei ole mahdollinen: paikallisella solmulla ei ole IPv6-osoitetta, "
-"operaattorilla on vain IPv6"
+"ხმოვანი ზარი შეუძლებელია: ლოკალურ კვანძს IPv6 არ გააჩნია, ოპერატორს კი "
+"მხოლოდ IPv6 მისამართი აქვს"
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "operator does not publish network address of his node"
 #: net/voicecallengine.cpp:895
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible: operator does not publish network address"
-msgstr "Puhelu ei ole mahdollinen: operaattori ei julkaise verkko-osoitettaan"
+msgstr "ხმოვანი ზარი შეუძლებელია: ოპერატორს ქსელის მისამართი არ გამოუქვეყნებია"
 
 # Dialog title text for "about" dialog.
 #: ui/aboutDialog.ui:26
 msgctxt "aboutDialog|"
 msgid "About classified ads"
-msgstr "Tietoja luokitelluista ilmoituksista"
+msgstr "Classified ads-ის შესახებ"
 
-# 1st line of text inside "about" dialog, placed next to the turle logo. This text is then followed by longer explanation detail why this program is and how. This is kind of title for the longer explanation. 
+# 1st line of text inside "about" dialog, placed next to the turle logo. This text is then followed by longer explanation detail why this program is and how. This is kind of title for the longer explanation.
 #: ui/aboutDialog.ui:100
 msgctxt "aboutDialog|"
 msgid " Classified ads is a program for online communications"
-msgstr "Luokitellut ilmoitukset on viestintään tarkoitettu tietokoneohjelma"
+msgstr " Classified ads პროგრამაა ონლაინ ურთიერთობისთვის"
 
-# The long explanation of classified ads inside about-dialog. Note that this text must be valid html. Needs to start with <html> and end with </html> etc. This is easiest to edit like this: copy-paste the content in to a file, say /tmp/about.html. Then either open your favourite html-editor or open classified ads. In classified ads you can start constructing an ad, select from file-menu "open.." and select this file  ;do editing and save from file-menu. The saved file is immediately in correct format to be be copy-pasted into contents of this field.  
+# The long explanation of classified ads inside about-dialog. Note that this text must be valid html. Needs to start with <html> and end with </html> etc. This is easiest to edit like this: copy-paste the content in to a file, say /tmp/about.html. Then either open your favourite html-editor or open classified ads. In classified ads you can start constructing an ad, select from file-menu "open.." and select this file  ;do editing and save from file-menu. The saved file is immediately in correct format to be be copy-pasted into contents of this field.
 #: ui/aboutDialog.ui:163
 msgctxt "aboutDialog|"
 msgid ""
@@ -1898,188 +1898,54 @@ msgid ""
 "Project for use in the OpenSSL Toolkit (http://www.openssl.org/).</"
 "p><p>Happy advertising!</p><p><br/></p></body></html>"
 msgstr ""
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta http-equiv="
-"\"Content-Type\" content=\"text/html; charset=UTF-8\" /><style type=\"text/"
-"css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Ubuntu'; font-size:9pt; font-"
-"weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">Luokitellut ilmoitukset on "
-"vapaasti käytettävä ohjelmisto. Voi käyttää, kopioida ja muokata sitä "
-"noudattaen LGPL-lisenssin (GNU Lesser General Public License 2.1) ehtoja.</"
-"p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
-"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"
-"\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">Tämän ohjelman "
-"kopiointioikeudet omistaa Antti Järvinen, vuodesta 2013. </p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
-"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"
-"\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">Ohjelman keskeinen "
-"ominaisuus on &quot;ilmoitus&quot; - teksti, joka kuuluu johonkin "
-"luokitteluun. Ohjelma sisältää joukon valmiita luokitteluita ja käyttäjiä "
-"rohkaistaan keksimään uusia ; luokittelu-valintoihin &quot;ilmoitukset&quot;-"
-"välilehdellä voi kirjoittaa mitä hyvänsä. Muut käyttäjät voivat katsella "
-"ilmoituksia, julkisesti kommentoida ilmoituksia ja lähettää viestejä "
-"toisilleen.</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
-"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"
-"\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">Ohjelman toinen keskeinen "
-"ominaisuus on, ettei se käytä keskitettyä tietovarastoa millään "
-"verkkopalvelimella - yksittäisten käyttäjien tietokoneet, joilta ohjelmistoa "
-"käytetään tallettavat ja välittävät kaiken ohjelman sisällä esitettävän "
-"sisällön. Liittyäksesi tähän verkkoon sinun on tiedettävä ainakin yhden "
-"sellaisen tietokoneen (solmun) verkko-osoite, jossa jo valmiiksi käytetään "
-"luokiteltuja ilmoituksia. Mikäli tilanne on sellainen, että &quot;verkon "
-"tila&quot; -dialogi näyttää 0 avointa yhteyttä, sinun on kysyttävä joltain "
-"ystävältäsi hänen solmunsa verkko-osoite ja syötettävä se ohjelmaan "
-"saadaksesi yhteyden luokiteltujen ilmoitusten verkkoon. Kun ohjelma on "
-"kerran liitetty verkkoon, se pyrkii itse ylläpitämään listan verkon muista "
-"koneista.</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
-"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"
-"\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">Johtuen suunnitelusta, "
-"johon verkkopalvelimet eivät kuulu tämä järjestelmä toimii parhaiten, jos "
-"jätät tämän ohjelman päälle myös silloin, kun et itse aktiivisesti käytä "
-"järjestelmää. Ohjelma vie jonkin verran tietojenkäsittelykapasiteettia "
-"koneeltasi ja aiheuttaa verkkoliikennettä myös silloin kun et itse ohjelmaa "
-"käytä - mutta muut käyttäjät käyttävät. </p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
-"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"
-"\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">Yksityisyydestään "
-"huolestuneet käyttäjät huomatkoot seuraavat seikat:</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">- Tietovarasto on "
-"toteutettu hajautettuna tiivistetaulukkona (distributed hash table DHT), "
-"mikä käytännössä tarkoittaa että verkkoon postitetut ilmoitukset ja muu "
-"sisältö päätyvät enemmän tai vähemmän satunnaisille verkon solmuille "
-"säilytettäväksi, DHT-algoritmin mukaisesti.</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">- Kaikki verkon "
-"tallettamat tietoalkiot (ilmoitukset, kommentit, tiedostot, yksityiset "
-"viestit jne.) ovat digitaalisesti allekirjoitettuja. Tästä syystä on "
-"hankalaa pyrkiä esiintymään eri operaattorina kuin oikeasti on. </p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">- Operaattorin ainoa "
-"luotettava tunniste on hänen salausavaimensa SHA1-tiiviste. SHA1-tiiviste on "
-"nähtävillä operaattorin tiedot esittävällä välilehdellä. Muut tiedot kuten "
-"liikanimi tai kaupungin nimi ovat operaattorin syötettävissä ja "
-"luonnollisesti voivat olla ihan mitä tahansa. Operaattorin profiilin tiedot "
-"verkkoon julkaistuna ovat myös allekirjoitetut, käyttäen operaattorin "
-"salausavainta - mikäli haluat kohtuullisella luotettavuudella tietää onko "
-"joku verkon sisältö tietyn operaattorin julkaisemaa vai ei, tämä tapahtuu "
-"tarkastamalla lähettäjän SHA1-tiiviste. Luokitellut ilmoitukset tarkastaa "
-"saapuvien tietoalkioiden allekirjoitukset ja jättää tallettamatta sisällöt, "
-"joiden allekirjoitus ei vastaa sisältöä. </p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">- Kaikki luokitellut "
-"ilmoitukset julkaistaan ilman salausta ja ovat kaikkien luettavissa. Kaikki "
-"julkiset profiilit julkaistaan ilman salausta, ja ovat kaikkien luettavissa. "
-"Mikäli profiili merkitään yksityiseksi, se salataan siten, että lueteltujen "
-"operaattoreiden salausavainta käyttäen profiilin tiedot ovat luettavissa. "
-"Tämä pätee myös profiiliin liittyviin kommentteihin ja jaettuihin "
-"tiedostoihin. Muutos ei ole takautuva, eli jos profiili on aiemmin ollut "
-"julkinen, sen kommentit ja tiedostot eivät automaattisesti muutu salatuiksi "
-"kun profiili muutetaan yksityiseksi. Yksityiset viestit kuljetetaan aina "
-"salattuna. Liitetiedostot noudattavat sen dokumentin yksityisyyssääntöjä, "
-"mihin ne on liitetty.</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">- Kuten kaiken internet-"
-"viestinnän kanssa tosi on, myös tämä pätee: jos jotain sisältöä verkkoon "
-"lähetetään, <span style=\" font-style:italic;\">ei ole olemassa keinoa "
-"pysyvästi sitä poistaa.</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">- Salaustoteutus on "
-"OpenSSL, useimmin käytetyt algoritmit ovat RSA-2048 ja AES-256.</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">- Solmujen välinen "
-"liikenne kulkee SSL-socketissa eli tietoliikenteen seuraaminen verkon "
-"ulkopuolelta on haastavaa. Vierekkäiset solmut kuitenkin näkevät toistensa "
-"tietoliikenteenteen sisällön.  Vaikka tietoliikenteen sisältöjen keräämiseen "
-"ei ole helppoa yksittäistä paikkaa, operaattorien on silti turha odottaa "
-"yksityisyyttä koskien tekemisiään verkossa vaikka jonkin verran vaivaa "
-"yksityisten viestien <span style=\" font-style:italic;\">sisältöjen</span> "
-"suojaamiseksi onkin nähty. </p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
-"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"
-"\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">Ohjelmointityön on "
-"enimmäkseen tehnyt Antti Järvinen, taideteokset Meeri Järvinen.</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
-"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"
-"\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">Tämä tuote sisältää "
-"OpenSSL-projektin kehittämän ohjelmiston, joka on alunperin tarkoitettu "
-"OpenSSL Toolkit-ohjelmistoa varten (http://www.openssl.org).</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
-"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"
-"\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">Riemullista ilmoittelua!</"
-"p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
-"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"
-"\"><br /></p></body></html>"
 
-# Dialog title text. Dialog in question produces list of file attachments. 
+# Dialog title text. Dialog in question produces list of file attachments.
 #: ui/attachmentListDialog.ui:26
 msgctxt "attachmentListDialog|"
 msgid "List of attached files"
-msgstr "Liitetiedostoluettelo"
+msgstr "მიმაგრებული ფაილების სია"
 
 # Dialog title text for call status dialog.
 #: ui/callStatusDialog.ui:26
 msgctxt "callStatusDialog|"
 msgid "Call status"
-msgstr "Puhelun tila"
+msgstr "ზარის მდგომარეობა"
 
 # Text in call status dialog for slider that shows audio volume of microphone
 #: ui/callStatusDialog.ui:49
 msgctxt "callStatusDialog|"
 msgid "Input level"
-msgstr "Mikrofonin äänenvoimakkuus"
+msgstr "შეყვანის დონე"
 
 # Title in call status dialog a column-list that lists ongoing calls
 #: ui/callStatusDialog.ui:65
 msgctxt "callStatusDialog|"
 msgid "Audio calls"
-msgstr "Puhelut"
+msgstr "ხმოვანი ზარები"
 
-# Text in call status dialog for slider that shows audio volume of speaker 
+# Text in call status dialog for slider that shows audio volume of speaker
 #: ui/callStatusDialog.ui:90
 msgctxt "callStatusDialog|"
 msgid "Output level"
-msgstr "Toistettava äänenvoimakkuus"
+msgstr "გამოტანის დონე"
 
-# Dialog title text. Purpose of the dialog is to let user change properties of a frequent contact in contact-list. 
+# Dialog title text. Purpose of the dialog is to let user change properties of a frequent contact in contact-list.
 #: ui/editContact.ui:26
 msgctxt "editContactDialog|"
 msgid "Edit a contact"
-msgstr "Muokkaa profiilin tietoja"
+msgstr "კონტაქტის ჩასწორება"
 
 # Text field label in contact-editing dialog. This gives label for field that shows SHA1 fingerprint of the operator whose data is being edited
 #: ui/editContact.ui:39
 msgctxt "editContactDialog|"
 msgid "Address (SHA1) of contact"
-msgstr "Profiilin osoitteen SHA1 tiiviste"
+msgstr "კონტაქტის მისამართი (SHA1)"
 
 # Text field label in contact-editing dialog. This gives label for field that shows nickname of the operator whose data is being edited
 #: ui/editContact.ui:53
 msgctxt "editContactDialog|"
 msgid "Local nickname"
-msgstr "Paikallinen liikanimi"
+msgstr "ლოკალური მეტსახელ"
 
 # Tooltip text of a checkbox label in contact-editing dialog. The checkbox is one that controls statement of trustworthniness of the operator whose data is being edited. Note html format.
 #: ui/editContact.ui:65
@@ -2088,173 +1954,172 @@ msgid ""
 "<html><head/><body><p>Settings some trusted is public information to readers "
 "of your profile</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Luottamuksen osoitus on profiilisi mukana julkaistava "
-"tieto, jonka profiilisi lukijat näkevät</p></body></html>"
+"<html><head/><body><p>ზოგიერთისთვის სანდო პარამეტრები თქვენი პროფილის საჯარო "
+"ინფორმაციაა</p></body></html>"
 
-# Label of a checkbox in contact-editing dialog. The checkbox is one that controls statement of trustworthniness of the operator whose data is being edited. 
+# Label of a checkbox in contact-editing dialog. The checkbox is one that controls statement of trustworthniness of the operator whose data is being edited.
 #: ui/editContact.ui:68
 msgctxt "editContactDialog|"
 msgid "This contact is to be publicly trusted in transactions"
-msgstr "Tämän profiilin operaattoriin kelpaa julkisesti luottaa"
+msgstr "ეს კონტაქტი ტრანზაქციებში საჯაროდ სანდო იქნება"
 
 # Name of front widget. Wild guess is that this text actually does not appear anywhere in the UI.
 #: frontWidget.ui:14
 msgctxt "frontWidget|"
 msgid "Form"
-msgstr "Etusivun lomake"
+msgstr "ფორმა"
 
-# Tab title text in front widget. When user clicks in this tab, the view is switched to one, that lists classified ads.  
+# Tab title text in front widget. When user clicks in this tab, the view is switched to one, that lists classified ads.
 #: frontWidget.ui:39
 msgctxt "frontWidget|"
 msgid "Classified ads"
-msgstr "Luokitellut ilmoitukset"
+msgstr "Classified ads"
 
-# Prompt text next "search" button. User is supposed to enter search criteria for classified ads and then click "search" ; this is prompt text for this behaviour. 
+# Prompt text next "search" button. User is supposed to enter search criteria for classified ads and then click "search" ; this is prompt text for this behaviour.
 #: frontWidget.ui:67
 msgctxt "frontWidget|"
 msgid "Search for classified ads about"
-msgstr "Etsi luokiteltuja ilmoituksia aiheesta"
+msgstr "Classified ads-ში ზებნა"
 
-# Prompt text very next to "search" button. After user has clicked the button, he is supposed to be viewing list of classified ads matching the search criteria. 
+# Prompt text very next to "search" button. After user has clicked the button, he is supposed to be viewing list of classified ads matching the search criteria.
 #: frontWidget.ui:74
 msgctxt "frontWidget|"
 msgid "Perform"
-msgstr "Suorita"
+msgstr "შესრულება"
 
-# This part of search-criteria phrase. Normally the phrase reads something like "Buying of cars in finland" and this word is the 2nd word in that phrase. 
+# This part of search-criteria phrase. Normally the phrase reads something like "Buying of cars in finland" and this word is the 2nd word in that phrase.
 #: frontWidget.ui:97
 msgctxt "frontWidget|"
 msgid "of"
-msgstr "koskien"
+msgstr "დან"
 
-# This part of search-criteria phrase. Normally the phrase reads something like "Buying of cars in finland" and this word is the 4th word in that phrase. 
+# This part of search-criteria phrase. Normally the phrase reads something like "Buying of cars in finland" and this word is the 4th word in that phrase.
 #: frontWidget.ui:113
 msgctxt "frontWidget|"
 msgid "in"
-msgstr "paikassa"
+msgstr "-ში"
 
-# Button text for button used to search for classified ads. This button has text "perform" just next to it so user sees actually 2 words "perform search" where the "perform" is in separate label above the button, and then is the text of this button. 
+# Button text for button used to search for classified ads. This button has text "perform" just next to it so user sees actually 2 words "perform search" where the "perform" is in separate label above the button, and then is the text of this button.
 #: frontWidget.ui:123
 msgctxt "frontWidget|"
 msgid "Search"
-msgstr "Haku"
+msgstr "ძიება"
 
 # Tab title text in front widget for tab that shows details of operators own profile (==personal details)
 #: frontWidget.ui:161
 msgctxt "frontWidget|"
 msgid "My profile"
-msgstr "Oma profiili"
+msgstr "ჩემი პროფილი"
 
-# Text field label in "operators profile" tab. The field in questions shows SHA1-digest e.g. the real address of the operator. 
+# Text field label in "operators profile" tab. The field in questions shows SHA1-digest e.g. the real address of the operator.
 #: frontWidget.ui:177 frontWidget.ui:937
 msgctxt "frontWidget|"
 msgid "Profile address"
-msgstr "Profiilin osoite"
+msgstr "პროფილის მისამართი"
 
-# Text field label in "operators profile" tab. The field in questions shows nickname of the operator 
+# Text field label in "operators profile" tab. The field in questions shows nickname of the operator
 #: frontWidget.ui:208 frontWidget.ui:643
 msgctxt "frontWidget|"
 msgid "Nickname"
-msgstr "Liikanimi"
+msgstr "მეტსახელი"
 
-# Text field label in "operators profile" tab. The field in questions shows "hello world" text of the operator. 
+# Text field label in "operators profile" tab. The field in questions shows "hello world" text of the operator.
 #: frontWidget.ui:225 frontWidget.ui:669
 msgctxt "frontWidget|"
 msgid "Greeting text"
-msgstr "Tervehdysteksti"
+msgstr "მისალმების ტექსტი"
 
-# Tooltip-text of a text field in "operators profile" tab. The field in questions shows greeting text of the operator.  
+# Tooltip-text of a text field in "operators profile" tab. The field in questions shows greeting text of the operator.
 #: frontWidget.ui:232
 msgctxt "frontWidget|"
 msgid "For the rest of the world. "
-msgstr "Koko maailmalle."
+msgstr "დანარჩენი სამყაროსთვის. "
 
 # Text field label in "operators profile" tab. The field in questions shows given name (first name) of the operator.
 #: frontWidget.ui:239 frontWidget.ui:695
 msgctxt "frontWidget|"
 msgid "First name"
-msgstr "Etunimi"
+msgstr "სახელი"
 
 # Text field label in "operators profile" tab. The field in questions shows family name of the operator
 #: frontWidget.ui:253 frontWidget.ui:715
 msgctxt "frontWidget|"
 msgid "Family name"
-msgstr "Sukunimi"
+msgstr "საოჯახო სახელი"
 
 # Text field label in "operators profile" tab. The field in questions shows place of residence of the operator
 #: frontWidget.ui:263
 msgctxt "frontWidget|"
 msgid "City/country"
-msgstr "Kaupunki/maa"
+msgstr "ქალაქი/ქვეყანა"
 
-# Text field label in "operators profile" tab. The field in questions shows address of bitcoin wallet of the operator. 
+# Text field label in "operators profile" tab. The field in questions shows address of bitcoin wallet of the operator.
 #: frontWidget.ui:273
 msgctxt "frontWidget|"
 msgid "BTC address"
-msgstr "BTC-lompakon osoite"
+msgstr "BTC მისამართი"
 
-# Tooltip-text for a text field "operators profile" tab. The field in questions shows address of bitcoin wallet of the operator. 
+# Tooltip-text for a text field "operators profile" tab. The field in questions shows address of bitcoin wallet of the operator.
 #: frontWidget.ui:280
 msgctxt "frontWidget|"
 msgid "If you wish to receive payments via BTC, include your BTC address too."
-msgstr ""
-"Jos meinaat saada maksuja bitcoinin kautta, julkaise myös lompakkosi osoite"
+msgstr "თუ გნებავთ, გადახდები BTC-ითაც მიიღოთ, BTC-ის მისამართიც მიუთითეთ."
 
-# Text field label in "operators profile" tab. The field in questions shows what the user has to say about state of the world.  
+# Text field label in "operators profile" tab. The field in questions shows what the user has to say about state of the world.
 #: frontWidget.ui:287 frontWidget.ui:799
 msgctxt "frontWidget|"
 msgid "State of the world"
-msgstr "Maailman tila"
+msgstr "სამყაროს მდგომარეობა"
 
-# Tool-tip text of a field in "operators profile" tab. The field in questions shows what operator has to say about state of the world. 
+# Tool-tip text of a field in "operators profile" tab. The field in questions shows what operator has to say about state of the world.
 #: frontWidget.ui:294
 msgctxt "frontWidget|"
 msgid "Longer explanation about state of the world"
-msgstr "Vähän pidempi selitys maailman tilasta"
+msgstr "უფრო გრძელი ახსნა სამყაროს მდგომარეობის სახებ"
 
-# Checkbox text in "my profile" tab. The checkbox is question is a toggle for public/private status of the profile. When checkbox is checked, the profile will be made private. 
+# Checkbox text in "my profile" tab. The checkbox is question is a toggle for public/private status of the profile. When checkbox is checked, the profile will be made private.
 #: frontWidget.ui:301
 msgctxt "frontWidget|"
 msgid "Profile is private"
-msgstr "Profiili on yksityinen"
+msgstr "პროფილი კონფიდენციალურია"
 
 # Button text inside "My profile" tab. Clicking the button opens a dialog that prompts user to select list of operators that can read his profile that he has previously marked as private (e.g. accessible only to listed readers)
 #: frontWidget.ui:308
 msgctxt "frontWidget|"
 msgid "Readers of profile"
-msgstr "Profiilin lukijat"
+msgstr "პროფილის მკითხველები"
 
-# Explanation text inside "my profile" tab. 
+# Explanation text inside "my profile" tab.
 #: frontWidget.ui:315
 msgctxt "frontWidget|"
 msgid "None of the fields is mandatory"
-msgstr "Yksikään kentistä ei ole pakollinen"
+msgstr "ამ ველებიდან სავალდებულო არც ერთია"
 
-# Text field label inside "my profile" tab. The field whose label this is shows the time when profile was last updated. 
+# Text field label inside "my profile" tab. The field whose label this is shows the time when profile was last updated.
 #: frontWidget.ui:322
 msgctxt "frontWidget|"
 msgid "Time of last update"
-msgstr "Edellisen päivityksen ajankohta"
+msgstr "ბოლო განახლების დრო"
 
-# Button text for button inside "my profile" tab. By clicking this button user makes her edits known to rest of the world. 
+# Button text for button inside "my profile" tab. By clicking this button user makes her edits known to rest of the world.
 #: frontWidget.ui:342
 msgctxt "frontWidget|"
 msgid "Publish"
-msgstr "Julkaise"
+msgstr "გამოქვეყნება"
 
-# Button text for button inside "my profile" tab. By clicking this button user discards her edits. 
+# Button text for button inside "my profile" tab. By clicking this button user discards her edits.
 #: frontWidget.ui:355
 msgctxt "frontWidget|"
 msgid "Revert changes"
-msgstr "Peruuta muutokset"
+msgstr "ცვლილებების დაბრუნება"
 
 # Text label on top of "my profile" tab. Below this label is a list of text fields and other stuff that user may edit regarding herself.
 #: frontWidget.ui:369
 msgctxt "frontWidget|"
 msgid "Details of operator profile:"
-msgstr "Operaattorin profiili"
+msgstr "ოპერატორის პროფილის დეტალები:"
 
-# Text in image-placeholder inside "my profile" tab. When user has not selected any image for her profile details, this text is shown in place of the image. Clicking on text gives user option to select the image file for profile. 
+# Text in image-placeholder inside "my profile" tab. When user has not selected any image for her profile details, this text is shown in place of the image. Clicking on text gives user option to select the image file for profile.
 #: frontWidget.ui:401
 msgctxt "frontWidget|"
 msgid ""
@@ -2267,77 +2132,78 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"Klikkaa \n"
-"Lisätäksesi\n"
-"Kuva"
+"\n"
+"დააწკაპუნეთ\n"
+"სურათის\n"
+"დასამატებლად"
 
-# Title text inside "my profile" tab. Title text is for a list of files that user is currently sharing with other users. 
+# Title text inside "my profile" tab. Title text is for a list of files that user is currently sharing with other users.
 #: frontWidget.ui:425 frontWidget.ui:845
 msgctxt "frontWidget|"
 msgid "Shared files"
-msgstr "Jaetut tiedostot"
+msgstr "გაზიარებული ფაილები"
 
 # Title text inside "my profile" tab. Title text is for a list of comments made by other users regarding operators profile.
 #: frontWidget.ui:461 frontWidget.ui:897
 msgctxt "frontWidget|"
 msgid "Latest comments"
-msgstr "Viimeisimmät kommentit"
+msgstr "ბოლო კომენტარები"
 
-# Tab title text. When this tab is opened, user is shown a view of his frequent contacts. 
+# Tab title text. When this tab is opened, user is shown a view of his frequent contacts.
 #: frontWidget.ui:504
 msgctxt "frontWidget|"
 msgid "Contacts"
-msgstr "Osoitekirja"
+msgstr "კონტაქტები"
 
 # Button text inside "contacts" tab. Clicking this button opens a dialog prompting user to enter details of operator to be added into contact list
 #: frontWidget.ui:536
 msgctxt "frontWidget|"
 msgid "Add contact"
-msgstr "Lisää profiili"
+msgstr "კონტაქტის დამატება"
 
 # Button text inside "contacts" tab. Clicking this button removes a contact from list.
 #: frontWidget.ui:543
 msgctxt "frontWidget|"
 msgid "Remove contact"
-msgstr "Poista profiili"
+msgstr "კონტაქტის წაშლა"
 
-# Button text inside "contacts" tab. Clicking this button displays details of the selected contact. 
+# Button text inside "contacts" tab. Clicking this button displays details of the selected contact.
 #: frontWidget.ui:550
 msgctxt "frontWidget|"
 msgid "View profile"
-msgstr "Katsele profiilia"
+msgstr "პროფილის ნახვა"
 
-# Button text inside "contacts" tab. Clicking this button opens a dialog prompting user to send a message selected contact. 
+# Button text inside "contacts" tab. Clicking this button opens a dialog prompting user to send a message selected contact.
 #: frontWidget.ui:557
 msgctxt "frontWidget|"
 msgid "Send message"
-msgstr "Lähetä viesti"
+msgstr "შეტყობინების გაგზავნა"
 
-# Tab text in front widget. When user selects this tab, he is presented with list of his private correspondence. 
+# Tab text in front widget. When user selects this tab, he is presented with list of his private correspondence.
 #: frontWidget.ui:569
 msgctxt "frontWidget|"
 msgid "Private messages"
-msgstr "Yksityiset viestit"
+msgstr "პირადი შეტყობინებები"
 
-# Tab text in front widget. This tab shows details of some other operator of classified ads. Normally this text is replaced with nickname of the operator but if nothing like this is available, this text may be shown, this is the "default text". 
+# Tab text in front widget. This tab shows details of some other operator of classified ads. Normally this text is replaced with nickname of the operator but if nothing like this is available, this text may be shown, this is the "default text".
 #: frontWidget.ui:624
 msgctxt "frontWidget|"
 msgid "Profile details"
-msgstr "Profiilin yksityiskohdat"
+msgstr "პროფილის დეტალები"
 
 # Label text of a text-field. The text-field in question shows place of residence of operator whose details are on display.
 #: frontWidget.ui:741
 msgctxt "frontWidget|"
 msgid "City/Country"
-msgstr "Kaupunki/maa"
+msgstr "ქალაქი/ქვეყანა"
 
 # Label text of a text-field. The text-field in question shows bitcoin wallet address of operator whose details are on display.
 #: frontWidget.ui:767
 msgctxt "frontWidget|"
 msgid "BTC Addr"
-msgstr "BTC-osoite"
+msgstr "BTC მისამართი"
 
-# Text for image-placeholder inside "profile details" tab. When some particular operator has not selected any image for her profile, this text is shown in place of the image. Note html format. 
+# Text for image-placeholder inside "profile details" tab. When some particular operator has not selected any image for her profile, this text is shown in place of the image. Note html format.
 #: frontWidget.ui:829
 msgctxt "frontWidget|"
 msgid ""
@@ -2351,111 +2217,111 @@ msgstr ""
 "<html><head/><body><p align=\"center\"><span style=\" font-size:16pt;\"><br/"
 "></span></p><p align=\"center\"><span style=\" font-size:16pt;\"><br/></"
 "span></p><p align=\"center\"><span style=\" font-size:16pt;\"><br/></span></"
-"p><p align=\"center\"><span style=\" font-size:16pt;\">Ei</span></p><p align="
-"\"center\"><span style=\" font-size:16pt;\">Kuvaa</span></p><p align=\"center"
-"\"><span style=\" font-size:16pt;\">Valittuna</span></p></body></html>"
+"p><p align=\"center\"><span style=\" font-size:16pt;\">No</span></p><p align="
+"\"center\"><span style=\" font-size:16pt;\">გამოსახულება</span></p><p align="
+"\"center\"><span style=\" font-size:16pt;\">ჩასმულია</span></p></body></html>"
 
-# Button text inside "defails of operator profile" tab. When the button is clicked, a new-message editor is opened. 
+# Button text inside "defails of operator profile" tab. When the button is clicked, a new-message editor is opened.
 #: frontWidget.ui:874
 msgctxt "frontWidget|"
 msgid "Send message to operator"
-msgstr "Lähetä operaattorille viesti"
+msgstr "ოპერატორისთვის შეტყობინების გაგზავნა"
 
-# Button text in "operators details" view. Pressing the button initiates a new voice call to operator. 
+# Button text in "operators details" view. Pressing the button initiates a new voice call to operator.
 #: frontWidget.ui:879
 msgctxt "frontWidget|"
 msgid "Audio call"
-msgstr "Puhelu"
+msgstr "ხმოვანი ზარი"
 
-# Button text inside "defails of operator profile" tab. When the button is clicked, dialog listing readers of the (private) profile. 
+# Button text inside "defails of operator profile" tab. When the button is clicked, dialog listing readers of the (private) profile.
 #: frontWidget.ui:884
 msgctxt "frontWidget|"
 msgid "View readers"
-msgstr "Lukijat"
+msgstr "მკითხველები ნახვა"
 
-# Button text inside "defails of operator profile" tab. When the button is clicked, a dialog is opened, dialog prompts user to enter a comment about the operator. 
+# Button text inside "defails of operator profile" tab. When the button is clicked, a dialog is opened, dialog prompts user to enter a comment about the operator.
 #: frontWidget.ui:932
 msgctxt "frontWidget|"
 msgid "Comment"
-msgstr "Kommentti"
+msgstr "კომენტარი"
 
-# Button text inside "defails of operator profile" tab. When the button is clicked, the operator whose data is on display is added into contact-list. 
+# Button text inside "defails of operator profile" tab. When the button is clicked, the operator whose data is on display is added into contact-list.
 #: frontWidget.ui:964
 msgctxt "frontWidget|"
 msgid "Add to contacts"
-msgstr "Lisää osoitekirjaan"
+msgstr "კონტაქტებში ჩამატება"
 
 # Dialog title text. Dialog is for adding a link to text being edited.
 #: ui/insertLink.ui:26
 msgctxt "insertLinkDialog|"
 msgid "Insert link"
-msgstr "Lisää linkki"
+msgstr "ბმულის ჩასმა"
 
-# Label for a combobox-field inside "insert link" dialog. Next to this label is set of fields that together make up a valid URL to be inserted. 
+# Label for a combobox-field inside "insert link" dialog. Next to this label is set of fields that together make up a valid URL to be inserted.
 #: ui/insertLink.ui:39
 msgctxt "insertLinkDialog|"
 msgid "URL"
-msgstr "URL"
+msgstr "ბმული"
 
-# Label for a text-field inside "insert link" dialog. Next to this label is field where user is supposed the text that will be shown as the link. Consider <a href="url">the text</> then "the text" is text that user is prompted to enter with this label. 
+# Label for a text-field inside "insert link" dialog. Next to this label is field where user is supposed the text that will be shown as the link. Consider <a href="url">the text</> then "the text" is text that user is prompted to enter with this label.
 #: ui/insertLink.ui:112
 msgctxt "insertLinkDialog|"
 msgid "Link label in text"
-msgstr "Linkin päällepäin näkyvä teksti"
+msgstr "ჭდის ბმული ტექსტში"
 
 # Dialog title text. Dialog prompts user to manually add a network-connection to another node in the network.
 #: ui/manualConnectionDialog.ui:26
 msgctxt "manualConnectionDialog|"
 msgid "Manually add node to connection queue"
-msgstr "Lisää solmu yhteydenottolistalle"
+msgstr "კვანძის ხელით ჩამატება შეერთების რიგში"
 
 # Label text of numeric field. The numeric (input) field is TCP port of the remote node that will be connected.
 #: ui/manualConnectionDialog.ui:48
 msgctxt "manualConnectionDialog|"
 msgid "Remote node listen port"
-msgstr "Solmun vastaanotto-portti (TCP-port)"
+msgstr "დაშორებული კვანძის მოსასმენი პორტი"
 
-# Label for text field inside "manually add connection" dialog. Text field whose label this is requires user to type in network address (ip addr or dns name) of the remote node. 
+# Label for text field inside "manually add connection" dialog. Text field whose label this is requires user to type in network address (ip addr or dns name) of the remote node.
 #: ui/manualConnectionDialog.ui:78
 msgctxt "manualConnectionDialog|"
 msgid "Remote node network address"
-msgstr "Solmun verkko-osoite"
+msgstr "დაშორებული კვანძის ქსელური მისამართი"
 
-# Tooltip text for a text field inside "manually add connection" dialog. The text field whose tooltip this is the remote network address input field. 
+# Tooltip text for a text field inside "manually add connection" dialog. The text field whose tooltip this is the remote network address input field.
 #: ui/manualConnectionDialog.ui:91
 msgctxt "manualConnectionDialog|"
 msgid "IPv4, IPv6 or DNS name"
-msgstr "IPv4, IPV6 tai DNS-nimi"
+msgstr "IPv4, IPv6 ან DNS სახელი"
 
-# Dialog title text for dialog that requires user to enter information about file to be shared with others. Metadata query dialog in practice. 
+# Dialog title text for dialog that requires user to enter information about file to be shared with others. Metadata query dialog in practice.
 #: ui/metadataQuery.ui:26
 msgctxt "metadataQuery|"
 msgid "File information"
-msgstr "Tiedoston ominaisuudet"
+msgstr "ფაილის ინფორმაცია"
 
 # Label text for a input field. The input field whose label this is asks for file name (filesystem file name)
 #: ui/metadataQuery.ui:60
 msgctxt "metadataQuery|"
 msgid "Name of the file:"
-msgstr "Tiedoston nimi:"
+msgstr "ფაილის სახელი:"
 
-# Label text for a input field. The input field whose label this is asks for owner of the file contents. This may be copyright holder, depending on contracts and legislation followed. 
+# Label text for a input field. The input field whose label this is asks for owner of the file contents. This may be copyright holder, depending on contracts and legislation followed.
 #: ui/metadataQuery.ui:81
 msgctxt "metadataQuery|"
 msgid "Owner of file (name or SHA1 if CA operator):"
-msgstr "Tiedoston omistaja:"
+msgstr "ფაილის მფლობელი (თუ CA ოპერატორია, სახელი ან SHA1):"
 
-# Label text for a input field. The input field whose label this is asks for license under which the file may be used. Combobox lists some pre-filled options like GPL,BSD,CC-BY etc. but user may also enter any text into field.  
+# Label text for a input field. The input field whose label this is asks for license under which the file may be used. Combobox lists some pre-filled options like GPL,BSD,CC-BY etc. but user may also enter any text into field.
 #: ui/metadataQuery.ui:111
 msgctxt "metadataQuery|"
 msgid "License of use:"
-msgstr "Käyttöä koskeva lisenssi:"
+msgstr "ლიცენზია:"
 
 # Combobox content text for license selection combobox. License texts might be wise leave as they are - untranslated
 #: ui/metadataQuery.ui:122
 msgctxt "metadataQuery|"
 msgid "Public domain"
-msgstr "Public domain"
+msgstr "საჯარო"
 
 # Combobox content text for license selection combobox. License texts might be wise leave as they are - untranslated
 #: ui/metadataQuery.ui:127
@@ -2511,264 +2377,264 @@ msgctxt "metadataQuery|"
 msgid "CC-BY-NC-ND"
 msgstr "CC-BY-NC-ND"
 
-# Label text for a input field. The input field whose label this is asks for mime-type of the field about to be published. 
+# Label text for a input field. The input field whose label this is asks for mime-type of the field about to be published.
 #: ui/metadataQuery.ui:182
 msgctxt "metadataQuery|"
 msgid "Mime-type:"
-msgstr "Mime-tyyppi:"
+msgstr "MIME-ტიპი:"
 
-# Label text for a input field. The input field whose label this is asks for descriptive text about file about to be published.  
+# Label text for a input field. The input field whose label this is asks for descriptive text about file about to be published.
 #: ui/metadataQuery.ui:199
 msgctxt "metadataQuery|"
 msgid "Description of file:"
-msgstr "Kuvaus:"
+msgstr "ფაილის აღწერა:"
 
 # Prompt text on top of "metadata query" dialog. Below this label is set of input-fields that make up the meta-data of a file to be published.
 #: ui/metadataQuery.ui:218
 msgctxt "metadataQuery|"
 msgid "Enter information regarding file before publish:"
-msgstr "Syötä tiedoston ominaisuudet ennen julkaisua:"
+msgstr "გამოქვეყნებამდე შეიყვანეთ ფაილის შესახებ ინფორმაცია:"
 
-# Dialog title text for a dialog that offers possibility to post a new classified ad for others to read. 
+# Dialog title text for a dialog that offers possibility to post a new classified ad for others to read.
 #: ui/newClassifiedAd.ui:26
 msgctxt "newCaDialog|"
 msgid "Post a new classified ad"
-msgstr "Lähetä uusi luokiteltu ilmoitus"
+msgstr "ახალი classified ad-ის დაპოსტვა"
 
 # This label text is part of sentence, whole sentence goes for example "About buying of cars in sweden" where the words "bying", "cars", and "sweden" are combo-boxes that user may choose from ; this word here is the first word in that sentece.
 #: ui/newClassifiedAd.ui:47
 msgctxt "newCaDialog|"
 msgid "About"
-msgstr "Aiheesta"
+msgstr "შესახებ"
 
 # This label text is part of sentence, whole sentence goes for example "About buying of cars in sweden" where the words "bying", "cars", and "sweden" are combo-boxes that user may choose from ; this word here is the 3rd word in that sentece.
 #: ui/newClassifiedAd.ui:65
 msgctxt "newCaDialog|"
 msgid "of"
-msgstr "koskien"
+msgstr "დან"
 
 # This label text is part of sentence, whole sentence goes for example "About buying of cars in sweden" where the words "bying", "cars", and "sweden" are combo-boxes that user may choose from ; this word here is the 5th word in that sentece.
 #: ui/newClassifiedAd.ui:81
 msgctxt "newCaDialog|"
 msgid "in"
-msgstr "paikassa"
+msgstr "-ში"
 
-# Label text of a text field inside "post a new classified ad" dialog. The input field whose label this is, requires user to enter a subject (topic) for her posting. 
+# Label text of a text field inside "post a new classified ad" dialog. The input field whose label this is, requires user to enter a subject (topic) for her posting.
 #: ui/newClassifiedAd.ui:95
 msgctxt "newCaDialog|"
 msgid "Subject"
-msgstr "Aihe"
+msgstr "თემა"
 
-# Label text of a text field inside "post a new classified ad" dialog. The input field whose label this is, will show name file that is attached to the post. 
+# Label text of a text field inside "post a new classified ad" dialog. The input field whose label this is, will show name file that is attached to the post.
 #: ui/newClassifiedAd.ui:129
 msgctxt "newCaDialog|"
 msgid "Attachment: "
-msgstr "Liite:"
+msgstr "დანართი: "
 
-# Push-button text inside "post a new classified ad" dialog. When user hits the button, another dialog is opened and user is required to select a file to be attached. 
+# Push-button text inside "post a new classified ad" dialog. When user hits the button, another dialog is opened and user is required to select a file to be attached.
 #: ui/newClassifiedAd.ui:149
 msgctxt "newCaDialog|"
 msgid "Add"
-msgstr "Lisää"
+msgstr "დამატება"
 
 # Dialog title text for dialog that prompts user to edit+send a private message to another operator
 #: ui/newPrivMsg.ui:26
 msgctxt "newPrivMsgDialog|"
 msgid "Send a private message"
-msgstr "Lähetä yksityinen viesti"
+msgstr "პირადი შეტყობინების გაგზავნა"
 
-# Text field label for input field inside "compose a new private message dialog". The text field in question is "subject" or "topic" field of the message. 
+# Text field label for input field inside "compose a new private message dialog". The text field in question is "subject" or "topic" field of the message.
 #: ui/newPrivMsg.ui:39
 msgctxt "newPrivMsgDialog|"
 msgid "Subject"
-msgstr "Aihe"
+msgstr "თემა"
 
-# Text field label for input field inside "compose a new private message dialog". The text field in question is SHA1 address of the recipient. 
+# Text field label for input field inside "compose a new private message dialog". The text field in question is SHA1 address of the recipient.
 #: ui/newPrivMsg.ui:53
 msgctxt "newPrivMsgDialog|"
 msgid "Recipient"
-msgstr "Vastaanottaja"
+msgstr "მიმღები"
 
 # Label text of a text field inside "compose a new private message" dialog. The input field whose label this is, will show name file that is attached to the post.
 #: ui/newPrivMsg.ui:83
 msgctxt "newPrivMsgDialog|"
 msgid "Attachments: "
-msgstr "Liitteet:"
+msgstr "დანართები: "
 
 # Push-button text inside "compose a new private message" dialog. When user hits the button, another dialog is opened and user is required to select a file to be attached.
 #: ui/newPrivMsg.ui:103
 msgctxt "newPrivMsgDialog|"
 msgid "Attach"
-msgstr "Liitä"
+msgstr "მიმაგრება"
 
 # Dialog title text for dialog that prompts user to edit+send a comment regarding another operator.
 #: ui/newProfileComment.ui:26
 msgctxt "newProfileCommentDialog|"
 msgid "Comment a operators profile"
-msgstr "Kommentoi operaattorin profiilia"
+msgstr "კომენტარი ოპერატორის პროფილზე"
 
 # Text field label for input field inside "compose a comment about operator dialog". The text field in question is "subject" or "topic" field of the comment.
 #: ui/newProfileComment.ui:39
 msgctxt "newProfileCommentDialog|"
 msgid "Subject"
-msgstr "Aihe"
+msgstr "თემა"
 
 # Text field label for input field inside "compose a comment about operator dialog". The text field in question is SHA1 digest (address) of the operator being commented.
 #: ui/newProfileComment.ui:53
 msgctxt "newProfileCommentDialog|"
 msgid "Commented profile"
-msgstr "Kommentoitu profiili"
+msgstr "კომენტარი პროფილზე"
 
 # Label text of a text field inside "compose a comment about operator dialog" dialog. The input field whose label this is, will show name file that is attached to the post.
 #: ui/newProfileComment.ui:89
 msgctxt "newProfileCommentDialog|"
 msgid "Attachments:"
-msgstr "Liitteet:"
+msgstr "მიმაგრებული ფაილები:"
 
 # Push-button text inside "compose a comment about operator dialog" dialog. When user hits the button, another dialog is opened and user is required to select a file to be attached.
 #: ui/newProfileComment.ui:109
 msgctxt "newProfileCommentDialog|"
 msgid "Attach"
-msgstr "Liitä"
+msgstr "მიმაგრება"
 
-# Dialog title text for a dialog that prompts user to edit+publish a text document. 
+# Dialog title text for a dialog that prompts user to edit+publish a text document.
 #: ui/newTextDocument.ui:26
 msgctxt "newTextDocumentDialog|"
 msgid "Edit and publish a new text document"
-msgstr "Muokkaa ja julkaise uusi tekstidokumentti"
+msgstr "ახალი ტექსტური დოკუმენტის ჩასწორება და გამოქვეყნება"
 
-# Text field label for input field inside "compose a new text document" dialog. The text field in question is "subject" or "topic" field of the text document. 
+# Text field label for input field inside "compose a new text document" dialog. The text field in question is "subject" or "topic" field of the text document.
 #: ui/newTextDocument.ui:39
 msgctxt "newTextDocumentDialog|"
 msgid "Document title"
-msgstr "Dokumentin aihe"
+msgstr "დოკუმენტის სათაური"
 
-# Label text of a text field inside "edit+publish a new text document dialog" dialog. The input field whose label this is, will show name file that is attached to the document. 
+# Label text of a text field inside "edit+publish a new text document dialog" dialog. The input field whose label this is, will show name file that is attached to the document.
 #: ui/newTextDocument.ui:75
 msgctxt "newTextDocumentDialog|"
 msgid "Attachments:"
-msgstr "Liitteet:"
+msgstr "მიმაგრებული ფაილები:"
 
 # Push-button text inside "edit+publish a new text document dialog" dialog. When user hits the button, another dialog is opened and user is required to select a file to be attached.
 #: ui/newTextDocument.ui:95
 msgctxt "newTextDocumentDialog|"
 msgid "Attach"
-msgstr "Liitä"
+msgstr "მიმაგრება"
 
 # Dialog title text for dialog that will show a listing of previous comments regarding operator (user himself or some other operator, it is the same dialog in both cases)
 #: ui/profileCommentDisplay.ui:26
 msgctxt "profileCommentDisplay|"
 msgid "Comments regarding operator"
-msgstr "Kommentit koskien operaattoria"
+msgstr "კომენტარები ოპერატორის შესახებ"
 
-# Dialog title text for a dialog that prompts user to choose operators who will be able to read details, comments and shared files of his profile. 
+# Dialog title text for a dialog that prompts user to choose operators who will be able to read details, comments and shared files of his profile.
 #: ui/profileReadersDialog.ui:26
 msgctxt "profileReadersDialog|"
 msgid "Profile readers list"
-msgstr "Profiilin lukijalista"
+msgstr "პროფილის მკითხველების სია"
 
 # Text field label inside "add profiles to list of readers" dialog. The text field whose prompt this is asks for search-words to be used to filter operator names/addresses from database.
 #: ui/profileReadersDialog.ui:37
 msgctxt "profileReadersDialog|"
 msgid "Search for profiles to add"
-msgstr "Etsi lisättäviä profiileja"
+msgstr "დასამატებელი პროფილების მოძებნა"
 
-# Text field label inside "add profiles to list of readers" dialog. The text listing-field whose explanation this is will list operators whose nickname,name or other search-term matches conditions entered by user. 
+# Text field label inside "add profiles to list of readers" dialog. The text listing-field whose explanation this is will list operators whose nickname,name or other search-term matches conditions entered by user.
 #: ui/profileReadersDialog.ui:44
 msgctxt "profileReadersDialog|"
 msgid "First 100 matching profiles:"
-msgstr "Ensimmäiset 100 osumaa:"
+msgstr "პირველი 100 შედეგი:"
 
 # Push-button label inside "add profiles to list of readers" dialog. When user hits this button, operators that are selected from neighboring list will be added to list of readers of operators profile.
 #: ui/profileReadersDialog.ui:66
 msgctxt "profileReadersDialog|"
 msgid "Add selected to list of readers"
-msgstr "Lisää valitut profiilin lukijoiksi"
+msgstr "მონიშნულების ჩამატება მკითხველების შესახებ"
 
-# Text field label inside "add profiles to list of readers" dialog. The text listing-field whose explanation this is shows current list operators profiles readers. 
+# Text field label inside "add profiles to list of readers" dialog. The text listing-field whose explanation this is shows current list operators profiles readers.
 #: ui/profileReadersDialog.ui:73
 msgctxt "profileReadersDialog|"
 msgid "Current list of readers"
-msgstr "Lukijoiden nykyinen lista"
+msgstr "მიმდინარე მკითხველების სია"
 
-# Push button label inside dialog that asks for list of operators who are readers of operators own profile. When user this this button, the dialog is dismissed. 
+# Push button label inside dialog that asks for list of operators who are readers of operators own profile. When user this this button, the dialog is dismissed.
 #: ui/profileReadersDialog.ui:90
 msgctxt "profileReadersDialog|"
 msgid "Close"
-msgstr "Sulje"
+msgstr "დაკეტვა"
 
-# Push button label inside dialog that asks for list of operators who are readers of operators own profile. When user this this button, selected operators are removed from the list. 
+# Push button label inside dialog that asks for list of operators who are readers of operators own profile. When user this this button, selected operators are removed from the list.
 #: ui/profileReadersDialog.ui:109
 msgctxt "profileReadersDialog|"
 msgid "Remove selected"
-msgstr "Poista valitut"
+msgstr "მონიშნულის წაშლა"
 
-# Dialog title-text for a search dialog. 
+# Dialog title-text for a search dialog.
 #: ui/searchDisplay.ui:26
 msgctxt "searchDisplay|"
 msgid "Search data storage"
-msgstr "Etsi tietovarastosta"
+msgstr "ძებნა მონაცემების საცავში"
 
-# Label text of a text field inside "search" dialog. The text field in question requires user to enter one or more words that are then searched from all available (public) documents. 
+# Label text of a text field inside "search" dialog. The text field in question requires user to enter one or more words that are then searched from all available (public) documents.
 #: ui/searchDisplay.ui:60
 msgctxt "searchDisplay|"
 msgid "Words:"
-msgstr "Sanoja"
+msgstr "სიტყვები:"
 
-# Push button label inside "search" dialog. When button is hit, search using given words is performed.  
+# Push button label inside "search" dialog. When button is hit, search using given words is performed.
 #: ui/searchDisplay.ui:70
 msgctxt "searchDisplay|"
 msgid "Search"
-msgstr "Hae"
+msgstr "ძიება"
 
-# Check-box label inside "search" dialog. When box is checked, the search is done also in neighboring nodes in the network, not only in local storage. 
+# Check-box label inside "search" dialog. When box is checked, the search is done also in neighboring nodes in the network, not only in local storage.
 #: ui/searchDisplay.ui:87
 msgctxt "searchDisplay|"
 msgid "Network search"
-msgstr "Verkkohaku"
+msgstr "ქსელში ძებნა"
 
 # Check-box label inside "search" dialog. When box is checked, the search may include classified ads in its resultset.
 #: ui/searchDisplay.ui:101
 msgctxt "searchDisplay|"
 msgid "Search ads"
-msgstr "Etsi ilmoituksista"
+msgstr "განცხადებების ძებნა"
 
 # Check-box label inside "search" dialog. When box is checked, the search may include operator profiles in its resultset.
 #: ui/searchDisplay.ui:111
 msgctxt "searchDisplay|"
 msgid "Search profiles"
-msgstr "Etsi profiileista"
+msgstr "პროფილების ძებნა"
 
 # Check-box label inside "search" dialog. When box is checked, the search may include profile commetns  in its resultset.
 #: ui/searchDisplay.ui:121
 msgctxt "searchDisplay|"
 msgid "Search comments"
-msgstr "Etsi kommenteista"
+msgstr "კომენტარების ძებნა"
 
-# Dialog title text for "settings" dialog. 
+# Dialog title text for "settings" dialog.
 #: ui/settingsDialog.ui:26
 msgctxt "settingsDialog|"
 msgid "Node settings"
-msgstr "Solmun asetukset"
+msgstr "კვანძის პარამეტრები"
 
 # Text field label for input field inside "settings" dialog. The numerical input field whose label this is has TCP port number of the node.
 #: ui/settingsDialog.ui:39
 msgctxt "settingsDialog|"
 msgid "TCP listen port"
-msgstr "TCP-kuunteluportti"
+msgstr "TCP-ით მოსასმენი პორტი"
 
 # Tooltip-text for input field inside "settings" dialog. The numerical input field whose label this is has TCP port number of the node.
 #: ui/settingsDialog.ui:58
 msgctxt "settingsDialog|"
 msgid "Incoming TCP listen port. Change requires node restart. "
 msgstr ""
-"Kuunteluportti. Tämän vaihtaminen edellyttää ohjelman uudelleenkäynnistystä."
+"TCP-ის შემომავალი მოსასმენი პორტი. ცვლილებას კვანძის გადატვირთვა სჭირდება. "
 
-# Text field label for input field inside "settings" dialog. The textual input field whose label this is requires user to enter DNS-name of the node (or leave it empty, if no name is assigned) 
+# Text field label for input field inside "settings" dialog. The textual input field whose label this is requires user to enter DNS-name of the node (or leave it empty, if no name is assigned)
 #: ui/settingsDialog.ui:84
 msgctxt "settingsDialog|"
 msgid "DNS name of node"
-msgstr "Solmun nimipalvelunimi"
+msgstr "კვანძის DNS სახელი"
 
 # Tooltip-text for input field inside "settings" dialog. The textual input field whose label this is requires user to enter DNS-name of the node (or leave it empty, if no name is assigned)
 #: ui/settingsDialog.ui:91
@@ -2777,133 +2643,132 @@ msgid ""
 "If you have permanent DNS name for your machine, you may type it here to be "
 "used to reference your node"
 msgstr ""
-"Jos solmullasi on pysyvä nimi nimipalvelussa, voit syöttää sen tähän jotta "
-"muut solmut voivat siihen viitata"
+"თუ თქვენი მანქანისთვის მუდმივი DNS სახელი გაქვთ, შეიყვანეთ ის, რათა თქვენს "
+"კვანძს მიმართოთ"
 
-# Text label  inside "settings" dialog. Under this label is set of numerical input fields that user may use to adjust the amount of items he wishes to keep in his local storage. 
+# Text label  inside "settings" dialog. Under this label is set of numerical input fields that user may use to adjust the amount of items he wishes to keep in his local storage.
 #: ui/settingsDialog.ui:103
 msgctxt "settingsDialog|"
 msgid "Data store limits:"
-msgstr "Tietokannan sisällön enimmäismäärät:"
+msgstr "მონაცემების საცავის საზღვრები:"
 
-# Text field label for input field inside "settings" dialog. The numerical input field whose label this is has maximum number of operator profiles to keep in storage. 
+# Text field label for input field inside "settings" dialog. The numerical input field whose label this is has maximum number of operator profiles to keep in storage.
 #: ui/settingsDialog.ui:115
 msgctxt "settingsDialog|"
 msgid "Nr of profiles to keep"
-msgstr "Talletettavien profiilien määrä"
+msgstr "შესანარჩუნებელი პროფილების რაოდენობა"
 
-# Text field label for input field inside "settings" dialog. The numerical input field whose label this is has maximum number of private messages to keep in storage. 
+# Text field label for input field inside "settings" dialog. The numerical input field whose label this is has maximum number of private messages to keep in storage.
 #: ui/settingsDialog.ui:154
 msgctxt "settingsDialog|"
 msgid "Nr of private messages to keep"
-msgstr "Yksityisten viestien määrä"
+msgstr "შესანარჩუნებელი პირადი შეტყობინებების რაოდენობა"
 
-# Text field label for input field inside "settings" dialog. The numerical input field whose label this is has maximum number of binary files to keep in storage. 
+# Text field label for input field inside "settings" dialog. The numerical input field whose label this is has maximum number of binary files to keep in storage.
 #: ui/settingsDialog.ui:193
 msgctxt "settingsDialog|"
 msgid "Nr of binary blobs to keep"
-msgstr "Binääritiedostojen määrä"
+msgstr "შესანარჩუნებელი ბინარული ბლობები"
 
-# Text field label for input field inside "settings" dialog. The numerical input field whose label this is has maximum number of classified ads to keep in storage. 
+# Text field label for input field inside "settings" dialog. The numerical input field whose label this is has maximum number of classified ads to keep in storage.
 #: ui/settingsDialog.ui:232
 msgctxt "settingsDialog|"
 msgid "Nr of CAs to keep"
-msgstr "Ilmoitusten määrä"
+msgstr "შესანარჩუნებელი CA-ების რაოდენობა"
 
-# Tooltip-text for input field inside "settings" dialog. The numerical input field whose label this is has maximum number of classified ads to keep in storage. 
+# Tooltip-text for input field inside "settings" dialog. The numerical input field whose label this is has maximum number of classified ads to keep in storage.
 #: ui/settingsDialog.ui:251
 msgctxt "settingsDialog|"
 msgid ""
 "Number of classified ads to keep in storage, total, including all "
 "classifications. Oldest referenced will be deleted first."
 msgstr ""
-"Paikallisessa tietokannassa talletettavien ilmoitusten määrä, koskien "
-"kaikkia luokitteluja. Viimeisimmäksi viitatut tullaan poistamaan "
-"ensimmäisenä."
+"Classified Ads-ის საცავში შენახული რაოდენობა, კლასიფიკაციების ჩათვლით. ჯერ "
+"წაიშლება უძველესი მიმართვები."
 
 # Text field label for input field inside "settings" dialog. The numerical input field whose label this is has maximum number of comments regarding operators to keep in storage.
 #: ui/settingsDialog.ui:274
 msgctxt "settingsDialog|"
 msgid "Nr of profile comments to keep"
-msgstr "Kommenttien määrä"
+msgstr "შესანარჩუნებელი პროფილის კომენტარების რაოდენობა"
 
 # Settings dialog text for item that tells how many records of distributed database to keep
 #: ui/settingsDialog.ui:313
 msgctxt "settingsDialog|"
 msgid "Nr of db records to keep"
-msgstr "Jaetun tietokannan tietuemäärä"
+msgstr "შესანარჩუნებელი ბაზის ჩანაწერების რაოდენობა"
 
-# Label for combo-box where user can choose between voice call ringtones. 
+# Label for combo-box where user can choose between voice call ringtones.
 #: ui/settingsDialog.ui:316
 msgctxt "settingsDialog|"
 msgid "Ringtone"
-msgstr "Puhelun hälytysääni"
+msgstr "ზარის ხმა"
 
 # Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is performed with a bow.
 #: ui/settingsDialog.ui:324
 msgctxt "settingsDialog|"
 msgid "Bow"
-msgstr "Jousella"
+msgstr "მშვილდი"
 
 # Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is electrical.
 #: ui/settingsDialog.ui:329
 msgctxt "settingsDialog|"
 msgid "Electrical"
-msgstr "Sähköisesti"
+msgstr "ელექტრული"
 
 # Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is performed in acoustic manner
 #: ui/settingsDialog.ui:334
 msgctxt "settingsDialog|"
 msgid "Acoustic"
-msgstr "Akustisesti"
+msgstr "აკუსტიკური"
 
 # Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is only a beep
 #: ui/settingsDialog.ui:339
 msgctxt "settingsDialog|"
 msgid "Beep"
-msgstr "Piippaus"
+msgstr "პიპინი"
 
 # Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is silent
 #: ui/settingsDialog.ui:344
 msgctxt "settingsDialog|"
 msgid "Silence"
-msgstr "Hiljaisuus"
+msgstr "სიჩუმე"
 
 # Combox-box label text. Combo-box is for selecting which audio calls to accept, selections are like "all ; no calls at all ; from some operators ; .."
 #: ui/settingsDialog.ui:356
 msgctxt "settingsDialog|"
 msgid "Accept voice calls"
-msgstr "Hyväksy puhelut"
+msgstr "ხმოვანი ზარების მიღება"
 
-# Combobox item text for selecting which audio calls to accept. Selecting this item lets all calls in. 
+# Combobox item text for selecting which audio calls to accept. Selecting this item lets all calls in.
 #: ui/settingsDialog.ui:364
 msgctxt "settingsDialog|"
 msgid "All"
-msgstr "Kaikki"
+msgstr "ყველა"
 
 # Combobox item text for selecting which audio calls to accept. Selecting this item lets in calls from trusted operators.
 #: ui/settingsDialog.ui:369
 msgctxt "settingsDialog|"
 msgid "From trusted operators"
-msgstr "Vain luotetuilta operaattoreilta"
+msgstr "სანდო ოპერატორისგან"
 
-# Combobox item text for selecting which audio calls to accept. Selecting this item rejects all calls. 
+# Combobox item text for selecting which audio calls to accept. Selecting this item rejects all calls.
 #: ui/settingsDialog.ui:374
 msgctxt "settingsDialog|"
 msgid "Accept no voice calls"
-msgstr "Ei ainuttakaan"
+msgstr "ხმოვანი ზარების მიღების გამორთვა"
 
-# Dialog title text for a dialog that shows network connectivity details. 
+# Dialog title text for a dialog that shows network connectivity details.
 #: ui/statusDialog.ui:26
 msgctxt "statusDialog|"
 msgid "Network and connection status"
-msgstr "Verkon ja yhteyksien tila"
+msgstr "ქსელისა და მიერთების მდგომარეობა"
 
 # Text field label for display-item inside "network status" dialog. The display-item shows ipv4-network address of the node. Usually it is (public) IP addr of the very machine that user is using at the moment.
 #: ui/statusDialog.ui:48
 msgctxt "statusDialog|"
 msgid "Detected own IPv4"
-msgstr "Oma havaittu IPv4"
+msgstr "აღმოჩენილია საკუთარი IPv4 მისამართი"
 
 # Tooltip-text for display-item inside "network status" dialog. The display-item shows ipv4-network address of the node. Usually it is (public) IP addr of the very machine that user is using at the moment.
 #: ui/statusDialog.ui:61 ui/statusDialog.ui:93
@@ -2912,8 +2777,8 @@ msgid ""
 "Should your friend have trouble connecting, give her this address with port "
 "number"
 msgstr ""
-"Jos ystäväsi ei pääse verkon jäseneksi, yritä antaa hänelle tämä osoite "
-"porttinumeron kera"
+"თუ თქვენს მეგობრებს მიერთების პრობლემა აქვთ, მათ ეს მისამართი და პორტის "
+"ნომერი მიეცით"
 
 # Text field label for display-item inside "network status" dialog. The display-item shows IPV6-address of the node. Usually it is (public) IPv6 addr of the very machine that user is using at the moment.
 #: ui/statusDialog.ui:74
@@ -2921,74 +2786,74 @@ msgctxt "statusDialog|"
 msgid "IPv6"
 msgstr "IPv6"
 
-# Text field label for display-item inside "network status" dialog. The display-item shows listen port of the node. 
+# Text field label for display-item inside "network status" dialog. The display-item shows listen port of the node.
 #: ui/statusDialog.ui:113
 msgctxt "statusDialog|"
 msgid "TCP port currently used"
-msgstr "Käytössä oleva TCP-portti"
+msgstr "ამჟამად გამოყენებული TCP პორტი"
 
-# Text field label for a list-item inside "network status" dialog. The list-item shows list of currently connected other nodes in the network. 
+# Text field label for a list-item inside "network status" dialog. The list-item shows list of currently connected other nodes in the network.
 #: ui/statusDialog.ui:151
 msgctxt "statusDialog|"
 msgid "Currently open connections"
-msgstr "Avoimet yhteydet"
+msgstr "ამჟამად ღია შეერთებები"
 
 # Push-button label for button inside "network status" dialog. When button is hit, another dialog is opened, asking user for details about the remote node to connect.
 #: ui/statusDialog.ui:195
 msgctxt "statusDialog|"
 msgid "Manually add connection"
-msgstr "Lisää yhteys käsipelillä"
+msgstr "შეერთების ხელით დამატება"
 
-# Push-button label for button inside "network status" dialog. When button is hit, dialog is dismissed. 
+# Push-button label for button inside "network status" dialog. When button is hit, dialog is dismissed.
 #: ui/statusDialog.ui:202
 msgctxt "statusDialog|"
 msgid "Close"
-msgstr "Sulje"
+msgstr "დაკეტვა"
 
 # Dialog title text for dialog that displays TCL interpreter console.
 #: ui/tclConsole.ui:26
 msgctxt "tclConsoleDialog|"
 msgid "TCL Interpreter console"
-msgstr "TCL-komentotulkin syötteet ja tulosteet"
+msgstr "TCL ინტერპრეტატორის კონსოლი"
 
 # Button text for button that runs TCL commands that user has typed
 #: ui/tclConsole.ui:51
 msgctxt "tclConsoleDialog|"
 msgid "Evaluate"
-msgstr "Suorita"
+msgstr "შეფასება"
 
-# Button text for button that closes TCL interpreter window. Not the interpreter but only the console dialog.  
+# Button text for button that closes TCL interpreter window. Not the interpreter but only the console dialog.
 #: ui/tclConsole.ui:58
 msgctxt "tclConsoleDialog|"
 msgid "Close"
-msgstr "Sulje"
+msgstr "დაკეტვა"
 
 # label for text field that shows TCL interpreter output
 #: ui/tclConsole.ui:69
 msgctxt "tclConsoleDialog|"
 msgid "Interpreter output"
-msgstr "TCL-tulkin tulosteet"
+msgstr "ინტერპრეტატორის გამოტანილი ინფორმაცია"
 
 # label for text field that shows TCL interpreter input
 #: ui/tclConsole.ui:79
 msgctxt "tclConsoleDialog|"
 msgid "Command input"
-msgstr "TCL-kieliset komennot suoritettavaksi"
+msgstr "ბრძანების შეყვანა"
 
 # Dialog title text for dialog that lists stored TCL programs
 #: ui/tclPrograms.ui:26
 msgctxt "tclProgramsDialog|"
 msgid "TCL programs"
-msgstr "TCL-Ohjelmat"
+msgstr "TCL პროგრამები"
 
 # Label for list-item that lists stored TCL programs.
 #: ui/tclPrograms.ui:48
 msgctxt "tclProgramsDialog|"
 msgid "Stored programs"
-msgstr "Ohjelmat"
+msgstr "დამახსოვრებული პროგრამები"
 
 # Label for text item that shows program text of locally stored TCL program
 #: ui/tclPrograms.ui:68
 msgctxt "tclProgramsDialog|"
 msgid "Program code"
-msgstr "Ohjelmakoodi"
+msgstr "პროგრამის კოდი"
