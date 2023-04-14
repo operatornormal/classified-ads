@@ -1,3 +1,14 @@
+classified-ads (0.16-1) unstable; urgency=medium
+
+  * New upstream version 0.16
+  * d/compat deleted
+  * d/control has debhelper-compat (=13) previously 12
+  * d/control has standards-version 4.6.2
+  * d/copyright additions in translation files
+  * d/watch supports checking of gpg signature of git tag
+
+ -- Antti Järvinen <antti.jarvinen@katiska.org>  Fri, 14 Apr 2023 19:27:03 +0300
+
 classified-ads (0.15-1) unstable; urgency=medium
 
   * New upstream version 0.15, essential with OpenSSL 3.x
