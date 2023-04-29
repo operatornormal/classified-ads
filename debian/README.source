@@ -1,0 +1,16 @@
+Normally "apt-get source classified-ads" should produce source files.
+
+When packaging the application for debian or derivative DD usually
+uses "uscan" to download sources of new release. Upstream sources
+are hosted in github repository https://github.com/operatornormal/classified-ads
+and starting from release 0.16 the debian/watch url that uscan
+is using has mode opts="mode=git, pgpmode=gittag" because that allows
+checking release tag pgp signature against file d/upstream/signing-key.asc.
+This is different from previous versions that simply downloaded source
+tarball using https protocol and did not do any signature verification.
+
+If you have any problems downloading the latest tarball, the original URL like
+https://github.com/operatornormal/classified-ads/archive/0.16.tar.gz
+should still work, where "0.16" is the required version. Please
+report problems to antti.jarvinen@katiska.org if uscan doesn't work
+as expected.
