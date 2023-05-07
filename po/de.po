@@ -1,19 +1,21 @@
 # Antti Järvinen <antti.jarvinen@katiska.org>, 2016. #zanata
 # FloH. <postfuerflo@gmail.com>, 2016. #zanata
+# Ettore Atalan <atalanttore@googlemail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: classified-ads 0.10\n"
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
-"PO-Revision-Date: 2016-06-09 11:31-0400\n"
-"Last-Translator: FloH. <postfuerflo@gmail.com>\n"
-"Language-Team: German\n"
+"PO-Revision-Date: 2023-04-30 18:20+0000\n"
+"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
+"Language-Team: German <https://translate.fedoraproject.org/projects/"
+"classified-ads/master/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Zanata 3.8.4\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.15.2\n"
 "X-Language: fi_FI\n"
 "X-Qt-Contexts: true\n"
 
@@ -31,13 +33,13 @@ msgstr "Dateien"
 #: ui/attachmentlistdialog.cpp:162
 msgctxt "AttachmentListDialog|"
 msgid "Save location"
-msgstr ""
+msgstr "Speicherort"
 
 # Dialog text regarding TCL app save location
 #: ui/attachmentlistdialog.cpp:163
 msgctxt "AttachmentListDialog|"
 msgid "Save to TCL app library instead of regular file?"
-msgstr ""
+msgstr "In der TCL-App-Bibliothek anstatt in einer normalen Datei speichern?"
 
 #: ui/attachmentlistdialog.cpp:155
 msgctxt "AttachmentListDialog|"
@@ -474,31 +476,31 @@ msgstr "&Datei"
 #: controller.cpp:729
 msgctxt "Controller|"
 msgid "&TCL Programs"
-msgstr ""
+msgstr "&TCL-Programme"
 
 # Menu item from menu of TCL-related items. Selecting this menu item opens library of TCL programs. 
 #: controller.cpp:730
 msgctxt "Controller|"
 msgid "&Local library"
-msgstr ""
+msgstr "&Lokale Bibliothek"
 
 # Tooltip-text for menu item that opens local TCL program library.
 #: controller.cpp:731
 msgctxt "Controller|"
 msgid "Locally stored TCL programs"
-msgstr ""
+msgstr "Lokal gespeicherte TCL-Programme"
 
 # Difficult to translate: after selecting this menu-item you can write ad-hoc TCL programs to TCL interpreter that may be already executing existing program or is empty. Practically gives TCL command line access to possibly running interpreter.
 #: controller.cpp:734
 msgctxt "Controller|"
 msgid "TCL &Console"
-msgstr ""
+msgstr "TCL-&Konsole"
 
 # Tooltip for menu-item that displays dialog where you can type in ad-hoc TCL-programs.
 #: controller.cpp:735
 msgctxt "Controller|"
 msgid "Display interpreter console"
-msgstr ""
+msgstr "Interpreter-Konsole anzeigen"
 
 #: controller.cpp:571
 msgctxt "Controller|"
@@ -560,7 +562,7 @@ msgstr "Falsches Passwort"
 #: controller.cpp:1043
 msgctxt "Controller|"
 msgid "TCL Interpreter"
-msgstr ""
+msgstr "TCL-Interpreter"
 
 #: controller.cpp:1004
 msgctxt "Controller|"
@@ -751,7 +753,7 @@ msgstr "Dateien"
 #: FrontWidget.cpp:1183
 msgctxt "FrontWidget|"
 msgid "Save location"
-msgstr ""
+msgstr "Speicherort"
 
 # Dialog text in question dialog asking if user wants to save TCL app into local library or into filesystem file
 #: FrontWidget.cpp:1184
@@ -1009,12 +1011,9 @@ msgid "OK"
 msgstr "OK"
 
 #: ui/passwordDialog.ui:68
-#, fuzzy
-#| msgctxt "Controller|"
-#| msgid "Bad password"
 msgctxt "PasswordDialog|"
 msgid "Show password"
-msgstr "Falsches Passwort"
+msgstr "Passwort anzeigen"
 
 #: datamodel/privmsgsearchmodel.cpp:110
 #, qt-format
@@ -1124,7 +1123,7 @@ msgstr "Audio Player konnte nicht initialisiert werden."
 #: ui/searchdisplay.cpp:54
 msgctxt "SearchDisplay|"
 msgid "Leave empty to search any recent documents"
-msgstr ""
+msgstr "Leer lassen, um alle aktuellen Dokumente zu durchsuchen"
 
 #: ui/searchdisplay.cpp:64
 msgctxt "SearchDisplay|"
@@ -1135,49 +1134,41 @@ msgstr "Öffnen.."
 #: ui/tclPrograms.cpp:42
 msgctxt "TclProgramsDialog|"
 msgid "Evaluate"
-msgstr ""
+msgstr "Evaluieren"
 
 # Button text. If button is pressed, TCL program being executed is stopped.
 #: ui/tclPrograms.cpp:43
 msgctxt "TclProgramsDialog|"
 msgid "Stop program"
-msgstr ""
+msgstr "Programm stoppen"
 
 # Button text for button that permanently removes TCL program from local library
 #: ui/tclPrograms.cpp:49
 msgctxt "TclProgramsDialog|"
 msgid "Delete program"
-msgstr ""
+msgstr "Programm löschen"
 
 # Dialog title for dialog that asks user to type in name of TCL program. 
 #: ui/tclPrograms.cpp:99
 msgctxt "TclProgramsDialog|"
 msgid "TCL Program name"
-msgstr ""
+msgstr "TCL-Programm-Name"
 
 #: ui/tclPrograms.cpp:100
-#, fuzzy
-#| msgctxt "Controller|"
-#| msgid "Name: "
 msgctxt "TclProgramsDialog|"
 msgid "Name:"
 msgstr "Name:"
 
 #: ui/tclPrograms.cpp:140
-#, fuzzy
-#| msgctxt "metadataQuery|"
-#| msgid "File information"
 msgctxt "TclProgramsDialog|"
 msgid "Deletion confirmation"
-msgstr "Dateiinformationen"
+msgstr "Bestätigung der Löschung"
 
 #: ui/tclPrograms.cpp:141
-#, fuzzy, qt-format
-#| msgctxt "Controller|"
-#| msgid "Permanently discard profile?"
+#, qt-format
 msgctxt "TclProgramsDialog|"
 msgid "Permanently delete program %1?"
-msgstr "Profil dauerhaft löschen?"
+msgstr "Programm %1 endgültig löschen?"
 
 #: textedit/textedit.cpp:127
 msgctxt "TextEdit|"
@@ -1320,13 +1311,11 @@ msgid "Standard"
 msgstr "Standard"
 
 #: textedit/textedit.cpp:384
-#, fuzzy
 msgctxt "TextEdit|"
 msgid "Bullet List (Disc)"
-msgstr "Aufzählungsliste (Punkt)"
+msgstr "Aufzählungsliste (Scheibe)"
 
 #: textedit/textedit.cpp:385
-#, fuzzy
 msgctxt "TextEdit|"
 msgid "Bullet List (Circle)"
 msgstr "Aufzählungsliste (Kreis)"
@@ -1529,12 +1518,11 @@ msgid "Audio call is not possible: operator profile not found"
 msgstr "Sprachanruf nicht möglich: Benutzerprofil nicht gefunden"
 
 #: net/voicecallengine.cpp:856
-#, fuzzy
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible: operator has no node information in profile"
 msgstr ""
-"Sprachanruf nicht moeglich. Nutzer hat keine Netzknoten-Information in "
-"seinem Profil"
+"Audioanruf ist nicht möglich: Betreiber hat keine Netzknoteninformationen im "
+"Profil"
 
 #: net/voicecallengine.cpp:875
 #, qt-format
