@@ -6,7 +6,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
 "PO-Revision-Date: 2024-02-05 18:29+0000\n"
-"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
 "projects/classified-ads/master/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -1041,7 +1042,7 @@ msgstr "Adicionar seleção aos contatos..."
 #: FrontWidget.cpp:1981
 msgctxt "FrontWidget|"
 msgid "From:"
-msgstr ""
+msgstr "De"
 
 # Text field label. Label tells subject of classified ads. 
 #: FrontWidget.cpp:1917 FrontWidget.cpp:1984
