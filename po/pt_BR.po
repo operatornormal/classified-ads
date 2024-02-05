@@ -6,7 +6,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
 "PO-Revision-Date: 2024-02-05 18:32+0000\n"
-"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
 "projects/classified-ads/master/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -1083,7 +1084,7 @@ msgstr "Falha na pesquisa de DNS"
 #: ui/newprivmsgdialog.cpp:88 ui/newprivmsgdialog.cpp:138
 msgctxt "NewPrivMessageDialog|"
 msgid "Error"
-msgstr ""
+msgstr "Erro"
 
 # Error dialog content text. Dialog is shown when user tries to send a message to operator, whose SHA1 digest (as entered by user) does not parse as SHA1 digest. 
 #: ui/newprivmsgdialog.cpp:89
@@ -1101,7 +1102,7 @@ msgstr "Chave de criptografia do destinatário não encontrada no armazenamento"
 #: ui/newprofilecommentdialog.cpp:89 ui/newprofilecommentdialog.cpp:126
 msgctxt "NewProfileCommentDialog|"
 msgid "Error"
-msgstr ""
+msgstr "Erro"
 
 # Error dialog content text. Dialog is shown when user tries to comment an operator, whose SHA1 digest (as entered by user) does not parse as SHA1 digest.
 #: ui/newprofilecommentdialog.cpp:90
@@ -1149,7 +1150,7 @@ msgstr "Comprimento mínimo 5 (use 10+)"
 #: ui/passwordDialog.ui:14
 msgctxt "PasswordDialog|"
 msgid "Password required"
-msgstr ""
+msgstr "Senha requerida"
 
 # Tooltip text for password dialog. Shown when user hovers on top of password dialog.
 #: ui/passwordDialog.ui:17
@@ -1180,13 +1181,13 @@ msgstr ""
 #: ui/passwordDialog.ui:55
 msgctxt "PasswordDialog|"
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 # Check-box item text. If check-box is selected, password is shown in text editor, if not selected then "hidden text" editor is used that does not show the word being typed. 
 #: ui/passwordDialog.ui:68
 msgctxt "PasswordDialog|"
 msgid "Show password"
-msgstr ""
+msgstr "Exibir senha"
 
 # Tooltip text. Shown when user hovers mouse cursor on top of message sender name. First %1 will be replaced with nickname of the operator whose message is hovered, %2 will be replaced by nickname of operator who has expressed positive trust towards the operator who sent the message. 
 #: datamodel/privmsgsearchmodel.cpp:110
