@@ -6,8 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
 "PO-Revision-Date: 2024-02-06 02:07+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
 "projects/classified-ads/master/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -458,7 +457,7 @@ msgstr "Buscando item da rede..."
 #: controller.cpp:485
 msgctxt "Controller|"
 msgid "E&xit"
-msgstr ""
+msgstr "Sai&r"
 
 # Menu item tooltip-text used in "File" menu entry and when this particular item is selected, application will close
 #: controller.cpp:487
@@ -1187,7 +1186,7 @@ msgstr "OK"
 #: ui/passwordDialog.ui:68
 msgctxt "PasswordDialog|"
 msgid "Show password"
-msgstr "Exibir senha"
+msgstr "Mostrar senha"
 
 # Tooltip text. Shown when user hovers mouse cursor on top of message sender name. First %1 will be replaced with nickname of the operator whose message is hovered, %2 will be replaced by nickname of operator who has expressed positive trust towards the operator who sent the message. 
 #: datamodel/privmsgsearchmodel.cpp:110
@@ -1197,24 +1196,26 @@ msgid ""
 "%1\n"
 "Trusted by %2"
 msgstr ""
+"%1\n"
+"Confiado por %2"
 
 # Tooltip text. Used in column view that lists private messages of operator. Explains the field that gives title to column that specifies direction (sent or received) of the message.
 #: datamodel/privmsgsearchmodel.cpp:237
 msgctxt "PrivateMessageSearchModel|"
 msgid "Direction of message, sent/received"
-msgstr ""
+msgstr "Direção da mensagem, enviada/recebida"
 
 # Column title text. Used in column view that lists private messages of operator. This field gives title to column that specifies direction (sent/received) of the message.
 #: datamodel/privmsgsearchmodel.cpp:247
 msgctxt "PrivateMessageSearchModel|"
 msgid "Dir"
-msgstr ""
+msgstr "Dir"
 
 # Column title text. Used in column view that lists private messages of operator. This field gives title to column that specifies messaging peer (another operator) of the message.
 #: datamodel/privmsgsearchmodel.cpp:250
 msgctxt "PrivateMessageSearchModel|"
 msgid "Peer"
-msgstr ""
+msgstr "Par"
 
 # Column title text. Used in column view that lists private messages of operator. This field gives title to column that specifies time of the message.
 #: datamodel/privmsgsearchmodel.cpp:253
@@ -1250,13 +1251,13 @@ msgstr "Erro"
 #: ui/profilecommentdisplay.cpp:93
 msgctxt "ProfileCommentDisplay|"
 msgid "Article not found from local storage"
-msgstr ""
+msgstr "Artigo não encontrado no armazenamento local"
 
 # Text field label text. The text field whose label this is will show number how many attachements there are in the comment. 
 #: ui/profilecommentitemdelegate.cpp:93
 msgctxt "ProfileCommentItemDelegate|"
 msgid "Attachments: "
-msgstr ""
+msgstr "Anexos: "
 
 # Column view column title text. The column view in question lists profile comments. This text gives title to column that tells who sent the comment. 
 #: datamodel/profilecommentlistingmodel.cpp:219
@@ -1280,67 +1281,69 @@ msgstr "Assunto"
 #: datamodel/profilecommentmodel.cpp:67
 msgctxt "ProfileCommentModel|"
 msgid "Profile related to comment not found from database"
-msgstr ""
+msgstr "Perfil relacionado ao comentário não encontrado no banco de dados"
 
 # Context menu item text. This context-menu is shown when user right-clicks list of operators that is shown in dialog that is made for listing operators (who are readers of another profile)
 #: ui/profilereadersdialog.cpp:73
 msgctxt "ProfileReadersDialog|"
 msgid "View profile"
-msgstr ""
+msgstr "Ver perfil"
 
 # Column view column title text. The column view lists readers (operators) of another profile. 
 #: datamodel/profilereaderslistingmodel.cpp:174
 msgctxt "ProfileReadersListingModel|"
 msgid "Name or fingerprint of reader"
-msgstr ""
+msgstr "Nome ou impressão digital do leitor"
 
 # Error message text, displayed in dialog if audio hardware does not support the format. Should be rare occasion or then gross error like missing soundcard.
 #: call/ringtoneplayer.cpp:77
 msgctxt "RingtonePlayer|"
 msgid "raw audio format not supported by backend, cannot play audio."
 msgstr ""
+"formato de áudio raw não suportado pelo backend, não é possível reproduzir o "
+"áudio."
 
 # Error message text shown in dialog if audio output API returned error in initialization. Should be rare error, or missing audio hardware .. or audio subsystem configuration error. 
 #: call/ringtoneplayer.cpp:93
 msgctxt "RingtonePlayer|"
 msgid "Could not initialize audio player."
-msgstr ""
+msgstr "Não foi possível inicializar o reprodutor de áudio."
 
 # Tool-tip text for search dialog textbox of words to search for
 #: ui/searchdisplay.cpp:54
 msgctxt "SearchDisplay|"
 msgid "Leave empty to search any recent documents"
-msgstr ""
+msgstr "Deixe em branco para pesquisar quaisquer documentos recentes"
 
 # Context menu item text. This context menu is shown when user right-clicks on top of search-results. This menu-item opens the currently-selected item from search results. 
 #: ui/searchdisplay.cpp:64
 msgctxt "SearchDisplay|"
 msgid "Open.."
-msgstr ""
+msgstr "Abrir..."
 
 # Button text. When button is pressed, TCL program is started. 
 #: ui/tclPrograms.cpp:42
 msgctxt "TclProgramsDialog|"
 msgid "Evaluate"
-msgstr ""
+msgstr "Avaliar"
 
 # Button text. If button is pressed, TCL program being executed is stopped.
 #: ui/tclPrograms.cpp:43
 msgctxt "TclProgramsDialog|"
 msgid "Stop program"
-msgstr ""
+msgstr "Parar programa"
 
 # Button text for button that permanently removes TCL program from local library
 #: ui/tclPrograms.cpp:49
 msgctxt "TclProgramsDialog|"
 msgid "Delete program"
-msgstr ""
+msgstr "Excluir programa"
 
 # Dialog title for dialog that asks user to type in name of TCL program. 
 #: ui/tclPrograms.cpp:99
 msgctxt "TclProgramsDialog|"
 msgid "TCL Program name"
-msgstr ""
+msgstr "Nome do programa TCL"
 
 # Text-input label text. Text input will contain name of TCL program. 
 #: ui/tclPrograms.cpp:100
@@ -1352,14 +1355,14 @@ msgstr "Nome:"
 #: ui/tclPrograms.cpp:140
 msgctxt "TclProgramsDialog|"
 msgid "Deletion confirmation"
-msgstr ""
+msgstr "Confirmação de exclusão"
 
 # Dialog text from deletion-confirmation dialog
 #: ui/tclPrograms.cpp:141
 #, qt-format
 msgctxt "TclProgramsDialog|"
 msgid "Permanently delete program %1?"
-msgstr ""
+msgstr "Excluir permanentemente o programa %1?"
 
 # Menu title text. This is the help menu. 
 #: textedit/textedit.cpp:127
@@ -1377,7 +1380,7 @@ msgstr ""
 #: textedit/textedit.cpp:186
 msgctxt "TextEdit|"
 msgid "Edit Actions"
-msgstr ""
+msgstr "Editar ações"
 
 # Menu text. This gives text to "file" menu of a text editor. 
 #: textedit/textedit.cpp:188
@@ -1413,7 +1416,7 @@ msgstr ""
 #: textedit/textedit.cpp:226
 msgctxt "TextEdit|"
 msgid "Print Preview..."
-msgstr ""
+msgstr "Visualização de impressão..."
 
 # Menu-item text. Used in file-menu for triggering "export as pdf" operation
 #: textedit/textedit.cpp:231
