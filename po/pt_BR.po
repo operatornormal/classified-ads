@@ -6,7 +6,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
 "PO-Revision-Date: 2024-02-05 18:27+0000\n"
-"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
 "projects/classified-ads/master/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -679,7 +680,7 @@ msgstr "Tipo Mime: "
 #: controller.cpp:1128
 msgctxt "Controller|"
 msgid "Description: "
-msgstr ""
+msgstr "Descrição: "
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies name of publisher of the file (in practice, who uploaded the file into classified ads)
 #: controller.cpp:1134
@@ -703,7 +704,7 @@ msgstr "Licença: "
 #: controller.cpp:1152
 msgctxt "Controller|"
 msgid "Name: "
-msgstr ""
+msgstr "Nome: "
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies file date
 #: controller.cpp:1159
@@ -745,7 +746,7 @@ msgstr "Arquivos (*.*)"
 #: ui/editcontact.cpp:72
 msgctxt "EditContactDialog|"
 msgid "Error"
-msgstr ""
+msgstr "Erro"
 
 # Contet text of error dialog. Shown after user has tried to enter operator address with intent of adding it to contact-list and the operator address fails format validation. 
 #: ui/editcontact.cpp:73
@@ -817,7 +818,7 @@ msgstr "Editar e publicar novo documento de texto..."
 #: FrontWidget.cpp:353
 msgctxt "FrontWidget|"
 msgid "Open File"
-msgstr ""
+msgstr "Abrir arquivo"
 
 # Text for filter field of file selection dialog
 #: FrontWidget.cpp:355 FrontWidget.cpp:885
@@ -829,13 +830,13 @@ msgstr "Arquivos (*.*)"
 #: FrontWidget.cpp:359 FrontWidget.cpp:1185 FrontWidget.cpp:1328
 msgctxt "FrontWidget|"
 msgid "Error"
-msgstr ""
+msgstr "Erro"
 
 # Error dialog content text. Shown when image file that user selected could not be opened (maybe because file permission problem or maybe image format issue or ..)
 #: FrontWidget.cpp:360
 msgctxt "FrontWidget|"
 msgid "Can't load image"
-msgstr ""
+msgstr "Não é possível carregar a imagem"
 
 # Error dialog title text. This dialog is shown when user  tries to comment another operator but required operator data is missing from local storage. 
 #: FrontWidget.cpp:626 FrontWidget.cpp:766
@@ -877,7 +878,7 @@ msgstr "Erro ao abrir arquivo"
 #: FrontWidget.cpp:1167 FrontWidget.cpp:1173
 msgctxt "FrontWidget|"
 msgid "files"
-msgstr ""
+msgstr "Arquivos"
 
 # Dialog title for dialog that asks whether user wants to save TCL program into local library or into filesystem file
 #: FrontWidget.cpp:1183
