@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: classified-ads 0.14\n"
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
-"PO-Revision-Date: 2024-02-05 18:04+0000\n"
+"PO-Revision-Date: 2024-02-05 18:27+0000\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
 "projects/classified-ads/master/pt_BR/>\n"
@@ -529,25 +529,25 @@ msgstr "Se você tiver vários perfis"
 #: controller.cpp:504
 msgctxt "Controller|"
 msgid "Settings.."
-msgstr "_Configurações..."
+msgstr "Configurações..."
 
 # Tooltip-text for a menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to enter password of another profile that user will use next
 #: controller.cpp:505
 msgctxt "Controller|"
 msgid "Node-wide settings.."
-msgstr ""
+msgstr "Configurações para todo o nó..."
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a dialog detailing network connectivity of the node
 #: controller.cpp:507
 msgctxt "Controller|"
 msgid "Network status.."
-msgstr ""
+msgstr "Status de rede..."
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a search-dialog
 #: controller.cpp:509
 msgctxt "Controller|"
 msgid "Search.."
-msgstr ""
+msgstr "Pesquisar..."
 
 # Menu bar title text for "File" menu. 
 #: controller.cpp:526
@@ -571,7 +571,7 @@ msgstr ""
 #: controller.cpp:731
 msgctxt "Controller|"
 msgid "Locally stored TCL programs"
-msgstr ""
+msgstr "Programas TCL armazenados localmente"
 
 # Difficult to translate: after selecting this menu-item you can write ad-hoc TCL programs to TCL interpreter that may be already executing existing program or is empty. Practically gives TCL command line access to possibly running interpreter.
 #: controller.cpp:734
@@ -583,97 +583,97 @@ msgstr ""
 #: controller.cpp:735
 msgctxt "Controller|"
 msgid "Display interpreter console"
-msgstr ""
+msgstr "Exibe o console do interpretador"
 
 # Password dialog prompt.
 #: controller.cpp:571
 msgctxt "Controller|"
 msgid "Enter new password:"
-msgstr ""
+msgstr "Insira nova senha:"
 
 # Password dialog prompt. In this case the password dialog is not used for giving initial password or change password but instead password is typed for the reason of selection of another operator profile to be used. 
 #: controller.cpp:599 controller.cpp:708
 msgctxt "Controller|"
 msgid "Activate another profile with password"
-msgstr ""
+msgstr "Ativar outro perfil com senha"
 
 # Error message shown in dialog in situation where user tried to delete the last (one and only) operator profile in machine. There needs to be at least one profile and this error message is shown if user tries to get around that limitation. 
 #: controller.cpp:693
 msgctxt "Controller|"
 msgid "Can't delete only profile."
-msgstr ""
+msgstr "Não é possível excluir apenas o perfil."
 
 # Text shown in title of confirmation dialog. 
 #: controller.cpp:697
 msgctxt "Controller|"
 msgid "Permanently discard profile?"
-msgstr ""
+msgstr "Descartar permanentemente o perfil?"
 
 # Text shown inside a confirmation dialog. Dialog will have buttons OK and Cancel and this is the question.
 #: controller.cpp:698
 msgctxt "Controller|"
 msgid "There will be NO way to access content of this profile later"
-msgstr ""
+msgstr "NÃO haverá como acessar o conteúdo deste perfil posteriormente"
 
 # Error message that is shown in a dialog in situation where previously stored encryption keys of the node could not be accessed. Rather fatal error, will render node un-usable. 
 #: controller.cpp:761
 msgctxt "Controller|"
 msgid "Cant load node cert or key cert"
-msgstr ""
+msgstr "Não é possível carregar o certificado do nó ou o certificado da chave"
 
 # Error message dialog title text for a dialog that is shown in a dialog in situation where something bad happened during a filesystem file operation. Actual explanation of the error is shown inside the dialog whose title text this is.  
 #: controller.cpp:766
 msgctxt "Controller|"
 msgid "File error"
-msgstr ""
+msgstr "Erro de arquivo"
 
 # Error message dialog title text for a dialog that is shown in a dialog in situation where something bad happened during database operation. Actual explanation of the error is shown inside the dialog whose title text this is.  
 #: controller.cpp:771
 msgctxt "Controller|"
 msgid "Database error"
-msgstr ""
+msgstr "Erro no banco de dados"
 
 # Error message dialog title text for a dialog that is shown in a dialog in situation where something bad happened during a operation inside crypto-module. Actual explanation of the error is shown inside the dialog whose title text this is.  
 #: controller.cpp:777 controller.cpp:787
 msgctxt "Controller|"
 msgid "Cryptographic module"
-msgstr ""
+msgstr "Módulo criptográfico"
 
 # Error message dialog title text for a dialog that is shown in a dialog in situation where something bad happened during operation inside database module. Actual explanation of the error is shown inside the dialog whose title text this is.  
 #: controller.cpp:782
 msgctxt "Controller|"
 msgid "Database module"
-msgstr ""
+msgstr "Módulo de banco de dados"
 
 # Error message dialog title text for a dialog that is shown in a dialog in situation when password supplied by user was not good for any purpose. Actual explanation of the error is shown inside the dialog whose title text this is.  
 #: controller.cpp:788
 msgctxt "Controller|"
 msgid "Bad password"
-msgstr ""
+msgstr "Senha incorreta"
 
 # Dialog title for error dialog that displays error message originating from TCL-interpereter. 
 #: controller.cpp:1043
 msgctxt "Controller|"
 msgid "TCL Interpreter"
-msgstr ""
+msgstr "Interpretador TCL"
 
 # Error message text inside a dialog when user had requested for an item to be opened but program could not find the requested item.   
 #: controller.cpp:1004
 msgctxt "Controller|"
 msgid "Could not find item from network.."
-msgstr ""
+msgstr "Não foi possível encontrar o item da rede..."
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies SHA1 digest of the file.
 #: controller.cpp:1117
 msgctxt "Controller|"
 msgid "SHA1: "
-msgstr ""
+msgstr "SHA1: "
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies mime-type of the file
 #: controller.cpp:1122
 msgctxt "Controller|"
 msgid "Mime-Type: "
-msgstr ""
+msgstr "Tipo Mime: "
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that gives longer explanation of the file
 #: controller.cpp:1128
@@ -685,19 +685,19 @@ msgstr ""
 #: controller.cpp:1134
 msgctxt "Controller|"
 msgid "Publisher: "
-msgstr ""
+msgstr "Editor: "
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies name of the person (or organization) that owns (in copyright sense) the file or its contents. 
 #: controller.cpp:1140
 msgctxt "Controller|"
 msgid "Content owner: "
-msgstr ""
+msgstr "Proprietário do conteúdo: "
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies the license of the file
 #: controller.cpp:1146
 msgctxt "Controller|"
 msgid "License: "
-msgstr ""
+msgstr "Licença: "
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies file name
 #: controller.cpp:1152
@@ -709,37 +709,37 @@ msgstr ""
 #: controller.cpp:1159
 msgctxt "Controller|"
 msgid "Date: "
-msgstr ""
+msgstr "Data: "
 
 # Error message text shown inside dialog when user tries to select for operation a file that is much much too big. (there is currently 2MB size limit for shared files) 
 #: ui/dialogbase.cpp:47 ui/dialogbase.cpp:101
 msgctxt "DialogBase|"
 msgid "File way too big"
-msgstr ""
+msgstr "Arquivo muito grande"
 
 # Error message text shown inside dialog when user tries to select for operation a file that is just-and-just too big. (there is currently 2MB size limit for shared files) 
 #: ui/dialogbase.cpp:55 ui/dialogbase.cpp:109
 msgctxt "DialogBase|"
 msgid "File too big"
-msgstr ""
+msgstr "Arquivo grande"
 
 # Error message text shown inside dialog when user tries to select for operation a file that can not be opened (for example due to file permission reasons)
 #: ui/dialogbase.cpp:85 ui/dialogbase.cpp:131
 msgctxt "DialogBase|"
 msgid "File open error"
-msgstr ""
+msgstr "Erro ao abrir arquivo"
 
 # Dialog title text. Dialog prompts user to select the filesystem file that will be published inside classified ads. 
 #: ui/dialogbase.cpp:94
 msgctxt "DialogBase|"
 msgid "Select file to be published"
-msgstr ""
+msgstr "Selecione o arquivo a ser publicado"
 
 # Text for file type filter field in file-selection-dialog
 #: ui/dialogbase.cpp:96
 msgctxt "DialogBase|"
 msgid "Files (*.*)"
-msgstr ""
+msgstr "Arquivos (*.*)"
 
 # Title text of error dialog. 
 #: ui/editcontact.cpp:72
@@ -751,67 +751,67 @@ msgstr ""
 #: ui/editcontact.cpp:73
 msgctxt "EditContactDialog|"
 msgid "Operator addr is not valid"
-msgstr ""
+msgstr "O endereço do operador não é válido"
 
 # Tab text. In "main window" of classified ads UI there a are 4 or 5 tabs, normally "Classified ads"; "My profile", "Contacts", "Private messages" and maybe something else. This is the text of the first tab. 
 #: FrontWidget.cpp:95
 msgctxt "FrontWidget|"
 msgid "Classified ads"
-msgstr ""
+msgstr "Anúncios classificados"
 
 # Tab text. In "main window" of classified ads UI there a are 4 or 5 tabs, normally "Classified ads"; "My profile", "Contacts", "Private messages" and maybe something else. This is the text of the 2nd tab. 
 #: FrontWidget.cpp:96
 msgctxt "FrontWidget|"
 msgid "My profile"
-msgstr ""
+msgstr "Meu perfil"
 
 # Tab text. In "main window" of classified ads UI there a are 4 or 5 tabs, normally "Classified ads"; "My profile", "Contacts", "Private messages" and maybe something else. This is the text of the 3rd tab. 
 #: FrontWidget.cpp:97
 msgctxt "FrontWidget|"
 msgid "Contacts"
-msgstr ""
+msgstr "Contatos"
 
 # Tab text. In "main window" of classified ads UI there a are 4 or 5 tabs, normally "Classified ads"; "My profile", "Contacts", "Private messages" and maybe something else. This is the text of the 4th tab. 
 #: FrontWidget.cpp:98
 msgctxt "FrontWidget|"
 msgid "Private messages"
-msgstr ""
+msgstr "Mensagens privadas"
 
 # Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, a dialog will appear asking which file to share
 #: FrontWidget.cpp:160
 msgctxt "FrontWidget|"
 msgid "Add shared file.."
-msgstr ""
+msgstr "Adicionar arquivo compartilhado..."
 
 # Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, the selected file in the listing view will no longer be shared
 #: FrontWidget.cpp:161
 msgctxt "FrontWidget|"
 msgid "Stop advertising selected shared file"
-msgstr ""
+msgstr "Parar de anunciar o arquivo compartilhado selecionado"
 
 # Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, the selected file in the listing view will be saved to filesystem
 #: FrontWidget.cpp:162
 msgctxt "FrontWidget|"
 msgid "Save file to disk.."
-msgstr ""
+msgstr "Salvar arquivo no disco..."
 
 # Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, information dialog about selected file will be shown
 #: FrontWidget.cpp:163
 msgctxt "FrontWidget|"
 msgid "View file information.."
-msgstr ""
+msgstr "Ver informações do arquivo..."
 
 # Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, SHA digest of the selected file will be copied to clipboard. 
 #: FrontWidget.cpp:164
 msgctxt "FrontWidget|"
 msgid "Copy file address (SHA1) to clipboard.."
-msgstr ""
+msgstr "Copiar o endereço do arquivo (SHA1) para a área de transferência..."
 
 # Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, an editor will be displayed prompting user to enter text that will then be published  for other users to see. 
 #: FrontWidget.cpp:165
 msgctxt "FrontWidget|"
 msgid "Edit+publish new text document.."
-msgstr ""
+msgstr "Editar e publicar novo documento de texto..."
 
 # Dialog title text for "file open" dialog
 #: FrontWidget.cpp:353
@@ -823,7 +823,7 @@ msgstr ""
 #: FrontWidget.cpp:355 FrontWidget.cpp:885
 msgctxt "FrontWidget|"
 msgid "Files (*.*)"
-msgstr ""
+msgstr "Arquivos (*.*)"
 
 # Error dialog title text. Actual error message will be shown inside dialog whose title is this text. 
 #: FrontWidget.cpp:359 FrontWidget.cpp:1185 FrontWidget.cpp:1328
@@ -841,37 +841,37 @@ msgstr ""
 #: FrontWidget.cpp:626 FrontWidget.cpp:766
 msgctxt "FrontWidget|"
 msgid "Profile not in database"
-msgstr ""
+msgstr "O perfil não está no banco de dados"
 
 # Error dialog content text. This dialog is shown when user  tries to comment another operator but required operator data is missing from local storage. 
 #: FrontWidget.cpp:627 FrontWidget.cpp:767
 msgctxt "FrontWidget|"
 msgid "Try viewing profile first to obtain data"
-msgstr ""
+msgstr "Tente visualizar o perfil primeiro para obter dados"
 
 # File selection title text. Prompts user to select a file for publish purpose. 
 #: FrontWidget.cpp:883
 msgctxt "FrontWidget|"
 msgid "Select file to be published"
-msgstr ""
+msgstr "Selecione o arquivo a ser publicado"
 
 # Error text shown in dialog. Shown in situation where user selected a file that really exceeds size limit (of 2MB)
 #: FrontWidget.cpp:890
 msgctxt "FrontWidget|"
 msgid "File way too big"
-msgstr ""
+msgstr "Arquivo muito grande"
 
 # Error text shown in dialog. Shown in situation where user selected a file that slightly exceeds size limit (of 2MB)
 #: FrontWidget.cpp:898
 msgctxt "FrontWidget|"
 msgid "File too big"
-msgstr ""
+msgstr "Arquivo grande"
 
 # Error text shown in dialog. Shown in situation where user selected a file that could for some reason not be opened
 #: FrontWidget.cpp:942 FrontWidget.cpp:1186
 msgctxt "FrontWidget|"
 msgid "File open error"
-msgstr ""
+msgstr "Erro ao abrir arquivo"
 
 # Part of filter text field in file selection dialog. If for instance user tries to open PNG files, then the text in filter field will be "PNG files (*.png)" and this word is the 2nd word in the phrase. 
 #: FrontWidget.cpp:1167 FrontWidget.cpp:1173
