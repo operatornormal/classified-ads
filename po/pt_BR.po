@@ -6,8 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
 "PO-Revision-Date: 2024-02-05 18:04+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
 "projects/classified-ads/master/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -23,205 +22,207 @@ msgstr ""
 #: ui/attachmentlistdialog.cpp:60
 msgctxt "AttachmentListDialog|"
 msgid "Save file to disk.."
-msgstr ""
+msgstr "Salvar arquivo no disco.."
 
 # In file open dialog this is text specifying what kind of files to include in listing, filtered by file name suffix. For example, user wants only PNG files, then text appearing in dialog filter field would say "PNG files (*.png)" and this work "files" here is the word after the word PNG.  
 #: ui/attachmentlistdialog.cpp:151 ui/attachmentlistdialog.cpp:153
 msgctxt "AttachmentListDialog|"
 msgid "files"
-msgstr ""
+msgstr "arquivos"
 
 # Appears as dialog title where text asks if user wants to save into "application library" or into local file
 #: ui/attachmentlistdialog.cpp:162
 msgctxt "AttachmentListDialog|"
 msgid "Save location"
-msgstr ""
+msgstr "Salvar localização"
 
 # Dialog text regarding TCL app save location
 #: ui/attachmentlistdialog.cpp:163
 msgctxt "AttachmentListDialog|"
 msgid "Save to TCL app library instead of regular file?"
-msgstr ""
+msgstr "Salvar na biblioteca de aplicativos TCL em vez de em um arquivo normal?"
 
 # Dialog title text for dialog asking user to give a name to file for purpose of saving it to filesystem. 
 #: ui/attachmentlistdialog.cpp:155
 msgctxt "AttachmentListDialog|"
 msgid "Choose file name for saving"
-msgstr ""
+msgstr "Escolha o nome do arquivo para salvar"
 
 # Dialog title text for error dialog. 
 #: ui/attachmentlistdialog.cpp:166
 msgctxt "AttachmentListDialog|"
 msgid "Error"
-msgstr ""
+msgstr "Erro"
 
 # This gives (no)  explanation about reason for "file open failure"?
 #: ui/attachmentlistdialog.cpp:167
 msgctxt "AttachmentListDialog|"
 msgid "File open error"
-msgstr ""
+msgstr "Erro ao abrir arquivo"
 
 # Error message text displayed when audio output fails immediately due to format conflict. 
 #: call/audioplayer.cpp:65
 msgctxt "AudioPlayer|"
 msgid "raw audio format not supported by backend, cannot play audio."
 msgstr ""
+"formato de áudio raw não suportado pelo backend, não é possível reproduzir o "
+"áudio."
 
 # Error message text shown in dialog when audio output is not possible. Possible reason could be missing soundcard or other disastrous failure. 
 #: call/audioplayer.cpp:83
 msgctxt "AudioPlayer|"
 msgid "Could not initialize audio player."
-msgstr ""
+msgstr "Não foi possível inicializar o reprodutor de áudio."
 
 # Title text in a listing view where list of shared files are listed. This particular text gives text for column, where "name or fingerprint of file" is listed. Fingerprint in practice means SHA1 digest. 
 #: datamodel/binaryfilelistingmodel.cpp:173
 msgctxt "BinaryFileListingModel|"
 msgid "Name or fingerprint of file"
-msgstr ""
+msgstr "Nome ou impressão digital do arquivo"
 
 # Header text for a column-list. The column that gets its header text from this string, is the date-column of an classified ad. 
 #: datamodel/calistingmodel.cpp:50 datamodel/calistingmodel.cpp:143
 msgctxt "CAListingModel|"
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 # Header text for a column-list. The column that gets its header text from this string, is the subject-column of an classified ad. 
 #: datamodel/calistingmodel.cpp:51 datamodel/calistingmodel.cpp:142
 msgctxt "CAListingModel|"
 msgid "Subject"
-msgstr ""
+msgstr "Assunto"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Cars in Estonia" and this combobox text here is the first word of that phrase. 
 #: datamodel/camodel.cpp:127
 msgctxt "ClassifiedAdsModel|"
 msgid "Buying"
-msgstr ""
+msgstr "Compra"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Selling of Cars in Estonia" and this combobox text here is the first word of that phrase. 
 #: datamodel/camodel.cpp:129
 msgctxt "ClassifiedAdsModel|"
 msgid "Selling"
-msgstr ""
+msgstr "Venda"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Giving away of Cars in Estonia" and this combobox text here is the first+2nd word of that phrase. 
 #: datamodel/camodel.cpp:131
 msgctxt "ClassifiedAdsModel|"
 msgid "Giving away"
-msgstr ""
+msgstr "Doação"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Wanting of Cars in Estonia" and this combobox text here is the first word of that phrase. 
 #: datamodel/camodel.cpp:133
 msgctxt "ClassifiedAdsModel|"
 msgid "Wanting"
-msgstr ""
+msgstr "Em busca"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Renting of Cars in Estonia" and this combobox text here is the first word of that phrase. 
 #: datamodel/camodel.cpp:135
 msgctxt "ClassifiedAdsModel|"
 msgid "Renting"
-msgstr ""
+msgstr "Aluguel"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Announcement of Cars in Estonia" and this combobox text here is the first word of that phrase. 
 #: datamodel/camodel.cpp:137
 msgctxt "ClassifiedAdsModel|"
 msgid "Announcement"
-msgstr ""
+msgstr "Anúncio"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Cars in Estonia" and this combobox text here is the 3rd word of that phrase. 
 #: datamodel/camodel.cpp:210
 msgctxt "ClassifiedAdsModel|"
 msgid "Cars"
-msgstr ""
+msgstr "Carros"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Boats in Estonia" and this combobox text here is the 3rd word of that phrase. 
 #: datamodel/camodel.cpp:212
 msgctxt "ClassifiedAdsModel|"
 msgid "Boats"
-msgstr ""
+msgstr "Barcos"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Bikes in Estonia" and this combobox text here is the 3rd word of that phrase. 
 #: datamodel/camodel.cpp:214
 msgctxt "ClassifiedAdsModel|"
 msgid "Bikes"
-msgstr ""
+msgstr "Bicicletas"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Other vehicles in Estonia" and this combobox text here is the 3rd+4th word of that phrase. 
 #: datamodel/camodel.cpp:216
 msgctxt "ClassifiedAdsModel|"
 msgid "Other vehicles"
-msgstr ""
+msgstr "Outros veículos"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of vehicle parts in Estonia" and this combobox text here is the 3rd+4th word of that phrase.
 #: datamodel/camodel.cpp:218
 msgctxt "ClassifiedAdsModel|"
 msgid "Vehicle parts"
-msgstr ""
+msgstr "Peças de veículos"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Habitation in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:220
 msgctxt "ClassifiedAdsModel|"
 msgid "Habitation"
-msgstr ""
+msgstr "Imóvel"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Household appliances in Estonia" and this combobox text here is the 3rd+4th word of that phrase.
 #: datamodel/camodel.cpp:222
 msgctxt "ClassifiedAdsModel|"
 msgid "Household appliances"
-msgstr ""
+msgstr "Electrodomésticos"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Furniture in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:224
 msgctxt "ClassifiedAdsModel|"
 msgid "Furniture"
-msgstr ""
+msgstr "Mobília"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Clothing in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:226
 msgctxt "ClassifiedAdsModel|"
 msgid "Clothing"
-msgstr ""
+msgstr "Roupas"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Tools in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:228
 msgctxt "ClassifiedAdsModel|"
 msgid "Tools"
-msgstr ""
+msgstr "Ferramentas"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Tools in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:230
 msgctxt "ClassifiedAdsModel|"
 msgid "Sports"
-msgstr ""
+msgstr "Esportes"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Music in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:232
 msgctxt "ClassifiedAdsModel|"
 msgid "Music"
-msgstr ""
+msgstr "Música"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Books in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:234
 msgctxt "ClassifiedAdsModel|"
 msgid "Books"
-msgstr ""
+msgstr "Livros"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Movies in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:236
 msgctxt "ClassifiedAdsModel|"
 msgid "Movies"
-msgstr ""
+msgstr "Filmes"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Animals in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:238
 msgctxt "ClassifiedAdsModel|"
 msgid "Animals"
-msgstr ""
+msgstr "Animais"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Electronics in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:240
 msgctxt "ClassifiedAdsModel|"
 msgid "Electronics"
-msgstr ""
+msgstr "Eletrônicos"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Announcement of Jobs in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:242
@@ -233,7 +234,7 @@ msgstr "Trabalhos"
 #: datamodel/camodel.cpp:244
 msgctxt "ClassifiedAdsModel|"
 msgid "Transportation"
-msgstr ""
+msgstr "Transporte"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Services in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:246
@@ -245,19 +246,19 @@ msgstr "Serviços"
 #: datamodel/camodel.cpp:248
 msgctxt "ClassifiedAdsModel|"
 msgid "Healthcare"
-msgstr ""
+msgstr "Assistência médica"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Selling of Foodstuff in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:250
 msgctxt "ClassifiedAdsModel|"
 msgid "Foodstuff"
-msgstr ""
+msgstr "Alimentos"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Selling of Software in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:252
 msgctxt "ClassifiedAdsModel|"
 msgid "Software"
-msgstr ""
+msgstr "Software"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Announcement of Events in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:254
@@ -275,61 +276,61 @@ msgstr "Educação"
 #: datamodel/camodel.cpp:258
 msgctxt "ClassifiedAdsModel|"
 msgid "Finance"
-msgstr ""
+msgstr "Finanças"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Selling of Jewelry in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:260
 msgctxt "ClassifiedAdsModel|"
 msgid "Jewelry"
-msgstr ""
+msgstr "Joia"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Announcement of religious rituals in Estonia" and this combobox text here is the 3rd+4th word of that phrase.
 #: datamodel/camodel.cpp:262
 msgctxt "ClassifiedAdsModel|"
 msgid "Religious rituals"
-msgstr ""
+msgstr "Rituais religiosos"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Announcement of Philosophy in Estonia" and this combobox text here is the 3rd word of that phrase.
 #: datamodel/camodel.cpp:264
 msgctxt "ClassifiedAdsModel|"
 msgid "Philosophy"
-msgstr ""
+msgstr "Filosofia"
 
 # Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Announcement of Philosophy in Any country" and this combobox text here is end part "Any country" specifying the location where announcement. 
 #: datamodel/camodel.cpp:908
 msgctxt "ClassifiedAdsModel|"
 msgid "Any country"
-msgstr ""
+msgstr "Qualquer país"
 
 # Tool tip text. When user hovers mouse cursor on top of network address field in a dialog, this text will appear. 
 #: datamodel/connectionlistingmodel.cpp:142
 msgctxt "ConnectionListingModel|"
 msgid "Peer network address"
-msgstr ""
+msgstr "Endereço de rede ponto a ponto"
 
 # Tool tip text. When user hovers mouse cursor on top of field specifying if connection is inbound/outbound this text will appear. 
 #: datamodel/connectionlistingmodel.cpp:145
 msgctxt "ConnectionListingModel|"
 msgid "Inbound connections are those where peer initiated connection"
-msgstr ""
+msgstr "Conexões de entrada são aquelas em que a conexão iniciada por pares"
 
 # Tool tip text. When user hovers mouse cursor on top of traffic-counter field in a dialog, this text will appear. 
 #: datamodel/connectionlistingmodel.cpp:148
 msgctxt "ConnectionListingModel|"
 msgid "Data transferred from peer to your node"
-msgstr ""
+msgstr "Dados transferidos do peer para o seu nó"
 
 # Tool tip text. When user hovers mouse cursor on top of traffic-counter field in a dialog, this text will appear.
 #: datamodel/connectionlistingmodel.cpp:151
 msgctxt "ConnectionListingModel|"
 msgid "Data transferred to peer from your node"
-msgstr ""
+msgstr "Dados transferidos para peer do seu nó"
 
 # Tool tip text. When user hovers mouse cursor on top of time-field in a dialog, this text will appear.
 #: datamodel/connectionlistingmodel.cpp:154
 msgctxt "ConnectionListingModel|"
 msgid "Time when connection was opened"
-msgstr ""
+msgstr "Hora em que a conexão foi aberta"
 
 # Column header text. Column view is used for listing network connections currently open, this text here gives title for column that shows network address (like IP-address)
 #: datamodel/connectionlistingmodel.cpp:164
@@ -341,25 +342,25 @@ msgstr "Endereço"
 #: datamodel/connectionlistingmodel.cpp:167
 msgctxt "ConnectionListingModel|"
 msgid "Inbound"
-msgstr ""
+msgstr "Entrada"
 
 # Column header text. Column view is used for listing network connections currently open, this text here gives title for column that shows number of bytes transferred inside
 #: datamodel/connectionlistingmodel.cpp:170
 msgctxt "ConnectionListingModel|"
 msgid "Bytes in"
-msgstr ""
+msgstr "Bytes entrada"
 
 # Column header text. Column view is used for listing network connections currently open, this text here gives title for column that shows number of bytes transferred outside
 #: datamodel/connectionlistingmodel.cpp:173
 msgctxt "ConnectionListingModel|"
 msgid "Bytes out"
-msgstr ""
+msgstr "Bytes saída"
 
 # Column header text. Column view is used for listing network connections currently open, this text here gives title for column that shows time when connection was opened. 
 #: datamodel/connectionlistingmodel.cpp:176
 msgctxt "ConnectionListingModel|"
 msgid "Open time"
-msgstr ""
+msgstr "Tempo aberto"
 
 # Text in contact listing column view. This text appears in column telling if user is to be trusted or not and this value here denotes the positive case "user is trusted".
 #: datamodel/contactlistingmodel.cpp:73
@@ -377,19 +378,19 @@ msgstr "Desconhecido"
 #: datamodel/contactlistingmodel.cpp:98
 msgctxt "ContactListingModel|"
 msgid "Actual network address (SHA1) of the contact"
-msgstr ""
+msgstr "Endereço de rede real (SHA1) do contato"
 
 # Tool tip text. When user hovers mouse cursor on top of field where operators locally given nickname is shown, this text appears. The field is part of contact listing view, where users frequent contacts are shown.
 #: datamodel/contactlistingmodel.cpp:101
 msgctxt "ContactListingModel|"
 msgid "Locally given nickname ; user may set her own nickname himself"
-msgstr ""
+msgstr "Apelido dado localmente; o usuário pode definir seu próprio apelido"
 
 # Tool tip text. When user hovers mouse cursor on top of field where operators trustworthiness (boolean value) in users opinion is shown, this text appears. The field is part of contact listing view, where users frequent contacts are shown.
 #: datamodel/contactlistingmodel.cpp:104
 msgctxt "ContactListingModel|"
 msgid "Public statement if this operator to be trusted in transactions"
-msgstr ""
+msgstr "Declaração pública se este operador é confiável nas transações"
 
 # Column header text. Used in column view where operators frequent contacts are shown. This text gives title to column that shows operators network address (the SHA digest of operator)
 #: datamodel/contactlistingmodel.cpp:114
@@ -401,56 +402,56 @@ msgstr "Endereço"
 #: datamodel/contactlistingmodel.cpp:117
 msgctxt "ContactListingModel|"
 msgid "Nickname"
-msgstr ""
+msgstr "Apelido"
 
 # Column header text. Used in column view where operators frequent contacts are shown. This text gives title to column that shows operators trustworthiness. 
 #: datamodel/contactlistingmodel.cpp:120
 msgctxt "ContactListingModel|"
 msgid "Publicly trusted"
-msgstr ""
+msgstr "Publicamente confiado"
 
 # Error message that is displayed when SSL key generation failed. Text is displayed in a dialog, after user dismisses the dialog, whole application will exit.
 #: datamodel/contentencryptionmodel.cpp:88
 msgctxt "ContentEncryptionModel|"
 msgid "SSL key generation went wrong, calling exit.."
-msgstr ""
+msgstr "A geração da chave SSL deu errado, saindo..."
 
 # Error message that is displayed when x509 certificate generation failed. Text is displayed in a dialog, after user dismisses the dialog, whole application will exit.
 #: datamodel/contentencryptionmodel.cpp:96
 msgctxt "ContentEncryptionModel|"
 msgid "x509 cert generation went wrong, calling exit.."
-msgstr ""
+msgstr "A geração do certificado x509 deu errado, saindo..."
 
 # Error message that is displayed when RSA private key could not be saved to database. This is rather fatal error, the operator profile that user tried to create will be un-usable. 
 #: datamodel/contentencryptionmodel.cpp:194
 #: datamodel/contentencryptionmodel.cpp:292
 msgctxt "ContentEncryptionModel|"
 msgid "RSA Private key key saving went wrong"
-msgstr ""
+msgstr "O salvamento da chave privada RSA deu errado"
 
 # Error message text. This is displayed in situation where user tried to access content that he does not have encryption key for. This may appear frequently during normal operation and is no fatal error, only telling user that he is not going to see the content he was trying to access. 
 #: datamodel/contentencryptionmodel.cpp:639
 msgctxt "ContentEncryptionModel|"
 msgid "No suitable de-cryption key found"
-msgstr ""
+msgstr "Nenhuma chave de descriptografia adequada encontrada"
 
 # Window title text for whole application. 
 #: controller.cpp:109
 msgctxt "Controller|"
 msgid "Classified ads"
-msgstr ""
+msgstr "Anúncios classificados"
 
 # Prompt text for password dialog
 #: controller.cpp:141
 msgctxt "Controller|"
 msgid "Enter password for protection of your messages:"
-msgstr ""
+msgstr "Digite a senha para proteção de suas mensagens:"
 
 # Dialog text for a wait dialog (a progress-bar like thing will be shown next to this text and user is supposed to sit down and wait a moment..)
 #: controller.cpp:432
 msgctxt "Controller|"
 msgid "Fetching item from network.."
-msgstr ""
+msgstr "Buscando item da rede..."
 
 # Menu item text used in "File" menu item and when this particular item is selected, application will close
 #: controller.cpp:485
@@ -462,7 +463,7 @@ msgstr ""
 #: controller.cpp:487
 msgctxt "Controller|"
 msgid "Exit the application"
-msgstr ""
+msgstr "Sai do aplicativo"
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a dialog telling why this application is and how to use it
 #: controller.cpp:489
@@ -474,7 +475,7 @@ msgstr ""
 #: controller.cpp:490
 msgctxt "Controller|"
 msgid "Show the application's About box"
-msgstr ""
+msgstr "Mostra a caixa Sobre do aplicativo"
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to change her password
 #: controller.cpp:492
@@ -486,7 +487,7 @@ msgstr ""
 #: controller.cpp:493
 msgctxt "Controller|"
 msgid "Change password of current profile"
-msgstr ""
+msgstr "Altera senha do perfil atual"
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to enter password for a newly-created user profile
 #: controller.cpp:495
@@ -498,7 +499,7 @@ msgstr ""
 #: controller.cpp:496
 msgctxt "Controller|"
 msgid "Makes a brand new user profile"
-msgstr ""
+msgstr "Cria um novo perfil de usuário"
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to confirm deletion of currently open operator profile
 #: controller.cpp:498
@@ -510,7 +511,7 @@ msgstr ""
 #: controller.cpp:499
 msgctxt "Controller|"
 msgid "Deletes currently open profile"
-msgstr ""
+msgstr "Exclui o perfil atualmente aberto"
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to enter password of another profile that user will use next
 #: controller.cpp:501
@@ -522,7 +523,7 @@ msgstr ""
 #: controller.cpp:502
 msgctxt "Controller|"
 msgid "If you have multitude of profiles"
-msgstr ""
+msgstr "Se você tiver vários perfis"
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a settings-dialog 
 #: controller.cpp:504
