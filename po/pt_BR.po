@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: classified-ads 0.14\n"
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
-"PO-Revision-Date: 2024-02-05 18:32+0000\n"
+"PO-Revision-Date: 2024-02-06 02:07+0000\n"
 "Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
 "memory@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
@@ -470,7 +470,7 @@ msgstr "Sai do aplicativo"
 #: controller.cpp:489
 msgctxt "Controller|"
 msgid "&About"
-msgstr ""
+msgstr "Sobre"
 
 # Tooltip-text of menu item text used in "File" menu and when this particular item is selected, application will show a dialog telling why this application is and how to use it
 #: controller.cpp:490
@@ -1220,13 +1220,13 @@ msgstr ""
 #: datamodel/privmsgsearchmodel.cpp:253
 msgctxt "PrivateMessageSearchModel|"
 msgid "Time"
-msgstr ""
+msgstr "Tempo"
 
 # Column title text. Used in column view that lists private messages of operator. This field gives title to column that specifies subject of the message.
 #: datamodel/privmsgsearchmodel.cpp:256
 msgctxt "PrivateMessageSearchModel|"
 msgid "Subject"
-msgstr ""
+msgstr "Assunto"
 
 # Push button text. Clicking the button will open a dialog prompting user to add a new comment
 #: ui/profilecommentdisplay.cpp:54
@@ -1244,7 +1244,7 @@ msgstr ""
 #: ui/profilecommentdisplay.cpp:92
 msgctxt "ProfileCommentDisplay|"
 msgid "Error"
-msgstr ""
+msgstr "Erro"
 
 # Error dialog content text. Shown after user tried to access a profile comment and the comment could not be found
 #: ui/profilecommentdisplay.cpp:93
@@ -1262,19 +1262,19 @@ msgstr ""
 #: datamodel/profilecommentlistingmodel.cpp:219
 msgctxt "ProfileCommentListingModel|"
 msgid "Sender"
-msgstr ""
+msgstr "Remetente"
 
 # Column view column title text. The column view in question lists profile comments. This text gives title to column that tells when comment was sent.
 #: datamodel/profilecommentlistingmodel.cpp:222
 msgctxt "ProfileCommentListingModel|"
 msgid "Time"
-msgstr ""
+msgstr "Tempo"
 
 # Column view column title text. The column view in question lists profile comments. This text gives title to column that tells subject of the comment. 
 #: datamodel/profilecommentlistingmodel.cpp:225
 msgctxt "ProfileCommentListingModel|"
 msgid "Subject"
-msgstr ""
+msgstr "Assunto"
 
 # Error message text. Shown inside a dialog after user tried to send a comment to operator who had sent a comment and it turns out that necessary encryption keys of the commenting operator are not found and the replying comment can't be sent. 
 #: datamodel/profilecommentmodel.cpp:67
@@ -1346,7 +1346,7 @@ msgstr ""
 #: ui/tclPrograms.cpp:100
 msgctxt "TclProgramsDialog|"
 msgid "Name:"
-msgstr ""
+msgstr "Nome:"
 
 # Dialog title text for situation where user is about to delete a TCL program. Dialog includes question and yes+no buttons. 
 #: ui/tclPrograms.cpp:140
@@ -1365,7 +1365,7 @@ msgstr ""
 #: textedit/textedit.cpp:127
 msgctxt "TextEdit|"
 msgid "Help"
-msgstr ""
+msgstr "Ajuda"
 
 # Menu-item text used in "help" menu. Selecting this item opens "about" dialog about Qt library. 
 #: textedit/textedit.cpp:129
