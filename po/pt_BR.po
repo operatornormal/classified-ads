@@ -6,7 +6,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
 "PO-Revision-Date: 2024-02-05 18:30+0000\n"
-"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
 "projects/classified-ads/master/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -1065,7 +1066,7 @@ msgstr "SHA1 inválido na URL"
 #: FrontWidget.cpp:2315
 msgctxt "FrontWidget|"
 msgid "Invalid URL"
-msgstr ""
+msgstr "URL inválido"
 
 # Error dialog content text. Shown in situation when user entered a link that could not be parsed.  
 #: ui/insertlinkdialog.cpp:69
