@@ -5,9 +5,8 @@ msgstr ""
 "Project-Id-Version: classified-ads 0.14\n"
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
-"PO-Revision-Date: 2024-02-05 18:29+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2024-02-05 18:30+0000\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
 "projects/classified-ads/master/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -1042,25 +1041,25 @@ msgstr "Adicionar seleção aos contatos..."
 #: FrontWidget.cpp:1981
 msgctxt "FrontWidget|"
 msgid "From:"
-msgstr "De"
+msgstr "De:"
 
 # Text field label. Label tells subject of classified ads. 
 #: FrontWidget.cpp:1917 FrontWidget.cpp:1984
 msgctxt "FrontWidget|"
 msgid "Subject:"
-msgstr ""
+msgstr "Assunto:"
 
 # Text field label. Label tells whom a private message was sent to. 
 #: FrontWidget.cpp:1976
 msgctxt "FrontWidget|"
 msgid "To:"
-msgstr ""
+msgstr "Para:"
 
 # Error dialog content text. Shown in situation when user clicked on a link that contained SHA1 digest that was not valid. 
 #: FrontWidget.cpp:2288
 msgctxt "FrontWidget|"
 msgid "Invalid SHA1 in URL"
-msgstr ""
+msgstr "SHA1 inválido na URL"
 
 # Error dialog content text. Shown in situation when user clicked on a link that was not correctly formatted. 
 #: FrontWidget.cpp:2315
