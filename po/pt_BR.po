@@ -5,9 +5,8 @@ msgstr ""
 "Project-Id-Version: classified-ads 0.14\n"
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
-"PO-Revision-Date: 2024-02-05 18:30+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2024-02-05 18:32+0000\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
 "projects/classified-ads/master/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -1072,13 +1071,13 @@ msgstr "URL inválida"
 #: ui/insertlinkdialog.cpp:69
 msgctxt "InsertLinkDialog|"
 msgid "Invalid URL"
-msgstr "URL inválido"
+msgstr "URL inválida"
 
 # Error dialog content text. Shown in situation when user tried to add connection to node whose name was not found via nameserver. 
 #: ui/manualconnection.cpp:53
 msgctxt "ManualConnectionDialog|"
 msgid "DNS lookup failure"
-msgstr ""
+msgstr "Falha na pesquisa de DNS"
 
 # Error dialog title text. Actual error message will be shown inside the dialog. 
 #: ui/newprivmsgdialog.cpp:88 ui/newprivmsgdialog.cpp:138
@@ -1090,13 +1089,13 @@ msgstr ""
 #: ui/newprivmsgdialog.cpp:89
 msgctxt "NewPrivMessageDialog|"
 msgid "Recipient addr is not valid"
-msgstr ""
+msgstr "O endereço do destinatário não é válido"
 
 # Error dialog content text. Dialog is shown when user tries to send a message to operator, whose encryption keys are present in local storage. 
 #: ui/newprivmsgdialog.cpp:139
 msgctxt "NewPrivMessageDialog|"
 msgid "Recipient encryption key not found from storage"
-msgstr ""
+msgstr "Chave de criptografia do destinatário não encontrada no armazenamento"
 
 # Error dialog title text. Actual error message will be shown inside the dialog.
 #: ui/newprofilecommentdialog.cpp:89 ui/newprofilecommentdialog.cpp:126
@@ -1108,43 +1107,43 @@ msgstr ""
 #: ui/newprofilecommentdialog.cpp:90
 msgctxt "NewProfileCommentDialog|"
 msgid "Commented profile addr is not valid"
-msgstr ""
+msgstr "O endereço do perfil comentado não é válido"
 
 # Error dialog content text. Dialog is shown when user tries to send a message to operator, whose encryption keys are present in local storage.
 #: ui/newprofilecommentdialog.cpp:127
 msgctxt "NewProfileCommentDialog|"
 msgid "Recipient encryption key not found from storage"
-msgstr ""
+msgstr "Chave de criptografia do destinatário não encontrada no armazenamento"
 
 # Error message text. Will be shown in error message dialog in case when initial SSL key generation of node did not succeed. After user dismisses the dialog, the application will close.
 #: datamodel/nodemodel.cpp:115
 msgctxt "NodeModel|"
 msgid "SSL key generation went wrong, calling exit.."
-msgstr ""
+msgstr "A geração da chave SSL deu errado, saindo.."
 
 # Error message text. Will be shown in error message dialog in case when initial encryption key generation of user did not succeed. After user dismisses the dialog, the application will close.
 #: datamodel/nodemodel.cpp:123
 msgctxt "NodeModel|"
 msgid "x509 cert generation went wrong, calling exit.."
-msgstr ""
+msgstr "A geração do certificado x509 deu errado, saindo..."
 
 # Error message text. Will be shown in error message dialog in case when SSL certificate of the node could not be loaded from storage. After user dismisses the dialog, the application will close.
 #: datamodel/nodemodel.cpp:1596
 msgctxt "NodeModel|"
 msgid "Cant load SSL cert"
-msgstr ""
+msgstr "Não é possível carregar o certificado SSL"
 
 # Error message text. Will be shown in error message dialog in case when SSL key of the node could not be retrieved from local storage. After user dismisses the dialog, the application will close.
 #: datamodel/nodemodel.cpp:1626
 msgctxt "NodeModel|"
 msgid "Cant load SSL key"
-msgstr ""
+msgstr "Não é possível carregar a chave SSL"
 
 # Error message text. Shown in dialog when user tries to enter a password that is too short. 
 #: ui/passwd_dialog.cpp:104
 msgctxt "PasswdDialog|"
 msgid "Min length 5 (use 10+)"
-msgstr ""
+msgstr "Comprimento mínimo 5 (use 10+)"
 
 # Password dialog title text. 
 #: ui/passwordDialog.ui:14
@@ -1159,12 +1158,14 @@ msgid ""
 "Should you forget this word, there is no easy way to recover any of your "
 "content"
 msgstr ""
+"Caso você esqueça esta palavra, não há uma maneira fácil de recuperar "
+"qualquer parte do seu conteúdo"
 
 # Prompt text for password dialog. 
 #: ui/passwordDialog.ui:29
 msgctxt "PasswordDialog|"
 msgid "Enter password for protection of your messages"
-msgstr ""
+msgstr "Digite a senha para proteção de suas mensagens"
 
 # Tooltip text for password dialog. Shown when user hovers on top of password field
 #: ui/passwordDialog.ui:42
@@ -1172,6 +1173,8 @@ msgctxt "PasswordDialog|"
 msgid ""
 "If you forget this word, there is no simple way to recover your contents"
 msgstr ""
+"Se você esquecer esta palavra, não há uma maneira simples de recuperar seu "
+"conteúdo"
 
 # Password dialog button text 
 #: ui/passwordDialog.ui:55
