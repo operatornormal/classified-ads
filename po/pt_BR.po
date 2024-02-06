@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: classified-ads 0.14\n"
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
-"PO-Revision-Date: 2024-02-06 02:19+0000\n"
+"PO-Revision-Date: 2024-02-06 02:20+0000\n"
 "Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
 "memory@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
@@ -1483,7 +1483,7 @@ msgstr ""
 #: textedit/textedit.cpp:298
 msgctxt "TextEdit|"
 msgid "&Bold"
-msgstr ""
+msgstr "Negrito"
 
 # Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "toggle italic text"
 #: textedit/textedit.cpp:310
