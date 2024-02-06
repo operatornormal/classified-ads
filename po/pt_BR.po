@@ -6,8 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
 "PO-Revision-Date: 2024-02-06 02:30+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
 "projects/classified-ads/master/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -1667,7 +1666,7 @@ msgstr "Aceitar"
 #: net/voicecallengine.cpp:533
 msgctxt "VoiceCallEngine|"
 msgid "Reject"
-msgstr "rejeitar"
+msgstr "Rejeitar"
 
 # Button text for "ongoing call" dialog. When button is hit, call is closed. 
 #: net/voicecallengine.cpp:535
@@ -1679,31 +1678,31 @@ msgstr "Fechar"
 #: net/voicecallengine.cpp:551
 msgctxt "VoiceCallEngine|"
 msgid "Actual network address (SHA1) of the peer operator"
-msgstr ""
+msgstr "Endereço de rede atual (SHA1) do operador par"
 
 # Tooltip text for list display that lists ongoing voice calls. The text explained is (IP) address of the remote node of the voice call participant. 
 #: net/voicecallengine.cpp:554
 msgctxt "VoiceCallEngine|"
 msgid "Network address of the remote node"
-msgstr ""
+msgstr "Endereço de rede do nó remoto"
 
 # Column header text for display that lists ongoing calls. This gives header text for column that shows name of the call participant
 #: net/voicecallengine.cpp:564
 msgctxt "VoiceCallEngine|"
 msgid "Operator"
-msgstr ""
+msgstr "Operador"
 
 # Column header text for display that lists ongoing calls. This gives header text for column that shows network address of the call participant
 #: net/voicecallengine.cpp:567
 msgctxt "VoiceCallEngine|"
 msgid "Node address"
-msgstr ""
+msgstr "Endereço do nó"
 
 # Column header text for display that lists ongoing calls. This gives header text for column that shows state of the call (like open, closed, ringing etc)
 #: net/voicecallengine.cpp:570
 msgctxt "VoiceCallEngine|"
 msgid "Call status"
-msgstr ""
+msgstr "Status da chamada"
 
 # Column header text for display that lists ongoing calls. This gives header text for column containing buttons for accepting, rejecting and ending a call. 
 #: net/voicecallengine.cpp:573
@@ -1715,7 +1714,7 @@ msgstr "Controles"
 #: net/voicecallengine.cpp:576
 msgctxt "VoiceCallEngine|"
 msgid "Ending"
-msgstr ""
+msgstr "Finalizando"
 
 # Call status text. When making a new outgoing call, this is status for new call that is not answered yet. 
 #: net/voicecallengine.cpp:613
