@@ -5,9 +5,8 @@ msgstr ""
 "Project-Id-Version: classified-ads 0.14\n"
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
-"PO-Revision-Date: 2024-02-06 02:21+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2024-02-06 02:26+0000\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
 "projects/classified-ads/master/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -1513,19 +1512,19 @@ msgstr "&Centro"
 #: textedit/textedit.cpp:343 textedit/textedit.cpp:345
 msgctxt "TextEdit|"
 msgid "&Right"
-msgstr "Direita"
+msgstr "&Direita"
 
 # Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "justify both right+left"
 #: textedit/textedit.cpp:349
 msgctxt "TextEdit|"
 msgid "&Justify"
-msgstr ""
+msgstr "&Justificado"
 
 # Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "color selection"
 #: textedit/textedit.cpp:376
 msgctxt "TextEdit|"
 msgid "&Color..."
-msgstr ""
+msgstr "C&or..."
 
 # Combobox item text. The combobox is used to select text style. The text style selected with this text is "standard"
 #: textedit/textedit.cpp:383
@@ -1537,49 +1536,49 @@ msgstr ""
 #: textedit/textedit.cpp:384
 msgctxt "TextEdit|"
 msgid "Bullet List (Disc)"
-msgstr ""
+msgstr "Lista de marcadores (disco)"
 
 # Combobox item text. The combobox is used to select text style. The text style selected with this text is "bullet list (circle)"
 #: textedit/textedit.cpp:385
 msgctxt "TextEdit|"
 msgid "Bullet List (Circle)"
-msgstr ""
+msgstr "Lista de marcadores (círculo)"
 
 # Combobox item text. The combobox is used to select text style. The text style selected with this text is "bullet list (square)"
 #: textedit/textedit.cpp:386
 msgctxt "TextEdit|"
 msgid "Bullet List (Square)"
-msgstr ""
+msgstr "Lista de marcadores (quadrado)"
 
 # Combobox item text. The combobox is used to select text style. The text style selected with this text is "ordered list (decimal)"
 #: textedit/textedit.cpp:387
 msgctxt "TextEdit|"
 msgid "Ordered List (Decimal)"
-msgstr ""
+msgstr "Lista ordenada (decimal)"
 
 # Combobox item text. The combobox is used to select text style. The text style selected with this text is "ordered list (alpha lower)"
 #: textedit/textedit.cpp:388
 msgctxt "TextEdit|"
 msgid "Ordered List (Alpha lower)"
-msgstr ""
+msgstr "Lista ordenada (letra minúscula)"
 
 # Combobox item text. The combobox is used to select text style. The text style selected with this text is "ordered list (alpha upper)"
 #: textedit/textedit.cpp:389
 msgctxt "TextEdit|"
 msgid "Ordered List (Alpha upper)"
-msgstr ""
+msgstr "Lista ordenada (letra maiúscula)"
 
 # Combobox item text. The combobox is used to select text style. The text style selected with this text is "ordered list (roman lower)"
 #: textedit/textedit.cpp:390
 msgctxt "TextEdit|"
 msgid "Ordered List (Roman lower)"
-msgstr ""
+msgstr "Lista ordenada (romano minúsculo)"
 
 # Combobox item text. The combobox is used to select text style. The text style selected with this text is "ordered list (roman upper)"
 #: textedit/textedit.cpp:391
 msgctxt "TextEdit|"
 msgid "Ordered List (Roman upper)"
-msgstr ""
+msgstr "Lista ordenada (romano maiúsculo)"
 
 # Warning dialog title text. This dialog is shown if user tries to exit without saving her text. 
 #: textedit/textedit.cpp:442
@@ -1594,6 +1593,8 @@ msgid ""
 "The document has been modified.\n"
 "Do you want to save your changes?"
 msgstr ""
+"O documento foi modificado\n"
+"Você deseja salvar suas alterações?"
 
 # File selection dialog title text. Dialog will prompt user to select a document for opening. 
 #: textedit/textedit.cpp:467
@@ -1605,25 +1606,25 @@ msgstr ""
 #: textedit/textedit.cpp:468
 msgctxt "TextEdit|"
 msgid "HTML-Files (*.htm *.html);;All Files (*)"
-msgstr ""
+msgstr "Arquivos HTML (*.htm *.html);;Todos arquivos (*)"
 
 # File selection dialog title text. Dialog in question prompts user to select name for file to be persisted. 
 #: textedit/textedit.cpp:485
 msgctxt "TextEdit|"
 msgid "Save as..."
-msgstr ""
+msgstr "Salvar como..."
 
 # Text for file selection filter field to be used inside file selection dialog. There are 3 parts, separated by ";;" and those semicolons must be left in place. Also the filter parts like (*.odt) must not be edited. The explanations like "ODF-files" may be edited.
 #: textedit/textedit.cpp:486
 msgctxt "TextEdit|"
 msgid "ODF files (*.odt);;HTML-Files (*.htm *.html);;All Files (*)"
-msgstr ""
+msgstr "Arquivos ODF (*.odt);;Arquivos HTML (*.htm *.html);;Todos arquivos (*)"
 
 # Dialog title text. The dialog is printer dialog asking user how to print the text currently in editor. 
 #: textedit/textedit.cpp:501
 msgctxt "TextEdit|"
 msgid "Print Document"
-msgstr ""
+msgstr "Imprimir documento"
 
 # File selection dialog title text. Dialog will prompt user to select a document for opening.
 #: textedit/textedit.cpp:559
@@ -1635,7 +1636,7 @@ msgstr ""
 #: textedit/textedit.cpp:561
 msgctxt "TextEdit|"
 msgid "Files (*.*)"
-msgstr ""
+msgstr "Arquivos (*.*)"
 
 # Error dialog title text. 
 #: textedit/textedit.cpp:566
