@@ -5,9 +5,8 @@ msgstr ""
 "Project-Id-Version: classified-ads 0.14\n"
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
-"PO-Revision-Date: 2024-02-06 16:21+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2024-02-07 17:35+0000\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
 "projects/classified-ads/master/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -542,7 +541,7 @@ msgstr "Configurações para todo o nó..."
 #: controller.cpp:507
 msgctxt "Controller|"
 msgid "Network status.."
-msgstr "Status de rede..."
+msgstr "Status da rede..."
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a search-dialog
 #: controller.cpp:509
@@ -2014,7 +2013,7 @@ msgstr "Editar um contato"
 #: ui/editContact.ui:39
 msgctxt "editContactDialog|"
 msgid "Address (SHA1) of contact"
-msgstr "Endereço (SHA1) de contato"
+msgstr "Endereço (SHA1) do contato"
 
 # Text field label in contact-editing dialog. This gives label for field that shows nickname of the operator whose data is being edited
 #: ui/editContact.ui:53
@@ -2094,7 +2093,7 @@ msgstr "Endereço do perfil"
 #: frontWidget.ui:208 frontWidget.ui:643
 msgctxt "frontWidget|"
 msgid "Nickname"
-msgstr "apelido"
+msgstr "Apelido"
 
 # Text field label in "operators profile" tab. The field in questions shows "hello world" text of the operator. 
 #: frontWidget.ui:225 frontWidget.ui:669
