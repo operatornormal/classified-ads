@@ -5,8 +5,9 @@ msgstr ""
 "Project-Id-Version: classified-ads 0.14\n"
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
-"PO-Revision-Date: 2024-02-06 02:27+0000\n"
-"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
+"PO-Revision-Date: 2024-02-06 02:30+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
 "projects/classified-ads/master/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -1672,7 +1673,7 @@ msgstr "rejeitar"
 #: net/voicecallengine.cpp:535
 msgctxt "VoiceCallEngine|"
 msgid "Close"
-msgstr ""
+msgstr "Fechar"
 
 # Tooltip text. Shown in listing of ongoing calls. This tooltip explains "operator address" column of the display. The text explained is SHA1-digest or operator name if known. 
 #: net/voicecallengine.cpp:551
@@ -1708,7 +1709,7 @@ msgstr ""
 #: net/voicecallengine.cpp:573
 msgctxt "VoiceCallEngine|"
 msgid "Controls"
-msgstr ""
+msgstr "Controles"
 
 # Column header text for display that lists ongoing calls. This gives header text for column that shows name column containing button for ending an ongoing call. 
 #: net/voicecallengine.cpp:576
@@ -1720,7 +1721,7 @@ msgstr ""
 #: net/voicecallengine.cpp:613
 msgctxt "VoiceCallEngine|"
 msgid "Initializing"
-msgstr ""
+msgstr "inicializando"
 
 # Call status text. When receiving a new incoming call, this is status for new call that is not answered yet.
 #: net/voicecallengine.cpp:616
