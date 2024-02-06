@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: classified-ads 0.14\n"
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
-"PO-Revision-Date: 2024-02-06 02:30+0000\n"
+"PO-Revision-Date: 2024-02-06 03:49+0000\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
 "projects/classified-ads/master/pt_BR/>\n"
@@ -1720,31 +1720,31 @@ msgstr "Finalizando"
 #: net/voicecallengine.cpp:613
 msgctxt "VoiceCallEngine|"
 msgid "Initializing"
-msgstr "inicializando"
+msgstr "Inicializando"
 
 # Call status text. When receiving a new incoming call, this is status for new call that is not answered yet.
 #: net/voicecallengine.cpp:616
 msgctxt "VoiceCallEngine|"
 msgid "Incoming"
-msgstr ""
+msgstr "Recebida"
 
 # Call status text. When voice call is in progress, this is the status.
 #: net/voicecallengine.cpp:619
 msgctxt "VoiceCallEngine|"
 msgid "Open"
-msgstr ""
+msgstr "Aberta"
 
 # Call status text. When voice call is marked to be closed, this is its status.
 #: net/voicecallengine.cpp:622
 msgctxt "VoiceCallEngine|"
 msgid "Closing"
-msgstr ""
+msgstr "Fechando"
 
 # Call status text. When voice call is closed, this is the status text.
 #: net/voicecallengine.cpp:625
 msgctxt "VoiceCallEngine|"
 msgid "Closed"
-msgstr ""
+msgstr "Fechada"
 
 # Call status text. When voice call attempt ends in error, this is text displayed.
 #: net/voicecallengine.cpp:628
@@ -1756,37 +1756,38 @@ msgstr ""
 #: net/voicecallengine.cpp:631
 msgctxt "VoiceCallEngine|"
 msgid "No call"
-msgstr ""
+msgstr "Nenhuma chamada"
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "general purpose" excuse, when no detailed reason is know.
 #: net/voicecallengine.cpp:834
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible"
-msgstr ""
+msgstr "Chamada de áudio não é possível"
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is not dimmed and call is possible. 
 #: net/voicecallengine.cpp:840
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is possible"
-msgstr ""
+msgstr "Chamada de áudio é possível"
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "SHA1 digest of operator is not known"
 #: net/voicecallengine.cpp:847
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible: operator address unknown"
-msgstr ""
+msgstr "Chamada de áudio não é possível: endereço de operador desconhecido"
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "operators profile not found (from local database)"
 #: net/voicecallengine.cpp:853
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible: operator profile not found"
-msgstr ""
+msgstr "Chamada de áudio não é possível: perfil de operador não encontrado"
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "there is no network address included in node information of the profile"
 #: net/voicecallengine.cpp:856
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible: operator has no node information in profile"
 msgstr ""
+"Chamada de áudio não é possível: operador não tem informação do nó no perfil"
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "there is no (ipv4) network connection to node"
 #: net/voicecallengine.cpp:875
@@ -1794,6 +1795,7 @@ msgstr ""
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible: operators IPv4 address %1 not connected"
 msgstr ""
+"Chamada de áudio não é possível: endereço IPv4 %1 de operadores não conectado"
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "there is no (ipv6) network connection to node"
 #: net/voicecallengine.cpp:882
@@ -1801,6 +1803,7 @@ msgstr ""
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible: operators IPv6 address %1 not connected"
 msgstr ""
+"Chamada de áudio não é possível: endereço IPv6 %1 de operadores não conectado"
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is protocol mismatch. 
 #: net/voicecallengine.cpp:893
@@ -1809,94 +1812,29 @@ msgid ""
 "Audio call is not possible: local node has no IPv6 address, operator has "
 "only IPv6 addr"
 msgstr ""
+"Chamada de áudio não é possível: o nó local não tem endereço IPv6, operador "
+"tem apenas endereço IPv6"
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "operator does not publish network address of his node"
 #: net/voicecallengine.cpp:895
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible: operator does not publish network address"
-msgstr ""
+msgstr "Chamada de áudio não é possível: operador não publica endereço de rede"
 
 # Dialog title text for "about" dialog.
 #: ui/aboutDialog.ui:26
 msgctxt "aboutDialog|"
 msgid "About classified ads"
-msgstr ""
+msgstr "Sobre o Anúncios Classificados"
 
 # 1st line of text inside "about" dialog, placed next to the turle logo. This text is then followed by longer explanation detail why this program is and how. This is kind of title for the longer explanation. 
 #: ui/aboutDialog.ui:100
 msgctxt "aboutDialog|"
 msgid " Classified ads is a program for online communications"
-msgstr ""
+msgstr " O Anúncios Classificados é um programa para comunicações online"
 
 # The long explanation of classified ads inside about-dialog. Note that this text must be valid html. Needs to start with <html> and end with </html> etc. This is easiest to edit like this: copy-paste the content in to a file, say /tmp/about.html. Then either open your favourite html-editor or open classified ads. In classified ads you can start constructing an ad, select from file-menu "open.." and select this file  ;do editing and save from file-menu. The saved file is immediately in correct format to be be copy-pasted into contents of this field.  
 #: ui/aboutDialog.ui:163
-#| msgid ""
-#| "<html><head/><body><p>Classified ads is free software. You may use, copy "
-#| "and modify it if you follow the conditions given in GNU lesser general "
-#| "public license version 2.1.</p><p>Classified ads is copyright © Antti "
-#| "Järvinen 2013. </p><p>Main feature of the the program is an "
-#| "&quot;advertisement&quot; - a piece of text belonging to selected "
-#| "classification. There are several pre-programmed classifications and "
-#| "operators are encouraged to invent new classifications for new purposes ; "
-#| "the selection boxes in classification-selection tab are editable. Other "
-#| "operators may then view the ads, publicly comment the ads, the operators "
-#| "and also send private messages to each others. </p><p>Another important "
-#| "feature of classified ads is that it is designed to be operated without "
-#| "any centralized server infrastucture - it is you and other operators "
-#| "whose computers store and transmit all the content visible inside "
-#| "classified ads. To get connected you need to know address of at least one "
-#| "existing computer (a <span style=\" font-style:italic;\">node</span>) so "
-#| "if your network connection dialog shows no connections, you may need to "
-#| "contact someone you know is using the software and ask for address of her "
-#| "node to make initial contact with the network. Once connected the "
-#| "software should maintain list of addresses of other nodes. </p><p>Due to "
-#| "its server-less design the whole system works best if you leave the "
-#| "program running always when you have your computer powered on ; while "
-#| "processing other operators requests it will hog some computing resources "
-#| "and generate network traffic also when you are not actively using the "
-#| "program youself - others are. </p><p>Operators concerned about privacy of "
-#| "the content should be aware of following items:</p><p>- Data storage "
-#| "implementation is variant of <span style=\" "
-#| "font-style:italic;\">distributed hash table</span>, practically meaning "
-#| "that content posted by you gets copied some more-or-less random nodes in "
-#| "the network. </p><p>- Any data item (ad, comment, binary file, private "
-#| "message etc.) is digitally signed. This makes it more difficult to try to "
-#| "pose as another operator. </p><p>- Operators are reliably identified only "
-#| "by the SHA1 hash of their generated encryption keys. SHA1 hash is "
-#| "displayed when viewing details of operator profiles. Other identifying "
-#| "information like nickname or city name are entered by operator himself "
-#| "and can be anything. The operator profile, as it is published to the "
-#| "network, is also signed with the encryption keys of the operator - if you "
-#| "identify an operator by her SHA1 hash, you have a mechanism for "
-#| "identifying if any content inside classified ads is posted by this "
-#| "operator or not. Classified ads internally checks for digital signatures, "
-#| "throwing away content that fails signature check and tries to provide "
-#| "SHA1 hash of the operator who posted the content.</p><p>- All classified "
-#| "ads are posted as plain text, no encryption is used. All public profiles "
-#| "are posted as plain text, no encryption is used. If profile is made "
-#| "private, it is encrypted to be readable only by selected other profiles. "
-#| "This applies also to binary files shared by operators private profiles "
-#| "and comments about private profiles after the profile was made private "
-#| "(previously plain-text comments or files don't get magically encrypted "
-#| "afterwards). Private messages are encrypted always to be readable only by "
-#| "recipient and sender. Attachments follow the privary rules of the "
-#| "document, they're attachted to. </p><p>- As is the case with all "
-#| "internet-communications, this small fact is true for classified ads too : "
-#| "<span style=\" font-style:italic;\">once something gets posted online, "
-#| "there is no way to remove it from network</span>. </p><p>- Data "
-#| "encryption implementation for content is OpenSSL, relying mostly on "
-#| "algorithms RSA-2048 and AES-256. </p><p>- While connections between nodes "
-#| "are implemented using SSL, other nodes inside network do get to know what "
-#| "content is being transmitted in neighboring nodes. While there is no "
-#| "central point for easily collecting this information about particular "
-#| "classification or operator, operators still should expect no privacy "
-#| "regarding their doings online, although some effort has been been put "
-#| "into hiding <span style=\" font-style:italic;\">contents</span> of "
-#| "private messages and private profiles. </p><p>Programming was (mostly) "
-#| "done by Antti Järvinen, artwork by Meeri Järvinen.</p><p>This product "
-#| "includes software developed by the OpenSSL Project for use in the OpenSSL "
-#| "Toolkit (http://www.openssl.org/).</p><p>Happy "
-#| "advertising!</p><p><br/></p></body></html>"
 msgctxt "aboutDialog|"
 msgid ""
 "<html><head/><body><p>Classified ads is free software. You may use, copy and "
@@ -1964,54 +1902,124 @@ msgid ""
 "(http://www.openssl.org/).</p><p>Happy "
 "advertising!</p><p><br/></p></body></html>"
 msgstr ""
+"<html><head/><body><p>Anúncios Classificados é software livre. Você pode usá-"
+"lo, copiá-lo e modificá-lo se seguir as condições fornecidas na licença "
+"pública geral menor GNU versão 2.1.</p><p>Anúncios Classificados é protegido "
+"por direitos autorais © Antti Järvinen 2013. </p><p>Característica principal "
+"do programa é uma &quot;anúncio&quot; - um trecho de texto pertencente à "
+"classificação selecionada. Existem diversas classificações pré-programadas e "
+"os operadores são encorajados a inventar novas classificações para novos "
+"fins; as caixas de seleção na guia de seleção de classificação são "
+"editáveis. Outros operadores podem então visualizar os anúncios, comentar "
+"publicamente sobre os anúncios, os operadores e também enviar mensagens "
+"privadas uns aos outros. </p><p>Outra característica importante dos anúncios "
+"classificados é que eles são projetados para serem operados sem qualquer "
+"infraestrutura de servidor centralizada - são você e outros operadores cujos "
+"computadores armazenam e transmitem todo o conteúdo visível nos anúncios "
+"classificados. Para se conectar, você precisa saber o endereço de pelo menos "
+"um computador existente (um <span style=\" font-style:italic;\">nó</span>), "
+"portanto, se a caixa de diálogo de conexão de rede não mostrar conexões, "
+"talvez seja necessário entre em contato com alguém que você conhece que está "
+"usando o software e peça o endereço do nó dela para fazer o contato inicial "
+"com a rede. Uma vez conectado, o software deverá manter uma lista de "
+"endereços de outros nós. </p><p>Devido ao seu design sem servidor, todo o "
+"sistema funciona melhor se você deixar o programa sempre em execução quando "
+"o computador estiver ligado; ao processar solicitações de outros operadores, "
+"ele consumirá alguns recursos de computação e gerará tráfego de rede também "
+"quando você não estiver usando ativamente o programa - outros estão. </"
+"p><p>Os operadores preocupados com a privacidade do conteúdo devem estar "
+"cientes dos seguintes itens:</p><p>- A implementação do armazenamento de "
+"dados é uma variante do <span style=\" font-style:italic;\">tabela hash "
+"distribuída</span>, praticamente significando que o conteúdo postado por "
+"você é copiado para alguns nós mais ou menos aleatórios na rede. </p><p>- "
+"Qualquer item de dados (anúncio, comentário, arquivo binário, mensagem "
+"privada etc.) é assinado digitalmente. Isso torna mais difícil tentar se "
+"passar por outro operador. </p><p>- Os operadores são identificados de forma "
+"confiável apenas pelo hash SHA1 das chaves de criptografia geradas. O hash "
+"SHA1 é exibido ao visualizar detalhes dos perfis do operador. Outras "
+"informações de identificação, como apelido ou nome da cidade, são inseridas "
+"pelo próprio operador e podem ser qualquer coisa. O perfil da operadora, "
+"conforme é publicado na rede, também é assinado com as chaves de "
+"criptografia da operadora - se você identificar uma operadora pelo seu hash "
+"SHA1, você terá um mecanismo para identificar se algum conteúdo dentro dos "
+"anúncios classificados é postado por esta operadora ou não. Os anúncios "
+"classificados verificam internamente as assinaturas digitais, descartando o "
+"conteúdo que falha na verificação de assinatura e tentam fornecer o hash "
+"SHA1 do operador que postou o conteúdo.</p><p>- Todos os anúncios "
+"classificados são postados como texto simples, nenhuma criptografia é usada. "
+". Todos os perfis públicos são publicados em texto simples, sem "
+"criptografia. Se o perfil for privado, ele será criptografado para ser lido "
+"apenas por outros perfis selecionados. Isso também se aplica a arquivos "
+"binários compartilhados por perfis privados de operadores e comentários "
+"sobre perfis privados depois que o perfil se tornou privado (anteriormente, "
+"comentários ou arquivos em texto simples não são criptografados magicamente "
+"depois). As mensagens privadas são sempre criptografadas para serem lidas "
+"apenas pelo destinatário e pelo remetente. Os anexos seguem as regras de "
+"privacidade do documento ao qual estão anexados. </p><p>- Como acontece com "
+"todas as comunicações pela Internet, este pequeno fato também se aplica aos "
+"anúncios classificados: <span style=\" font-style:italic;\">uma vez que algo "
+"é publicado on-line, não há maneira de removê-lo da rede</span>. </p><p>- A "
+"implementação da criptografia de dados para conteúdo é OpenSSL, contando "
+"principalmente com os algoritmos RSA-2048 e AES-256. </p><p>- Embora as "
+"conexões entre nós sejam implementadas usando SSL, outros nós dentro da rede "
+"sabem qual conteúdo está sendo transmitido nos nós vizinhos. Embora não "
+"exista um ponto central para coletar facilmente essas informações sobre uma "
+"classificação ou operador específico, os operadores ainda não devem esperar "
+"privacidade em relação às suas ações on-line, embora algum esforço tenha "
+"sido feito para ocultar o conteúdo <span style=\" font-style:italic;\"> </"
+"span> de mensagens privadas e perfis privados. </p><p>A programação foi "
+"(principalmente) feita por Antti Järvinen, arte de Meeri Järvinen.</"
+"p><p>Este produto inclui software desenvolvido pelo OpenSSL Project para uso "
+"no OpenSSL Toolkit (http://www.openssl.org/).</p><p>Boa publicidade!</p><p><"
+"br/></p></body></html>"
 
 # Dialog title text. Dialog in question produces list of file attachments. 
 #: ui/attachmentListDialog.ui:26
 msgctxt "attachmentListDialog|"
 msgid "List of attached files"
-msgstr ""
+msgstr "Lista de arquivos anexados"
 
 # Dialog title text for call status dialog.
 #: ui/callStatusDialog.ui:26
 msgctxt "callStatusDialog|"
 msgid "Call status"
-msgstr ""
+msgstr "Status da chamada"
 
 # Text in call status dialog for slider that shows audio volume of microphone
 #: ui/callStatusDialog.ui:49
 msgctxt "callStatusDialog|"
 msgid "Input level"
-msgstr ""
+msgstr "Nível de entrada"
 
 # Title in call status dialog a column-list that lists ongoing calls
 #: ui/callStatusDialog.ui:65
 msgctxt "callStatusDialog|"
 msgid "Audio calls"
-msgstr ""
+msgstr "Chamadas de áudio"
 
 # Text in call status dialog for slider that shows audio volume of speaker 
 #: ui/callStatusDialog.ui:90
 msgctxt "callStatusDialog|"
 msgid "Output level"
-msgstr ""
+msgstr "Nível de saída"
 
 # Dialog title text. Purpose of the dialog is to let user change properties of a frequent contact in contact-list. 
 #: ui/editContact.ui:26
 msgctxt "editContactDialog|"
 msgid "Edit a contact"
-msgstr ""
+msgstr "Editar um contato"
 
 # Text field label in contact-editing dialog. This gives label for field that shows SHA1 fingerprint of the operator whose data is being edited
 #: ui/editContact.ui:39
 msgctxt "editContactDialog|"
 msgid "Address (SHA1) of contact"
-msgstr ""
+msgstr "Endereço (SHA1) de contato"
 
 # Text field label in contact-editing dialog. This gives label for field that shows nickname of the operator whose data is being edited
 #: ui/editContact.ui:53
 msgctxt "editContactDialog|"
 msgid "Local nickname"
-msgstr ""
+msgstr "Apelido local"
 
 # Tooltip text of a checkbox label in contact-editing dialog. The checkbox is one that controls statement of trustworthniness of the operator whose data is being edited. Note html format.
 #: ui/editContact.ui:65
@@ -2025,79 +2033,79 @@ msgstr ""
 #: ui/editContact.ui:68
 msgctxt "editContactDialog|"
 msgid "This contact is to be publicly trusted in transactions"
-msgstr ""
+msgstr "Este contato deve ser publicamente confiado em transações"
 
 # Name of front widget. Wild guess is that this text actually does not appear anywhere in the UI.
 #: frontWidget.ui:14
 msgctxt "frontWidget|"
 msgid "Form"
-msgstr ""
+msgstr "Formulário"
 
 # Tab title text in front widget. When user clicks in this tab, the view is switched to one, that lists classified ads.  
 #: frontWidget.ui:39
 msgctxt "frontWidget|"
 msgid "Classified ads"
-msgstr ""
+msgstr "Anúncios classificados"
 
 # Prompt text next "search" button. User is supposed to enter search criteria for classified ads and then click "search" ; this is prompt text for this behaviour. 
 #: frontWidget.ui:67
 msgctxt "frontWidget|"
 msgid "Search for classified ads about"
-msgstr ""
+msgstr "Pesquisar sobre anúncios classificados"
 
 # Prompt text very next to "search" button. After user has clicked the button, he is supposed to be viewing list of classified ads matching the search criteria. 
 #: frontWidget.ui:74
 msgctxt "frontWidget|"
 msgid "Perform"
-msgstr ""
+msgstr "Efetuar"
 
 # This part of search-criteria phrase. Normally the phrase reads something like "Buying of cars in finland" and this word is the 2nd word in that phrase. 
 #: frontWidget.ui:97
 msgctxt "frontWidget|"
 msgid "of"
-msgstr ""
+msgstr "de"
 
 # This part of search-criteria phrase. Normally the phrase reads something like "Buying of cars in finland" and this word is the 4th word in that phrase. 
 #: frontWidget.ui:113
 msgctxt "frontWidget|"
 msgid "in"
-msgstr ""
+msgstr "em"
 
 # Button text for button used to search for classified ads. This button has text "perform" just next to it so user sees actually 2 words "perform search" where the "perform" is in separate label above the button, and then is the text of this button. 
 #: frontWidget.ui:123
 msgctxt "frontWidget|"
 msgid "Search"
-msgstr ""
+msgstr "Pesquisar"
 
 # Tab title text in front widget for tab that shows details of operators own profile (==personal details)
 #: frontWidget.ui:161
 msgctxt "frontWidget|"
 msgid "My profile"
-msgstr ""
+msgstr "Meu perfil"
 
 # Text field label in "operators profile" tab. The field in questions shows SHA1-digest e.g. the real address of the operator. 
 #: frontWidget.ui:177 frontWidget.ui:937
 msgctxt "frontWidget|"
 msgid "Profile address"
-msgstr ""
+msgstr "Endereço do perfil"
 
 # Text field label in "operators profile" tab. The field in questions shows nickname of the operator 
 #: frontWidget.ui:208 frontWidget.ui:643
 msgctxt "frontWidget|"
 msgid "Nickname"
-msgstr ""
+msgstr "apelido"
 
 # Text field label in "operators profile" tab. The field in questions shows "hello world" text of the operator. 
 #: frontWidget.ui:225 frontWidget.ui:669
 msgctxt "frontWidget|"
 msgid "Greeting text"
-msgstr ""
+msgstr "Texto de boas-vindas"
 
 # Tooltip-text of a text field in "operators profile" tab. The field in questions shows greeting text of the operator.  
 #: frontWidget.ui:232
 msgctxt "frontWidget|"
 msgid "For the rest of the world. "
-msgstr ""
+msgstr "Para o resto do mundo. "
 
 # Text field label in "operators profile" tab. The field in questions shows given name (first name) of the operator.
 #: frontWidget.ui:239 frontWidget.ui:695
@@ -2109,79 +2117,80 @@ msgstr ""
 #: frontWidget.ui:253 frontWidget.ui:715
 msgctxt "frontWidget|"
 msgid "Family name"
-msgstr ""
+msgstr "Sobrenome"
 
 # Text field label in "operators profile" tab. The field in questions shows place of residence of the operator
 #: frontWidget.ui:263
 msgctxt "frontWidget|"
 msgid "City/country"
-msgstr ""
+msgstr "Cidade/país"
 
 # Text field label in "operators profile" tab. The field in questions shows address of bitcoin wallet of the operator. 
 #: frontWidget.ui:273
 msgctxt "frontWidget|"
 msgid "BTC address"
-msgstr ""
+msgstr "Endereço de BTC"
 
 # Tooltip-text for a text field "operators profile" tab. The field in questions shows address of bitcoin wallet of the operator. 
 #: frontWidget.ui:280
 msgctxt "frontWidget|"
 msgid "If you wish to receive payments via BTC, include your BTC address too."
 msgstr ""
+"Se você deseja receber pagamentos via BTC, inclua seu endereço de BTC também."
 
 # Text field label in "operators profile" tab. The field in questions shows what the user has to say about state of the world.  
 #: frontWidget.ui:287 frontWidget.ui:799
 msgctxt "frontWidget|"
 msgid "State of the world"
-msgstr ""
+msgstr "Estado do mundo"
 
 # Tool-tip text of a field in "operators profile" tab. The field in questions shows what operator has to say about state of the world. 
 #: frontWidget.ui:294
 msgctxt "frontWidget|"
 msgid "Longer explanation about state of the world"
-msgstr ""
+msgstr "Explicação mais longa sobre o estado do mundo"
 
 # Checkbox text in "my profile" tab. The checkbox is question is a toggle for public/private status of the profile. When checkbox is checked, the profile will be made private. 
 #: frontWidget.ui:301
 msgctxt "frontWidget|"
 msgid "Profile is private"
-msgstr ""
+msgstr "O perfil é privado"
 
 # Button text inside "My profile" tab. Clicking the button opens a dialog that prompts user to select list of operators that can read his profile that he has previously marked as private (e.g. accessible only to listed readers)
 #: frontWidget.ui:308
 msgctxt "frontWidget|"
 msgid "Readers of profile"
-msgstr ""
+msgstr "Leitores do perfil"
 
 # Explanation text inside "my profile" tab. 
 #: frontWidget.ui:315
 msgctxt "frontWidget|"
 msgid "None of the fields is mandatory"
-msgstr ""
+msgstr "Nenhum dos campos é obrigatório"
 
 # Text field label inside "my profile" tab. The field whose label this is shows the time when profile was last updated. 
 #: frontWidget.ui:322
 msgctxt "frontWidget|"
 msgid "Time of last update"
-msgstr ""
+msgstr "Tempo desde a última atualização"
 
 # Button text for button inside "my profile" tab. By clicking this button user makes her edits known to rest of the world. 
 #: frontWidget.ui:342
 msgctxt "frontWidget|"
 msgid "Publish"
-msgstr ""
+msgstr "Publicar"
 
 # Button text for button inside "my profile" tab. By clicking this button user discards her edits. 
 #: frontWidget.ui:355
 msgctxt "frontWidget|"
 msgid "Revert changes"
-msgstr ""
+msgstr "Reverter alterações"
 
 # Text label on top of "my profile" tab. Below this label is a list of text fields and other stuff that user may edit regarding herself.
 #: frontWidget.ui:369
 msgctxt "frontWidget|"
 msgid "Details of operator profile:"
-msgstr ""
+msgstr "Detalhes do perfil do operador:"
 
 # Text in image-placeholder inside "my profile" tab. When user has not selected any image for her profile details, this text is shown in place of the image. Clicking on text gives user option to select the image file for profile. 
 #: frontWidget.ui:401
@@ -2194,72 +2203,78 @@ msgid ""
 "Add\n"
 "Image"
 msgstr ""
+"\n"
+"\n"
+"Clique \n"
+"para \n"
+"adicionar\n"
+"imagem"
 
 # Title text inside "my profile" tab. Title text is for a list of files that user is currently sharing with other users. 
 #: frontWidget.ui:425 frontWidget.ui:845
 msgctxt "frontWidget|"
 msgid "Shared files"
-msgstr ""
+msgstr "Arquivos compartilhados"
 
 # Title text inside "my profile" tab. Title text is for a list of comments made by other users regarding operators profile.
 #: frontWidget.ui:461 frontWidget.ui:897
 msgctxt "frontWidget|"
 msgid "Latest comments"
-msgstr ""
+msgstr "Comentários mais recentes"
 
 # Tab title text. When this tab is opened, user is shown a view of his frequent contacts. 
 #: frontWidget.ui:504
 msgctxt "frontWidget|"
 msgid "Contacts"
-msgstr ""
+msgstr "Contatos"
 
 # Button text inside "contacts" tab. Clicking this button opens a dialog prompting user to enter details of operator to be added into contact list
 #: frontWidget.ui:536
 msgctxt "frontWidget|"
 msgid "Add contact"
-msgstr ""
+msgstr "Adicionar contato"
 
 # Button text inside "contacts" tab. Clicking this button removes a contact from list.
 #: frontWidget.ui:543
 msgctxt "frontWidget|"
 msgid "Remove contact"
-msgstr ""
+msgstr "Remover contato"
 
 # Button text inside "contacts" tab. Clicking this button displays details of the selected contact. 
 #: frontWidget.ui:550
 msgctxt "frontWidget|"
 msgid "View profile"
-msgstr ""
+msgstr "Ver perfil"
 
 # Button text inside "contacts" tab. Clicking this button opens a dialog prompting user to send a message selected contact. 
 #: frontWidget.ui:557
 msgctxt "frontWidget|"
 msgid "Send message"
-msgstr ""
+msgstr "Enviar mensagem"
 
 # Tab text in front widget. When user selects this tab, he is presented with list of his private correspondence. 
 #: frontWidget.ui:569
 msgctxt "frontWidget|"
 msgid "Private messages"
-msgstr ""
+msgstr "Mensagens privadas"
 
 # Tab text in front widget. This tab shows details of some other operator of classified ads. Normally this text is replaced with nickname of the operator but if nothing like this is available, this text may be shown, this is the "default text". 
 #: frontWidget.ui:624
 msgctxt "frontWidget|"
 msgid "Profile details"
-msgstr ""
+msgstr "Detalhes do perfil"
 
 # Label text of a text-field. The text-field in question shows place of residence of operator whose details are on display.
 #: frontWidget.ui:741
 msgctxt "frontWidget|"
 msgid "City/Country"
-msgstr ""
+msgstr "Cidade/país"
 
 # Label text of a text-field. The text-field in question shows bitcoin wallet address of operator whose details are on display.
 #: frontWidget.ui:767
 msgctxt "frontWidget|"
 msgid "BTC Addr"
-msgstr ""
+msgstr "Endereço BTC"
 
 # Text for image-placeholder inside "profile details" tab. When some particular operator has not selected any image for her profile, this text is shown in place of the image. Note html format. 
 #: frontWidget.ui:829
@@ -2273,24 +2288,31 @@ msgid ""
 "font-size:16pt;\">Image</span></p><p align=\"center\"><span style=\" "
 "font-size:16pt;\">Inserted</span></p></body></html>"
 msgstr ""
+"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt;\"><br/"
+"></span></p><p align=\"center\"><span style=\" font-size:16pt;\"><br/"
+"></span></p><p align=\"center\"><span style=\" font-size:16pt;\"><br/"
+"></span></p><p align=\"center\"><span style=\" font-size:16pt;\""
+">Nenhuma</span></p><p align=\"center\"><span style=\" font-size:16pt;\""
+">imagem</span></p><p align=\"center\"><span style=\" font-size:16pt;\""
+">inserida</span></p></body></html>"
 
 # Button text inside "defails of operator profile" tab. When the button is clicked, a new-message editor is opened. 
 #: frontWidget.ui:874
 msgctxt "frontWidget|"
 msgid "Send message to operator"
-msgstr ""
+msgstr "Enviar mensagem ao operador"
 
 # Button text in "operators details" view. Pressing the button initiates a new voice call to operator. 
 #: frontWidget.ui:879
 msgctxt "frontWidget|"
 msgid "Audio call"
-msgstr ""
+msgstr "Chamada de áudio"
 
 # Button text inside "defails of operator profile" tab. When the button is clicked, dialog listing readers of the (private) profile. 
 #: frontWidget.ui:884
 msgctxt "frontWidget|"
 msgid "View readers"
-msgstr ""
+msgstr "Ver leitores"
 
 # Button text inside "defails of operator profile" tab. When the button is clicked, a dialog is opened, dialog prompts user to enter a comment about the operator. 
 #: frontWidget.ui:932
@@ -2302,13 +2324,13 @@ msgstr ""
 #: frontWidget.ui:964
 msgctxt "frontWidget|"
 msgid "Add to contacts"
-msgstr ""
+msgstr "Adicionar aos contatos"
 
 # Dialog title text. Dialog is for adding a link to text being edited.
 #: ui/insertLink.ui:26
 msgctxt "insertLinkDialog|"
 msgid "Insert link"
-msgstr ""
+msgstr "Inserir link"
 
 # Label for a combobox-field inside "insert link" dialog. Next to this label is set of fields that together make up a valid URL to be inserted. 
 #: ui/insertLink.ui:39
@@ -2320,43 +2342,43 @@ msgstr ""
 #: ui/insertLink.ui:112
 msgctxt "insertLinkDialog|"
 msgid "Link label in text"
-msgstr ""
+msgstr "Rótulo do link no texto"
 
 # Dialog title text. Dialog prompts user to manually add a network-connection to another node in the network.
 #: ui/manualConnectionDialog.ui:26
 msgctxt "manualConnectionDialog|"
 msgid "Manually add node to connection queue"
-msgstr ""
+msgstr "Adicionar manualmente nó para a fila de conexão"
 
 # Label text of numeric field. The numeric (input) field is TCP port of the remote node that will be connected.
 #: ui/manualConnectionDialog.ui:48
 msgctxt "manualConnectionDialog|"
 msgid "Remote node listen port"
-msgstr ""
+msgstr "Porta para escutar do nó remoto"
 
 # Label for text field inside "manually add connection" dialog. Text field whose label this is requires user to type in network address (ip addr or dns name) of the remote node. 
 #: ui/manualConnectionDialog.ui:78
 msgctxt "manualConnectionDialog|"
 msgid "Remote node network address"
-msgstr ""
+msgstr "Endereço de rede do nó remoto"
 
 # Tooltip text for a text field inside "manually add connection" dialog. The text field whose tooltip this is the remote network address input field. 
 #: ui/manualConnectionDialog.ui:91
 msgctxt "manualConnectionDialog|"
 msgid "IPv4, IPv6 or DNS name"
-msgstr ""
+msgstr "IPv4, IPv6 ou nome DNS"
 
 # Dialog title text for dialog that requires user to enter information about file to be shared with others. Metadata query dialog in practice. 
 #: ui/metadataQuery.ui:26
 msgctxt "metadataQuery|"
 msgid "File information"
-msgstr ""
+msgstr "Informação do arquivo"
 
 # Label text for a input field. The input field whose label this is asks for file name (filesystem file name)
 #: ui/metadataQuery.ui:60
 msgctxt "metadataQuery|"
 msgid "Name of the file:"
-msgstr ""
+msgstr "Nome do arquivo:"
 
 # Label text for a input field. The input field whose label this is asks for owner of the file contents. This may be copyright holder, depending on contracts and legislation followed. 
 #: ui/metadataQuery.ui:81
@@ -2386,73 +2408,73 @@ msgstr ""
 #: ui/metadataQuery.ui:132
 msgctxt "metadataQuery|"
 msgid "LGPL"
-msgstr ""
+msgstr "LGPL"
 
 # Combobox content text for license selection combobox. License texts might be wise leave as they are - untranslated
 #: ui/metadataQuery.ui:137
 msgctxt "metadataQuery|"
 msgid "BSD"
-msgstr ""
+msgstr "BSD"
 
 # Combobox content text for license selection combobox. License texts might be wise leave as they are - untranslated
 #: ui/metadataQuery.ui:142
 msgctxt "metadataQuery|"
 msgid "CC-BY"
-msgstr ""
+msgstr "CC-BY"
 
 # Combobox content text for license selection combobox. License texts might be wise leave as they are - untranslated
 #: ui/metadataQuery.ui:147
 msgctxt "metadataQuery|"
 msgid "CC-BY-SA"
-msgstr ""
+msgstr "CC-BY-SA"
 
 # Combobox content text for license selection combobox. License texts might be wise leave as they are - untranslated
 #: ui/metadataQuery.ui:152
 msgctxt "metadataQuery|"
 msgid "CC-BY-ND"
-msgstr ""
+msgstr "CC-BY-ND"
 
 # Combobox content text for license selection combobox. License texts might be wise leave as they are - untranslated
 #: ui/metadataQuery.ui:157
 msgctxt "metadataQuery|"
 msgid "CC-BY-NC"
-msgstr ""
+msgstr "CC-BY-NC"
 
 # Combobox content text for license selection combobox. License texts might be wise leave as they are - untranslated
 #: ui/metadataQuery.ui:162
 msgctxt "metadataQuery|"
 msgid "CC-BY-NC-SA"
-msgstr ""
+msgstr "CC-BY-NC-SA"
 
 # Combobox content text for license selection combobox. License texts might be wise leave as they are - untranslated
 #: ui/metadataQuery.ui:167
 msgctxt "metadataQuery|"
 msgid "CC-BY-NC-ND"
-msgstr ""
+msgstr "CC-BY-NC-ND"
 
 # Label text for a input field. The input field whose label this is asks for mime-type of the field about to be published. 
 #: ui/metadataQuery.ui:182
 msgctxt "metadataQuery|"
 msgid "Mime-type:"
-msgstr ""
+msgstr "Tipo MIME:"
 
 # Label text for a input field. The input field whose label this is asks for descriptive text about file about to be published.  
 #: ui/metadataQuery.ui:199
 msgctxt "metadataQuery|"
 msgid "Description of file:"
-msgstr ""
+msgstr "Descrição do arquivo:"
 
 # Prompt text on top of "metadata query" dialog. Below this label is set of input-fields that make up the meta-data of a file to be published.
 #: ui/metadataQuery.ui:218
 msgctxt "metadataQuery|"
 msgid "Enter information regarding file before publish:"
-msgstr ""
+msgstr "Insira uma informação relacionada ao arquivo antes de publicar:"
 
 # Dialog title text for a dialog that offers possibility to post a new classified ad for others to read. 
 #: ui/newClassifiedAd.ui:26
 msgctxt "newCaDialog|"
 msgid "Post a new classified ad"
-msgstr ""
+msgstr "Postar um novo anúncio classificado"
 
 # This label text is part of sentence, whole sentence goes for example "About buying of cars in sweden" where the words "bying", "cars", and "sweden" are combo-boxes that user may choose from ; this word here is the first word in that sentece.
 #: ui/newClassifiedAd.ui:47
@@ -2464,13 +2486,13 @@ msgstr ""
 #: ui/newClassifiedAd.ui:65
 msgctxt "newCaDialog|"
 msgid "of"
-msgstr ""
+msgstr "de"
 
 # This label text is part of sentence, whole sentence goes for example "About buying of cars in sweden" where the words "bying", "cars", and "sweden" are combo-boxes that user may choose from ; this word here is the 5th word in that sentece.
 #: ui/newClassifiedAd.ui:81
 msgctxt "newCaDialog|"
 msgid "in"
-msgstr ""
+msgstr "em"
 
 # Label text of a text field inside "post a new classified ad" dialog. The input field whose label this is, requires user to enter a subject (topic) for her posting. 
 #: ui/newClassifiedAd.ui:95
@@ -2482,19 +2504,19 @@ msgstr ""
 #: ui/newClassifiedAd.ui:129
 msgctxt "newCaDialog|"
 msgid "Attachment: "
-msgstr ""
+msgstr "Anexo: "
 
 # Push-button text inside "post a new classified ad" dialog. When user hits the button, another dialog is opened and user is required to select a file to be attached. 
 #: ui/newClassifiedAd.ui:149
 msgctxt "newCaDialog|"
 msgid "Add"
-msgstr ""
+msgstr "Adicionar"
 
 # Dialog title text for dialog that prompts user to edit+send a private message to another operator
 #: ui/newPrivMsg.ui:26
 msgctxt "newPrivMsgDialog|"
 msgid "Send a private message"
-msgstr ""
+msgstr "Enviar uma mensagem privada"
 
 # Text field label for input field inside "compose a new private message dialog". The text field in question is "subject" or "topic" field of the message. 
 #: ui/newPrivMsg.ui:39
@@ -2512,19 +2534,19 @@ msgstr ""
 #: ui/newPrivMsg.ui:83
 msgctxt "newPrivMsgDialog|"
 msgid "Attachments: "
-msgstr ""
+msgstr "Anexos: "
 
 # Push-button text inside "compose a new private message" dialog. When user hits the button, another dialog is opened and user is required to select a file to be attached.
 #: ui/newPrivMsg.ui:103
 msgctxt "newPrivMsgDialog|"
 msgid "Attach"
-msgstr ""
+msgstr "Anexar"
 
 # Dialog title text for dialog that prompts user to edit+send a comment regarding another operator.
 #: ui/newProfileComment.ui:26
 msgctxt "newProfileCommentDialog|"
 msgid "Comment a operators profile"
-msgstr ""
+msgstr "Comentar um perfil de operadores"
 
 # Text field label for input field inside "compose a comment about operator dialog". The text field in question is "subject" or "topic" field of the comment.
 #: ui/newProfileComment.ui:39
@@ -2536,19 +2558,19 @@ msgstr ""
 #: ui/newProfileComment.ui:53
 msgctxt "newProfileCommentDialog|"
 msgid "Commented profile"
-msgstr ""
+msgstr "Perfil comentado"
 
 # Label text of a text field inside "compose a comment about operator dialog" dialog. The input field whose label this is, will show name file that is attached to the post.
 #: ui/newProfileComment.ui:89
 msgctxt "newProfileCommentDialog|"
 msgid "Attachments:"
-msgstr ""
+msgstr "Anexos:"
 
 # Push-button text inside "compose a comment about operator dialog" dialog. When user hits the button, another dialog is opened and user is required to select a file to be attached.
 #: ui/newProfileComment.ui:109
 msgctxt "newProfileCommentDialog|"
 msgid "Attach"
-msgstr ""
+msgstr "Anexar"
 
 # Dialog title text for a dialog that prompts user to edit+publish a text document. 
 #: ui/newTextDocument.ui:26
