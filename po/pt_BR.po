@@ -6,7 +6,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
 "PO-Revision-Date: 2024-02-06 02:26+0000\n"
-"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
 "projects/classified-ads/master/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -1530,7 +1531,7 @@ msgstr "C&or..."
 #: textedit/textedit.cpp:383
 msgctxt "TextEdit|"
 msgid "Standard"
-msgstr ""
+msgstr "Padrão"
 
 # Combobox item text. The combobox is used to select text style. The text style selected with this text is "bullet list (disc)"
 #: textedit/textedit.cpp:384
@@ -1584,7 +1585,7 @@ msgstr "Lista ordenada (romano maiúsculo)"
 #: textedit/textedit.cpp:442
 msgctxt "TextEdit|"
 msgid "Application"
-msgstr ""
+msgstr "Aplicativo"
 
 # Warning dialog title content text. Text asks what to do with modifications. The dialog has buttons Save,Discard and Cancel and this text is the question. 
 #: textedit/textedit.cpp:443
@@ -1600,7 +1601,7 @@ msgstr ""
 #: textedit/textedit.cpp:467
 msgctxt "TextEdit|"
 msgid "Open File..."
-msgstr ""
+msgstr "Abrir arquivo …"
 
 # Text for file selection filter field to be used inside file selection dialog. There are 2 parts, separated by ";;" and those semicolons must be left in place. Also the filter parts like (*.htm) must not be edited. The explanations like "HTML-Files" may be edited.
 #: textedit/textedit.cpp:468
@@ -1630,7 +1631,7 @@ msgstr "Imprimir documento"
 #: textedit/textedit.cpp:559
 msgctxt "TextEdit|"
 msgid "Open File"
-msgstr ""
+msgstr "Abrir arquivo"
 
 # Text for file selection filter field to be used inside file selection dialog. The filter parts like (*.odt) must not be edited. The explanations like "Files" may be edited.
 #: textedit/textedit.cpp:561
@@ -1642,13 +1643,13 @@ msgstr "Arquivos (*.*)"
 #: textedit/textedit.cpp:566
 msgctxt "TextEdit|"
 msgid "Error"
-msgstr ""
+msgstr "Erro"
 
 # Error dialog content text. 
 #: textedit/textedit.cpp:567
 msgctxt "TextEdit|"
 msgid "Can't load image"
-msgstr ""
+msgstr "Não é possível carregar a imagem"
 
 # Error message  displayed inside error dialog after user tried to select for operation a file whose size greatly exceeds file size limit.
 #: textedit/textedit.cpp:621 textedit/textedit.cpp:631
