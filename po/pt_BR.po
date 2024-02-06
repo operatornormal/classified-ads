@@ -6,7 +6,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
 "PO-Revision-Date: 2024-02-06 03:49+0000\n"
-"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
 "projects/classified-ads/master/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -1750,7 +1751,7 @@ msgstr "Fechada"
 #: net/voicecallengine.cpp:628
 msgctxt "VoiceCallEngine|"
 msgid "Error"
-msgstr ""
+msgstr "Erro"
 
 # Call status text. When there is no voice call to display, this text may be displayed instead. 
 #: net/voicecallengine.cpp:631
@@ -2111,7 +2112,7 @@ msgstr "Para o resto do mundo. "
 #: frontWidget.ui:239 frontWidget.ui:695
 msgctxt "frontWidget|"
 msgid "First name"
-msgstr ""
+msgstr "Primeiro nome"
 
 # Text field label in "operators profile" tab. The field in questions shows family name of the operator
 #: frontWidget.ui:253 frontWidget.ui:715
@@ -2318,7 +2319,7 @@ msgstr "Ver leitores"
 #: frontWidget.ui:932
 msgctxt "frontWidget|"
 msgid "Comment"
-msgstr ""
+msgstr "Comentário"
 
 # Button text inside "defails of operator profile" tab. When the button is clicked, the operator whose data is on display is added into contact-list. 
 #: frontWidget.ui:964
@@ -2336,7 +2337,7 @@ msgstr "Inserir link"
 #: ui/insertLink.ui:39
 msgctxt "insertLinkDialog|"
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 # Label for a text-field inside "insert link" dialog. Next to this label is field where user is supposed the text that will be shown as the link. Consider <a href="url">the text</> then "the text" is text that user is prompted to enter with this label. 
 #: ui/insertLink.ui:112
@@ -2402,7 +2403,7 @@ msgstr ""
 #: ui/metadataQuery.ui:127
 msgctxt "metadataQuery|"
 msgid "GPL"
-msgstr ""
+msgstr "GPL"
 
 # Combobox content text for license selection combobox. License texts might be wise leave as they are - untranslated
 #: ui/metadataQuery.ui:132
@@ -2480,7 +2481,7 @@ msgstr "Postar um novo anúncio classificado"
 #: ui/newClassifiedAd.ui:47
 msgctxt "newCaDialog|"
 msgid "About"
-msgstr ""
+msgstr "Sobre"
 
 # This label text is part of sentence, whole sentence goes for example "About buying of cars in sweden" where the words "bying", "cars", and "sweden" are combo-boxes that user may choose from ; this word here is the 3rd word in that sentece.
 #: ui/newClassifiedAd.ui:65
@@ -2498,7 +2499,7 @@ msgstr "em"
 #: ui/newClassifiedAd.ui:95
 msgctxt "newCaDialog|"
 msgid "Subject"
-msgstr ""
+msgstr "Assunto"
 
 # Label text of a text field inside "post a new classified ad" dialog. The input field whose label this is, will show name file that is attached to the post. 
 #: ui/newClassifiedAd.ui:129
@@ -2522,13 +2523,13 @@ msgstr "Enviar uma mensagem privada"
 #: ui/newPrivMsg.ui:39
 msgctxt "newPrivMsgDialog|"
 msgid "Subject"
-msgstr ""
+msgstr "Assunto"
 
 # Text field label for input field inside "compose a new private message dialog". The text field in question is SHA1 address of the recipient. 
 #: ui/newPrivMsg.ui:53
 msgctxt "newPrivMsgDialog|"
 msgid "Recipient"
-msgstr ""
+msgstr "Destinatário"
 
 # Label text of a text field inside "compose a new private message" dialog. The input field whose label this is, will show name file that is attached to the post.
 #: ui/newPrivMsg.ui:83
@@ -2552,7 +2553,7 @@ msgstr "Comentar um perfil de operadores"
 #: ui/newProfileComment.ui:39
 msgctxt "newProfileCommentDialog|"
 msgid "Subject"
-msgstr ""
+msgstr "Assunto"
 
 # Text field label for input field inside "compose a comment about operator dialog". The text field in question is SHA1 digest (address) of the operator being commented.
 #: ui/newProfileComment.ui:53
