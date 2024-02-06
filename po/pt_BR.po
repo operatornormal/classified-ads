@@ -6,8 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
 "PO-Revision-Date: 2024-02-06 02:20+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
 "projects/classified-ads/master/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -1459,25 +1458,25 @@ msgstr "&Copiar"
 #: textedit/textedit.cpp:273
 msgctxt "TextEdit|"
 msgid "&Paste"
-msgstr "Colar"
+msgstr "C&olar"
 
 # Menu item text inside text editor "edit" menu. After this menu-item is selected, a dialog is opened, prompting user to enter a link (URL) to be included in the text. 
 #: textedit/textedit.cpp:283
 msgctxt "TextEdit|"
 msgid "Insert link"
-msgstr ""
+msgstr "Inserir link"
 
 # Menu-item text for embedding an image
 #: textedit/textedit.cpp:287
 msgctxt "TextEdit|"
 msgid "Embed image"
-msgstr ""
+msgstr "Embutir imagem"
 
 # Menu text. Gives name for a "format" menu inside a text editor. 
 #: textedit/textedit.cpp:294
 msgctxt "TextEdit|"
 msgid "F&ormat"
-msgstr ""
+msgstr "&Formatar"
 
 # Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "toggle bold text style"
 #: textedit/textedit.cpp:298
