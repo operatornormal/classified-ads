@@ -1667,7 +1667,7 @@ msgstr "aceitar"
 #: net/voicecallengine.cpp:533
 msgctxt "VoiceCallEngine|"
 msgid "Reject"
-msgstr ""
+msgstr "rejeitar"
 
 # Button text for "ongoing call" dialog. When button is hit, call is closed. 
 #: net/voicecallengine.cpp:535
