@@ -5,9 +5,8 @@ msgstr ""
 "Project-Id-Version: classified-ads 0.14\n"
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
-"PO-Revision-Date: 2024-02-06 02:10+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2024-02-06 02:18+0000\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
 "projects/classified-ads/master/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -554,19 +553,19 @@ msgstr "Pesquisar..."
 #: controller.cpp:526
 msgctxt "Controller|"
 msgid "&File"
-msgstr "_Arquivo"
+msgstr "&Arquivo"
 
 # Menu title. Menu contains menu-items related to TCL-programs.
 #: controller.cpp:729
 msgctxt "Controller|"
 msgid "&TCL Programs"
-msgstr ""
+msgstr "Programas &TCL"
 
 # Menu item from menu of TCL-related items. Selecting this menu item opens library of TCL programs. 
 #: controller.cpp:730
 msgctxt "Controller|"
 msgid "&Local library"
-msgstr ""
+msgstr "Biblioteca &local"
 
 # Tooltip-text for menu item that opens local TCL program library.
 #: controller.cpp:731
@@ -578,7 +577,7 @@ msgstr "Programas TCL armazenados localmente"
 #: controller.cpp:734
 msgctxt "Controller|"
 msgid "TCL &Console"
-msgstr ""
+msgstr "&Console TCL"
 
 # Tooltip for menu-item that displays dialog where you can type in ad-hoc TCL-programs.
 #: controller.cpp:735
@@ -969,31 +968,31 @@ msgstr "Editar contato..."
 #: FrontWidget.cpp:1534
 msgctxt "FrontWidget|"
 msgid "&Reply to sender"
-msgstr ""
+msgstr "&Responder ao remetente"
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a reply to classified ad currently on display
 #: FrontWidget.cpp:1535
 msgctxt "FrontWidget|"
 msgid "Reply to &forum"
-msgstr ""
+msgstr "Responder ao &fórum"
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a new classified ad.
 #: FrontWidget.cpp:1536
 msgctxt "FrontWidget|"
 msgid "&Post new ad"
-msgstr ""
+msgstr "&Postar novo anúncio"
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a public comment about operator who sent the classified ad currently on display
 #: FrontWidget.cpp:1537
 msgctxt "FrontWidget|"
 msgid "&Public comment"
-msgstr ""
+msgstr "&Publicar comentário"
 
 # Push button text. Pushing the button will switch to view detailing operator who sent the classified ad currently on display
 #: FrontWidget.cpp:1538
 msgctxt "FrontWidget|"
 msgid "&View profile"
-msgstr ""
+msgstr "&Ver perfil"
 
 # Push button text. Pushing the button will open a a listing of files that are attached to classified ad currently on display
 #: FrontWidget.cpp:1539 FrontWidget.cpp:1677
@@ -1011,25 +1010,25 @@ msgstr "Adicionar operador selecionado aos contatos..."
 #: FrontWidget.cpp:1673
 msgctxt "FrontWidget|"
 msgid "&Reply"
-msgstr ""
+msgstr "&Responder"
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a private message to some operator. 
 #: FrontWidget.cpp:1674
 msgctxt "FrontWidget|"
 msgid "&New message"
-msgstr ""
+msgstr "&Nova mensagem"
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a public comment about operator who sent the private message currently on display
 #: FrontWidget.cpp:1675
 msgctxt "FrontWidget|"
 msgid "&Send public comment to sender"
-msgstr ""
+msgstr "&Enviar comentário público ao remetente"
 
 # Push button text. Pushing the button will open view that will show details of operator, who sent the private message currently on display. 
 #: FrontWidget.cpp:1676
 msgctxt "FrontWidget|"
 msgid "&View profile of peer"
-msgstr ""
+msgstr "&Ver perfil do par"
 
 # Context menu item text. Appears in "message listing view" when user right-clicks on messages view. When selected, the operator who sent the message that is selected is added to contacts. 
 #: FrontWidget.cpp:1711
@@ -1234,13 +1233,13 @@ msgstr "Assunto"
 #: ui/profilecommentdisplay.cpp:54
 msgctxt "ProfileCommentDisplay|"
 msgid "&Add comment..."
-msgstr ""
+msgstr "&Adicionar comentário..."
 
 # Context menu item text. Context menu is shown when user right-clicks on file listing view. When this item is selected, a file selection dialog is opened. 
 #: ui/profilecommentdisplay.cpp:65
 msgctxt "ProfileCommentDisplay|"
 msgid "Save attachment to disk.."
-msgstr ""
+msgstr "Salvar anexo em disco..."
 
 # Error dialog title text
 #: ui/profilecommentdisplay.cpp:92
@@ -1375,7 +1374,7 @@ msgstr "Ajuda"
 #: textedit/textedit.cpp:129
 msgctxt "TextEdit|"
 msgid "About &Qt"
-msgstr ""
+msgstr "Sobre o &Qt"
 
 # Window title text for container-window containing actions. It seems to me that this text actually does not appear anywhere in the UI due to way, how container-windows are used. 
 #: textedit/textedit.cpp:186
@@ -1387,31 +1386,31 @@ msgstr "Editar ações"
 #: textedit/textedit.cpp:188
 msgctxt "TextEdit|"
 msgid "&File"
-msgstr ""
+msgstr "&Arquivo"
 
 # Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "open a filesystem file"
 #: textedit/textedit.cpp:194
 msgctxt "TextEdit|"
 msgid "&Open..."
-msgstr ""
+msgstr "&Abrir..."
 
 # Menu item text inside menu in text editor. When selected, the text being edited will be saved into local filesystem file. 
 #: textedit/textedit.cpp:203
 msgctxt "TextEdit|"
 msgid "&Save locally before send"
-msgstr ""
+msgstr "&Salvar localmente antes de enviar"
 
 # Menu item text inside menu in text editor. When selected, the text being edited will be saved into local filesystem file and user will be queried for file name. 
 #: textedit/textedit.cpp:210
 msgctxt "TextEdit|"
 msgid "Save locally &As..."
-msgstr ""
+msgstr "Salvar localmente &como..."
 
 # Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "print"
 #: textedit/textedit.cpp:218
 msgctxt "TextEdit|"
 msgid "&Print..."
-msgstr ""
+msgstr "&Imprimir..."
 
 # Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "open print preview"
 #: textedit/textedit.cpp:226
@@ -1423,7 +1422,7 @@ msgstr "Visualização de impressão..."
 #: textedit/textedit.cpp:231
 msgctxt "TextEdit|"
 msgid "&Export PDF..."
-msgstr ""
+msgstr "&Exportar PDF..."
 
 # Menu text for "edit" menu of text editor.
 #: textedit/textedit.cpp:244
