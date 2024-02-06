@@ -1500,13 +1500,13 @@ msgstr "&Sublinhado"
 #: textedit/textedit.cpp:341 textedit/textedit.cpp:347
 msgctxt "TextEdit|"
 msgid "&Left"
-msgstr "Esquerda"
+msgstr "&Esquerda"
 
 # Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "toggle centered text"
 #: textedit/textedit.cpp:342 textedit/textedit.cpp:346
 msgctxt "TextEdit|"
 msgid "C&enter"
-msgstr ""
+msgstr "&Centro"
 
 # Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "right-justify"
 #: textedit/textedit.cpp:343 textedit/textedit.cpp:345
