@@ -6,7 +6,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
 "PO-Revision-Date: 2024-02-06 16:21+0000\n"
-"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
 "projects/classified-ads/master/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -2636,7 +2637,7 @@ msgstr "Lista atual de leitores"
 #: ui/profileReadersDialog.ui:90
 msgctxt "profileReadersDialog|"
 msgid "Close"
-msgstr ""
+msgstr "Fechar"
 
 # Push button label inside dialog that asks for list of operators who are readers of operators own profile. When user this this button, selected operators are removed from the list. 
 #: ui/profileReadersDialog.ui:109
@@ -2819,7 +2820,7 @@ msgstr "Aceitar chamadas de voz"
 #: ui/settingsDialog.ui:364
 msgctxt "settingsDialog|"
 msgid "All"
-msgstr ""
+msgstr "Todos"
 
 # Combobox item text for selecting which audio calls to accept. Selecting this item lets in calls from trusted operators.
 #: ui/settingsDialog.ui:369
@@ -2859,7 +2860,7 @@ msgstr ""
 #: ui/statusDialog.ui:74
 msgctxt "statusDialog|"
 msgid "IPv6"
-msgstr ""
+msgstr "IPv6"
 
 # Text field label for display-item inside "network status" dialog. The display-item shows listen port of the node. 
 #: ui/statusDialog.ui:113
@@ -2883,7 +2884,7 @@ msgstr "Adicionar conexão manualmente"
 #: ui/statusDialog.ui:202
 msgctxt "statusDialog|"
 msgid "Close"
-msgstr ""
+msgstr "Fechar"
 
 # Dialog title text for dialog that displays TCL interpreter console.
 #: ui/tclConsole.ui:26
@@ -2901,7 +2902,7 @@ msgstr "Avaliar"
 #: ui/tclConsole.ui:58
 msgctxt "tclConsoleDialog|"
 msgid "Close"
-msgstr ""
+msgstr "Fechar"
 
 # label for text field that shows TCL interpreter output
 #: ui/tclConsole.ui:69
