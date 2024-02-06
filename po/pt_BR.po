@@ -1482,7 +1482,7 @@ msgstr "&Formatar"
 #: textedit/textedit.cpp:298
 msgctxt "TextEdit|"
 msgid "&Bold"
-msgstr "Negrito"
+msgstr "&Negrito"
 
 # Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "toggle italic text"
 #: textedit/textedit.cpp:310
