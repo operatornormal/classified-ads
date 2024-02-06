@@ -5,9 +5,8 @@ msgstr ""
 "Project-Id-Version: classified-ads 0.14\n"
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
-"PO-Revision-Date: 2024-02-06 03:49+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2024-02-06 16:21+0000\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
 "projects/classified-ads/master/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -2385,19 +2384,19 @@ msgstr "Nome do arquivo:"
 #: ui/metadataQuery.ui:81
 msgctxt "metadataQuery|"
 msgid "Owner of file (name or SHA1 if CA operator):"
-msgstr ""
+msgstr "Dono do arquivo (nome ou SHA1 se for operador de anúncio classificado):"
 
 # Label text for a input field. The input field whose label this is asks for license under which the file may be used. Combobox lists some pre-filled options like GPL,BSD,CC-BY etc. but user may also enter any text into field.  
 #: ui/metadataQuery.ui:111
 msgctxt "metadataQuery|"
 msgid "License of use:"
-msgstr ""
+msgstr "Licença de uso:"
 
 # Combobox content text for license selection combobox. License texts might be wise leave as they are - untranslated
 #: ui/metadataQuery.ui:122
 msgctxt "metadataQuery|"
 msgid "Public domain"
-msgstr ""
+msgstr "Domínio público"
 
 # Combobox content text for license selection combobox. License texts might be wise leave as they are - untranslated
 #: ui/metadataQuery.ui:127
@@ -2577,62 +2576,61 @@ msgstr "Anexar"
 #: ui/newTextDocument.ui:26
 msgctxt "newTextDocumentDialog|"
 msgid "Edit and publish a new text document"
-msgstr ""
+msgstr "Editar e publicar um novo documento texto"
 
 # Text field label for input field inside "compose a new text document" dialog. The text field in question is "subject" or "topic" field of the text document. 
 #: ui/newTextDocument.ui:39
 msgctxt "newTextDocumentDialog|"
 msgid "Document title"
-msgstr ""
+msgstr "Título do documento"
 
 # Label text of a text field inside "edit+publish a new text document dialog" dialog. The input field whose label this is, will show name file that is attached to the document. 
 #: ui/newTextDocument.ui:75
 msgctxt "newTextDocumentDialog|"
 msgid "Attachments:"
-msgstr ""
+msgstr "Anexos:"
 
 # Push-button text inside "edit+publish a new text document dialog" dialog. When user hits the button, another dialog is opened and user is required to select a file to be attached.
 #: ui/newTextDocument.ui:95
 msgctxt "newTextDocumentDialog|"
 msgid "Attach"
-msgstr ""
+msgstr "Anexar"
 
 # Dialog title text for dialog that will show a listing of previous comments regarding operator (user himself or some other operator, it is the same dialog in both cases)
 #: ui/profileCommentDisplay.ui:26
 msgctxt "profileCommentDisplay|"
 msgid "Comments regarding operator"
-msgstr ""
+msgstr "Comentários sobre o operador"
 
 # Dialog title text for a dialog that prompts user to choose operators who will be able to read details, comments and shared files of his profile. 
 #: ui/profileReadersDialog.ui:26
 msgctxt "profileReadersDialog|"
 msgid "Profile readers list"
-msgstr ""
+msgstr "Lista de leitores do perfil"
 
 # Text field label inside "add profiles to list of readers" dialog. The text field whose prompt this is asks for search-words to be used to filter operator names/addresses from database.
 #: ui/profileReadersDialog.ui:37
 msgctxt "profileReadersDialog|"
 msgid "Search for profiles to add"
-msgstr ""
+msgstr "Pesquise por perfis para adicionar"
 
 # Text field label inside "add profiles to list of readers" dialog. The text listing-field whose explanation this is will list operators whose nickname,name or other search-term matches conditions entered by user. 
 #: ui/profileReadersDialog.ui:44
 msgctxt "profileReadersDialog|"
 msgid "First 100 matching profiles:"
-msgstr ""
+msgstr "Primeiros 100 perfis correspondendo:"
 
 # Push-button label inside "add profiles to list of readers" dialog. When user hits this button, operators that are selected from neighboring list will be added to list of readers of operators profile.
 #: ui/profileReadersDialog.ui:66
-#| msgid "Add seleted to list of readers"
 msgctxt "profileReadersDialog|"
 msgid "Add selected to list of readers"
-msgstr ""
+msgstr "Adicionar selecionados à lista de leitores"
 
 # Text field label inside "add profiles to list of readers" dialog. The text listing-field whose explanation this is shows current list operators profiles readers. 
 #: ui/profileReadersDialog.ui:73
 msgctxt "profileReadersDialog|"
 msgid "Current list of readers"
-msgstr ""
+msgstr "Lista atual de leitores"
 
 # Push button label inside dialog that asks for list of operators who are readers of operators own profile. When user this this button, the dialog is dismissed. 
 #: ui/profileReadersDialog.ui:90
@@ -2644,73 +2642,73 @@ msgstr ""
 #: ui/profileReadersDialog.ui:109
 msgctxt "profileReadersDialog|"
 msgid "Remove selected"
-msgstr ""
+msgstr "Remover selecionado"
 
 # Dialog title-text for a search dialog. 
 #: ui/searchDisplay.ui:26
 msgctxt "searchDisplay|"
 msgid "Search data storage"
-msgstr ""
+msgstr "Pesquisar armazenamento de dados"
 
 # Label text of a text field inside "search" dialog. The text field in question requires user to enter one or more words that are then searched from all available (public) documents. 
 #: ui/searchDisplay.ui:60
 msgctxt "searchDisplay|"
 msgid "Words:"
-msgstr ""
+msgstr "Palavras:"
 
 # Push button label inside "search" dialog. When button is hit, search using given words is performed.  
 #: ui/searchDisplay.ui:70
 msgctxt "searchDisplay|"
 msgid "Search"
-msgstr ""
+msgstr "Pesquisar"
 
 # Check-box label inside "search" dialog. When box is checked, the search is done also in neighboring nodes in the network, not only in local storage. 
 #: ui/searchDisplay.ui:87
 msgctxt "searchDisplay|"
 msgid "Network search"
-msgstr ""
+msgstr "Pesquisa na rede"
 
 # Check-box label inside "search" dialog. When box is checked, the search may include classified ads in its resultset.
 #: ui/searchDisplay.ui:101
 msgctxt "searchDisplay|"
 msgid "Search ads"
-msgstr ""
+msgstr "Pesquisar anúncios"
 
 # Check-box label inside "search" dialog. When box is checked, the search may include operator profiles in its resultset.
 #: ui/searchDisplay.ui:111
 msgctxt "searchDisplay|"
 msgid "Search profiles"
-msgstr ""
+msgstr "Pesquisar perfis"
 
 # Check-box label inside "search" dialog. When box is checked, the search may include profile commetns  in its resultset.
 #: ui/searchDisplay.ui:121
 msgctxt "searchDisplay|"
 msgid "Search comments"
-msgstr ""
+msgstr "Pesquisar comentários"
 
 # Dialog title text for "settings" dialog. 
 #: ui/settingsDialog.ui:26
 msgctxt "settingsDialog|"
 msgid "Node settings"
-msgstr ""
+msgstr "Configurações do nó"
 
 # Text field label for input field inside "settings" dialog. The numerical input field whose label this is has TCP port number of the node.
 #: ui/settingsDialog.ui:39
 msgctxt "settingsDialog|"
 msgid "TCP listen port"
-msgstr ""
+msgstr "Porta TCP para escutar"
 
 # Tooltip-text for input field inside "settings" dialog. The numerical input field whose label this is has TCP port number of the node.
 #: ui/settingsDialog.ui:58
 msgctxt "settingsDialog|"
 msgid "Incoming TCP listen port. Change requires node restart. "
-msgstr ""
+msgstr "Porta TCP de entrada para escutar. A alteração requer reinício do nó. "
 
 # Text field label for input field inside "settings" dialog. The textual input field whose label this is requires user to enter DNS-name of the node (or leave it empty, if no name is assigned) 
 #: ui/settingsDialog.ui:84
 msgctxt "settingsDialog|"
 msgid "DNS name of node"
-msgstr ""
+msgstr "Nome DNS do nó"
 
 # Tooltip-text for input field inside "settings" dialog. The textual input field whose label this is requires user to enter DNS-name of the node (or leave it empty, if no name is assigned)
 #: ui/settingsDialog.ui:91
@@ -2719,36 +2717,38 @@ msgid ""
 "If you have permanent DNS name for your machine, you may type it here to be "
 "used to reference your node"
 msgstr ""
+"Se você tiver um nome DNS permanente para sua máquina, você pode digitá-lo "
+"aqui para ser usado para referenciar seu nó"
 
 # Text label  inside "settings" dialog. Under this label is set of numerical input fields that user may use to adjust the amount of items he wishes to keep in his local storage. 
 #: ui/settingsDialog.ui:103
 msgctxt "settingsDialog|"
 msgid "Data store limits:"
-msgstr ""
+msgstr "Limites de armazenamento de dados:"
 
 # Text field label for input field inside "settings" dialog. The numerical input field whose label this is has maximum number of operator profiles to keep in storage. 
 #: ui/settingsDialog.ui:115
 msgctxt "settingsDialog|"
 msgid "Nr of profiles to keep"
-msgstr ""
+msgstr "Número de perfis para manter"
 
 # Text field label for input field inside "settings" dialog. The numerical input field whose label this is has maximum number of private messages to keep in storage. 
 #: ui/settingsDialog.ui:154
 msgctxt "settingsDialog|"
 msgid "Nr of private messages to keep"
-msgstr ""
+msgstr "Número de mensagens privadas para manter"
 
 # Text field label for input field inside "settings" dialog. The numerical input field whose label this is has maximum number of binary files to keep in storage. 
 #: ui/settingsDialog.ui:193
 msgctxt "settingsDialog|"
 msgid "Nr of binary blobs to keep"
-msgstr ""
+msgstr "Número de blobs binários para manter"
 
 # Text field label for input field inside "settings" dialog. The numerical input field whose label this is has maximum number of classified ads to keep in storage. 
 #: ui/settingsDialog.ui:232
 msgctxt "settingsDialog|"
 msgid "Nr of CAs to keep"
-msgstr ""
+msgstr "Número de anúncios para manter"
 
 # Tooltip-text for input field inside "settings" dialog. The numerical input field whose label this is has maximum number of classified ads to keep in storage. 
 #: ui/settingsDialog.ui:251
@@ -2757,60 +2757,63 @@ msgid ""
 "Number of classified ads to keep in storage, total, including all "
 "classifications. Oldest referenced will be deleted first."
 msgstr ""
+"Número de anúncios classificados para manter no armazenamento, total, "
+"incluindo todas as classificações. Os mais antigos referenciados serão "
+"excluídos primeiro."
 
 # Text field label for input field inside "settings" dialog. The numerical input field whose label this is has maximum number of comments regarding operators to keep in storage.
 #: ui/settingsDialog.ui:274
 msgctxt "settingsDialog|"
 msgid "Nr of profile comments to keep"
-msgstr ""
+msgstr "Número de comentários de perfil para manter"
 
 # Settings dialog text for item that tells how many records of distributed database to keep
 #: ui/settingsDialog.ui:313
 msgctxt "settingsDialog|"
 msgid "Nr of db records to keep"
-msgstr ""
+msgstr "Número de registros no banco de dados para manter"
 
 # Label for combo-box where user can choose between voice call ringtones. 
 #: ui/settingsDialog.ui:316
 msgctxt "settingsDialog|"
 msgid "Ringtone"
-msgstr ""
+msgstr "Tom da chamada"
 
 # Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is performed with a bow.
 #: ui/settingsDialog.ui:324
 msgctxt "settingsDialog|"
 msgid "Bow"
-msgstr ""
+msgstr "Arco"
 
 # Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is electrical.
 #: ui/settingsDialog.ui:329
 msgctxt "settingsDialog|"
 msgid "Electrical"
-msgstr ""
+msgstr "Elétrico"
 
 # Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is performed in acoustic manner
 #: ui/settingsDialog.ui:334
 msgctxt "settingsDialog|"
 msgid "Acoustic"
-msgstr ""
+msgstr "Acústico"
 
 # Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is only a beep
 #: ui/settingsDialog.ui:339
 msgctxt "settingsDialog|"
 msgid "Beep"
-msgstr ""
+msgstr "Bipe"
 
 # Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is silent
 #: ui/settingsDialog.ui:344
 msgctxt "settingsDialog|"
 msgid "Silence"
-msgstr ""
+msgstr "Silêncio"
 
 # Combox-box label text. Combo-box is for selecting which audio calls to accept, selections are like "all ; no calls at all ; from some operators ; .."
 #: ui/settingsDialog.ui:356
 msgctxt "settingsDialog|"
 msgid "Accept voice calls"
-msgstr ""
+msgstr "Aceitar chamadas de voz"
 
 # Combobox item text for selecting which audio calls to accept. Selecting this item lets all calls in. 
 #: ui/settingsDialog.ui:364
@@ -2822,25 +2825,25 @@ msgstr ""
 #: ui/settingsDialog.ui:369
 msgctxt "settingsDialog|"
 msgid "From trusted operators"
-msgstr ""
+msgstr "De operadores confiados"
 
 # Combobox item text for selecting which audio calls to accept. Selecting this item rejects all calls. 
 #: ui/settingsDialog.ui:374
 msgctxt "settingsDialog|"
 msgid "Accept no voice calls"
-msgstr ""
+msgstr "Aceitar nenhuma chamada de voz"
 
 # Dialog title text for a dialog that shows network connectivity details. 
 #: ui/statusDialog.ui:26
 msgctxt "statusDialog|"
 msgid "Network and connection status"
-msgstr ""
+msgstr "Status da rede e conexão"
 
 # Text field label for display-item inside "network status" dialog. The display-item shows ipv4-network address of the node. Usually it is (public) IP addr of the very machine that user is using at the moment.
 #: ui/statusDialog.ui:48
 msgctxt "statusDialog|"
 msgid "Detected own IPv4"
-msgstr ""
+msgstr "Detectada próprio IPv4"
 
 # Tooltip-text for display-item inside "network status" dialog. The display-item shows ipv4-network address of the node. Usually it is (public) IP addr of the very machine that user is using at the moment.
 #: ui/statusDialog.ui:61 ui/statusDialog.ui:93
@@ -2849,6 +2852,8 @@ msgid ""
 "Should your friend have trouble connecting, give her this address with port "
 "number"
 msgstr ""
+"Caso seu amigo tenha problemas para se conectar, forneça a ele este endereço "
+"com o número da porta"
 
 # Text field label for display-item inside "network status" dialog. The display-item shows IPV6-address of the node. Usually it is (public) IPv6 addr of the very machine that user is using at the moment.
 #: ui/statusDialog.ui:74
@@ -2860,19 +2865,19 @@ msgstr ""
 #: ui/statusDialog.ui:113
 msgctxt "statusDialog|"
 msgid "TCP port currently used"
-msgstr ""
+msgstr "Porta TCP atualmente usada"
 
 # Text field label for a list-item inside "network status" dialog. The list-item shows list of currently connected other nodes in the network. 
 #: ui/statusDialog.ui:151
 msgctxt "statusDialog|"
 msgid "Currently open connections"
-msgstr ""
+msgstr "Conexões atualmente abertas"
 
 # Push-button label for button inside "network status" dialog. When button is hit, another dialog is opened, asking user for details about the remote node to connect.
 #: ui/statusDialog.ui:195
 msgctxt "statusDialog|"
 msgid "Manually add connection"
-msgstr ""
+msgstr "Adicionar conexão manualmente"
 
 # Push-button label for button inside "network status" dialog. When button is hit, dialog is dismissed. 
 #: ui/statusDialog.ui:202
@@ -2884,13 +2889,13 @@ msgstr ""
 #: ui/tclConsole.ui:26
 msgctxt "tclConsoleDialog|"
 msgid "TCL Interpreter console"
-msgstr ""
+msgstr "Console do interpretador TCL"
 
 # Button text for button that runs TCL commands that user has typed
 #: ui/tclConsole.ui:51
 msgctxt "tclConsoleDialog|"
 msgid "Evaluate"
-msgstr ""
+msgstr "Avaliar"
 
 # Button text for button that closes TCL interpreter window. Not the interpreter but only the console dialog.  
 #: ui/tclConsole.ui:58
@@ -2902,28 +2907,28 @@ msgstr ""
 #: ui/tclConsole.ui:69
 msgctxt "tclConsoleDialog|"
 msgid "Interpreter output"
-msgstr ""
+msgstr "Saída do interpretador"
 
 # label for text field that shows TCL interpreter input
 #: ui/tclConsole.ui:79
 msgctxt "tclConsoleDialog|"
 msgid "Command input"
-msgstr ""
+msgstr "Entrada de comando"
 
 # Dialog title text for dialog that lists stored TCL programs
 #: ui/tclPrograms.ui:26
 msgctxt "tclProgramsDialog|"
 msgid "TCL programs"
-msgstr ""
+msgstr "Programas TCL"
 
 # Label for list-item that lists stored TCL programs.
 #: ui/tclPrograms.ui:48
 msgctxt "tclProgramsDialog|"
 msgid "Stored programs"
-msgstr ""
+msgstr "Programas armazenados"
 
 # Label for text item that shows program text of locally stored TCL program
 #: ui/tclPrograms.ui:68
 msgctxt "tclProgramsDialog|"
 msgid "Program code"
-msgstr ""
+msgstr "Código do programa"
