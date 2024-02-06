@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: classified-ads 0.14\n"
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
-"PO-Revision-Date: 2024-02-06 02:07+0000\n"
+"PO-Revision-Date: 2024-02-06 02:08+0000\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
 "projects/classified-ads/master/pt_BR/>\n"
@@ -469,7 +469,7 @@ msgstr "Sai do aplicativo"
 #: controller.cpp:489
 msgctxt "Controller|"
 msgid "&About"
-msgstr "Sobre"
+msgstr "&Sobre"
 
 # Tooltip-text of menu item text used in "File" menu and when this particular item is selected, application will show a dialog telling why this application is and how to use it
 #: controller.cpp:490
