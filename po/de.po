@@ -1,12 +1,12 @@
 # Antti Järvinen <antti.jarvinen@katiska.org>, 2016. #zanata
 # FloH. <postfuerflo@gmail.com>, 2016. #zanata
-# Ettore Atalan <atalanttore@googlemail.com>, 2023.
+# Ettore Atalan <atalanttore@googlemail.com>, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: classified-ads 0.10\n"
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
-"PO-Revision-Date: 2023-04-30 18:20+0000\n"
+"PO-Revision-Date: 2024-11-10 14:38+0000\n"
 "Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <https://translate.fedoraproject.org/projects/"
 "classified-ads/master/de/>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15.2\n"
+"X-Generator: Weblate 5.8.2\n"
 "X-Language: fi_FI\n"
 "X-Qt-Contexts: true\n"
 
@@ -667,12 +667,12 @@ msgstr "Private Nachricht"
 #: FrontWidget.cpp:160
 msgctxt "FrontWidget|"
 msgid "Add shared file.."
-msgstr "Öffentliche Datei hinzufügen"
+msgstr "Gemeinsame Datei hinzufügen."
 
 #: FrontWidget.cpp:161
 msgctxt "FrontWidget|"
 msgid "Stop advertising selected shared file"
-msgstr ""
+msgstr "Werbung für ausgewählte gemeinsame Datei stoppen"
 
 #: FrontWidget.cpp:162
 msgctxt "FrontWidget|"
