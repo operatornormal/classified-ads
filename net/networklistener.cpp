@@ -1,7 +1,7 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-    Classified Ads is Copyright (c) Antti Järvinen 2013.
+    Classified Ads is Copyright (c) Antti Järvinen 2013-2025.
 
-   This file is part of Classified Ads.
+    This file is part of Classified Ads.
 
     Classified Ads is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -9,7 +9,7 @@
     version 2.1 of the License, or (at your option) any later version.
 
     Classified Ads is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
     Lesser General Public License for more details.
 
@@ -291,7 +291,11 @@ void NetworkListener::figureOutLocalAddresses() {
                 char lan_address[64];
                 struct UPNPUrls upnp_urls;
                 struct IGDdatas upnp_data;
+#if (MINIUPNPC_API_VERSION >= 18)
+                int status = UPNP_GetValidIGD(upnp_dev, &upnp_urls, &upnp_data, lan_address, sizeof(lan_address), NULL, 0);
+#else
                 int status = UPNP_GetValidIGD(upnp_dev, &upnp_urls, &upnp_data, lan_address, sizeof(lan_address));
+#endif
                 // look up possible "status" values, the number "1" indicates a valid IGD was found
                 QLOG_STR("UPNP_GetValidIGD = " + QString::number(status)) ;
                 if ( status > 0 ) {
