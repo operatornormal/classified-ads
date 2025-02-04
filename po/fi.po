@@ -1,19 +1,21 @@
 # Antti Järvinen <antti.jarvinen@katiska.org>, 2016. #zanata
 # Juhani Numminen <juhaninumminen0@gmail.com>, 2016. #zanata
+# Ricky Tigg <ricky.tigg@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: classified-ads 0.12\n"
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
-"PO-Revision-Date: 2016-07-05 05:59-0400\n"
-"Last-Translator: Juhani Numminen <juhaninumminen0@gmail.com>\n"
-"Language-Team: Finnish\n"
+"PO-Revision-Date: 2025-01-11 10:38+0000\n"
+"Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
+"Language-Team: Finnish <https://translate.fedoraproject.org/projects/"
+"classified-ads/master/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Zanata 3.9.6\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.9.2\n"
 "X-Language: fi_FI\n"
 "X-Qt-Contexts: true\n"
 
@@ -21,7 +23,7 @@ msgstr ""
 #: ui/attachmentlistdialog.cpp:60
 msgctxt "AttachmentListDialog|"
 msgid "Save file to disk.."
-msgstr "Tallenna tiedostojärjestelmälle…"
+msgstr "Tallenna tiedosto levylle.."
 
 # In file open dialog this is text specifying what kind of files to include in listing, filtered by file name suffix. For example, user wants only PNG files, then text appearing in dialog filter field would say "PNG files (*.png)" and this work "files" here is the word after the word PNG.  
 #: ui/attachmentlistdialog.cpp:151 ui/attachmentlistdialog.cpp:153
@@ -437,13 +439,13 @@ msgstr "Avaamiseen sopivaa salausavainta ei ole käytettävissä"
 #: controller.cpp:109
 msgctxt "Controller|"
 msgid "Classified ads"
-msgstr "Luokitellut ilmoitukset"
+msgstr "Luokitellut mainokset"
 
 # Prompt text for password dialog
 #: controller.cpp:141
 msgctxt "Controller|"
 msgid "Enter password for protection of your messages:"
-msgstr "Anna salasana viestiesi sisällön turvaamiseksi"
+msgstr "Syötä salasana viestiesi suojaamiseksi:"
 
 # Dialog text for a wait dialog (a progress-bar like thing will be shown next to this text and user is supposed to sit down and wait a moment..)
 #: controller.cpp:432
@@ -497,7 +499,7 @@ msgstr "Luo uusi profiili"
 #: controller.cpp:496
 msgctxt "Controller|"
 msgid "Makes a brand new user profile"
-msgstr "Luo  operaattorille uuden profiilin"
+msgstr "Luo operaattorille uuden profiilin"
 
 # Menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to confirm deletion of currently open operator profile
 #: controller.cpp:498
@@ -569,7 +571,7 @@ msgstr "TCL-Ohjelmakirjasto"
 #: controller.cpp:731
 msgctxt "Controller|"
 msgid "Locally stored TCL programs"
-msgstr "Paikallisen ohjelmakirjaston TCL-ohjelmat."
+msgstr "Paikallisesti tallennetut TCL-ohjelmat"
 
 # Difficult to translate: after selecting this menu-item you can write ad-hoc TCL programs to TCL interpreter that may be already executing existing program or is empty. Practically gives TCL command line access to possibly running interpreter.
 #: controller.cpp:734
@@ -666,49 +668,49 @@ msgstr "Haluttua kohdetta ei verkosta löytynyt.."
 #: controller.cpp:1117
 msgctxt "Controller|"
 msgid "SHA1: "
-msgstr "SHA1:"
+msgstr "SHA1: "
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies mime-type of the file
 #: controller.cpp:1122
 msgctxt "Controller|"
 msgid "Mime-Type: "
-msgstr "Mime-Tyyppi:"
+msgstr "Mime-tyyppi: "
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that gives longer explanation of the file
 #: controller.cpp:1128
 msgctxt "Controller|"
 msgid "Description: "
-msgstr "Kuvaus:"
+msgstr "Kuvaus: "
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies name of publisher of the file (in practice, who uploaded the file into classified ads)
 #: controller.cpp:1134
 msgctxt "Controller|"
 msgid "Publisher: "
-msgstr "Julkaisija:"
+msgstr "Julkaisija: "
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies name of the person (or organization) that owns (in copyright sense) the file or its contents. 
 #: controller.cpp:1140
 msgctxt "Controller|"
 msgid "Content owner: "
-msgstr "Sisällön omistaja:"
+msgstr "Sisällön omistaja: "
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies the license of the file
 #: controller.cpp:1146
 msgctxt "Controller|"
 msgid "License: "
-msgstr "Lisenssi:"
+msgstr "Lisenssi: "
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies file name
 #: controller.cpp:1152
 msgctxt "Controller|"
 msgid "Name: "
-msgstr "Nimi:"
+msgstr "Nimi: "
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies file date
 #: controller.cpp:1159
 msgctxt "Controller|"
 msgid "Date: "
-msgstr "Päivämäärä:"
+msgstr "Päivämäärä: "
 
 # Error message text shown inside dialog when user tries to select for operation a file that is much much too big. (there is currently 2MB size limit for shared files) 
 #: ui/dialogbase.cpp:47 ui/dialogbase.cpp:101
@@ -756,7 +758,7 @@ msgstr "Operaattorin osoite ei ole sopivaa muotoa"
 #: FrontWidget.cpp:95
 msgctxt "FrontWidget|"
 msgid "Classified ads"
-msgstr "Luokitellut ilmoitukset"
+msgstr "Luokitellut mainokset"
 
 # Tab text. In "main window" of classified ads UI there a are 4 or 5 tabs, normally "Classified ads"; "My profile", "Contacts", "Private messages" and maybe something else. This is the text of the 2nd tab. 
 #: FrontWidget.cpp:96
@@ -780,7 +782,7 @@ msgstr "Yksityiset viestit"
 #: FrontWidget.cpp:160
 msgctxt "FrontWidget|"
 msgid "Add shared file.."
-msgstr "Lisää tiedosto jakoon"
+msgstr "Lisää tiedosto jakoon.."
 
 # Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, the selected file in the listing view will no longer be shared
 #: FrontWidget.cpp:161
@@ -792,7 +794,7 @@ msgstr "Lakkaa mainostamasta valittua jaettua tiedostoa"
 #: FrontWidget.cpp:162
 msgctxt "FrontWidget|"
 msgid "Save file to disk.."
-msgstr "Tallenna tiedosto tiedostojärjestelmälle"
+msgstr "Tallenna tiedosto levylle.."
 
 # Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, information dialog about selected file will be shown
 #: FrontWidget.cpp:163
@@ -828,7 +830,7 @@ msgstr "Kaikki tiedostot (*.*)"
 #: FrontWidget.cpp:359 FrontWidget.cpp:1185 FrontWidget.cpp:1328
 msgctxt "FrontWidget|"
 msgid "Error"
-msgstr "Vikaa.."
+msgstr "Virhe"
 
 # Error dialog content text. Shown when image file that user selected could not be opened (maybe because file permission problem or maybe image format issue or ..)
 #: FrontWidget.cpp:360
@@ -912,8 +914,8 @@ msgstr ""
 "\n"
 "\n"
 "Klikkaa\n"
-"Lisätäksesi\n"
-"Kuva\n"
+"lisätäksesi\n"
+"kuva\n"
 
 # Error message dialog content text shown when user tried to access article, that was not stored in local database
 #: FrontWidget.cpp:1329
@@ -936,7 +938,7 @@ msgstr ""
 #: FrontWidget.cpp:1392
 msgctxt "FrontWidget|"
 msgid "Time of last update "
-msgstr "Viimeinen päivitysajankohta"
+msgstr "Viimeinen päivitysajankohta "
 
 # Text for image placeholder, shown in situation where another operator has not selected any image for her.This text is shown place of the missing image. 
 #: FrontWidget.cpp:1400
@@ -960,7 +962,7 @@ msgstr ""
 #: FrontWidget.cpp:1494
 msgctxt "FrontWidget|"
 msgid "Edit contact.."
-msgstr "Muokkaa profiilin tietoja "
+msgstr "Muokkaa yhteystietoa.."
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a private message to operator who sent the classified ad currently on display
 #: FrontWidget.cpp:1534
@@ -978,7 +980,7 @@ msgstr "Vastaa foorumille"
 #: FrontWidget.cpp:1536
 msgctxt "FrontWidget|"
 msgid "&Post new ad"
-msgstr "Uusi ilmoitus"
+msgstr "&Lähetä uusi mainos"
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a public comment about operator who sent the classified ad currently on display
 #: FrontWidget.cpp:1537
@@ -1008,7 +1010,7 @@ msgstr "Lisää valittu operaattori osoitekirjaan.."
 #: FrontWidget.cpp:1673
 msgctxt "FrontWidget|"
 msgid "&Reply"
-msgstr "Vastaa"
+msgstr "&Vastaa"
 
 # Push button text. Pushing the button will open an editor prompting user to edit+send a private message to some operator. 
 #: FrontWidget.cpp:1674
@@ -1032,7 +1034,7 @@ msgstr "Näytä viesti-osapuolen profiili"
 #: FrontWidget.cpp:1711
 msgctxt "FrontWidget|"
 msgid "Add selected to contacts.."
-msgstr "Lisää valittu osoitekirjaan"
+msgstr "Lisää valitut yhteystietoihin.."
 
 # Text field label. Label tells who sent particular classified ad. 
 #: FrontWidget.cpp:1913 FrontWidget.cpp:1915 FrontWidget.cpp:1979
@@ -1178,7 +1180,7 @@ msgstr ""
 #: ui/passwordDialog.ui:55
 msgctxt "PasswordDialog|"
 msgid "OK"
-msgstr "OK"
+msgstr "Hyvä on"
 
 # Check-box item text. If check-box is selected, password is shown in text editor, if not selected then "hidden text" editor is used that does not show the word being typed. 
 #: ui/passwordDialog.ui:68
@@ -1455,7 +1457,7 @@ msgstr "Kopioi"
 #: textedit/textedit.cpp:273
 msgctxt "TextEdit|"
 msgid "&Paste"
-msgstr "Liitä"
+msgstr "&Liitä"
 
 # Menu item text inside text editor "edit" menu. After this menu-item is selected, a dialog is opened, prompting user to enter a link (URL) to be included in the text. 
 #: textedit/textedit.cpp:283
@@ -1589,7 +1591,9 @@ msgctxt "TextEdit|"
 msgid ""
 "The document has been modified.\n"
 "Do you want to save your changes?"
-msgstr "Tiedostoa on muutettu, haluatko tallettaa muutokset?"
+msgstr ""
+"Asiakirjaa on muokattu.\n"
+"Haluatko tallentaa muutoksesi?"
 
 # File selection dialog title text. Dialog will prompt user to select a document for opening. 
 #: textedit/textedit.cpp:467
@@ -1656,7 +1660,7 @@ msgstr "Tiedosto on aivan liian suuri"
 #: net/voicecallengine.cpp:525
 msgctxt "VoiceCallEngine|"
 msgid "Accept"
-msgstr "Vastaa"
+msgstr "Hyväksy"
 
 # Button text for "incoming call" dialog. When user hits the button, incoming call is rejected. 
 #: net/voicecallengine.cpp:533
@@ -1799,8 +1803,8 @@ msgstr ""
 msgctxt "VoiceCallEngine|"
 msgid "Audio call is not possible: operators IPv6 address %1 not connected"
 msgstr ""
-"Puhelu ei ole mahdollinen: operaattorin solmun IPv6-verkko-osoitteeseen %1 "
-"ei ole yhteyttä "
+"Äänipuhelu ei ole mahdollista: operaattorin IPv6-osoitetta %1 ei ole "
+"yhdistetty"
 
 # Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is protocol mismatch. 
 #: net/voicecallengine.cpp:893
@@ -1828,7 +1832,7 @@ msgstr "Tietoja luokitelluista ilmoituksista"
 #: ui/aboutDialog.ui:100
 msgctxt "aboutDialog|"
 msgid " Classified ads is a program for online communications"
-msgstr "Luokitellut ilmoitukset on viestintään tarkoitettu tietokoneohjelma"
+msgstr " Luokitellut mainokset on verkkoviestintäohjelma"
 
 # The long explanation of classified ads inside about-dialog. Note that this text must be valid html. Needs to start with <html> and end with </html> etc. This is easiest to edit like this: copy-paste the content in to a file, say /tmp/about.html. Then either open your favourite html-editor or open classified ads. In classified ads you can start constructing an ad, select from file-menu "open.." and select this file  ;do editing and save from file-menu. The saved file is immediately in correct format to be be copy-pasted into contents of this field.  
 #: ui/aboutDialog.ui:163
@@ -1898,140 +1902,73 @@ msgid ""
 "Project for use in the OpenSSL Toolkit (http://www.openssl.org/).</"
 "p><p>Happy advertising!</p><p><br/></p></body></html>"
 msgstr ""
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta http-equiv="
-"\"Content-Type\" content=\"text/html; charset=UTF-8\" /><style type=\"text/"
-"css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Ubuntu'; font-size:9pt; font-"
-"weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">Luokitellut ilmoitukset on "
-"vapaasti käytettävä ohjelmisto. Voi käyttää, kopioida ja muokata sitä "
-"noudattaen LGPL-lisenssin (GNU Lesser General Public License 2.1) ehtoja.</"
-"p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
-"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"
-"\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">Tämän ohjelman "
-"kopiointioikeudet omistaa Antti Järvinen, vuodesta 2013. </p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
-"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"
-"\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">Ohjelman keskeinen "
-"ominaisuus on &quot;ilmoitus&quot; - teksti, joka kuuluu johonkin "
-"luokitteluun. Ohjelma sisältää joukon valmiita luokitteluita ja käyttäjiä "
-"rohkaistaan keksimään uusia ; luokittelu-valintoihin &quot;ilmoitukset&quot;-"
-"välilehdellä voi kirjoittaa mitä hyvänsä. Muut käyttäjät voivat katsella "
-"ilmoituksia, julkisesti kommentoida ilmoituksia ja lähettää viestejä "
-"toisilleen.</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
-"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"
-"\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">Ohjelman toinen keskeinen "
-"ominaisuus on, ettei se käytä keskitettyä tietovarastoa millään "
-"verkkopalvelimella - yksittäisten käyttäjien tietokoneet, joilta ohjelmistoa "
-"käytetään tallettavat ja välittävät kaiken ohjelman sisällä esitettävän "
-"sisällön. Liittyäksesi tähän verkkoon sinun on tiedettävä ainakin yhden "
-"sellaisen tietokoneen (solmun) verkko-osoite, jossa jo valmiiksi käytetään "
-"luokiteltuja ilmoituksia. Mikäli tilanne on sellainen, että &quot;verkon "
-"tila&quot; -dialogi näyttää 0 avointa yhteyttä, sinun on kysyttävä joltain "
-"ystävältäsi hänen solmunsa verkko-osoite ja syötettävä se ohjelmaan "
-"saadaksesi yhteyden luokiteltujen ilmoitusten verkkoon. Kun ohjelma on "
-"kerran liitetty verkkoon, se pyrkii itse ylläpitämään listan verkon muista "
-"koneista.</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
-"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"
-"\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">Johtuen suunnitelusta, "
-"johon verkkopalvelimet eivät kuulu tämä järjestelmä toimii parhaiten, jos "
-"jätät tämän ohjelman päälle myös silloin, kun et itse aktiivisesti käytä "
-"järjestelmää. Ohjelma vie jonkin verran tietojenkäsittelykapasiteettia "
-"koneeltasi ja aiheuttaa verkkoliikennettä myös silloin kun et itse ohjelmaa "
-"käytä - mutta muut käyttäjät käyttävät. </p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
-"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"
-"\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">Yksityisyydestään "
-"huolestuneet käyttäjät huomatkoot seuraavat seikat:</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">- Tietovarasto on "
-"toteutettu hajautettuna tiivistetaulukkona (distributed hash table DHT), "
-"mikä käytännössä tarkoittaa että verkkoon postitetut ilmoitukset ja muu "
-"sisältö päätyvät enemmän tai vähemmän satunnaisille verkon solmuille "
-"säilytettäväksi, DHT-algoritmin mukaisesti.</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">- Kaikki verkon "
-"tallettamat tietoalkiot (ilmoitukset, kommentit, tiedostot, yksityiset "
-"viestit jne.) ovat digitaalisesti allekirjoitettuja. Tästä syystä on "
-"hankalaa pyrkiä esiintymään eri operaattorina kuin oikeasti on. </p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">- Operaattorin ainoa "
-"luotettava tunniste on hänen salausavaimensa SHA1-tiiviste. SHA1-tiiviste on "
-"nähtävillä operaattorin tiedot esittävällä välilehdellä. Muut tiedot kuten "
-"liikanimi tai kaupungin nimi ovat operaattorin syötettävissä ja "
-"luonnollisesti voivat olla ihan mitä tahansa. Operaattorin profiilin tiedot "
-"verkkoon julkaistuna ovat myös allekirjoitetut, käyttäen operaattorin "
-"salausavainta - mikäli haluat kohtuullisella luotettavuudella tietää onko "
-"joku verkon sisältö tietyn operaattorin julkaisemaa vai ei, tämä tapahtuu "
-"tarkastamalla lähettäjän SHA1-tiiviste. Luokitellut ilmoitukset tarkastaa "
-"saapuvien tietoalkioiden allekirjoitukset ja jättää tallettamatta sisällöt, "
-"joiden allekirjoitus ei vastaa sisältöä. </p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">- Kaikki luokitellut "
-"ilmoitukset julkaistaan ilman salausta ja ovat kaikkien luettavissa. Kaikki "
-"julkiset profiilit julkaistaan ilman salausta, ja ovat kaikkien luettavissa. "
-"Mikäli profiili merkitään yksityiseksi, se salataan siten, että lueteltujen "
-"operaattoreiden salausavainta käyttäen profiilin tiedot ovat luettavissa. "
-"Tämä pätee myös profiiliin liittyviin kommentteihin ja jaettuihin "
-"tiedostoihin. Muutos ei ole takautuva, eli jos profiili on aiemmin ollut "
-"julkinen, sen kommentit ja tiedostot eivät automaattisesti muutu salatuiksi "
-"kun profiili muutetaan yksityiseksi. Yksityiset viestit kuljetetaan aina "
-"salattuna. Liitetiedostot noudattavat sen dokumentin yksityisyyssääntöjä, "
-"mihin ne on liitetty.</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">- Kuten kaiken internet-"
-"viestinnän kanssa tosi on, myös tämä pätee: jos jotain sisältöä verkkoon "
-"lähetetään, <span style=\" font-style:italic;\">ei ole olemassa keinoa "
-"pysyvästi sitä poistaa.</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">- Salaustoteutus on "
-"OpenSSL, useimmin käytetyt algoritmit ovat RSA-2048 ja AES-256.</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">- Solmujen välinen "
-"liikenne kulkee SSL-socketissa eli tietoliikenteen seuraaminen verkon "
-"ulkopuolelta on haastavaa. Vierekkäiset solmut kuitenkin näkevät toistensa "
-"tietoliikenteenteen sisällön.  Vaikka tietoliikenteen sisältöjen keräämiseen "
-"ei ole helppoa yksittäistä paikkaa, operaattorien on silti turha odottaa "
-"yksityisyyttä koskien tekemisiään verkossa vaikka jonkin verran vaivaa "
-"yksityisten viestien <span style=\" font-style:italic;\">sisältöjen</span> "
-"suojaamiseksi onkin nähty. </p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
-"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"
-"\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">Ohjelmointityön on "
-"enimmäkseen tehnyt Antti Järvinen, taideteokset Meeri Järvinen.</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
-"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"
-"\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">Tämä tuote sisältää "
-"OpenSSL-projektin kehittämän ohjelmiston, joka on alunperin tarkoitettu "
-"OpenSSL Toolkit-ohjelmistoa varten (http://www.openssl.org).</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
-"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"
-"\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">Riemullista ilmoittelua!</"
-"p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
-"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"
-"\"><br /></p></body></html>"
+"<html><head/><body><p>Luokitellut mainokset ovat ilmainen ohjelmisto. Voit "
+"käyttää, kopioida ja muokata sitä, jos noudatat GNU:n vähemmän yleisen "
+"julkisen lisenssin versiossa 2.1 annettuja ehtoja.</p><p>Luokituilla "
+"mainoksilla on tekijänoikeus © Antti Järvinen 2013. </p><p>Pääominaisuus "
+"ohjelma on &quot;mainostaminen&quot; - valittuun luokitukseen kuuluva "
+"teksti. On olemassa useita valmiiksi ohjelmoituja luokituksia, ja käyttäjiä "
+"kannustetaan keksimään uusia luokituksia uusia tarkoituksia varten. luokitus-"
+"valinta-välilehden valintaruudut ovat muokattavissa. Muut operaattorit "
+"voivat sitten katsella mainoksia, kommentoida julkisesti mainoksia, "
+"operaattorit ja lähettää myös yksityisviestejä toisilleen. </p><p>Toinen "
+"luokiteltujen mainosten tärkeä ominaisuus on, että se on suunniteltu "
+"toimimaan ilman keskitettyä palvelininfrastruktuuria – sinä ja muut "
+"operaattorit, joiden tietokoneet tallentavat ja välittävät kaiken "
+"luokitelluissa mainoksissa näkyvän sisällön. Yhteyden muodostamiseksi sinun "
+"on tiedettävä vähintään yhden olemassa olevan tietokoneen osoite (<span "
+"style=\" font-style:italic;\">solmu</span>), joten jos verkkoyhteysikkunassa "
+"ei näy yhteyksiä, sinun on ehkä otettava yhteyttä joku tuntemasi käyttää "
+"ohjelmistoa ja pyytää hänen solmunsa osoitetta ensimmäisen yhteyden "
+"muodostamiseksi verkkoon. Kun ohjelmisto on liitetty, sen pitäisi ylläpitää "
+"muiden solmujen osoitteiden luetteloa. </p><p>Palvelimeton suunnittelunsa "
+"ansiosta koko järjestelmä toimii parhaiten, jos jätät ohjelman aina "
+"käynnissä, kun tietokoneeseen on kytketty virta. Muiden operaattoreiden "
+"pyyntöjä käsitellessään se kerää osan laskentaresursseista ja tuottaa "
+"verkkoliikennettä myös silloin, kun et itse käytä ohjelmaa aktiivisesti - "
+"toiset ovat. </p><p>Sisällön tietosuojasta huolissaan olevien "
+"operaattoreiden tulee olla tietoisia seuraavista seikoista:</p><p>- Tietojen "
+"tallennus on <span style=\" font-style:italic;\">jaetun tiivisteen muunnelma "
+"taulukko</span>, mikä tarkoittaa käytännössä sitä, että lähettämäsi sisältö "
+"kopioidaan joitain enemmän tai vähemmän satunnaisia verkon solmuja. </p><p>- "
+"Kaikki tietokohteet (mainos, kommentti, binääritiedosto, yksityinen viesti "
+"jne.) on digitaalisesti allekirjoitettu. Tämän vuoksi on vaikeampaa yrittää "
+"esiintyä toisena operaattorina. </p><p>- Operaattorit tunnistetaan "
+"luotettavasti vain heidän luomiensa salausavainten SHA1-hajautusarvon "
+"perusteella. SHA1-tiiviste näkyy, kun tarkastellaan käyttäjäprofiilien "
+"tietoja. Muut tunnistetiedot, kuten lempinimi tai kaupungin nimi, syöttää "
+"operaattori itse, ja ne voivat olla mitä tahansa. Operaattoriprofiili, "
+"sellaisena kuin se on julkaistu verkkoon, on myös allekirjoitettu "
+"operaattorin salausavaimilla - jos tunnistat operaattorin hänen SHA1-"
+"hajautusarvollaan, sinulla on mekanismi, jonka avulla voit tunnistaa, onko "
+"tämä operaattori lähettänyt sisältöä luokiteltujen mainosten sisällä. tai "
+"ei. Luokitellut mainokset tarkistavat sisäisesti digitaaliset "
+"allekirjoitukset, heittävät pois sisällön, joka ei läpäise allekirjoituksen "
+"tarkistusta, ja yrittää tarjota sisällön lähettäneen operaattorin "
+"SHA1-tiivisteen.</p><p>- Kaikki luokitellut mainokset julkaistaan pelkkänä "
+"tekstinä, salausta ei käytetä . Kaikki julkiset profiilit julkaistaan "
+"pelkkänä tekstinä, salausta ei käytetä. Jos profiili on asetettu "
+"yksityiseksi, se salataan, jotta vain valitut muut profiilit voivat lukea "
+"sen. Tämä koskee myös operaattoreiden yksityisten profiilien jakamia "
+"binääritiedostoja ja yksityisiä profiileja koskevia kommentteja profiilin "
+"yksityiseksi muuttamisen jälkeen (aiemmin pelkkätekstikommentteja tai -"
+"tiedostoja ei salata jälkikäteen maagisesti). Yksityisviestit salataan aina, "
+"jotta vain vastaanottaja ja lähettäjä voivat lukea ne. Liitteet noudattavat "
+"asiakirjan tietosuojasääntöjä, ne on liitetty. </p><p>- Kuten kaikessa "
+"Internet-viestinnässä, tämä pieni tosiasia pätee myös luokiteltuihin "
+"mainoksiin : <span style=\" font-style:italic;\">kun jotain julkaistaan "
+"verkossa, ei ole tapa poistaa se verkosta</span>. </p><p>- Sisällön "
+"tiedonsalauksen toteutus on OpenSSL, joka perustuu pääasiassa RSA-2048- ja "
+"AES-256-algoritmeihin. </p><p>- Vaikka solmujen väliset yhteydet toteutetaan "
+"SSL:n avulla, muut verkon sisällä olevat solmut saavat tietää, mitä sisältöä "
+"naapurisolmuissa siirretään. Vaikka ei olekaan keskeistä kerätä helposti "
+"näitä tietoja tietystä luokittelusta tai operaattorista, operaattoreiden ei "
+"silti pitäisi odottaa yksityisyyttä verkkotoimintansa suhteen, vaikkakin on "
+"yritetty piilottaa <span style=\" font-style:italic;\"> yksityisviestien ja "
+"yksityisten profiilien sisältö</span>. </p><p>Ohjelmoinnin teki (pääosin) "
+"Antti Järvinen, kuvituksen Meeri Järvinen.</p><p>Tämä tuote sisältää OpenSSL "
+"Projectin kehittämän ohjelmiston käytettäväksi OpenSSL Toolkitissa (https://"
+"www.openssl.org/).</p><p>Hyvää mainontaa!</p><p><br/></p></body></html>"
 
 # Dialog title text. Dialog in question produces list of file attachments. 
 #: ui/attachmentListDialog.ui:26
@@ -2107,7 +2044,7 @@ msgstr "Etusivun lomake"
 #: frontWidget.ui:39
 msgctxt "frontWidget|"
 msgid "Classified ads"
-msgstr "Luokitellut ilmoitukset"
+msgstr "Luokitellut mainokset"
 
 # Prompt text next "search" button. User is supposed to enter search criteria for classified ads and then click "search" ; this is prompt text for this behaviour. 
 #: frontWidget.ui:67
@@ -2167,7 +2104,7 @@ msgstr "Tervehdysteksti"
 #: frontWidget.ui:232
 msgctxt "frontWidget|"
 msgid "For the rest of the world. "
-msgstr "Koko maailmalle."
+msgstr "Koko maailmalle. "
 
 # Text field label in "operators profile" tab. The field in questions shows given name (first name) of the operator.
 #: frontWidget.ui:239 frontWidget.ui:695
@@ -2198,7 +2135,8 @@ msgstr "BTC-lompakon osoite"
 msgctxt "frontWidget|"
 msgid "If you wish to receive payments via BTC, include your BTC address too."
 msgstr ""
-"Jos meinaat saada maksuja bitcoinin kautta, julkaise myös lompakkosi osoite"
+"Jos haluat vastaanottaa maksuja BTC:n välityksellä, sisällytä myös BTC-"
+"osoitteesi."
 
 # Text field label in "operators profile" tab. The field in questions shows what the user has to say about state of the world.  
 #: frontWidget.ui:287 frontWidget.ui:799
@@ -2252,7 +2190,7 @@ msgstr "Peruuta muutokset"
 #: frontWidget.ui:369
 msgctxt "frontWidget|"
 msgid "Details of operator profile:"
-msgstr "Operaattorin profiili"
+msgstr "Operaattoriprofiilin yksityiskohdat:"
 
 # Text in image-placeholder inside "my profile" tab. When user has not selected any image for her profile details, this text is shown in place of the image. Clicking on text gives user option to select the image file for profile. 
 #: frontWidget.ui:401
@@ -2267,9 +2205,9 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"Klikkaa \n"
-"Lisätäksesi\n"
-"Kuva"
+"Klikkaa\n"
+"lisätäksesi\n"
+"kuva"
 
 # Title text inside "my profile" tab. Title text is for a list of files that user is currently sharing with other users. 
 #: frontWidget.ui:425 frontWidget.ui:845
@@ -2455,7 +2393,7 @@ msgstr "Käyttöä koskeva lisenssi:"
 #: ui/metadataQuery.ui:122
 msgctxt "metadataQuery|"
 msgid "Public domain"
-msgstr "Public domain"
+msgstr "Julkinen toimialue"
 
 # Combobox content text for license selection combobox. License texts might be wise leave as they are - untranslated
 #: ui/metadataQuery.ui:127
@@ -2533,7 +2471,7 @@ msgstr "Syötä tiedoston ominaisuudet ennen julkaisua:"
 #: ui/newClassifiedAd.ui:26
 msgctxt "newCaDialog|"
 msgid "Post a new classified ad"
-msgstr "Lähetä uusi luokiteltu ilmoitus"
+msgstr "Lähetä uusi luokiteltu mainos"
 
 # This label text is part of sentence, whole sentence goes for example "About buying of cars in sweden" where the words "bying", "cars", and "sweden" are combo-boxes that user may choose from ; this word here is the first word in that sentece.
 #: ui/newClassifiedAd.ui:47
@@ -2563,7 +2501,7 @@ msgstr "Aihe"
 #: ui/newClassifiedAd.ui:129
 msgctxt "newCaDialog|"
 msgid "Attachment: "
-msgstr "Liite:"
+msgstr "Liite: "
 
 # Push-button text inside "post a new classified ad" dialog. When user hits the button, another dialog is opened and user is required to select a file to be attached. 
 #: ui/newClassifiedAd.ui:149
@@ -2593,7 +2531,7 @@ msgstr "Vastaanottaja"
 #: ui/newPrivMsg.ui:83
 msgctxt "newPrivMsgDialog|"
 msgid "Attachments: "
-msgstr "Liitteet:"
+msgstr "Liitteet: "
 
 # Push-button text inside "compose a new private message" dialog. When user hits the button, another dialog is opened and user is required to select a file to be attached.
 #: ui/newPrivMsg.ui:103
@@ -2713,7 +2651,7 @@ msgstr "Etsi tietovarastosta"
 #: ui/searchDisplay.ui:60
 msgctxt "searchDisplay|"
 msgid "Words:"
-msgstr "Sanoja"
+msgstr "Sanoja:"
 
 # Push button label inside "search" dialog. When button is hit, search using given words is performed.  
 #: ui/searchDisplay.ui:70
@@ -2762,7 +2700,7 @@ msgstr "TCP-kuunteluportti"
 msgctxt "settingsDialog|"
 msgid "Incoming TCP listen port. Change requires node restart. "
 msgstr ""
-"Kuunteluportti. Tämän vaihtaminen edellyttää ohjelman uudelleenkäynnistystä."
+"Saapuva TCP-kuunteluportti. Muutos vaatii solmun uudelleenkäynnistyksen. "
 
 # Text field label for input field inside "settings" dialog. The textual input field whose label this is requires user to enter DNS-name of the node (or leave it empty, if no name is assigned) 
 #: ui/settingsDialog.ui:84
@@ -2808,7 +2746,7 @@ msgstr "Binääritiedostojen määrä"
 #: ui/settingsDialog.ui:232
 msgctxt "settingsDialog|"
 msgid "Nr of CAs to keep"
-msgstr "Ilmoitusten määrä"
+msgstr "Säilytettävien luokiteltujen mainosten lukumäärä"
 
 # Tooltip-text for input field inside "settings" dialog. The numerical input field whose label this is has maximum number of classified ads to keep in storage. 
 #: ui/settingsDialog.ui:251
@@ -2817,9 +2755,8 @@ msgid ""
 "Number of classified ads to keep in storage, total, including all "
 "classifications. Oldest referenced will be deleted first."
 msgstr ""
-"Paikallisessa tietokannassa talletettavien ilmoitusten määrä, koskien "
-"kaikkia luokitteluja. Viimeisimmäksi viitatut tullaan poistamaan "
-"ensimmäisenä."
+"Tallennustilassa säilytettävien luokiteltujen mainosten lukumäärä yhteensä, "
+"mukaan lukien kaikki luokitukset. Vanhin viitattu poistetaan ensin."
 
 # Text field label for input field inside "settings" dialog. The numerical input field whose label this is has maximum number of comments regarding operators to keep in storage.
 #: ui/settingsDialog.ui:274
