@@ -8,13 +8,14 @@
 # Emilio Herrera <ehespinosa57@gmail.com>, 2017. #zanata
 # Fernando Espinoza <herculesoplimpus@gmail.com>, 2017. #zanata
 # Rafael Fontenelle <rafaelff@gnome.org>, 2024.
+# N M <nm@users.noreply.translate.fedoraproject.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: classified-ads 0.10\n"
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
-"PO-Revision-Date: 2024-02-05 18:27+0000\n"
-"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
+"PO-Revision-Date: 2025-02-04 16:38+0000\n"
+"Last-Translator: N M <nm@users.noreply.translate.fedoraproject.org>\n"
 "Language-Team: Spanish <https://translate.fedoraproject.org/projects/"
 "classified-ads/master/es/>\n"
 "Language: es\n"
@@ -22,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.3.1\n"
+"X-Generator: Weblate 5.9.2\n"
 "X-Language: fi_FI\n"
 "X-Qt-Contexts: true\n"
 
@@ -480,12 +481,12 @@ msgstr "&File"
 #: controller.cpp:729
 msgctxt "Controller|"
 msgid "&TCL Programs"
-msgstr ""
+msgstr "&Programas TCL"
 
 #: controller.cpp:730
 msgctxt "Controller|"
 msgid "&Local library"
-msgstr ""
+msgstr "&Biblioteca local"
 
 #: controller.cpp:731
 msgctxt "Controller|"
@@ -495,13 +496,12 @@ msgstr "Programas de TCL almacenados localmente"
 #: controller.cpp:734
 msgctxt "Controller|"
 msgid "TCL &Console"
-msgstr ""
+msgstr "&Consola TCL"
 
 #: controller.cpp:735
-#, fuzzy
 msgctxt "Controller|"
 msgid "Display interpreter console"
-msgstr "Programas de TCL almacenados localmente"
+msgstr "Mostrar la consola del interprete"
 
 #: controller.cpp:571
 msgctxt "Controller|"
