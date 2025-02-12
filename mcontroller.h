@@ -1,5 +1,5 @@
 /*     -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2023.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2025.
 
   This file is part of Classified Ads.
 
@@ -25,7 +25,7 @@
 #include "datamodel/netrequestexecutor.h"
 #include "datamodel/cadbrecord.h" // for CaDbRecord::SearchTerms
 
-#define CLASSIFIED_ADS_VERSION "0.16"
+#define CLASSIFIED_ADS_VERSION "0.17"
 
 class Node ;
 class Model ;

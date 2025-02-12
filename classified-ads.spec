@@ -1,9 +1,10 @@
 Name:		classified-ads
-Version:	0.16
+Version:	0.17
 Release:	1%{?dist}
 Summary:	Classified ads is distributed, server-less messaging system
 
-License:	LGPLv2
+# Automatically converted from old format: LGPLv2 - review is highly recommended.
+License:	LicenseRef-Callaway-LGPLv2
 URL:		http://katiska.org/classified_ads/
 Source0:	https://github.com/operatornormal/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Source1:	https://github.com/operatornormal/classified-ads/blob/graphics/preprocessed.tar.gz?raw=true#/%{name}-graphics-%{version}.tar.gz
@@ -32,7 +33,7 @@ basic operator data, search, voice calls between nodes, UI extensions
 with TCL language and general-purpose database shared between nodes of the 
 application. 
 %prep
-%setup -q -a 1
+%autosetup -p1 -a 1
 
 %build
 qmake-qt5 QMAKE_STRIP=echo
@@ -59,6 +60,30 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/classified-ads.deskt
 %{_datadir}/doc/classified-ads/examples/calendar.tcl
 
 %changelog
+* Tue Jan 28 2025 Simone Caronni <negativo17@gmail.com> - 0.16-9
+- Rebuild for updated dependencies.
+
+* Thu Jan 16 2025 Fedora Release Engineering <releng@fedoraproject.org> - 0.16-8
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_42_Mass_Rebuild
+
+* Tue Oct 08 2024 Simone Caronni <negativo17@gmail.com> - 0.16-7
+- Rebuild for updated miniupnpc.
+
+* Wed Aug 28 2024 Miroslav Suchý <msuchy@redhat.com> - 0.16-6
+- convert license to SPDX
+
+* Wed Jul 17 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.16-5
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_41_Mass_Rebuild
+
+* Wed Jan 24 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.16-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_40_Mass_Rebuild
+
+* Fri Jan 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 0.16-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_40_Mass_Rebuild
+
+* Wed Jul 19 2023 Fedora Release Engineering <releng@fedoraproject.org> - 0.16-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_39_Mass_Rebuild
+
 * Sun Mar 12 2023 Antti Järvinen <antti.jarvinen@katiska.org> - 0.16-1
 - New upstream release 0.16. Protocol connectivity fixes and translations.
 
