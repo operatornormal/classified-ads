@@ -1,5 +1,5 @@
 /*   -*-C++-*- -*-coding: utf-8-unix;-*-
-  Classified Ads is Copyright (c) Antti Järvinen 2013-2023.
+  Classified Ads is Copyright (c) Antti Järvinen 2013-2025.
 
   This file is part of Classified Ads.
 
@@ -808,7 +808,7 @@ void Model::initPseudoRandom() {
   SSL_load_error_strings();
   SSL_library_init();
   LOG_STR2("Openssl %s\n", SSLeay_version(SSLEAY_VERSION));
-#ifdef WIN32
+#if WIN32 || OPENSSL_VERSION_NUMBER >= 0x30000000L
   OpenSSL_add_all_algorithms();
 #endif
 #if OPENSSL_VERSION_NUMBER >= 0x30000000L
