@@ -8,13 +8,16 @@
 # Emilio Herrera <ehespinosa57@gmail.com>, 2017. #zanata
 # Fernando Espinoza <herculesoplimpus@gmail.com>, 2017. #zanata
 # Rafael Fontenelle <rafaelff@gnome.org>, 2024.
+# N M <nm@users.noreply.translate.fedoraproject.org>, 2025.
+# Javier Francisco <fserrador@gmail.com>, 2025.
+# "Fco. Javier F. Serrador" <fserrador@gmail.com>, 2025, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: classified-ads 0.10\n"
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
-"PO-Revision-Date: 2024-02-05 18:27+0000\n"
-"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
+"PO-Revision-Date: 2026-04-24 19:58+0000\n"
+"Last-Translator: \"Fco. Javier F. Serrador\" <fserrador@gmail.com>\n"
 "Language-Team: Spanish <https://translate.fedoraproject.org/projects/"
 "classified-ads/master/es/>\n"
 "Language: es\n"
@@ -22,14 +25,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.3.1\n"
+"X-Generator: Weblate 5.17\n"
 "X-Language: fi_FI\n"
 "X-Qt-Contexts: true\n"
 
 #: ui/attachmentlistdialog.cpp:60
 msgctxt "AttachmentListDialog|"
 msgid "Save file to disk.."
-msgstr "Guardar archivo"
+msgstr "Guardar archivo al disco…"
 
 #: ui/attachmentlistdialog.cpp:151 ui/attachmentlistdialog.cpp:153
 msgctxt "AttachmentListDialog|"
@@ -45,12 +48,12 @@ msgstr "Guardar dirección"
 msgctxt "AttachmentListDialog|"
 msgid "Save to TCL app library instead of regular file?"
 msgstr ""
-"Guardar en la biblioteca de aplicaciones TCL en lugar del archivo normal"
+"¿Guardar en la biblioteca de aplicaciones TCL en lugar del archivo usual?"
 
 #: ui/attachmentlistdialog.cpp:155
 msgctxt "AttachmentListDialog|"
 msgid "Choose file name for saving"
-msgstr "Indique el nombre del archivo para guardar "
+msgstr "Indique el nombre del archivo para guardar"
 
 #: ui/attachmentlistdialog.cpp:166
 msgctxt "AttachmentListDialog|"
@@ -66,18 +69,18 @@ msgstr "Error al abrir el archivo"
 msgctxt "AudioPlayer|"
 msgid "raw audio format not supported by backend, cannot play audio."
 msgstr ""
-"formato de aurio raw no soportado por por backend, no se puede reproducir el "
-"archivo de audio."
+"formato de audio en bruto no soportado por backend, no se puede reproducir "
+"el audio."
 
 #: call/audioplayer.cpp:83
 msgctxt "AudioPlayer|"
 msgid "Could not initialize audio player."
-msgstr "No se puede iniciar el reproductor de aurio."
+msgstr "No se puede iniciar el reproductor de sonido."
 
 #: datamodel/binaryfilelistingmodel.cpp:173
 msgctxt "BinaryFileListingModel|"
 msgid "Name or fingerprint of file"
-msgstr "Nombre o fingerprint(identificador) del archivo"
+msgstr "Nombre o huella (identificador) del archivo"
 
 #: datamodel/calistingmodel.cpp:50 datamodel/calistingmodel.cpp:143
 msgctxt "CAListingModel|"
@@ -112,7 +115,7 @@ msgstr "Necesitando"
 #: datamodel/camodel.cpp:135
 msgctxt "ClassifiedAdsModel|"
 msgid "Renting"
-msgstr "Rentando"
+msgstr "Alquilando"
 
 #: datamodel/camodel.cpp:137
 msgctxt "ClassifiedAdsModel|"
@@ -122,7 +125,7 @@ msgstr "Anunciando"
 #: datamodel/camodel.cpp:210
 msgctxt "ClassifiedAdsModel|"
 msgid "Cars"
-msgstr "Carros"
+msgstr "Coches"
 
 #: datamodel/camodel.cpp:212
 msgctxt "ClassifiedAdsModel|"
@@ -142,7 +145,7 @@ msgstr "Otros vehiculos"
 #: datamodel/camodel.cpp:218
 msgctxt "ClassifiedAdsModel|"
 msgid "Vehicle parts"
-msgstr "Partes de vehiculos"
+msgstr "Partes de vehículos"
 
 #: datamodel/camodel.cpp:220
 msgctxt "ClassifiedAdsModel|"
@@ -202,7 +205,7 @@ msgstr "Electrónicos"
 #: datamodel/camodel.cpp:242
 msgctxt "ClassifiedAdsModel|"
 msgid "Jobs"
-msgstr "Trabajos"
+msgstr "Empleos"
 
 #: datamodel/camodel.cpp:244
 msgctxt "ClassifiedAdsModel|"
@@ -227,7 +230,7 @@ msgstr "Productos Alimenticios"
 #: datamodel/camodel.cpp:252
 msgctxt "ClassifiedAdsModel|"
 msgid "Software"
-msgstr "Programas computacionales"
+msgstr "Software"
 
 #: datamodel/camodel.cpp:254
 msgctxt "ClassifiedAdsModel|"
@@ -298,7 +301,7 @@ msgstr "Dirección"
 #: datamodel/connectionlistingmodel.cpp:167
 msgctxt "ConnectionListingModel|"
 msgid "Inbound"
-msgstr "Entrante"
+msgstr "Entrada"
 
 #: datamodel/connectionlistingmodel.cpp:170
 msgctxt "ConnectionListingModel|"
@@ -395,7 +398,7 @@ msgstr "Obteniendo elemento desde la red..."
 #: controller.cpp:485
 msgctxt "Controller|"
 msgid "E&xit"
-msgstr "Salir"
+msgstr "&Salir"
 
 #: controller.cpp:487
 msgctxt "Controller|"
@@ -405,12 +408,12 @@ msgstr "Salir de la aplicación"
 #: controller.cpp:489
 msgctxt "Controller|"
 msgid "&About"
-msgstr "&Acerca de"
+msgstr "Acerca &de"
 
 #: controller.cpp:490
 msgctxt "Controller|"
 msgid "Show the application's About box"
-msgstr "Muestra el cuadro Acerca de"
+msgstr "Muestra la caja de Acerca de"
 
 #: controller.cpp:492
 msgctxt "Controller|"
@@ -435,7 +438,7 @@ msgstr "Crea un nuevo perfil de usuario"
 #: controller.cpp:498
 msgctxt "Controller|"
 msgid "&Delete current profile"
-msgstr "&Delete perfil actual"
+msgstr "&Borra perfil actual"
 
 #: controller.cpp:499
 msgctxt "Controller|"
@@ -450,7 +453,7 @@ msgstr "&Seleccionar otro perfil"
 #: controller.cpp:502
 msgctxt "Controller|"
 msgid "If you have multitude of profiles"
-msgstr "Si tienes varios perfiles"
+msgstr "Si tienes multitud de perfiles"
 
 #: controller.cpp:504
 msgctxt "Controller|"
@@ -475,17 +478,17 @@ msgstr "Buscar.."
 #: controller.cpp:526
 msgctxt "Controller|"
 msgid "&File"
-msgstr "&File"
+msgstr "&Archivo"
 
 #: controller.cpp:729
 msgctxt "Controller|"
 msgid "&TCL Programs"
-msgstr ""
+msgstr "Programas &TCL"
 
 #: controller.cpp:730
 msgctxt "Controller|"
 msgid "&Local library"
-msgstr ""
+msgstr "&Biblioteca local"
 
 #: controller.cpp:731
 msgctxt "Controller|"
@@ -495,13 +498,12 @@ msgstr "Programas de TCL almacenados localmente"
 #: controller.cpp:734
 msgctxt "Controller|"
 msgid "TCL &Console"
-msgstr ""
+msgstr "&Consola TCL"
 
 #: controller.cpp:735
-#, fuzzy
 msgctxt "Controller|"
 msgid "Display interpreter console"
-msgstr "Programas de TCL almacenados localmente"
+msgstr "Examinar consola del intérprete"
 
 #: controller.cpp:571
 msgctxt "Controller|"
@@ -516,7 +518,7 @@ msgstr "Activar otro perfil con contraseña"
 #: controller.cpp:693
 msgctxt "Controller|"
 msgid "Can't delete only profile."
-msgstr "No se puede eliminar sólo el perfil."
+msgstr "No puede borrar solamente el perfil."
 
 #: controller.cpp:697
 msgctxt "Controller|"
@@ -526,7 +528,7 @@ msgstr "¿Eliminar perfil permanentemente?"
 #: controller.cpp:698
 msgctxt "Controller|"
 msgid "There will be NO way to access content of this profile later"
-msgstr "NO habrá modo de acceder al contenido de este perfil nuevamente."
+msgstr "NO habrá modo de acceder al contenido de este perfil nuevamente"
 
 #: controller.cpp:761
 msgctxt "Controller|"
@@ -571,17 +573,17 @@ msgstr "No se pudo encontrar el elemento de la red.."
 #: controller.cpp:1117
 msgctxt "Controller|"
 msgid "SHA1: "
-msgstr "SHA1:"
+msgstr "SHA1: "
 
 #: controller.cpp:1122
 msgctxt "Controller|"
 msgid "Mime-Type: "
-msgstr "Mime-Type:"
+msgstr "Tipo-MIME: "
 
 #: controller.cpp:1128
 msgctxt "Controller|"
 msgid "Description: "
-msgstr "Descripción:"
+msgstr "Descripción: "
 
 #: controller.cpp:1134
 msgctxt "Controller|"
@@ -596,22 +598,22 @@ msgstr "Propietario del contenido: "
 #: controller.cpp:1146
 msgctxt "Controller|"
 msgid "License: "
-msgstr "Licencia:"
+msgstr "Licencia: "
 
 #: controller.cpp:1152
 msgctxt "Controller|"
 msgid "Name: "
-msgstr "Nombre:"
+msgstr "Nombre: "
 
 #: controller.cpp:1159
 msgctxt "Controller|"
 msgid "Date: "
-msgstr "Fecha:"
+msgstr "Fecha: "
 
 #: ui/dialogbase.cpp:47 ui/dialogbase.cpp:101
 msgctxt "DialogBase|"
 msgid "File way too big"
-msgstr "Archivo demasiado grande"
+msgstr "Camino de archivo demasiado grande"
 
 #: ui/dialogbase.cpp:55 ui/dialogbase.cpp:109
 msgctxt "DialogBase|"
@@ -731,7 +733,7 @@ msgstr "Seleccione el archivo a publicar"
 #: FrontWidget.cpp:890
 msgctxt "FrontWidget|"
 msgid "File way too big"
-msgstr "Archivo demasiado grande"
+msgstr "Camino de archivo demasiado grande"
 
 #: FrontWidget.cpp:898
 msgctxt "FrontWidget|"
@@ -801,7 +803,7 @@ msgstr ""
 #: FrontWidget.cpp:1392
 msgctxt "FrontWidget|"
 msgid "Time of last update "
-msgstr "Hora de última actualización"
+msgstr "Hora de última actualización "
 
 #: FrontWidget.cpp:1400
 msgctxt "FrontWidget|"
@@ -848,7 +850,7 @@ msgstr "&Public comentario"
 #: FrontWidget.cpp:1538
 msgctxt "FrontWidget|"
 msgid "&View profile"
-msgstr "&View perfil"
+msgstr "&Ver perfil"
 
 #: FrontWidget.cpp:1539 FrontWidget.cpp:1677
 msgctxt "FrontWidget|"
@@ -863,22 +865,22 @@ msgstr "Añadir el operador seleccionado a los contactos.."
 #: FrontWidget.cpp:1673
 msgctxt "FrontWidget|"
 msgid "&Reply"
-msgstr "&Reply"
+msgstr "&Respuesta"
 
 #: FrontWidget.cpp:1674
 msgctxt "FrontWidget|"
 msgid "&New message"
-msgstr "&New mensaje"
+msgstr "&Nuevo mensaje"
 
 #: FrontWidget.cpp:1675
 msgctxt "FrontWidget|"
 msgid "&Send public comment to sender"
-msgstr "&Send comentario público al emisor"
+msgstr "&Enviar comentario público al emisor"
 
 #: FrontWidget.cpp:1676
 msgctxt "FrontWidget|"
 msgid "&View profile of peer"
-msgstr "&View perfil del par"
+msgstr "&Ver perfil de pareja"
 
 #: FrontWidget.cpp:1711
 msgctxt "FrontWidget|"
@@ -889,7 +891,7 @@ msgstr "Añade los seleccionado a contactos.."
 #: FrontWidget.cpp:1981
 msgctxt "FrontWidget|"
 msgid "From:"
-msgstr "De:"
+msgstr "Remite:"
 
 #: FrontWidget.cpp:1917 FrontWidget.cpp:1984
 msgctxt "FrontWidget|"
@@ -1005,7 +1007,7 @@ msgstr ""
 #: ui/passwordDialog.ui:55
 msgctxt "PasswordDialog|"
 msgid "OK"
-msgstr "OK"
+msgstr "Aceptar"
 
 #: ui/passwordDialog.ui:68
 msgctxt "PasswordDialog|"
@@ -1035,7 +1037,7 @@ msgstr "Dir"
 #: datamodel/privmsgsearchmodel.cpp:250
 msgctxt "PrivateMessageSearchModel|"
 msgid "Peer"
-msgstr "Par"
+msgstr "Pareja"
 
 #: datamodel/privmsgsearchmodel.cpp:253
 msgctxt "PrivateMessageSearchModel|"
@@ -1070,7 +1072,7 @@ msgstr "Artículo no encontrado en el almacenamiento local"
 #: ui/profilecommentitemdelegate.cpp:93
 msgctxt "ProfileCommentItemDelegate|"
 msgid "Attachments: "
-msgstr "Adjuntos:"
+msgstr "Adjuntos: "
 
 #: datamodel/profilecommentlistingmodel.cpp:219
 msgctxt "ProfileCommentListingModel|"
@@ -1080,7 +1082,7 @@ msgstr "Emisor"
 #: datamodel/profilecommentlistingmodel.cpp:222
 msgctxt "ProfileCommentListingModel|"
 msgid "Time"
-msgstr "Hora"
+msgstr "Hora y día"
 
 #: datamodel/profilecommentlistingmodel.cpp:225
 msgctxt "ProfileCommentListingModel|"
@@ -1153,13 +1155,13 @@ msgstr "Nombre:"
 #: ui/tclPrograms.cpp:140
 msgctxt "TclProgramsDialog|"
 msgid "Deletion confirmation"
-msgstr "Confirmación de eliminación"
+msgstr "Confirmación de borrado"
 
 #: ui/tclPrograms.cpp:141
 #, qt-format
 msgctxt "TclProgramsDialog|"
 msgid "Permanently delete program %1?"
-msgstr "¿Eliminar definitivamente el programa% 1?"
+msgstr "¿Borrar definitivamente el programa %1?"
 
 #: textedit/textedit.cpp:127
 msgctxt "TextEdit|"
@@ -1169,7 +1171,7 @@ msgstr "Ayuda"
 #: textedit/textedit.cpp:129
 msgctxt "TextEdit|"
 msgid "About &Qt"
-msgstr "Sobre &Qt"
+msgstr "Acerca de &Qt"
 
 #: textedit/textedit.cpp:186
 msgctxt "TextEdit|"
@@ -1179,67 +1181,67 @@ msgstr "Editar Acciones"
 #: textedit/textedit.cpp:188
 msgctxt "TextEdit|"
 msgid "&File"
-msgstr "&File"
+msgstr "&Archivo"
 
 #: textedit/textedit.cpp:194
 msgctxt "TextEdit|"
 msgid "&Open..."
-msgstr "&Open..."
+msgstr "&Abrir..."
 
 #: textedit/textedit.cpp:203
 msgctxt "TextEdit|"
 msgid "&Save locally before send"
-msgstr "&Save localmente antes de enviar"
+msgstr "&Guardar localmente antes de enviar"
 
 #: textedit/textedit.cpp:210
 msgctxt "TextEdit|"
 msgid "Save locally &As..."
-msgstr "Guardar localmente &As..."
+msgstr "Guardar localmente &como..."
 
 #: textedit/textedit.cpp:218
 msgctxt "TextEdit|"
 msgid "&Print..."
-msgstr "&Print..."
+msgstr "&Imprimir..."
 
 #: textedit/textedit.cpp:226
 msgctxt "TextEdit|"
 msgid "Print Preview..."
-msgstr "Imprimir Vista Previa..."
+msgstr "Imprimir vista previa..."
 
 #: textedit/textedit.cpp:231
 msgctxt "TextEdit|"
 msgid "&Export PDF..."
-msgstr "&Export PDF..."
+msgstr "&Exportar PDF..."
 
 #: textedit/textedit.cpp:244
 msgctxt "TextEdit|"
 msgid "&Edit"
-msgstr "&Edit"
+msgstr "&Editar"
 
 #: textedit/textedit.cpp:249
 msgctxt "TextEdit|"
 msgid "&Undo"
-msgstr "&Undo"
+msgstr "&Deshacer"
 
 #: textedit/textedit.cpp:254
 msgctxt "TextEdit|"
 msgid "&Redo"
-msgstr "&Redo"
+msgstr "&Rehacer"
 
 #: textedit/textedit.cpp:261
 msgctxt "TextEdit|"
 msgid "Cu&t"
-msgstr "Cu&t"
+msgstr "Cor&tar"
 
 #: textedit/textedit.cpp:267
 msgctxt "TextEdit|"
 msgid "&Copy"
-msgstr "&Copy"
+msgstr "&Copiar"
 
 #: textedit/textedit.cpp:273
 msgctxt "TextEdit|"
 msgid "&Paste"
-msgstr "&Paste"
+msgstr "&Pegar"
 
 #: textedit/textedit.cpp:283
 msgctxt "TextEdit|"
@@ -1254,42 +1256,42 @@ msgstr "Imagen embebida"
 #: textedit/textedit.cpp:294
 msgctxt "TextEdit|"
 msgid "F&ormat"
-msgstr "F&ormat"
+msgstr "F&ormatear"
 
 #: textedit/textedit.cpp:298
 msgctxt "TextEdit|"
 msgid "&Bold"
-msgstr "&Bold"
+msgstr "&Negrita"
 
 #: textedit/textedit.cpp:310
 msgctxt "TextEdit|"
 msgid "&Italic"
-msgstr "&Italic"
+msgstr "&Itálica"
 
 #: textedit/textedit.cpp:322
 msgctxt "TextEdit|"
 msgid "&Underline"
-msgstr "&Underline"
+msgstr "&Subrayado"
 
 #: textedit/textedit.cpp:341 textedit/textedit.cpp:347
 msgctxt "TextEdit|"
 msgid "&Left"
-msgstr "&Left"
+msgstr "&Izquierda"
 
 #: textedit/textedit.cpp:342 textedit/textedit.cpp:346
 msgctxt "TextEdit|"
 msgid "C&enter"
-msgstr "C&enter"
+msgstr "C&entro"
 
 #: textedit/textedit.cpp:343 textedit/textedit.cpp:345
 msgctxt "TextEdit|"
 msgid "&Right"
-msgstr "&Right"
+msgstr "&Derecho"
 
 #: textedit/textedit.cpp:349
 msgctxt "TextEdit|"
 msgid "&Justify"
-msgstr "&Justify"
+msgstr "&Justificar"
 
 #: textedit/textedit.cpp:376
 msgctxt "TextEdit|"
@@ -1304,17 +1306,17 @@ msgstr "Estándar"
 #: textedit/textedit.cpp:384
 msgctxt "TextEdit|"
 msgid "Bullet List (Disc)"
-msgstr "Lista de Balas (Disco)"
+msgstr "Lista de Viñeta (Disco)"
 
 #: textedit/textedit.cpp:385
 msgctxt "TextEdit|"
 msgid "Bullet List (Circle)"
-msgstr "Lista de Balas (Círculo)"
+msgstr "Lista de Viñeta (Círculo)"
 
 #: textedit/textedit.cpp:386
 msgctxt "TextEdit|"
 msgid "Bullet List (Square)"
-msgstr "Lista de Balas (Cuadrado)"
+msgstr "Lista de Viñeta (Cuadrado)"
 
 #: textedit/textedit.cpp:387
 msgctxt "TextEdit|"
@@ -1324,22 +1326,22 @@ msgstr "Lista Ordenada (Decimal)"
 #: textedit/textedit.cpp:388
 msgctxt "TextEdit|"
 msgid "Ordered List (Alpha lower)"
-msgstr "Lista Ordenada (Alpha inferior)"
+msgstr "Lista Ordenada (Alfa inferior)"
 
 #: textedit/textedit.cpp:389
 msgctxt "TextEdit|"
 msgid "Ordered List (Alpha upper)"
-msgstr "Lista Ordenada (Alpha más arriba)"
+msgstr "Lista Ordenada (Alfa superior)"
 
 #: textedit/textedit.cpp:390
 msgctxt "TextEdit|"
 msgid "Ordered List (Roman lower)"
-msgstr "Lista Ordenada (Roman inferior)"
+msgstr "Lista Ordenada (Romano inferior)"
 
 #: textedit/textedit.cpp:391
 msgctxt "TextEdit|"
 msgid "Ordered List (Roman upper)"
-msgstr "Lista Ordenada (Roman arriba)"
+msgstr "Lista Ordenada (Romano superior)"
 
 #: textedit/textedit.cpp:442
 msgctxt "TextEdit|"
@@ -1358,7 +1360,7 @@ msgstr ""
 #: textedit/textedit.cpp:467
 msgctxt "TextEdit|"
 msgid "Open File..."
-msgstr "Abrir Archivo..."
+msgstr "Abrir archivo..."
 
 #: textedit/textedit.cpp:468
 msgctxt "TextEdit|"
@@ -1419,7 +1421,7 @@ msgstr "Rechazar"
 #: net/voicecallengine.cpp:535
 msgctxt "VoiceCallEngine|"
 msgid "Close"
-msgstr "Cerca"
+msgstr "Cerrar"
 
 #: net/voicecallengine.cpp:551
 msgctxt "VoiceCallEngine|"
@@ -1641,7 +1643,7 @@ msgstr ""
 "es usted y los otros operadores quienes en sus ordenadores almacenan y "
 "transmiten todo el contenido visible dentro de classified ads. Para estar "
 "conectado usted necesita saber la dirección de al menos un ordenador "
-"existente (a <span style=\" font-style:italic;\">node</span>) de modo que si "
+"existente (a <span style=\"font-style:italic;\">nodo</span>) de modo que si "
 "cuadro de diálogo de conexión de red muestra que no hay conexiones, usted "
 "puede necesitar contactar con alguien del que usted sepa que está utilizando "
 "el software y pedirle la dirección de su nodo para hacer el contacto inicial "
@@ -1653,49 +1655,49 @@ msgstr ""
 "tráfico de red también cuando usted no esté usando el programa activamente – "
 "otros lo están. </p><p>Los operadores preocupados con la privacidad del "
 "contenido deberían estar atentos a los siguientes puntos:</p><p>- La "
-"implementación del almacenamiento de datos es una variante de la <span style="
-"\" font-style:italic;\">tabla de hash distribuida</span>, prácticamente "
+"implementación del almacenamiento de datos es una variante de la <span style"
+"=\"font-style:italic;\">tabla de hash distribuida</span>, prácticamente "
 "significa que el contenido publicado por usted se copia más o menos al azar "
 "en algunos nodos de la red. </p><p>- Cualquier elemento de datos (ad, "
 "comentario, archivo binario, mensaje privado, etc.) es firmado "
-"digitalmente.  Esto hace más difícil hacerse pasar por otro operador. </"
-"p><p>- Los operadores son seguramente identificados por el hash SHA1 de sus "
-"claves de encriptación generadas. El hash SHA1 se muestra cuando se "
+"digitalmente.  Esto hace más difícil hacerse pasar por otro operador. "
+"</p><p>- Los operadores son seguramente identificados por el hash SHA1 de "
+"sus claves de cifrado generadas. El hash SHA1 se muestra cuando se "
 "visualizan los detalles del perfil del operador. Otras informaciones de "
 "identificación como apodo o nombre de la ciudad son introducidas por el "
 "mismo operador y pueden ser cualquiera. El perfil del operador, como se "
-"publica en la red, también está firmado con la clave de encriptación del "
-"operador – si usted identifica a un operador por su hash SHA1, usted tiene "
-"un mecanismo para identificar si cualquier contenido dentro de classified "
-"ads está enviado por el operador o no. Classified ads internamente comprueba "
-"las firmas digitales, tirando el contenido que falla en la comprobación de "
-"firma e intentando suministrar el hash SHA1 del operador que publicó el "
+"publica en la red, también está firmado con la clave de cifrado del operador "
+"– si usted identifica a un operador por su hash SHA1, usted tiene un "
+"mecanismo para identificar si cualquier contenido dentro de classified ads "
+"está enviado por el operador o no. Classified ads internamente comprueba las "
+"firmas digitales, tirando el contenido que falla en la comprobación de firma "
+"e intentando suministrar el hash SHA1 del operador que publicó el "
 "contenido.</p><p>- Todo classified ads se publica como texto plano, no se "
-"usa encriptación. Todos los perfiles publicos se publican como texto plano, "
-"no se usa encriptación. Si el perfil se hace privado, se encripta para ser "
-"legible sólo por otros perfiles seleccionados. Esto se aplica también a los "
-"archivos binarios compartidos por operadores con perfiles privados y "
-"comentarios sobre los perfiles privados después de que el perfil se haya "
-"hecho privado (los comentarios en texto plano o los archivos no son "
-"mágicamente encriptados después). Los mensajes privados son encriptados "
-"siempre para ser leídos solo por el receptor y el emisor. Los adjuntos "
-"siguen las reglas de privacidad del documento al que se adjuntan. </p><p>- "
-"Como en el caso de todas las comunicaciones en internet, este pequeño hecho "
-"es cierto para classified ads también : <span style=\" font-style:italic;"
-"\">una vez que algo se ha publicado en línea, no hay modo de borrarlo de la "
-"red</span>. </p><p>- La implementación de encriptación de datos para el "
-"contenido es OpenSSL, confiando mayormente en los algoritmos RSA-2048 y "
-"AES-256. </p><p>- Puesto que las conexiones entre nodos son implementadas "
-"usando SSL, Otros nodos dentro de la red llegan a saber qué contenido se "
-"está transmitiendo en los nodos vecinos. Puesto que no hay un punto central "
-"para recolectar fácilmente esta información sobre una clasificación o un "
-"operador concreto, los operadores no deben esperar privacidad sobre sus "
-"actividades en línea, aunque se han hecho algunos esfuerzos para ocultarlos "
-"<span style=\" font-style:italic;\">contents</span> de mensajes y perfiles "
-"privados. </p><p>La programación fue (mayoritariamente) hecha por Antti "
-"Järvinen, el arte por Meeri Järvinen.</p><p>Este producto incluye software "
-"desarrollador por OpenSSL Project para su uso en OpenSSL Toolkit (http://www."
-"openssl.org/).</p><p>Feliz publicidad!</p><p><br/></p></body></html>"
+"usa cifrado. Todos los perfiles públicos se publican como texto plano, no se "
+"usa cifrado. Si el perfil se hace privado, se cifra para ser legible sólo "
+"por otros perfiles seleccionados. Esto se aplica también a los archivos "
+"binarios compartidos por operadores con perfiles privados y comentarios "
+"sobre los perfiles privados después de que el perfil se haya hecho privado ("
+"los comentarios en texto plano o los archivos no son mágicamente cifrados "
+"después). Los mensajes privados son cifrados siempre para ser leídos solo "
+"por el receptor y el emisor. Los adjuntos siguen las reglas de privacidad "
+"del documento al que se adjuntan. </p><p>- Como en el caso de todas las "
+"comunicaciones en internet, este pequeño hecho es cierto para classified ads "
+"también : <span style=\"font-style:italic;\">una vez que algo se ha "
+"publicado en línea, no hay modo de borrarlo de la red</span>. </p><p>- La "
+"implementación de cifrado de datos para el contenido es OpenSSL, confiando "
+"mayormente en los algoritmos RSA-2048 y AES-256. </p><p>- Puesto que las "
+"conexiones entre nodos son implementadas usando SSL, Otros nodos dentro de "
+"la red llegan a saber qué contenido se está transmitiendo en los nodos "
+"vecinos. Puesto que no hay un punto central para recolectar fácilmente esta "
+"información sobre una clasificación o un operador concreto, los operadores "
+"no deben esperar privacidad sobre sus actividades en línea, aunque se han "
+"hecho algunos esfuerzos para ocultarlos <span style=\"font-style:italic;\""
+">contenidos</span> de mensajes y perfiles privados. </p><p>La programación "
+"fue (mayoritariamente) hecha por Antti Järvinen, el arte por Meeri "
+"Järvinen.</p><p>Este producto incluye software desarrollador por el Proyecto "
+"OpenSSL para su uso en OpenSSL Toolkit (http://www.openssl.org/).</"
+"p><p>Feliz publicidad!</p><p><br/></p></body></html>"
 
 #: ui/attachmentListDialog.ui:26
 msgctxt "attachmentListDialog|"
@@ -1774,12 +1776,12 @@ msgstr "Realizar"
 #: frontWidget.ui:97
 msgctxt "frontWidget|"
 msgid "of"
-msgstr "De"
+msgstr "de"
 
 #: frontWidget.ui:113
 msgctxt "frontWidget|"
 msgid "in"
-msgstr "En"
+msgstr "en"
 
 #: frontWidget.ui:123
 msgctxt "frontWidget|"
@@ -1809,7 +1811,7 @@ msgstr "Texto de saludo"
 #: frontWidget.ui:232
 msgctxt "frontWidget|"
 msgid "For the rest of the world. "
-msgstr "Para el resto del mundo"
+msgstr "Para el resto del mundo. "
 
 #: frontWidget.ui:239 frontWidget.ui:695
 msgctxt "frontWidget|"
@@ -1953,7 +1955,7 @@ msgstr "Ciudad/País"
 #: frontWidget.ui:767
 msgctxt "frontWidget|"
 msgid "BTC Addr"
-msgstr "Dirección BTC"
+msgstr "Direc. BTC"
 
 #: frontWidget.ui:829
 msgctxt "frontWidget|"
@@ -1966,11 +1968,12 @@ msgid ""
 "\"><span style=\" font-size:16pt;\">Inserted</span></p></body></html>"
 msgstr ""
 "<html><head/><body><p align=\"center\"><span style=\" font-size:16pt;\"><br/"
-"></span></p><p align=\"center\"><span style=\" font-size:16pt;\"><br/></"
-"span></p><p align=\"center\"><span style=\" font-size:16pt;\"><br/></span></"
-"p><p align=\"center\"><span style=\" font-size:16pt;\">No</span></p><p align="
-"\"center\"><span style=\" font-size:16pt;\">Image</span></p><p align=\"center"
-"\"><span style=\" font-size:16pt;\">Inserted</span></p></body></html>"
+"></span></p><p align=\"center\"><span style=\" font-size:16pt;\"><br/"
+"></span></p><p align=\"center\"><span style=\" font-size:16pt;\"><br/"
+"></span></p><p align=\"center\"><span style=\" font-size:16pt;\">No</span></"
+"p><p align=\"center\"><span style=\" font-size:16pt;\">Imágen</span></p><p "
+"align=\"center\"><span style=\" font-size:16pt;\""
+">Insertada</span></p></body></html>"
 
 #: frontWidget.ui:874
 msgctxt "frontWidget|"
@@ -2105,7 +2108,7 @@ msgstr "CC-BY-NC-ND"
 #: ui/metadataQuery.ui:182
 msgctxt "metadataQuery|"
 msgid "Mime-type:"
-msgstr "Tipo-Mime:"
+msgstr "Tipo-MIME:"
 
 #: ui/metadataQuery.ui:199
 msgctxt "metadataQuery|"
@@ -2130,12 +2133,12 @@ msgstr "Sobre"
 #: ui/newClassifiedAd.ui:65
 msgctxt "newCaDialog|"
 msgid "of"
-msgstr "De"
+msgstr "de"
 
 #: ui/newClassifiedAd.ui:81
 msgctxt "newCaDialog|"
 msgid "in"
-msgstr "En"
+msgstr "en"
 
 #: ui/newClassifiedAd.ui:95
 msgctxt "newCaDialog|"
@@ -2260,7 +2263,7 @@ msgstr "Cerrar"
 #: ui/profileReadersDialog.ui:109
 msgctxt "profileReadersDialog|"
 msgid "Remove selected"
-msgstr "Borrar lo seleccionado"
+msgstr "Eliminar seleccionado"
 
 #: ui/searchDisplay.ui:26
 msgctxt "searchDisplay|"
@@ -2469,7 +2472,7 @@ msgstr "Cerrar"
 #: ui/tclConsole.ui:26
 msgctxt "tclConsoleDialog|"
 msgid "TCL Interpreter console"
-msgstr "Intérprete TCL"
+msgstr "Intérprete TCL de consola"
 
 #: ui/tclConsole.ui:51
 msgctxt "tclConsoleDialog|"
@@ -2484,22 +2487,22 @@ msgstr "Cerrar"
 #: ui/tclConsole.ui:69
 msgctxt "tclConsoleDialog|"
 msgid "Interpreter output"
-msgstr "salida"
+msgstr "Salida de intérprete"
 
 #: ui/tclConsole.ui:79
 msgctxt "tclConsoleDialog|"
 msgid "Command input"
-msgstr "entrada"
+msgstr "Entrada de instrucción"
 
 #: ui/tclPrograms.ui:26
 msgctxt "tclProgramsDialog|"
 msgid "TCL programs"
-msgstr "Intérprete TCL"
+msgstr "Programas TCL"
 
 #: ui/tclPrograms.ui:48
 msgctxt "tclProgramsDialog|"
 msgid "Stored programs"
-msgstr "Perfiles almacenados"
+msgstr "Programas almacenados"
 
 #: ui/tclPrograms.ui:68
 msgctxt "tclProgramsDialog|"

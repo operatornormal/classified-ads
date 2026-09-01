@@ -1,13 +1,13 @@
 # Georgian translation for classified-ads.
 # Copyright (C) 2023 classified-ads's authors
 # This file is distributed under the same license as the classified-ads package.
-# Temuri Doghonadze <temuri.doghonadze@gmail.com>, 2023.
+# Temuri Doghonadze <temuri.doghonadze@gmail.com>, 2023, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: classified-ads 0.14\n"
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
-"PO-Revision-Date: 2023-09-01 19:21+0000\n"
+"PO-Revision-Date: 2026-03-05 17:58+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.fedoraproject.org/projects/"
 "classified-ads/master/ka/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.18.2\n"
+"X-Generator: Weblate 5.16.1\n"
 
 # Context menu item text for menu, that appears when right-mouse is clicked on top of a file in a list.
 #: ui/attachmentlistdialog.cpp:60
@@ -674,7 +674,7 @@ msgstr "SHA1: "
 #: controller.cpp:1122
 msgctxt "Controller|"
 msgid "Mime-Type: "
-msgstr "MIME ტიპი: "
+msgstr "Mime-ტიპი: "
 
 # Text field explanation text. Part of "file details" dialog. This text gives explanation of field that gives longer explanation of the file
 #: controller.cpp:1128
@@ -2443,7 +2443,7 @@ msgstr "CC-BY-NC-ND"
 #: ui/metadataQuery.ui:182
 msgctxt "metadataQuery|"
 msgid "Mime-type:"
-msgstr "MIME-ტიპი:"
+msgstr "Mime-ტიპი:"
 
 # Label text for a input field. The input field whose label this is asks for descriptive text about file about to be published.
 #: ui/metadataQuery.ui:199

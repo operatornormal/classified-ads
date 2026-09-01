@@ -1,12 +1,12 @@
 # Antti Järvinen <antti.jarvinen@katiska.org>, 2016. #zanata
 # FloH. <postfuerflo@gmail.com>, 2016. #zanata
-# Ettore Atalan <atalanttore@googlemail.com>, 2023, 2024.
+# Ettore Atalan <atalanttore@googlemail.com>, 2023, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: classified-ads 0.10\n"
 "Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
 "POT-Creation-Date: 2016-03-14 21:30+0300\n"
-"PO-Revision-Date: 2024-11-10 14:38+0000\n"
+"PO-Revision-Date: 2025-10-06 03:18+0000\n"
 "Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <https://translate.fedoraproject.org/projects/"
 "classified-ads/master/de/>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.8.2\n"
+"X-Generator: Weblate 5.13.3\n"
 "X-Language: fi_FI\n"
 "X-Qt-Contexts: true\n"
 
@@ -1749,10 +1749,9 @@ msgstr ""
 "Information die Betrachter ihres Profils einsehen können</p></body></html>"
 
 #: ui/editContact.ui:68
-#, fuzzy
 msgctxt "editContactDialog|"
 msgid "This contact is to be publicly trusted in transactions"
-msgstr "Dieser Benutzer gilt als zuverlässig bei Transaktionen"
+msgstr "Dieser Kontakt gilt als öffentlich vertrauenswürdig bei Transaktionen"
 
 #: frontWidget.ui:14
 msgctxt "frontWidget|"
@@ -2048,7 +2047,7 @@ msgstr "Dateiname"
 #: ui/metadataQuery.ui:81
 msgctxt "metadataQuery|"
 msgid "Owner of file (name or SHA1 if CA operator):"
-msgstr ""
+msgstr "Eigentümer der Datei (Name oder SHA1, wenn CA-Operator):"
 
 #: ui/metadataQuery.ui:111
 msgctxt "metadataQuery|"
@@ -2248,12 +2247,12 @@ msgstr "Erste 100 passende Profile"
 #: ui/profileReadersDialog.ui:66
 msgctxt "profileReadersDialog|"
 msgid "Add selected to list of readers"
-msgstr ""
+msgstr "Ausgewählte zur Leserliste hinzufügen"
 
 #: ui/profileReadersDialog.ui:73
 msgctxt "profileReadersDialog|"
 msgid "Current list of readers"
-msgstr ""
+msgstr "Aktuelle Liste der Leser"
 
 #: ui/profileReadersDialog.ui:90
 msgctxt "profileReadersDialog|"
@@ -2371,12 +2370,9 @@ msgid "Nr of profile comments to keep"
 msgstr "Anzahl der zu Kommentare"
 
 #: ui/settingsDialog.ui:313
-#, fuzzy
-#| msgctxt "settingsDialog|"
-#| msgid "Nr of profiles to keep"
 msgctxt "settingsDialog|"
 msgid "Nr of db records to keep"
-msgstr "Anzahl der zu behaltenden Profile"
+msgstr "Anzahl der zu speichernden Datenbankdatensätze"
 
 #: ui/settingsDialog.ui:316
 msgctxt "settingsDialog|"
@@ -2414,10 +2410,9 @@ msgid "Accept voice calls"
 msgstr "Sprachanrufe erlauben"
 
 #: ui/settingsDialog.ui:364
-#, fuzzy
 msgctxt "settingsDialog|"
 msgid "All"
-msgstr "Alles"
+msgstr "Alle"
 
 #: ui/settingsDialog.ui:369
 msgctxt "settingsDialog|"
@@ -2456,12 +2451,12 @@ msgstr "IPv6"
 #: ui/statusDialog.ui:113
 msgctxt "statusDialog|"
 msgid "TCP port currently used"
-msgstr "TCP Port in Benutzung"
+msgstr "Derzeit verwendeter TCP-Port"
 
 #: ui/statusDialog.ui:151
 msgctxt "statusDialog|"
 msgid "Currently open connections"
-msgstr "Aktuell bestehende Verbindungen"
+msgstr "Derzeit offene Verbindungen"
 
 #: ui/statusDialog.ui:195
 msgctxt "statusDialog|"
@@ -2477,18 +2472,15 @@ msgstr "Schließen"
 #: ui/tclConsole.ui:26
 msgctxt "tclConsoleDialog|"
 msgid "TCL Interpreter console"
-msgstr ""
+msgstr "TCL-Interpreterkonsole"
 
 # Button text for button that runs TCL commands that user has typed
 #: ui/tclConsole.ui:51
 msgctxt "tclConsoleDialog|"
 msgid "Evaluate"
-msgstr ""
+msgstr "Evaluieren"
 
 #: ui/tclConsole.ui:58
-#, fuzzy
-#| msgctxt "VoiceCallEngine|"
-#| msgid "Close"
 msgctxt "tclConsoleDialog|"
 msgid "Close"
 msgstr "Schließen"
@@ -2497,28 +2489,28 @@ msgstr "Schließen"
 #: ui/tclConsole.ui:69
 msgctxt "tclConsoleDialog|"
 msgid "Interpreter output"
-msgstr ""
+msgstr "Interpreterausgabe"
 
 # label for text field that shows TCL interpreter input
 #: ui/tclConsole.ui:79
 msgctxt "tclConsoleDialog|"
 msgid "Command input"
-msgstr ""
+msgstr "Befehlseingabe"
 
 # Dialog title text for dialog that lists stored TCL programs
 #: ui/tclPrograms.ui:26
 msgctxt "tclProgramsDialog|"
 msgid "TCL programs"
-msgstr ""
+msgstr "TCL-Programme"
 
 # Label for list-item that lists stored TCL programs.
 #: ui/tclPrograms.ui:48
 msgctxt "tclProgramsDialog|"
 msgid "Stored programs"
-msgstr ""
+msgstr "Gespeicherte Programme"
 
 # Label for text item that shows program text of locally stored TCL program
 #: ui/tclPrograms.ui:68
 msgctxt "tclProgramsDialog|"
 msgid "Program code"
-msgstr ""
+msgstr "Programmcode"

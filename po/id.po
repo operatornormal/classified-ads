@@ -1,0 +1,2938 @@
+# Arif Budiman <arifpedia@gmail.com>, 2026.
+msgid ""
+msgstr ""
+"Project-Id-Version: classified-ads 0.14\n"
+"Report-Msgid-Bugs-To: antti.jarvinen@katiska.org\n"
+"POT-Creation-Date: 2016-03-14 21:30+0300\n"
+"PO-Revision-Date: 2026-04-04 13:58+0000\n"
+"Last-Translator: Arif Budiman <arifpedia@gmail.com>\n"
+"Language-Team: Indonesian <https://translate.fedoraproject.org/projects/"
+"classified-ads/master/id/>\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.16.2\n"
+"X-Language: fi_FI\n"
+"X-Qt-Contexts: true\n"
+
+# Context menu item text for menu, that appears when right-mouse is clicked on top of a file in a list. 
+#: ui/attachmentlistdialog.cpp:60
+msgctxt "AttachmentListDialog|"
+msgid "Save file to disk.."
+msgstr "Simpan file ke disk.."
+
+# In file open dialog this is text specifying what kind of files to include in listing, filtered by file name suffix. For example, user wants only PNG files, then text appearing in dialog filter field would say "PNG files (*.png)" and this work "files" here is the word after the word PNG.  
+#: ui/attachmentlistdialog.cpp:151 ui/attachmentlistdialog.cpp:153
+msgctxt "AttachmentListDialog|"
+msgid "files"
+msgstr "berkas"
+
+# Appears as dialog title where text asks if user wants to save into "application library" or into local file
+#: ui/attachmentlistdialog.cpp:162
+msgctxt "AttachmentListDialog|"
+msgid "Save location"
+msgstr "Lokasi penyimpanan"
+
+# Dialog text regarding TCL app save location
+#: ui/attachmentlistdialog.cpp:163
+msgctxt "AttachmentListDialog|"
+msgid "Save to TCL app library instead of regular file?"
+msgstr "Simpan ke pustaka aplikasi TCL alih-alih berkas biasa?"
+
+# Dialog title text for dialog asking user to give a name to file for purpose of saving it to filesystem. 
+#: ui/attachmentlistdialog.cpp:155
+msgctxt "AttachmentListDialog|"
+msgid "Choose file name for saving"
+msgstr "Pilih nama berkas untuk penyimpanan"
+
+# Dialog title text for error dialog. 
+#: ui/attachmentlistdialog.cpp:166
+msgctxt "AttachmentListDialog|"
+msgid "Error"
+msgstr "Kesalahan"
+
+# This gives (no)  explanation about reason for "file open failure"?
+#: ui/attachmentlistdialog.cpp:167
+msgctxt "AttachmentListDialog|"
+msgid "File open error"
+msgstr "Kesalahan saat membuka berkas"
+
+# Error message text displayed when audio output fails immediately due to format conflict. 
+#: call/audioplayer.cpp:65
+msgctxt "AudioPlayer|"
+msgid "raw audio format not supported by backend, cannot play audio."
+msgstr ""
+"Format audio mentah tidak didukung oleh backend, tidak dapat memutar audio."
+
+# Error message text shown in dialog when audio output is not possible. Possible reason could be missing soundcard or other disastrous failure. 
+#: call/audioplayer.cpp:83
+msgctxt "AudioPlayer|"
+msgid "Could not initialize audio player."
+msgstr "Tidak dapat menginisialisasi pemutar audio."
+
+# Title text in a listing view where list of shared files are listed. This particular text gives text for column, where "name or fingerprint of file" is listed. Fingerprint in practice means SHA1 digest. 
+#: datamodel/binaryfilelistingmodel.cpp:173
+msgctxt "BinaryFileListingModel|"
+msgid "Name or fingerprint of file"
+msgstr "Nama atau sidik jari berkas"
+
+# Header text for a column-list. The column that gets its header text from this string, is the date-column of an classified ad. 
+#: datamodel/calistingmodel.cpp:50 datamodel/calistingmodel.cpp:143
+msgctxt "CAListingModel|"
+msgid "Date"
+msgstr "Tanggal"
+
+# Header text for a column-list. The column that gets its header text from this string, is the subject-column of an classified ad. 
+#: datamodel/calistingmodel.cpp:51 datamodel/calistingmodel.cpp:142
+msgctxt "CAListingModel|"
+msgid "Subject"
+msgstr "Subjek"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Cars in Estonia" and this combobox text here is the first word of that phrase. 
+#: datamodel/camodel.cpp:127
+msgctxt "ClassifiedAdsModel|"
+msgid "Buying"
+msgstr "Membeli"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Selling of Cars in Estonia" and this combobox text here is the first word of that phrase. 
+#: datamodel/camodel.cpp:129
+msgctxt "ClassifiedAdsModel|"
+msgid "Selling"
+msgstr "Menjual"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Giving away of Cars in Estonia" and this combobox text here is the first+2nd word of that phrase. 
+#: datamodel/camodel.cpp:131
+msgctxt "ClassifiedAdsModel|"
+msgid "Giving away"
+msgstr "Memberikan gratis"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Wanting of Cars in Estonia" and this combobox text here is the first word of that phrase. 
+#: datamodel/camodel.cpp:133
+msgctxt "ClassifiedAdsModel|"
+msgid "Wanting"
+msgstr "Mencari"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Renting of Cars in Estonia" and this combobox text here is the first word of that phrase. 
+#: datamodel/camodel.cpp:135
+msgctxt "ClassifiedAdsModel|"
+msgid "Renting"
+msgstr "Menyewakan"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Announcement of Cars in Estonia" and this combobox text here is the first word of that phrase. 
+#: datamodel/camodel.cpp:137
+msgctxt "ClassifiedAdsModel|"
+msgid "Announcement"
+msgstr "Pengumuman"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Cars in Estonia" and this combobox text here is the 3rd word of that phrase. 
+#: datamodel/camodel.cpp:210
+msgctxt "ClassifiedAdsModel|"
+msgid "Cars"
+msgstr "Mobil"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Boats in Estonia" and this combobox text here is the 3rd word of that phrase. 
+#: datamodel/camodel.cpp:212
+msgctxt "ClassifiedAdsModel|"
+msgid "Boats"
+msgstr "Perahu"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Bikes in Estonia" and this combobox text here is the 3rd word of that phrase. 
+#: datamodel/camodel.cpp:214
+msgctxt "ClassifiedAdsModel|"
+msgid "Bikes"
+msgstr "Sepeda"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Other vehicles in Estonia" and this combobox text here is the 3rd+4th word of that phrase. 
+#: datamodel/camodel.cpp:216
+msgctxt "ClassifiedAdsModel|"
+msgid "Other vehicles"
+msgstr "Kendaraan lainnya"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of vehicle parts in Estonia" and this combobox text here is the 3rd+4th word of that phrase.
+#: datamodel/camodel.cpp:218
+msgctxt "ClassifiedAdsModel|"
+msgid "Vehicle parts"
+msgstr "Suku cadang kendaraan"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Habitation in Estonia" and this combobox text here is the 3rd word of that phrase.
+#: datamodel/camodel.cpp:220
+msgctxt "ClassifiedAdsModel|"
+msgid "Habitation"
+msgstr "Tempat tinggal"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Household appliances in Estonia" and this combobox text here is the 3rd+4th word of that phrase.
+#: datamodel/camodel.cpp:222
+msgctxt "ClassifiedAdsModel|"
+msgid "Household appliances"
+msgstr "Peralatan rumah tangga"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Furniture in Estonia" and this combobox text here is the 3rd word of that phrase.
+#: datamodel/camodel.cpp:224
+msgctxt "ClassifiedAdsModel|"
+msgid "Furniture"
+msgstr "Perabot"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Clothing in Estonia" and this combobox text here is the 3rd word of that phrase.
+#: datamodel/camodel.cpp:226
+msgctxt "ClassifiedAdsModel|"
+msgid "Clothing"
+msgstr "Pakaian"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Tools in Estonia" and this combobox text here is the 3rd word of that phrase.
+#: datamodel/camodel.cpp:228
+msgctxt "ClassifiedAdsModel|"
+msgid "Tools"
+msgstr "Perkakas"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Tools in Estonia" and this combobox text here is the 3rd word of that phrase.
+#: datamodel/camodel.cpp:230
+msgctxt "ClassifiedAdsModel|"
+msgid "Sports"
+msgstr "Olahraga"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Music in Estonia" and this combobox text here is the 3rd word of that phrase.
+#: datamodel/camodel.cpp:232
+msgctxt "ClassifiedAdsModel|"
+msgid "Music"
+msgstr "Musik"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Books in Estonia" and this combobox text here is the 3rd word of that phrase.
+#: datamodel/camodel.cpp:234
+msgctxt "ClassifiedAdsModel|"
+msgid "Books"
+msgstr "Buku"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Movies in Estonia" and this combobox text here is the 3rd word of that phrase.
+#: datamodel/camodel.cpp:236
+msgctxt "ClassifiedAdsModel|"
+msgid "Movies"
+msgstr "Film"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Animals in Estonia" and this combobox text here is the 3rd word of that phrase.
+#: datamodel/camodel.cpp:238
+msgctxt "ClassifiedAdsModel|"
+msgid "Animals"
+msgstr "Hewan"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Electronics in Estonia" and this combobox text here is the 3rd word of that phrase.
+#: datamodel/camodel.cpp:240
+msgctxt "ClassifiedAdsModel|"
+msgid "Electronics"
+msgstr "Elektronik"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Announcement of Jobs in Estonia" and this combobox text here is the 3rd word of that phrase.
+#: datamodel/camodel.cpp:242
+msgctxt "ClassifiedAdsModel|"
+msgid "Jobs"
+msgstr "Lowongan kerja"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Wanting of Transportation in Estonia" and this combobox text here is the 3rd word of that phrase.
+#: datamodel/camodel.cpp:244
+msgctxt "ClassifiedAdsModel|"
+msgid "Transportation"
+msgstr "Transportasi"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Buying of Services in Estonia" and this combobox text here is the 3rd word of that phrase.
+#: datamodel/camodel.cpp:246
+msgctxt "ClassifiedAdsModel|"
+msgid "Services"
+msgstr "Layanan"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Selling of Healthcare in Estonia" and this combobox text here is the 3rd word of that phrase.
+#: datamodel/camodel.cpp:248
+msgctxt "ClassifiedAdsModel|"
+msgid "Healthcare"
+msgstr "Layanan kesehatan"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Selling of Foodstuff in Estonia" and this combobox text here is the 3rd word of that phrase.
+#: datamodel/camodel.cpp:250
+msgctxt "ClassifiedAdsModel|"
+msgid "Foodstuff"
+msgstr "Bahan makanan"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Selling of Software in Estonia" and this combobox text here is the 3rd word of that phrase.
+#: datamodel/camodel.cpp:252
+msgctxt "ClassifiedAdsModel|"
+msgid "Software"
+msgstr "Perangkat lunak"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Announcement of Events in Estonia" and this combobox text here is the 3rd word of that phrase.
+#: datamodel/camodel.cpp:254
+msgctxt "ClassifiedAdsModel|"
+msgid "Events"
+msgstr "Acara"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Giving away of Education in Estonia" and this combobox text here is the 4th word of that phrase.
+#: datamodel/camodel.cpp:256
+msgctxt "ClassifiedAdsModel|"
+msgid "Education"
+msgstr "Pendidikan"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Announcement of Finance in Estonia" and this combobox text here is the 3rd word of that phrase.
+#: datamodel/camodel.cpp:258
+msgctxt "ClassifiedAdsModel|"
+msgid "Finance"
+msgstr "Keuangan"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Selling of Jewelry in Estonia" and this combobox text here is the 3rd word of that phrase.
+#: datamodel/camodel.cpp:260
+msgctxt "ClassifiedAdsModel|"
+msgid "Jewelry"
+msgstr "Perhiasan"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Announcement of religious rituals in Estonia" and this combobox text here is the 3rd+4th word of that phrase.
+#: datamodel/camodel.cpp:262
+msgctxt "ClassifiedAdsModel|"
+msgid "Religious rituals"
+msgstr "Ritual keagamaan"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Announcement of Philosophy in Estonia" and this combobox text here is the 3rd word of that phrase.
+#: datamodel/camodel.cpp:264
+msgctxt "ClassifiedAdsModel|"
+msgid "Philosophy"
+msgstr "Filsafat"
+
+# Drop-down combobox-item text. This appears in context where the classification is selected. In UI there will be text like "Announcement of Philosophy in Any country" and this combobox text here is end part "Any country" specifying the location where announcement. 
+#: datamodel/camodel.cpp:908
+msgctxt "ClassifiedAdsModel|"
+msgid "Any country"
+msgstr "Negara mana pun"
+
+# Tool tip text. When user hovers mouse cursor on top of network address field in a dialog, this text will appear. 
+#: datamodel/connectionlistingmodel.cpp:142
+msgctxt "ConnectionListingModel|"
+msgid "Peer network address"
+msgstr "Alamat jaringan peer"
+
+# Tool tip text. When user hovers mouse cursor on top of field specifying if connection is inbound/outbound this text will appear. 
+#: datamodel/connectionlistingmodel.cpp:145
+msgctxt "ConnectionListingModel|"
+msgid "Inbound connections are those where peer initiated connection"
+msgstr "Koneksi masuk adalah koneksi di mana peer yang memulai koneksi"
+
+# Tool tip text. When user hovers mouse cursor on top of traffic-counter field in a dialog, this text will appear. 
+#: datamodel/connectionlistingmodel.cpp:148
+msgctxt "ConnectionListingModel|"
+msgid "Data transferred from peer to your node"
+msgstr "Data yang ditransfer dari peer ke node Anda"
+
+# Tool tip text. When user hovers mouse cursor on top of traffic-counter field in a dialog, this text will appear.
+#: datamodel/connectionlistingmodel.cpp:151
+msgctxt "ConnectionListingModel|"
+msgid "Data transferred to peer from your node"
+msgstr "Data yang ditransfer ke peer dari node Anda"
+
+# Tool tip text. When user hovers mouse cursor on top of time-field in a dialog, this text will appear.
+#: datamodel/connectionlistingmodel.cpp:154
+msgctxt "ConnectionListingModel|"
+msgid "Time when connection was opened"
+msgstr "Waktu saat koneksi dibuka"
+
+# Column header text. Column view is used for listing network connections currently open, this text here gives title for column that shows network address (like IP-address)
+#: datamodel/connectionlistingmodel.cpp:164
+msgctxt "ConnectionListingModel|"
+msgid "Address"
+msgstr "Alamat"
+
+# Column header text. Column view is used for listing network connections currently open, this text here gives title for column that shows direction (inbound/outbound) of the connection
+#: datamodel/connectionlistingmodel.cpp:167
+msgctxt "ConnectionListingModel|"
+msgid "Inbound"
+msgstr "Masuk"
+
+# Column header text. Column view is used for listing network connections currently open, this text here gives title for column that shows number of bytes transferred inside
+#: datamodel/connectionlistingmodel.cpp:170
+msgctxt "ConnectionListingModel|"
+msgid "Bytes in"
+msgstr "Byte masuk"
+
+# Column header text. Column view is used for listing network connections currently open, this text here gives title for column that shows number of bytes transferred outside
+#: datamodel/connectionlistingmodel.cpp:173
+msgctxt "ConnectionListingModel|"
+msgid "Bytes out"
+msgstr "Byte keluar"
+
+# Column header text. Column view is used for listing network connections currently open, this text here gives title for column that shows time when connection was opened. 
+#: datamodel/connectionlistingmodel.cpp:176
+msgctxt "ConnectionListingModel|"
+msgid "Open time"
+msgstr "Waktu dibuka"
+
+# Text in contact listing column view. This text appears in column telling if user is to be trusted or not and this value here denotes the positive case "user is trusted".
+#: datamodel/contactlistingmodel.cpp:73
+msgctxt "ContactListingModel|"
+msgid "Yes"
+msgstr "Ya"
+
+# Text in contact listing column view. This text appears in column telling if user is to be trusted or not and this value here denotes the negative case "user trust is unknown".
+#: datamodel/contactlistingmodel.cpp:75
+msgctxt "ContactListingModel|"
+msgid "Unknown"
+msgstr "Tidak diketahui"
+
+# Tool tip text. When user hovers mouse cursor on top of field where operators SHA1 digest is shown, this text appears. The field is part of contact listing view, where users frequent contacts are shown. 
+#: datamodel/contactlistingmodel.cpp:98
+msgctxt "ContactListingModel|"
+msgid "Actual network address (SHA1) of the contact"
+msgstr "Alamat jaringan (SHA1) sebenarnya dari kontak"
+
+# Tool tip text. When user hovers mouse cursor on top of field where operators locally given nickname is shown, this text appears. The field is part of contact listing view, where users frequent contacts are shown.
+#: datamodel/contactlistingmodel.cpp:101
+msgctxt "ContactListingModel|"
+msgid "Locally given nickname ; user may set her own nickname himself"
+msgstr ""
+"Nama panggilan yang diberikan secara lokal; pengguna dapat menetapkan nama "
+"panggilannya sendiri"
+
+# Tool tip text. When user hovers mouse cursor on top of field where operators trustworthiness (boolean value) in users opinion is shown, this text appears. The field is part of contact listing view, where users frequent contacts are shown.
+#: datamodel/contactlistingmodel.cpp:104
+msgctxt "ContactListingModel|"
+msgid "Public statement if this operator to be trusted in transactions"
+msgstr "Pernyataan publik apakah operator ini dapat dipercaya dalam transaksi"
+
+# Column header text. Used in column view where operators frequent contacts are shown. This text gives title to column that shows operators network address (the SHA digest of operator)
+#: datamodel/contactlistingmodel.cpp:114
+msgctxt "ContactListingModel|"
+msgid "Address"
+msgstr "Alamat"
+
+# Column header text. Used in column view where operators frequent contacts are shown. This text gives title to column that shows operators nickname
+#: datamodel/contactlistingmodel.cpp:117
+msgctxt "ContactListingModel|"
+msgid "Nickname"
+msgstr "Nama panggilan"
+
+# Column header text. Used in column view where operators frequent contacts are shown. This text gives title to column that shows operators trustworthiness. 
+#: datamodel/contactlistingmodel.cpp:120
+msgctxt "ContactListingModel|"
+msgid "Publicly trusted"
+msgstr "Dipercaya secara publik"
+
+# Error message that is displayed when SSL key generation failed. Text is displayed in a dialog, after user dismisses the dialog, whole application will exit.
+#: datamodel/contentencryptionmodel.cpp:88
+msgctxt "ContentEncryptionModel|"
+msgid "SSL key generation went wrong, calling exit.."
+msgstr "Pembuatan kunci SSL bermasalah, memanggil keluar.."
+
+# Error message that is displayed when x509 certificate generation failed. Text is displayed in a dialog, after user dismisses the dialog, whole application will exit.
+#: datamodel/contentencryptionmodel.cpp:96
+msgctxt "ContentEncryptionModel|"
+msgid "x509 cert generation went wrong, calling exit.."
+msgstr "Pembuatan sertifikat x509 bermasalah, memanggil keluar.."
+
+# Error message that is displayed when RSA private key could not be saved to database. This is rather fatal error, the operator profile that user tried to create will be un-usable. 
+#: datamodel/contentencryptionmodel.cpp:194
+#: datamodel/contentencryptionmodel.cpp:292
+msgctxt "ContentEncryptionModel|"
+msgid "RSA Private key key saving went wrong"
+msgstr "Penyimpanan kunci privat RSA bermasalah"
+
+# Error message text. This is displayed in situation where user tried to access content that he does not have encryption key for. This may appear frequently during normal operation and is no fatal error, only telling user that he is not going to see the content he was trying to access. 
+#: datamodel/contentencryptionmodel.cpp:639
+msgctxt "ContentEncryptionModel|"
+msgid "No suitable de-cryption key found"
+msgstr "Tidak ditemukan kunci dekripsi yang sesuai"
+
+# Window title text for whole application. 
+#: controller.cpp:109
+msgctxt "Controller|"
+msgid "Classified ads"
+msgstr "Iklan baris"
+
+# Prompt text for password dialog
+#: controller.cpp:141
+msgctxt "Controller|"
+msgid "Enter password for protection of your messages:"
+msgstr "Masukkan kata sandi untuk melindungi pesan Anda:"
+
+# Dialog text for a wait dialog (a progress-bar like thing will be shown next to this text and user is supposed to sit down and wait a moment..)
+#: controller.cpp:432
+msgctxt "Controller|"
+msgid "Fetching item from network.."
+msgstr "Mengambil item dari jaringan.."
+
+# Menu item text used in "File" menu item and when this particular item is selected, application will close
+#: controller.cpp:485
+msgctxt "Controller|"
+msgid "E&xit"
+msgstr "K&eluar"
+
+# Menu item tooltip-text used in "File" menu entry and when this particular item is selected, application will close
+#: controller.cpp:487
+msgctxt "Controller|"
+msgid "Exit the application"
+msgstr "Keluar dari aplikasi"
+
+# Menu item text used in "File" menu and when this particular item is selected, application will show a dialog telling why this application is and how to use it
+#: controller.cpp:489
+msgctxt "Controller|"
+msgid "&About"
+msgstr "&Tentang"
+
+# Tooltip-text of menu item text used in "File" menu and when this particular item is selected, application will show a dialog telling why this application is and how to use it
+#: controller.cpp:490
+msgctxt "Controller|"
+msgid "Show the application's About box"
+msgstr "Tampilkan kotak Tentang aplikasi"
+
+# Menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to change her password
+#: controller.cpp:492
+msgctxt "Controller|"
+msgid "&Change password"
+msgstr "&Ubah kata sandi"
+
+# Tooltip-item for a menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to change her password
+#: controller.cpp:493
+msgctxt "Controller|"
+msgid "Change password of current profile"
+msgstr "Ubah kata sandi profil saat ini"
+
+# Menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to enter password for a newly-created user profile
+#: controller.cpp:495
+msgctxt "Controller|"
+msgid "Create &new profile"
+msgstr "Buat profil &baru"
+
+# Tooltip-text for a menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to enter password for a newly-created user profile
+#: controller.cpp:496
+msgctxt "Controller|"
+msgid "Makes a brand new user profile"
+msgstr "Membuat profil pengguna yang benar-benar baru"
+
+# Menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to confirm deletion of currently open operator profile
+#: controller.cpp:498
+msgctxt "Controller|"
+msgid "&Delete current profile"
+msgstr "&Hapus profil saat ini"
+
+# Tooltip-text for a menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to confirm deletion of currently open profile
+#: controller.cpp:499
+msgctxt "Controller|"
+msgid "Deletes currently open profile"
+msgstr "Menghapus profil yang sedang dibuka"
+
+# Menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to enter password of another profile that user will use next
+#: controller.cpp:501
+msgctxt "Controller|"
+msgid "&Select another profile"
+msgstr "&Pilih profil lain"
+
+# Tooltip-text for a menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to enter password of another profile that user will use next
+#: controller.cpp:502
+msgctxt "Controller|"
+msgid "If you have multitude of profiles"
+msgstr "Jika Anda memiliki banyak profil"
+
+# Menu item text used in "File" menu and when this particular item is selected, application will show a settings-dialog 
+#: controller.cpp:504
+msgctxt "Controller|"
+msgid "Settings.."
+msgstr "Pengaturan.."
+
+# Tooltip-text for a menu item text used in "File" menu and when this particular item is selected, application will show a dialog prompting user to enter password of another profile that user will use next
+#: controller.cpp:505
+msgctxt "Controller|"
+msgid "Node-wide settings.."
+msgstr "Pengaturan seluruh node.."
+
+# Menu item text used in "File" menu and when this particular item is selected, application will show a dialog detailing network connectivity of the node
+#: controller.cpp:507
+msgctxt "Controller|"
+msgid "Network status.."
+msgstr "Status jaringan.."
+
+# Menu item text used in "File" menu and when this particular item is selected, application will show a search-dialog
+#: controller.cpp:509
+msgctxt "Controller|"
+msgid "Search.."
+msgstr "Cari.."
+
+# Menu bar title text for "File" menu. 
+#: controller.cpp:526
+msgctxt "Controller|"
+msgid "&File"
+msgstr "&Berkas"
+
+# Menu title. Menu contains menu-items related to TCL-programs.
+#: controller.cpp:729
+msgctxt "Controller|"
+msgid "&TCL Programs"
+msgstr "Program &TCL"
+
+# Menu item from menu of TCL-related items. Selecting this menu item opens library of TCL programs. 
+#: controller.cpp:730
+msgctxt "Controller|"
+msgid "&Local library"
+msgstr "Pustaka &lokal"
+
+# Tooltip-text for menu item that opens local TCL program library.
+#: controller.cpp:731
+msgctxt "Controller|"
+msgid "Locally stored TCL programs"
+msgstr "Program TCL yang disimpan secara lokal"
+
+# Difficult to translate: after selecting this menu-item you can write ad-hoc TCL programs to TCL interpreter that may be already executing existing program or is empty. Practically gives TCL command line access to possibly running interpreter.
+#: controller.cpp:734
+msgctxt "Controller|"
+msgid "TCL &Console"
+msgstr "Konsol &TCL"
+
+# Tooltip for menu-item that displays dialog where you can type in ad-hoc TCL-programs.
+#: controller.cpp:735
+msgctxt "Controller|"
+msgid "Display interpreter console"
+msgstr "Tampilkan konsol interpreter"
+
+# Password dialog prompt.
+#: controller.cpp:571
+msgctxt "Controller|"
+msgid "Enter new password:"
+msgstr "Masukkan kata sandi baru:"
+
+# Password dialog prompt. In this case the password dialog is not used for giving initial password or change password but instead password is typed for the reason of selection of another operator profile to be used. 
+#: controller.cpp:599 controller.cpp:708
+msgctxt "Controller|"
+msgid "Activate another profile with password"
+msgstr "Aktifkan profil lain dengan kata sandi"
+
+# Error message shown in dialog in situation where user tried to delete the last (one and only) operator profile in machine. There needs to be at least one profile and this error message is shown if user tries to get around that limitation. 
+#: controller.cpp:693
+msgctxt "Controller|"
+msgid "Can't delete only profile."
+msgstr "Tidak dapat menghapus satu-satunya profil."
+
+# Text shown in title of confirmation dialog. 
+#: controller.cpp:697
+msgctxt "Controller|"
+msgid "Permanently discard profile?"
+msgstr "Buang profil secara permanen?"
+
+# Text shown inside a confirmation dialog. Dialog will have buttons OK and Cancel and this is the question.
+#: controller.cpp:698
+msgctxt "Controller|"
+msgid "There will be NO way to access content of this profile later"
+msgstr "TIDAK ada cara untuk mengakses konten profil ini nanti"
+
+# Error message that is shown in a dialog in situation where previously stored encryption keys of the node could not be accessed. Rather fatal error, will render node un-usable. 
+#: controller.cpp:761
+msgctxt "Controller|"
+msgid "Cant load node cert or key cert"
+msgstr "Tidak dapat memuat sertifikat node atau sertifikat kunci"
+
+# Error message dialog title text for a dialog that is shown in a dialog in situation where something bad happened during a filesystem file operation. Actual explanation of the error is shown inside the dialog whose title text this is.  
+#: controller.cpp:766
+msgctxt "Controller|"
+msgid "File error"
+msgstr "Kesalahan berkas"
+
+# Error message dialog title text for a dialog that is shown in a dialog in situation where something bad happened during database operation. Actual explanation of the error is shown inside the dialog whose title text this is.  
+#: controller.cpp:771
+msgctxt "Controller|"
+msgid "Database error"
+msgstr "Kesalahan basis data"
+
+# Error message dialog title text for a dialog that is shown in a dialog in situation where something bad happened during a operation inside crypto-module. Actual explanation of the error is shown inside the dialog whose title text this is.  
+#: controller.cpp:777 controller.cpp:787
+msgctxt "Controller|"
+msgid "Cryptographic module"
+msgstr "Modul kriptografi"
+
+# Error message dialog title text for a dialog that is shown in a dialog in situation where something bad happened during operation inside database module. Actual explanation of the error is shown inside the dialog whose title text this is.  
+#: controller.cpp:782
+msgctxt "Controller|"
+msgid "Database module"
+msgstr "Modul basis data"
+
+# Error message dialog title text for a dialog that is shown in a dialog in situation when password supplied by user was not good for any purpose. Actual explanation of the error is shown inside the dialog whose title text this is.  
+#: controller.cpp:788
+msgctxt "Controller|"
+msgid "Bad password"
+msgstr "Kata sandi salah"
+
+# Dialog title for error dialog that displays error message originating from TCL-interpereter. 
+#: controller.cpp:1043
+msgctxt "Controller|"
+msgid "TCL Interpreter"
+msgstr "Interpreter TCL"
+
+# Error message text inside a dialog when user had requested for an item to be opened but program could not find the requested item.   
+#: controller.cpp:1004
+msgctxt "Controller|"
+msgid "Could not find item from network.."
+msgstr "Tidak dapat menemukan item dari jaringan.."
+
+# Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies SHA1 digest of the file.
+#: controller.cpp:1117
+msgctxt "Controller|"
+msgid "SHA1: "
+msgstr "SHA1: "
+
+# Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies mime-type of the file
+#: controller.cpp:1122
+msgctxt "Controller|"
+msgid "Mime-Type: "
+msgstr "Tipe-MIME: "
+
+# Text field explanation text. Part of "file details" dialog. This text gives explanation of field that gives longer explanation of the file
+#: controller.cpp:1128
+msgctxt "Controller|"
+msgid "Description: "
+msgstr "Deskripsi: "
+
+# Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies name of publisher of the file (in practice, who uploaded the file into classified ads)
+#: controller.cpp:1134
+msgctxt "Controller|"
+msgid "Publisher: "
+msgstr "Penerbit: "
+
+# Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies name of the person (or organization) that owns (in copyright sense) the file or its contents. 
+#: controller.cpp:1140
+msgctxt "Controller|"
+msgid "Content owner: "
+msgstr "Pemilik konten: "
+
+# Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies the license of the file
+#: controller.cpp:1146
+msgctxt "Controller|"
+msgid "License: "
+msgstr "Lisensi: "
+
+# Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies file name
+#: controller.cpp:1152
+msgctxt "Controller|"
+msgid "Name: "
+msgstr "Nama: "
+
+# Text field explanation text. Part of "file details" dialog. This text gives explanation of field that specifies file date
+#: controller.cpp:1159
+msgctxt "Controller|"
+msgid "Date: "
+msgstr "Tanggal: "
+
+# Error message text shown inside dialog when user tries to select for operation a file that is much much too big. (there is currently 2MB size limit for shared files) 
+#: ui/dialogbase.cpp:47 ui/dialogbase.cpp:101
+msgctxt "DialogBase|"
+msgid "File way too big"
+msgstr "Berkas terlalu besar sekali"
+
+# Error message text shown inside dialog when user tries to select for operation a file that is just-and-just too big. (there is currently 2MB size limit for shared files) 
+#: ui/dialogbase.cpp:55 ui/dialogbase.cpp:109
+msgctxt "DialogBase|"
+msgid "File too big"
+msgstr "Berkas terlalu besar"
+
+# Error message text shown inside dialog when user tries to select for operation a file that can not be opened (for example due to file permission reasons)
+#: ui/dialogbase.cpp:85 ui/dialogbase.cpp:131
+msgctxt "DialogBase|"
+msgid "File open error"
+msgstr "Kesalahan saat membuka berkas"
+
+# Dialog title text. Dialog prompts user to select the filesystem file that will be published inside classified ads. 
+#: ui/dialogbase.cpp:94
+msgctxt "DialogBase|"
+msgid "Select file to be published"
+msgstr "Pilih berkas untuk dipublikasikan"
+
+# Text for file type filter field in file-selection-dialog
+#: ui/dialogbase.cpp:96
+msgctxt "DialogBase|"
+msgid "Files (*.*)"
+msgstr "Berkas (*.*)"
+
+# Title text of error dialog. 
+#: ui/editcontact.cpp:72
+msgctxt "EditContactDialog|"
+msgid "Error"
+msgstr "Kesalahan"
+
+# Contet text of error dialog. Shown after user has tried to enter operator address with intent of adding it to contact-list and the operator address fails format validation. 
+#: ui/editcontact.cpp:73
+msgctxt "EditContactDialog|"
+msgid "Operator addr is not valid"
+msgstr "Alamat operator tidak valid"
+
+# Tab text. In "main window" of classified ads UI there a are 4 or 5 tabs, normally "Classified ads"; "My profile", "Contacts", "Private messages" and maybe something else. This is the text of the first tab. 
+#: FrontWidget.cpp:95
+msgctxt "FrontWidget|"
+msgid "Classified ads"
+msgstr "Iklan baris"
+
+# Tab text. In "main window" of classified ads UI there a are 4 or 5 tabs, normally "Classified ads"; "My profile", "Contacts", "Private messages" and maybe something else. This is the text of the 2nd tab. 
+#: FrontWidget.cpp:96
+msgctxt "FrontWidget|"
+msgid "My profile"
+msgstr "Profil saya"
+
+# Tab text. In "main window" of classified ads UI there a are 4 or 5 tabs, normally "Classified ads"; "My profile", "Contacts", "Private messages" and maybe something else. This is the text of the 3rd tab. 
+#: FrontWidget.cpp:97
+msgctxt "FrontWidget|"
+msgid "Contacts"
+msgstr "Kontak"
+
+# Tab text. In "main window" of classified ads UI there a are 4 or 5 tabs, normally "Classified ads"; "My profile", "Contacts", "Private messages" and maybe something else. This is the text of the 4th tab. 
+#: FrontWidget.cpp:98
+msgctxt "FrontWidget|"
+msgid "Private messages"
+msgstr "Pesan pribadi"
+
+# Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, a dialog will appear asking which file to share
+#: FrontWidget.cpp:160
+msgctxt "FrontWidget|"
+msgid "Add shared file.."
+msgstr "Tambahkan berkas bersama.."
+
+# Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, the selected file in the listing view will no longer be shared
+#: FrontWidget.cpp:161
+msgctxt "FrontWidget|"
+msgid "Stop advertising selected shared file"
+msgstr "Hentikan mengiklankan berkas bersama yang dipilih"
+
+# Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, the selected file in the listing view will be saved to filesystem
+#: FrontWidget.cpp:162
+msgctxt "FrontWidget|"
+msgid "Save file to disk.."
+msgstr "Simpan berkas ke disk.."
+
+# Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, information dialog about selected file will be shown
+#: FrontWidget.cpp:163
+msgctxt "FrontWidget|"
+msgid "View file information.."
+msgstr "Lihat informasi berkas.."
+
+# Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, SHA digest of the selected file will be copied to clipboard. 
+#: FrontWidget.cpp:164
+msgctxt "FrontWidget|"
+msgid "Copy file address (SHA1) to clipboard.."
+msgstr "Salin alamat berkas (SHA1) ke papan klip.."
+
+# Context-menu item text. Menu appears when user right-clicks on top of file listing view. When item whose text is specified here is selected from the menu, an editor will be displayed prompting user to enter text that will then be published  for other users to see. 
+#: FrontWidget.cpp:165
+msgctxt "FrontWidget|"
+msgid "Edit+publish new text document.."
+msgstr "Edit+publikasikan dokumen teks baru.."
+
+# Dialog title text for "file open" dialog
+#: FrontWidget.cpp:353
+msgctxt "FrontWidget|"
+msgid "Open File"
+msgstr "Buka berkas"
+
+# Text for filter field of file selection dialog
+#: FrontWidget.cpp:355 FrontWidget.cpp:885
+msgctxt "FrontWidget|"
+msgid "Files (*.*)"
+msgstr "Berkas (*.*)"
+
+# Error dialog title text. Actual error message will be shown inside dialog whose title is this text. 
+#: FrontWidget.cpp:359 FrontWidget.cpp:1185 FrontWidget.cpp:1328
+msgctxt "FrontWidget|"
+msgid "Error"
+msgstr "Kesalahan"
+
+# Error dialog content text. Shown when image file that user selected could not be opened (maybe because file permission problem or maybe image format issue or ..)
+#: FrontWidget.cpp:360
+msgctxt "FrontWidget|"
+msgid "Can't load image"
+msgstr "Tidak dapat memuat gambar"
+
+# Error dialog title text. This dialog is shown when user  tries to comment another operator but required operator data is missing from local storage. 
+#: FrontWidget.cpp:626 FrontWidget.cpp:766
+msgctxt "FrontWidget|"
+msgid "Profile not in database"
+msgstr "Profil tidak ada di basis data"
+
+# Error dialog content text. This dialog is shown when user  tries to comment another operator but required operator data is missing from local storage. 
+#: FrontWidget.cpp:627 FrontWidget.cpp:767
+msgctxt "FrontWidget|"
+msgid "Try viewing profile first to obtain data"
+msgstr "Coba lihat profil terlebih dahulu untuk mendapatkan data"
+
+# File selection title text. Prompts user to select a file for publish purpose. 
+#: FrontWidget.cpp:883
+msgctxt "FrontWidget|"
+msgid "Select file to be published"
+msgstr "Pilih berkas untuk dipublikasikan"
+
+# Error text shown in dialog. Shown in situation where user selected a file that really exceeds size limit (of 2MB)
+#: FrontWidget.cpp:890
+msgctxt "FrontWidget|"
+msgid "File way too big"
+msgstr "Berkas terlalu besar sekali"
+
+# Error text shown in dialog. Shown in situation where user selected a file that slightly exceeds size limit (of 2MB)
+#: FrontWidget.cpp:898
+msgctxt "FrontWidget|"
+msgid "File too big"
+msgstr "Berkas terlalu besar"
+
+# Error text shown in dialog. Shown in situation where user selected a file that could for some reason not be opened
+#: FrontWidget.cpp:942 FrontWidget.cpp:1186
+msgctxt "FrontWidget|"
+msgid "File open error"
+msgstr "Kesalahan saat membuka berkas"
+
+# Part of filter text field in file selection dialog. If for instance user tries to open PNG files, then the text in filter field will be "PNG files (*.png)" and this word is the 2nd word in the phrase. 
+#: FrontWidget.cpp:1167 FrontWidget.cpp:1173
+msgctxt "FrontWidget|"
+msgid "files"
+msgstr "berkas"
+
+# Dialog title for dialog that asks whether user wants to save TCL program into local library or into filesystem file
+#: FrontWidget.cpp:1183
+msgctxt "FrontWidget|"
+msgid "Save location"
+msgstr "Lokasi penyimpanan"
+
+# Dialog text in question dialog asking if user wants to save TCL app into local library or into filesystem file
+#: FrontWidget.cpp:1184
+msgctxt "FrontWidget|"
+msgid "Save to TCL app library instead of regular file?"
+msgstr "Simpan ke pustaka aplikasi TCL alih-alih berkas biasa?"
+
+# File selection dialog title text. Dialog prompts user to select location+name for an file to be exported into filesystem.
+#: FrontWidget.cpp:1176
+msgctxt "FrontWidget|"
+msgid "Choose file name for saving"
+msgstr "Pilih nama berkas untuk penyimpanan"
+
+# Text shown in placeholder for operators image in situation where user has not yet selected any image. In practice it prompts user to insert image by clicking at the text. 
+#: FrontWidget.cpp:1236
+msgctxt "FrontWidget|"
+msgid ""
+"\n"
+"\n"
+"\n"
+"Click\n"
+"To\n"
+"Add\n"
+"Image\n"
+msgstr ""
+"\n"
+"\n"
+"\n"
+"Klik\n"
+"Untuk\n"
+"Menambahkan\n"
+"Gambar\n"
+
+# Error message dialog content text shown when user tried to access article, that was not stored in local database
+#: FrontWidget.cpp:1329
+msgctxt "FrontWidget|"
+msgid "Article not found from local storage"
+msgstr "Artikel tidak ditemukan dari penyimpanan lokal"
+
+# Tool-tip text. Shown on top of operators address when user hovers mouse on top of the address field. The  %1 will be replaced by nickname of an operator who trusts this particular operator. The %2 will be replaced by SHA1 digest of the operator who trusts the operator whose SHA1 is under mouse cursor.  
+#: FrontWidget.cpp:1355 FrontWidget.cpp:1903
+#, qt-format
+msgctxt "FrontWidget|"
+msgid ""
+"Trusted by %1\n"
+"SHA1 %2"
+msgstr ""
+"Dipercaya oleh %1\n"
+"SHA1%2"
+
+# Tool tip text. Shown when user howers mouse on top of operators nickname field. In code a date-string will be concatenated to this string, so in practice in the UI it will read "Time of last update 31 aug 2015" or similar. 
+#: FrontWidget.cpp:1392
+msgctxt "FrontWidget|"
+msgid "Time of last update "
+msgstr "Waktu pembaruan terakhir "
+
+# Text for image placeholder, shown in situation where another operator has not selected any image for her.This text is shown place of the missing image. 
+#: FrontWidget.cpp:1400
+msgctxt "FrontWidget|"
+msgid ""
+"\n"
+"\n"
+"\n"
+"(No\n"
+"Image\n"
+"Selected)\n"
+msgstr ""
+"\n"
+"\n"
+"\n"
+"(Tidak\n"
+"Ada\n"
+"Gambar\n"
+"Yang\n"
+"Dipilih)\n"
+
+# Context menu item text. Context-menu is related to frequent-contacts column-view. 
+#: FrontWidget.cpp:1494
+msgctxt "FrontWidget|"
+msgid "Edit contact.."
+msgstr "Edit kontak.."
+
+# Push button text. Pushing the button will open an editor prompting user to edit+send a private message to operator who sent the classified ad currently on display
+#: FrontWidget.cpp:1534
+msgctxt "FrontWidget|"
+msgid "&Reply to sender"
+msgstr "&Balas ke pengirim"
+
+# Push button text. Pushing the button will open an editor prompting user to edit+send a reply to classified ad currently on display
+#: FrontWidget.cpp:1535
+msgctxt "FrontWidget|"
+msgid "Reply to &forum"
+msgstr "Balas ke &forum"
+
+# Push button text. Pushing the button will open an editor prompting user to edit+send a new classified ad.
+#: FrontWidget.cpp:1536
+msgctxt "FrontWidget|"
+msgid "&Post new ad"
+msgstr "&Pasang iklan baru"
+
+# Push button text. Pushing the button will open an editor prompting user to edit+send a public comment about operator who sent the classified ad currently on display
+#: FrontWidget.cpp:1537
+msgctxt "FrontWidget|"
+msgid "&Public comment"
+msgstr "&Komentar publik"
+
+# Push button text. Pushing the button will switch to view detailing operator who sent the classified ad currently on display
+#: FrontWidget.cpp:1538
+msgctxt "FrontWidget|"
+msgid "&View profile"
+msgstr "&Lihat profil"
+
+# Push button text. Pushing the button will open a a listing of files that are attached to classified ad currently on display
+#: FrontWidget.cpp:1539 FrontWidget.cpp:1677
+msgctxt "FrontWidget|"
+msgid "Attachments.."
+msgstr "Lampiran.."
+
+# Push button text. Pushing the button will open an editor prompting user to add to her contact-list the operator who sent the classified ad currently on display
+#: FrontWidget.cpp:1599
+msgctxt "FrontWidget|"
+msgid "Add selected operator to contacts.."
+msgstr "Tambahkan operator yang dipilih ke kontak.."
+
+# Push button text. Pushing the button will open an editor prompting user to edit+send a private message to operator who sent the private message currently on display
+#: FrontWidget.cpp:1673
+msgctxt "FrontWidget|"
+msgid "&Reply"
+msgstr "&Balas"
+
+# Push button text. Pushing the button will open an editor prompting user to edit+send a private message to some operator. 
+#: FrontWidget.cpp:1674
+msgctxt "FrontWidget|"
+msgid "&New message"
+msgstr "&Pesan baru"
+
+# Push button text. Pushing the button will open an editor prompting user to edit+send a public comment about operator who sent the private message currently on display
+#: FrontWidget.cpp:1675
+msgctxt "FrontWidget|"
+msgid "&Send public comment to sender"
+msgstr "&Kirim komentar publik ke pengirim"
+
+# Push button text. Pushing the button will open view that will show details of operator, who sent the private message currently on display. 
+#: FrontWidget.cpp:1676
+msgctxt "FrontWidget|"
+msgid "&View profile of peer"
+msgstr "&Lihat profil peer"
+
+# Context menu item text. Appears in "message listing view" when user right-clicks on messages view. When selected, the operator who sent the message that is selected is added to contacts. 
+#: FrontWidget.cpp:1711
+msgctxt "FrontWidget|"
+msgid "Add selected to contacts.."
+msgstr "Tambahkan yang dipilih ke kontak.."
+
+# Text field label. Label tells who sent particular classified ad. 
+#: FrontWidget.cpp:1913 FrontWidget.cpp:1915 FrontWidget.cpp:1979
+#: FrontWidget.cpp:1981
+msgctxt "FrontWidget|"
+msgid "From:"
+msgstr "Dari:"
+
+# Text field label. Label tells subject of classified ads. 
+#: FrontWidget.cpp:1917 FrontWidget.cpp:1984
+msgctxt "FrontWidget|"
+msgid "Subject:"
+msgstr "Subjek:"
+
+# Text field label. Label tells whom a private message was sent to. 
+#: FrontWidget.cpp:1976
+msgctxt "FrontWidget|"
+msgid "To:"
+msgstr "Kepada:"
+
+# Error dialog content text. Shown in situation when user clicked on a link that contained SHA1 digest that was not valid. 
+#: FrontWidget.cpp:2288
+msgctxt "FrontWidget|"
+msgid "Invalid SHA1 in URL"
+msgstr "SHA1 tidak valid dalam URL"
+
+# Error dialog content text. Shown in situation when user clicked on a link that was not correctly formatted. 
+#: FrontWidget.cpp:2315
+msgctxt "FrontWidget|"
+msgid "Invalid URL"
+msgstr "URL tidak valid"
+
+# Error dialog content text. Shown in situation when user entered a link that could not be parsed.  
+#: ui/insertlinkdialog.cpp:69
+msgctxt "InsertLinkDialog|"
+msgid "Invalid URL"
+msgstr "URL tidak valid"
+
+# Error dialog content text. Shown in situation when user tried to add connection to node whose name was not found via nameserver. 
+#: ui/manualconnection.cpp:53
+msgctxt "ManualConnectionDialog|"
+msgid "DNS lookup failure"
+msgstr "Pencarian DNS gagal"
+
+# Error dialog title text. Actual error message will be shown inside the dialog. 
+#: ui/newprivmsgdialog.cpp:88 ui/newprivmsgdialog.cpp:138
+msgctxt "NewPrivMessageDialog|"
+msgid "Error"
+msgstr "Kesalahan"
+
+# Error dialog content text. Dialog is shown when user tries to send a message to operator, whose SHA1 digest (as entered by user) does not parse as SHA1 digest. 
+#: ui/newprivmsgdialog.cpp:89
+msgctxt "NewPrivMessageDialog|"
+msgid "Recipient addr is not valid"
+msgstr "Alamat penerima tidak valid"
+
+# Error dialog content text. Dialog is shown when user tries to send a message to operator, whose encryption keys are present in local storage. 
+#: ui/newprivmsgdialog.cpp:139
+msgctxt "NewPrivMessageDialog|"
+msgid "Recipient encryption key not found from storage"
+msgstr "Kunci enkripsi penerima tidak ditemukan dari penyimpanan"
+
+# Error dialog title text. Actual error message will be shown inside the dialog.
+#: ui/newprofilecommentdialog.cpp:89 ui/newprofilecommentdialog.cpp:126
+msgctxt "NewProfileCommentDialog|"
+msgid "Error"
+msgstr "Kesalahan"
+
+# Error dialog content text. Dialog is shown when user tries to comment an operator, whose SHA1 digest (as entered by user) does not parse as SHA1 digest.
+#: ui/newprofilecommentdialog.cpp:90
+msgctxt "NewProfileCommentDialog|"
+msgid "Commented profile addr is not valid"
+msgstr "Alamat profil yang dikomentari tidak valid"
+
+# Error dialog content text. Dialog is shown when user tries to send a message to operator, whose encryption keys are present in local storage.
+#: ui/newprofilecommentdialog.cpp:127
+msgctxt "NewProfileCommentDialog|"
+msgid "Recipient encryption key not found from storage"
+msgstr "Kunci enkripsi penerima tidak ditemukan dari penyimpanan"
+
+# Error message text. Will be shown in error message dialog in case when initial SSL key generation of node did not succeed. After user dismisses the dialog, the application will close.
+#: datamodel/nodemodel.cpp:115
+msgctxt "NodeModel|"
+msgid "SSL key generation went wrong, calling exit.."
+msgstr "Pembuatan kunci SSL bermasalah, memanggil keluar.."
+
+# Error message text. Will be shown in error message dialog in case when initial encryption key generation of user did not succeed. After user dismisses the dialog, the application will close.
+#: datamodel/nodemodel.cpp:123
+msgctxt "NodeModel|"
+msgid "x509 cert generation went wrong, calling exit.."
+msgstr "Pembuatan sertifikat x509 bermasalah, memanggil keluar.."
+
+# Error message text. Will be shown in error message dialog in case when SSL certificate of the node could not be loaded from storage. After user dismisses the dialog, the application will close.
+#: datamodel/nodemodel.cpp:1596
+msgctxt "NodeModel|"
+msgid "Cant load SSL cert"
+msgstr "Tidak dapat memuat sertifikat SSL"
+
+# Error message text. Will be shown in error message dialog in case when SSL key of the node could not be retrieved from local storage. After user dismisses the dialog, the application will close.
+#: datamodel/nodemodel.cpp:1626
+msgctxt "NodeModel|"
+msgid "Cant load SSL key"
+msgstr "Tidak dapat memuat kunci SSL"
+
+# Error message text. Shown in dialog when user tries to enter a password that is too short. 
+#: ui/passwd_dialog.cpp:104
+msgctxt "PasswdDialog|"
+msgid "Min length 5 (use 10+)"
+msgstr "Panjang min 5 (gunakan 10+)"
+
+# Password dialog title text. 
+#: ui/passwordDialog.ui:14
+msgctxt "PasswordDialog|"
+msgid "Password required"
+msgstr "Kata sandi wajib diisi"
+
+# Tooltip text for password dialog. Shown when user hovers on top of password dialog.
+#: ui/passwordDialog.ui:17
+msgctxt "PasswordDialog|"
+msgid ""
+"Should you forget this word, there is no easy way to recover any of your "
+"content"
+msgstr ""
+"Jika Anda lupa kata ini, tidak ada cara mudah untuk memulihkan konten Anda"
+
+# Prompt text for password dialog. 
+#: ui/passwordDialog.ui:29
+msgctxt "PasswordDialog|"
+msgid "Enter password for protection of your messages"
+msgstr "Masukkan kata sandi untuk melindungi pesan Anda"
+
+# Tooltip text for password dialog. Shown when user hovers on top of password field
+#: ui/passwordDialog.ui:42
+msgctxt "PasswordDialog|"
+msgid ""
+"If you forget this word, there is no simple way to recover your contents"
+msgstr ""
+"Jika Anda lupa kata ini, tidak ada cara sederhana untuk memulihkan konten "
+"Anda"
+
+# Password dialog button text 
+#: ui/passwordDialog.ui:55
+msgctxt "PasswordDialog|"
+msgid "OK"
+msgstr "OK"
+
+# Check-box item text. If check-box is selected, password is shown in text editor, if not selected then "hidden text" editor is used that does not show the word being typed. 
+#: ui/passwordDialog.ui:68
+msgctxt "PasswordDialog|"
+msgid "Show password"
+msgstr "Tampilkan kata sandi"
+
+# Tooltip text. Shown when user hovers mouse cursor on top of message sender name. First %1 will be replaced with nickname of the operator whose message is hovered, %2 will be replaced by nickname of operator who has expressed positive trust towards the operator who sent the message. 
+#: datamodel/privmsgsearchmodel.cpp:110
+#, qt-format
+msgctxt "PrivateMessageSearchModel|"
+msgid ""
+"%1\n"
+"Trusted by %2"
+msgstr ""
+"%1\n"
+"Dipercaya oleh %2"
+
+# Tooltip text. Used in column view that lists private messages of operator. Explains the field that gives title to column that specifies direction (sent or received) of the message.
+#: datamodel/privmsgsearchmodel.cpp:237
+msgctxt "PrivateMessageSearchModel|"
+msgid "Direction of message, sent/received"
+msgstr "Arah pesan, terkirim/diterima"
+
+# Column title text. Used in column view that lists private messages of operator. This field gives title to column that specifies direction (sent/received) of the message.
+#: datamodel/privmsgsearchmodel.cpp:247
+msgctxt "PrivateMessageSearchModel|"
+msgid "Dir"
+msgstr "Arah"
+
+# Column title text. Used in column view that lists private messages of operator. This field gives title to column that specifies messaging peer (another operator) of the message.
+#: datamodel/privmsgsearchmodel.cpp:250
+msgctxt "PrivateMessageSearchModel|"
+msgid "Peer"
+msgstr "Peer"
+
+# Column title text. Used in column view that lists private messages of operator. This field gives title to column that specifies time of the message.
+#: datamodel/privmsgsearchmodel.cpp:253
+msgctxt "PrivateMessageSearchModel|"
+msgid "Time"
+msgstr "Waktu"
+
+# Column title text. Used in column view that lists private messages of operator. This field gives title to column that specifies subject of the message.
+#: datamodel/privmsgsearchmodel.cpp:256
+msgctxt "PrivateMessageSearchModel|"
+msgid "Subject"
+msgstr "Subjek"
+
+# Push button text. Clicking the button will open a dialog prompting user to add a new comment
+#: ui/profilecommentdisplay.cpp:54
+msgctxt "ProfileCommentDisplay|"
+msgid "&Add comment..."
+msgstr "&Tambah komentar..."
+
+# Context menu item text. Context menu is shown when user right-clicks on file listing view. When this item is selected, a file selection dialog is opened. 
+#: ui/profilecommentdisplay.cpp:65
+msgctxt "ProfileCommentDisplay|"
+msgid "Save attachment to disk.."
+msgstr "Simpan lampiran ke disk.."
+
+# Error dialog title text
+#: ui/profilecommentdisplay.cpp:92
+msgctxt "ProfileCommentDisplay|"
+msgid "Error"
+msgstr "Kesalahan"
+
+# Error dialog content text. Shown after user tried to access a profile comment and the comment could not be found
+#: ui/profilecommentdisplay.cpp:93
+msgctxt "ProfileCommentDisplay|"
+msgid "Article not found from local storage"
+msgstr "Artikel tidak ditemukan dari penyimpanan lokal"
+
+# Text field label text. The text field whose label this is will show number how many attachements there are in the comment. 
+#: ui/profilecommentitemdelegate.cpp:93
+msgctxt "ProfileCommentItemDelegate|"
+msgid "Attachments: "
+msgstr "Lampiran: "
+
+# Column view column title text. The column view in question lists profile comments. This text gives title to column that tells who sent the comment. 
+#: datamodel/profilecommentlistingmodel.cpp:219
+msgctxt "ProfileCommentListingModel|"
+msgid "Sender"
+msgstr "Pengirim"
+
+# Column view column title text. The column view in question lists profile comments. This text gives title to column that tells when comment was sent.
+#: datamodel/profilecommentlistingmodel.cpp:222
+msgctxt "ProfileCommentListingModel|"
+msgid "Time"
+msgstr "Waktu"
+
+# Column view column title text. The column view in question lists profile comments. This text gives title to column that tells subject of the comment. 
+#: datamodel/profilecommentlistingmodel.cpp:225
+msgctxt "ProfileCommentListingModel|"
+msgid "Subject"
+msgstr "Subjek"
+
+# Error message text. Shown inside a dialog after user tried to send a comment to operator who had sent a comment and it turns out that necessary encryption keys of the commenting operator are not found and the replying comment can't be sent. 
+#: datamodel/profilecommentmodel.cpp:67
+msgctxt "ProfileCommentModel|"
+msgid "Profile related to comment not found from database"
+msgstr "Profil terkait komentar tidak ditemukan dari basis data"
+
+# Context menu item text. This context-menu is shown when user right-clicks list of operators that is shown in dialog that is made for listing operators (who are readers of another profile)
+#: ui/profilereadersdialog.cpp:73
+msgctxt "ProfileReadersDialog|"
+msgid "View profile"
+msgstr "Lihat profil"
+
+# Column view column title text. The column view lists readers (operators) of another profile. 
+#: datamodel/profilereaderslistingmodel.cpp:174
+msgctxt "ProfileReadersListingModel|"
+msgid "Name or fingerprint of reader"
+msgstr "Nama atau sidik jari pembaca"
+
+# Error message text, displayed in dialog if audio hardware does not support the format. Should be rare occasion or then gross error like missing soundcard.
+#: call/ringtoneplayer.cpp:77
+msgctxt "RingtonePlayer|"
+msgid "raw audio format not supported by backend, cannot play audio."
+msgstr ""
+"Format audio mentah tidak didukung oleh backend, tidak dapat memutar audio."
+
+# Error message text shown in dialog if audio output API returned error in initialization. Should be rare error, or missing audio hardware .. or audio subsystem configuration error. 
+#: call/ringtoneplayer.cpp:93
+msgctxt "RingtonePlayer|"
+msgid "Could not initialize audio player."
+msgstr "Tidak dapat menginisialisasi pemutar audio."
+
+# Tool-tip text for search dialog textbox of words to search for
+#: ui/searchdisplay.cpp:54
+msgctxt "SearchDisplay|"
+msgid "Leave empty to search any recent documents"
+msgstr "Biarkan kosong untuk mencari dokumen terbaru apa pun"
+
+# Context menu item text. This context menu is shown when user right-clicks on top of search-results. This menu-item opens the currently-selected item from search results. 
+#: ui/searchdisplay.cpp:64
+msgctxt "SearchDisplay|"
+msgid "Open.."
+msgstr "Buka.."
+
+# Button text. When button is pressed, TCL program is started. 
+#: ui/tclPrograms.cpp:42
+msgctxt "TclProgramsDialog|"
+msgid "Evaluate"
+msgstr "Evaluasi"
+
+# Button text. If button is pressed, TCL program being executed is stopped.
+#: ui/tclPrograms.cpp:43
+msgctxt "TclProgramsDialog|"
+msgid "Stop program"
+msgstr "Hentikan program"
+
+# Button text for button that permanently removes TCL program from local library
+#: ui/tclPrograms.cpp:49
+msgctxt "TclProgramsDialog|"
+msgid "Delete program"
+msgstr "Hapus program"
+
+# Dialog title for dialog that asks user to type in name of TCL program. 
+#: ui/tclPrograms.cpp:99
+msgctxt "TclProgramsDialog|"
+msgid "TCL Program name"
+msgstr "Nama Program TCL"
+
+# Text-input label text. Text input will contain name of TCL program. 
+#: ui/tclPrograms.cpp:100
+msgctxt "TclProgramsDialog|"
+msgid "Name:"
+msgstr "Nama:"
+
+# Dialog title text for situation where user is about to delete a TCL program. Dialog includes question and yes+no buttons. 
+#: ui/tclPrograms.cpp:140
+msgctxt "TclProgramsDialog|"
+msgid "Deletion confirmation"
+msgstr "Konfirmasi penghapusan"
+
+# Dialog text from deletion-confirmation dialog
+#: ui/tclPrograms.cpp:141
+#, qt-format
+msgctxt "TclProgramsDialog|"
+msgid "Permanently delete program %1?"
+msgstr "Hapus program %1 secara permanen?"
+
+# Menu title text. This is the help menu. 
+#: textedit/textedit.cpp:127
+msgctxt "TextEdit|"
+msgid "Help"
+msgstr "Bantuan"
+
+# Menu-item text used in "help" menu. Selecting this item opens "about" dialog about Qt library. 
+#: textedit/textedit.cpp:129
+msgctxt "TextEdit|"
+msgid "About &Qt"
+msgstr "Tentang &Qt"
+
+# Window title text for container-window containing actions. It seems to me that this text actually does not appear anywhere in the UI due to way, how container-windows are used. 
+#: textedit/textedit.cpp:186
+msgctxt "TextEdit|"
+msgid "Edit Actions"
+msgstr "Edit Tindakan"
+
+# Menu text. This gives text to "file" menu of a text editor. 
+#: textedit/textedit.cpp:188
+msgctxt "TextEdit|"
+msgid "&File"
+msgstr "&Berkas"
+
+# Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "open a filesystem file"
+#: textedit/textedit.cpp:194
+msgctxt "TextEdit|"
+msgid "&Open..."
+msgstr "&Buka..."
+
+# Menu item text inside menu in text editor. When selected, the text being edited will be saved into local filesystem file. 
+#: textedit/textedit.cpp:203
+msgctxt "TextEdit|"
+msgid "&Save locally before send"
+msgstr "&Simpan secara lokal sebelum mengirim"
+
+# Menu item text inside menu in text editor. When selected, the text being edited will be saved into local filesystem file and user will be queried for file name. 
+#: textedit/textedit.cpp:210
+msgctxt "TextEdit|"
+msgid "Save locally &As..."
+msgstr "Simpan lokal &sebagai..."
+
+# Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "print"
+#: textedit/textedit.cpp:218
+msgctxt "TextEdit|"
+msgid "&Print..."
+msgstr "&Cetak..."
+
+# Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "open print preview"
+#: textedit/textedit.cpp:226
+msgctxt "TextEdit|"
+msgid "Print Preview..."
+msgstr "Pratinjau Cetak..."
+
+# Menu-item text. Used in file-menu for triggering "export as pdf" operation
+#: textedit/textedit.cpp:231
+msgctxt "TextEdit|"
+msgid "&Export PDF..."
+msgstr "&Ekspor PDF..."
+
+# Menu text for "edit" menu of text editor.
+#: textedit/textedit.cpp:244
+msgctxt "TextEdit|"
+msgid "&Edit"
+msgstr "&Edit"
+
+# Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "undo"
+#: textedit/textedit.cpp:249
+msgctxt "TextEdit|"
+msgid "&Undo"
+msgstr "&Urungkan"
+
+# Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "re-do"
+#: textedit/textedit.cpp:254
+msgctxt "TextEdit|"
+msgid "&Redo"
+msgstr "&Ulangi"
+
+# Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "cut" (to clipboard)
+#: textedit/textedit.cpp:261
+msgctxt "TextEdit|"
+msgid "Cu&t"
+msgstr "Po&tong"
+
+# Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "copy to clipboard"
+#: textedit/textedit.cpp:267
+msgctxt "TextEdit|"
+msgid "&Copy"
+msgstr "&Salin"
+
+# Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "paste from clipboard"
+#: textedit/textedit.cpp:273
+msgctxt "TextEdit|"
+msgid "&Paste"
+msgstr "&Tempel"
+
+# Menu item text inside text editor "edit" menu. After this menu-item is selected, a dialog is opened, prompting user to enter a link (URL) to be included in the text. 
+#: textedit/textedit.cpp:283
+msgctxt "TextEdit|"
+msgid "Insert link"
+msgstr "Sisipkan tautan"
+
+# Menu-item text for embedding an image
+#: textedit/textedit.cpp:287
+msgctxt "TextEdit|"
+msgid "Embed image"
+msgstr "Sematkan gambar"
+
+# Menu text. Gives name for a "format" menu inside a text editor. 
+#: textedit/textedit.cpp:294
+msgctxt "TextEdit|"
+msgid "F&ormat"
+msgstr "F&ormat"
+
+# Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "toggle bold text style"
+#: textedit/textedit.cpp:298
+msgctxt "TextEdit|"
+msgid "&Bold"
+msgstr "&Tebal"
+
+# Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "toggle italic text"
+#: textedit/textedit.cpp:310
+msgctxt "TextEdit|"
+msgid "&Italic"
+msgstr "&Miring"
+
+# Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "toggle underline"
+#: textedit/textedit.cpp:322
+msgctxt "TextEdit|"
+msgid "&Underline"
+msgstr "&Garis bawah"
+
+# Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "left-justify"
+#: textedit/textedit.cpp:341 textedit/textedit.cpp:347
+msgctxt "TextEdit|"
+msgid "&Left"
+msgstr "&Kiri"
+
+# Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "toggle centered text"
+#: textedit/textedit.cpp:342 textedit/textedit.cpp:346
+msgctxt "TextEdit|"
+msgid "C&enter"
+msgstr "T&engah"
+
+# Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "right-justify"
+#: textedit/textedit.cpp:343 textedit/textedit.cpp:345
+msgctxt "TextEdit|"
+msgid "&Right"
+msgstr "&Kanan"
+
+# Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "justify both right+left"
+#: textedit/textedit.cpp:349
+msgctxt "TextEdit|"
+msgid "&Justify"
+msgstr "&Rata kiri-kanan"
+
+# Text editor action text. This text will appear both as menu-item text and as tool-tip text of a button that has icon. The action performed under this title is "color selection"
+#: textedit/textedit.cpp:376
+msgctxt "TextEdit|"
+msgid "&Color..."
+msgstr "&Warna..."
+
+# Combobox item text. The combobox is used to select text style. The text style selected with this text is "standard"
+#: textedit/textedit.cpp:383
+msgctxt "TextEdit|"
+msgid "Standard"
+msgstr "Standar"
+
+# Combobox item text. The combobox is used to select text style. The text style selected with this text is "bullet list (disc)"
+#: textedit/textedit.cpp:384
+msgctxt "TextEdit|"
+msgid "Bullet List (Disc)"
+msgstr "Daftar Berpoin (Cakram)"
+
+# Combobox item text. The combobox is used to select text style. The text style selected with this text is "bullet list (circle)"
+#: textedit/textedit.cpp:385
+msgctxt "TextEdit|"
+msgid "Bullet List (Circle)"
+msgstr "Daftar Berpoin (Lingkaran)"
+
+# Combobox item text. The combobox is used to select text style. The text style selected with this text is "bullet list (square)"
+#: textedit/textedit.cpp:386
+msgctxt "TextEdit|"
+msgid "Bullet List (Square)"
+msgstr "Daftar Berpoin (Persegi)"
+
+# Combobox item text. The combobox is used to select text style. The text style selected with this text is "ordered list (decimal)"
+#: textedit/textedit.cpp:387
+msgctxt "TextEdit|"
+msgid "Ordered List (Decimal)"
+msgstr "Daftar Berurutan (Desimal)"
+
+# Combobox item text. The combobox is used to select text style. The text style selected with this text is "ordered list (alpha lower)"
+#: textedit/textedit.cpp:388
+msgctxt "TextEdit|"
+msgid "Ordered List (Alpha lower)"
+msgstr "Daftar Berurutan (Alfa kecil)"
+
+# Combobox item text. The combobox is used to select text style. The text style selected with this text is "ordered list (alpha upper)"
+#: textedit/textedit.cpp:389
+msgctxt "TextEdit|"
+msgid "Ordered List (Alpha upper)"
+msgstr "Daftar Berurutan (Alfa besar)"
+
+# Combobox item text. The combobox is used to select text style. The text style selected with this text is "ordered list (roman lower)"
+#: textedit/textedit.cpp:390
+msgctxt "TextEdit|"
+msgid "Ordered List (Roman lower)"
+msgstr "Daftar Berurutan (Romawi kecil)"
+
+# Combobox item text. The combobox is used to select text style. The text style selected with this text is "ordered list (roman upper)"
+#: textedit/textedit.cpp:391
+msgctxt "TextEdit|"
+msgid "Ordered List (Roman upper)"
+msgstr "Daftar Berurutan (Romawi besar)"
+
+# Warning dialog title text. This dialog is shown if user tries to exit without saving her text. 
+#: textedit/textedit.cpp:442
+msgctxt "TextEdit|"
+msgid "Application"
+msgstr "Aplikasi"
+
+# Warning dialog title content text. Text asks what to do with modifications. The dialog has buttons Save,Discard and Cancel and this text is the question. 
+#: textedit/textedit.cpp:443
+msgctxt "TextEdit|"
+msgid ""
+"The document has been modified.\n"
+"Do you want to save your changes?"
+msgstr ""
+"Dokumen telah diubah.\n"
+"Apakah Anda ingin menyimpan perubahan Anda?"
+
+# File selection dialog title text. Dialog will prompt user to select a document for opening. 
+#: textedit/textedit.cpp:467
+msgctxt "TextEdit|"
+msgid "Open File..."
+msgstr "Buka Berkas..."
+
+# Text for file selection filter field to be used inside file selection dialog. There are 2 parts, separated by ";;" and those semicolons must be left in place. Also the filter parts like (*.htm) must not be edited. The explanations like "HTML-Files" may be edited.
+#: textedit/textedit.cpp:468
+msgctxt "TextEdit|"
+msgid "HTML-Files (*.htm *.html);;All Files (*)"
+msgstr "Berkas HTML (*.htm *.html);;Semua Berkas (*)"
+
+# File selection dialog title text. Dialog in question prompts user to select name for file to be persisted. 
+#: textedit/textedit.cpp:485
+msgctxt "TextEdit|"
+msgid "Save as..."
+msgstr "Simpan sebagai..."
+
+# Text for file selection filter field to be used inside file selection dialog. There are 3 parts, separated by ";;" and those semicolons must be left in place. Also the filter parts like (*.odt) must not be edited. The explanations like "ODF-files" may be edited.
+#: textedit/textedit.cpp:486
+msgctxt "TextEdit|"
+msgid "ODF files (*.odt);;HTML-Files (*.htm *.html);;All Files (*)"
+msgstr "Berkas ODF (*.odt);;Berkas HTML (*.htm *.html);;Semua Berkas (*)"
+
+# Dialog title text. The dialog is printer dialog asking user how to print the text currently in editor. 
+#: textedit/textedit.cpp:501
+msgctxt "TextEdit|"
+msgid "Print Document"
+msgstr "Cetak Dokumen"
+
+# File selection dialog title text. Dialog will prompt user to select a document for opening.
+#: textedit/textedit.cpp:559
+msgctxt "TextEdit|"
+msgid "Open File"
+msgstr "Buka Berkas"
+
+# Text for file selection filter field to be used inside file selection dialog. The filter parts like (*.odt) must not be edited. The explanations like "Files" may be edited.
+#: textedit/textedit.cpp:561
+msgctxt "TextEdit|"
+msgid "Files (*.*)"
+msgstr "Berkas (*.*)"
+
+# Error dialog title text. 
+#: textedit/textedit.cpp:566
+msgctxt "TextEdit|"
+msgid "Error"
+msgstr "Kesalahan"
+
+# Error dialog content text. 
+#: textedit/textedit.cpp:567
+msgctxt "TextEdit|"
+msgid "Can't load image"
+msgstr "Tidak dapat memuat gambar"
+
+# Error message  displayed inside error dialog after user tried to select for operation a file whose size greatly exceeds file size limit.
+#: textedit/textedit.cpp:621 textedit/textedit.cpp:631
+msgctxt "TextEdit|"
+msgid "File way too big"
+msgstr "Berkas terlalu besar sekali"
+
+# Button text for "incoming call" dialog. When user hits the button, call is answered. 
+#: net/voicecallengine.cpp:525
+msgctxt "VoiceCallEngine|"
+msgid "Accept"
+msgstr "Terima"
+
+# Button text for "incoming call" dialog. When user hits the button, incoming call is rejected. 
+#: net/voicecallengine.cpp:533
+msgctxt "VoiceCallEngine|"
+msgid "Reject"
+msgstr "Tolak"
+
+# Button text for "ongoing call" dialog. When button is hit, call is closed. 
+#: net/voicecallengine.cpp:535
+msgctxt "VoiceCallEngine|"
+msgid "Close"
+msgstr "Tutup"
+
+# Tooltip text. Shown in listing of ongoing calls. This tooltip explains "operator address" column of the display. The text explained is SHA1-digest or operator name if known. 
+#: net/voicecallengine.cpp:551
+msgctxt "VoiceCallEngine|"
+msgid "Actual network address (SHA1) of the peer operator"
+msgstr "Alamat jaringan (SHA1) sebenarnya dari operator peer"
+
+# Tooltip text for list display that lists ongoing voice calls. The text explained is (IP) address of the remote node of the voice call participant. 
+#: net/voicecallengine.cpp:554
+msgctxt "VoiceCallEngine|"
+msgid "Network address of the remote node"
+msgstr "Alamat jaringan node jarak jauh"
+
+# Column header text for display that lists ongoing calls. This gives header text for column that shows name of the call participant
+#: net/voicecallengine.cpp:564
+msgctxt "VoiceCallEngine|"
+msgid "Operator"
+msgstr "Operator"
+
+# Column header text for display that lists ongoing calls. This gives header text for column that shows network address of the call participant
+#: net/voicecallengine.cpp:567
+msgctxt "VoiceCallEngine|"
+msgid "Node address"
+msgstr "Alamat node"
+
+# Column header text for display that lists ongoing calls. This gives header text for column that shows state of the call (like open, closed, ringing etc)
+#: net/voicecallengine.cpp:570
+msgctxt "VoiceCallEngine|"
+msgid "Call status"
+msgstr "Status panggilan"
+
+# Column header text for display that lists ongoing calls. This gives header text for column containing buttons for accepting, rejecting and ending a call. 
+#: net/voicecallengine.cpp:573
+msgctxt "VoiceCallEngine|"
+msgid "Controls"
+msgstr "Kontrol"
+
+# Column header text for display that lists ongoing calls. This gives header text for column that shows name column containing button for ending an ongoing call. 
+#: net/voicecallengine.cpp:576
+msgctxt "VoiceCallEngine|"
+msgid "Ending"
+msgstr "Mengakhiri"
+
+# Call status text. When making a new outgoing call, this is status for new call that is not answered yet. 
+#: net/voicecallengine.cpp:613
+msgctxt "VoiceCallEngine|"
+msgid "Initializing"
+msgstr "Menginisialisasi"
+
+# Call status text. When receiving a new incoming call, this is status for new call that is not answered yet.
+#: net/voicecallengine.cpp:616
+msgctxt "VoiceCallEngine|"
+msgid "Incoming"
+msgstr "Masuk"
+
+# Call status text. When voice call is in progress, this is the status.
+#: net/voicecallengine.cpp:619
+msgctxt "VoiceCallEngine|"
+msgid "Open"
+msgstr "Terbuka"
+
+# Call status text. When voice call is marked to be closed, this is its status.
+#: net/voicecallengine.cpp:622
+msgctxt "VoiceCallEngine|"
+msgid "Closing"
+msgstr "Menutup"
+
+# Call status text. When voice call is closed, this is the status text.
+#: net/voicecallengine.cpp:625
+msgctxt "VoiceCallEngine|"
+msgid "Closed"
+msgstr "Tertutup"
+
+# Call status text. When voice call attempt ends in error, this is text displayed.
+#: net/voicecallengine.cpp:628
+msgctxt "VoiceCallEngine|"
+msgid "Error"
+msgstr "Kesalahan"
+
+# Call status text. When there is no voice call to display, this text may be displayed instead. 
+#: net/voicecallengine.cpp:631
+msgctxt "VoiceCallEngine|"
+msgid "No call"
+msgstr "Tidak ada panggilan"
+
+# Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "general purpose" excuse, when no detailed reason is know.
+#: net/voicecallengine.cpp:834
+msgctxt "VoiceCallEngine|"
+msgid "Audio call is not possible"
+msgstr "Panggilan audio tidak memungkinkan"
+
+# Tooltip text for button that initiates a new call. This gives an excuse why button is not dimmed and call is possible. 
+#: net/voicecallengine.cpp:840
+msgctxt "VoiceCallEngine|"
+msgid "Audio call is possible"
+msgstr "Panggilan audio memungkinkan"
+
+# Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "SHA1 digest of operator is not known"
+#: net/voicecallengine.cpp:847
+msgctxt "VoiceCallEngine|"
+msgid "Audio call is not possible: operator address unknown"
+msgstr "Panggilan audio tidak memungkinkan: alamat operator tidak diketahui"
+
+# Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "operators profile not found (from local database)"
+#: net/voicecallengine.cpp:853
+msgctxt "VoiceCallEngine|"
+msgid "Audio call is not possible: operator profile not found"
+msgstr "Panggilan audio tidak memungkinkan: profil operator tidak ditemukan"
+
+# Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "there is no network address included in node information of the profile"
+#: net/voicecallengine.cpp:856
+msgctxt "VoiceCallEngine|"
+msgid "Audio call is not possible: operator has no node information in profile"
+msgstr ""
+"Panggilan audio tidak memungkinkan: operator tidak memiliki informasi node "
+"dalam profil"
+
+# Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "there is no (ipv4) network connection to node"
+#: net/voicecallengine.cpp:875
+#, qt-format
+msgctxt "VoiceCallEngine|"
+msgid "Audio call is not possible: operators IPv4 address %1 not connected"
+msgstr ""
+"Panggilan audio tidak memungkinkan: alamat IPv4 operator %1 tidak tersambung"
+
+# Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "there is no (ipv6) network connection to node"
+#: net/voicecallengine.cpp:882
+#, qt-format
+msgctxt "VoiceCallEngine|"
+msgid "Audio call is not possible: operators IPv6 address %1 not connected"
+msgstr ""
+"Panggilan audio tidak memungkinkan: alamat IPv6 operator %1 tidak tersambung"
+
+# Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is protocol mismatch. 
+#: net/voicecallengine.cpp:893
+msgctxt "VoiceCallEngine|"
+msgid ""
+"Audio call is not possible: local node has no IPv6 address, operator has "
+"only IPv6 addr"
+msgstr ""
+"Panggilan audio tidak memungkinkan: node lokal tidak memiliki alamat IPv6, "
+"operator hanya memiliki alamat IPv6"
+
+# Tooltip text for button that initiates a new call. This gives an excuse why button is dimmed and call not possible. This excuse is "operator does not publish network address of his node"
+#: net/voicecallengine.cpp:895
+msgctxt "VoiceCallEngine|"
+msgid "Audio call is not possible: operator does not publish network address"
+msgstr ""
+"Panggilan audio tidak memungkinkan: operator tidak memublikasikan alamat "
+"jaringan"
+
+# Dialog title text for "about" dialog.
+#: ui/aboutDialog.ui:26
+msgctxt "aboutDialog|"
+msgid "About classified ads"
+msgstr "Tentang iklan baris"
+
+# 1st line of text inside "about" dialog, placed next to the turle logo. This text is then followed by longer explanation detail why this program is and how. This is kind of title for the longer explanation. 
+#: ui/aboutDialog.ui:100
+msgctxt "aboutDialog|"
+msgid " Classified ads is a program for online communications"
+msgstr " Iklan baris adalah program untuk komunikasi online"
+
+# The long explanation of classified ads inside about-dialog. Note that this text must be valid html. Needs to start with <html> and end with </html> etc. This is easiest to edit like this: copy-paste the content in to a file, say /tmp/about.html. Then either open your favourite html-editor or open classified ads. In classified ads you can start constructing an ad, select from file-menu "open.." and select this file  ;do editing and save from file-menu. The saved file is immediately in correct format to be be copy-pasted into contents of this field.  
+#: ui/aboutDialog.ui:163
+msgctxt "aboutDialog|"
+msgid ""
+"<html><head/><body><p>Classified ads is free software. You may use, copy and "
+"modify it if you follow the conditions given in GNU lesser general public "
+"license version 2.1.</p><p>Classified ads is copyright © Antti Järvinen "
+"2013. </p><p>Main feature of the program is an &quot;advertisement&quot; - a "
+"piece of text belonging to selected classification. There are several "
+"pre-programmed classifications and operators are encouraged to invent new "
+"classifications for new purposes ; the selection boxes in "
+"classification-selection tab are editable. Other operators may then view the "
+"ads, publicly comment the ads, the operators and also send private messages "
+"to each others. </p><p>Another important feature of classified ads is that "
+"it is designed to be operated without any centralized server infrastructure "
+"- it is you and other operators whose computers store and transmit all the "
+"content visible inside classified ads. To get connected you need to know "
+"address of at least one existing computer (a <span style=\" "
+"font-style:italic;\">node</span>) so if your network connection dialog shows "
+"no connections, you may need to contact someone you know is using the "
+"software and ask for address of her node to make initial contact with the "
+"network. Once connected the software should maintain list of addresses of "
+"other nodes. </p><p>Due to its server-less design the whole system works "
+"best if you leave the program running always when you have your computer "
+"powered on ; while processing other operators requests it will hog some "
+"computing resources and generate network traffic also when you are not "
+"actively using the program yourself - others are. </p><p>Operators concerned "
+"about privacy of the content should be aware of following items:</p><p>- "
+"Data storage implementation is variant of <span style=\" "
+"font-style:italic;\">distributed hash table</span>, practically meaning that "
+"content posted by you gets copied some more-or-less random nodes in the "
+"network. </p><p>- Any data item (ad, comment, binary file, private message "
+"etc.) is digitally signed. This makes it more difficult to try to pose as "
+"another operator. </p><p>- Operators are reliably identified only by the "
+"SHA1 hash of their generated encryption keys. SHA1 hash is displayed when "
+"viewing details of operator profiles. Other identifying information like "
+"nickname or city name are entered by operator himself and can be anything. "
+"The operator profile, as it is published to the network, is also signed with "
+"the encryption keys of the operator - if you identify an operator by her "
+"SHA1 hash, you have a mechanism for identifying if any content inside "
+"classified ads is posted by this operator or not. Classified ads internally "
+"checks for digital signatures, throwing away content that fails signature "
+"check and tries to provide SHA1 hash of the operator who posted the "
+"content.</p><p>- All classified ads are posted as plain text, no encryption "
+"is used. All public profiles are posted as plain text, no encryption is "
+"used. If profile is made private, it is encrypted to be readable only by "
+"selected other profiles. This applies also to binary files shared by "
+"operators private profiles and comments about private profiles after the "
+"profile was made private (previously plain-text comments or files don't get "
+"magically encrypted afterwards). Private messages are encrypted always to be "
+"readable only by recipient and sender. Attachments follow the privacy rules "
+"of the document, they're attached to. </p><p>- As is the case with all "
+"internet-communications, this small fact is true for classified ads too : "
+"<span style=\" font-style:italic;\">once something gets posted online, there "
+"is no way to remove it from network</span>. </p><p>- Data encryption "
+"implementation for content is OpenSSL, relying mostly on algorithms RSA-2048 "
+"and AES-256. </p><p>- While connections between nodes are implemented using "
+"SSL, other nodes inside network do get to know what content is being "
+"transmitted in neighboring nodes. While there is no central point for easily "
+"collecting this information about particular classification or operator, "
+"operators still should expect no privacy regarding their doings online, "
+"although some effort has been been put into hiding <span style=\" "
+"font-style:italic;\">contents</span> of private messages and private "
+"profiles. </p><p>Programming was (mostly) done by Antti Järvinen, artwork by "
+"Meeri Järvinen.</p><p>This product includes software developed by the "
+"OpenSSL Project for use in the OpenSSL Toolkit "
+"(http://www.openssl.org/).</p><p>Happy "
+"advertising!</p><p><br/></p></body></html>"
+msgstr ""
+"<html><head/><body><p>Classified ads adalah perangkat lunak bebas. Anda "
+"boleh menggunakan, menyalin, dan memodifikasinya jika Anda mengikuti "
+"ketentuan yang diberikan dalam GNU Lesser General Public License versi 2.1.</"
+"p><p>Classified ads memiliki hak cipta © Antti Järvinen 2013. </p><p>Fitur "
+"utama program ini adalah sebuah &quot;iklan&quot; - sepotong teks yang "
+"termasuk dalam klasifikasi yang dipilih. Ada beberapa klasifikasi yang sudah "
+"diprogram sebelumnya dan operator didorong untuk menciptakan klasifikasi "
+"baru untuk keperluan baru; kotak pilihan pada tab pemilihan klasifikasi "
+"dapat diedit. Operator lain kemudian dapat melihat iklan, memberi komentar "
+"publik pada iklan, pada operator, dan juga saling mengirim pesan pribadi. </"
+"p><p>Fitur penting lain dari classified ads adalah bahwa ia dirancang untuk "
+"dioperasikan tanpa infrastruktur server terpusat - Anda dan operator lainlah "
+"yang komputernya menyimpan dan mentransmisikan semua konten yang terlihat di "
+"dalam classified ads. Untuk tersambung Anda perlu mengetahui alamat "
+"setidaknya satu komputer yang sudah ada (sebuah <span style=\" font-"
+"style:italic;\">node</span>) jadi jika dialog koneksi jaringan Anda tidak "
+"menunjukkan koneksi apa pun, Anda mungkin perlu menghubungi seseorang yang "
+"Anda ketahui menggunakan perangkat lunak ini dan meminta alamat node "
+"miliknya untuk melakukan kontak awal dengan jaringan. Setelah tersambung "
+"perangkat lunak seharusnya mempertahankan daftar alamat node lain. </p><p>"
+"Karena desainnya tanpa server, seluruh sistem bekerja paling baik jika Anda "
+"membiarkan program tetap berjalan setiap kali komputer Anda menyala; saat "
+"memproses permintaan operator lain program ini akan menghabiskan sebagian "
+"sumber daya komputasi dan menghasilkan lalu lintas jaringan juga ketika Anda "
+"tidak sedang aktif menggunakan program sendiri - operator lain yang "
+"menggunakannya. </p><p>Operator yang peduli tentang privasi konten harus "
+"menyadari hal-hal berikut:</p><p>- Implementasi penyimpanan data adalah "
+"varian dari <span style=\" font-style:italic;\">distributed hash table</span>"
+", yang secara praktis berarti bahwa konten yang Anda kirimkan disalin ke "
+"beberapa node yang kurang-lebih acak di jaringan. </p><p>- Setiap item data "
+"(iklan, komentar, berkas biner, pesan pribadi, dll.) ditandatangani secara "
+"digital. Hal ini membuat lebih sulit untuk mencoba menyamar sebagai operator "
+"lain. </p><p>- Operator diidentifikasi secara andal hanya melalui hash SHA1 "
+"dari kunci enkripsi yang mereka hasilkan. Hash SHA1 ditampilkan saat melihat "
+"detail profil operator. Informasi pengenal lain seperti nama panggilan atau "
+"nama kota dimasukkan oleh operator sendiri dan dapat berupa apa saja. Profil "
+"operator, sebagaimana dipublikasikan ke jaringan, juga ditandatangani dengan "
+"kunci enkripsi operator tersebut - jika Anda mengidentifikasi operator "
+"melalui hash SHA1-nya, Anda memiliki mekanisme untuk mengidentifikasi apakah "
+"konten apa pun di dalam classified ads diposting oleh operator ini atau "
+"tidak. Classified ads secara internal memeriksa tanda tangan digital, "
+"membuang konten yang gagal pemeriksaan tanda tangan dan berusaha menyediakan "
+"hash SHA1 dari operator yang memosting konten.</p><p>- Semua iklan "
+"classified ads diposting sebagai teks biasa, tidak ada enkripsi yang "
+"digunakan. Semua profil publik diposting sebagai teks biasa, tidak ada "
+"enkripsi yang digunakan. Jika profil dibuat privat, profil tersebut "
+"dienkripsi agar hanya dapat dibaca oleh profil terpilih lainnya. Hal ini "
+"juga berlaku untuk berkas biner yang dibagikan oleh profil privat operator "
+"serta komentar tentang profil privat setelah profil dibuat privat (komentar "
+"atau berkas teks biasa sebelumnya tidak akan secara ajaib dienkripsi "
+"setelahnya). Pesan pribadi selalu dienkripsi agar hanya dapat dibaca oleh "
+"penerima dan pengirim. Lampiran mengikuti aturan privasi dokumen tempat "
+"lampiran itu disertakan. </p><p>- Seperti halnya semua komunikasi internet, "
+"fakta kecil ini juga benar untuk classified ads: <span style=\" font-"
+"style:italic;\">begitu sesuatu diposting online, tidak ada cara untuk "
+"menghapusnya dari jaringan</span>. </p><p>- Implementasi enkripsi data untuk "
+"konten adalah OpenSSL, yang sebagian besar bergantung pada algoritma RSA-"
+"2048 dan AES-256. </p><p>- Walaupun koneksi antar node diimplementasikan "
+"menggunakan SSL, node lain di dalam jaringan tetap dapat mengetahui konten "
+"apa yang sedang ditransmisikan pada node-node tetangga. Walaupun tidak ada "
+"titik pusat untuk dengan mudah mengumpulkan informasi ini tentang "
+"klasifikasi atau operator tertentu, operator tetap harus mengharapkan tidak "
+"ada privasi terkait aktivitas mereka secara online, meskipun telah dilakukan "
+"beberapa upaya untuk menyembunyikan <span style=\" font-style:italic;\">isi</"
+"span> pesan pribadi dan profil privat. </p><p>Pemrograman (sebagian besar) "
+"dilakukan oleh Antti Järvinen, karya seni oleh Meeri Järvinen.</p><p>Produk "
+"ini mencakup perangkat lunak yang dikembangkan oleh OpenSSL Project untuk "
+"digunakan dalam OpenSSL Toolkit (http://www.openssl.org/).</p><p>Selamat "
+"beriklan!</p><p><br/></p></body></html>"
+
+# Dialog title text. Dialog in question produces list of file attachments. 
+#: ui/attachmentListDialog.ui:26
+msgctxt "attachmentListDialog|"
+msgid "List of attached files"
+msgstr "Daftar berkas terlampir"
+
+# Dialog title text for call status dialog.
+#: ui/callStatusDialog.ui:26
+msgctxt "callStatusDialog|"
+msgid "Call status"
+msgstr "Status panggilan"
+
+# Text in call status dialog for slider that shows audio volume of microphone
+#: ui/callStatusDialog.ui:49
+msgctxt "callStatusDialog|"
+msgid "Input level"
+msgstr "Tingkat input"
+
+# Title in call status dialog a column-list that lists ongoing calls
+#: ui/callStatusDialog.ui:65
+msgctxt "callStatusDialog|"
+msgid "Audio calls"
+msgstr "Panggilan audio"
+
+# Text in call status dialog for slider that shows audio volume of speaker 
+#: ui/callStatusDialog.ui:90
+msgctxt "callStatusDialog|"
+msgid "Output level"
+msgstr "Tingkat output"
+
+# Dialog title text. Purpose of the dialog is to let user change properties of a frequent contact in contact-list. 
+#: ui/editContact.ui:26
+msgctxt "editContactDialog|"
+msgid "Edit a contact"
+msgstr "Edit kontak"
+
+# Text field label in contact-editing dialog. This gives label for field that shows SHA1 fingerprint of the operator whose data is being edited
+#: ui/editContact.ui:39
+msgctxt "editContactDialog|"
+msgid "Address (SHA1) of contact"
+msgstr "Alamat (SHA1) kontak"
+
+# Text field label in contact-editing dialog. This gives label for field that shows nickname of the operator whose data is being edited
+#: ui/editContact.ui:53
+msgctxt "editContactDialog|"
+msgid "Local nickname"
+msgstr "Nama panggilan lokal"
+
+# Tooltip text of a checkbox label in contact-editing dialog. The checkbox is one that controls statement of trustworthniness of the operator whose data is being edited. Note html format.
+#: ui/editContact.ui:65
+msgctxt "editContactDialog|"
+msgid ""
+"<html><head/><body><p>Settings some trusted is public information to readers "
+"of your profile</p></body></html>"
+msgstr ""
+"<html><head/><body><p>Mengatur beberapa pihak tepercaya adalah informasi "
+"publik bagi pembaca profil Anda</p></body></html>"
+
+# Label of a checkbox in contact-editing dialog. The checkbox is one that controls statement of trustworthniness of the operator whose data is being edited. 
+#: ui/editContact.ui:68
+msgctxt "editContactDialog|"
+msgid "This contact is to be publicly trusted in transactions"
+msgstr "Kontak ini akan dipercaya secara publik dalam transaksi"
+
+# Name of front widget. Wild guess is that this text actually does not appear anywhere in the UI.
+#: frontWidget.ui:14
+msgctxt "frontWidget|"
+msgid "Form"
+msgstr "Formulir"
+
+# Tab title text in front widget. When user clicks in this tab, the view is switched to one, that lists classified ads.  
+#: frontWidget.ui:39
+msgctxt "frontWidget|"
+msgid "Classified ads"
+msgstr "Iklan baris"
+
+# Prompt text next "search" button. User is supposed to enter search criteria for classified ads and then click "search" ; this is prompt text for this behaviour. 
+#: frontWidget.ui:67
+msgctxt "frontWidget|"
+msgid "Search for classified ads about"
+msgstr "Cari iklan baris tentang"
+
+# Prompt text very next to "search" button. After user has clicked the button, he is supposed to be viewing list of classified ads matching the search criteria. 
+#: frontWidget.ui:74
+msgctxt "frontWidget|"
+msgid "Perform"
+msgstr "Jalankan"
+
+# This part of search-criteria phrase. Normally the phrase reads something like "Buying of cars in finland" and this word is the 2nd word in that phrase. 
+#: frontWidget.ui:97
+msgctxt "frontWidget|"
+msgid "of"
+msgstr "dari"
+
+# This part of search-criteria phrase. Normally the phrase reads something like "Buying of cars in finland" and this word is the 4th word in that phrase. 
+#: frontWidget.ui:113
+msgctxt "frontWidget|"
+msgid "in"
+msgstr "di"
+
+# Button text for button used to search for classified ads. This button has text "perform" just next to it so user sees actually 2 words "perform search" where the "perform" is in separate label above the button, and then is the text of this button. 
+#: frontWidget.ui:123
+msgctxt "frontWidget|"
+msgid "Search"
+msgstr "Cari"
+
+# Tab title text in front widget for tab that shows details of operators own profile (==personal details)
+#: frontWidget.ui:161
+msgctxt "frontWidget|"
+msgid "My profile"
+msgstr "Profil saya"
+
+# Text field label in "operators profile" tab. The field in questions shows SHA1-digest e.g. the real address of the operator. 
+#: frontWidget.ui:177 frontWidget.ui:937
+msgctxt "frontWidget|"
+msgid "Profile address"
+msgstr "Alamat profil"
+
+# Text field label in "operators profile" tab. The field in questions shows nickname of the operator 
+#: frontWidget.ui:208 frontWidget.ui:643
+msgctxt "frontWidget|"
+msgid "Nickname"
+msgstr "Nama panggilan"
+
+# Text field label in "operators profile" tab. The field in questions shows "hello world" text of the operator. 
+#: frontWidget.ui:225 frontWidget.ui:669
+msgctxt "frontWidget|"
+msgid "Greeting text"
+msgstr "Teks sapaan"
+
+# Tooltip-text of a text field in "operators profile" tab. The field in questions shows greeting text of the operator.  
+#: frontWidget.ui:232
+msgctxt "frontWidget|"
+msgid "For the rest of the world. "
+msgstr "Untuk seluruh dunia. "
+
+# Text field label in "operators profile" tab. The field in questions shows given name (first name) of the operator.
+#: frontWidget.ui:239 frontWidget.ui:695
+msgctxt "frontWidget|"
+msgid "First name"
+msgstr "Nama depan"
+
+# Text field label in "operators profile" tab. The field in questions shows family name of the operator
+#: frontWidget.ui:253 frontWidget.ui:715
+msgctxt "frontWidget|"
+msgid "Family name"
+msgstr "Nama keluarga"
+
+# Text field label in "operators profile" tab. The field in questions shows place of residence of the operator
+#: frontWidget.ui:263
+msgctxt "frontWidget|"
+msgid "City/country"
+msgstr "Kota/negara"
+
+# Text field label in "operators profile" tab. The field in questions shows address of bitcoin wallet of the operator. 
+#: frontWidget.ui:273
+msgctxt "frontWidget|"
+msgid "BTC address"
+msgstr "Alamat BTC"
+
+# Tooltip-text for a text field "operators profile" tab. The field in questions shows address of bitcoin wallet of the operator. 
+#: frontWidget.ui:280
+msgctxt "frontWidget|"
+msgid "If you wish to receive payments via BTC, include your BTC address too."
+msgstr ""
+"Jika Anda ingin menerima pembayaran melalui BTC, sertakan juga alamat BTC "
+"Anda."
+
+# Text field label in "operators profile" tab. The field in questions shows what the user has to say about state of the world.  
+#: frontWidget.ui:287 frontWidget.ui:799
+msgctxt "frontWidget|"
+msgid "State of the world"
+msgstr "Keadaan dunia"
+
+# Tool-tip text of a field in "operators profile" tab. The field in questions shows what operator has to say about state of the world. 
+#: frontWidget.ui:294
+msgctxt "frontWidget|"
+msgid "Longer explanation about state of the world"
+msgstr "Penjelasan lebih panjang tentang keadaan dunia"
+
+# Checkbox text in "my profile" tab. The checkbox is question is a toggle for public/private status of the profile. When checkbox is checked, the profile will be made private. 
+#: frontWidget.ui:301
+msgctxt "frontWidget|"
+msgid "Profile is private"
+msgstr "Profil bersifat privat"
+
+# Button text inside "My profile" tab. Clicking the button opens a dialog that prompts user to select list of operators that can read his profile that he has previously marked as private (e.g. accessible only to listed readers)
+#: frontWidget.ui:308
+msgctxt "frontWidget|"
+msgid "Readers of profile"
+msgstr "Pembaca profil"
+
+# Explanation text inside "my profile" tab. 
+#: frontWidget.ui:315
+msgctxt "frontWidget|"
+msgid "None of the fields is mandatory"
+msgstr "Tidak ada kolom yang wajib diisi"
+
+# Text field label inside "my profile" tab. The field whose label this is shows the time when profile was last updated. 
+#: frontWidget.ui:322
+msgctxt "frontWidget|"
+msgid "Time of last update"
+msgstr "Waktu pembaruan terakhir"
+
+# Button text for button inside "my profile" tab. By clicking this button user makes her edits known to rest of the world. 
+#: frontWidget.ui:342
+msgctxt "frontWidget|"
+msgid "Publish"
+msgstr "Publikasikan"
+
+# Button text for button inside "my profile" tab. By clicking this button user discards her edits. 
+#: frontWidget.ui:355
+msgctxt "frontWidget|"
+msgid "Revert changes"
+msgstr "Kembalikan perubahan"
+
+# Text label on top of "my profile" tab. Below this label is a list of text fields and other stuff that user may edit regarding herself.
+#: frontWidget.ui:369
+msgctxt "frontWidget|"
+msgid "Details of operator profile:"
+msgstr "Rincian profil operator:"
+
+# Text in image-placeholder inside "my profile" tab. When user has not selected any image for her profile details, this text is shown in place of the image. Clicking on text gives user option to select the image file for profile. 
+#: frontWidget.ui:401
+msgctxt "frontWidget|"
+msgid ""
+"\n"
+"\n"
+"Click \n"
+"to \n"
+"Add\n"
+"Image"
+msgstr ""
+"\n"
+"\n"
+"Klik \n"
+"untuk \n"
+"Menambahkan\n"
+"Gambar"
+
+# Title text inside "my profile" tab. Title text is for a list of files that user is currently sharing with other users. 
+#: frontWidget.ui:425 frontWidget.ui:845
+msgctxt "frontWidget|"
+msgid "Shared files"
+msgstr "Berkas bersama"
+
+# Title text inside "my profile" tab. Title text is for a list of comments made by other users regarding operators profile.
+#: frontWidget.ui:461 frontWidget.ui:897
+msgctxt "frontWidget|"
+msgid "Latest comments"
+msgstr "Komentar terbaru"
+
+# Tab title text. When this tab is opened, user is shown a view of his frequent contacts. 
+#: frontWidget.ui:504
+msgctxt "frontWidget|"
+msgid "Contacts"
+msgstr "Kontak"
+
+# Button text inside "contacts" tab. Clicking this button opens a dialog prompting user to enter details of operator to be added into contact list
+#: frontWidget.ui:536
+msgctxt "frontWidget|"
+msgid "Add contact"
+msgstr "Tambah kontak"
+
+# Button text inside "contacts" tab. Clicking this button removes a contact from list.
+#: frontWidget.ui:543
+msgctxt "frontWidget|"
+msgid "Remove contact"
+msgstr "Hapus kontak"
+
+# Button text inside "contacts" tab. Clicking this button displays details of the selected contact. 
+#: frontWidget.ui:550
+msgctxt "frontWidget|"
+msgid "View profile"
+msgstr "Lihat profil"
+
+# Button text inside "contacts" tab. Clicking this button opens a dialog prompting user to send a message selected contact. 
+#: frontWidget.ui:557
+msgctxt "frontWidget|"
+msgid "Send message"
+msgstr "Kirim pesan"
+
+# Tab text in front widget. When user selects this tab, he is presented with list of his private correspondence. 
+#: frontWidget.ui:569
+msgctxt "frontWidget|"
+msgid "Private messages"
+msgstr "Pesan pribadi"
+
+# Tab text in front widget. This tab shows details of some other operator of classified ads. Normally this text is replaced with nickname of the operator but if nothing like this is available, this text may be shown, this is the "default text". 
+#: frontWidget.ui:624
+msgctxt "frontWidget|"
+msgid "Profile details"
+msgstr "Rincian profil"
+
+# Label text of a text-field. The text-field in question shows place of residence of operator whose details are on display.
+#: frontWidget.ui:741
+msgctxt "frontWidget|"
+msgid "City/Country"
+msgstr "Kota/Negara"
+
+# Label text of a text-field. The text-field in question shows bitcoin wallet address of operator whose details are on display.
+#: frontWidget.ui:767
+msgctxt "frontWidget|"
+msgid "BTC Addr"
+msgstr "Alamat BTC"
+
+# Text for image-placeholder inside "profile details" tab. When some particular operator has not selected any image for her profile, this text is shown in place of the image. Note html format. 
+#: frontWidget.ui:829
+msgctxt "frontWidget|"
+msgid ""
+"<html><head/><body><p align=\"center\"><span style=\" "
+"font-size:16pt;\"><br/></span></p><p align=\"center\"><span style=\" "
+"font-size:16pt;\"><br/></span></p><p align=\"center\"><span style=\" "
+"font-size:16pt;\"><br/></span></p><p align=\"center\"><span style=\" "
+"font-size:16pt;\">No</span></p><p align=\"center\"><span style=\" "
+"font-size:16pt;\">Image</span></p><p align=\"center\"><span style=\" "
+"font-size:16pt;\">Inserted</span></p></body></html>"
+msgstr ""
+"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt;\"><br/>"
+"</span></p><p align=\"center\"><span style=\" font-size:16pt;\"><br/></span>"
+"</p><p align=\"center\"><span style=\" font-size:16pt;\"><br/></span></p><p "
+"align=\"center\"><span style=\" font-size:16pt;\">Tidak</span></p><p "
+"align=\"center\"><span style=\" font-size:16pt;\">Ada Gambar</span></p><p "
+"align=\"center\"><span style=\" font-size:16pt;\">Disisipkan</span></p></"
+"body></html>"
+
+# Button text inside "defails of operator profile" tab. When the button is clicked, a new-message editor is opened. 
+#: frontWidget.ui:874
+msgctxt "frontWidget|"
+msgid "Send message to operator"
+msgstr "Kirim pesan ke operator"
+
+# Button text in "operators details" view. Pressing the button initiates a new voice call to operator. 
+#: frontWidget.ui:879
+msgctxt "frontWidget|"
+msgid "Audio call"
+msgstr "Panggilan audio"
+
+# Button text inside "defails of operator profile" tab. When the button is clicked, dialog listing readers of the (private) profile. 
+#: frontWidget.ui:884
+msgctxt "frontWidget|"
+msgid "View readers"
+msgstr "Lihat pembaca"
+
+# Button text inside "defails of operator profile" tab. When the button is clicked, a dialog is opened, dialog prompts user to enter a comment about the operator. 
+#: frontWidget.ui:932
+msgctxt "frontWidget|"
+msgid "Comment"
+msgstr "Komentar"
+
+# Button text inside "defails of operator profile" tab. When the button is clicked, the operator whose data is on display is added into contact-list. 
+#: frontWidget.ui:964
+msgctxt "frontWidget|"
+msgid "Add to contacts"
+msgstr "Tambahkan ke kontak"
+
+# Dialog title text. Dialog is for adding a link to text being edited.
+#: ui/insertLink.ui:26
+msgctxt "insertLinkDialog|"
+msgid "Insert link"
+msgstr "Sisipkan tautan"
+
+# Label for a combobox-field inside "insert link" dialog. Next to this label is set of fields that together make up a valid URL to be inserted. 
+#: ui/insertLink.ui:39
+msgctxt "insertLinkDialog|"
+msgid "URL"
+msgstr "URL"
+
+# Label for a text-field inside "insert link" dialog. Next to this label is field where user is supposed the text that will be shown as the link. Consider <a href="url">the text</> then "the text" is text that user is prompted to enter with this label. 
+#: ui/insertLink.ui:112
+msgctxt "insertLinkDialog|"
+msgid "Link label in text"
+msgstr "Label tautan dalam teks"
+
+# Dialog title text. Dialog prompts user to manually add a network-connection to another node in the network.
+#: ui/manualConnectionDialog.ui:26
+msgctxt "manualConnectionDialog|"
+msgid "Manually add node to connection queue"
+msgstr "Tambahkan node secara manual ke antrean koneksi"
+
+# Label text of numeric field. The numeric (input) field is TCP port of the remote node that will be connected.
+#: ui/manualConnectionDialog.ui:48
+msgctxt "manualConnectionDialog|"
+msgid "Remote node listen port"
+msgstr "Port dengar node jarak jauh"
+
+# Label for text field inside "manually add connection" dialog. Text field whose label this is requires user to type in network address (ip addr or dns name) of the remote node. 
+#: ui/manualConnectionDialog.ui:78
+msgctxt "manualConnectionDialog|"
+msgid "Remote node network address"
+msgstr "Alamat jaringan node jarak jauh"
+
+# Tooltip text for a text field inside "manually add connection" dialog. The text field whose tooltip this is the remote network address input field. 
+#: ui/manualConnectionDialog.ui:91
+msgctxt "manualConnectionDialog|"
+msgid "IPv4, IPv6 or DNS name"
+msgstr "IPv4, IPv6, atau nama DNS"
+
+# Dialog title text for dialog that requires user to enter information about file to be shared with others. Metadata query dialog in practice. 
+#: ui/metadataQuery.ui:26
+msgctxt "metadataQuery|"
+msgid "File information"
+msgstr "Informasi berkas"
+
+# Label text for a input field. The input field whose label this is asks for file name (filesystem file name)
+#: ui/metadataQuery.ui:60
+msgctxt "metadataQuery|"
+msgid "Name of the file:"
+msgstr "Nama berkas:"
+
+# Label text for a input field. The input field whose label this is asks for owner of the file contents. This may be copyright holder, depending on contracts and legislation followed. 
+#: ui/metadataQuery.ui:81
+msgctxt "metadataQuery|"
+msgid "Owner of file (name or SHA1 if CA operator):"
+msgstr "Pemilik berkas (nama atau SHA1 jika operator CA):"
+
+# Label text for a input field. The input field whose label this is asks for license under which the file may be used. Combobox lists some pre-filled options like GPL,BSD,CC-BY etc. but user may also enter any text into field.  
+#: ui/metadataQuery.ui:111
+msgctxt "metadataQuery|"
+msgid "License of use:"
+msgstr "Lisensi penggunaan:"
+
+# Combobox content text for license selection combobox. License texts might be wise leave as they are - untranslated
+#: ui/metadataQuery.ui:122
+msgctxt "metadataQuery|"
+msgid "Public domain"
+msgstr "Domain publik"
+
+# Combobox content text for license selection combobox. License texts might be wise leave as they are - untranslated
+#: ui/metadataQuery.ui:127
+msgctxt "metadataQuery|"
+msgid "GPL"
+msgstr "GPL"
+
+# Combobox content text for license selection combobox. License texts might be wise leave as they are - untranslated
+#: ui/metadataQuery.ui:132
+msgctxt "metadataQuery|"
+msgid "LGPL"
+msgstr "LGPL"
+
+# Combobox content text for license selection combobox. License texts might be wise leave as they are - untranslated
+#: ui/metadataQuery.ui:137
+msgctxt "metadataQuery|"
+msgid "BSD"
+msgstr "BSD"
+
+# Combobox content text for license selection combobox. License texts might be wise leave as they are - untranslated
+#: ui/metadataQuery.ui:142
+msgctxt "metadataQuery|"
+msgid "CC-BY"
+msgstr "CC-BY"
+
+# Combobox content text for license selection combobox. License texts might be wise leave as they are - untranslated
+#: ui/metadataQuery.ui:147
+msgctxt "metadataQuery|"
+msgid "CC-BY-SA"
+msgstr "CC-BY-SA"
+
+# Combobox content text for license selection combobox. License texts might be wise leave as they are - untranslated
+#: ui/metadataQuery.ui:152
+msgctxt "metadataQuery|"
+msgid "CC-BY-ND"
+msgstr "CC-BY-ND"
+
+# Combobox content text for license selection combobox. License texts might be wise leave as they are - untranslated
+#: ui/metadataQuery.ui:157
+msgctxt "metadataQuery|"
+msgid "CC-BY-NC"
+msgstr "CC-BY-NC"
+
+# Combobox content text for license selection combobox. License texts might be wise leave as they are - untranslated
+#: ui/metadataQuery.ui:162
+msgctxt "metadataQuery|"
+msgid "CC-BY-NC-SA"
+msgstr "CC-BY-NC-SA"
+
+# Combobox content text for license selection combobox. License texts might be wise leave as they are - untranslated
+#: ui/metadataQuery.ui:167
+msgctxt "metadataQuery|"
+msgid "CC-BY-NC-ND"
+msgstr "CC-BY-NC-ND"
+
+# Label text for a input field. The input field whose label this is asks for mime-type of the field about to be published. 
+#: ui/metadataQuery.ui:182
+msgctxt "metadataQuery|"
+msgid "Mime-type:"
+msgstr "Tipe-MIME:"
+
+# Label text for a input field. The input field whose label this is asks for descriptive text about file about to be published.  
+#: ui/metadataQuery.ui:199
+msgctxt "metadataQuery|"
+msgid "Description of file:"
+msgstr "Deskripsi berkas:"
+
+# Prompt text on top of "metadata query" dialog. Below this label is set of input-fields that make up the meta-data of a file to be published.
+#: ui/metadataQuery.ui:218
+msgctxt "metadataQuery|"
+msgid "Enter information regarding file before publish:"
+msgstr "Masukkan informasi terkait berkas sebelum dipublikasikan:"
+
+# Dialog title text for a dialog that offers possibility to post a new classified ad for others to read. 
+#: ui/newClassifiedAd.ui:26
+msgctxt "newCaDialog|"
+msgid "Post a new classified ad"
+msgstr "Pasang iklan baris baru"
+
+# This label text is part of sentence, whole sentence goes for example "About buying of cars in sweden" where the words "bying", "cars", and "sweden" are combo-boxes that user may choose from ; this word here is the first word in that sentece.
+#: ui/newClassifiedAd.ui:47
+msgctxt "newCaDialog|"
+msgid "About"
+msgstr "Tentang"
+
+# This label text is part of sentence, whole sentence goes for example "About buying of cars in sweden" where the words "bying", "cars", and "sweden" are combo-boxes that user may choose from ; this word here is the 3rd word in that sentece.
+#: ui/newClassifiedAd.ui:65
+msgctxt "newCaDialog|"
+msgid "of"
+msgstr "dari"
+
+# This label text is part of sentence, whole sentence goes for example "About buying of cars in sweden" where the words "bying", "cars", and "sweden" are combo-boxes that user may choose from ; this word here is the 5th word in that sentece.
+#: ui/newClassifiedAd.ui:81
+msgctxt "newCaDialog|"
+msgid "in"
+msgstr "di"
+
+# Label text of a text field inside "post a new classified ad" dialog. The input field whose label this is, requires user to enter a subject (topic) for her posting. 
+#: ui/newClassifiedAd.ui:95
+msgctxt "newCaDialog|"
+msgid "Subject"
+msgstr "Subjek"
+
+# Label text of a text field inside "post a new classified ad" dialog. The input field whose label this is, will show name file that is attached to the post. 
+#: ui/newClassifiedAd.ui:129
+msgctxt "newCaDialog|"
+msgid "Attachment: "
+msgstr "Lampiran: "
+
+# Push-button text inside "post a new classified ad" dialog. When user hits the button, another dialog is opened and user is required to select a file to be attached. 
+#: ui/newClassifiedAd.ui:149
+msgctxt "newCaDialog|"
+msgid "Add"
+msgstr "Tambah"
+
+# Dialog title text for dialog that prompts user to edit+send a private message to another operator
+#: ui/newPrivMsg.ui:26
+msgctxt "newPrivMsgDialog|"
+msgid "Send a private message"
+msgstr "Kirim pesan pribadi"
+
+# Text field label for input field inside "compose a new private message dialog". The text field in question is "subject" or "topic" field of the message. 
+#: ui/newPrivMsg.ui:39
+msgctxt "newPrivMsgDialog|"
+msgid "Subject"
+msgstr "Subjek"
+
+# Text field label for input field inside "compose a new private message dialog". The text field in question is SHA1 address of the recipient. 
+#: ui/newPrivMsg.ui:53
+msgctxt "newPrivMsgDialog|"
+msgid "Recipient"
+msgstr "Penerima"
+
+# Label text of a text field inside "compose a new private message" dialog. The input field whose label this is, will show name file that is attached to the post.
+#: ui/newPrivMsg.ui:83
+msgctxt "newPrivMsgDialog|"
+msgid "Attachments: "
+msgstr "Lampiran: "
+
+# Push-button text inside "compose a new private message" dialog. When user hits the button, another dialog is opened and user is required to select a file to be attached.
+#: ui/newPrivMsg.ui:103
+msgctxt "newPrivMsgDialog|"
+msgid "Attach"
+msgstr "Lampirkan"
+
+# Dialog title text for dialog that prompts user to edit+send a comment regarding another operator.
+#: ui/newProfileComment.ui:26
+msgctxt "newProfileCommentDialog|"
+msgid "Comment a operators profile"
+msgstr "Beri komentar pada profil operator"
+
+# Text field label for input field inside "compose a comment about operator dialog". The text field in question is "subject" or "topic" field of the comment.
+#: ui/newProfileComment.ui:39
+msgctxt "newProfileCommentDialog|"
+msgid "Subject"
+msgstr "Subjek"
+
+# Text field label for input field inside "compose a comment about operator dialog". The text field in question is SHA1 digest (address) of the operator being commented.
+#: ui/newProfileComment.ui:53
+msgctxt "newProfileCommentDialog|"
+msgid "Commented profile"
+msgstr "Profil yang dikomentari"
+
+# Label text of a text field inside "compose a comment about operator dialog" dialog. The input field whose label this is, will show name file that is attached to the post.
+#: ui/newProfileComment.ui:89
+msgctxt "newProfileCommentDialog|"
+msgid "Attachments:"
+msgstr "Lampiran:"
+
+# Push-button text inside "compose a comment about operator dialog" dialog. When user hits the button, another dialog is opened and user is required to select a file to be attached.
+#: ui/newProfileComment.ui:109
+msgctxt "newProfileCommentDialog|"
+msgid "Attach"
+msgstr "Lampirkan"
+
+# Dialog title text for a dialog that prompts user to edit+publish a text document. 
+#: ui/newTextDocument.ui:26
+msgctxt "newTextDocumentDialog|"
+msgid "Edit and publish a new text document"
+msgstr "Edit dan publikasikan dokumen teks baru"
+
+# Text field label for input field inside "compose a new text document" dialog. The text field in question is "subject" or "topic" field of the text document. 
+#: ui/newTextDocument.ui:39
+msgctxt "newTextDocumentDialog|"
+msgid "Document title"
+msgstr "Judul dokumen"
+
+# Label text of a text field inside "edit+publish a new text document dialog" dialog. The input field whose label this is, will show name file that is attached to the document. 
+#: ui/newTextDocument.ui:75
+msgctxt "newTextDocumentDialog|"
+msgid "Attachments:"
+msgstr "Lampiran:"
+
+# Push-button text inside "edit+publish a new text document dialog" dialog. When user hits the button, another dialog is opened and user is required to select a file to be attached.
+#: ui/newTextDocument.ui:95
+msgctxt "newTextDocumentDialog|"
+msgid "Attach"
+msgstr "Lampirkan"
+
+# Dialog title text for dialog that will show a listing of previous comments regarding operator (user himself or some other operator, it is the same dialog in both cases)
+#: ui/profileCommentDisplay.ui:26
+msgctxt "profileCommentDisplay|"
+msgid "Comments regarding operator"
+msgstr "Komentar terkait operator"
+
+# Dialog title text for a dialog that prompts user to choose operators who will be able to read details, comments and shared files of his profile. 
+#: ui/profileReadersDialog.ui:26
+msgctxt "profileReadersDialog|"
+msgid "Profile readers list"
+msgstr "Daftar pembaca profil"
+
+# Text field label inside "add profiles to list of readers" dialog. The text field whose prompt this is asks for search-words to be used to filter operator names/addresses from database.
+#: ui/profileReadersDialog.ui:37
+msgctxt "profileReadersDialog|"
+msgid "Search for profiles to add"
+msgstr "Cari profil untuk ditambahkan"
+
+# Text field label inside "add profiles to list of readers" dialog. The text listing-field whose explanation this is will list operators whose nickname,name or other search-term matches conditions entered by user. 
+#: ui/profileReadersDialog.ui:44
+msgctxt "profileReadersDialog|"
+msgid "First 100 matching profiles:"
+msgstr "100 profil pertama yang cocok:"
+
+# Push-button label inside "add profiles to list of readers" dialog. When user hits this button, operators that are selected from neighboring list will be added to list of readers of operators profile.
+#: ui/profileReadersDialog.ui:66
+msgctxt "profileReadersDialog|"
+msgid "Add selected to list of readers"
+msgstr "Tambahkan yang dipilih ke daftar pembaca"
+
+# Text field label inside "add profiles to list of readers" dialog. The text listing-field whose explanation this is shows current list operators profiles readers. 
+#: ui/profileReadersDialog.ui:73
+msgctxt "profileReadersDialog|"
+msgid "Current list of readers"
+msgstr "Daftar pembaca saat ini"
+
+# Push button label inside dialog that asks for list of operators who are readers of operators own profile. When user this this button, the dialog is dismissed. 
+#: ui/profileReadersDialog.ui:90
+msgctxt "profileReadersDialog|"
+msgid "Close"
+msgstr "Tutup"
+
+# Push button label inside dialog that asks for list of operators who are readers of operators own profile. When user this this button, selected operators are removed from the list. 
+#: ui/profileReadersDialog.ui:109
+msgctxt "profileReadersDialog|"
+msgid "Remove selected"
+msgstr "Hapus yang dipilih"
+
+# Dialog title-text for a search dialog. 
+#: ui/searchDisplay.ui:26
+msgctxt "searchDisplay|"
+msgid "Search data storage"
+msgstr "Cari penyimpanan data"
+
+# Label text of a text field inside "search" dialog. The text field in question requires user to enter one or more words that are then searched from all available (public) documents. 
+#: ui/searchDisplay.ui:60
+msgctxt "searchDisplay|"
+msgid "Words:"
+msgstr "Kata:"
+
+# Push button label inside "search" dialog. When button is hit, search using given words is performed.  
+#: ui/searchDisplay.ui:70
+msgctxt "searchDisplay|"
+msgid "Search"
+msgstr "Cari"
+
+# Check-box label inside "search" dialog. When box is checked, the search is done also in neighboring nodes in the network, not only in local storage. 
+#: ui/searchDisplay.ui:87
+msgctxt "searchDisplay|"
+msgid "Network search"
+msgstr "Pencarian jaringan"
+
+# Check-box label inside "search" dialog. When box is checked, the search may include classified ads in its resultset.
+#: ui/searchDisplay.ui:101
+msgctxt "searchDisplay|"
+msgid "Search ads"
+msgstr "Cari iklan"
+
+# Check-box label inside "search" dialog. When box is checked, the search may include operator profiles in its resultset.
+#: ui/searchDisplay.ui:111
+msgctxt "searchDisplay|"
+msgid "Search profiles"
+msgstr "Cari profil"
+
+# Check-box label inside "search" dialog. When box is checked, the search may include profile commetns  in its resultset.
+#: ui/searchDisplay.ui:121
+msgctxt "searchDisplay|"
+msgid "Search comments"
+msgstr "Cari komentar"
+
+# Dialog title text for "settings" dialog. 
+#: ui/settingsDialog.ui:26
+msgctxt "settingsDialog|"
+msgid "Node settings"
+msgstr "Pengaturan node"
+
+# Text field label for input field inside "settings" dialog. The numerical input field whose label this is has TCP port number of the node.
+#: ui/settingsDialog.ui:39
+msgctxt "settingsDialog|"
+msgid "TCP listen port"
+msgstr "Port dengar TCP"
+
+# Tooltip-text for input field inside "settings" dialog. The numerical input field whose label this is has TCP port number of the node.
+#: ui/settingsDialog.ui:58
+msgctxt "settingsDialog|"
+msgid "Incoming TCP listen port. Change requires node restart. "
+msgstr "Port dengar TCP masuk. Perubahan memerlukan mulai ulang node. "
+
+# Text field label for input field inside "settings" dialog. The textual input field whose label this is requires user to enter DNS-name of the node (or leave it empty, if no name is assigned) 
+#: ui/settingsDialog.ui:84
+msgctxt "settingsDialog|"
+msgid "DNS name of node"
+msgstr "Nama DNS node"
+
+# Tooltip-text for input field inside "settings" dialog. The textual input field whose label this is requires user to enter DNS-name of the node (or leave it empty, if no name is assigned)
+#: ui/settingsDialog.ui:91
+msgctxt "settingsDialog|"
+msgid ""
+"If you have permanent DNS name for your machine, you may type it here to be "
+"used to reference your node"
+msgstr ""
+"Jika Anda memiliki nama DNS permanen untuk mesin Anda, Anda dapat "
+"mengetikkannya di sini untuk digunakan sebagai rujukan node Anda"
+
+# Text label  inside "settings" dialog. Under this label is set of numerical input fields that user may use to adjust the amount of items he wishes to keep in his local storage. 
+#: ui/settingsDialog.ui:103
+msgctxt "settingsDialog|"
+msgid "Data store limits:"
+msgstr "Batas penyimpanan data:"
+
+# Text field label for input field inside "settings" dialog. The numerical input field whose label this is has maximum number of operator profiles to keep in storage. 
+#: ui/settingsDialog.ui:115
+msgctxt "settingsDialog|"
+msgid "Nr of profiles to keep"
+msgstr "Jml profil yang disimpan"
+
+# Text field label for input field inside "settings" dialog. The numerical input field whose label this is has maximum number of private messages to keep in storage. 
+#: ui/settingsDialog.ui:154
+msgctxt "settingsDialog|"
+msgid "Nr of private messages to keep"
+msgstr "Jml pesan pribadi yang disimpan"
+
+# Text field label for input field inside "settings" dialog. The numerical input field whose label this is has maximum number of binary files to keep in storage. 
+#: ui/settingsDialog.ui:193
+msgctxt "settingsDialog|"
+msgid "Nr of binary blobs to keep"
+msgstr "Jml blob biner yang disimpan"
+
+# Text field label for input field inside "settings" dialog. The numerical input field whose label this is has maximum number of classified ads to keep in storage. 
+#: ui/settingsDialog.ui:232
+msgctxt "settingsDialog|"
+msgid "Nr of CAs to keep"
+msgstr "Jml CA yang disimpan"
+
+# Tooltip-text for input field inside "settings" dialog. The numerical input field whose label this is has maximum number of classified ads to keep in storage. 
+#: ui/settingsDialog.ui:251
+msgctxt "settingsDialog|"
+msgid ""
+"Number of classified ads to keep in storage, total, including all "
+"classifications. Oldest referenced will be deleted first."
+msgstr ""
+"Jumlah iklan baris yang disimpan dalam penyimpanan, total, termasuk semua "
+"klasifikasi. Rujukan tertua akan dihapus terlebih dahulu."
+
+# Text field label for input field inside "settings" dialog. The numerical input field whose label this is has maximum number of comments regarding operators to keep in storage.
+#: ui/settingsDialog.ui:274
+msgctxt "settingsDialog|"
+msgid "Nr of profile comments to keep"
+msgstr "Jml komentar profil yang disimpan"
+
+# Settings dialog text for item that tells how many records of distributed database to keep
+#: ui/settingsDialog.ui:313
+msgctxt "settingsDialog|"
+msgid "Nr of db records to keep"
+msgstr "Jml rekaman basis data yang disimpan"
+
+# Label for combo-box where user can choose between voice call ringtones. 
+#: ui/settingsDialog.ui:316
+msgctxt "settingsDialog|"
+msgid "Ringtone"
+msgstr "Nada dering"
+
+# Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is performed with a bow.
+#: ui/settingsDialog.ui:324
+msgctxt "settingsDialog|"
+msgid "Bow"
+msgstr "Busur"
+
+# Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is electrical.
+#: ui/settingsDialog.ui:329
+msgctxt "settingsDialog|"
+msgid "Electrical"
+msgstr "Elektrik"
+
+# Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is performed in acoustic manner
+#: ui/settingsDialog.ui:334
+msgctxt "settingsDialog|"
+msgid "Acoustic"
+msgstr "Akustik"
+
+# Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is only a beep
+#: ui/settingsDialog.ui:339
+msgctxt "settingsDialog|"
+msgid "Beep"
+msgstr "Bip"
+
+# Selection-list item. Selection list is for choosing between audio call ringtones, this is for ringtone that is silent
+#: ui/settingsDialog.ui:344
+msgctxt "settingsDialog|"
+msgid "Silence"
+msgstr "Hening"
+
+# Combox-box label text. Combo-box is for selecting which audio calls to accept, selections are like "all ; no calls at all ; from some operators ; .."
+#: ui/settingsDialog.ui:356
+msgctxt "settingsDialog|"
+msgid "Accept voice calls"
+msgstr "Terima panggilan suara"
+
+# Combobox item text for selecting which audio calls to accept. Selecting this item lets all calls in. 
+#: ui/settingsDialog.ui:364
+msgctxt "settingsDialog|"
+msgid "All"
+msgstr "Semua"
+
+# Combobox item text for selecting which audio calls to accept. Selecting this item lets in calls from trusted operators.
+#: ui/settingsDialog.ui:369
+msgctxt "settingsDialog|"
+msgid "From trusted operators"
+msgstr "Dari operator tepercaya"
+
+# Combobox item text for selecting which audio calls to accept. Selecting this item rejects all calls. 
+#: ui/settingsDialog.ui:374
+msgctxt "settingsDialog|"
+msgid "Accept no voice calls"
+msgstr "Jangan terima panggilan suara"
+
+# Dialog title text for a dialog that shows network connectivity details. 
+#: ui/statusDialog.ui:26
+msgctxt "statusDialog|"
+msgid "Network and connection status"
+msgstr "Status jaringan dan koneksi"
+
+# Text field label for display-item inside "network status" dialog. The display-item shows ipv4-network address of the node. Usually it is (public) IP addr of the very machine that user is using at the moment.
+#: ui/statusDialog.ui:48
+msgctxt "statusDialog|"
+msgid "Detected own IPv4"
+msgstr "IPv4 sendiri terdeteksi"
+
+# Tooltip-text for display-item inside "network status" dialog. The display-item shows ipv4-network address of the node. Usually it is (public) IP addr of the very machine that user is using at the moment.
+#: ui/statusDialog.ui:61 ui/statusDialog.ui:93
+msgctxt "statusDialog|"
+msgid ""
+"Should your friend have trouble connecting, give her this address with port "
+"number"
+msgstr ""
+"Jika teman Anda kesulitan tersambung, berikan alamat ini beserta nomor port "
+"kepadanya"
+
+# Text field label for display-item inside "network status" dialog. The display-item shows IPV6-address of the node. Usually it is (public) IPv6 addr of the very machine that user is using at the moment.
+#: ui/statusDialog.ui:74
+msgctxt "statusDialog|"
+msgid "IPv6"
+msgstr "IPv6"
+
+# Text field label for display-item inside "network status" dialog. The display-item shows listen port of the node. 
+#: ui/statusDialog.ui:113
+msgctxt "statusDialog|"
+msgid "TCP port currently used"
+msgstr "Port TCP yang saat ini digunakan"
+
+# Text field label for a list-item inside "network status" dialog. The list-item shows list of currently connected other nodes in the network. 
+#: ui/statusDialog.ui:151
+msgctxt "statusDialog|"
+msgid "Currently open connections"
+msgstr "Koneksi yang saat ini terbuka"
+
+# Push-button label for button inside "network status" dialog. When button is hit, another dialog is opened, asking user for details about the remote node to connect.
+#: ui/statusDialog.ui:195
+msgctxt "statusDialog|"
+msgid "Manually add connection"
+msgstr "Tambahkan koneksi secara manual"
+
+# Push-button label for button inside "network status" dialog. When button is hit, dialog is dismissed. 
+#: ui/statusDialog.ui:202
+msgctxt "statusDialog|"
+msgid "Close"
+msgstr "Tutup"
+
+# Dialog title text for dialog that displays TCL interpreter console.
+#: ui/tclConsole.ui:26
+msgctxt "tclConsoleDialog|"
+msgid "TCL Interpreter console"
+msgstr "Konsol interpreter TCL"
+
+# Button text for button that runs TCL commands that user has typed
+#: ui/tclConsole.ui:51
+msgctxt "tclConsoleDialog|"
+msgid "Evaluate"
+msgstr "Evaluasi"
+
+# Button text for button that closes TCL interpreter window. Not the interpreter but only the console dialog.  
+#: ui/tclConsole.ui:58
+msgctxt "tclConsoleDialog|"
+msgid "Close"
+msgstr "Tutup"
+
+# label for text field that shows TCL interpreter output
+#: ui/tclConsole.ui:69
+msgctxt "tclConsoleDialog|"
+msgid "Interpreter output"
+msgstr "Keluaran interpreter"
+
+# label for text field that shows TCL interpreter input
+#: ui/tclConsole.ui:79
+msgctxt "tclConsoleDialog|"
+msgid "Command input"
+msgstr "Masukan perintah"
+
+# Dialog title text for dialog that lists stored TCL programs
+#: ui/tclPrograms.ui:26
+msgctxt "tclProgramsDialog|"
+msgid "TCL programs"
+msgstr "Program TCL"
+
+# Label for list-item that lists stored TCL programs.
+#: ui/tclPrograms.ui:48
+msgctxt "tclProgramsDialog|"
+msgid "Stored programs"
+msgstr "Program tersimpan"
+
+# Label for text item that shows program text of locally stored TCL program
+#: ui/tclPrograms.ui:68
+msgctxt "tclProgramsDialog|"
+msgid "Program code"
+msgstr "Kode program"
